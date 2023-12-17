@@ -5,55 +5,44 @@
 ### 1.1.2. Analyse du marché de la mode éthique dans le contexte français 
 
 ## 1.2. Présentation des objectifs scientifiques et techniques de la R&D
-### 1.2.1. Élargissement de la consommation et amélioration de la distribution de la mode éthique
-#### 1.2.1.1. Canaux de distribution et comportement post-achat
-#### 1.2.1.2. Conscience et évaluations éthiques des consommateurs
-#### 1.2.1.3. Stratégies de labellisation et reconnaissance des produits éthiques
-### 1.2.2. Amélioration de la perception et des pratiques autour de la mode durable
-#### 1.2.2.1. Identification et réduction des barrières à la consommation de la mode éthique
-#### 1.2.2.2. Renforcement des motivations à la consommation des produits de mode éthique
-#### 1.2.2.3. Développement de critères de choix robustes pour la mode éthique
-### 1.2.3. Optimisation des attitudes et comportements post-achat liés à la mode durable
-#### 1.2.3.1. Accroissement de la satisfaction liée à la qualité et au style éthique
-#### 1.2.3.2. Promotion de la réutilisation et amélioration de la perception de la mode seconde main
-#### 1.2.3.3. Analyse de l'influence sociodémographique sur les comportements post-achat
+### 1.2.1. Importance croissante de la mode éthique comme champ de recherche scientifique
+### 1.2.2. Objectif central : Comprendre et encourager les pratiques de consommation mode éthique en France
 
-## 1.3. Présentation état de l'art et avancées attendues
-### 1.3.1. Contributions actuelles et futures au domaine de la consommation et distribution de la mode éthique
-#### 1.3.1.1. Analyse des tendances actuelles des canaux de distribution
-#### 1.3.1.2. État des connaissances sur la conscience éthique des consommateurs
-#### 1.3.1.3. Impact des labellisations existantes sur la reconnaissance des produits éthiques
-### 1.3.2. Synthèse des recherches sur la perception et l’éthique de la mode durable
-#### 1.3.2.1. Aperçu des barrières courantes à la consommation éthique
-#### 1.3.2.2. Cartographie des motivations pour l’achat éthique
-#### 1.3.2.3. Évaluation des critères actuels de sélection de la mode éthique
-### 1.3.3. Avancées dans la compréhension des attitudes et comportements post-achat
-#### 1.3.3.1. Corrélation entre satisfaction des consommateurs et caractéristiques éthiques
-#### 1.3.3.2. État de la réutilisation et de la seconde main dans le contexte éthique
-#### 1.3.3.3. Effets sociodémographiques sur le cycle de vie post-achat des produits éthiques
+## 1.3. Présentation de l'état de l'art et avancées attendues
+### 1.3.1. Consumérisme éthique dans les pays développés
+#### 1.3.1.1. Évolution des exigences éthiques chez les consommateurs et répercussions sur la filière mode
+### 1.3.2. Mode éthique en France - Perception et comportements
+#### 1.3.2.1. Obstacles à l'adoption de la mode éthique en France
+#### 1.3.2.2. Analyse des canaux de distribution des produits éthiques et gestion de l'après-vie des vêtements
+#### 1.3.2.3. Image de la mode éthique auprès du consommateur français
 
 ## 1.4. Identification des incertitudes et verrous scientifiques et techniques
-### 1.4.1. Diagnostic des défis dans la consommation et distribution de la mode éthique
-#### 1.4.1.1. Évaluation des problématiques liées aux canaux de distribution
-#### 1.4.1.2. Difficultés relatives à la conscience éthique chez les consommateurs
-#### 1.4.1.3. Enjeux autour de la labellisation pour la reconnaissance des produits éthiques
-### 1.4.2. Recensement des obstacles dans la perception et l'éthique de la mode durable
-#### 1.4.2.1. Identification des barrières majeures dans l'adoption de la mode éthique
-#### 1.4.2.2. Analyse des résistances aux motivations d'achat éthique
-#### 1.4.2.3. Définition des critères éthiques insuffisamment exploités
-### 1.4.3. Exploration des attitudes et comportements post-achat à améliorer
-#### 1.4.3.1. Causes de l'insatisfaction en lien avec les aspects éthiques
-#### 1.4.3.2. Problématiques associées à la perception de la mode de seconde main
-#### 1.4.3.3. Influence sociodémographique comme frein ou catalyseur post-achat
+### 1.4.1. Problématiques de perception et consommation de la mode éthique 
+#### 1.4.1.1. Enjeux de compréhension et d'intérêt pour la mode éthique chez le consommateur français
+#### 1.4.1.2. Impact des modes d'achat et du recyclage sur l'attrait pour la mode éthique
 
 ## 1.5. Présentation du plan des Travaux de R&D
-### 1.5.1. Travaux visant à améliorer les canaux de distribution et le comportement post-achat
-### 1.5.2. Travaux axés sur l’éveil de la conscience éthique et les évaluations par les consommateurs
-### 1.5.3. Travaux liés à l'efficacité de la labellisation et au renforcement de la reconnaissance des produits éthiques
-### 1.5.4. Travaux visant à lever les barrières et à augmenter les motivations pour la mode éthique
-### 1.5.5. Travaux destinés à approfondir la compréhension des attitudes et comportements post-achat durables
+### 1.5.1. Compilation des données et évaluation des recherches existantes
+#### 1.5.1.1. Collecte des verbatim sur la perception de la production et considérations environnementales
+#### 1.5.1.2. Analyse des facteurs influençant l'attrait pour la mode éthique
+#### 1.5.1.3. Statistiques et pratiques autour du recyclage des vêtements
+#### 1.5.1.4. Étude d'impact des perceptions consommateurs sur la mode éthique
+### 1.5.2. Extraction et synthèse des travaux de recherche sur les verrous identifiés
+#### 1.5.2.1. Pratiques d'achat et habitudes de consommation liées à la mode éthique en France
+#### 1.5.2.2. Contributions des travaux récents au levier des obstacles
+### 1.5.3. Actions et études à entreprendre pour adresser les incertitudes
+#### 1.5.3.1. Développer une compréhension raffinée de la consommation mode éthique
+#### 1.5.3.2. Établissement de programmes pour augmenter l'engagement envers la mode éthique
+
+## 1.6. Conclusion
+### 1.6.1. Synthèse des objectifs, défis et avancées dans le domaine de la mode éthique
+### 1.6.2. Stratégies de recherche futures pour dépasser les difficultés actuelles
+
+## 1.7 Références
+### 1.7.1. Achabou, M. A., & Rink, L. (2014). [Titre de l'article]. [Source de publication], pp. [numéros de pages].
+### 1.7.2. Ajout des références bibliographiques complètes suite à la correction des emplacements des citations
 
 # 2. Bibliographie
-## 2.1. Littérature académique revue
-## 2.2. Études de marché et autres documents professionnels
+## 2.1. Revue de la littérature académique
+## 2.2. Synthèse des études de marché et des documents professionnels pertinents
 ```
