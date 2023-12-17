@@ -5,23 +5,22 @@
 ### 1.1.2. Dynamiques du marché de la mode éthique et répercussions économiques
 ### 1.1.3. Stratégies d'amélioration de la labellisation pour une meilleure reconnaissance des produits par les consommateurs
 
-## 1.2. Présentation des objectifs scientifiques et techniques de la R&D
-### 1.2.1. Objectif : Évaluer l'intérêt et la sensibilité des consommateurs envers l'innovation et la mode éthique
-### 1.2.2. Objectif : Analyser l'impact du développement durable sur les habitudes de consommation françaises et identifier les enjeux sociétaux
-### 1.2.3. Objectif : Cerner et surmonter les obstacles à l'adoption de comportements de consommation durable
+## 1.2. Objectifs scientifiques et techniques de la R&D
+### 1.2.1. Évaluer l'intérêt et la sensibilité des consommateurs envers l'innovation et la mode éthique
+### 1.2.2. Analyser l'impact du développement durable sur les habitudes de consommation françaises et identifier les enjeux sociétaux
+### 1.2.3. Cerner et surmonter les obstacles à l'adoption de comportements de consommation durable
 
 ## 1.3. Présentation de l'état de l'art et avancées attendues
-
-### 1.3.1. État de l'art : Régulations gouvernementales et éthique de consommation dans les pays développés
-### 1.3.2. État de l'art : Enjeux environnementaux et conditions de travail dans la mode durable
-
-### 1.3.3. Avancées attendues : Amélioration de la reconnaissance des labels et leur impact sur le comportement d'achat
+### 1.3.1. Évaluer l'intérêt et la sensibilité des consommateurs envers l'innovation et la mode éthique
+### 1.3.2. Analyser l'impact du développement durable sur les habitudes de consommation françaises et identifier les enjeux sociétaux
+### 1.3.3. Cerner et surmonter les obstacles à l'adoption de comportements de consommation durable
+### 1.3.4. Amélioration de la reconnaissance des labels et leur impact sur le comportement d'achat
 L'introduction aux enjeux et challenges de la mode durable révèle une conjoncture où la responsabilisation croissante des consommateurs est une force motrice pour l'industrie (Smith, 2021). Ces consommateurs, de plus en plus informés et sensibles aux enjeux de durabilité, recherchent activement des produits qui respectent l'environnement et promeuvent l'équité sociale. Cela se traduit par des choix de consommation qui favorisent des marques engagées pour leur responsabilité environnementale et sociale. Toutefois, les défis sont multiples, notamment le besoin d'aligner les pratiques de production avec ces nouvelles attentes tout en restant économiquement viables (Doe et al., 2022). Par exemple, l'externalisation de la production en dehors des marchés développés soulève des questions sur les conditions de travail et les pratiques environnementales (Jones, 2023). C'est dans ce contexte que les efforts de recherche et de développement doivent s'inscrire, cherchant à réconcilier contraintes économiques et aspirations à la durabilité.
 
 ## 1.4. Identification des incertitudes et verrous scientifiques et techniques
-### 1.4.1. Verrou : Barrières psychosociales entravant l'adoption de la mode durable
-### 1.4.2. Verrou : Variations sociodémographiques affectant les préférences de consommation
-### 1.4.3. Verrou : Manque de transparence et problèmes de fiabilité dans la labellisation des produits de mode durable
+### 1.4.1. Barrières psychosociales entravant l'adoption de la mode durable
+### 1.4.2. Variations sociodémographiques affectant les préférences de consommation
+### 1.4.3. Manque de transparence et problèmes de fiabilité dans la labellisation des produits de mode durable
 
 ## 1.5. Présentation du plan des Travaux de R&D
 ### 1.5.1. Recherche et innovation : Projets de recherche visant à encourager l'éthique dans la mode durable
