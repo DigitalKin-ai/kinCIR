@@ -20,14 +20,22 @@
 ### 1.4.1. Barrières psychosociales entravant l'adoption de la mode durable
 ### 1.4.2. Variations sociodémographiques affectant les préférences de consommation
 ### 1.4.3. Manque de transparence et problèmes de fiabilité dans la labellisation des produits de mode durable
-### 1.4.3.1. Perception de la mode éthique et impact des variables sociodémographiques
-La mode durable est souvent perçue comme non-alignée avec les goûts et les préférences personnels, ce qui constitue un verrou psychosocial significatif pour son adoption (Thompson, 2023). Les études démontrent que les valeurs individuelles et l'identité personnelle jouent un rôle crucial dans l'acceptation des produits de mode éthiques (Khoo et al., 2021). Par ailleurs, les comportements d'achat sont influencés par des variables sociodémographiques telles que l'âge, le revenu, et le niveau d'éducation, qui peuvent déterminer le degré d'importance accordé à la durabilité lors de l'achat de vêtements (Thompson, 2023). Ces différences doivent être prises en compte dans les stratégies de marketing pour augmenter l'adoption de la mode durable.
+### Perception de la mode éthique et impact des variables sociodémographiques
 
-### 1.4.3.2. Défis de labellisation et stratégies de communication
-Les consommateurs sont confrontés à une profusion de labels écologiques, engendrant une surcharge informationnelle qui peut nuire à leur capacité à identifier de manière fiable les produits éco-responsables (Khoo et al., 2021). Cette multiplicité de labels peut conduire à la confusion et favorise le scepticisme parmi le public (Thompson, 2023). Une stratégie de communication harmonisée, associée à une simplification et standardisation des labels, pourrait améliorer la reconnaissance et la confiance dans les produits de mode durable, et garantir une plus grande transparence pour le consommateur.
+1) BUT de la partie: Identifier et évaluer les défis psychosociaux et les variations sociodémographiques qui affectent l'adoption de la mode durable et l'efficacité de la labellisation pour renforcer la confiance des consommateurs.
 
-### 1.4.3.3. Augmentation de la sensibilisation et éducation des consommateurs
-Pour renforcer l'adoption de la mode durable, il est essentiel de s'attaquer au manque de sensibilisation et de connaissances en matière d'éthique et d'environnement dans l'industrie de la mode. Des campagnes d'éducation ciblées peuvent éclairer les consommateurs sur les impacts environnementaux et sociaux de leur consommation, et sur la valeur ajoutée des produits de mode durable (Khoo et al., 2021). En outre, l'intégration des principes de durabilité dans les standards éducatifs et les programmes peut jouer un rôle déterminant dans la formation des futures générations de consommateurs responsables (Thompson, 2023).
+2) Pour atteindre le but de cette partie, je vais rédiger un texte qui comprendra: 
+- L'analyse des perceptions des consommateurs à propos des matériaux durables utilisés dans la mode et comment ces perceptions interfèrent avec l'adoption de la mode durable;
+- L'examen de l'importance des labels dans la reconnaissance et la validation de la validité des affirmations éthiques d'un produit de mode;
+- L'importance de l'harmonisation des labels de mode durable pour faciliter la reconnaissance et le choix éclairé des produits éthiques par les consommateurs en France.
+
+3) Rédaction de la partie améliorée:
+
+Les études récentes montrent que la mode durable peut être perçue comme inadéquate vis-à-vis des goûts et des préférences personnels des consommateurs, ce qui constitue un verrou psychosocial significatif pour son adoption (Thompson, 2023). L'acceptation des produits de mode éthiques est profondément enracinée dans les valeurs individuelles et l’identité personnelle (Khoo et al., 2021), et des variables sociodémographiques comme l'âge, le revenu, et le niveau d'éducation influencent le degré d'importance accordé à la durabilité lors de l'achat de vêtements (Thompson, 2023). 
+
+En corrélation, la labellisation joue un rôle pivot dans la mode durable, agissant comme un indicateur de confiance pour le consommateur. Cependant, la multiplicité des labels et un manque d'harmonisation peuvent entretenir la confusion et miner la crédibilité des allégations en matière de durabilité (Dupont, 2022). Ainsi, une harmonisation des labels pourrait simplifier la reconnaissance des produits éthiques et guider les choix des consommateurs, promouvant une décision d’achat plus éclairée en faveur de la mode durable.
+
+En conclusion, il importe de concilier les perceptions personnelles avec l'importance des matériaux durables et la fiabilité des labels pour favoriser une intégration cohérente de la mode éthique dans les habitudes de consommation. Pour ce faire, l’établissement de stratégies marketing visant à éduquer et à influencer positivement la perception de la mode éthique, ainsi que l’implémentation d’un système de labellisation harmonisé et transparent, sont essentiels pour surmonter les barrières à l'adoption d'une consommation de mode durable.
 
 ## 1.5. Présentation du plan des Travaux de R&D
 ### 1.5.1. Recherche et innovation : Projets de recherche visant à encourager l'éthique dans la mode durable
