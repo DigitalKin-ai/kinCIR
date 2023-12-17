@@ -12,7 +12,7 @@
 ### 1.2.2. Stratégies de Durabilité dans la Chaîne de Valeur de la Mode
 ### 1.2.3. Changements des Comportements de Consommation vers une Mode Durable
 
-## 1.3. Présentation de l'état de l'art et des avancées attendues
+## 1.3. Présentation de l'état de l'art
 ### 1.3.1. État de l'Art des Fibres et Matériaux Innovants pour une Mode Durable
 #### 1.3.1.1. Recherche sur les Matières Premières Renouvelables et Recyclées
 #### 1.3.1.2. Avancées dans les Procédés de Fabrication à Faible Impact
