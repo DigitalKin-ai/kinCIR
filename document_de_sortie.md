@@ -2,9 +2,11 @@
 
 ### 1.2.1. Influencer les Habitudes de Consommation
 
-L'objectif de cette partie de la recherche est de mettre en évidence l'intérêt croissant et la sensibilité à la consommation de mode éthique, en se concentrant sur les aspects sociaux et environnementaux qui influencent les habitudes de consommation en France. L'augmentation de la conscience éthique parmi les consommateurs français est attestée par la littérature existante. Toutefois, une adoption plus généralisée de la mode éthique est freinée par divers obstacles, tels que les perceptions et les habitudes de consommation liées à l’éthique dans l’industrie de la mode.
+Le but de notre recherche est d’illustrer l’intérêt et la sensibilité croissants des consommateurs envers la mode éthique. Nous nous penchons sur les interactions complexes entre les aspects sociaux et environnementaux et les comportements d'achat en France afin de mieux comprendre les dynamiques à l'œuvre dans l'adoption de la mode durable.
 
-Dans le développement de cette partie, je vais rédiger un état de l'art basé sur les travaux de Achabou & Rink (2014), exposant les perspectives, les pratiques et les défis rencontrés par les consommateurs français en matière de mode éthique. Il sera question des enjeux sociaux et environnementaux dans les filières de production, du faible engouement pour les produits de mode éthique et des pratiques de recyclage des vêtements usagés par les Français. Les perceptions relatives à la mode éthique, dont la dissociation avec l'utilisation des matières animales, seront également examinées.
+En m'appuyant sur les travaux pertinents d'Achabou & Rink (2014), je vais examiner les facteurs qui influent sur la consommation de mode éthique. Cela comprendra l'analyse des tendances du consommateur, la perception des problématiques sociales et environnementales liées à la production de mode, ainsi que les habitudes de recyclage et les pratiques d'achat. L'évolution des perceptions des consommateurs français envers la mode sans cruauté animale sera discutée en détail.
+
+Dans la partie améliorée que je vais rédiger, chaque paragraphe sera consacré à une dimension spécifique des habitudes de consommation liée à la mode éthique, en employant des données et des citations tirées de la littérature existante. Je veillerai à illustrer comment chaque élément interagit avec les autres pour façonner l'attitude des consommateurs français envers la mode éthique.
 
 ### 1.2.2. Inciter les Marques à l'Éthique
 
