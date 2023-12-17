@@ -2,8 +2,16 @@
 
 ## 1.1. Contexte Scientifique et économique
 ### 1.1.1. Responsabilisation des consommateurs et impact sur le secteur de la mode durable
+
+Dans le secteur de la mode, les enjeux environnementaux sont devenus des leviers essentiels de différenciation pour les marques, particulièrement dans les pays où la conscience écologique se manifeste de façon plus prononcée, tels que la Suède et l'Allemagne. Ces sociétés ont vu émerger des consommateurs de plus en plus vigilants vis-à-vis de l'origine et de l'impact des produits qu'ils achètent (Jensen et al., 2018). Face à cette évolution, les entreprises de mode optent pour des stratégies de communication mettant en avant leurs engagements éthiques, cherchant par là à renforcer leur image de marque et à créer une valeur ajoutée perçue par le consommateur soucieux de son empreinte environnementale.
+
 ### 1.1.2. Dynamiques du marché de la mode éthique et répercussions économiques
+
+Cependant, la prolifération des labels écologiques engendre parfois une surcharge informationnelle pour les consommateurs, qui peinent à discerner les produits véritablement durables. La multiplication des certifications et labels, dépourvue d'harmonisation, complique le processus de reconnaissance et la confiance en ces signes distinctifs (Whitaker et al., 2019). En conséquence, l'uniformisation des critères de labellisation apparaît comme une nécessité pour clarifier l'offre de mode durable et soutenir l'intérêt des consommateurs.
+
 ### 1.1.3. Stratégies d'amélioration de la labellisation pour une meilleure reconnaissance des produits par les consommateurs
+
+Les facteurs motivant l'achat de mode éthique varient grandement, oscillant entre des considérations personnelles et un souci altruiste pour l'environnement et la société (Hamann et al., 2020). Cette dualité est particulièrement palpable en France, où, malgré un engouement général pour les initiatives écolabellisées, les produits de mode éthique peinent à s'imposer économiquement. Pour inverser cette tendance, il est crucial que l'industrie et les régulateurs s'attaquent aux obstacles informationnels et psychologiques (Smith et Lee, 2021), visant à rendre les options durables non seulement plus visibles, mais également plus désirables et accessibles au grand public.
 
 ## 1.2. Objectifs scientifiques et techniques de la R&D
 ### 1.2.1. Évaluer l'intérêt et la sensibilité des consommateurs envers l'innovation et la mode éthique
@@ -14,14 +22,6 @@
 ### 1.3.1. Évaluer l'intérêt et la sensibilité des consommateurs envers l'innovation et la mode éthique
 ### 1.3.2. Analyser l'impact du développement durable sur les habitudes de consommation françaises et identifier les enjeux sociétaux
 ### 1.3.3. Cerner et surmonter les obstacles à l'adoption de comportements de consommation durable
-
-Pour comprendre les leviers pouvant influencer les consommateurs à opter pour la mode éthique, il convient de noter l'efficacité des campagnes de sensibilisation basées sur des émotions par rapport à celles fondées sur la rationalité. Les études suggèrent qu'une approche émotionnelle peut avoir un impact plus marquant sur les comportements d'achat durable par opposition aux approches axées sur la moralité et la logique (Eckhardt et al., 2010). Cela révèle que les émotions jouent un rôle prépondérant dans la décision des consommateurs, ce qui devrait être considéré lors de la conception de campagnes de promotion pour la mode éthique.
-
-En outre, les étiquettes constituent un outil essentiel en guidant le choix des consommateurs vers des produits plus éthiques. Cependant, le foisonnement des labels peut provoquer une surcharge cognitive réduisant leur efficacité. La simplification de l'information et la standardisation des labels pourraient contribuer à une meilleure reconnaissance des options durables (Achabou & Rink, 2014). Cette uniformisation pourrait être aidée par l'utilisation des plateformes numériques.
-
-Effectivement, les plateformes numériques offrent un espace privilégié pour la diffusion efficace de la mode durable. Elles permettent non seulement une compréhension claire des labels par les consommateurs mais sont aussi un moyen à faible coût pour les petites entreprises de la mode éthique de se faire connaître à un public plus large (Achabou & Rink, 2014). Cela indique que les stratégies numériques sont un vecteur clé dans la communication de pratiques de mode durable et dans la levée des barrières à l'adoption de la mode éthique.
-
-Afin de favoriser un changement comportemental vers plus de durabilité, les efforts devraient donc se concentrer sur la conception de campagnes émotionnellement engageantes, l'uniformisation des étiquettes pour faciliter leur reconnaissance et l'utilisation judicieuse des plateformes numériques pour atteindre un public plus vaste et sensibiliser à l'importance de la consommation de mode durable.
 
 ### 1.3.4. Amélioration de la reconnaissance des labels et leur impact sur le comportement d'achat
 
