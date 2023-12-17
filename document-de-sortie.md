@@ -20,6 +20,14 @@
 ### 1.4.1. Barrières psychosociales entravant l'adoption de la mode durable
 ### 1.4.2. Variations sociodémographiques affectant les préférences de consommation
 ### 1.4.3. Manque de transparence et problèmes de fiabilité dans la labellisation des produits de mode durable
+### 1.4.3.1. Perception de la mode éthique et impact des variables sociodémographiques
+La mode durable est souvent perçue comme non-alignée avec les goûts et les préférences personnels, ce qui constitue un verrou psychosocial significatif pour son adoption (Thompson, 2023). Les études démontrent que les valeurs individuelles et l'identité personnelle jouent un rôle crucial dans l'acceptation des produits de mode éthiques (Khoo et al., 2021). Par ailleurs, les comportements d'achat sont influencés par des variables sociodémographiques telles que l'âge, le revenu, et le niveau d'éducation, qui peuvent déterminer le degré d'importance accordé à la durabilité lors de l'achat de vêtements (Thompson, 2023). Ces différences doivent être prises en compte dans les stratégies de marketing pour augmenter l'adoption de la mode durable.
+
+### 1.4.3.2. Défis de labellisation et stratégies de communication
+Les consommateurs sont confrontés à une profusion de labels écologiques, engendrant une surcharge informationnelle qui peut nuire à leur capacité à identifier de manière fiable les produits éco-responsables (Khoo et al., 2021). Cette multiplicité de labels peut conduire à la confusion et favorise le scepticisme parmi le public (Thompson, 2023). Une stratégie de communication harmonisée, associée à une simplification et standardisation des labels, pourrait améliorer la reconnaissance et la confiance dans les produits de mode durable, et garantir une plus grande transparence pour le consommateur.
+
+### 1.4.3.3. Augmentation de la sensibilisation et éducation des consommateurs
+Pour renforcer l'adoption de la mode durable, il est essentiel de s'attaquer au manque de sensibilisation et de connaissances en matière d'éthique et d'environnement dans l'industrie de la mode. Des campagnes d'éducation ciblées peuvent éclairer les consommateurs sur les impacts environnementaux et sociaux de leur consommation, et sur la valeur ajoutée des produits de mode durable (Khoo et al., 2021). En outre, l'intégration des principes de durabilité dans les standards éducatifs et les programmes peut jouer un rôle déterminant dans la formation des futures générations de consommateurs responsables (Thompson, 2023).
 
 ## 1.5. Présentation du plan des Travaux de R&D
 ### 1.5.1. Recherche et innovation : Projets de recherche visant à encourager l'éthique dans la mode durable
