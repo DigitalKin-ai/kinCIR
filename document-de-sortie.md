@@ -15,7 +15,6 @@
 ### 1.3.2. Analyser l'impact du développement durable sur les habitudes de consommation françaises et identifier les enjeux sociétaux
 ### 1.3.3. Cerner et surmonter les obstacles à l'adoption de comportements de consommation durable
 ### 1.3.4. Amélioration de la reconnaissance des labels et leur impact sur le comportement d'achat
-L'introduction aux enjeux et challenges de la mode durable révèle une conjoncture où la responsabilisation croissante des consommateurs est une force motrice pour l'industrie (Smith, 2021). Ces consommateurs, de plus en plus informés et sensibles aux enjeux de durabilité, recherchent activement des produits qui respectent l'environnement et promeuvent l'équité sociale. Cela se traduit par des choix de consommation qui favorisent des marques engagées pour leur responsabilité environnementale et sociale. Toutefois, les défis sont multiples, notamment le besoin d'aligner les pratiques de production avec ces nouvelles attentes tout en restant économiquement viables (Doe et al., 2022). Par exemple, l'externalisation de la production en dehors des marchés développés soulève des questions sur les conditions de travail et les pratiques environnementales (Jones, 2023). C'est dans ce contexte que les efforts de recherche et de développement doivent s'inscrire, cherchant à réconcilier contraintes économiques et aspirations à la durabilité.
 
 ## 1.4. Identification des incertitudes et verrous scientifiques et techniques
 ### 1.4.1. Barrières psychosociales entravant l'adoption de la mode durable
