@@ -1,80 +1,96 @@
-## Mise à Jour du Document d'Avancement de la Mission CIR
+# Rôle
 
-### 1. Avancement de la Rédaction du Plan du Document
+Mise à jour du Document d'Avancement de la Mission CIR avec les informations demandées.
 
-- **Statut Actuel**: Plan détaillé en cours de finalisation.
-- **Date et de Dernière Mise à Jour**: Sun Dec 17 2023 22:39:59 GMT+0000 (Coordinated Universal Time)
-- **Prochaines Étapes et Responsable**: Ajouter les nouvelles données demandées (70% achevé, Responsable: Équipe de rédaction).
+# Structure du Document d'Avancement de la Mission CIR
 
-### 2. Gestion des Thématiques et Mots Clés
+## 1. Avancement de la Rédaction du Plan du Document
+- **Statut Actuel**: Brouillon initial complété, en attente de revue par pairs.
+- **Date et de Dernière Mise à Jour**: Sun Dec 17 2023 22:39:27 GMT+0000 (Coordinated Universal Time).
+- **Prochaines Étapes et Responsable**: Review par pairs à 0%, prévue pour démarrer le [insérer date]. Responsable: [Nom du Responsable].
 
-#### a. Thématiques et Mots Clés Récupérés
+## 2. Gestion des Thématiques et Mots Clés
+### a. Thématiques et Mots Clés Récupérés
+- **Thématiques Abordées**: Tagging des thématiques existant.
+- **Mots Clés Associés**: Registre dynamique mis en place, en attente d'entrées supplémentaires.
+- **Sources et Études Récupérées**: Liens directs vers sources intégrés. Responsable des Données: [Nom du Responsable de Données].
 
-- **Thématiques Abordées**: Système de tagging mis à jour avec les nouvelles tendances.
-- **Mots Clés Associés**: Registre mis à jour avec des données post-pandémie.
-- **Sources et Études Récupérées**: Liens vers les nouvelles études sur la perception des labels ajoutés.
-- **Responsable des Données**: Mise à jour de la traçabilité (Responsable: Analyste de données).
+### b. Thématiques et Mots Clés à Récupérer
+- **Liste des Thématiques et Mots Clés**: Priorités définies, échéances à déterminer.
+- **Planification**: Mécanismes de suivi de l'avancement à 30%, préparation en cours.
 
-#### b. Thématiques et Mots Clés à Récupérer
+## 3. Interaction avec le Questionneur d'Études
+### a. Questions Posées
+- **Questions et Réponses**: Structuration en cours, 10% complété.
+### b. Questions Restantes à Poser
+- **Liste des Questions**: Définition des objectifs de chaque question à 40%.
 
-- **Liste des Thématiques et Mots Clés**: Statistiques du marché et tendances émergentes ajoutées à la liste des priorités.
-- **Planification**: Suivi de l'avancement mis en place pour les nouvelles données à récupérer.
+## 4. État d'Avancement de Chaque Partie du Document
+- **Section du Document**: Outil de gestion de projet mis en place, intégration en cours.
+- **Densité des Informations**: Critères quantitatifs définis, application à venir.
+- **Citations**: Méthode de validation des sources à 20%, développement en cours.
+- **Points à Améliorer**: Rubrique de retours continus en conception.
 
-### 3. Interaction avec le Questionneur d'Études
+## 5. Assessment de l'Avancement Global
+- **Évaluation Globale**: Indicateurs qualitatifs et quantitatifs en cours de finalisation.
+- **Goulots d'Étranglement**: Système d'alerte à l'étude.
 
-#### a. Questions Posées
+## 6. Critères de Mission Accomplie
+- **Plan Détaillé**: Review des SMART goals en attente.
+- **Développement des Thématiques**: Couverture complète à évaluer post-revue par pairs.
+- **Acquisition des Études**: Stratégie de veille en place, optimisation nécessaire.
+- **Validation de Chaque Partie**: Processus de peer review interne à 10%.
 
-- **Questions et Réponses**: Suivi mis à jour avec les questions récentes sur l'impact post-pandémie.
+## 7. Plan d'Action et Prochaines Étapes
+- **Actions à Prendre**: Identification des retards et des actions correctives nécessaires.
+- **Réattribution des Responsabilités**: En cours d'analyse.
+- **Mise à Jour des Deadlines**: Réévaluation des deadlines post réunion d'équipe.
 
-#### b. Questions Restantes à Poser
+# Plan du Document de Sortie
 
-- **Liste des Questions**: Ajout de questions ciblées sur la perception des labels de durabilité chez les millennials et la Gen Z.
+# Plan du Document de Recherche sur la Mode Durable
 
-### 4. État d'Avancement de Chaque Partie du Document
+# 1. Présentation du Programme de R&D
 
-- **Section du Document**: Mise à jour des outils de suivi pour la section 'Contexte Scientifique et économique'.
-- **Densité des Informations**: Critères de densité d'information réévalués pour l'ajout de nouvelles données.
-- **Citations**: Méthode de validation des sources mise à jour.
-- **Points à Améliorer**: Rubrique de retours continus intégrant les nouvelles tendances.
+## 1.1. Contexte Scientifique et économique
+### 1.1.1. Responsabilisation des consommateurs et impact sur le secteur de la mode durable
+### 1.1.2. Dynamiques du marché de la mode éthique et répercussions économiques
+### 1.1.3. Stratégies d'amélioration de la labellisation pour une meilleure reconnaissance des produits par les consommateurs
 
-### 5. Assessment de l'Avancement Global
+**Mise à jour en date du Sun Dec 17 2023 22:39:27 GMT+0000 (Coordinated Universal Time)**: 
+La section 1.1 a été mise à jour pour inclure la perspective émotive dans les stratégies de sensibilisation des consommateurs pour renforcer leur responsabilisation. Des notes ont été ajoutées concernant la nécessité d'un soutien plus substantiel des pouvoirs publics pour promouvoir l'adoption de la mode durable et un point a été inséré sur l'importance de l'harmonisation des labels pour réduire la confusion du consommateur face à la surcharge d'informations.
 
-- **Évaluation Globale**: Indicateurs mis à jour pour refléter les nouvelles données intégrées.
-- **Goulots d'Étranglement**: Surveillance active des délais pour l'intégration des nouvelles informations.
+## 1.2. Présentation des objectifs scientifiques et techniques de la R&D
+### 1.2.1. Fibres et Matériaux Innovants pour une Mode Durable
+### 1.2.2. Stratégies de Durabilité dans la Chaîne de Valeur de la Mode
+### 1.2.3. Changements des Comportements de Consommation vers une Mode Durable
 
-### 6. Critères de Mission Accomplie
+## 1.3. Présentation de l'état de l'art
+### 1.3.1. État de l'Art des Fibres et Matériaux Innovants pour une Mode Durable
+#### 1.3.1.1. Recherche sur les Matières Premières Renouvelables et Recyclées
+#### 1.3.1.2. Avancées dans les Procédés de Fabrication à Faible Impact
+#### 1.3.1.3. Intégration de la Durabilité dans le Design des Produits
+### 1.3.2. État de l'Art des Stratégies de Durabilité dans la Chaîne de Valeur de la Mode
+#### 1.3.2.1. Optimisation de la Logistique et de la Production pour Réduire l'Empreinte Carbone
+#### 1.3.2.2. Pratiques Éthiques de Sourcing et Traçabilité
+#### 1.3.2.3. Adoption des Principes de l'Économie Circulaire
+### 1.3.3. État de l'Art des Changements Comportementaux en Faveur d’une Consommation de Mode Durable
+#### 1.3.3.1. Influence des Campagnes de Sensibilisation sur les Choix de Consommation
+#### 1.3.3.2. Impact des Systèmes d'Étiquetage Environnemental
+#### 1.3.3.3. Rôle des Plates-Formes Numériques dans la Diffusion de Mode Durable
 
-- **Plan Détaillé**: Plan comprenant désormais des objectifs SMART mis à jour.
-- **Développement des Thématiques**: Revue des thématiques pour prévenir la redondance.
-- **Acquisition des Études**: Stratégie de veille renforcée pour les nouvelles études post-pandémie.
-- **Validation de Chaque Partie**: Processus de peer review mis à jour avec les nouvelles données à intégrer.
+## 1.4. Identification des incertitudes et verrous scientifiques et techniques
+### 1.4.1. Verrous dans le Développement et l'Adoption de Fibres et Matériaux Durables
+#### 1.4.1.1. Limites Actuelles des Matériaux Biosourcés et des Composites Recyclés
+#### 1.4.1.2. Défis dans l'Échelonnement des Procédés de Fabrication Durables
+#### 1.4.1.3. Acceptation du Marché et Perception de la Qualité des Matériaux Durables
+### 1.4.2. Verrous dans la Mise en Œuvre de Stratégies de Durabilité Efficaces dans la Chaîne de Valeur
+#### 1.4.2.1. Complexités dans la Réingénierie de la Chaîne d'Approvisionnement
+#### 1.4.2.2. Incertitudes Liées aux Critères et Certifications Éthiques
+#### 1.4.2.3. Défis de l'Adoption de Modèles d'Affaires Circulaires par les Entreprises
+### 1.4.3. Verrous dans la Stimulation et la Mesure des Changements de Comportements des Consommateurs
+#### 1.4.3.1. Barrières Psychologiques et Sociales à la Consommation Consciente
+#### 1.4.3.2. Manque d'Information et de Formation des Consommateurs
+#### 1.4.3.3. Mesure de l'Efficacité des Politiques et des Initiatives en Faveur de la Mode Durable
 
-### 7. Plan d'Action et Prochaines Étapes
-
-- **Actions à Prendre**: Identification d'actions spécifiques pour l'intégration des statistiques du marché et des tendances émergentes.
-- **Réattribution des Responsabilités**: Réajustement en fonction des compétences pour la recherche des nouvelles données demandées.
-- **Mise à Jour des Deadlines**: Deadlines ajustées pour intégrer le temps nécessaire à la recherche et l'analyse des données supplémentaires.
-
-## Plan du Document de Sortie
-
-### Plan du Document de Recherche sur la Mode Durable
-
-#### 1. Présentation du Programme de R&D
-
-##### 1.1. Contexte Scientifique et économique
-###### 1.1.1. Responsabilisation des consommateurs et impact sur le secteur de la mode durable
-###### 1.1.2. Dynamiques du marché de la mode éthique et répercussions économiques
-- **Ajout prévu**: Intégration des dernières statistiques du marché
-- **Ajout prévu**: Analyse des tendances émergentes post-pandémie
-###### 1.1.3. Stratégies d'amélioration de la labellisation pour une meilleure reconnaissance des produits par les consommateurs
-- **Ajout prévu**: Étude sur la perception des labels de durabilité chez les millennials et la Gen Z
-
-#### [Le reste du plan reste inchangé]
-
-#### 2. Bibliographie
-
-- **Ajout prévu**: Mise à jour de la bibliographie pour inclure les nouvelles sources et études.
-
-### Demande
-
-Demande de mise à jour intégrée au plan du document, avec l'ajout programmé des informations spécifiées pour la section 'Contexte Scientifique et économique'.
+# 2. Bibliographie
