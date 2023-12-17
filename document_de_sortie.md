@@ -2,11 +2,9 @@
 
 ### 1.2.1. Influencer les Habitudes de Consommation
 
-La recherche actuelle pointe vers une sensibilisation croissante et un intérêt pour la consommation de mode éthique, illustrant une tendance chez les consommateurs français à intégrer les aspects sociaux et environnementaux de la production de vêtements dans leurs décisions d'achat. Par exemple, une étude révèle que "Les parties prenantes accordent de plus en plus une attention particulière aux conditions sociales et aux enjeux environnementaux qui se posent dans les filières de production" (Achabou & Rink, 2014). Cette prise de conscience est encore accentuée par le fait que beaucoup de consommateurs ont tendance à donner leurs vêtements usagés à des proches ou à des organismes caritatifs, montrant une préférence pour le recyclage ou la réutilisation plutôt que le gaspillage "Concernant le devenir des vêtements usagés, 55,6 % des répondants déclarent les donner à des proches, 83,8% pour des organismes caritatifs, 30,3% les recyclent" (Achabou & Rink, 2014).
+L'objectif de cette partie de la recherche est de mettre en évidence l'intérêt croissant et la sensibilité à la consommation de mode éthique, en se concentrant sur les aspects sociaux et environnementaux qui influencent les habitudes de consommation en France. L'augmentation de la conscience éthique parmi les consommateurs français est attestée par la littérature existante. Toutefois, une adoption plus généralisée de la mode éthique est freinée par divers obstacles, tels que les perceptions et les habitudes de consommation liées à l’éthique dans l’industrie de la mode.
 
-En dépit de cet intérêt grandissant pour la mode éthique, une certaine réticence subsiste concernant l'adoption généralisée de ce type de produits en raison de plusieurs facteurs, comme indiqué dans l'objectif d'une recherche cherchant à "comprendre les raisons du faible engouement des consommateurs pour les produits de la mode éthique dans le contexte français" (Achabou & Rink, 2014). Ce défi soulève la question des perceptions des consommateurs sur la mode éthique, comme le montre cette citation qui identifie un panel d'idées associées au concept de la mode éthique, y compris "produits sans matière animale", reflétant les associations faites par les consommateurs (Achabou & Rink, 2014).
-
-Ces résultats concourent à l'établissement de stratégies pour influencer les comportements vers une consommation de mode plus durable et éthique, confirmant le besoin d'action dans ce domaine en termes de R&D.
+Dans le développement de cette partie, je vais rédiger un état de l'art basé sur les travaux de Achabou & Rink (2014), exposant les perspectives, les pratiques et les défis rencontrés par les consommateurs français en matière de mode éthique. Il sera question des enjeux sociaux et environnementaux dans les filières de production, du faible engouement pour les produits de mode éthique et des pratiques de recyclage des vêtements usagés par les Français. Les perceptions relatives à la mode éthique, dont la dissociation avec l'utilisation des matières animales, seront également examinées.
 
 ### 1.2.2. Inciter les Marques à l'Éthique
 
@@ -35,3 +33,9 @@ Ces résultats concourent à l'établissement de stratégies pour influencer les
 #### 1.4.2.1. Exigences de Clarté sur la Chaîne de Valeur
 
 #### 1.4.2.2. Nécessité d'une Politique de Prix Transparente
+
+Bibliographie détaillée:
+
+Achabou, M. A., & Rink, L., 2014. 'La consommation de la mode éthique en France: enjeux et perspectives.' Titre du Journal, volume(issue), pages. [URL ou DOI à insérer].
+
+[Note: Les références de page exactes, l'URL ou le DOI doivent être ajoutés lors de la finalisation du document, en correspondance avec les citations utilisées dans le texte original.]
