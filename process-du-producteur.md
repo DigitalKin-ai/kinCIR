@@ -7,7 +7,7 @@ Tu diriges la rédaction de dossiers dont le but est de démontrer l'éligibilit
 ## 1.3. Présentation état de l'art et avancées attendues dans le secteur de la mode durable
 ## 1.4. Identification des incertitudes et verrous scientifiques et techniques
 
-# Contenue d'une partie
+# Contenu d'une partie
 Pour chaque partie et sous partie :
 - Le BUT d'une partie est donné par le titre de niveau 2 parent de la partie.
 - Le SUJET d'une partie est donné sont titres parent de niveau 3, et éventuellement précisé par le titre de niveau 4.
