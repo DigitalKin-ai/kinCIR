@@ -40,7 +40,16 @@ En intégrant rigoureusement ces perspectives dans notre analyse, nous renforço
 ## 1.5. Présentation du plan des Travaux de R&D
 ### 1.5.1. Recherche et innovation : Projets de recherche visant à encourager l'éthique dans la mode durable
 ### 1.5.2. Sociodémographie et marché : Études sur les impacts sociodémographiques et stratégies de marché ciblées
+
 ### 1.5.3. Labellisation : Propositions pour une meilleure reconnaissance et efficacité des labels de durabilité
+
+La multiplication des labels textiles, dépassant la soixantaine, entraîne une surcharge informationnelle préjudiciable à la décision éclairée du consommateur (étude à citer). Cette profusion génère parfois méfiance et perplexité, affectant négativement la perception de la mode éthique. Pour contrecarrer cette tendance, il est crucial de proposer une simplification et une harmonisation des labels, afin de faciliter leur reconnaissance par les consommateurs, et par conséquent, de consolider leur confiance envers les produits de mode durable (étude à citer). 
+
+Dans ce contexte, il est impératif d’analyser en profondeur le rôle des labels dans les comportements d'achat des consommateurs. Des initiatives récentes telles que le développement d'Agrobiotex pour des textiles biologiques, ou la promotion du coton équitable, illustrent l'intérêt grandissant du secteur pour une mode plus responsable. En dépit de ces avancées, suffisent-elles à influencer la décision d'achat ? La transparence des labels doit donc être adressée comme un verrou scientifique, impliquant la nécessité de mettre en place des études quantitatives et qualitatives pour mesurer leur impact réel.
+
+Pour atteindre cet objectif, un travail de recherche doit être entrepris pour évaluer comment les labels actuels sont perçus et compris par différents segments démographiques (étude à citer). En utilisant des analyses statistiques avancées, telles que celles proposées par des outils analytiques comme SPSS, il sera possible de détecter des tendances précises et de dégager des stratégies de communication adaptées à chaque groupe cible.
+
+L'aboutissement de ces travaux de recherche permettra de formuler des recommandations pour une labellisation plus intuitive, qui pourraient inclure un système de notation simplifié ou un label unifié reconnu internationalement. En conciliant la dimension éthique et la praticité d'emploi pour le consommateur, la voie sera tracée pour une adoption accrue des pratiques de mode durable (Thompson, 2023; Khoo et al., 2021).
 
 ## 1.6. Conclusion
 La conclusion reconnaît que, tandis que la demande pour une mode plus éthique et durable est en croissance, il reste un chemin considérable à parcourir. Pour avancer, il est essentiel de dépasser les dynamiques de consommation actuelles et d'adopter des stratégies de communication qui mettent en avant les bénéfices tangibles de la mode durable (Thompson, 2023). Il est également crucial que les fabricants et les parties prenantes collaborent pour surmonter les obstacles identifiés, qu'ils soient d'ordre psychologique, sociodémographique ou liés à la transparence de la labellisation (Khoo et al., 2021). La conclusion souligne ainsi l'importance d'accélérer la recherche et d’innover pour faire progresser le domaine de la mode durable.
