@@ -22,27 +22,15 @@ La mode éthique a gagné en importance grâce à une prise de conscience accrue
 
 En ce qui concerne la fin de vie des vêtements, il apparait que les pratiques de dons à des proches ou organismes caritatifs prévalent largement, suivies par le recyclage et, dans une moindre mesure, la revente. Une minorité de répondants déclarent que leurs vêtements usagés finissent à la poubelle (Achabou & Rink, 2014). Ces données soulignent des pratiques de consommation responsables en devenir ainsi que les possibilités d'augmenter ces comportements par des actions ciblées de sensibilisation et d'encouragement.
 
-### 1.4. Identification des incertitudes et verrous scientifiques et techniques
+## 1.4. Identification des incertitudes et verrous scientifiques et techniques
 
-### 1.4.1. Complexité de la Définition de Mode Durable
+Enjeux et Challenges de la Mode Durable
 
-#### 1.4.1.1. Diversité des Pratiques et Standards de Durabilité
+La quête d'une mode durable est entravée par la diversité des pratiques de durabilité et par l'absence d'un cadre normalisé, posant comme principal verrou la complexité d'harmoniser ces pratiques à travers l'industrie (Achabou & Rink, 2014). Cette hétérogénéité se traduit par des difficultés à établir des standards reconnus par tous les acteurs, de la conception à la consommation. Face à cette diversité, les attentes des consommateurs se révèlent variables : certains privilégient les considérations environnementales tandis que d'autres se concentrent sur des aspects sociaux ou éthiques, reflétant une pluralité de perspectives et de valeurs.
 
-La multiplicité des pratiques et standards de durabilité pose la question de l'uniformité et de l'harmonisation des critères de durabilité dans l'industrie de la mode.
+Parallèlement, la transparence s'impose comme un principe fondamental exigé par les consommateurs. Ceux-ci réclament une visibilité accrue sur la chaîne de valeur, exigeant de savoir d'où viennent les textiles et comment ils sont fabriqués (Achabou & Rink, 2014). Cette aspiration à la transparence ne se limite pas à la traçabilité des produits, mais s'étend également à une politique de prix transparente. Les consommateurs demandent à comprendre les coûts réels et les valeurs intégrées dans les produits, depuis le coût de la matière première jusqu'aux pratiques de commerce équitable. Les marques sont alors confrontées au défi de divulguer ces informations de manière compréhensible, honnête, et vérifiable.
 
-#### 1.4.1.2. Attentes Variables des Consommateurs
-
-Les attentes des consommateurs en matière de mode durable sont hétérogènes, nécessitant une communication claire et des démarches adaptées pour répondre à leurs besoins.
-
-### 1.4.2. Transparence Requise par les Consommateurs
-
-#### 1.4.2.1. Exigences de Clarté sur la Chaîne de Valeur
-
-Les consommateurs exigent une transparence accrue sur la chaîne de valeur, sollicitant des informations détaillées sur la provenance et le processus de production des articles de mode.
-
-#### 1.4.2.2. Nécessité d'une Politique de Prix Transparente
-
-Une politique de prix transparente est cruciale pour permettre aux consommateurs de comprendre les coûts réels impliqués dans la création de vêtements durables, notamment en ce qui concerne les aspects sociaux et environnementaux.
+Ces enjeux nécessitent l'élaboration de nouvelles méthodologies et outils permettant d'évaluer, d'attester et de communiquer les efforts en faveur de la durabilité, tout en conciliant les impératifs économiques et les attentes multiples et évolutives des consommateurs. La recherche scientifique a donc un rôle prédominant à jouer pour lever les verrous identifiés et pour aider l'industrie de la mode à emprunter un chemin plus durable et transparent.
 
 Bibliographie détaillée:
 
