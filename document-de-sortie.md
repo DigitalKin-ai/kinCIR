@@ -33,7 +33,7 @@ En outre, il est essentiel de considérer les variations régionales qui influen
 
 L'existence de plus de soixante labels textiles génère une surcharge informationnelle qui peut entraîner la méfiance des consommateurs et des comportements opportunistes de la part des entreprises (étude à citer). Il est donc primordial d'harmoniser la labellisation de la mode éthique pour simplifier la reconnaissance des produits par les consommateurs, et ainsi, renforcer leur confiance.
 
-Finalement, une attention particulière doit être portée sur l'impact des variables sociodémographiques sur la perception de la mode éthique. Les études menées via des outils analytiques comme SPSS pourraient permettre l'identification de groupes cibles spécifiques pour les campagnes de marketing et de sensibilisation, en envisageant des stratégies adaptées à chaque segment démographique (étude à citer).
+Finalement, une attention particulière doit être portée sur l'impact des variables sociodémographiques sur la perception de la mode éthique. Les études menées via des outils analytiques comme SPSS pourraient permettre l'identification de groupe cibles spécifiques pour les campagnes de marketing et de sensibilisation, en envisageant des stratégies adaptées à chaque segment démographique (étude à citer).
 
 En intégrant rigoureusement ces perspectives dans notre analyse, nous renforçons la compréhension des obstacles à la consommation durable tout en fournissant un cadre pour les interventions ciblées.
 
