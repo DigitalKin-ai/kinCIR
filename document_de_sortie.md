@@ -8,7 +8,7 @@ Pour influencer les habitudes de consommation, il est essentiel de sensibiliser 
 
 #### 1.2.2.1. Intégration de Procédés Verts
 
-Les marques doivent être encouragées à intégrer des procédés verts dans leur production, par exemple, en utilisant des matériaux écologiques ou en réduisant la consommation d’eau et d’énergie lors de la fabrication des vêtements.
+Les marques doivent être encouragées à intégrer des procédés verts dans leur production, à l'exemple de l'utilisation de matériaux écologiques et la réduction de la consommation d'eau et d’énergie lors de la fabrication des vêtements.
 
 #### 1.2.2.2. Certification et Labellisation
 
@@ -32,13 +32,15 @@ Favoriser la mode durable demande donc une combinaison d'efforts de la part des 
 
 ## 1.4. Identification des incertitudes et verrous scientifiques et techniques
 
-Enjeux et Challenges de la Mode Durable
+### Enjeux et Challenges de la Mode Durable
 
-La quête d'une mode durable est entravée par la diversité des pratiques de durabilité et par l'absence d'un cadre normalisé, posant comme principal verrou la complexité d'harmoniser ces pratiques à travers l'industrie. Cette hétérogénéité se traduit par des difficultés à établir des standards reconnus par tous les acteurs, de la conception à la consommation. Face à cette diversité, les attentes des consommateurs se révèlent variables : certains privilégient les considérations environnementales tandis que d'autres se concentrent sur des aspects sociaux ou éthiques, reflétant une pluralité de perspectives et de valeurs.
+Dans le cadre de la dynamique de l'éthique en matière de mode, nous mettons en lumière les dispositions culturelles et stylistiques qui orientent les choix des consommateurs français. La retranscription stylistique des valeurs éthiques dans les textiles représente un enjeu pour les fabricants qui peinent à aligner ces valeurs avec les attentes et les goûts personnels de chaque individu. Comme l'ont souligné Achabou et Rink (2014), bon nombre de consommateurs équationnent à tort mode éthique avec un style original ou de seconde main, qui n'est pas toujours en phase avec les contraintes socio-professionnelles ou encore avec leur goût propre.
 
-Parallèlement, la transparence s'impose comme un principe fondamental exigé par les consommateurs. Ceux-ci réclament une visibilité accrue sur la chaîne de valeur, exigeant de savoir d'où viennent les textiles et comment ils sont fabriqués. Cette aspiration à la transparence ne se limite pas à la traçabilité des produits, mais s'étend également à une politique de prix transparente. Les consommateurs demandent à comprendre les coûts réels et les valeurs intégrées dans les produits, depuis le coût de la matière première jusqu'aux pratiques de commerce équitable. Les marques sont alors confrontées au défi de divulguer ces informations de manière compréhensible, honnête, et vérifiable.
+En quête de preuves empiriques de l'influence de ces orientations stylistiques, notre analyse statistique, fondée sur les outils tels que SPSS, articulera les rapports entre ces préférences subjectives et leur corrélation avec la consommation de la mode éthique. Les résultats de cette analyse renforceront notre compréhension des barrières qui se dressent devant l'adoption généralisée de la mode éthique, en dépit de son empreinte vertueuse.
 
-Ces enjeux nécessitent l'élaboration de nouvelles méthodologies et outils permettant d'évaluer, d'attester et de communiquer les efforts en faveur de la durabilité, tout en conciliant les impératifs économiques et les attentes multiples et évolutives des consommateurs. La recherche scientifique a donc un rôle prédominant à jouer pour lever les verrous identifiés et pour aider l'industrie de la mode à emprunter un chemin plus durable et transparent.
+D'autre part, la labellisation emerge comme une solution intrigante pour guider le consommateur dans un marché saturé d'informations. Une labellisation pertinente permet de distinguer clairement les produits respectueux de critères éthiques. Cependant, cela accroît également la complexité de la décision d'achat face à l'excès d'informations, où le risque de confusion ou d'indifférence s'accroît.
+
+En conclusion, la partie améliorée de notre document intégrera l'analyse sociodémographique et stylistique afin d'élucider les freins et les leviers du consumérisme éthique dans l'industrie de la mode en France, tout en proposant une approche de labellisation qui soit à la fois claire, informative, et adaptée aux besoins et désirs des consommateurs.
 
 Bibliographie détaillée:
 
