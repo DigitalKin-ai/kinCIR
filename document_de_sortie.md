@@ -34,13 +34,15 @@ Favoriser la mode durable demande donc une combinaison d'efforts de la part des 
 
 ### Enjeux et Challenges de la Mode Durable
 
-Dans le cadre de la dynamique de l'éthique en matière de mode, nous mettons en lumière les dispositions culturelles et stylistiques qui orientent les choix des consommateurs français. La retranscription stylistique des valeurs éthiques dans les textiles représente un enjeu pour les fabricants qui peinent à aligner ces valeurs avec les attentes et les goûts personnels de chaque individu. Comme l'ont souligné Achabou et Rink (2014), bon nombre de consommateurs équationnent à tort mode éthique avec un style original ou de seconde main, qui n'est pas toujours en phase avec les contraintes socio-professionnelles ou encore avec leur goût propre.
+Le consumérisme éthique dans la mode durable est un enjeu majeur. Il englobe divers défis y compris, mais sans s'y limiter, l'engagement des consommateurs, l'influence des facteurs comportementaux, le rôle des labels et des stratégies de communication efficaces pour sensibiliser le public. Il est crucial d’introduire et de discuter ces aspects au sein du secteur de la mode.
 
-En quête de preuves empiriques de l'influence de ces orientations stylistiques, notre analyse statistique, fondée sur les outils tels que SPSS, articulera les rapports entre ces préférences subjectives et leur corrélation avec la consommation de la mode éthique. Les résultats de cette analyse renforceront notre compréhension des barrières qui se dressent devant l'adoption généralisée de la mode éthique, en dépit de son empreinte vertueuse.
+Les études de cas spécifiques en France, par exemple, peuvent montrer les difficultés à engager les consommateurs avec des initiatives de mode éthique tandis que les recherches mettent en évidence les facteurs qui influencent les attitudes et les comportements des consommateurs envers de tels produits.
 
-D'autre part, la labellisation emerge comme une solution intrigante pour guider le consommateur dans un marché saturé d'informations. Une labellisation pertinente permet de distinguer clairement les produits respectueux de critères éthiques. Cependant, cela accroît également la complexité de la décision d'achat face à l'excès d'informations, où le risque de confusion ou d'indifférence s'accroît.
+Les labels de certification jouent un rôle en informant les consommateurs et en influençant leur comportement d'achat. Pour avoir un impact, ces labels doivent être clairs, informatifs et adaptés aux besoins et aux désirs des consommateurs.
 
-En conclusion, la partie améliorée de notre document intégrera l'analyse sociodémographique et stylistique afin d'élucider les freins et les leviers du consumérisme éthique dans l'industrie de la mode en France, tout en proposant une approche de labellisation qui soit à la fois claire, informative, et adaptée aux besoins et désirs des consommateurs.
+Les stratégies de communication de la RSE sont également essentielles, en particulier celles qui génèrent une réaction émotionnelle et encouragent une consommation éthique. L'information doit être rendue accessible et compréhensible pour cultiver une consommation réfléchie et une prise de conscience accrue de l'impact de la mode sur l'environnement et la société.
+
+En résumé, il faut enquêter sur les moyens d'élucider les freins et les leviers du consumérisme éthique et de proposer des méthodes de labellisation pertinentes pour l'industrie de la mode en France.
 
 Bibliographie détaillée:
 
