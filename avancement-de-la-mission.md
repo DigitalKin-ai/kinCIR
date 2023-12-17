@@ -1,7 +1,7 @@
 # Document d'Avancement de la Mission CIR - Mise à jour
 
 ## 1. Avancement de la Rédaction du Plan du Document
-- **Statut Actuel**: **Plan Final***
+- **Statut Actuel**: **Plan Finalisé***
 - **Date et de Dernière Mise à Jour**: Sun Dec 17 2023 20:58:38 GMT+0000 (Coordinated Universal Time)
 - **Prochaines Étapes et Responsable**: Passage au processus de l'étude de fond avec désignation d'un chef de projet responsable.
 
