@@ -6,8 +6,12 @@
 ### 1.1.3. Stratégies d'amélioration de la labellisation pour une meilleure reconnaissance des produits par les consommateurs
 
 ## 1.2. Présentation des objectifs scientifiques et techniques de la R&D
-### 1.2.1. Objectif : Évaluer l'intérêt et la sensibilité des consommateurs envers l'innovation et la mode éthique
+### 1.2.1. Objectif : Évaluer l'intérêt et la sensibilité des consommateurs envers la mode éthique
+Le but de cette section est d'approfondir notre compréhension de l'intérêt et de la sensibilité des consommateurs envers la mode éthique, et d'étudier plus en détail les aspects sociaux et environnementaux qui façonnent les habitudes de consommation en France.
+
 ### 1.2.2. Objectif : Analyser l'impact du développement durable sur les habitudes de consommation françaises et identifier les enjeux sociétaux
+Les travaux rédigeront refléteront un état de l'art détaillé concernant la perception de la mode éthique chez les consommateurs français, ainsi que leurs habitudes en termes d'achat et de recyclage des vêtements. Il s'agira d'intégrer des données issues de travaux de recherche précédents, en soulignant notamment les canaux de distribution pour les vêtements de mode éthique et les pratiques de fin de vie des produits textiles.
+
 ### 1.2.3. Objectif : Cerner et surmonter les obstacles à l'adoption de comportements de consommation durable
 
 ## 1.3. Présentation de l'état de l'art et avancées attendues
