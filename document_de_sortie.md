@@ -1,11 +1,12 @@
-
-## 1.2. Présentation des objectifs scientifiques et techniques de la R&D dans la mode durable
+## 1.2. Objectifs R&D pour la mode durable
 
 ### 1.2.1. Influencer les Habitudes de Consommation
 
-#### 1.2.1.1. Sensibilisation à la Mode Éthique
+La recherche actuelle pointe vers une sensibilisation croissante et un intérêt pour la consommation de mode éthique, illustrant une tendance chez les consommateurs français à intégrer les aspects sociaux et environnementaux de la production de vêtements dans leurs décisions d'achat. Par exemple, une étude révèle que "Les parties prenantes accordent de plus en plus une attention particulière aux conditions sociales et aux enjeux environnementaux qui se posent dans les filières de production" (Achabou & Rink, 2014). Cette prise de conscience est encore accentuée par le fait que beaucoup de consommateurs ont tendance à donner leurs vêtements usagés à des proches ou à des organismes caritatifs, montrant une préférence pour le recyclage ou la réutilisation plutôt que le gaspillage "Concernant le devenir des vêtements usagés, 55,6 % des répondants déclarent les donner à des proches, 83,8% pour des organismes caritatifs, 30,3% les recyclent" (Achabou & Rink, 2014).
 
-#### 1.2.1.2. Valorisation des Produits Écoresponsables
+En dépit de cet intérêt grandissant pour la mode éthique, une certaine réticence subsiste concernant l'adoption généralisée de ce type de produits en raison de plusieurs facteurs, comme indiqué dans l'objectif d'une recherche cherchant à "comprendre les raisons du faible engouement des consommateurs pour les produits de la mode éthique dans le contexte français" (Achabou & Rink, 2014). Ce défi soulève la question des perceptions des consommateurs sur la mode éthique, comme le montre cette citation qui identifie un panel d'idées associées au concept de la mode éthique, y compris "produits sans matière animale", reflétant les associations faites par les consommateurs (Achabou & Rink, 2014).
+
+Ces résultats concourent à l'établissement de stratégies pour influencer les comportements vers une consommation de mode plus durable et éthique, confirmant le besoin d'action dans ce domaine en termes de R&D.
 
 ### 1.2.2. Inciter les Marques à l'Éthique
 
