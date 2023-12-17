@@ -20,7 +20,8 @@
 ### 1.4.1. Barrières psychosociales entravant l'adoption de la mode durable
 ### 1.4.2. Variations sociodémographiques affectant les préférences de consommation
 ### 1.4.3. Manque de transparence et problèmes de fiabilité dans la labellisation des produits de mode durable
-Je ne connais pas la réponse à cette question.
+
+Je ne connais pas les informations spécifiques demandées sur l'évolution de l'accueil de la mode éthique en France et les études par régression sur SPSS, car ces détails ne figurent pas dans les extraits fournis. J'ai besoin de données ou de recherches complémentaires pour répondre précisément à la tâche demandée.
 
 ## 1.5. Présentation du plan des Travaux de R&D
 ### 1.5.1. Recherche et innovation : Projets de recherche visant à encourager l'éthique dans la mode durable
