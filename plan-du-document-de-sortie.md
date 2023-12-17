@@ -1,4 +1,4 @@
-```markdown
+
 # 1. Présentation du Programme de R&D
 ## 1.1. Contexte Scientifique et économique
 ### 1.1.1. Responsabilisation des consommateurs et impact sur le secteur de la mode durable
@@ -30,4 +30,3 @@
 ### 1.6.2. Perspectives pour la recherche future et l'adoption accrue de la mode durable par les consommateurs
 
 # 2. Bibliographie
-```
