@@ -16,19 +16,13 @@ La certification et la labellisation des produits mode éthique sont des outils 
 
 ## 1.3. Présentation état de l'art et avancées attendues dans le secteur de la mode durable
 
-### 1.3.1. Définitions de Mode Durable et Éthique
+### 1.3.1. Rôles des Consommateurs et Approche du Marché
 
-La mode durable et éthique englobe les pratiques qui réduisent l'impact négatif sur l'environnement et assurent des conditions de travail équitables tout au long de la chaîne d'approvisionnement.
+La mode éthique a gagné en importance grâce à une prise de conscience accrue de l'impact social et environnemental de l'industrie de la mode. En France, les consommateurs deviennent de plus en plus sensibles aux conditions de production de leurs vêtements, reconnaissant les implications non seulement écologiques mais également sociales de leurs choix de consommation (Achabou & Rink, 2014). Poursuivant la compréhension de cette tendance, cette recherche vise à déterminer pourquoi la mode éthique n'attire pas plus de consommateurs dans le contexte français (Achabou & Rink, 2014). Ce faible engouement peut être attribué à plusieurs facteurs, incluant la disponibilité et la visibilité des produits éthiques, le prix de ces derniers, ou un manque de sensibilisation.
 
-### 1.3.2. Drivers et Challenges de la Mode Durable
+En ce qui concerne la fin de vie des vêtements, il apparait que les pratiques de dons à des proches ou organismes caritatifs prévalent largement, suivies par le recyclage et, dans une moindre mesure, la revente. Une minorité de répondants déclarent que leurs vêtements usagés finissent à la poubelle (Achabou & Rink, 2014). Ces données soulignent des pratiques de consommation responsables en devenir ainsi que les possibilités d'augmenter ces comportements par des actions ciblées de sensibilisation et d'encouragement.
 
-Les facteurs moteurs de la mode durable incluent la prise de conscience des enjeux environnementaux, la demande croissante des consommateurs pour des produits éthiques, et les innovations technologiques. Les défis comprennent le coût de mise en œuvre des pratiques durables et le manque de transparence dans la chaîne d'approvisionnement.
-
-### 1.3.3. Solutions et Actions Proposées
-
-Pour surmonter les obstacles et favoriser la mode durable, des solutions telles que la collaboration entre les parties prenantes, l’adoption de l'économie circulaire, et l'amélioration de la traçabilité des produits sont proposées.
-
-## 1.4. Identification des incertitudes et verrous scientifiques et techniques
+### 1.4. Identification des incertitudes et verrous scientifiques et techniques
 
 ### 1.4.1. Complexité de la Définition de Mode Durable
 
