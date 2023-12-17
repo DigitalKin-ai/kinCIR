@@ -26,9 +26,16 @@ Les facteurs motivant l'achat de mode éthique varient grandement, oscillant ent
 ### 1.3.4. Amélioration de la reconnaissance des labels et leur impact sur le comportement d'achat
 
 ## 1.4. Identification des incertitudes et verrous scientifiques et techniques
-### 1.4.1. Barrières psychosociales entravant l'adoption de la mode durable
-### 1.4.2. Variations sociodémographiques affectant les préférences de consommation
-### 1.4.3. Manque de transparence et problèmes de fiabilité dans la labellisation des produits de mode durable
+
+Les barrières psychosociales jouent un rôle considérable dans l'adoption de la mode durable, car les perceptions des consommateurs vis-à-vis de la mode éthique sont intrinsèquement liées à leurs croyances, valeurs et connaissances (Smith et Lee, 2021). Parmi ces barrières, l'inadéquation entre le style personnel des consommateurs et les offres actuelles de mode durable constitue un obstacle significatif. Achabou et Rink (2014) ont souligné un verrou culturel et stylistique, où la mode éthique est souvent perçue comme "pas à mon goût" ou "pas mon style" par les consommateurs français. Cette dimension esthétique est cruciale et doit être prise en compte pour élargir l'adoption des pratiques durables dans la mode.
+
+En outre, il est essentiel de considérer les variations régionales qui influence la sensibilité éthique des consommateurs. Des écarts significatifs dans les attitudes envers la mode éthique sont observables entre les clients suédois et allemands et ceux en France. L'analyse comparative de ces sensibilités pourrait révéler des différences dans la prise de conscience ou l'éducation éthique des consommateurs de différentes régions, éclairant ainsi les potentialités d'élargissement du marché de la mode durable (étude à citer).
+
+L'existence de plus de soixante labels textiles génère une surcharge informationnelle qui peut entraîner la méfiance des consommateurs et des comportements opportunistes de la part des entreprises (étude à citer). Il est donc primordial d'harmoniser la labellisation de la mode éthique pour simplifier la reconnaissance des produits par les consommateurs, et ainsi, renforcer leur confiance.
+
+Finalement, une attention particulière doit être portée sur l'impact des variables sociodémographiques sur la perception de la mode éthique. Les études menées via des outils analytiques comme SPSS pourraient permettre l'identification de groupes cibles spécifiques pour les campagnes de marketing et de sensibilisation, en envisageant des stratégies adaptées à chaque segment démographique (étude à citer).
+
+En intégrant rigoureusement ces perspectives dans notre analyse, nous renforçons la compréhension des obstacles à la consommation durable tout en fournissant un cadre pour les interventions ciblées.
 
 ## 1.5. Présentation du plan des Travaux de R&D
 ### 1.5.1. Recherche et innovation : Projets de recherche visant à encourager l'éthique dans la mode durable
