@@ -46,6 +46,6 @@ En résumé, il faut enquêter sur les moyens d'élucider les freins et les levi
 
 Bibliographie détaillée:
 
-Achabou, M. A., & Rink, L., 2014. 'La consommation de la mode éthique en France: enjeux et perspectives.' Titre du Journal, volume(issue), pages. [URL ou DOI à insérer].
+Désolé, mais sans informations spécifiques de l'étude d'Achabou et Rink, je ne peux pas rédiger la partie améliorée du document avec des citations précises et fiables issues de cette étude.
 
 [Note: Les références de page exactes, l'URL ou le DOI doivent être ajoutés lors de la finalisation du document, en correspondance avec les citations utilisées dans le texte original.]
