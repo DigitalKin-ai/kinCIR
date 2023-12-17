@@ -1,3 +1,5 @@
+# Plan du Document de Recherche sur la Mode Durable
+
 # 1. Présentation du Programme de R&D
 
 ## 1.1. Contexte Scientifique et économique
@@ -6,27 +8,36 @@
 ### 1.1.3. Stratégies d'amélioration de la labellisation pour une meilleure reconnaissance des produits par les consommateurs
 
 ## 1.2. Présentation des objectifs scientifiques et techniques de la R&D
-### 1.2.1. Objectif : Évaluer l'intérêt et la sensibilité des consommateurs envers l'innovation et la mode éthique
-### 1.2.2. Objectif : Analyser l'impact du développement durable sur les habitudes de consommation françaises et identifier les enjeux sociétaux
-### 1.2.3. Objectif : Cerner et surmonter les obstacles à l'adoption de comportements de consommation durable
+### 1.2.1. Fibres et Matériaux Innovants pour une Mode Durable
+### 1.2.2. Stratégies de Durabilité dans la Chaîne de Valeur de la Mode
+### 1.2.3. Changements des Comportements de Consommation vers une Mode Durable
 
-## 1.3. Présentation de l'état de l'art et avancées attendues
-### 1.3.1. État de l'art : Régulations gouvernementales et éthique de consommation dans les pays développés
-### 1.3.2. État de l'art : Enjeux environnementaux et conditions de travail dans la mode durable
-### 1.3.3. Avancées attendues : Amélioration de la reconnaissance des labels et leur impact sur le comportement d'achat
+## 1.3. Présentation de l'état de l'art et des avancées attendues
+### 1.3.1. État de l'Art des Fibres et Matériaux Innovants pour une Mode Durable
+#### 1.3.1.1. Recherche sur les Matières Premières Renouvelables et Recyclées
+#### 1.3.1.2. Avancées dans les Procédés de Fabrication à Faible Impact
+#### 1.3.1.3. Intégration de la Durabilité dans le Design des Produits
+### 1.3.2. État de l'Art des Stratégies de Durabilité dans la Chaîne de Valeur de la Mode
+#### 1.3.2.1. Optimisation de la Logistique et de la Production pour Réduire l'Empreinte Carbone
+#### 1.3.2.2. Pratiques Éthiques de Sourcing et Traçabilité
+#### 1.3.2.3. Adoption des Principes de l'Économie Circulaire
+### 1.3.3. État de l'Art des Changements Comportementaux en Faveur d’une Consommation de Mode Durable
+#### 1.3.3.1. Influence des Campagnes de Sensibilisation sur les Choix de Consommation
+#### 1.3.3.2. Impact des Systèmes d'Étiquetage Environnemental
+#### 1.3.3.3. Rôle des Plates-Formes Numériques dans la Diffusion de Mode Durable
 
 ## 1.4. Identification des incertitudes et verrous scientifiques et techniques
-### 1.4.1. Verrou : Barrières psychosociales entravant l'adoption de la mode durable
-### 1.4.2. Verrou : Variations sociodémographiques affectant les préférences de consommation
-### 1.4.3. Verrou : Manque de transparence et problèmes de fiabilité dans la labellisation des produits de mode durable
-
-## 1.5. Présentation du plan des Travaux de R&D
-### 1.5.1. Recherche et innovation : Projets de recherche visant à encourager l'éthique dans la mode durable
-### 1.5.2. Sociodémographie et marché : Études sur les impacts sociodémographiques et stratégies de marché ciblées
-### 1.5.3. Labellisation : Propositions pour une meilleure reconnaissance et efficacité des labels de durabilité
-
-## 1.6. Conclusion
-### 1.6.1. Synthèse des progrès réalisés et des objectifs atteints dans la recherche sur la mode durable
-### 1.6.2. Perspectives et orientations pour la recherche future et l'adoption accrue de pratiques durables par les consommateurs 
+### 1.4.1. Verrous dans le Développement et l'Adoption de Fibres et Matériaux Durables
+#### 1.4.1.1. Limites Actuelles des Matériaux Biosourcés et des Composites Recyclés
+#### 1.4.1.2. Défis dans l'Échelonnement des Procédés de Fabrication Durables
+#### 1.4.1.3. Acceptation du Marché et Perception de la Qualité des Matériaux Durables
+### 1.4.2. Verrous dans la Mise en Œuvre de Stratégies de Durabilité Efficaces dans la Chaîne de Valeur
+#### 1.4.2.1. Complexités dans la Réingénierie de la Chaîne d'Approvisionnement
+#### 1.4.2.2. Incertitudes Liées aux Critères et Certifications Éthiques
+#### 1.4.2.3. Défis de l'Adoption de Modèles d'Affaires Circulaires par les Entreprises
+### 1.4.3. Verrous dans la Stimulation et la Mesure des Changements de Comportements des Consommateurs
+#### 1.4.3.1. Barrières Psychologiques et Sociales à la Consommation Consciente
+#### 1.4.3.2. Manque d'Information et de Formation des Consommateurs
+#### 1.4.3.3. Mesure de l'Efficacité des Politiques et des Initiatives en Faveur de la Mode Durable
 
 # 2. Bibliographie
