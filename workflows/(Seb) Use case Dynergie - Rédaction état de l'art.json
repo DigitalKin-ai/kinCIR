@@ -1,0 +1,265 @@
+{
+  "active": false,
+  "connections": {
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "KinCIR - rédacteur état de l'art CIR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'études": {
+      "ai_tool": [
+        [
+          {
+            "node": "KinCIR - rédacteur état de l'art CIR",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur de Citations": {
+      "ai_tool": [
+        [
+          {
+            "node": "KinCIR - rédacteur état de l'art CIR",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur du Plan de Document de Sortie": {
+      "ai_tool": [
+        [
+          {
+            "node": "KinCIR - rédacteur état de l'art CIR",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "KinCIR - rédacteur état de l'art CIR": {
+      "main": [
+        []
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-17T08:26:31.038Z",
+  "id": "kQarsGZ7Xgyy9oFK",
+  "meta": null,
+  "name": "(Seb) Use case Dynergie - Rédaction état de l'art",
+  "nodes": [
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $json.mission }}"
+            },
+            {
+              "name": "output",
+              "stringValue": "={{ $json.message.text }}{{ $json.output?$json.output:$json.chat_input }}"
+            },
+            {
+              "name": "telegramChat",
+              "stringValue": "={{ $json.message.chat.id }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "=kincir_dynergie"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3c3f845b-a76e-4e0b-93ca-7a289ff063b2",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1060,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "intentionDUsage",
+              "stringValue": "=Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR."
+            },
+            {
+              "name": "mission",
+              "stringValue": "=La mission Globale est de rédiger (document de sortie): \n1) une introduction aux enjeux et challenges sur la thématique de la mode durable \n\n2) un état de l'art sur le sujet de la mode durable, en focalisant sur\n- les moyens permettant de convaincre les consommateurs de l'importance du sujet pour augmenter la demande de mode durable\n- les moyens permettant aux fabricants de vêtements de produire en mode durable.\n\n3) une partie sur les verrous scientifiques et techniques qui limitent actuellement l'avancée des recherches sur le sujet"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0112d785-eab4-46d4-8ac2-6c4588d5af11",
+      "name": "mission",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        860,
+        -40
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6a261b2e-547c-4e7c-9cfc-902f5731f268",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        640,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_etudes",
+        "description": "Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "5f38f5a1-792f-439d-ab98-c304b40f1c39",
+      "name": "Questionneur d'études",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "name": "acquereur_de_citations",
+        "description": "Donne des citations précises issues d'études pertinentes à partir du But de la partie.",
+        "workflowId": "It2FPpnGNxaxojxY",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "e53287d1-0e42-49e0-bee4-a323871ec8dc",
+      "name": "Acquéreur de Citations",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "name": "Acquereur_du_plan_de_document_de_sortie",
+        "description": "Renvoie le plan du document au format Markdown.",
+        "workflowId": "Tv0klBXOw7sc9kaW",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "3c0fb1fa-ae00-4b55-add3-0953fa74f3da",
+      "name": "Acquéreur du Plan de Document de Sortie",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_gCv4qcfGhClqzBzoYYuLyeTF",
+        "text": "=# Mission\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Intention d'usage\n\n{{ $('entree').item.json[\"intentionDUsage\"] }}\n\n# Input du Manager\n\n{{ $json.output }}",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "35979520-cff5-4fae-80bf-5677236cb0f0",
+      "name": "KinCIR - rédacteur état de l'art CIR",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        -40
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T08:26:29.377Z",
+      "updatedAt": "2023-12-17T08:26:29.377Z",
+      "id": "4fRrWvNFqdfWy2WD",
+      "name": "Dynergie"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2023-12-17T19:28:32.000Z",
+  "versionId": "fa971a81-1410-4aaf-ac37-9711bd075d00"
+}
