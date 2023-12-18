@@ -1,0 +1,343 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Chercheur Scientifique",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur de Citations": {
+      "ai_tool": [
+        [
+          {
+            "node": "Chercheur Scientifique",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad": {
+      "ai_tool": [
+        [
+          {
+            "node": "Chercheur Scientifique",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RESSOURCES IA": {
+      "ai_tool": [
+        [
+          {
+            "node": "Chercheur Scientifique",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chercheur Scientifique": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-16T10:56:15.284Z",
+  "id": "f4z3JUKhsFgmKRgZ",
+  "meta": null,
+  "name": "CHERCHEUR SCIENTIFIQUE",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "cb4a8070-4773-4355-a116-c9954f8cd12c",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\": $node[\"Chercheur Scientifique\"].json.output}};"
+      },
+      "id": "850d8625-af1c-4dd8-a8fa-600014b4caeb",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2520,
+        240
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3b7793c9-18e0-49f9-a0d5-9b33c63340fb",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "entree",
+              "stringValue": "={{ $json.entree }}{{ $json.query }}{{ $json.chat_input }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "={{ $json.kinName }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "84b91412-6e9d-4c4d-be31-cfdd81168749",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1680,
+        240
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2fbfb86f-996f-412c-beb1-46f565a433df",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1440,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## - Questionneur d'études: Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
+        "height": 443.0545261129006,
+        "width": 548.1198073088228
+      },
+      "id": "eba90136-3881-4fb9-8cf2-fb15bc01d9c6",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "name": "acquereur_de_citations",
+        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
+        "workflowId": "It2FPpnGNxaxojxY",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "db059cd9-6e16-4e56-a1b8-7272cc09133f",
+      "name": "Acquéreur de Citations",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_hNyr1QuF0nptyuRJJAiOa1gV",
+        "text": "={{ $node[\"entree\"].json.entree }}",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "7ef91002-99e3-47e2-b34b-06c01558dffd",
+      "name": "Chercheur Scientifique",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        240
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "=asst_L05RD7upJZbxUfZ06MPISYv5"
+            }
+          ]
+        }
+      },
+      "id": "b511509e-3f5a-4c57-a14f-90cc095fc96f",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "name": "ressources_ia",
+        "description": "=Améliore ton prompt (Assistant) à partir d'un problème à résoudre ou demande d'amélioration. Gère les problèmes de performance personnels des Assistants.",
+        "workflowId": "imN4HxXd5zhpJoyV",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "asst_L05RD7upJZbxUfZ06MPISYv5"
+            }
+          ]
+        }
+      },
+      "id": "66af0df8-3be3-4053-bec2-7d07f3f2a65b",
+      "name": "RESSOURCES IA",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        700
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "entree": "Quels sont les verrous scientifiques et techniques qui bloquent le développement de s chiens et des chats",
+          "kinName": "kincir_dynergie"
+        }
+      }
+    ],
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "Quelles sont les derni�res avanc�es scientifiques dans le domaine de la mode durable au cours des 12 derniers mois, sp�cifiquement les nouvelles fibres durables, les technologies de production �cologiques et les initiatives de sensibilisation des consommateurs?",
+          "kinName": "kincir_dynergie",
+          "intentionDUsage": "undefined"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "fonction"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-18T09:33:12.000Z",
+  "versionId": "32238722-27a2-45e8-96cd-175c985f2c90"
+}
