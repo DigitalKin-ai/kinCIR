@@ -1,0 +1,575 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub": {
+      "main": [
+        [
+          {
+            "node": "Synchroniser GitHub -> Pinecone1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Document": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur de document complet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Rédacteur de document complet",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Explication du travail",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Synchroniser GitHub -> Pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchroniser GitHub -> Pinecone": {
+      "main": [
+        [
+          {
+            "node": "RP - Retriever de Partie2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchroniser GitHub -> Pinecone1": {
+      "main": [
+        [
+          {
+            "node": "Explication du travail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Explication du travail": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur de document complet": {
+      "main": [
+        [
+          {
+            "node": "GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Améliorateur de partie",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RP - Retriever de Partie2": {
+      "main": [
+        [
+          {
+            "node": "Améliorateur de partie",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RP - Retriever de Partie1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Améliorateur de partie",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Améliorateur de partie",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Améliorateur de partie": {
+      "main": [
+        [
+          {
+            "node": "Get Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-16T09:07:47.697Z",
+  "id": "0T67aHjuqQEnrTN0",
+  "meta": null,
+  "name": "RS - Rédacteur de Document de Sortie",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "d24bc942-ffc8-4b30-8a18-57a842237b3d",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\":$json.text}};"
+      },
+      "id": "b378bfc1-e1e8-421c-969b-2c915bdfe4a0",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3060,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d86438d5-5178-47c4-b6ed-e2090bdb6380",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "entree",
+              "stringValue": "={{ $json.entree }}{{ $json.query }}"
+            },
+            {
+              "name": "document",
+              "stringValue": "=sortie.md"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "={{ $json.kinName }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3510f4a9-925c-4472-91cf-d78b50e4abb5",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        360,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=document-de-sortie.md",
+        "fileContent": "={{ $json.text }}",
+        "commitMessage": "=n8n : {{ $('entree').item.json[\"entree\"] }}"
+      },
+      "id": "ba6c3f8b-ebd2-4cda-b271-08614ae01c5e",
+      "name": "GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        2200,
+        300
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=document-de-sortie.md",
+        "additionalParameters": {}
+      },
+      "id": "4c1a2c61-86bb-4122-a6af-3ec79df4ee0f",
+      "name": "Get Document",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        300
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "destinationKey": "documentContent",
+        "options": {}
+      },
+      "id": "cb96cef1-26fb-4652-81a7-7227b1a39a66",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        1640,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "140cc310-ce0e-491c-988f-1c6c2b63ba19",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1860,
+        520
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "65b82899-bd07-4347-bfcd-4bf3c9e1de0b",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        2700,
+        500
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "d6khXiG3YxUunViW"
+      },
+      "id": "957bcc81-533f-4e51-bcf1-f18ddd52abd5",
+      "name": "Synchroniser GitHub -> Pinecone",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        580,
+        300
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "workflowId": "d6khXiG3YxUunViW"
+      },
+      "id": "0a0f5eef-adae-4bdc-8224-6bc20f491729",
+      "name": "Synchroniser GitHub -> Pinecone1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "prompt": "=# Ton Rôle\n\nTu es l'agent manager de la fonction : \"Rédacteur de Document : Améliore une partie du document de sortie.\" de n8n.\n\n# Instructions \n\nExplique simplement le travail qui vient d'être effectué.\n\n# Tâche demandée\n\n{{ $('entree').item.json[\"entree\"] }}\n\nDocument : document_de_sortie.md\n\n# Résultat : Partie améliorée\n\n{{ $('Améliorateur de partie').item.json[\"response\"][\"text\"] }}\n"
+      },
+      "id": "6c2e42f6-7332-428d-b0cb-c686119f4fb1",
+      "name": "Explication du travail",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        2680,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## RS - Rédacteur de Document de Sortie :Rédige une version améliorée d'une partie du Document de Sortie à partir d'une instruction ou d'une proposition de Plan",
+        "height": 348.839423945907,
+        "width": 548.1198073088228
+      },
+      "id": "11c174c6-e302-4e52-a1d8-f2fb923cc627",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "prompt": "=# Rôle\n\nRédacteur de document complet contenant la partie améliorée\n\n# Instructions \n\n1) Repère la partie cible\n2) Remplace la partie cible par la partie améliorée\n3) Réécris le document en entier\n\n-> Si la Partie Améliorée semble bonne, tu réponds uniquement avec la version complète du document, en remplaçant la partie cible par la partie améliorée.\n\n-> Si la Partie améliorée n'est pas bonne (\"désolé, mais\", etc.), tu renvoies uniquement le Document Entier Initial complet.\n\n# Partie Initiale + Chunk Overlap\n\n{{ $json[\"documentContent\"].split('\\n').slice(9, 15).join('\\n'); }}\n\n# Partie améliorée\n\n{{ $('Améliorateur de partie').item.json[\"response\"][\"text\"] }}\n\nDocument Complet :"
+      },
+      "id": "216b1269-0c37-483d-aa96-bfdd3ad4724d",
+      "name": "Rédacteur de document complet",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        1840,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {}
+      },
+      "id": "acbe03f3-7382-4b0d-8172-ecc7aab977c5",
+      "name": "OpenAI Chat Model2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        520
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "f05c310c-81e1-4134-be7f-a3ccee023520",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "2JRhtxSoct8OyuuI"
+      },
+      "id": "6ddcca49-c4fb-4b25-b946-2d84d87c1521",
+      "name": "RP - Retriever de Partie2",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        820,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "name": "retriever_de_partie",
+        "description": "Retriever de Partie : Retourne un extrait verbatim du document de sortie précises à partir d'une demande informationnelle.",
+        "workflowId": "2JRhtxSoct8OyuuI",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "4c008021-ae84-481d-b913-72b8a68fb3c5",
+      "name": "RP - Retriever de Partie1",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "text": "=# Ton Rôle\n\nRédacteur de partie améliorée du document de sortie.\n\n# Style de rédaction\n\nSérieux et scientifique, tu peux rentrer dans les détails et utiliser des mots techniques, mais tu veilles à présenter les choses pour que le fond de ton message reste intelligible par un non spécialiste.\n\nTu cites les points de vue exprimés dans les articles ou des extraits exacts des articles, toujours en citant les sources selon les bonnes pratiques de citations scientifique courte : (nom auteur principal, année de publication). Exemple : (Yan et al., 2020) ou Yan et al., (2020)\n\n## Exemple de style de rédaction\n\nLes chercheurs reconnaissent l'importance de minimiser les imperfections telles que les pores dans les joints soudés, qui peuvent altérer considérablement \"the mechanical and fatigue properties\" (Yan et al., 2020). Cela souligne la nécessité de développer des techniques de soudage qui réduisent ou éliminent ces défauts pour améliorer la résistance et la longévité des assemblages.\n\nLe lien entre OBJECTIFS DE RECHERCHE (les nouvelles capacités à atteindre), VERROUS SCIENTIFIQUES OU TECHNOLOGIQUES (ce qui empêchent d'atteindre les objectifs) et TRAVAUX DE RECHERCHE encore nécessaires ou déjà réalisés pour lever ces verrous est toujours clair.\n\nLa nature des relations :  \nDes TRAVAUX peuvent contribuer à lever différents VERROUS\nDes VERROUS peuvent nécessiter différents TRAVAUX pour être levés. \nDes VERROUS peuvent bloquer différentes OBJECTIFS en termes de nouvelles capacités \nLes OBJECTIFS d’atteindre une nouvelle capacité peut nécessiter de lever différents VERROUS.\n\n# Instructions \n\n1) Refomule le BUT de la partie, ce qu'elle essaie de montrer\n2) Avec les informations disponibles, explique ce que tu vas rédiger pour atteindre le but de cette partie\n3) Rédige la partie améliorée\n\n# Contexte\n\nLe BUT de chaque sous partie est donné par le titre de niveau 2 parent de la partie.\nLe SUJET de chaque sous partie est donné sont titres parent de niveau 3, et éventuellement précisé par le titre de niveau 4.\nTu rédiges selon le format suivant : Rédige un texte pour la sous partie considérée en respectant scrupuleusement le BUT et le SUJET. N'utilise pas d'élément introductifs.\n\n# Partie à améliorer\n## Metadata\nDocument : {{ $('RP - Retriever de Partie2').item.json[\"response\"][\"metadata\"][\"source\"] }}\nDe ligne : {{ $('RP - Retriever de Partie2').item.json[\"response\"][\"metadata\"][\"loc.lines.from\"] }}\nA ligne : {{ $('RP - Retriever de Partie2').item.json[\"response\"][\"metadata\"][\"loc.lines.to\"] }}\n\n# Contenuu\n{{ $('RP - Retriever de Partie2').item.json[\"response\"][\"metadata\"][\"text\"] }}\n\n# Tâche\n\n{{ $('entree').item.json[\"entree\"] }}",
+        "options": {}
+      },
+      "id": "5e7e7764-1176-4a88-8868-90e6acc0b9a7",
+      "name": "Améliorateur de partie",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.1,
+      "position": [
+        1040,
+        300
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "entree": "Réécris la partie 1.4 en plus long",
+          "kinName": "kincir_dynergie"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "fonction"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-18T10:42:23.000Z",
+  "versionId": "482574d5-60cf-41e6-8f62-2d8d471de110"
+}
