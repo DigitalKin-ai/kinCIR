@@ -1,0 +1,357 @@
+{
+  "active": false,
+  "connections": {
+    "Question and Answer Chain": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Synchroniser GitHub -> Pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchroniser GitHub -> Pinecone": {
+      "main": [
+        [
+          {
+            "node": "AP - Acquéreur du Plan de Document de Sortie",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AP - Acquéreur du Plan de Document de Sortie": {
+      "main": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-17T19:55:12.975Z",
+  "id": "ki4ceLbNrD31Ma3B",
+  "meta": null,
+  "name": "QA - Questionneur de document d'Avancement de la Mission",
+  "nodes": [
+    {
+      "parameters": {
+        "query": "=# Intention d'usage\n\nNous souhaitons rédiger un Etat del'Art.\n\n# Rôle\n\nQuestionneur de Document d'Avancement de la Mission : Donne une réponse précise issue du document d'avancement de la mission à partir d'un besoin informationnel.\n\n# Instructions\n\n1) Formule une requête pour répondre au besoin informationnel\n2) Formule une réponse détaillée au besoin informationnel, en citant des parties du document de sortie si besoin\n\n# Contexte\n\nTu disposes de parties du document de sortie en cours de rédaction.\n\n# Structure du Document d'Avancement de la Mission CIR\n\n## 1. Avancement de la Rédaction du Plan du Document\n- **Statut Actuel**: Déterminer des statuts plus spécifiques (par exemple, brouillon initial, revu par pairs, prêt pour validation).\n- **Date de Dernière Mise à Jour**: Ajouter un journal des modifications pour tracer l'évolution du plan (date et heure exacte jusqu'aux secondes).\n- **Prochaines Étapes et Responsable**: Inclure des indicateurs de progression pour chaque étape (par exemple, 50% achevé).\n\n## 2. Gestion des Thématiques et Mots Clés\n### a. Thématiques et Mots Clés Récupérés\n- **Thématiques Abordées**: Ajouter un système de tagging pour faciliter les recherches croisées.\n- **Mots Clés Associés**: Établir un registre dynamique qui peut évoluer avec la recherche.\n- **Sources et Études Récupérées**: Créer des liens directs vers les sources pour un accès rapide.\n- **Responsable des Données**: Assurer une traçabilité claire de la responsabilité.\n\n### b. Thématiques et Mots Clés à Récupérer\n- **Liste des Thématiques et Mots Clés**: Introduire des priorités et des échéances pour chaque item.\n- **Planification**: Définir des mécanismes de suivi de l'avancement.\n\n## 3. Interaction avec le Questionneur d'Études\n### a. Questions Posées\n- **Questions et Réponses**: Mettre en œuvre une structure de suivi Q/R pour chaque question.\n### b. Questions Restantes à Poser\n- **Liste des Questions**: Identifier clairement les objectifs de chaque question relative à la recherche.\n\n## 4. État d'Avancement de Chaque Partie du Document\n- **Section du Document**: Utiliser un outil de gestion de projet pour suivre le statut en temps réel.\n- **Densité des Informations**: Définir des critères quantitatifs pour évaluer la densité.\n- **Citations**: Mettre en place une méthode de validation des sources pour l'intégrité académique.\n- **Points à Améliorer**: Introduire une rubrique de retours continus.\n\n## 5. Assessment de l'Avancement Global\n- **Évaluation Globale**: Combiner des indicateurs qualitatifs et quantitatifs pour une image complète de l'avancement.\n- **Goulots d'Étranglement**: Mettre en place des alertes pour les problèmes nécessitant une attention immédiate.\n\n## 6. Critères de Mission Accomplie\n- **Plan Détaillé**: Vérifier que le plan comprend des SMART goals.\n- **Développement des Thématiques**: Assurer une couverture complète en évitant les redondances.\n- **Acquisition des Études**: Mettre en œuvre une stratégie de veille pour continuer à chercher des études pertinentes.\n- **Validation de Chaque Partie**: Établir un processus de peer review interne.\n\n## 7. Plan d'Action et Prochaines Étapes\n- **Actions à Prendre**: Proposer des solutions concrètes aux retards constatés.\n- **Réattribution des Responsabilités**: Considérer les compétences et les charges de travail actuelles.\n- **Mise à Jour des Deadlines**: S'assurer que les deadlines sont réalistes et reflètent l'avancement actuel.\n\n# Plan du Document de Sortie\n\n{{ $('AP - Acquéreur du Plan de Document de Sortie').item.json[\"response\"] }}\n\n# Besoin Informationnel\n\n{{ $('entree').item.json.entree }}"
+      },
+      "id": "75da4b27-e1cf-467f-8ff5-0f97f621a9e1",
+      "name": "Question and Answer Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        2600,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4-1106-preview",
+          "mode": "list",
+          "cachedResultName": "gpt-4-1106-preview"
+        },
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "df6394b1-7063-4fa8-b0e3-35f175d41d22",
+      "name": "GPT4",
+      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        2620,
+        360
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "topK": 8
+      },
+      "id": "1ce6c912-8e5e-4911-8cb4-0ca487f9910c",
+      "name": "Vector Store Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c95e935d-9ffe-4421-a9cf-011aa2f2c85d",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        2600,
+        840
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "f0bae439-c20c-4bb4-b762-128c6537c5f4",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\":$json.response.text}};"
+      },
+      "id": "6b5ee262-4840-4364-80c4-f87e4bfcfeaf",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2980,
+        180
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "240afbc9-6311-44dc-acfd-4139a8f28936",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "entree",
+              "stringValue": "={{ $json.entree }}{{ $json.query }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "={{ $json.kinName }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "99bc8867-9f04-4d06-8e74-2a9d3608c26f",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1920,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "d6khXiG3YxUunViW"
+      },
+      "id": "76a4eca8-863d-45e6-90fd-3028bf3dd624",
+      "name": "Synchroniser GitHub -> Pinecone",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "Tv0klBXOw7sc9kaW"
+      },
+      "id": "4ed1a204-de74-4598-81b7-49bb6683199c",
+      "name": "AP - Acquéreur du Plan de Document de Sortie",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2380,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## - QA - Questionneur de document d'Avancement de la Mission: Donne une réponse précise issue du document d'avancement de la mission à partir d'une demande informationnelle.",
+        "height": 429.80439085591235,
+        "width": 548.1198073088228
+      },
+      "id": "e7c498b0-b2b0-4b98-bc44-30fe8465100f",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        -300
+      ]
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {
+          "pineconeNamespace": "=sortie",
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "source",
+                "value": "avancement-de-la-mission.md"
+              }
+            ]
+          }
+        }
+      },
+      "id": "07307a37-518c-47a7-a854-065291d2f85d",
+      "name": "Pinecone Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        2600,
+        700
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "entree": "On en est où ?",
+          "kinName": "kincir_dynergie"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "fonction"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-18T10:38:53.000Z",
+  "versionId": "3621c681-534e-4a45-9c1c-96cb3e2ee1c7"
+}
