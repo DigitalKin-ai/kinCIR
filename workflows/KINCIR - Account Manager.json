@@ -1,0 +1,625 @@
+{
+  "active": true,
+  "connections": {
+    "Questionneur de Document de Sortie": {
+      "ai_tool": [
+        [
+          {
+            "node": "ACCOUNT MANAGER : Gestionnaire de la relation client",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gestionnaire du Plan de Document de Sortie": {
+      "ai_tool": [
+        [
+          {
+            "node": "ACCOUNT MANAGER : Gestionnaire de la relation client",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur du Plan de Document de Sortie": {
+      "ai_tool": [
+        [
+          {
+            "node": "ACCOUNT MANAGER : Gestionnaire de la relation client",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur du Document d'Avancement de la Mission": {
+      "ai_tool": [
+        [
+          {
+            "node": "ACCOUNT MANAGER : Gestionnaire de la relation client",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur du Document d'Avancement de la Mission": {
+      "ai_tool": [
+        [
+          {
+            "node": "ACCOUNT MANAGER : Gestionnaire de la relation client",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nico reçoit un email": {
+      "main": [
+        [
+          {
+            "node": "IF est une commande",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF est une commande": {
+      "main": [
+        [
+          {
+            "node": "Get Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Email": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ACCOUNT MANAGER : Gestionnaire de la relation client": {
+      "main": [
+        [
+          {
+            "node": "entree1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "ACCOUNT MANAGER : Gestionnaire de la relation client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree1": {
+      "main": [
+        [
+          {
+            "node": "RE - Rédacteur d'Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RE - Rédacteur d'Email": {
+      "main": [
+        [
+          {
+            "node": "Account Manager envoie message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad": {
+      "ai_tool": [
+        [
+          {
+            "node": "ACCOUNT MANAGER : Gestionnaire de la relation client",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RESSOURCES IA": {
+      "ai_tool": [
+        [
+          {
+            "node": "ACCOUNT MANAGER : Gestionnaire de la relation client",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-17T21:34:00.231Z",
+  "id": "hC7WoWW2uTYj0lot",
+  "meta": null,
+  "name": "KINCIR - Account Manager",
+  "nodes": [
+    {
+      "parameters": {
+        "name": "questionneur_de_document_de_sortie",
+        "description": "Donne une réponse précise issues du document de sortie en cours de rédaction à partir d'un besoin informationnel.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "8b1ccdeb-cf0b-482d-bdad-555a0ef16f8c",
+      "name": "Questionneur de Document de Sortie",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "name": "gestionnaire_du_plan_de_document_de_sortie",
+        "description": "Rédige un plan de document de sortie à partir d'une demande d'entrée ou le renvoie sans le modifier (demande une récupération simple).",
+        "workflowId": "6llpRqvjZ5beOQhf",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "7b2163d5-1ea6-4a61-9a42-a62c2d5b7298",
+      "name": "Gestionnaire du Plan de Document de Sortie",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        20,
+        740
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "Acquereur_du_plan_de_document_de_sortie",
+        "description": "Renvoie le plan du document au format Markdown.",
+        "workflowId": "Tv0klBXOw7sc9kaW",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "dad6fba7-0ea0-4b34-9aaa-5806d9b97321",
+      "name": "Acquéreur du Plan de Document de Sortie",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "name": "redacteur_d_avancement_de_la_mission",
+        "description": "Modifie le Document d'Avancement de la Mission à partir d'une instruction d'entrée.",
+        "workflowId": "VMAfvKsLmXEnIXpY",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "a8cd6a63-bd2c-4416-ba12-b9564438183b",
+      "name": "Rédacteur du Document d'Avancement de la Mission",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        400,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_avancement_de_la_mission",
+        "description": "Donne une réponse précise issue du document d'avancement de la mission à partir d'une demande informationnelle.",
+        "workflowId": "ki4ceLbNrD31Ma3B",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "361913fc-1850-4b12-abd4-7995b0acdbee",
+      "name": "Questionneur du Document d'Avancement de la Mission",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        240,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 3,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "id": "7b424c87-55ac-4d74-9b75-44f112ff71a0",
+      "name": "Nico reçoit un email",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        160
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.Subject.toLowerCase() }}",
+              "operation": "contains",
+              "value2": "kincir"
+            },
+            {
+              "value1": "={{ $json.From }}",
+              "operation": "notEqual",
+              "value2": "mailer-daemon@googlemail.com"
+            },
+            {
+              "value1": "={{ $json.From }}",
+              "operation": "notEqual",
+              "value2": "l.reynolds@digitalkin.ai"
+            }
+          ]
+        }
+      },
+      "id": "89e30844-13d2-4e72-9c87-92850a6ceb03",
+      "name": "IF est une commande",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -440,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "={{ $json.id }}"
+      },
+      "id": "d7067ed8-bef7-44a3-8068-9cbe915b1483",
+      "name": "Get Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -180,
+        160
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_usns6lJ8oyA82LlY5kcC3lOh",
+        "text": "=# Mission\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Intention d'usage\n\n{{ $('entree').item.json[\"intentionDUsage\"] }}\n\n# Mail du Client\n\n{{ $json.output }}",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "79a6cd5e-ae79-4f06-a50f-dd10c332bc79",
+      "name": "ACCOUNT MANAGER : Gestionnaire de la relation client",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        240,
+        160
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "intentionDUsage",
+              "stringValue": "=Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR."
+            },
+            {
+              "name": "mission",
+              "stringValue": "=La mission Globale est de rédiger (document de sortie): \n1) une introduction aux enjeux et challenges sur la thématique de la mode durable \n\n2) un état de l'art sur le sujet de la mode durable, en focalisant sur\n- les moyens permettant de convaincre les consommateurs de l'importance du sujet pour augmenter la demande de mode durable\n- les moyens permettant aux fabricants de vêtements de produire en mode durable.\n\n3) une partie sur les verrous scientifiques et techniques qui limitent actuellement l'avancée des recherches sur le sujet"
+            },
+            {
+              "name": "output",
+              "stringValue": "=# Nouvel Email\n\nEmail De : {{ $json.From }}\n\nDate : {{ Date().toLocaleString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' })\n }}\nSujet : {{ $json.Subject }}\n\n## Contenu\n\n{{ $json.snippet }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "=kincir_dynergie"
+            },
+            {
+              "name": "messageId",
+              "stringValue": "={{ $json[\"id\"] }}"
+            },
+            {
+              "name": "from",
+              "stringValue": "={{ $json.From }}"
+            },
+            {
+              "name": "cc",
+              "stringValue": "={{ $json.cc }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c8ea9e99-2e91-48d8-9213-29d794f29fe5",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        20,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "=-4042572972",
+        "text": "=### Account Manager\n\n{{ $json.response }}\n\n### Mail original\n\n{{ $('entree').item.json[\"mission\"] }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "1bd3fbf8-2937-468d-9c92-17021db21a75",
+      "name": "Account Manager envoie message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        1040,
+        160
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $('entree').item.json[\"messageId\"] }}"
+            },
+            {
+              "name": "output",
+              "stringValue": "=# Nouvel Email\n\nEmail De : {{ $('entree').item.json[\"from\"] }}\n\nDate : {{ Date().toLocaleString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' })\n }}\nSujet : {{ $('entree').item.json[\"Subject\"] }}\n\n## Contenu\n\n{{ $('entree').item.json[\"output\"] }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "=kincir_dynergie"
+            },
+            {
+              "name": "messageId",
+              "stringValue": "={{ $('entree').item.json[\"messageId\"] }}"
+            },
+            {
+              "name": "query",
+              "stringValue": "=### Account Manager\n\n{{ $json.output }}\n\n### Mail original\n\n{{ $('entree').item.json[\"mission\"] }}"
+            },
+            {
+              "name": "from",
+              "stringValue": "={{ $('entree').item.json[\"from\"] }}"
+            },
+            {
+              "name": "cc",
+              "stringValue": "={{ $('entree').item.json[\"cc\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "33491a7a-b5c7-4888-9de3-092d2491a5b9",
+      "name": "entree1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        620,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "rr8aeSM8QYyY8Po4"
+      },
+      "id": "b424df39-e380-483b-9d0b-735076bd17e6",
+      "name": "RE - Rédacteur d'Email",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        840,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "=asst_OU9dV374aiNux7W99B6YD7xg"
+            }
+          ]
+        }
+      },
+      "id": "a57c1ce5-24c7-4758-b7d9-fc4cf1673949",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        540,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "name": "ressources_ia",
+        "description": "=Améliore ton prompt (Assistant) à partir d'un problème à résoudre ou demande d'amélioration. Gère les problèmes de performance personnels des Assistants.",
+        "workflowId": "imN4HxXd5zhpJoyV",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "asst_L05RD7upJZbxUfZ06MPISYv5"
+            }
+          ]
+        }
+      },
+      "id": "4be72f45-932e-4c6d-b416-42dad9c2db22",
+      "name": "RESSOURCES IA",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        680,
+        740
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1702905877,
+      "possibleDuplicates": [
+        "18c7d199c81f3b14"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2023-12-18T13:24:53.000Z",
+  "versionId": "7fbc8488-f535-4f59-a8ae-505347e38f94"
+}
