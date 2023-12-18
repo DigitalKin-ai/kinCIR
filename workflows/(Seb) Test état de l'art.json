@@ -1,0 +1,633 @@
+{
+  "active": false,
+  "connections": {
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Assistant Structurateur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Expandeur 4200": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item List Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-fixing Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Document Inserter",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter1": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "GitHub Document Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub Document Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Document Inserter",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Custom n8n Workflow Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "Assistant Structurateur",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-16T10:44:07.383Z",
+  "id": "YPnqHPZ8mYWq3dh1",
+  "meta": null,
+  "name": "(Seb) Test état de l'art",
+  "nodes": [
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "intention_d_usage",
+              "stringValue": "Prouver que l'homéopathie marche sur les animaux"
+            },
+            {
+              "name": "mission",
+              "stringValue": "Ecris une revue de littérature complète sur la santé animale"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d80dc0fe-4582-49f6-a751-d625b3a2cc19",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        780,
+        1320
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "60c3191d-624a-4817-80d8-71b33950a702",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        520,
+        1320
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\":$json.output}};"
+      },
+      "id": "fcb09670-2f86-4562-b2d0-9127b25dac99",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1900,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_Pb5Gl8b5gFJ6voJaBL2J6Pmg",
+        "text": "=# Mission\n{{ $json.mission }}\n\n# Intention d'usage\n{{ $json.intention_d_usage }}",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "a93cfb65-8b78-42aa-b3a2-c3060c94f250",
+      "name": "Assistant Structurateur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        1320
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_cNOXinm4CVQsCKJcqDqFTRyd",
+        "text": "=# Intention d'usage\n{{ $('entree').item.json[\"intention_d_usage\"] }}\n\n# Entrée\n{{ $json.output }}\n\n",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "6c7315f9-81a8-4c2f-8407-c50a3b9ffbaf",
+      "name": "Expandeur 4200",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        180
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "Contenu-Expander_4200",
+        "description": "Expert en expansion de contenus structurés, capable de générer des descriptions détaillées pour chaque section donnée en entrée.",
+        "workflowId": "6mA9ZG7CwrVjdACq",
+        "fields": {
+          "values": [
+            {
+              "name": "inputText",
+              "stringValue": "={{ $('entree').item.json.mission }}{{ $parameter[\"noticeTools\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "af64909f-e6d4-47c3-8b0f-8d0c8194e015",
+      "name": "Contenu-Expander_4200",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        940,
+        540
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "70a837d1-5e8f-4107-a532-9ea119c191c9",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1580,
+        1700
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "52be9632-e585-4135-b9a6-e43f1beed338",
+      "name": "Question and Answer Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        1840,
+        1700
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e5f66085-62e5-4831-b56c-3b9cca4994fa",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        40
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "23d10588-05d1-43bc-ba40-9fa202eab023",
+      "name": "Auto-fixing Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        1820,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "separator": ","
+        }
+      },
+      "id": "7eb36c21-4fbe-47ce-a058-d9d31428bec5",
+      "name": "Item List Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserItemList",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4-1106-preview",
+          "mode": "list",
+          "cachedResultName": "gpt-4-1106-preview"
+        },
+        "options": {}
+      },
+      "id": "73365a6d-2d2f-41dd-98d8-4f4120a72dbc",
+      "name": "GPT4",
+      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        1920
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4-1106-preview",
+          "mode": "list",
+          "cachedResultName": "gpt-4-1106-preview"
+        },
+        "options": {}
+      },
+      "id": "91809593-3043-469d-8ac6-cc51ecf94ca8",
+      "name": "GPT",
+      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        1280
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {}
+      },
+      "id": "ab79d54a-849b-4e2b-9028-f8d589b961f3",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        1000
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "0317bbb4-12ab-4f49-ad68-b535c5fc11e5",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        1000
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "29054971-c2f8-453e-b513-be0a16e016ca",
+      "name": "Vector Store Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        2060
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "63ffe21e-732d-4286-95a8-74f6c2c250f5",
+      "name": "Embeddings OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        760,
+        1960
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "repository": "https://github.com/DigitalKin-ai/boiron",
+        "additionalOptions": {}
+      },
+      "id": "92092784-17bc-474e-96e0-8b1a14ff875c",
+      "name": "GitHub Document Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentGithubLoader",
+      "typeVersion": 1,
+      "position": [
+        940,
+        1980
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "24eca460-8ff0-42ff-b695-30f90c0a8431",
+      "name": "Recursive Character Text Splitter1",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        2120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {}
+      },
+      "id": "54691179-90df-44ae-b7fe-13d6b1c797d3",
+      "name": "Document Inserter",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        760,
+        1760
+      ]
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {}
+      },
+      "id": "3c5ffb5c-9f66-4cb8-a3ec-29abb6755ac6",
+      "name": "Pinecone Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        2200
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "0070d6dd-5bef-42f2-afdd-224b832b3d7e",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        2340
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "3015e0f3-a0f1-4834-aaeb-a0248f7c401c",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.1,
+      "position": [
+        1640,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_documents",
+        "description": "Récupérer des infos sur les documents",
+        "workflowId": "ebLHEt0swZVT9tks"
+      },
+      "id": "b6d6e131-c763-4878-a82e-26374caa1dc5",
+      "name": "Custom n8n Workflow Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        1560
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {}
+      }
+    ],
+    "On new manual Chat Message": [
+      {
+        "json": {
+          "chat_input": "que contient le document structure.md ?"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-15T14:48:26.803Z",
+      "updatedAt": "2023-12-15T14:48:26.803Z",
+      "id": "gsKkypNX3sj1q3hL",
+      "name": "boiron"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-17T19:26:18.000Z",
+  "versionId": "b1c5a100-d55a-4305-83e9-1746e943ed37"
+}
