@@ -1,0 +1,400 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "AP - Acquéreur du Plan de Document de Sortie",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Rédacteur du Document d'Avancement de la Mission",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Document": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur du Document d'Avancement de la Mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchroniser GitHub -> Pinecone1": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edi Document": {
+      "main": [
+        [
+          {
+            "node": "Synchroniser GitHub -> Pinecone1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AP - Acquéreur du Plan de Document de Sortie": {
+      "main": [
+        [
+          {
+            "node": "Get Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur du Document d'Avancement de la Mission": {
+      "main": [
+        [
+          {
+            "node": "Edi Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-17T19:55:27.060Z",
+  "id": "VMAfvKsLmXEnIXpY",
+  "meta": null,
+  "name": "RA - Rédacteur du Document d'Avancement de la Mission",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b7c11330-71cc-42df-b902-e71106db1918",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        120,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\":$json.text}};"
+      },
+      "id": "2228c139-2c29-4bf7-83cc-a1c3d8404473",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2180,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c58f094c-ceec-41a4-bfc3-016b579028bb",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        120,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "entree",
+              "stringValue": "={{ $json.entree }}{{ $json.query }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "={{ $json.kinName }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "00534b39-90e5-44a8-8524-a41a5dc5d4ac",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        380,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "d6khXiG3YxUunViW"
+      },
+      "id": "8fff8086-d1ef-4b95-a998-fa6573e6fd95",
+      "name": "Synchroniser GitHub -> Pinecone1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4-1106-preview",
+          "mode": "list",
+          "cachedResultName": "gpt-4-1106-preview"
+        },
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "9be787df-34de-407e-8eab-32e2e43e97c9",
+      "name": "GPT4",
+      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        500
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=avancement-de-la-mission.md",
+        "additionalParameters": {}
+      },
+      "id": "18f9d864-5a45-4979-8732-81ef815d87ab",
+      "name": "Get Document",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        880,
+        300
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "destinationKey": "documentContent",
+        "options": {}
+      },
+      "id": "c27f2d50-9984-44f2-9cf7-530a9c66bd45",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        1100,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c661e91d-054a-45e3-a002-bcb02c3e1d68",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        120,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=avancement-de-la-mission.md",
+        "fileContent": "={{ $json.text }}",
+        "commitMessage": "=n8n : {{ $('entree').item.json[\"entree\"] }}"
+      },
+      "id": "be0fa5a7-c9e4-4d58-a851-24cb21acc007",
+      "name": "Edi Document",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        300
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "Tv0klBXOw7sc9kaW"
+      },
+      "id": "459011e8-ce01-4686-a02a-5da93e587706",
+      "name": "AP - Acquéreur du Plan de Document de Sortie",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        600,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "prompt": "=# Rôle\n\nModifie le Document d'Avancement de la Mission à partir de la demande d'entrée. Assure-toi pour chaque item de mentionner l'état d'avancement.\n\n# Structure du Document d'Avancement de la Mission CIR\n\n## 1. Avancement de la Rédaction du Plan du Document\n- **Statut Actuel**: Déterminer des statuts plus spécifiques (par exemple, brouillon initial, revu par pairs, prêt pour validation).\n- **Date et de Dernière Mise à Jour**: Ajouter un journal des modifications pour tracer l'évolution du plan (date et heure exacte jusqu'aux secondes).\n- **Prochaines Étapes et Responsable**: Inclure des indicateurs de progression pour chaque étape (par exemple, 50% achevé).\n\n## 2. Gestion des Thématiques et Mots Clés\n### a. Thématiques et Mots Clés Récupérés\n- **Thématiques Abordées**: Ajouter un système de tagging pour faciliter les recherches croisées.\n- **Mots Clés Associés**: Établir un registre dynamique qui peut évoluer avec la recherche.\n- **Sources et Études Récupérées**: Créer des liens directs vers les sources pour un accès rapide.\n- **Responsable des Données**: Assurer une traçabilité claire de la responsabilité.\n\n### b. Thématiques et Mots Clés à Récupérer\n- **Liste des Thématiques et Mots Clés**: Introduire des priorités et des échéances pour chaque item.\n- **Planification**: Définir des mécanismes de suivi de l'avancement.\n\n## 3. Interaction avec le Questionneur d'Études\n### a. Questions Posées\n- **Questions et Réponses**: Mettre en œuvre une structure de suivi Q/R pour chaque question.\n### b. Questions Restantes à Poser\n- **Liste des Questions**: Identifier clairement les objectifs de chaque question relative à la recherche.\n\n## 4. État d'Avancement de Chaque Partie du Document\n- **Section du Document**: Utiliser un outil de gestion de projet pour suivre le statut en temps réel.\n- **Densité des Informations**: Définir des critères quantitatifs pour évaluer la densité.\n- **Citations**: Mettre en place une méthode de validation des sources pour l'intégrité académique.\n- **Points à Améliorer**: Introduire une rubrique de retours continus.\n\n## 5. Assessment de l'Avancement Global\n- **Évaluation Globale**: Combiner des indicateurs qualitatifs et quantitatifs pour une image complète de l'avancement.\n- **Goulots d'Étranglement**: Mettre en place des alertes pour les problèmes nécessitant une attention immédiate.\n\n## 6. Critères de Mission Accomplie\n- **Plan Détaillé**: Vérifier que le plan comprend des SMART goals.\n- **Développement des Thématiques**: Assurer une couverture complète en évitant les redondances.\n- **Acquisition des Études**: Mettre en œuvre une stratégie de veille pour continuer à chercher des études pertinentes.\n- **Validation de Chaque Partie**: Établir un processus de peer review interne.\n\n## 7. Plan d'Action et Prochaines Étapes\n- **Actions à Prendre**: Proposer des solutions concrètes aux retards constatés.\n- **Réattribution des Responsabilités**: Considérer les compétences et les charges de travail actuelles.\n- **Mise à Jour des Deadlines**: S'assurer que les deadlines sont réalistes et reflètent l'avancement actuel.\n\n# Plan du Document de Sortie\n\n{{ $('AP - Acquéreur du Plan de Document de Sortie').item.json[\"response\"] }}\n\n# Demande\n\nDate : {{ Date().toLocaleString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' })\n }} : \n{{ $('entree').item.json[\"entree\"] }}"
+      },
+      "id": "19cc5525-7d6a-4d53-8304-2397592aeca0",
+      "name": "Rédacteur du Document d'Avancement de la Mission",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        1340,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## - RA - Modifie le Document d'Avancement de la Mission à partir d'une instruction d'entrée détaillée.",
+        "height": 429.80439085591235,
+        "width": 548.1198073088228
+      },
+      "id": "d0af0f5a-c000-41d6-9f02-cb95c4d036a8",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        380,
+        -180
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "entree": "Nous avons le plan final, et c'est tout",
+          "kinName": "kincir_dynergie"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "fonction"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-18T01:15:39.000Z",
+  "versionId": "380c4164-5bf5-4ce1-a35d-a9dad55a83e3"
+}
