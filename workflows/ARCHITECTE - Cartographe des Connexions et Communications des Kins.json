@@ -1,0 +1,446 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "ARCHITECTE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad": {
+      "ai_tool": [
+        [
+          {
+            "node": "ARCHITECTE",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur du Schéma de Connexion": {
+      "ai_tool": [
+        [
+          {
+            "node": "ARCHITECTE",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "(TODO) Collecteur d'Informations Techniques": {
+      "ai_tool": [
+        [
+          {
+            "node": "ARCHITECTE",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "(TODO) Cartographe des Mises à Jour": {
+      "ai_tool": [
+        [
+          {
+            "node": "ARCHITECTE",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "(TODO) Analyste des Connexions": {
+      "ai_tool": [
+        [
+          {
+            "node": "ARCHITECTE",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ARCHITECTE": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RESSOURCES IA": {
+      "ai_tool": [
+        [
+          {
+            "node": "ARCHITECTE",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-18T02:35:42.810Z",
+  "id": "bfK26nrTMV5n0oJU",
+  "meta": null,
+  "name": "ARCHITECTE - Cartographe des Connexions et Communications des Kins",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "bb64fa1f-d5c6-4611-9810-b42dcb0b8b63",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        900,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\": $node[\"Extracteur d'informations\"].json.response.text}};"
+      },
+      "id": "0007aa3a-2290-43d8-ab76-ef9a97bf2dfd",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1740,
+        700
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "1b17976b-b3e0-486e-8cb1-12cdbe650360",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        900,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "entree",
+              "stringValue": "={{ $json.entree }}{{ $json.query }}{{ $json.chat_input }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "={{ $json.kinName }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9aab3c48-8ecf-4a8f-ad6b-dd2800cafb84",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1140,
+        700
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "5e93e318-388f-4ba7-b6a9-30765626ad74",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        900,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## - Questionneur d'études: Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
+        "height": 443.0545261129006,
+        "width": 548.1198073088228
+      },
+      "id": "e8b40f60-fb71-446c-a714-c277a5892297",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "=asst_DmyiImiG1C8rJ3kpYsTgWncy"
+            }
+          ]
+        }
+      },
+      "id": "1ebdba37-bd95-4547-a5b1-1140885f689e",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        1260
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_DmyiImiG1C8rJ3kpYsTgWncy",
+        "text": "={{ $json.entree }}",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "86b4cc6f-250e-4bc2-a659-924adcc2644c",
+      "name": "ARCHITECTE",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        700
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "acquereur_de_schéma_de_connexion",
+        "description": "- Acquéreur du Schéma de Connexion : Renvoie le schéma actuel des connexions entre les Assistants GPT",
+        "workflowId": "G6jyze0SI3LXVNqF",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "ef9d7d9c-a7fd-4764-8a48-4274887c58e5",
+      "name": "Acquéreur du Schéma de Connexion",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        1140
+      ]
+    },
+    {
+      "parameters": {
+        "name": "collecteur_d_informations_techniques  ",
+        "description": "Fournit des données techniques et des informations pertinentes pour la mise à jour de la carte",
+        "workflowId": "It2FPpnGNxaxojxY",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "0ca5a201-dfb4-4a0d-8209-19ba30a912eb",
+      "name": "(TODO) Collecteur d'Informations Techniques",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        1140
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "cartographe_des_mises_a_jour ",
+        "description": "Modifie la carte des connexions à partir d'une instruction d'entrée",
+        "workflowId": "It2FPpnGNxaxojxY",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "93f92a85-e1ab-471d-b396-acd98c35dfc8",
+      "name": "(TODO) Cartographe des Mises à Jour",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        1140
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "analyste_des_connexions",
+        "description": "Donne une réponse précise sur l'état actuel des connexions et des suggestions d'optimisation",
+        "workflowId": "It2FPpnGNxaxojxY",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "5a5a5209-c8d8-4945-8ecb-ebae7fd32a41",
+      "name": "(TODO) Analyste des Connexions",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        1140
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "ressources_ia",
+        "description": "=Améliore ton prompt (Assistant) à partir d'un problème à résoudre ou demande d'amélioration. Gère les problèmes de performance personnels des Assistants.",
+        "workflowId": "imN4HxXd5zhpJoyV",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "asst_L05RD7upJZbxUfZ06MPISYv5"
+            }
+          ]
+        }
+      },
+      "id": "4e708127-ebe2-4828-8668-e89eca05e0ff",
+      "name": "RESSOURCES IA",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        880,
+        1260
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "entree": "Hello Architecte, a quoi est relié le producteur ?",
+          "kinName": "kincir_dynergie"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-18T05:10:46.000Z",
+  "versionId": "a8d58deb-c056-40de-8b7e-0f2cb328f11e"
+}
