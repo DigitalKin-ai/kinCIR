@@ -1,1 +1,1 @@
-Désolé, mais vous n’avez pas fourni la Partie Initiale ni la Partie Améliorée qui sont nécessaires pour compléter cette tâche. Afin d’effectuer le remplacement et la réécriture que vous avez demandés, je dois connaître le contenu exact de ces parties. Veuillez fournir les informations nécessaires pour poursuivre.
+Désolé, mais vous n'avez pas fourni les informations nécessaires pour compléter la tâche. Veuillez fournir à la fois la partie initiale du document et la partie améliorée pour que je puisse effectuer la révision demandée.
