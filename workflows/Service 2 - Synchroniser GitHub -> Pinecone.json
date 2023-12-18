@@ -1,0 +1,779 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Assisstants": {
+      "main": [
+        [
+          {
+            "node": "Foreach Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Synchronisation GitHub -> Pinecone1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Prompt File": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Prompt File": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Exists": {
+      "main": [
+        [
+          {
+            "node": "IF Different",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Prompt File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Foreach Assistant": {
+      "main": [
+        [
+          {
+            "node": "Get Prompt File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Prompt File": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Synchronisation GitHub -> Pinecone1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub Document Loader1": {
+      "ai_document": [
+        [
+          {
+            "node": "Synchronisation GitHub -> Pinecone1",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "GitHub Document Loader1",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "IF Exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Different": {
+      "main": [
+        [
+          {
+            "node": "Update Prompt File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Return entrée",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Synchronisation GitHub -> Pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchronisation GitHub -> Pinecone1": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Synchronisation GitHub -> Pinecone",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub Document Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Synchronisation GitHub -> Pinecone",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter1": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "GitHub Document Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Get Assisstants",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchronisation GitHub -> Pinecone": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-17T16:05:00.294Z",
+  "id": "d6khXiG3YxUunViW",
+  "meta": null,
+  "name": "Service 2 - Synchroniser GitHub -> Pinecone",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "36d325a6-0643-4a2a-b077-edc04e45642e",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        2360,
+        2760
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d3319e45-b948-4e08-b70a-cc567cc3440a",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        2360,
+        2960
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "entree",
+              "stringValue": "={{ $json.entree }}{{ $json.query }}"
+            },
+            {
+              "name": "document",
+              "stringValue": "=sortie.md"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "={{ $json.kinName }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0590f8f9-31e0-435f-bfa5-0b65827e9efa",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        2620,
+        2760
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\": {\"response\": $item(0).$node[\"entree\"].json}};"
+      },
+      "id": "fdc2aaec-fd3a-47fb-af09-68e1c279a461",
+      "name": "Return entrée",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5880,
+        2600
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/assistants",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Bearer",
+              "value": "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"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f8b0d281-2916-42f7-ab73-f332b8182d04",
+      "name": "Get Assisstants",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3540,
+        2760
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "id": "809b1d91-9810-4c73-8047-f5b9010cfa03",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        5100,
+        2600
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=prompts/{{ $node[\"Foreach Assistant\"].json.data.name.replace(/[\\s\\W]+/g, '_').toLowerCase() }}.md",
+        "fileContent": "={{ $node[\"Foreach Assistant\"].json.data.instructions }}",
+        "commitMessage": "=n8n : {{ $('entree').item.json[\"entree\"] }}"
+      },
+      "id": "514d3fde-9da1-4989-999f-3148ed10745c",
+      "name": "Create Prompt File",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        4560,
+        2900
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=prompts/{{ $node[\"Foreach Assistant\"].json.data.name.replace(/[\\s\\W]+/g, '_').toLowerCase() }}.md",
+        "additionalParameters": {}
+      },
+      "id": "e83c6f8a-00d7-42a0-8d97-6501250d2ee0",
+      "name": "Get Prompt File",
+      "type": "n8n-nodes-base.github",
+      "position": [
+        3940,
+        2760
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true,
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.path }}",
+              "operation": "notEqual"
+            }
+          ]
+        }
+      },
+      "id": "7098eb2d-84de-461f-a3e6-a65653a36f35",
+      "name": "IF Exists",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4360,
+        2760
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=prompts/{{ $node[\"Foreach Assistant\"].json.data.name.replace(/[\\s\\W]+/g, '_').toLowerCase() }}.md",
+        "fileContent": "={{ $node[\"Foreach Assistant\"].json.data.instructions }}",
+        "commitMessage": "=Updated prompts/{{ $node[\"Foreach Assistant\"].json.data.name.replace(/[\\s\\W]+/g, '_').toLowerCase() }}.md"
+      },
+      "id": "32476a17-e14d-4cb7-86f2-dd4ed9d1df78",
+      "name": "Update Prompt File",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        4700,
+        2460
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "id": "df74a044-c7a7-40db-bca0-c22a0f763483",
+      "name": "Foreach Assistant",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        3740,
+        2760
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "b9174e8a-3cad-400d-a760-fca8a27498d0",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        5300,
+        2820
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "repository": "https://github.com/DigitalKin-ai/kinCIR",
+        "additionalOptions": {}
+      },
+      "id": "a07c3fb4-9e31-43b4-9657-ac50589bb4b2",
+      "name": "GitHub Document Loader1",
+      "type": "@n8n/n8n-nodes-langchain.documentGithubLoader",
+      "typeVersion": 1,
+      "position": [
+        5320,
+        2980
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chunkSize": 2500,
+        "chunkOverlap": 250
+      },
+      "id": "fa13b4d3-31ce-4131-8549-255f24809fd3",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        5460,
+        3160
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node[\"Foreach Assistant\"].json.data.instructions }}",
+              "operation": "notEqual",
+              "value2": "{{ $json.data.instructions }}"
+            }
+          ]
+        }
+      },
+      "id": "0e2e8c25-5cbf-46aa-8839-01b408369c9a",
+      "name": "IF Different",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4500,
+        2580
+      ]
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "destinationKey": "documentContent",
+        "options": {}
+      },
+      "id": "2af8fd73-cd62-4ae2-a075-551a77bea917",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        4140,
+        2760
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8ff9f68d-fd61-44e1-b20f-176949e75c0c",
+      "name": "Limit1",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        5660,
+        2600
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {
+          "clearNamespace": true
+        }
+      },
+      "id": "32a42944-0df5-4dc5-a309-487cee4373a8",
+      "name": "Synchronisation GitHub -> Pinecone1",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        5300,
+        2600
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "b466f731-1cf2-47f0-a908-78981cea18d9",
+      "name": "Embeddings OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        2900,
+        2980
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "repository": "https://github.com/DigitalKin-ai/kinCIR",
+        "additionalOptions": {}
+      },
+      "id": "a9795de5-70e9-4f8a-aa4c-04f4ea6fbc55",
+      "name": "GitHub Document Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentGithubLoader",
+      "typeVersion": 1,
+      "position": [
+        2920,
+        3140
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chunkSize": 2500,
+        "chunkOverlap": 250
+      },
+      "id": "dbdc7647-3737-4806-be2f-eb216d5d83e7",
+      "name": "Recursive Character Text Splitter1",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        3060,
+        3320
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "74d34c52-73c6-4489-a152-032183539d94",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        3260,
+        2760
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {
+          "clearNamespace": true,
+          "pineconeNamespace": "sortie"
+        }
+      },
+      "id": "6b3c7590-bcb4-439d-8afd-e918b90fa95f",
+      "name": "Synchronisation GitHub -> Pinecone",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        2900,
+        2760
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "entree": "1) Le but de notre recherche est de mettre en évidence l’intérêt et la sensibilité croissants envers la consommation de mode éthique en tant qu'objectif de recherche, avec une focalisation sur les aspects sociaux et environnementaux dans les habitudes de consommation françaises.\\n\\n2) Citations potentielles pour l'État de l'Art:\\n   - \"Le développement d'un consumérisme éthique dans les pays développés et l'attention croissante que portent les parties prenantes aux enjeux sociaux et environnementaux dans les filières de production de la mode.\" (Achabou & Rink, 2014)\\n   - \"Les raisons du faible engouement pour les produits de la mode éthique parmi les consommateurs français.\" (Achabou & Rink, 2014)\\n   - \"Les canaux de distribution utilisés pour l’achat de produits de mode et les pratiques concernant le devenir des vêtements usagés.\" (Achabou & Rink, 2014)\\n   - \"Les perceptions et associations faites par les consommateurs envers le concept de mode éthique.\" (Achabou & Rink, 2014)\\n\\n3) Requête aux extraits d'études:\\n   - Pourriez-vous fournir des informations détaillées sur la perception et les habitudes de consommation liées à la mode éthique en France émergeant de vos recherches?\\n   - Comment les consommateurs français comprennent-ils la mode éthique et quelles sont leurs pratiques concernant l'achat et le recyclage des vêtements?\\n\\n4) Réponse avec liste d'extraits verbatim en langue d'origine avec référence détaillée:\\n\\n   - \"Les parties prenantes accordent de plus en plus une attention particulière aux conditions sociales et aux enjeux environnementaux qui se posent dans les filières de production.\" (Achabou & Rink, 2014, p. [insert page number here])\\n   \\n   - \"L’objectif de cette recherche a été de comprendre les raisons du faible engouement des consommateurs pour les produits de la mode éthique dans le contexte français.\" (Achabou & Rink, 2014, p. [insert page number here])\\n   \\n   - \"Concernant le devenir des vêtements usagés, 55,6 % des répondants déclarent les donner à des proches, 83,8% pour des organismes caritatifs, 30,3% les recyclent, 18,3% les revendent, et 14,9% les jettent à la poubelle.\" (Achabou & Rink, 2014, p. [insert page number here])\\n   \\n   - \"Plusieurs idées ont été associées à ce concept [mode éthique]. Pour les répondants il s’agit d’une mode qui n’exploite pas l’animal 'produits sans matière animale', 'pas d'exploitation animale (pas de cuir, de soie, de fourrure)', 'sa...\" (Achabou & Rink, 2014, p. [insert page number here])\\n\\nVeuillez noter que les références de page exactes sont manquantes et devraient être ajoutées en fonction des emplacements exacts des citations dans le document d'origine. # Tache : ajoute ça dans le doc",
+          "kinName": "kincir_dynergie"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:32:35.457Z",
+      "updatedAt": "2023-12-17T10:32:35.457Z",
+      "id": "y4SS6pvxfLMwCsGn",
+      "name": "service"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-18T07:08:34.000Z",
+  "versionId": "5991ce14-f860-49e3-b303-3aa25ca2095e"
+}
