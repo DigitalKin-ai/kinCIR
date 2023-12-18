@@ -1,0 +1,482 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub": {
+      "main": [
+        [
+          {
+            "node": "Synchroniser GitHub -> Pinecone1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Synchroniser GitHub -> Pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchroniser GitHub -> Pinecone1": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchroniser GitHub -> Pinecone": {
+      "main": [
+        [
+          {
+            "node": "Get Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Rédacteur du Plan de Document de Sortie",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Document": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur du Plan de Document de Sortie",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur du Plan de Document de Sortie": {
+      "main": [
+        [
+          {
+            "node": "GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Receveur du plan de document",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Receveur du plan de document": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Rédacteur du Plan de Document de Sortie",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-17T17:09:48.641Z",
+  "id": "fyiLAGc7wgHnVHXT",
+  "meta": null,
+  "name": "RP - Rédacteur du Plan de Document de Sortie",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "18bff8bc-bdb9-466f-b90b-e1b38a98d389",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        120,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\":$node[\"Rédacteur du Plan de Document de Sortie\"].json.response.text}};"
+      },
+      "id": "5b014e13-7f5e-4d69-a5fc-66a75311b96a",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2160,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "0c1c595a-9a44-416d-90a9-74de9632ae98",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        120,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "entree",
+              "stringValue": "={{ $json.entree }}{{ $json.query }}"
+            },
+            {
+              "name": "document",
+              "stringValue": "=sortie.md"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "={{ $json.kinName }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2520449c-63a8-4a66-bd67-6abbb34c92d7",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        380,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=plan-du-document-de-sortie.md",
+        "fileContent": "={{ $json.response.text }}",
+        "commitMessage": "=n8n : {{ $('entree').item.json[\"entree\"] }}"
+      },
+      "id": "fb122027-4be2-48d7-b70e-75628eff71f5",
+      "name": "GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        300
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "d6khXiG3YxUunViW"
+      },
+      "id": "ea0cf161-6860-442c-a260-a7092c69307b",
+      "name": "Synchroniser GitHub -> Pinecone1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "d6khXiG3YxUunViW"
+      },
+      "id": "05b68ce1-391a-45f8-bb62-2387c43c43d0",
+      "name": "Synchroniser GitHub -> Pinecone",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        600,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "154b73ed-10c3-4e7b-8a81-dafc85c6e8fc",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        960
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4-1106-preview",
+          "mode": "list",
+          "cachedResultName": "gpt-4-1106-preview"
+        },
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "50a6e061-ddfb-4e58-9f51-fc99c8b06ff9",
+      "name": "GPT4",
+      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        540
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=plan-du-document-de-sortie.md",
+        "additionalParameters": {}
+      },
+      "id": "c7654c2e-6061-494f-b814-a8bd4ef4197d",
+      "name": "Get Document",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        800,
+        300
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "destinationKey": "documentContent",
+        "options": {}
+      },
+      "id": "9caf5735-18e4-4697-ac2a-a539b8362342",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        980,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "query": "=# Rôle\n\nREDACTEUR DE PLAN DE DOCUMENT SCIENTIFIQUE : Tu structures les documents scientifiques\n\n# Instructions   \n\nAméliore le plan de la partie \"Présentation du Programme de R&D\"  si besoin en fonction de la demande d'entrée.\nTu réponds toujours uniquement avec une proposition de plan de la partie \"Présentation du Programme de R&D\" , directement format Markdown (sans guillemets).\n\n# Contexte\n\nLe lien entre OBJECTIFS DE RECHERCHE (les nouvelles capacités à atteindre), VERROUS SCIENTIFIQUES OU TECHNOLOGIQUES (ce qui empêchent d'atteindre les objectifs) et TRAVAUX DE RECHERCHE encore nécessaires ou déjà réalisés pour lever ces verrous, est toujours clair pour toi.\n\nLa nature des relations :  \nDes TRAVAUX peuvent contribuer à lever différents VERROUS\nDes VERROUS peuvent nécessiter différents TRAVAUX pour être levés. \nDes VERROUS peuvent bloquer différentes OBJECTIFS en termes de nouvelles capacités \nLes OBJECTIFS d’atteindre une nouvelle capacité peut nécessiter de lever différents VERROUS.\n\n# Base du Plan de rédaction\n\nLa base du plan du document que tu structure est toujours la même :\n\n(pas d'introduction)\n# 1. Présentation du Programme de R&D\n[...]\n## 1.1. Contexte Scientifique et économique\n[...]\n## 1.2. Présentation des objectifs scientifiques et techniques de la R&D\n(trois sous parties) [...]\n## 1.3. Présentation de l'état de l'art\n(trois sous parties divisées en trois sous-sous parties) [...]\n## 1.4. Identification des incertitudes et verrous scientifiques et techniques\n(trois sous parties) [...]\n## 1.5. Présentation du plan des Travaux de R&D\n[A ne pas remplir pour le moment !]\n## 1.6. Conclusion\n# 2. Bibliographie\n(pas de suite)\n\nLes titres de niveau inférieurs sont des sujets liées à la thématique de recherche. Ils sont transversaux, c'est à dire qu'on peut les retrouver dans les objectifs de recherche, dans l'état de l'art, et dans les verrous scientifiques et technologiques.\n\n# Demande\n\n{{ $('entree').item.json[\"entree\"] }}"
+      },
+      "id": "b0b803d3-1d61-4784-91da-b14f70b7d03b",
+      "name": "Rédacteur du Plan de Document de Sortie",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        1300,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {
+          "pineconeNamespace": "sortie",
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "source",
+                "value": "plan-du-document-de-sortie.md"
+              }
+            ]
+          }
+        }
+      },
+      "id": "99c9abfc-b575-4294-a740-feabf24aaca7",
+      "name": "Pinecone Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        840
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "topK": 1
+      },
+      "id": "1a1e100b-3d7b-4cef-af37-e3906d9333c4",
+      "name": "Receveur du plan de document",
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## RS - Rédacteur de Document de Sortie : Rédige une version améliorée du Plan de Document de Sortie à partir d'une instruction ou d'une proposition de Plan",
+        "height": 429.80439085591235,
+        "width": 548.1198073088228
+      },
+      "id": "a2a2a0fc-7c5b-4244-a16a-9304fb479741",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        360,
+        -160
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "entree": "1) Le but de notre recherche est de mettre en évidence l’intérêt et la sensibilité croissants envers la consommation de mode éthique en tant qu'objectif de recherche, avec une focalisation sur les aspects sociaux et environnementaux dans les habitudes de consommation françaises.\\n\\n2) Citations potentielles pour l'État de l'Art:\\n   - \"Le développement d'un consumérisme éthique dans les pays développés et l'attention croissante que portent les parties prenantes aux enjeux sociaux et environnementaux dans les filières de production de la mode.\" (Achabou & Rink, 2014)\\n   - \"Les raisons du faible engouement pour les produits de la mode éthique parmi les consommateurs français.\" (Achabou & Rink, 2014)\\n   - \"Les canaux de distribution utilisés pour l’achat de produits de mode et les pratiques concernant le devenir des vêtements usagés.\" (Achabou & Rink, 2014)\\n   - \"Les perceptions et associations faites par les consommateurs envers le concept de mode éthique.\" (Achabou & Rink, 2014)\\n\\n3) Requête aux extraits d'études:\\n   - Pourriez-vous fournir des informations détaillées sur la perception et les habitudes de consommation liées à la mode éthique en France émergeant de vos recherches?\\n   - Comment les consommateurs français comprennent-ils la mode éthique et quelles sont leurs pratiques concernant l'achat et le recyclage des vêtements?\\n\\n4) Réponse avec liste d'extraits verbatim en langue d'origine avec référence détaillée:\\n\\n   - \"Les parties prenantes accordent de plus en plus une attention particulière aux conditions sociales et aux enjeux environnementaux qui se posent dans les filières de production.\" (Achabou & Rink, 2014, p. [insert page number here])\\n   \\n   - \"L’objectif de cette recherche a été de comprendre les raisons du faible engouement des consommateurs pour les produits de la mode éthique dans le contexte français.\" (Achabou & Rink, 2014, p. [insert page number here])\\n   \\n   - \"Concernant le devenir des vêtements usagés, 55,6 % des répondants déclarent les donner à des proches, 83,8% pour des organismes caritatifs, 30,3% les recyclent, 18,3% les revendent, et 14,9% les jettent à la poubelle.\" (Achabou & Rink, 2014, p. [insert page number here])\\n   \\n   - \"Plusieurs idées ont été associées à ce concept [mode éthique]. Pour les répondants il s’agit d’une mode qui n’exploite pas l’animal 'produits sans matière animale', 'pas d'exploitation animale (pas de cuir, de soie, de fourrure)', 'sa...\" (Achabou & Rink, 2014, p. [insert page number here])\\n\\nVeuillez noter que les références de page exactes sont manquantes et devraient être ajoutées en fonction des emplacements exacts des citations dans le document d'origine. # Tache : ajoute ça dans le doc",
+          "kinName": "kincir_dynergie"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "fonction"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-18T11:54:19.000Z",
+  "versionId": "656513bb-99db-4c79-9a81-93e1ca0716d8"
+}
