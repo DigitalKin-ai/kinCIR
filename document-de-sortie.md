@@ -1,1 +1,1 @@
-Désolé, mais vous n'avez pas fourni les détails de la partie initiale du document ni de la partie améliorée à traiter. Afin que je puisse vous assister et réécrire le document en entier avec les modifications nécessaires, veuillez me fournir à la fois la partie initiale et la partie améliorée.
+Désolé, mais il semble qu'il y ait une erreur puisque vous n'avez pas fourni la "Partie Initiale + Chunk Overlap" ainsi que la "Partie Améliorée" nécessaire à l'exercice. Veillez s'il vous plaît à fournir les éléments manquants pour que je puisse effectuer la tâche demandée.
