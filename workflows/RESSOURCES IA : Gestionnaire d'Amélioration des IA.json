@@ -1,0 +1,399 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Get Assisstant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad": {
+      "ai_tool": [
+        [
+          {
+            "node": "RESSOURCES IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RESSOURCES IA": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Améliorateur de Prompt": {
+      "ai_tool": [
+        [
+          {
+            "node": "RESSOURCES IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Assisstant": {
+      "main": [
+        [
+          {
+            "node": "RESSOURCES IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RESSOURCES IA1": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-18T03:48:54.885Z",
+  "id": "imN4HxXd5zhpJoyV",
+  "meta": null,
+  "name": "RESSOURCES IA : Gestionnaire d'Amélioration des IA",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b098f8a3-2cc1-4e00-9f19-b8176c310a29",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        900,
+        700
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\": $node[\"RESSOURCES IA\"].json.output}};"
+      },
+      "id": "8b4ac61d-56b6-4a41-96d0-32f9b1243879",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2020,
+        700
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "cbb03970-90a3-4093-ab83-a96af288bd9f",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "entree",
+              "stringValue": "={{ $json.entree }}{{ $json.query }}{{ $json.chat_input }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "={{ $json.kinName }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "assisstantId",
+              "stringValue": "={{ $json.assistantId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "435df914-0b16-4799-b6da-aeb27cde0ca6",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1140,
+        700
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c68b87ba-4c09-4781-bda4-e226c68c7541",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        900,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## - Questionneur d'études: Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
+        "height": 443.0545261129006,
+        "width": 548.1198073088228
+      },
+      "id": "bdb8626a-be11-4e63-8782-f273166ae2b6",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "={{ $('entree').item.json[\"assistantId\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "758b5c5d-4963-4b86-95cb-591cbb8e00f0",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_EarnictN3LgbSsTkDj7PYyDF",
+        "text": "=# Mission\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Demande Du Collaborateur\n\nAssistant {{ $('entree').item.json[\"assistantId\"] }} : {{ $('Get Assisstant').item.json[\"name\"] }}.\n\n{{ $('entree').item.json[\"query\"] }}\"",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "5d958cb7-d5f0-42b2-a9d0-871728cb3e61",
+      "name": "RESSOURCES IA",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1620,
+        700
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "acquereur_de_schéma_de_connexion",
+        "description": "Améliore le prompt de l'assistant qui le demande sans changer son périmètre fonctionnel, en partant d'un problème à résoudre ou d'une demande d'amélioration",
+        "workflowId": "1fR6eCwgdVcJ6SG5",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "={{ $('entree').item.json[\"assistantId\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "fc7a6240-3a0e-4e03-b910-93ad2cd7fe36",
+      "name": "Améliorateur de Prompt",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/assistants/{{ $('entree').item.json[\"assistantId\"] }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Bearer",
+              "value": "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"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5efb8a86-2f16-4a37-bc8d-d3a23e9b25c8",
+      "name": "Get Assisstant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1360,
+        700
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_EarnictN3LgbSsTkDj7PYyDF",
+        "text": "=# Mission\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Demande Du Collaborateur\n\nAssistant {{ $('entree').item.json[\"assistantId\"] }} : {{ $('Get Assisstant').item.json[\"name\"] }}.\n\n{{ $('entree').item.json[\"query\"] }}\"",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "74b40c7b-9eb1-4112-8b0d-237b787920c0",
+      "name": "RESSOURCES IA1",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        800,
+        1220
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Bureau du RH",
+        "height": 298.2912485475786,
+        "width": 407.0684086554326
+      },
+      "id": "14c56d32-5449-4803-8e8c-59a682a4523a",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        720,
+        1120
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "entree": "Hello Architecte, a quoi est relié le producteur ?",
+          "kinName": "kincir_dynergie"
+        }
+      }
+    ],
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "demande au RIA (ressources IA) d'am\\u00e9liorer ton prompt, la section \"# Fonctions Accessibles\"",
+          "kinName": "kincir_dynergie",
+          "intentionDUsage": "Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.",
+          "assistantId": "asst_L05RD7upJZbxUfZ06MPISYv5"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-18T10:50:10.000Z",
+  "versionId": "4bd5dc13-7461-4f85-a7ff-92c01b0f766c"
+}
