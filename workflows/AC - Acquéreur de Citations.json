@@ -1,0 +1,337 @@
+{
+  "active": false,
+  "connections": {
+    "GPT4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Acquéreur de Citations",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Retriever d'études",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Acquéreur de Citations",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Acquéreur de Citations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retriever d'études": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur de Citations": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-17T10:34:52.199Z",
+  "id": "It2FPpnGNxaxojxY",
+  "meta": null,
+  "name": "AC - Acquéreur de Citations",
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4-1106-preview",
+          "mode": "list",
+          "cachedResultName": "gpt-4-1106-preview"
+        },
+        "options": {}
+      },
+      "id": "96561783-d636-4fe5-a849-e6ff7d28421c",
+      "name": "GPT4",
+      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        480
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "topK": 6
+      },
+      "id": "d5920fca-9983-4384-9315-bc2eb56f1ed4",
+      "name": "Vector Store Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "8f21f9a2-03cc-44df-9856-3686e67d8489",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        940
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "7aab6d0e-1e61-497b-8c43-97ba930c32f3",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        680,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\":$json.response.text}};"
+      },
+      "id": "40670441-7b0f-47ff-9f4e-e23a0c0ad983",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        240
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "bbb0c283-ee17-4cf1-862b-a71c30a27fc9",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        680,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "entree",
+              "stringValue": "={{ $json.entree }}{{ $json.query }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "={{ $json.kinName }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d0fd001f-8613-4960-8d74-35823a96bdbd",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        900,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## AC - Acquéreur de Citations : Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
+        "height": 429.80439085591235,
+        "width": 548.1198073088228
+      },
+      "id": "a01634e4-1d33-4106-aedd-909c50279c28",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        900,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "=kins",
+          "mode": "id"
+        },
+        "options": {
+          "pineconeNamespace": "etudes",
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "type",
+                "value": "etude"
+              }
+            ]
+          }
+        }
+      },
+      "id": "c3323eaf-8151-495d-88cf-bd2005e1ec7b",
+      "name": "Retriever d'études",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        800
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "query": "=# Intention d'usage\n\nNous souhaitons récupérer des informations depuis des études pour rédiger un Etat del'Art\n\n# Rôle\n\nExtracteur d'informations depuis les études\n\n# Instructions\n\n1) Reformule le but à démontrer et injecte les mots-clés pertinents\n2) Propose des formats de citations qui pourraient correspondre à ce que nous cherchons\n3) Fais une requête aux extraits d'études\n4) Réponds avec une liste d'extraits verbatims en langue d'origine avec référence détaillée\n\n# Contexte\n\nTu disposes d'extrait d'études liées au sujet sur lequel nous voulons rédiger un état de l'art.\n\n# But à démontrer\n\n{{ $('entree').item.json.entree }}"
+      },
+      "id": "5537f3d7-f03f-4927-846b-f3be78b99f61",
+      "name": "Acquéreur de Citations",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        1120,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "name": "acquereur_de_schéma_de_connexion",
+        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
+        "workflowId": "It2FPpnGNxaxojxY",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "7355e849-a545-4199-b361-9ed3178d9663",
+      "name": "Acquéreur du Schéma de Connexion",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        460,
+        460
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "entree": "1) Le but de notre recherche est de mettre en évidence l’intérêt et la sensibilité croissants envers la consommation de mode éthique en tant qu'objectif de recherche, avec une focalisation sur les aspects sociaux et environnementaux dans les habitudes de consommation françaises.\\n\\n2) Citations potentielles pour l'État de l'Art:\\n   - \"Le développement d'un consumérisme éthique dans les pays développés et l'attention croissante que portent les parties prenantes aux enjeux sociaux et environnementaux dans les filières de production de la mode.\" (Achabou & Rink, 2014)\\n   - \"Les raisons du faible engouement pour les produits de la mode éthique parmi les consommateurs français.\" (Achabou & Rink, 2014)\\n   - \"Les canaux de distribution utilisés pour l’achat de produits de mode et les pratiques concernant le devenir des vêtements usagés.\" (Achabou & Rink, 2014)\\n   - \"Les perceptions et associations faites par les consommateurs envers le concept de mode éthique.\" (Achabou & Rink, 2014)\\n\\n3) Requête aux extraits d'études:\\n   - Pourriez-vous fournir des informations détaillées sur la perception et les habitudes de consommation liées à la mode éthique en France émergeant de vos recherches?\\n   - Comment les consommateurs français comprennent-ils la mode éthique et quelles sont leurs pratiques concernant l'achat et le recyclage des vêtements?\\n\\n4) Réponse avec liste d'extraits verbatim en langue d'origine avec référence détaillée:\\n\\n   - \"Les parties prenantes accordent de plus en plus une attention particulière aux conditions sociales et aux enjeux environnementaux qui se posent dans les filières de production.\" (Achabou & Rink, 2014, p. [insert page number here])\\n   \\n   - \"L’objectif de cette recherche a été de comprendre les raisons du faible engouement des consommateurs pour les produits de la mode éthique dans le contexte français.\" (Achabou & Rink, 2014, p. [insert page number here])\\n   \\n   - \"Concernant le devenir des vêtements usagés, 55,6 % des répondants déclarent les donner à des proches, 83,8% pour des organismes caritatifs, 30,3% les recyclent, 18,3% les revendent, et 14,9% les jettent à la poubelle.\" (Achabou & Rink, 2014, p. [insert page number here])\\n   \\n   - \"Plusieurs idées ont été associées à ce concept [mode éthique]. Pour les répondants il s’agit d’une mode qui n’exploite pas l’animal 'produits sans matière animale', 'pas d'exploitation animale (pas de cuir, de soie, de fourrure)', 'sa...\" (Achabou & Rink, 2014, p. [insert page number here])\\n\\nVeuillez noter que les références de page exactes sont manquantes et devraient être ajoutées en fonction des emplacements exacts des citations dans le document d'origine. # Tache : ajoute ça dans le doc",
+          "kinName": "kincir_dynergie"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "fonction"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-18T02:57:35.000Z",
+  "versionId": "1a651978-60ab-4fe0-94a2-2ce808c3715b"
+}
