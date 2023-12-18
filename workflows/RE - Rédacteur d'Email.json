@@ -1,0 +1,331 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur d'Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Rédacteur d'Email",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Explication du travail",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email": {
+      "main": [
+        [
+          {
+            "node": "Explication du travail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Explication du travail": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur d'Email": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-17T22:40:17.010Z",
+  "id": "rr8aeSM8QYyY8Po4",
+  "meta": null,
+  "name": "RE - Rédacteur d'Email",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "81845af7-2d3e-4766-abb5-625d68842609",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        120,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\":$json.text}};"
+      },
+      "id": "8d4cef92-f2fe-4d70-b2c0-9e4d2c4ea654",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1520,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c01d5bdc-303c-4203-8f8c-0eacd5da52fa",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        120,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "entree",
+              "stringValue": "={{ $json.entree }}\n\n{{ $json.query }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "={{ $json.kinName }}"
+            },
+            {
+              "name": "messageId",
+              "stringValue": "={{ $json.messageId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5e3e1569-70e2-466a-a74b-97f61cf456c7",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        380,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4-1106-preview",
+          "mode": "list",
+          "cachedResultName": "gpt-4-1106-preview"
+        },
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "00d99a1b-327c-4562-aaf0-20b4ca5af28e",
+      "name": "GPT4",
+      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        600,
+        500
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "579d20c9-e650-4494-bd52-033e3f8d1e16",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        120,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $('entree').item.json[\"messageId\"] }}",
+        "message": "={{ $json.text.substring($json.text.indexOf('<!DOCTYPE html>')) }}",
+        "options": {
+          "ccList": "={{ $('entree').item.json[\"cc\"] }}"
+        }
+      },
+      "id": "c9cd21e6-05db-4d93-9afb-30358c4e8ebb",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        960,
+        300
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "1a3c3c72-8f76-4bb4-815b-20b02586d796",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        500
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "prompt": "=# Ton Rôle\n\nTu es l'agent manager de la fonction : \"Rédacteur d'Email\" de n8n.\n\n# Instructions \n\nExplique simplement le travail qui vient d'être effectué.\n\n# Tâche demandée\n\n{{ $('entree').item.json[\"entree\"] }}\n\nDocument : document_de_sortie.md\n\n# Résultat : Partie améliorée\n\n{{ $('Rédacteur d\\'Email').item.json[\"text\"] }}\n"
+      },
+      "id": "4d8b84fe-240c-45c5-8a67-3c412be468d8",
+      "name": "Explication du travail",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        1160,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## - Rédacteur D'Email: Rédige et envoie un mail formatté en HTML selon notre modèle à partir d'un contenu.",
+        "height": 429.80439085591235,
+        "width": 548.1198073088228
+      },
+      "id": "eb0d1e7c-af6b-4a8a-9ec2-cea31718b452",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        380,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "prompt": "=# Rôle\n\nRédige et envoie un mail formatté en HTML selon notre modèle à partir d'un contenu.\n\n# Instructions\n\nRéponds avec le HTML de l'email, mis en forme selon notre modèle. Assure-toi que l'email est excellent, et mis en forme selon le modèle. Fais plusieurs itérations si nécéssaire !\n\n\n# Entrée\n\n{{ $('entree').item.json[\"entree\"] }}\n\n# Sortie\n\nTa meilleure réponse, formatée au format HTML, élégante et mise en forme.\n\n# Style de Rédaction\n\n- Dense et to-the-point (le temps de nos clients est précieux :) )\n- Utilsation du gras pour faire apparaître les points les plus importants\n- Touche personnelle : La touche personnelle de fin de mail se caractérise par une expression concise et engageante, reflétant l'intelligence et la curiosité de l'IA tout en soulignant l'unicité et la valeur de la collaboration humaine.\n\n# Modèle d'email\n\n<!DOCTYPE html>\n<html>\n<head>\n<title>Mise à Jour du Projet CIR</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>État de l'Art du Projet CIR</h1>\n    </div>\n    <div class=\"content\">\n      <h2>Échelle de Progression du Projet CIR sur la Mode Durable</h2>\n      <p><span class=\"bold\">Symboles :</span></p>\n      <ul>\n        <li><span class=\"progress-symbol completed\">🟢</span> Complété et satisfaisant</li>\n        <li><span class=\"progress-symbol in-progress\">🔵</span> En cours / Partiellement complété</li>\n        <li><span class=\"progress-symbol to-improve\">🟡</span> À revoir / Nécessite des améliorations</li>\n        <li><span class=\"progress-symbol not-started\">🔴</span> Non commencé / En attente</li>\n      </ul>\n      <!-- Ajouter d'autres éléments de progression ici -->\n      <p><span class=\"bold\">Application de l'Échelle de Progression :</span></p>\n      <!-- Continuer pour les autres sections -->\n      <!-- ... -->\n    </div>\n    <div class=\"footer\">\n      <div class=\"footer\">\n    <span style=\"font-style: italic;\">[MESSAGE PERSONNEL SYMPATHIQUE DU KIN. Ex : À la fin de ce message, une petite réflexion : chaque interaction avec vous enrichit mon univers de données, apportant une dimension unique à notre collaboration. À bientôt pour la suite de notre aventure numérique !]</span>\n</div>\n\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>"
+      },
+      "id": "dfc41e4a-48af-4d15-96b2-d06a122d2d84",
+      "name": "Rédacteur d'Email",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        580,
+        300
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "output": "# Nouvel Email\n\nEmail De : \n\nDate : Sun Dec 17 2023 23:06:53 GMT+0000 (Coordinated Universal Time)\nSujet : Re: KINCIR\n\n## Contenu\n\n# Nouvel Email\n\nEmail De : l.reynolds@digitalkin.ai\n\nDate : Sun Dec 17 2023 23:06:33 GMT+0000 (Coordinated Universal Time)\nSujet : Re: KINCIR\n\n## Contenu\n\nDigitalKin Logo Mise à Jour sur la Mode Durable Bonjour M. Reynolds, Je tiens à vous présenter nos excuses pour le retard. Nous avons bien avancé dans notre mission sur la mode durable, et je suis en",
+          "intentionDUsage": "Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.",
+          "mission": "18c7a07e9e79ebb1",
+          "kinName": "kincir_dynergie",
+          "messageId": "18c7a07e9e79ebb1",
+          "query": "### Account Manager\n\n1.1) Pour **vérifier l'état d'avancement de la mission**, j'appellerai le Questionneur de Document d'Avancement de la Mission.\n1.2) En cas de besoin de **mise à jour suite aux informations du client**, j'utiliserai le Rédacteur du Document d'Avancement de la Mission.\n1.3) Pour **répondre précisément aux points soulevés par le client**, je ferai appel au Questionneur de Document de Sortie.\n\n2.1)  Bonjour Questionneur de Document d'Avancement de la Mission : Mon client a mentionné un retard dans notre travail sur la thématique de la mode durable. Pourriez-vous me fournir un état précis de notre avancement ?\n2.2)  Bonjour Rédacteur du Document d'Avancement de la Mission : Suite aux excuses présentées au client pour le retard, veuillez mettre à jour le document d'avancement en soulignant les progrès réalisés récemment, ainsi que toute modification du calendrier prévisionnel.\n2.3)  Bonjour Questionneur de Document de Sortie : Mon client a besoin d'informations sur les avancements spécifiques réalisés dans notre recherche sur la mode durable. Pourriez-vous fournir des détails pertinents sur les progrès récents et tout point clé qui a été développé ? \n\n3) Après avoir collecté toutes les informations nécessaires, je rédigerai le compte rendu et répondrai au client. Voici le format attendu pour la réponse :\n\n- Points de contexte importants : Excuses pour le retard, avancement significatif dans la mission, nécessité d'informations spécifiques sur les progrès.\n- Réponse au mail : Présentation de l'état d'avancement et des progrès, mise en évidence des points clés développés récemment pour la thématique de la mode durable, engagement pour le respect du nouveau calendrier et assurance de la qualité du travail pour soutenir l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE.\n\n### Mail original\n\nLa mission Globale est de rédiger (document de sortie): \n1) une introduction aux enjeux et challenges sur la thématique de la mode durable \n\n2) un état de l'art sur le sujet de la mode durable, en focalisant sur\n- les moyens permettant de convaincre les consommateurs de l'importance du sujet pour augmenter la demande de mode durable\n- les moyens permettant aux fabricants de vêtements de produire en mode durable.\n\n3) une partie sur les verrous scientifiques et techniques qui limitent actuellement l'avancée des recherches sur le sujet"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "fonction"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-18T01:13:06.000Z",
+  "versionId": "361ca467-d758-4597-8b0f-f5785a88b62b"
+}
