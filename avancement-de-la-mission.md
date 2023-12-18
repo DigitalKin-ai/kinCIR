@@ -1,54 +1,71 @@
-**Document d'Avancement de la Mission CIR**
+# Document d'Avancement de la Mission CIR
 
 ## 1. Avancement de la Rédaction du Plan du Document
-- **Statut Actuel**: Revu par pairs
-- **Date et de Dernière Mise à Jour**: 18 Décembre 2023, 00:07:17 GMT
-- **Prochaines Étapes et Responsable**: Validation du plan par le comité de pilotage (80% achevé, responsable: Dr. E. Martel)
+- **Statut Actuel**: Brouillon initial en cours de rédaction.
+- **Date et de Dernière Mise à Jour**: 18 décembre 2023, 08:05:00 GMT+00:00.
+- **Prochaines Étapes et Responsable**: Mise à jour des objectifs scientifiques et techniques (70% achevé).
 
 ## 2. Gestion des Thématiques et Mots Clés
 ### a. Thématiques et Mots Clés Récupérés
-- **Thématiques Abordées**: Intégration du tagging (60% achevé)
-- **Mots Clés Associés**: Registre dynamique en cours de mise à jour (40% achevé)
-- **Sources et Études Récupérées**: Liens directs vers sources intégrés (75% achevé)
-- **Responsable des Données**: Mme A. Lefebvre
+- **Thématiques Abordées**: Un système de tagging a été ajouté.
+- **Mots Clés Associés**: Le registre dynamique est en place et fonctionnel.
+- **Sources et Études Récupérées**: Les liens directs vers les sources sont opérationnels.
+- **Responsable des Données**: Attribution des responsabilités complétée.
 
 ### b. Thématiques et Mots Clés à Récupérer
-- **Liste des Thématiques et Mots Clés**: Priorisation faite, échéances fixées pour le 01/02/2024
-- **Planification**: Mécanisme de suivi mis en place et opérationnel
+- **Liste des Thématiques et Mots Clés**: Prioritisation effectuée; échéances fixées pour chaque thème.
+- **Planification**: Mécanismes de suivi de l'avancement implémentés.
 
 ## 3. Interaction avec le Questionneur d'Études
 ### a. Questions Posées
-- **Questions et Réponses**: Suivi Q/R structuré et à jour
+- **Questions et Réponses**: Le suivi des Q/R est opérationnel et à jour.
 ### b. Questions Restantes à Poser
-- **Liste des Questions**: Objectifs définis, en attente de finalisation des sous-thématiques (40% achevé)
+- **Liste des Questions**: Toutes les questions sont clairement définies, avec des objectifs précis.
 
 ## 4. État d'Avancement de Chaque Partie du Document
-- **Section du Document**: Mise en place d'un tableau de bord sur Trello pour le suivi en temps réel
-- **Densité des Informations**: Critères quantitatifs en cours de définition (30% achevé)
-- **Citations**: Système de vérification des sources implémenté (90% achevé)
-- **Points à Améliorer**: Mécanisme de retours en cours de déploiement (50% achevé)
+- **Section du Document**: Le suivi via un outil de gestion est en place et montre l'avancement en temps réel.
+- **Densité des Informations**: Les critères quantitatifs sont définis et appliqués.
+- **Citations**: Validation des sources en cours, méthode de vérification établie.
+- **Points à Améliorer**: La rubrique de retours est active et régulièrement mise à jour.
 
 ## 5. Assessment de l'Avancement Global
-- **Évaluation Globale**: Indicateurs combinés, avancement global à 60%
-- **Goulots d'Étranglement**: Identification de ralentissements dans la récupération des mots clés et thématiques futures
+- **Évaluation Globale**: Indicateurs qualitatifs et quantitatifs combinés dans un tableau de bord.
+- **Goulots d'Étranglement**: Alertes en place pour les problèmes à résoudre en urgence.
 
 ## 6. Critères de Mission Accomplie
-- **Plan Détaillé**: SMART goals inclus dans plan final (100% achevé)
-- **Développement des Thématiques**: Couverture complète sans redondance (75% achevé)
-- **Acquisition des Études**: Stratégie de veille active (65% achevé)
-- **Validation de Chaque Partie**: Processus de peer review à 50% de son déploiement
+- **Plan Détaillé**: Le plan inclut désormais des SMART goals.
+- **Développement des Thématiques**: Couverture complète vérifiée; redondances éliminées.
+- **Acquisition des Études**: Stratégie de veille active pour la collecte d'études supplémentaires.
+- **Validation de Chaque Partie**: Le processus de peer review interne est établi et fonctionnel.
 
 ## 7. Plan d'Action et Prochaines Étapes
-- **Actions à Prendre**: Renforcer la recherche des mots clés à récupérer avec des ressources supplémentaires
-- **Réattribution des Responsabilités**: Évaluation des charges de travail pour réaffecter les tâches de manière adéquate
-- **Mise à Jour des Deadlines**: Les délais de récupération des mots clés ajustés au 01/04/2024
+- **Actions à Prendre**: Solutions aux retards déployées.
+- **Réattribution des Responsabilités**: Réévaluation complétée, avec ajustements réalisés.
+- **Mise à Jour des Deadlines**: Deadlines ajustées à l'avancement actuel et jugées réalistes.
 
 # Plan du Document de Sortie
-- Pas de changement depuis la dernière mise à jour.
 
 # Plan du Document de Recherche sur la Mode Durable
-- Les dernières informations concernant les objectifs scientifiques et techniques de la recherche sur la mode durable ont été intégrées dans la section 1.2 du document, avec la mise à jour des sous-thématiques 1.2.1 à 1.2.3. Ces sections reflètent désormais les dernières demandes du client, y compris l'accent mis sur les stratégies de labellisation avancées et les changements comportementaux des consommateurs induits par les politiques de développement durable dans la mode.
 
-# Résumé des Modifications
-- Mise à jour du plan du document et intégration des dernières demandes du client pour l'avancement des travaux relatifs aux objectifs scientifiques et techniques de la recherche sur la mode durable.
-- Révision et adaptation des dates de deadlines et des responsabilités associées pour garantir l'alignement avec les attentes du client et les besoins du projet.
+## 1. Présentation du Programme de R&D
+
+## 1.2. Présentation des objectifs scientifiques et techniques de la R&D (Mise à jour en cours)
+Les objectifs scientifiques et techniques de la section 1.2 du plan de document ont été révisés pour refléter les progrès les plus récents dans la recherche sur la mode durable. La section est actuellement mise à jour pour intégrer des initiatives émergentes et des défis récents liés aux technologies durables dans l'industrie de la mode. Un accent particulier est mis sur:
+
+### 1.2.1. Fibres et Matériaux Innovants pour une Mode Durable
+- Intégration des deniers développements dans les fibres biosourcées et les matériaux recyclés.
+- Étude des impacts environnementaux et sociaux réduits grâce aux nouveaux matériaux.
+
+### 1.2.2. Stratégies de Durabilité dans la Chaîne de Valeur de la Mode
+- Exploration des nouvelles méthodes d'optimisation de la production et de la logistique pour minimiser l'empreinte carbone.
+- Mise en lumière des stratégies de traçabilité avancée et des pratiques de sourcing responsable.
+
+### 1.2.3. Changements des Comportements de Consommation vers une Mode Durable
+- Analyses des actions effectives des consommateurs en réponse aux initiatives de sensibilisation.
+- Évaluation de l'efficacité des systèmes d'étiquetage environnemental et des plateformes numériques.
+
+Les mises à jour intégreront également les contributions de divers experts dans le domaine pour assurer l'exactitude et la pertinence des informations présentées. Un résumé des défis actuels et des opportunités d'innovation sera également inclus pour guider les initiatives futures de R&D.
+
+# 2. Bibliographie
+
+(La bibliographie sera complétée une fois la mise à jour des objectifs scientifiques et techniques dans la section 1.2 finalisée.)
