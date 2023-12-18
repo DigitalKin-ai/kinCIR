@@ -1,0 +1,585 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kin CIR": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kin Boiron": {
+      "main": [
+        [
+          {
+            "node": "mission1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission1": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'études": {
+      "ai_tool": [
+        [
+          {
+            "node": "Gestionnaire de Plan de Document",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de Document de Sortie": {
+      "ai_tool": [
+        [
+          {
+            "node": "Gestionnaire de Plan de Document",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gestionnaire de plan envoie message": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gestionnaire de Plan de Document": {
+      "main": [
+        [
+          {
+            "node": "Gestionnaire de plan envoie message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur du Plan de Document de Sortie": {
+      "ai_tool": [
+        [
+          {
+            "node": "Gestionnaire de Plan de Document",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur du Plan de Document de Sortie": {
+      "ai_tool": [
+        [
+          {
+            "node": "Gestionnaire de Plan de Document",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Gestionnaire de Plan de Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad": {
+      "ai_tool": [
+        [
+          {
+            "node": "Gestionnaire de Plan de Document",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-17T16:54:57.131Z",
+  "id": "6llpRqvjZ5beOQhf",
+  "meta": null,
+  "name": "Kin : GS - Gestionnaire de Plan de Document",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "8ea1e5c7-8c3d-4888-bb4c-6a6aeb947167",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        -60
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "20ac1c9b-733f-4d4f-aafb-eafafd76d1d2",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "694cdc2d-ec94-4f9a-9903-0d0b7eca996a",
+      "name": "Kin CIR",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        -420
+      ],
+      "webhookId": "c1f40942-501c-4b73-ab6e-22df752df854",
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "Jarvis"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "fd5de778-f54b-4d6c-9b6f-47d885e80d02",
+      "name": "Kin Boiron",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        -260
+      ],
+      "webhookId": "d41a317d-544c-4a6e-834b-96e000dbd8e0",
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "intentionDUsage",
+              "stringValue": "=Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR."
+            },
+            {
+              "name": "mission",
+              "stringValue": "=La mission Globale est de rédiger (document de sortie): \n1) une introduction aux enjeux et challenges sur la thématique de la mode durable \n\n2) un état de l'art sur le sujet de la mode durable, en focalisant sur\n- les moyens permettant de convaincre les consommateurs de l'importance du sujet pour augmenter la demande de mode durable\n- les moyens permettant aux fabricants de vêtements de produire en mode durable.\n\n3) une partie sur les verrous scientifiques et techniques qui limitent actuellement l'avancée des recherches sur le sujet"
+            },
+            {
+              "name": "output",
+              "stringValue": "={{ $json.chat_input }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0ad4135b-cc9d-4ff5-8710-0c015cbc77a2",
+      "name": "mission",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        840,
+        -420
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "intention_d_usage",
+              "stringValue": "=Prouver que l'homéopathie marche sur les animaux"
+            },
+            {
+              "name": "mission",
+              "stringValue": "=Ecris une revue de littérature complète sur la santé animale"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fda3613d-a401-4dc9-bd16-b529719ad785",
+      "name": "mission1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        840,
+        -260
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "0495498c-f807-49d7-974c-22e081face2a",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        580,
+        -580
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_etudes",
+        "description": "Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "53696174-6305-41ad-bcc4-3bf6400d6525",
+      "name": "Questionneur d'études",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_document_de_sortie",
+        "description": "Donne une réponse précise issues du document de sortie en cours de rédaction à partir d'un besoin informationnel.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "92e0ec46-7757-428d-ac07-6530046e2f6e",
+      "name": "Questionneur de Document de Sortie",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('entree').item.json[\"telegramChat\"] }}",
+        "text": "=_Gestionnaire de Plan:_\n\n{{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "64be8299-e7e9-4165-b502-4f6b2f7ec6c4",
+      "name": "Gestionnaire de plan envoie message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        1940,
+        -260
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_OU9dV374aiNux7W99B6YD7xg",
+        "text": "=# Mission\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Intention d'usage\n\n{{ $('entree').item.json[\"intentionDUsage\"] }}\n\n# Input du Manager\n\n{{ $json.output }}",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "7bff8141-c2c2-44af-90d2-dff34b590ab5",
+      "name": "Gestionnaire de Plan de Document",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        -260
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "redacteur_de_document_de_sortie",
+        "description": "Améliore une partie du Plan de Document de Sortie à partir d'une instruction ou d'une proposition de Plan.",
+        "workflowId": "fyiLAGc7wgHnVHXT",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "5051d5ca-41e9-4fb7-9af1-0469be126fbb",
+      "name": "Rédacteur du Plan de Document de Sortie",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "name": "Acquereur_du_plan_de_document_de_sortie",
+        "description": "Renvoie le plan du document au format Markdown.",
+        "workflowId": "Tv0klBXOw7sc9kaW",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "=intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "8291478d-7e3d-448e-bf99-dc11dbc9b68c",
+      "name": "Acquéreur du Plan de Document de Sortie",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $json.mission }}"
+            },
+            {
+              "name": "output",
+              "stringValue": "={{ $json.message.text }}{{ $json.output?$json.output:$json.chat_input }}{{ $json.query }}"
+            },
+            {
+              "name": "telegramChat",
+              "stringValue": "={{ $json.message.chat.id }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "=kincir_dynergie"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c054aeaf-8d7d-4a0c-8a35-806d284bff89",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1340,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\":$node[\"Gestionnaire de Plan de Document\"].json.output}};"
+      },
+      "id": "b7ba1d66-d049-4573-913f-6e241aae448c",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2160,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "=asst_usns6lJ8oyA82LlY5kcC3lOh"
+            }
+          ]
+        }
+      },
+      "id": "39761269-b596-4738-960c-6468cf8050f9",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        240
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "chat_input": "Propose une première version du plan"
+        }
+      }
+    ],
+    "On new manual Chat Message": [
+      {
+        "json": {
+          "chat_input": "Fais une nouvelle version du plan"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-18T01:11:28.000Z",
+  "versionId": "8836ff8d-dc5e-4c8b-8057-94294b511048"
+}
