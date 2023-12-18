@@ -1,0 +1,897 @@
+{
+  "active": false,
+  "connections": {
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "MANAGER : Évaluateur de l'état de l'art scientifique1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF not bot": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kin Boiron": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kin CIR": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "IF not bot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'études": {
+      "ai_tool": [
+        [
+          {
+            "node": "PRODUCTEUR : Rédacteur scientifique et améliorateur de l'état de l'art",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur de Citations": {
+      "ai_tool": [
+        [
+          {
+            "node": "PRODUCTEUR : Rédacteur scientifique et améliorateur de l'état de l'art",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur de Document de Sortie": {
+      "ai_tool": [
+        [
+          {
+            "node": "PRODUCTEUR : Rédacteur scientifique et améliorateur de l'état de l'art",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de Document de Sortie": {
+      "ai_tool": [
+        [
+          {
+            "node": "PRODUCTEUR : Rédacteur scientifique et améliorateur de l'état de l'art",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "MANAGER : Évaluateur de l'état de l'art scientifique1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PRODUCTEUR : Rédacteur scientifique et améliorateur de l'état de l'art": {
+      "main": [
+        [
+          {
+            "node": "Producteur envoie message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "MANAGER : Évaluateur de l'état de l'art scientifique1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MANAGER : Évaluateur de l'état de l'art scientifique1": {
+      "main": [
+        [
+          {
+            "node": "Manager envoie message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "PRODUCTEUR : Rédacteur scientifique et améliorateur de l'état de l'art",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gestionnaire du Plan de Document de Sortie": {
+      "ai_tool": [
+        [
+          {
+            "node": "PRODUCTEUR : Rédacteur scientifique et améliorateur de l'état de l'art",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "MANAGER : Évaluateur de l'état de l'art scientifique1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur du Plan de Document de Sortie": {
+      "ai_tool": [
+        [
+          {
+            "node": "PRODUCTEUR : Rédacteur scientifique et améliorateur de l'état de l'art",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "MANAGER : Évaluateur de l'état de l'art scientifique1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur du Document d'Avancement de la Mission": {
+      "ai_tool": [
+        [
+          {
+            "node": "MANAGER : Évaluateur de l'état de l'art scientifique1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur du Document d'Avancement de la Mission": {
+      "ai_tool": [
+        [
+          {
+            "node": "MANAGER : Évaluateur de l'état de l'art scientifique1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad du Producteur": {
+      "ai_tool": [
+        [
+          {
+            "node": "PRODUCTEUR : Rédacteur scientifique et améliorateur de l'état de l'art",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad du Manager": {
+      "ai_tool": [
+        [
+          {
+            "node": "MANAGER : Évaluateur de l'état de l'art scientifique1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RESSOURCES IA": {
+      "ai_tool": [
+        [
+          {
+            "node": "PRODUCTEUR : Rédacteur scientifique et améliorateur de l'état de l'art",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RESSOURCES IA1": {
+      "ai_tool": [
+        [
+          {
+            "node": "MANAGER : Évaluateur de l'état de l'art scientifique1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-14T15:10:25.981Z",
+  "id": "mWVw04MmRjbju2Z7",
+  "meta": null,
+  "name": "KINCIR - Boucle de production",
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "=-4042572972",
+        "text": "=### Manager\n\n{{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "b2cad8a9-d599-4eee-a69b-197aa65d6be9",
+      "name": "Manager envoie message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        1700,
+        -120
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $json.mission }}"
+            },
+            {
+              "name": "output",
+              "stringValue": "={{ $json.message.text }}{{ $json.output?$json.output:$json.chat_input }}"
+            },
+            {
+              "name": "telegramChat",
+              "stringValue": "={{ $json.message.chat.id }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "=kincir_dynergie"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e66e242d-5b84-46ec-8d00-26b0b5afa62c",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        640,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.message.from.id }}",
+              "operation": "notEqual",
+              "value2": "6441640538"
+            },
+            {
+              "value1": "={{ $json.message.from.id }}",
+              "operation": "notEqual",
+              "value2": "1864364329"
+            }
+          ]
+        }
+      },
+      "id": "524ceaeb-3255-4f3a-96d2-ce55a27cda24",
+      "name": "IF not bot",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        380,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-4042572972",
+        "text": "=_Producteur:_\n\n{{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "d3c951cd-90fb-4990-8dd5-1713f3a515b6",
+      "name": "Producteur envoie message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        1140,
+        -160
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_KKxtZHtOXZhjwh52RWR4ITEe",
+        "text": "=# Mission\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Intention d'usage\n\n{{ $('entree').item.json[\"intentionDUsage\"] }}\n\n# Input du Manager\n\n{{ $json.output }}",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "ee7cc662-a264-48f2-ad10-b91a7be367d4",
+      "name": "PRODUCTEUR : Rédacteur scientifique et améliorateur de l'état de l'art",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        760,
+        80
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "f80ae8aa-821b-4c16-958b-6be083577e5b",
+      "name": "Kin CIR",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        -260
+      ],
+      "webhookId": "c1f40942-501c-4b73-ab6e-22df752df854",
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "Jarvis"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "1693e784-fa1c-428c-8fff-8f39c390f106",
+      "name": "Kin Boiron",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        -100
+      ],
+      "webhookId": "d41a317d-544c-4a6e-834b-96e000dbd8e0",
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "intentionDUsage",
+              "stringValue": "=Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR."
+            },
+            {
+              "name": "mission",
+              "stringValue": "=La mission Globale est de rédiger (document de sortie): \n1) une introduction aux enjeux et challenges sur la thématique de la mode durable \n\n2) un état de l'art sur le sujet de la mode durable, en focalisant sur\n- les moyens permettant de convaincre les consommateurs de l'importance du sujet pour augmenter la demande de mode durable\n- les moyens permettant aux fabricants de vêtements de produire en mode durable.\n\n3) une partie sur les verrous scientifiques et techniques qui limitent actuellement l'avancée des recherches sur le sujet"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "46d0b017-d8e4-4b55-8eac-85238d0344f3",
+      "name": "mission",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        160,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_etudes",
+        "description": "Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "dd43ff07-9e56-4900-bd84-e038f0354cde",
+      "name": "Questionneur d'études",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        620,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "name": "acquereur_de_citations",
+        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
+        "workflowId": "It2FPpnGNxaxojxY",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "9562ca5f-0d98-4cd6-b84b-b5f824725027",
+      "name": "Acquéreur de Citations",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        760,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "name": "redacteur_de_document_de_sortie",
+        "description": "Rédige une version améliorée d'une partie du Plan de Document de Sortie à partir d'une instruction ou d'une proposition de Plan",
+        "workflowId": "0T67aHjuqQEnrTN0",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "c59fb0ba-9fa6-4a4f-a520-8c2b206109de",
+      "name": "Rédacteur de Document de Sortie",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        900,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_document_de_sortie",
+        "description": "Donne une réponse précise issues du document de sortie en cours de rédaction à partir d'un besoin informationnel.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "48fcccdd-8e00-4903-a5e9-9a30798baeb4",
+      "name": "Questionneur de Document de Sortie",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_szHLK3u62IBYebMxWd4ai1hU",
+        "text": "=# Mission\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Intention d'usage\n\n{{ $('entree').item.json[\"intentionDUsage\"] }}\n\n# Input du Producteur\n\n{{ $json.output }}",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "2218ceab-03a6-4021-8f96-0bc1d2fd8f70",
+      "name": "MANAGER : Évaluateur de l'état de l'art scientifique1",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        80
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "gestionnaire_du_plan_de_document_de_sortie",
+        "description": "Rédige un plan de document de sortie à partir d'une demande d'entrée ou le renvoie sans le modifier (demande une récupération simple).",
+        "workflowId": "6llpRqvjZ5beOQhf",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "4a417072-40fb-414c-92dd-386b52e76035",
+      "name": "Gestionnaire du Plan de Document de Sortie",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        620
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "Acquereur_du_plan_de_document_de_sortie",
+        "description": "Renvoie le plan du document au format Markdown.",
+        "workflowId": "Tv0klBXOw7sc9kaW",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "6cdc5a28-0a5c-4bdf-9183-5346d4432f87",
+      "name": "Acquéreur du Plan de Document de Sortie",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "name": "redacteur_d_avancement_de_la_mission",
+        "description": "Modifie le Document d'Avancement de la Mission à partir d'une instruction d'entrée détaillée.",
+        "workflowId": "0T67aHjuqQEnrTN0",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "df8002c1-7f23-4db0-bf37-b8e33ff9e60c",
+      "name": "Rédacteur du Document d'Avancement de la Mission",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de document_d_avancement_de_la_mission",
+        "description": "Donne une réponse précise issue du document d'avancement de la mission à partir d'une demande informationnelle.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "8c978a7f-b4ee-4695-b800-e26b9329ef3e",
+      "name": "Questionneur du Document d'Avancement de la Mission",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1420,
+        440
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "5cafb244-0e86-421a-9bd1-89337177e754",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -100,
+        -420
+      ]
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "=asst_L05RD7upJZbxUfZ06MPISYv5"
+            }
+          ]
+        }
+      },
+      "id": "e9de5dc0-6d0e-4567-abab-15b2ce3d9e11",
+      "name": "ScratchPad du Producteur",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        480,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "=asst_XOPlPW7qsWnjzfzDZbrDDcZd"
+            }
+          ]
+        }
+      },
+      "id": "b6f7fc6f-7e9f-4445-9274-43481a74365a",
+      "name": "ScratchPad du Manager",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "name": "architecte",
+        "description": "=# Rôle\n\nARCHITECTE : Cartographe des Connexions et Communications des Assistants GPT\n\n# Comment l'appeler\n\nPour solliciter l'ARCHITECTE dans votre processus de travail, utilisez la formulation suivante :\n\n- Commencez par indiquer clairement que vous vous adressez à l'ARCHITECTE.\n- Précisez la nature de votre demande, qu'il s'agisse d'une demande de création de carte, d'analyse de connexion, ou de collecte d'informations.\n- Fournissez des détails spécifiques sur ce que vous attendez de l'ARCHITECTE, comme des informations sur les connexions spécifiques à analyser ou les types de données techniques nécessaires.\n- Indiquez tout contexte ou précédent travail qui peut aider l'ARCHITECTE à comprendre et à répondre efficacement à votre demande.\n\nExemple d'appel :\n\n``Bonjour ARCHITECTE,\nJe souhaite que tu crées une carte détaillée montrant les connexions actuelles entre nos différents Assistants GPT. Nous avons récemment intégré de nouvelles interfaces, et il est crucial de comprendre comment elles s'articulent avec les systèmes existants. Pourrais-tu inclure dans ta carte des détails sur les types de communications et les flux de données entre chaque point de connexion ?\nMerci d'avance.``\n",
+        "workflowId": "bfK26nrTMV5n0oJU",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "432055f1-ac21-4800-9afa-6d6c485f5e2d",
+      "name": "ARCHITECTE",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        200,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "name": "ressources_ia",
+        "description": "= sert à analyser et améliorer les interactions avec les GPTs, en assurant la précision, la clarté et la pertinence des demandes posées. Pour solliciter mon aide, exposez-moi simplement votre prompt et indiquez l'objectif que vous cherchez à atteindre ou le problème que vous souhaitez résoudre, et je mettrai mes compétences à disposition pour optimiser votre expérience avec l'assistant GPT.",
+        "workflowId": "imN4HxXd5zhpJoyV",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "asst_L05RD7upJZbxUfZ06MPISYv5"
+            }
+          ]
+        }
+      },
+      "id": "0e137743-ec42-4438-ba0e-651d9e39a5f6",
+      "name": "RESSOURCES IA",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        340,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "name": "architecte",
+        "description": "=# Rôle\n\nARCHITECTE : Cartographe des Connexions et Communications des Assistants GPT\n\n# Comment l'appeler\n\nPour solliciter l'ARCHITECTE dans votre processus de travail, utilisez la formulation suivante :\n\n- Commencez par indiquer clairement que vous vous adressez à l'ARCHITECTE.\n- Précisez la nature de votre demande, qu'il s'agisse d'une demande de création de carte, d'analyse de connexion, ou de collecte d'informations.\n- Fournissez des détails spécifiques sur ce que vous attendez de l'ARCHITECTE, comme des informations sur les connexions spécifiques à analyser ou les types de données techniques nécessaires.\n- Indiquez tout contexte ou précédent travail qui peut aider l'ARCHITECTE à comprendre et à répondre efficacement à votre demande.\n\nExemple d'appel :\n\n``Bonjour ARCHITECTE,\nJe souhaite que tu crées une carte détaillée montrant les connexions actuelles entre nos différents Assistants GPT. Nous avons récemment intégré de nouvelles interfaces, et il est crucial de comprendre comment elles s'articulent avec les systèmes existants. Pourrais-tu inclure dans ta carte des détails sur les types de communications et les flux de données entre chaque point de connexion ?\nMerci d'avance.``\n",
+        "workflowId": "imN4HxXd5zhpJoyV",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "asst_XOPlPW7qsWnjzfzDZbrDDcZd"
+            }
+          ]
+        }
+      },
+      "id": "ecad52c2-ea70-40ac-b0b5-36c2f2269d49",
+      "name": "RESSOURCES IA1",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        560
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T08:26:29.377Z",
+      "updatedAt": "2023-12-17T08:26:29.377Z",
+      "id": "4fRrWvNFqdfWy2WD",
+      "name": "Dynergie"
+    },
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2023-12-18T10:33:28.000Z",
+  "versionId": "2424be90-87b6-4b1d-bbb6-a2d5ef5216d0"
+}
