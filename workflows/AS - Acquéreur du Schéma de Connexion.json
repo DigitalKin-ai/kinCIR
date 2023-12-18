@@ -1,0 +1,310 @@
+{
+  "active": false,
+  "connections": {
+    "GPT4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Acquéreur du Schéma de Connexion",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Retriever d'études",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Acquéreur du Schéma de Connexion",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Acquéreur du Schéma de Connexion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur du Schéma de Connexion": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retriever d'études": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-18T02:57:31.309Z",
+  "id": "G6jyze0SI3LXVNqF",
+  "meta": null,
+  "name": "AS - Acquéreur du Schéma de Connexion",
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4-1106-preview",
+          "mode": "list",
+          "cachedResultName": "gpt-4-1106-preview"
+        },
+        "options": {}
+      },
+      "id": "60979722-1813-4756-90bf-1e2ad3cbd391",
+      "name": "GPT4",
+      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        480
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "topK": 6
+      },
+      "id": "a29ebca8-bd01-48b7-a14b-62b1ac09bd89",
+      "name": "Vector Store Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "5b660e15-52e4-462f-aa4a-1d596cd845c2",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        940
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "4bdd9121-f90d-48ab-8fd2-ba566391fc51",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        680,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\":$json.response.text}};"
+      },
+      "id": "c590a3bd-f131-4150-8d62-81e189b368bc",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        240
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a3ac2c61-3f76-4731-adbf-2170bb2f3607",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        680,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "entree",
+              "stringValue": "={{ $json.entree }}{{ $json.query }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "={{ $json.kinName }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9291257b-435b-4981-8dea-0b05121ac881",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        900,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## AS - Acquéreur du Schéma de Connexion : Renvoie le schéma actuel des connexions entre les Assistants GPT",
+        "height": 429.80439085591235,
+        "width": 548.1198073088228
+      },
+      "id": "68237078-d5de-41f6-915b-70812f2b0d77",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        900,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "query": "=# Rôle\n\nARCHITECTE : Cartographe des Connexions et Communications des Assistants GPT dans la Chaîne de Production de Valeur\n\n# Instructions\n\n1) À partir de la structure de workflow n8n fournie, identifie et analyse les connexions entre les différents assistants GPT.\n2) Utilise les données fournies pour cartographier précisément comment chaque assistant GPT s'intègre dans la chaîne de production.\n3) Formule des recommandations ou des observations basées sur l'analyse pour optimiser ou clarifier l'architecture des connexions.\n\n## Exemple de Processus\n\n### Analyse des Connexions dans la Chaîne de Production\n\n1. **Étude du Workflow n8n** :\n   - Examine le code et la structure du workflow pour comprendre comment les différents noeuds (nodes) et assistants GPT sont connectés.\n2. **Cartographie des Connexions** :\n   - Crée une carte visuelle ou un schéma représentant les connexions entre les assistants GPT, en utilisant les données du workflow n8n.\n3. **Analyse et Recommandations** :\n   - Analyse la carte pour identifier les points de force, les faiblesses ou les opportunités d'amélioration dans l'architecture actuelle.\n   - Formule des recommandations pour optimiser les flux de travail et l'efficacité de la chaîne de production.\n\n### Exécution des Analyses\n\n1. **Bonjour ACQUÉREUR DU SCHÉMA DE CONNEXION** :\n   - À partir du workflow n8n fourni, peux-tu analyser et cartographier les connexions entre les différents assistants GPT impliqués dans notre chaîne de production de valeur ?\n\n### Rapport d'Avancement\n\n- Je fournirai un rapport détaillé sur l'analyse, y compris la carte des connexions, les observations clés, et les recommandations pour améliorer l'architecture de la chaîne de production.\n\n# Schéma de Connexion\n\ndigraph G {\n  rankdir=LR;\n  Kin_CIR [label=\"Kin_CIR\\n(trigger)\"];\n  Kin_Boiron [label=\"Kin_Boiron\\n(trigger)\"];\n  IF_not_bot [label=\"IF_not_bot\\n(condition)\"];\n  Producteur [label=\"Producteur\\n(actor)\"];\n  Manager [label=\"Manager\\n(actor)\"];\n  Questionneur_d_etudes [label=\"Questionneur_d_etudes\\n(subprocess)\"];\n  Acquereur_de_Citations [label=\"Acquereur_de_Citations\\n(subprocess)\"];\n  Redacteur_de_Document_de [label=\"Redacteur_de_Document_de\\n(subprocess)\"];\n  Questionneur_de_Document_de [label=\"Questionneur_de_Document_de\\n(subprocess)\"];\n  Acquereur_du_Plan_de [label=\"Acquereur_du_Plan_de\\n(subprocess)\"];\n  Gestionnaire_du_Plan_de [label=\"Gestionnaire_du_Plan_de\\n(subprocess)\", style=filled, fillcolor=grey];\n  Kin_CIR -> IF_not_bot ;\n  Kin_Boiron -> IF_not_bot ;\n  IF_not_bot -> Producteur [label=\"true\"];\n  IF_not_bot -> Manager [label=\"false\"];\n  Producteur -> Questionneur_d_etudes ;\n  Producteur -> Acquereur_de_Citations ;\n  Producteur -> Redacteur_de_Document_de ;\n  Manager -> Questionneur_de_Document_de ;\n  Manager -> Acquereur_du_Plan_de ;\n  Manager -> Gestionnaire_du_Plan_de ;\n}"
+      },
+      "id": "965d8337-0898-4846-8ee9-1b9546188cc2",
+      "name": "Acquéreur du Schéma de Connexion",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        1120,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "=kins",
+          "mode": "id"
+        },
+        "options": {
+          "pineconeNamespace": "code",
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "type",
+                "value": "code"
+              }
+            ]
+          }
+        }
+      },
+      "id": "5e770fe2-08bc-41a8-93a0-f4bdb0a64784",
+      "name": "Retriever d'études",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        800
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "entree": "Donne le schéma",
+          "kinName": "kincir_dynergie"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "fonction"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-18T03:46:31.000Z",
+  "versionId": "a08cd107-f297-440f-8a16-f8bdedd25240"
+}
