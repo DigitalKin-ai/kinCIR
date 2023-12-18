@@ -1,0 +1,370 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Get Embedding",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone : Get Chunk": {
+      "main": [
+        [
+          {
+            "node": "Get Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Embedding": {
+      "main": [
+        [
+          {
+            "node": "Pinecone : Get Chunk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Document": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "Sortie",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sortie": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-18T06:02:25.817Z",
+  "id": "2JRhtxSoct8OyuuI",
+  "meta": null,
+  "name": "RP - Retriever de Partie",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "3abb965c-a9f1-4fb7-8987-54813a8e0070",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        120,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7a8598ce-0e19-4a0e-bb9a-825576867acc",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        120,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "entree",
+              "stringValue": "={{ $json.entree }}{{ $json.query }}"
+            },
+            {
+              "name": "document",
+              "stringValue": "=sortie.md"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "={{ $json.kinName }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "231800bc-77ba-4296-9947-3acd8cfec818",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        380,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## RS - Rédacteur de Document de Sortie :Rédige une version améliorée d'une partie du Plan de Document de Sortie à partir d'une instruction ou d'une proposition de Plan",
+        "height": 429.80439085591235,
+        "width": 548.1198073088228
+      },
+      "id": "e057e043-5a28-4987-acfb-0f8bb3b286af",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://kins-71e4f70.svc.us-east1-gcp.pinecone.io/query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"vector\": [{{ $node[\"Get Embedding\"].json.data[0].embedding.toString() }}],\n  \"namespace\" :\"sortie\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": {\n    \"source\": \"document-de-sortie.md\"\n  }\n}",
+        "options": {}
+      },
+      "id": "6ec60cba-3538-4fe2-9776-05192accd72b",
+      "name": "Pinecone : Get Chunk",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        780,
+        300
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.openai.com/v1/embeddings ",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Bearer",
+              "value": "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"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "input",
+              "value": "={{ $('entree').item.json[\"entree\"] }}"
+            },
+            {
+              "name": "model",
+              "value": "text-embedding-ada-002"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0af65d76-ebe5-4ea7-bc60-29c04c033061",
+      "name": "Get Embedding",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        580,
+        300
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=document-de-sortie.md",
+        "additionalParameters": {}
+      },
+      "id": "a7e0bf1a-c459-49cc-85fd-5f2c1ecdb7bc",
+      "name": "Get Document",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        300
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "destinationKey": "=documentContent",
+        "options": {}
+      },
+      "id": "1d880813-975b-40f2-863e-993d36988889",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        1200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function extractChunks(documentContent, minLine, maxLine) {\n    // Split the document content into lines\n    const lines = documentContent.split('\\n');\n    // Adjust for zero-based index in JavaScript arrays\n    const adjustedMinLine = minLine - 1;\n    // Get the chunk within the specified line range\n    const chunk = lines.slice(adjustedMinLine, maxLine).join('\\n');\n    return chunk;\n}\n\n\nconst minLine = parseInt($json.minLine, 10);\nconst maxLine = parseInt($json.maxLine, 10);\nconst documentContent = $json.documentContent;\n\n// Call the function and get the chunk\nconst extractedChunk = extractChunks(documentContent, minLine, maxLine);\n\nreturn {\"json\":{\"response\":extractedChunk}};"
+      },
+      "id": "5828ac64-cc2f-4e8e-8f6c-3287f4c21f26",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "minLine",
+              "stringValue": "={{ max($('Pinecone : Get Chunk').item.json[\"matches\"][0][\"metadata\"][\"loc.lines.from\"]-5,1) }}"
+            },
+            {
+              "name": "maxLine",
+              "stringValue": "={{ min($('Pinecone : Get Chunk').item.json[\"matches\"][0][\"metadata\"][\"loc.lines.to\"]+5,$json.documentContent.split(\"\\n\").length) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c17c0aee-ee94-4f92-be04-6a4017625cef",
+      "name": "Sortie",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1420,
+        300
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "entree": "Réécris la partie 1.4 en plus long",
+          "kinName": "kincir_dynergie"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "fonction"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-18T07:42:05.000Z",
+  "versionId": "f824749c-758a-4d25-9536-b9644c19b28b"
+}
