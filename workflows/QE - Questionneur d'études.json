@@ -1,0 +1,439 @@
+{
+  "active": false,
+  "connections": {
+    "GPT4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Questionneur d'Etudes",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Questionneur d'Etudes",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'Etudes": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "message": {
+      "main": [
+        [
+          {
+            "node": "Get Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Assistant": {
+      "main": [
+        [
+          {
+            "node": "Questionneur d'Etudes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-18T17:45:00.944Z",
+  "id": "yQ79P9nuVKhkwZpD",
+  "meta": null,
+  "name": "QE - Questionneur d'études",
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4-1106-preview",
+          "mode": "list",
+          "cachedResultName": "gpt-4-1106-preview"
+        },
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "5ce5f51c-53c2-4626-8a18-cfc04dcc849b",
+      "name": "GPT4",
+      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        360
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "topK": 8
+      },
+      "id": "724e1b70-2ecf-4efb-952d-d5724b3e3eca",
+      "name": "Vector Store Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "typeVersion": 1,
+      "position": [
+        2200,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "3ee12152-1499-45b4-8b60-c820472fe443",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        2140,
+        840
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "53809742-78f7-41d1-b928-797ee4d7300e",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\":$json.response.text}};"
+      },
+      "id": "22ebfb40-57b1-48da-8080-f94ee90e2107",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2520,
+        180
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "25478f88-edcf-4cc4-84c8-0ef55a072bc4",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## - Questionneur de D'études : Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
+        "height": 429.80439085591235,
+        "width": 548.1198073088228
+      },
+      "id": "bc66b9c7-ef4a-4752-b1df-e7f9d4900807",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        -300
+      ]
+    },
+    {
+      "parameters": {
+        "query": "={{ $node[\"message\"].json.message }}\n\n# Tâche\n\nQuestionneur de D'études : Retourne des citations précises issues des extraits proposés afin derépondre à la demande informationnelle."
+      },
+      "id": "f9f5623e-d497-4bf9-bd7c-c88a831ca096",
+      "name": "Questionneur d'Etudes",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        2140,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "={{ $json.kin }}"
+            },
+            {
+              "name": "=demandeur",
+              "stringValue": "={{ $json.demandeur }}"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $json.demandeurId }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "={{ $json.producteurId }}"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "demande",
+              "stringValue": "={{ $json.demande }}"
+            },
+            {
+              "name": "message",
+              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $json.demandeur }}\n\n{{ $json.demande }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9c705522-df0f-4d90-a35b-f153892b30d7",
+      "name": "message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1680,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/assistants/{{ $('mission').item.json[\"producteurId\"] }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "67976a62-cb24-400b-a7eb-8e195e078bc2",
+      "name": "Get Assistant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1900,
+        180
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {
+          "pineconeNamespace": "=etudes",
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "type",
+                "value": "etude"
+              }
+            ]
+          }
+        }
+      },
+      "id": "c8174531-843c-46d5-ac2c-6039ce7bf4f3",
+      "name": "Pinecone Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        2140,
+        700
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "=kincir_dynergie"
+            },
+            {
+              "name": "demandeur",
+              "stringValue": "Sébastien"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "=asst_K25pMgsChtj1PKEenv0pM8LZ"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "asst_K25pMgsChtj1PKEenv0pM8LZ"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "demande",
+              "stringValue": "={{ $json.chat_input }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "87805529-384b-404f-8b7b-106278c25279",
+      "name": "mission",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1440,
+        180
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "chat_input": "Récupère des infos sur \"Design by Impact : a convergent\napproach to innovation conception\", et utilise les pour améliorer ton prompt pour suivre le processus de l'Impact Model",
+          "intentionDUsage": "Améliorer le prompt pour mieux implémenter l'Impact Model détaillé dans 'Design by Impact : a convergent approach to innovation conception', et utilise les pour améliorer ton prompt pour suivre le processus de l'Impact Model",
+          "mission": null,
+          "output": "Récupère des infos sur \"Design by Impact : a convergent\napproach to innovation conception\" en utilisant ton chercheur, et utilise les pour améliorer ton prompt pour suivre le processus de l'Impact Model",
+          "assistantId": "asst_3XJNQCW7dTC1fN2KbPyaHzHA",
+          "kinName": "kincir_dynergie"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "fonction"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-19T21:51:40.000Z",
+  "versionId": "f80abd44-a510-4d70-bff8-cf61c76e2342"
+}
