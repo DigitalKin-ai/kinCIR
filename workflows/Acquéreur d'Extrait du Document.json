@@ -1,0 +1,655 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Embedding": {
+      "main": [
+        [
+          {
+            "node": "Pinecone : Get Extrait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Document": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "Sortie",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sortie": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "message": {
+      "main": [
+        [
+          {
+            "node": "Get Embedding",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone : Get Extrait": {
+      "main": [
+        [
+          {
+            "node": "Get Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Foo": {
+      "main": [
+        [
+          {
+            "node": "Pinecone : Get Extraits",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Synchronisation Globale",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub Document Loader1": {
+      "ai_document": [
+        [
+          {
+            "node": "Synchronisation Globale",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "GitHub Document Loader1",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Foo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchronisation Globale": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-18T06:02:25.817Z",
+  "id": "2JRhtxSoct8OyuuI",
+  "meta": null,
+  "name": "Acquéreur d'Extrait du Document",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "3abb965c-a9f1-4fb7-8987-54813a8e0070",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7a8598ce-0e19-4a0e-bb9a-825576867acc",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Acquéreur d'Extrait du Document\n\nRetourne un extrait du Document à partir d'une demande",
+        "height": 428.23515993933074,
+        "width": 548.1198073088228
+      },
+      "id": "e057e043-5a28-4987-acfb-0f8bb3b286af",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        340,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.openai.com/v1/embeddings ",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "input",
+              "value": "={{ $node[\"message\"].json.message }}"
+            },
+            {
+              "name": "model",
+              "value": "text-embedding-ada-002"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0af65d76-ebe5-4ea7-bc60-29c04c033061",
+      "name": "Get Embedding",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        560,
+        300
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "={{ $node[\"message\"].json.path }}",
+        "additionalParameters": {}
+      },
+      "id": "a7e0bf1a-c459-49cc-85fd-5f2c1ecdb7bc",
+      "name": "Get Document",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        980,
+        300
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "destinationKey": "=documentContent",
+        "options": {}
+      },
+      "id": "1d880813-975b-40f2-863e-993d36988889",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        1200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function extractChunks(documentContent, minLine, maxLine) {\n    // Split the document content into lines\n    const lines = documentContent.split('\\n');\n    // Adjust for zero-based index in JavaScript arrays\n    const adjustedMinLine = minLine - 1;\n    // Get the chunk within the specified line range\n    const chunk = lines.slice(adjustedMinLine, maxLine).join('\\n');\n    return chunk;\n}\n\nconst documentContent = $json.documentContent;\n\n// Call the function and get the chunk\nconst extractedChunk = extractChunks(documentContent, $json.minLine, $json.maxLine);\nconst extractedChunkEtendu = extractChunks(documentContent, $json.minLineEtendu, $json.maxLineEtendu);\n\nconst extrait = \"# Passsage Extrait de \" + $json.source + \" (lignes \"+$json.minLine+\" à \"+$json.maxLine+\") - extrait cible\\n\\n``\\n\"+extractedChunk+\"\\n``\";\n\nconst extraitEtendu = \"# Passsage Extrait de \" + $json.source + \" (lignes \"+$json.minLineEtendu+\" à \"+$json.maxLineEtendu+\") - pour gérer la continuité\\n\\n``\\n\"+extractedChunkEtendu+\"\\n``\";\n\nreturn {\"json\":{\"response\":extrait, \"extrait\":extrait, \"extraitEtendu\":extraitEtendu, \"minLine\": $json.minLine, \"maxLine\": $json.maxLine, \"minLineEtendu\": $json.minLineEtendu, \"maxLineEtendu\": $json.maxLineEtendu, \"source\": $json.source}};"
+      },
+      "id": "5828ac64-cc2f-4e8e-8f6c-3287f4c21f26",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1640,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "minLine",
+              "stringValue": "={{ max($('Pinecone : Get Extrait').item.json[\"matches\"][0][\"metadata\"][\"loc.lines.from\"],1) }}"
+            },
+            {
+              "name": "maxLine",
+              "stringValue": "={{ min($('Pinecone : Get Extrait').item.json[\"matches\"][0][\"metadata\"][\"loc.lines.to\"],$json.documentContent.split(\"\\n\").length) }}"
+            },
+            {
+              "name": "source",
+              "stringValue": "={{ $json.matches[0].metadata.source }}"
+            },
+            {
+              "name": "namespace",
+              "stringValue": "={{ $json.namespace }}"
+            },
+            {
+              "name": "minLineEtendu",
+              "stringValue": "={{ max($('Pinecone : Get Extrait').item.json[\"matches\"][0][\"metadata\"][\"loc.lines.from\"]-8,1) }}"
+            },
+            {
+              "name": "maxLineEtendu",
+              "stringValue": "={{ min($('Pinecone : Get Extrait').item.json[\"matches\"][0][\"metadata\"][\"loc.lines.to\"]+8, $json.documentContent.split(\"\\n\").length) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c17c0aee-ee94-4f92-be04-6a4017625cef",
+      "name": "Sortie",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1420,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "=kincir_dynergie"
+            },
+            {
+              "name": "demandeur",
+              "stringValue": "={{ $json.demandeur }}"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $json.demandeurId }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "={{ $json.producteurId }}"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "demande",
+              "stringValue": "={{ $json.query }}"
+            },
+            {
+              "name": "message",
+              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $json.demandeur }}\n\n{{ $json.demande }}"
+            },
+            {
+              "name": "path",
+              "stringValue": "={{ $json.path }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9a8653cc-8e7b-4758-8ed3-94ff9d5d8f7d",
+      "name": "message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        340,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://kins-71e4f70.svc.us-east1-gcp.pinecone.io/query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"{{ $node[\"message\"].json.kin }}\",\n  \"vector\": [{{ $node[\"Get Embedding\"].json.data[0].embedding.toString() }}],\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": {\n    \"source\": \"{{ $node[\"message\"].json.path }}\"\n  }\n}",
+        "options": {}
+      },
+      "id": "6ec60cba-3538-4fe2-9776-05192accd72b",
+      "name": "Pinecone : Get Extrait",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        780,
+        300
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.openai.com/v1/embeddings ",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "input",
+              "value": "=Contexte scientifique et économique"
+            },
+            {
+              "name": "model",
+              "value": "text-embedding-ada-002"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4140cc2f-87c7-4eae-a3b6-dfaa99cf82c0",
+      "name": "Foo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        980,
+        780
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://kins-71e4f70.svc.us-east1-gcp.pinecone.io/query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"kincir_dynergie\",\n  \"vector\": [{{ $node[\"Foo\"].json.data[0].embedding.toString() }}],\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"filter\": {\n    \"source\": \"document-de-sortie.md\"\n  }\n}",
+        "options": {}
+      },
+      "id": "b1469b86-d011-49a4-9346-9cdb8cf7f681",
+      "name": "Pinecone : Get Extraits",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1200,
+        780
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "451d73f4-fa14-4fab-b01d-d5095bc03ce8",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        260,
+        1000
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "repository": "https://github.com/DigitalKin-ai/kinCIR",
+        "additionalOptions": {
+          "recursive": true
+        }
+      },
+      "id": "5934fa31-5b05-4fca-87ba-81738787bdd8",
+      "name": "GitHub Document Loader1",
+      "type": "@n8n/n8n-nodes-langchain.documentGithubLoader",
+      "typeVersion": 1,
+      "position": [
+        280,
+        1160
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chunkSize": 500,
+        "chunkOverlap": 100
+      },
+      "id": "2833bbe2-cfdf-4554-8e2f-ffb020f7ea7c",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        420,
+        1340
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "05a65318-775d-45e4-b13a-7b8c384a5975",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        660,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {
+          "clearNamespace": true,
+          "pineconeNamespace": "=kincir_dynergie"
+        }
+      },
+      "id": "4bdf1fce-3235-4627-91c3-ee834320f31e",
+      "name": "Synchronisation Globale",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        280,
+        780
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "response": {
+            "text": "fonction-d-evaluation-qualite.md"
+          },
+          "documentContent": "# Évaluation de la Qualité d'un Document\n\n## Introduction\n\nL'évaluation de la qualité d'un document est un processus crucial qui permet de déterminer son utilité, sa fiabilité et sa pertinence. Que ce soit pour la recherche académique, le travail professionnel ou l'usage personnel, la qualité d'un document doit répondre à des critères stricts pour assurer sa valeur. Dans ce document, nous déterminerons une structure d'évaluation pour juger de la qualité d'un document.\n\n## Structure d'Évaluation\n\n### 1. Pertinence\n\n#### A. Alignement avec le sujet\n- La centralité du contenu par rapport au sujet discuté.\n- La mise en évidence des liens clairs avec la thématique principale.\n\n#### B. Actualité\n- La présence d'informations actuelles et à jour.\n- La pertinence temporelle du contenu dans le contexte actuel.\n\n### 2. Fiabilité\n\n#### A. Sources d'information\n- La crédibilité et l'autorité des sources citées.\n- La présence de références vérifiables et dignes de confiance.\n\n#### B. Objectivité\n- L’absence de biais, de promotions cachées ou d'intérêts personnels.\n- L'approche équilibrée de différentes perspectives sur le sujet.\n\n### 3. Clarté et Cohérence\n\n#### A. Structure et Organisation\n- La logique de la structure du document et de son contenu.\n- La cohérence interne et le flux logique des arguments.\n\n#### B. Langage et Style\n- La clarté du langage et l'accessibilité du vocabulaire.\n- La pertinence du style d'écriture au public cible.\n\n### 4. Profondeur et Couverture\n\n#### A. Complétude\n- La couverture exhaustive des sous-thèmes pertinents.\n- L'absence de lacunes significatives dans le contenu.\n\n#### B. Profondeur d'analyse\n- La capacité du document à stimuler la réflexion critique.\n- La présence d'une analyse approfondie au-delà des informations superficielles.\n\n### 5. Exactitude\n\n#### A. Précision des faits\n- L'exactitude des données et informations fournies.\n- La présence de preuves pour étayer les affirmations.\n\n#### B. Consistance\n- La constance dans les détails et les informations à travers le document.\n- La cohérence factuelle entre différentes parties du document.\n\n### 6. Accessibilité\n\n#### A. Disponibilité\n- La facilité avec laquelle le document peut être obtenu ou consulté.\n- La présence de restrictions d'accès ou de droits d'auteurs.\n\n#### B. Accessibilité visuelle\n- La qualité de la mise en page et des graphiques.\n- L'ergonomie et la lisibilité du document.\n\n## Conclusion\n\nL'évaluation de la qualité d'un document est essentielle pour garantir que l'information utilisée est fiable, précise et applicable. En suivant la structure d'évaluation énoncée ci-dessus, on peut juger de façon systématique la valeur d'un document. Il est également important de noter que cette évaluation doit être menée de manière critique et contextuelle, en tenant compte des besoins spécifiques liés à l'usage du document.\n",
+          "source": "fonction-d-evaluation-qualite.md",
+          "path": "fonction-d-evaluation-qualite.md"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "fonction"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-19T22:49:35.000Z",
+  "versionId": "a1ecc9d0-21c1-4fab-a3e4-1d02241f6ff5"
+}
