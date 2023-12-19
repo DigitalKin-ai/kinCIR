@@ -1,5 +1,2 @@
 Désolé, mais la partie améliorée n'a pas été fournie. Voici donc le Document Complet Initial :
-
-[Le document initial n'a pas été fourni, donc je ne peux pas non plus restituer le contenu tel que demandé.] 
-
-Veuillez fournir la partie améliorée ou le document complet initial pour que je puisse procéder aux modifications requises.
+Je n'ai pas reçu d'informations supplémentaires concernant le contenu du document 'document-de-sortie.md' ou 'ProgRD.txt'. Pour vous aider à rédiger le passage demandé, veuillez s'il vous plaît fournir le contenu de ces documents ou des précisions sur la partie à rédiger.
