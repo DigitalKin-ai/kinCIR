@@ -1,3 +1,21 @@
+```
+# Présentation du programme de R&D
+
+Ce dossier présente le programme de R&D de la société, dans le but d'obtenir un avis préalable de l'administration sur l'éligibilité des travaux au dispositif CIR.
+
+## Contexte scientifique et économique
+
+Dans un monde où la consommation responsable prend une place de plus en plus importante, notre société, WeDressFair, se positionne comme un acteur clé de la mode durable et éthique. Notre coeur de métier repose sur l'identification et la certification de fabricants d’articles de mode qui respectent ces valeurs. Nous nous attachons à promouvoir l'aspect durable et éthique des articles que nous commercialisons via internet et nos boutiques physiques.
+
+Le contexte actuel de la société montre un réel engouement pour des articles de mode qui respectent à la fois l'environnement et les travailleurs qui les produisent. Cela étant dit, de nombreux défis subsistent dans le changement des habitudes de consommation et dans l'adoption de pratiques de production responsables au sein des marques. Pour adresser ces défis, WeDressFair se donne pour but d'augmenter significativement la part de mode durable et éthique dans l'industrie globale de la mode.
+
+Notre principale question de recherche vise à découvrir comment influencer efficacement la consommation et la production afin de favoriser le développement d'articles de mode responsable et éthique. Cela implique la compréhension approfondie de plusieurs thématiques, notamment les moyens d'influencer les consommateurs dans leurs décisions d'achat et de mesurer l'impact réel de nos activités sur l'environnement.
+
+Pour y parvenir, nous avons structuré notre programme de R&D autour de trois axes. Premièrement, nous étudions les leviers psychologiques et les comportements qui peuvent inciter les consommateurs à choisir des produits éthiques et durables. Ensuite, nous explorons les incitations économiques et politiques qui pourraient encourager les marques à adopter des pratiques de production durable. Enfin, nous développons des méthodes pour modéliser et suivre l'impact environnemental des pratiques de consommation et de production durables.
+
+Dans ce cadre, le présent dossier s'inscrit dans une démarche visant à démontrer l'éligibilité des travaux de recherche menés par WeDressFair au dispositif Crédit d'Impôt Recherche (CIR). En faisant valoir l'importance de nos recherches, nous espérons obtenir un appui qui permettra d'accélérer nos projets et de participer activement à la transition vers une mode plus éthique et durable, pour le bien de notre société et de notre planète.
+```
+
 # Présentation du programme de R&D
 Consignes :
 - Le but du texte à rédiger est d'introduire le dossier de présentation du programme de R&D proposé par l'entreprise dans le cadre d'une demande rescrit CIR.
