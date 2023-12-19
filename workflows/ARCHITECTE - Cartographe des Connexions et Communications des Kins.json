@@ -265,7 +265,7 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1340,
+        1380,
         700
       ],
       "credentials": {
@@ -441,6 +441,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-18T05:10:46.000Z",
-  "versionId": "a8d58deb-c056-40de-8b7e-0f2cb328f11e"
+  "updatedAt": "2023-12-19T21:54:13.000Z",
+  "versionId": "0eaca987-d8b2-44bb-bc41-a2aafa43d36e"
 }
