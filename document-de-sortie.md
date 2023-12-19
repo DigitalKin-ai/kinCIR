@@ -17,16 +17,11 @@ Dans ce cadre, le présent dossier s'inscrit dans une démarche visant à démon
 ```
 
 # Présentation du programme de R&D
-Consignes :
-- Le but du texte à rédiger est d'introduire le dossier de présentation du programme de R&D proposé par l'entreprise dans le cadre d'une demande rescrit CIR.
-- Le format est un texte de 100 mot environs
-- Le style du texte est l'écriture scientifique
-- Le ton du texte est détendu et engageant
-- Les données à fournir sont l'ENTREPRISE et le SUJET
+## Présentation du programme de R&D
 
-## Contexte scientifique et économique
-## Contexte scientifique et économique
+Au seuil d'une ère où la durabilité devient un impératif global, l'industrie de la mode est confrontée à une nécessaire révolution vers des pratiques plus responsables. WeDressFair se distingue dans ce contexte par son engagement pour une mode à la fois tendance et tournée vers l'avenir. Notre programme de R&D, mis en lumière dans ce dossier, entend remodeler le paysage de la mode en influençant activement les choix des consommateurs et en redéfinissant les méthodes de production pour les rendre plus éthiques et durables.
 
+Mettant en avant notre expertise et notre vision, le dossier présenté vise à obtenir un rescrit CIR, attestant du caractère innovant et crucial de nos travaux pour la transition écologique du secteur de la mode. C'est avec enthousiasme que nous invitons le lecteur à découvrir notre démarche et nos ambitions, qui s'inscrivent dans la quête d'une industrie plus respectueuse de notre planète et de ses habitants.
 Dans un monde confronté à des défis environnementaux sans précédent, la mode est souvent pointée du doigt pour son impact négatif sur la planète. WeDressFair, pionnière dans le domaine de la mode durable et éthique, se positionne en agent de changement au cœur de cette industrie. Combinant passion pour la mode et engagement environnemental, notre programme de R&D aspire à reconfigurer les comportements de consommation et de production dans le secteur.
 Face à des enjeux environnementaux inédits, l'industrie de la mode fait face à des critiques pour ses répercussions écologiques. WeDressFair, en tant que leader du mouvement pour une mode durable et éthique, se dresse comme un acteur clé de la transformation de ce secteur. Par notre passion pour la mode alliée à notre détermination écologique, notre programme de R&D vise à métamorphoser les habitudes de consommation et les processus de production.
 Confrontée à des enjeux écologiques sans précédent, la sphère de la mode est régulièrement épinglée pour ses impacts environnementaux. WeDressFair, précurseur du mouvement pour une mode durable et éthique, se propose comme catalyseur essentiel pour métamorphoser ce secteur. Animés par une fascination pour la mode et un engagement écologique robuste, notre programme de R&D vise à réinventer les pratiques de consommation et de production à travers l'industrie de la mode.
