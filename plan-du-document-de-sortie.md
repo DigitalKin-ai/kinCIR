@@ -4,12 +4,15 @@ Ce dossier présente le programme de R&D de l'entreprise WeDressFair, dans le bu
 
 # 1. Présentation du Programme de R&D de WeDressFair
 
-## 1.1. Contexte Scientifique et Économique
-### 1.1.1. Engagement des Consommateurs et Répercussions sur le Secteur de la Mode Durable
-### 1.1.2. Évolutions Économiques et Projections pour le Marché de la Mode Équitable
-### 1.1.3. Affinement de la Certification pour une Reconnaissance Précise des Produits Écoresponsables par les Consommateurs
-## 1.2. Objectifs Scientifiques et Techniques du Programme de R&D
-### 1.2.1. Développement de Matériaux Innovants et de Fibres Écoresponsables pour la Mode Durable
+## 1.1. Contexte Scientifique et Économique de la Mode Durable et Éthique
+### 1.1.1. Dynamiques de Responsabilisation des Consommateurs et Impacts Socio-Économiques dans le Secteur de la Mode
+### 1.1.2. Analyse des Tendances Économiques et Potentiel du Marché pour la Mode Responsable et Éthique
+### 1.1.3. Amélioration des Mécanismes de Certification et de Labellisation pour une Traçabilité et Identification Accrues des Produits Durables
+
+## 1.2. Présentation des Objectifs Scientifiques et Techniques de la R&D en Faveur de la Mode Durable
+### 1.2.1. Innovation dans les Fibres et Matériaux Écoresponsables et Éthiques
+### 1.2.2. Intégration de la Durabilité dans la Chaîne de Valeur de la Mode : Stratégies et Bonnes Pratiques
+### 1.2.3. Évolution des Habitudes de Consommation Vers des Choix Plus Durables et Éthiques
 ### 1.2.2. Stratégies de Durabilité dans la Chaîne de Valeur de la Mode
 ### 1.2.3. Changements des Comportements de Consommation vers une Mode Durable
 
