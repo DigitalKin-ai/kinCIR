@@ -45,28 +45,6 @@
         ]
       ]
     },
-    "Synchroniser GitHub -> Pinecone1": {
-      "main": [
-        [
-          {
-            "node": "Reponse",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Synchroniser GitHub -> Pinecone": {
-      "main": [
-        [
-          {
-            "node": "Get Document",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Embeddings OpenAI1": {
       "ai_embedding": [
         [
@@ -143,6 +121,28 @@
           }
         ]
       ]
+    },
+    "Synchroniser GitHub -> Pinecone": {
+      "main": [
+        [
+          {
+            "node": "Get Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchroniser GitHub -> Pinecone1": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2023-12-17T17:09:48.641Z",
@@ -171,7 +171,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2160,
+        2040,
         300
       ]
     },
@@ -242,7 +242,7 @@
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        1720,
+        1620,
         300
       ],
       "credentials": {
@@ -254,32 +254,6 @@
     },
     {
       "parameters": {
-        "workflowId": "d6khXiG3YxUunViW"
-      },
-      "id": "ea0cf161-6860-442c-a260-a7092c69307b",
-      "name": "Synchroniser GitHub -> Pinecone1",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        1960,
-        300
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "d6khXiG3YxUunViW"
-      },
-      "id": "05b68ce1-391a-45f8-bb62-2387c43c43d0",
-      "name": "Synchroniser GitHub -> Pinecone",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        600,
-        300
-      ]
-    },
-    {
-      "parameters": {
         "options": {}
       },
       "id": "154b73ed-10c3-4e7b-8a81-dafc85c6e8fc",
@@ -287,7 +261,7 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1,
       "position": [
-        1240,
+        1180,
         960
       ],
       "credentials": {
@@ -314,7 +288,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
       "typeVersion": 1,
       "position": [
-        1320,
+        1260,
         540
       ],
       "credentials": {
@@ -371,7 +345,7 @@
       "type": "n8n-nodes-base.moveBinaryData",
       "typeVersion": 1.1,
       "position": [
-        980,
+        1020,
         300
       ]
     },
@@ -384,7 +358,7 @@
       "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
       "typeVersion": 1.1,
       "position": [
-        1300,
+        1240,
         300
       ]
     },
@@ -413,7 +387,7 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "typeVersion": 1,
       "position": [
-        1240,
+        1180,
         840
       ],
       "credentials": {
@@ -432,7 +406,7 @@
       "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
       "typeVersion": 1,
       "position": [
-        1300,
+        1240,
         680
       ]
     },
@@ -449,6 +423,34 @@
       "position": [
         360,
         -160
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "d6khXiG3YxUunViW"
+      },
+      "id": "05b68ce1-391a-45f8-bb62-2387c43c43d0",
+      "name": "Synchroniser GitHub -> Pinecone",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        600,
+        300
+      ],
+      "retryOnFail": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "workflowId": "d6khXiG3YxUunViW"
+      },
+      "id": "ea0cf161-6860-442c-a260-a7092c69307b",
+      "name": "Synchroniser GitHub -> Pinecone1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        300
       ]
     }
   ],
@@ -477,6 +479,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-18T11:54:19.000Z",
-  "versionId": "656513bb-99db-4c79-9a81-93e1ca0716d8"
+  "updatedAt": "2023-12-19T21:53:46.000Z",
+  "versionId": "d1377299-dfbb-4a69-8b23-1517435a9844"
 }
