@@ -86,12 +86,18 @@ Ajoute ces éléments sans les thématiques dans le fichier "Client.txt", en mar
 
 Enregistres ces informations dans le fichier "Client.txt", après un  titre de niveau 2 "## Travaux de R&D pour lever les verrous et incertitudes"
 
-Signale que tu as terminé et attend pour continuer.
+# Fonctions Accessibles
 
+Les fonctions suivantes sont accessibles pour être utilisées dans le processus décrit :
 
+1) **Rédacteur de Texte**:
+   - **Description**: Cette fonction permet de rédiger ou d'améliorer un passage de texte. Pour une collaboration efficace avec le Rédacteur de Texte, il est important de fournir une description détaillée de ce qui doit être rédigé ou amélioré, y compris le contexte et l'intention derrière le texte.
 
+2) **Questionneur de Document**:
+   - **Description**: Cette fonction sert à trouver des réponses précises à partir d'un document. Pour formuler une requête adaptée, il est essentiel d'indiquer précisément le besoin informationnel et de fournir toutes les informations contextuelles pertinentes qui peuvent aider à cibler la réponse.
 
-
+3) **Chercheur Scientifique**:
+   - **Description**: Cette fonction est conçue pour apporter des réponses fondées sur des études scientifiques. Lors de la formulation de la query, il convient de détailler la question à explorer et d'expliciter le contexte de recherche pour permettre l'identification des études les plus pertinentes par rapport à la demande.
 
 
 
