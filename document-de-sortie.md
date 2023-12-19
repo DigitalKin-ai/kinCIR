@@ -7,14 +7,17 @@ Consignes :
 - Les données à fournir sont l'ENTREPRISE et le SUJET
 
 ## Contexte scientifique et économique
-Consignes :
-- Le but du texte à rédiger est d'introduire le SUJET abordé par le programme de R&D, sa situation actuelle, ses enjeux pour le futur, et les opportunités à saisir.
-- Le format est un texte de 500 mot environs
-```
-- Le texte doit faire environ 500 mots
-```
-- Le ton du texte est détendu et engageant
-- Les données à fournir sont l'ENTREPRISE et le SUJET
+## Contexte scientifique et économique
+
+Dans un monde confronté à des défis environnementaux sans précédent, la mode est souvent pointée du doigt pour son impact négatif sur la planète. WeDressFair, pionnière dans le domaine de la mode durable et éthique, se positionne en agent de changement au cœur de cette industrie. Combinant passion pour la mode et engagement environnemental, notre programme de R&D aspire à reconfigurer les comportements de consommation et de production dans le secteur.
+
+L'état actuel de la mode durable est à la croisée des chemins. D'un côté, la prise de conscience collective accroît l’intérêt des consommateurs pour des vêtements produits de manière responsable. De l'autre, l'industrie traditionnelle de la mode continue de générer des problèmes environnementaux et sociaux graves. Face à cette dualité, WeDressFair repère des opportunités uniques pour favoriser une transformation positive. Notre mission est de catalyser la transition vers des modes de production plus respectueux de l'environnement et des droits humains, en rendant la mode durable non seulement désirable mais aussi accessible.
+
+Le programme de R&D que nous mettons en avant est conçu pour aborder de front les défis scientifiques et économiques du secteur. En explorant des méthodes innovantes pour influencer les choix des consommateurs en faveur de produits éthiques, et en incitant les créateurs de mode à adopter des pratiques durables, nous visons à déverrouiller le potentiel d'une industrie de la mode réformée.
+
+Pour saisir les occasions qui se présentent, il est crucial de comprendre les barrières technologiques et les incertitudes scientifiques qui limitent actuellement l'adoption de pratiques durables. Notre programme cherche à répondre à des questions de recherche telles que : Comment mesurer précisément l'impact environnemental de la mode durable ? Comment provoquer un changement de paradigme chez les consommateurs et les producteurs de mode ? Quels sont les leviers de persuasion les plus efficaces pour encourager les comportements responsables ?
+
+En cohérence avec notre objectif global de promouvoir une mode plus responsable, nous croyons fermement que le succès de notre programme de R&D profitera non seulement à WeDressFair mais aussi à l'ensemble de la société, en contribuant à l'émergence d'un secteur de la mode pleinement conscient de son empreinte sur le monde.
 
 ## OBJECTIF GLOBAL
 Consignes :
