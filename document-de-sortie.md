@@ -1,3 +1,4 @@
+# Présentation du programme de R&D
 Consignes :
 - Le but du texte à rédiger est d'introduire le dossier de présentation du programme de R&D proposé par l'entreprise dans le cadre d'une demande rescrit CIR.
 - Le format est un texte de 100 mot environs
