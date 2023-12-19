@@ -1,0 +1,357 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Synchroniser GitHub -> Pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchroniser GitHub -> Pinecone": {
+      "main": [
+        [
+          {
+            "node": "Get Embedding",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Questionneur de Mémoires Personnelles",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Embedding": {
+      "main": [
+        [
+          {
+            "node": "Pinecone : Get Chunk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone : Get Chunk": {
+      "main": [
+        [
+          {
+            "node": "Questionneur de Mémoires Personnelles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de Mémoires Personnelles": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-18T14:36:10.234Z",
+  "id": "7Yw1h8d8MXfLSNJt",
+  "meta": null,
+  "name": "QM - Questionneur de Mémoires Personnelles",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "2f593ae1-112c-45bf-8ffb-2c3b1f2e8082",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\":$json.response.text}};"
+      },
+      "id": "52d1dc44-5a64-4a57-9767-c526c6053f19",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3260,
+        180
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a4e99d30-164a-46f9-95a0-82db5d99b5b7",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "entree",
+              "stringValue": "={{ $json.entree }}{{ $json.query }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "={{ $json.kinName }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "={{ $json[\"assistantId\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e10b7b99-4e99-44d5-bf90-66e895362c28",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1920,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "d6khXiG3YxUunViW"
+      },
+      "id": "13db7b4a-0897-4175-a089-5d69cfa0778b",
+      "name": "Synchroniser GitHub -> Pinecone",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## QM - Questionneur de Mémoires Personnelles : Donne une réponse issue de tes mémoires personnelles à partir d'une demande informationnelle.",
+        "height": 429.80439085591235,
+        "width": 548.1198073088228
+      },
+      "id": "d7194eed-1a58-4ad9-ba5c-8c914398ffc3",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        -300
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "210ddb35-aba9-4acd-9858-b2093e6810e0",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        2860,
+        380
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://kins-71e4f70.svc.us-east1-gcp.pinecone.io/query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"vector\": [{{ $node[\"Get Embedding\"].json.data[0].embedding.toString() }}],\n  \"namespace\" :\"memoires\",\n  \"includeMetadata\": true,\n  \"topK\": 3,\n  \"filter\": {\n    \"source\": \"memoires/{{ $('entree').item.json.assistantId }}\"\n  }\n}",
+        "options": {}
+      },
+      "id": "dcd0299c-4b36-433f-8806-0e248e28f809",
+      "name": "Pinecone : Get Chunk",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2640,
+        180
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.openai.com/v1/embeddings ",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Bearer",
+              "value": "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"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "input",
+              "value": "={{ $('entree').item.json[\"entree\"] }}"
+            },
+            {
+              "name": "model",
+              "value": "text-embedding-ada-002"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e1e30c81-1479-48dd-a679-ba74b1e183d9",
+      "name": "Get Embedding",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2440,
+        180
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "=# Intention d'usage\n\nNous souhaitons rédiger un Etat del'Art.\n\n# Rôle\n\nQuestionneur de document de sortie\n\n# Instructions\n\n1) Formule une requête pour répondre au besoin informationnel\n2) Formule une réponse détaillée au besoin informationnel, en citant des parties du document de sortie si besoin\n\n# Contexte\n\nTu disposes de parties du document de sortie en cours de rédaction.\n\n# Besoin Informationnel\n\n{{ $('entree').item.json.entree }}",
+        "options": {}
+      },
+      "id": "99f6bd16-805d-44df-b3a1-63567c37b52b",
+      "name": "Questionneur de Mémoires Personnelles",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.1,
+      "position": [
+        2860,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "TODO : Persist mémoires"
+      },
+      "id": "bd8c96b3-fec2-4952-8d68-205afdf65589",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        0
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "entree": "qu'est-ce que la partie 1.2.2?",
+          "assistantId": "asst_L05RD7upJZbxUfZ06MPISYv5",
+          "kinName": "kincir_dynergie"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "fonction"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-18T15:10:43.000Z",
+  "versionId": "7ac400ae-7629-424c-b88e-a7cc0ad9b8a1"
+}
