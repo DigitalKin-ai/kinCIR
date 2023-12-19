@@ -10,7 +10,9 @@ Consignes :
 Consignes :
 - Le but du texte à rédiger est d'introduire le SUJET abordé par le programme de R&D, sa situation actuelle, ses enjeux pour le futur, et les opportunités à saisir.
 - Le format est un texte de 500 mot environs
-- Le style du texte est l'écriture scientifique
+```
+- Le texte doit faire environ 500 mots
+```
 - Le ton du texte est détendu et engageant
 - Les données à fournir sont l'ENTREPRISE et le SUJET
 
