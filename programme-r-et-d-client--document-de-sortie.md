@@ -68,7 +68,9 @@ Consignes :
 #### Périmètre des travaux considérés pour l'état de l'art
 Consigne : 
 - "Génère un tableau structuré en markdown, avec les domaines scientifiques listés en lignes, et la première thématiques de recherche en colonne, précédés de "Thématique : ", suivie d'une colonne "Besoin de R&D ?". Dans chaque case du tableau, à partir des informations sur le domaine pour la thématique, rédige et insère un texte court expliquant les apports attendus du domaine pour la thématique, l'importance de ces apports, les existants déjà disponibles, les verrous restant à lever, et l'intégralité du status. Si le status est bloquant, insère dans la case suivante de la ligne, "Besoin R&D". Dans les autres cas, insère dans la case suivante de la ligne, en majuscule "Pas de besoin de R&D"."
-- Les données à fournir sont la thématique, les domaines scientifiques et l'ensemble des éléments associés
+```
+- "Génère un tableau en markdown, listant les domaines scientifiques en lignes, avec la première thématique de recherche en colonne, intitulée "Thématique : " suivie d'une colonne "Nécessité de R&D ?". Pour chaque case du tableau, à partir des informations relatives au domaine pour la thématique concernée, rédige un texte succinct expliquant les contributions attendues de ce domaine à la thématique, en soulignant l'importance de ces contributions ainsi que les acquis déjà disponibles. Identifie clairement les obstacles technologiques à surmonter et le statut global de ces connaissances. Si le statut indique une impasse, indique dans la cellule adjacente "Besoin de R&D". Si non bloquant, insère "Pas de besoin de R&D" en lettres capitales dans la case correspondante."
+```
 
 // REPEAT POUR CHAQUE DOMAINE MOBILISE DANS LA THEMATIQUE ET CONSIDERE BLOQUANT
 ```
