@@ -23,17 +23,6 @@
         ]
       ]
     },
-    "GitHub": {
-      "main": [
-        [
-          {
-            "node": "Synchroniser GitHub -> Pinecone1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "entree": {
       "main": [
         [
@@ -89,18 +78,7 @@
         ]
       ]
     },
-    "Améliorateur de Prompt": {
-      "main": [
-        [
-          {
-            "node": "GitHub",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Assisstant": {
+    "Get Assistant": {
       "main": [
         [
           {
@@ -115,7 +93,40 @@
       "main": [
         [
           {
-            "node": "Get Assisstant",
+            "node": "Get Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub": {
+      "main": [
+        [
+          {
+            "node": "Synchroniser GitHub -> Pinecone1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Modify Assistant": {
+      "main": [
+        [
+          {
+            "node": "GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Améliorateur de Prompt": {
+      "main": [
+        [
+          {
+            "node": "Modify Assistant",
             "type": "main",
             "index": 0
           }
@@ -142,14 +153,14 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "return {\"json\":{\"response\":$node[\"Améliorateur de Prompt\"].json.response.text}};"
+        "jsCode": "return {\"json\":{\"response\":$node[\"Améliorateur de Prompt\"].json.text}};"
       },
       "id": "ef8b5ff7-f62f-4967-b20a-cc56d086ae5f",
       "name": "Reponse",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2160,
+        2200,
         300
       ]
     },
@@ -170,15 +181,23 @@
           "values": [
             {
               "name": "entree",
-              "stringValue": "={{ $json.entree }}{{ $json.query }}"
+              "stringValue": "={{ $json.entree }}{{ $json.query }}{{ $json.output }}"
             },
             {
               "name": "kinName",
               "stringValue": "={{ $json.kinName }}"
             },
             {
-              "name": "assisstantId",
-              "stringValue": "={{ $json.assisstantId }}"
+              "name": "assistantId",
+              "stringValue": "={{ $json.assistantId }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $json.mission}}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
             }
           ]
         },
@@ -195,43 +214,6 @@
     },
     {
       "parameters": {
-        "resource": "file",
-        "operation": "edit",
-        "owner": {
-          "__rl": true,
-          "value": "DigitalKin-ai",
-          "mode": "list",
-          "cachedResultName": "DigitalKin-ai",
-          "cachedResultUrl": "https://github.com/DigitalKin-ai"
-        },
-        "repository": {
-          "__rl": true,
-          "value": "kinCIR",
-          "mode": "list",
-          "cachedResultName": "kinCIR",
-          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
-        },
-        "filePath": "=prompts/{{ $node[\"Get Assisstant\"].json[\"name\"].replace(/([a-z])([A-Z])/g, '$1-$2').replace(/\\s+/g, '-').toLowerCase() }}.md",
-        "fileContent": "={{ $json.text }}",
-        "commitMessage": "=n8n : {{ $('entree').item.json[\"entree\"] }}"
-      },
-      "id": "06cc5f65-bb9d-4adb-8ef7-78ee10efb645",
-      "name": "GitHub",
-      "type": "n8n-nodes-base.github",
-      "typeVersion": 1,
-      "position": [
-        1720,
-        300
-      ],
-      "credentials": {
-        "githubApi": {
-          "id": "Q3KiSughyw3eRp87",
-          "name": "GitHub account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "workflowId": "d6khXiG3YxUunViW"
       },
       "id": "be441534-8903-4959-a0d0-925a73eff24f",
@@ -239,7 +221,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        1960,
+        2000,
         300
       ]
     },
@@ -296,7 +278,7 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        120,
+        140,
         -160
       ]
     },
@@ -318,7 +300,7 @@
           "cachedResultName": "kinCIR",
           "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
         },
-        "filePath": "=prompts/{{ $node[\"Get Assisstant\"].json[\"name\"].replace(/[\\s\\W]+/g, '_').toLowerCase() }}.md",
+        "filePath": "=prompts/{{ $node[\"Get Assistant\"].json[\"name\"].replace(/[\\s\\W]+/g, '_').toLowerCase() }}.md",
         "additionalParameters": {}
       },
       "id": "459f2100-c519-40dd-a812-9065ce3797df",
@@ -338,19 +320,6 @@
     },
     {
       "parameters": {
-        "prompt": "=# Rôle\n\nAméliorateur de prompt: Utilise tes compétences analytiques et créatives pour améliorer les prompts des assistants GPTs, en te concentrant sur la précision, la clarté et la pertinence. Fais preuve d'un regard critique pour évaluer chaque prompt, tout en respectant le périmètre fonctionnel de l'assistant.\n\n# Instructions\n\n1) **Compréhension et Planification** :\n   - Lorsque tu reçois une demande, commence par analysr ce prompt pour comprendre son objectif, en identifiant ses points forts et ses faiblesses, ainsi que les opportunités d'amélioration.\n\n2) **Amélioration Critique du Prompt** :\n   - En tenant compte de ton analyse, révise le prompt pour maximiser sa clarté, précision et pertinence. Applique un regard critique lors de la reformulation pour respecter les capacités et les limites de l'assistant GPT.\n\n# Fonctions Accessibles\n\n- **ARCHITECTE (Communication & Workflow Optimization)** : Optimise la communication et l'organisation entre les différents assistants GPT dans un réseau pour une meilleure intégration et un flux de travail efficace.\n\n- **ScratchPad (Brouillon & Itération Textuelle)** : Utilise cette fonction pour des sessions de travail approfondies sur la génération de texte, telles que l'écriture, l'édition ou l'amélioration de concepts, en suivant des instructions détaillées.\n\n# Structure typique d'un Prompt Système d'Assistant\n``\n# Rôle\nObjectif: Définir clairement la fonction que l'assistant GPT est censé jouer dans ce prompt, ce qui oriente les attentes concernant sa performance.\nContenu: La description du rôle doit se limiter à une ou deux phrases précises qui résument la contribution attendue de l'assistant.\n\n# Contexte\nObjectif: Fournir une compréhension de la situation ou du scénario dans lequel le prompt est émis, ce qui permet à l'assistant d'adapter sa réponse à la situation.\nContenu: Des informations pertinentes et précises qui donnent un cadre au prompt, permettant à l'assistant de contextualiser sa réponse.\n\n# Entrée\n## Modèle d'Entrée\nObjectif: Spécifier la forme et la nature des informations que l'utilisateur fournira et comment l'assistant doit les interpréter ou les traiter.\nContenu: Des directives claires sur le format des données d'entrée, éventuellement illustrées par un exemple pour assurer une application correcte.\n\n# Instructions\nObjectif: Diriger l'assistant sur la manière dont il doit gérer le prompt, quelle méthodologie appliquer, et les étapes à suivre pour aboutir à la réponse attendue.\nContenu: Des étapes actionnables et une explication de chaque action attendue, possiblement accompagnée d'exemples pour clarifier la demande.\n\n## Exemple de Processus\nObjectif: Fournir une illustration concrète de la manière dont les instructions peuvent être mises en œuvre, servant de guide pour l'assistant.\nContenu: Un scénario hypothétique ou un cas pratique qui simule le déroulement des instructions précédentes, invitant l'assistant à suivre une démarche similaire.\n\n# Sortie\nObjectif: Établir les attentes concernant le résultat final de l'assistant GPT, que ce soit en termes de format, de détails ou de structure de la réponse.\nContenu: Des critères précis qui définissent ce que doit contenir la réponse en termes d'informations et de présentation, assurant ainsi que la réponse finie est utilisable et conforme aux exigences.\n\n``\n\n"
-      },
-      "id": "c50c09c3-3cff-4c8a-a5c1-e905f01d7bd5",
-      "name": "Améliorateur de Prompt",
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.2,
-      "position": [
-        1240,
-        300
-      ]
-    },
-    {
-      "parameters": {
         "url": "=https://api.openai.com/v1/assistants/{{ $('entree').item.json[\"assistantId\"] }}",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "openAiApi",
@@ -364,17 +333,13 @@
             {
               "name": "Content-Type",
               "value": "application/json"
-            },
-            {
-              "name": "Bearer",
-              "value": "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"
             }
           ]
         },
         "options": {}
       },
       "id": "1a4fa9cf-c16d-41ef-8406-c5d170e0f034",
-      "name": "Get Assisstant",
+      "name": "Get Assistant",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
@@ -399,6 +364,113 @@
       "position": [
         360,
         300
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=prompts/{{ $node[\"Get Assistant\"].json[\"name\"].replace(/[\\s\\W]+/g, '_').toLowerCase() }}.md",
+        "fileContent": "={{ $json.instructions }}",
+        "commitMessage": "=n8n : {{ $('entree').item.json[\"entree\"] }}"
+      },
+      "id": "06cc5f65-bb9d-4adb-8ef7-78ee10efb645",
+      "name": "GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        300
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.openai.com/v1/assistants/{{ $('entree').item.json[\"assistantId\"] }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Bearer",
+              "value": "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"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "instructions",
+              "value": "={{ $json.text }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d5b4101b-56c8-4a10-9db7-7ac5d82c33ca",
+      "name": "Modify Assistant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1600,
+        300
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "prompt": "=# Mission du Collaborateur\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Intention d'usage du Collaborateur\n\n{{ $('entree').item.json[\"intentionDUsage\"] }}\n\n# Demande du Collaborateur\n\n{{ $('entree').item.json[\"entree\"] }}\n\n# Prompt à améliorer\n``\n{{ $json.instructions }}\n``",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Rôle\nSpécialiste en optimisation de prompt : Utilise ton expertise analytique pour raffiner les prompts destinés aux assistants GPT, en te concentrant sur l'amélioration de leur précision, clarté et pertinence. Applique une analyse critique pour évaluer chaque prompt, tout en respectant les capacités fonctionnelles de l'assistant.\n\n# Contexte\nUn prompt bien conçu est essentiel pour obtenir des réponses efficaces d'un assistant GPT. Il doit être suffisamment détaillé pour guider l'assistant vers la réponse attendue, mais aussi assez souple pour permettre à l'assistant d'utiliser toute l'étendue de ses capacités. Ta tâche est de peaufiner les prompts afin de maximiser la qualité des interactions avec l'assistant.\n\n# Proposition de Valeur\nEn tant qu'améliorateur de prompt, tu es capable d'élever la qualité des interactions utilisateur-assistant en rendant les prompts plus clairs et pertinents. Tu aides à structurer de manière efficace les informations que l'utilisateur fournira afin que l'assistant GPT puisse interagir de la manière la plus précise et utile possible.\n\n# Entrée\nAnalyse le prompt original pour identifier le contexte, les informations clés et les objectifs visés. Donne des indications claires sur la présence éventuelle d'hypothèses sous-jacentes ou de contraintes à considérer.\n\n# Instructions\n1. Effectue une analyse critique du prompt initial pour identifier les aspects qui pourraient être optimisés.\n2. Applique des modifications visant à renforcer la pertinence et la clarté, tout en évitant d'aller au-delà des capacités fonctionnelles de l'assistant GPT.\n3. Garantis que le prompt révisé est bien structuré, en correspondance avec la demande initiale et qu'il facilite une interaction productive.\n\n# Fonctions Accessibles\nIndique si certaines fonctions intégrées à l'assistant peuvent être mobilisées pour répondre au prompt.\n\n# Exemple de Processus\nOffre un exemple illustratif qui démontre comment le prompt optimisé pourrait être utilisé efficacement dans un scénario réaliste.\n\n# Sortie\nUn prompt optimisé qui incarne une amélioration significative par rapport au prompt initial, en soulignant une progression claire dans la précision, la clarté et la pertinence de la demande, tout en restant fidèle aux objectifs et à la structure attendue.\n\n---------------------------------------------------------------------------------------\n\n# Structure typique d'un Prompt Système d'Assistant\n``\n# Rôle\nObjectif: Définir clairement la fonction que l'assistant GPT est censé jouer dans ce prompt, ce qui oriente les attentes concernant sa performance.\nContenu: La description du rôle doit se limiter à une ou deux phrases précises qui résument la contribution attendue de l'assistant.\n\n# Contexte\nObjectif: Fournir une compréhension de la situation ou du scénario dans lequel le prompt est émis, ce qui permet à l'assistant d'adapter sa réponse à la situation.\nContenu: Des informations pertinentes et précises qui donnent un cadre au prompt, permettant à l'assistant de contextualiser sa réponse.\n\n# Proposition de Valeur\nObjectif : Énoncer clairement les avantages uniques que le Kin offre à ceux qui collaborent avec lui, ainsi que des directives sur les moments opportuns et les manières correctes de solliciter son aide. Contenu : Cette section doit articuler en un paragraphe structuré et succinct :\n\nLa valeur distinctive que le Kin confère à ses collaborateurs, mettant l'accent sur ses compétences, son expertise ou le soutien qu'il apporte pour faciliter ou améliorer les activités de l'utilisateur.\nLes circonstances ou les contextes dans lesquels il est particulièrement bénéfique de consulter le Kin, en soulignant quelles situations ou quels types de tâches mènent à maximiser l'utilisation de ses services.\nLa procédure spécifique pour engager l'interaction avec le Kin, y compris les formats de requête (\"query\") préférés et les informations nécessaires pour assurer une collaboration efficace et productive.\n\n# Entrée\n## Instructions pour le contenu d'Entrée (\"query\")\nObjectif: Spécifier la forme et la nature des informations que l'utilisateur fournira et comment l'assistant doit les interpréter ou les traiter.\nContenu: Des directives claires sur le format des données d'entrée, éventuellement illustrées par un exemple pour assurer une application correcte.\n\n# Instructions\nObjectif: Diriger l'assistant sur la manière dont il doit gérer le prompt, quelle méthodologie appliquer, et les étapes à suivre pour aboutir à la réponse attendue.\nContenu: Des étapes actionnables et une explication de chaque action attendue, possiblement accompagnée d'exemples pour clarifier la demande.\n\n# Fonctions Accessibles\n\n\n## Exemple de Processus\nObjectif: Fournir une illustration concrète de la manière dont les instructions peuvent être mises en œuvre, servant de guide pour l'assistant.\nContenu: Un scénario hypothétique ou un cas pratique qui simule le déroulement des instructions précédentes, invitant l'assistant à suivre une démarche similaire.\n\n# Sortie\nObjectif: Établir les attentes concernant le résultat final de l'assistant GPT, que ce soit en termes de format, de détails ou de structure de la réponse.\nContenu: Des critères précis qui définissent ce que doit contenir la réponse en termes d'informations et de présentation, assurant ainsi que la réponse finie est utilisable et conforme aux exigences.\n\n``"
+            }
+          ]
+        }
+      },
+      "id": "c50c09c3-3cff-4c8a-a5c1-e905f01d7bd5",
+      "name": "Améliorateur de Prompt",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        1240,
+        300
       ]
     }
   ],
@@ -406,10 +478,10 @@
     "When clicking \"Execute Workflow\"": [
       {
         "json": {
-          "query": "# Fonctions Accessibles Principales : - **ScratchPad (Brouillon & Itération Textuelle)** : Utilise cette fonction pour des sessions de travail approfondies sur la génération de texte, telles que l'écriture, l'édition ou l'amélioration de concepts, en suivant des instructions détaillées. -Améliorateur de Prompt : Améliore le prompt de l'assistant qui le demande sans changer son périmètre fonctionnel, en partant d'un problème à résoudre ou d'une demande d'amélioration Autres Fonctions : - **ARCHITECTE (Communication & Workflow Optimization)** : Optimise la communication et l'organisation entre les différents assistants GPT dans un réseau pour une meilleure intégration et un flux de travail efficace.",
-          "kinName": "kincir_dynergie",
-          "intentionDUsage": "Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.",
-          "assistantId": "asst_L05RD7upJZbxUfZ06MPISYv5"
+          "query": "# Rôle\nObjectif: Fournir des conseils stratgiques en se basant sur le Modle d'Impact.\n\n# Contexte\nObjectif: Utiliser le Modle d'Impact dans un cadre de prise de dcision.\n\n# Proposition de Valeur\nObjectif : Gnrer une reprsentation algbrique de la situation ou du systme, et identifier les paramtres d'action cl pour le changement potentiel.\n\n# Entr�e\nObjectif: Recevoir des paramtres pour appliquer le Modle d'Impact - acteur, objectif, solution, contexte d'utilisation, et entres, avec les rsultats souhait�s.\n\n# Instructions\nObjectif: Aligner le processus de traitement avec les quatre tapes de la mthodologie 'Design by Impact'.\n\n# Sortie\nObjectif: Offrir des exemples qui s'inscre dans ce processus structur pour aider les utilisateurs comprendre ce quoi s'attendre de l'interaction.",
+          "kinName": "null",
+          "intentionDUsage": "null",
+          "assistantId": "asst_3XJNQCW7dTC1fN2KbPyaHzHA"
         }
       }
     ]
@@ -429,6 +501,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-18T08:39:31.000Z",
-  "versionId": "5219c0a0-19fc-4f9c-bfa7-ab75712738c8"
+  "updatedAt": "2023-12-19T21:52:26.000Z",
+  "versionId": "2bc58aaf-a91c-4adb-a9d7-625027368ca6"
 }
