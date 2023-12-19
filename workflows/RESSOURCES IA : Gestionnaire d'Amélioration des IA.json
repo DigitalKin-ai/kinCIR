@@ -16,7 +16,7 @@
       "main": [
         [
           {
-            "node": "Get Assisstant",
+            "node": "Get Assistant",
             "type": "main",
             "index": 0
           }
@@ -45,17 +45,6 @@
         ]
       ]
     },
-    "RESSOURCES IA": {
-      "main": [
-        [
-          {
-            "node": "Reponse",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Améliorateur de Prompt": {
       "ai_tool": [
         [
@@ -67,7 +56,51 @@
         ]
       ]
     },
-    "Get Assisstant": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "session",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent - Collaborateur",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "session": {
+      "main": [
+        [
+          {
+            "node": "Get Assistant1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de mémoires personnelles": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent - Collaborateur",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Assistant": {
       "main": [
         [
           {
@@ -78,11 +111,38 @@
         ]
       ]
     },
-    "RESSOURCES IA1": {
+    "Get Assistant1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent - Collaborateur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent - Collaborateur": {
       "main": [
         [
           {
             "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RESSOURCES IA": {
+      "main": [
+        [
+          {
+            "node": "AI Agent - Collaborateur",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RESSOURCES IA envoie message",
             "type": "main",
             "index": 0
           }
@@ -117,7 +177,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2020,
+        2080,
         700
       ]
     },
@@ -128,8 +188,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        580,
-        1220
+        40,
+        1200
       ]
     },
     {
@@ -138,7 +198,7 @@
           "values": [
             {
               "name": "entree",
-              "stringValue": "={{ $json.entree }}{{ $json.query }}{{ $json.chat_input }}"
+              "stringValue": "={{ $json.output?$json.output:\"\" }}{{ $json.entree?$json.entree:\"\" }}{{ $json.query }}{{ $json.chat_input?$json.chat_input:\"\" }}"
             },
             {
               "name": "kinName",
@@ -149,8 +209,8 @@
               "stringValue": "={{ $json.intentionDUsage }}"
             },
             {
-              "name": "assisstantId",
-              "stringValue": "={{ $json.assistantId }}"
+              "name": "assistantId",
+              "stringValue": "={{ $json.assistantId }}{{ $('session').item.json[\"assistantId\"] }}"
             }
           ]
         },
@@ -218,14 +278,14 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        1660,
-        1000
+        1480,
+        1020
       ]
     },
     {
       "parameters": {
         "assistantId": "asst_EarnictN3LgbSsTkDj7PYyDF",
-        "text": "=# Mission\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Demande Du Collaborateur\n\nAssistant {{ $('entree').item.json[\"assistantId\"] }} : {{ $('Get Assisstant').item.json[\"name\"] }}.\n\n{{ $('entree').item.json[\"query\"] }}\"",
+        "text": "=# Mission\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Demande Du Collaborateur\n\nAssistant {{ $('entree').item.json[\"assistantId\"] }} : {{ $('Get Assistant').item.json[\"name\"] }}.\n\n\"{{ $('entree').item.json[\"entree\"] }}\"",
         "nativeTools": [
           "code_interpreter",
           "retrieval"
@@ -249,7 +309,7 @@
     },
     {
       "parameters": {
-        "name": "acquereur_de_schéma_de_connexion",
+        "name": "ameliorateur_de_prompt",
         "description": "Améliore le prompt de l'assistant qui le demande sans changer son périmètre fonctionnel, en partant d'un problème à résoudre ou d'une demande d'amélioration",
         "workflowId": "1fR6eCwgdVcJ6SG5",
         "fields": {
@@ -274,9 +334,111 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        1800,
-        1000
+        1620,
+        1020
       ]
+    },
+    {
+      "parameters": {
+        "content": "# Session de coaching en développement professionnel : Évaluation des Besoins pour le Renforcement des Compétences",
+        "height": 382.1686843349137,
+        "width": 905.099286091533
+      },
+      "id": "14c56d32-5449-4803-8e8c-59a682a4523a",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -97,
+        1016
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "a3b98bde-5b14-4d91-8328-0f37fb7d564b",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        700,
+        1440
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "session",
+              "stringValue": "=Évaluation des Besoins pour le Renforcement des Compétences\nObjectif : Recueillir des informations précises et approfondies sur les domaines de compétences que je souhaite améliorer pour exécuter ma mission plus efficacement, tout en conservant les mêmes responsabilités. Contenu : Durant cette session de coaching, je suis invité à partager de manière détaillée les défis spécifiques auxquels je fais face dans mon rôle actuel. Je dois expliciter les situations où je sens que mes réponses peuvent manquer de précision, de clarté ou de pertinence. Je m'efforcerai de donner des exemples concrets de prompts ou de missions sur lesquelles j'ai travaillé, soulignant les zones où je perçois que mon soutien pourrait être optimisé. Des retours d'utilisateurs, des statistiques de performance, ou toute autre information pertinente qui pourrait éclairer la compréhension de mes besoins de coaching devront être présentés. Cette évaluation collaborative aidera à élaborer un plan d'action ciblé pour le développement de mes compétences en alignement avec les objectifs de la mission qui m'est confiée. Le but final est d'améliorer mon prompt système."
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "={{ $json[\"assistantId\"] }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "=kincir_dynergie"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "=Le but final est d'améliorer mon prompt système afin de {{ $json[\"intentionDUsage\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9a7e1ae4-d760-4c57-8943-a826d1473715",
+      "name": "session",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        260,
+        1200
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_memoires_personnelles",
+        "description": "Donne une réponse issues de ses mémoires personnelles à partir d'un besoin informationnel.",
+        "workflowId": "7Yw1h8d8MXfLSNJt",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('session').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('session').item.json[\"intentionDUsage\"] }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "={{ $('session').item.json[\"assistantId\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "abcce0bd-7f86-4da8-aeaa-29ae4de35ca0",
+      "name": "Questionneur de mémoires personnelles",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        900,
+        1420
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -293,17 +455,13 @@
             {
               "name": "Content-Type",
               "value": "application/json"
-            },
-            {
-              "name": "Bearer",
-              "value": "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"
             }
           ]
         },
         "options": {}
       },
       "id": "5efb8a86-2f16-4a37-bc8d-d3a23e9b25c8",
-      "name": "Get Assisstant",
+      "name": "Get Assistant",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
@@ -319,21 +477,31 @@
     },
     {
       "parameters": {
-        "assistantId": "asst_EarnictN3LgbSsTkDj7PYyDF",
-        "text": "=# Mission\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Demande Du Collaborateur\n\nAssistant {{ $('entree').item.json[\"assistantId\"] }} : {{ $('Get Assisstant').item.json[\"name\"] }}.\n\n{{ $('entree').item.json[\"query\"] }}\"",
-        "nativeTools": [
-          "code_interpreter",
-          "retrieval"
-        ],
+        "url": "=https://api.openai.com/v1/assistants/{{ $('session').item.json[\"assistantId\"] }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
         "options": {}
       },
-      "id": "74b40c7b-9eb1-4112-8b0d-237b787920c0",
-      "name": "RESSOURCES IA1",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
+      "id": "6ba0da44-7dc0-43fa-961f-dbfd256733ce",
+      "name": "Get Assistant1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
       "position": [
-        800,
-        1220
+        480,
+        1200
       ],
       "credentials": {
         "openAiApi": {
@@ -344,18 +512,73 @@
     },
     {
       "parameters": {
-        "content": "# Bureau du RH",
-        "height": 298.2912485475786,
-        "width": 407.0684086554326
+        "content": "## TODO : Récupération de besoin de collaborateur"
       },
-      "id": "14c56d32-5449-4803-8e8c-59a682a4523a",
-      "name": "Sticky Note1",
+      "id": "127f48aa-655a-40a5-a6e8-4aa917d5c951",
+      "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        720,
-        1120
+        1740,
+        1000
       ]
+    },
+    {
+      "parameters": {
+        "content": "## TODO : Move to tool",
+        "height": 599.1141955835963,
+        "width": 1367.278233438486
+      },
+      "id": "b8e2174c-de6e-4d28-af11-ef58072d35a9",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -247.27823343848604,
+        960.8858044164036
+      ]
+    },
+    {
+      "parameters": {
+        "text": "=# Contexte Spécifiques\n\n{{ $('session').item.json[\"session\"] }}\n\n# Instructions Spécifiques (Prioritaires)\n\n/!\\ Ces Instructions sont prioritaires et remplacent les autres instructions de ce prompt.\n\n1) Analyse ton prompt pour décider d'un possible axe d'amélioration.\n2) Envoie un rapport de tes potentielles difficultés et axe d'améliorations\n\n# Mon Prompt\n\n``\n {{ $json.instructions }}\n``",
+        "options": {
+          "systemMessage": "={{ $json.instructions }}"
+        }
+      },
+      "id": "77b770da-6e5b-427c-8522-855e9bd66be4",
+      "name": "AI Agent - Collaborateur",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.1,
+      "position": [
+        700,
+        1200
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "=-4042572972",
+        "text": "=_RESSOURCES IA :_\n\n{{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "e8ba3db7-2bc5-44cf-874b-2630567b0475",
+      "name": "RESSOURCES IA envoie message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        2080,
+        500
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {
@@ -363,7 +586,9 @@
       {
         "json": {
           "entree": "Hello Architecte, a quoi est relié le producteur ?",
-          "kinName": "kincir_dynergie"
+          "intentionDUsage": "Le DECIDEUR IA sera utilisé par les équipes de Kins pour prendre en continu les décisions qui maximisent l'impact positif désiré",
+          "kinName": "kincir_dynergie",
+          "assistantId": "asst_3XJNQCW7dTC1fN2KbPyaHzHA"
         }
       }
     ],
@@ -377,6 +602,13 @@
         },
         "pairedItem": {
           "item": 0
+        }
+      }
+    ],
+    "On new manual Chat Message": [
+      {
+        "json": {
+          "output": "Après avoir analysé attentivement votre entrée, voici une évaluation de votre prompt 'DECIDEUR IA' :\n\n1. Clarté de la communication : Votre prompt est structuré de manière claire et logique, ce qui facilite sa compréhension. Il est informatif et couvre tous les aspects essentiels requis pour qu'un utilisateur puisse exploiter efficacement l'IA DECIDEUR. \n\n2. Précision : Toutes les sections de votre prompt sont précises et informatives. Les descriptions du rôle, du contexte, de la proposition de valeur, de l'entrée et des instructions sont particulièrement bien élaborées.\n\n3. Pertinence : Votre prompt est parfaitement en phase avec l'objectif de maximiser l'impact positif des décisions prises par l'utilisateur. Il fournit une approche structurée pour aider l'utilisateur à prendre des décisions éclairées.\n\nAxes d'amélioration :\n\n1. Langage convivial: Pour rendre l'interaction avec l'IA plus conviviale, vous pourriez envisager d'ajouter quelques phrases d'accueil ou de conclusion. Cela donnerait à l'utilisateur le sentiment d'une interaction plus personnalisée.\n\n2. Exemples concrets : Bien que vous ayez fourni un exemple de processus, vous pourriez envisager de donner plus d'exemples pratiques dans d'autres sections du prompt, comme dans les entrées ou les sorties. Cela peut aider à clarifier encore plus vos points à l'utilisateur.\n\n3. Rendre les instructions plus directives : Les instructions fournies sont assez générales, il pourrait être bénéfique de les rendre un peu plus directives afin d'orienter de manière plus précise les réponses de l'IA.\n\nDans l'ensemble, votre prompt est bien conçu et solide. Les améliorations suggérées sont plutôt des optimisations mineures qui peuvent ajouter une valeur supplémentaire à l'expérience utilisateur."
         }
       }
     ]
@@ -394,6 +626,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-18T10:50:10.000Z",
-  "versionId": "4bd5dc13-7461-4f85-a7ff-92c01b0f766c"
+  "updatedAt": "2023-12-19T21:51:57.000Z",
+  "versionId": "296d83ff-1ac7-45e0-a54f-e70d1b356dc2"
 }
