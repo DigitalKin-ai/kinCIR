@@ -1,0 +1,659 @@
+{
+  "active": false,
+  "connections": {
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "DECIDEUR IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad": {
+      "ai_tool": [
+        [
+          {
+            "node": "DECIDEUR IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur de Citations": {
+      "ai_tool": [
+        [
+          {
+            "node": "DECIDEUR IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DECIDEUR IA": {
+      "main": [
+        [
+          {
+            "node": "DECIDEUR IA envoie message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "entree1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CHERCHEUR SCIENTIFIQUE": {
+      "ai_tool": [
+        [
+          {
+            "node": "DECIDEUR IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Améliorateur de Prompt": {
+      "ai_tool": [
+        [
+          {
+            "node": "RESSOURCES IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Assistant": {
+      "main": [
+        [
+          {
+            "node": "RESSOURCES IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree1": {
+      "main": [
+        [
+          {
+            "node": "Get Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad1": {
+      "ai_tool": [
+        [
+          {
+            "node": "RESSOURCES IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RESSOURCES IA": {
+      "main": [
+        [
+          {
+            "node": "DECIDEUR IA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RESSOURCES IA envoie message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RESSOURCES IA envoie message": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DECIDEUR IA envoie message": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-18T16:11:44.028Z",
+  "id": "tyhTUO3qCJ1Jvdjx",
+  "meta": null,
+  "name": "DECIDEUR IA : Spécialiste de l'Impact Model",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "7e03b0a4-5b06-4282-be0c-437c09325bf1",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        -80
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c727814c-3080-4696-8cc4-ff2952e8c7ac",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1020,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $json.mission }}"
+            },
+            {
+              "name": "output",
+              "stringValue": "={{ $json.message.text }}{{ $json.output?$json.output:$json.chat_input }}{{ $json.query }}"
+            },
+            {
+              "name": "telegramChat",
+              "stringValue": "={{ $json.message.chat.id }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "=kincir_dynergie"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "43b6dbf0-84b6-4961-a714-6aeb87d92310",
+      "name": "entree",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1340,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\":$node[\"DECIDEUR IA\"].json.output}};"
+      },
+      "id": "a54dfa84-7729-430e-8abe-9b545cb97ced",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2720,
+        -540
+      ]
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "=asst_3XJNQCW7dTC1fN2KbPyaHzHA"
+            }
+          ]
+        }
+      },
+      "id": "41e2626d-7aac-4236-a664-24b65cacda11",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "name": "acquereur_de_citations",
+        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.",
+        "workflowId": "It2FPpnGNxaxojxY",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "4b19f304-4cba-49d1-a8e0-b55fa7de35b8",
+      "name": "Acquéreur de Citations",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_3XJNQCW7dTC1fN2KbPyaHzHA",
+        "text": "=# Mission\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Intention d'usage\n\n{{ $('entree').item.json[\"intentionDUsage\"] }}\n\n# Entrée\n\n{{ $json.output }}",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "ed58a3e9-431d-4128-8a00-1dcbe89118ad",
+      "name": "DECIDEUR IA",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        -260
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=-4042572972",
+        "text": "=**DECIDEUR IA:**\n\n{{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "b8ae2427-5f1f-4d51-b74a-d3de26bd1f40",
+      "name": "DECIDEUR IA envoie message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        1940,
+        -260
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "name": "chercheur_scientifique",
+        "description": "\n# Contexte\n\nEn tant que chercheur scientifique, je suis chargé de fournir des réponses informatives en exploitant au maximum mes outils de recherche. Ceci afin de garantir que chaque réponse soit étayée par des données pertinentes et actuelles.\n\n# Proposition de Valeur\n\nJe m'engage à toujours chercher des réponses précises et basées sur des sources fiables en utilisant mes outils de recherche. C'est essentiel pour les utilisateurs qui comptent sur l'exactitude et le soutien de recherches académiques ou industrielles pour leurs informations.\n\n# Entrée\n\nLes utilisateurs doivent fournir une requête claire avec des spécifications détaillées sur les points à aborder et les critères de recherche souhaités.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "14052d91-87b3-4fd1-a214-9c8cc9adc588",
+      "name": "CHERCHEUR SCIENTIFIQUE",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_EarnictN3LgbSsTkDj7PYyDF",
+        "text": "=# Mission du Collaborateur\n\n{{ $('entree1').item.json[\"mission\"] }}\n\n# Demande du Collaborateur\n\nAssistant {{ $('entree1').item.json[\"assistantId\"] }} : {{ $('Get Assistant').item.json[\"name\"] }}.\n\n\"{{ $('entree1').item.json[\"entree\"] }}\"",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "58911c73-14a4-4aed-979c-a5f643faedbe",
+      "name": "RESSOURCES IA",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        -840
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "acquereur_de_schéma_de_connexion",
+        "description": "Améliore le prompt de l'assistant qui le demande sans changer son périmètre fonctionnel, en partant d'un problème à résoudre ou d'une demande d'amélioration",
+        "workflowId": "1fR6eCwgdVcJ6SG5",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree1').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $('entree1').item.json[\"intentionDUsage\"] }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "={{ $('entree1').item.json[\"assistantId\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "182ca2c0-e902-4a06-8078-5ae62636dc00",
+      "name": "Améliorateur de Prompt",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        -540
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/assistants/{{ $('entree1').item.json[\"assistantId\"] }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8b6e2c10-457b-4b84-bb07-042e2d1a273e",
+      "name": "Get Assistant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1480,
+        -840
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "entree",
+              "stringValue": "={{ $json.output?$json.output:\"\" }}{{ $json.entree?$json.entree:\"\" }}{{ $json.query }}{{ $json.chat_input?$json.chat_input:\"\" }}"
+            },
+            {
+              "name": "kinName",
+              "stringValue": "={{ $json.kinName }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "={{ $node[\"entree\"].json.assistantId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "eb17826f-9776-42c8-9b69-c82594391fd1",
+      "name": "entree1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1260,
+        -840
+      ]
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree1').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "assistantId",
+              "stringValue": "=asst_EarnictN3LgbSsTkDj7PYyDF"
+            }
+          ]
+        }
+      },
+      "id": "1225d706-1d13-4c78-88d2-a28102535776",
+      "name": "ScratchPad1",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        -540
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "=-4042572972",
+        "text": "=_RESSOURCES IA :_\n\n{{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "6a69ac6e-3e17-42ee-9900-98e456a4bcb7",
+      "name": "RESSOURCES IA envoie message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        2120,
+        -840
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "# Onboarding (temporary)",
+        "height": 631.4515246514229,
+        "width": 1340.4841068575681
+      },
+      "id": "e8375132-9fd9-4e9e-b8cf-48dc5f2012d5",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        -940
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## TODO : créateur d'outil"
+      },
+      "id": "10e34d5e-5853-423a-a9ca-a7d5870af1ae",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        -540
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8c97804f-e20a-475f-b907-f2ced2e0bef0",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        2520,
+        -540
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## TODO : créateur de document de travail"
+      },
+      "id": "c320f279-c491-4c20-b927-031d29469de5",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        -540
+      ]
+    }
+  ],
+  "pinData": {
+    "entree": [
+      {
+        "json": {
+          "chat_input": "Récupère des infos sur \"Design by Impact : a convergent\napproach to innovation conception\", et utilise les pour améliorer ton prompt pour suivre le processus de l'Impact Model",
+          "intentionDUsage": "Améliorer le prompt pour mieux implémenter l'Impact Model détaillé dans 'Design by Impact : a convergent approach to innovation conception', et utilise les pour améliorer ton prompt pour suivre le processus de l'Impact Model",
+          "mission": null,
+          "output": "Récupère des infos sur \"Design by Impact : a convergent\napproach to innovation conception\" en utilisant ton chercheur, et utilise les pour améliorer ton prompt pour suivre le processus de l'Impact Model",
+          "assistantId": "asst_3XJNQCW7dTC1fN2KbPyaHzHA",
+          "kinName": "kincir_dynergie"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-19T21:52:20.000Z",
+  "versionId": "2640c7dc-b634-4786-ac25-8bffb4dc8ae7"
+}
