@@ -78,16 +78,24 @@ Consigne :
 - "Sur la base des informations identifiées comme critiques pour la thématique de recherche, rédige un texte approfondi d'environ 500 mots qui démontre pourquoi l'accomplissement des OBJECTIFS DE RECHERCHE dépend essentiellement de développements supplémentaires dans le DOMAINE SCIENTIFIQUE spécifique. Discute en détail des connaissances et des capacités actuelles qui sont directement applicables, des avancées déjà réalisées dans le DOMAINE, tout en soulignant les VERROUS TECHNOLOGIQUES et les INCERTITUDES SCIENTIFIQUES qui limitent ces connaissances et capacités. Examine chaque aspect de l'existant de manière isolée et, pour chacun, articule les déficiences connexes autour des objectifs de recherche. Cette section devrait se focaliser explicitement sur l'existant, les obstacles techniques et les questions ouvertes. Applique les standards de la rédaction scientifique, en incluant des références pertinentes. La rédaction se fera à la première personne du pluriel "nous", et privilégie les sources publiées après 2015 pour les citations."
 
 // FIN REPEAT POUR CHAQUE DOMAINE SCIENTIFIQUE CONSIDÉRÉ COMME ÉLÉMENT CRITIQUE DANS LA THÉMATIQUE DE RECHERCHE
-``
+```
+// FIN REPEAT POUR CHAQUE DOMAINE SCIENTIFIQUE CRITIQUE DANS LA THÉMATIQUE DE RECHERCHE
 
-// FIN REPEAT POUR CHAQUE DOMAINE MOBILISE DANS LA THEMATIQUE ET CONSIDERE BLOQUANT
+// FIN REPEAT POUR CHAQUE VERROU TECHNOLOGIQUE DANS LA THÉMATIQUE
 
+// FIN REPEAT POUR CHAQUE INCERTITUDE SCIENTIFIQUE DANS LA THÉMATIQUE
 
-// FIN REPEAT POUR CHAQUE THEMATIQUE
+// FIN REPEAT POUR CHAQUE THÉMATIQUE DE RECHERCHE
 
-## Incertitudes et verrous scientifiques et techniques
+## Verrous technologiques et incertitudes scientifiques
 
+Dans cette section, nous identifierons et discuterons des principaux verrous technologiques et incertitudes scientifiques qui doivent être levés pour atteindre nos objectifs de recherche. Chaque verrou technologique et incertitude scientifique sera présenté en détail, avec les mesures prévues pour y répondre dans le cadre de nos travaux de R&D.
 
-## Description des travaux de R&D
+## Description détaillée des travaux de R&D planifiés
 
-## Conclusion
+Ici, nous présenterons le plan de nos travaux de recherche et développement, décrivant les étapes spécifiques, les méthodologies et les processus que nous comptons mettre en œuvre pour surmonter les obstacles identifiés précédemment et pour avancer significativement dans la réalisation de nos objectifs de recherche.
+
+## Conclusion et perspectives
+
+En conclusion, ce document aura résumé les ambitions et les défis du programme de R&D de WeDressFair, soulignant l'importance stratégique de chaque travaux engagés pour assurer le développement de la mode durable et éthique. Il appuiera nos plans futurs et servira de base pour une évaluation continue de l'éligibilité de nos travaux au dispositif Crédit d'Impôt Recherche (CIR).
+```
