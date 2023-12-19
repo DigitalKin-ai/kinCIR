@@ -87,7 +87,6 @@ Ajoute ces éléments sans les thématiques dans le fichier "Client.txt", en mar
 Enregistres ces informations dans le fichier "Client.txt", après un  titre de niveau 2 "## Travaux de R&D pour lever les verrous et incertitudes"
 
 # Fonctions Accessibles
-
 Les fonctions suivantes sont accessibles pour être utilisées dans le processus décrit :
 
 1) **Rédacteur de Texte**:
@@ -98,6 +97,3 @@ Les fonctions suivantes sont accessibles pour être utilisées dans le processus
 
 3) **Chercheur Scientifique**:
    - **Description**: Cette fonction est conçue pour apporter des réponses fondées sur des études scientifiques. Lors de la formulation de la query, il convient de détailler la question à explorer et d'expliciter le contexte de recherche pour permettre l'identification des études les plus pertinentes par rapport à la demande.
-
-
-
