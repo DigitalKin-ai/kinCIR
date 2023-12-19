@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "entree",
+            "node": "message",
             "type": "main",
             "index": 0
           }
@@ -16,7 +16,7 @@
       "main": [
         [
           {
-            "node": "entree",
+            "node": "message",
             "type": "main",
             "index": 0
           }
@@ -28,28 +28,6 @@
         [
           {
             "node": "Foreach Assistant",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Aggregate": {
-      "main": [
-        [
-          {
-            "node": "Synchronisation GitHub -> Pinecone1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Create Prompt File": {
-      "main": [
-        [
-          {
-            "node": "Aggregate",
             "type": "main",
             "index": 0
           }
@@ -89,18 +67,12 @@
       "main": [
         [
           {
-            "node": "Get Prompt File",
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Update Prompt File": {
-      "main": [
-        [
+          },
           {
-            "node": "Aggregate",
+            "node": "Limit1",
             "type": "main",
             "index": 0
           }
@@ -111,7 +83,7 @@
       "ai_embedding": [
         [
           {
-            "node": "Synchronisation GitHub -> Pinecone1",
+            "node": "Synchronisation Globale",
             "type": "ai_embedding",
             "index": 0
           }
@@ -122,7 +94,7 @@
       "ai_document": [
         [
           {
-            "node": "Synchronisation GitHub -> Pinecone1",
+            "node": "Synchronisation Globale",
             "type": "ai_document",
             "index": 0
           }
@@ -162,7 +134,25 @@
         ],
         [
           {
-            "node": "Aggregate",
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Prompt File",
             "type": "main",
             "index": 0
           }
@@ -173,69 +163,14 @@
       "main": [
         [
           {
-            "node": "Return entrée",
+            "node": "Return message",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "entree": {
-      "main": [
-        [
-          {
-            "node": "Synchronisation GitHub -> Pinecone",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Synchronisation GitHub -> Pinecone1": {
-      "main": [
-        [
-          {
-            "node": "Limit1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Embeddings OpenAI": {
-      "ai_embedding": [
-        [
-          {
-            "node": "Synchronisation GitHub -> Pinecone",
-            "type": "ai_embedding",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "GitHub Document Loader": {
-      "ai_document": [
-        [
-          {
-            "node": "Synchronisation GitHub -> Pinecone",
-            "type": "ai_document",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Recursive Character Text Splitter1": {
-      "ai_textSplitter": [
-        [
-          {
-            "node": "GitHub Document Loader",
-            "type": "ai_textSplitter",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Limit": {
+    "message": {
       "main": [
         [
           {
@@ -246,11 +181,58 @@
         ]
       ]
     },
-    "Synchronisation GitHub -> Pinecone": {
+    "Limit": {
       "main": [
         [
           {
+            "node": "Synchronisation Globale",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Prompt File": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
             "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Prompt File": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchronisation Globale": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
             "type": "main",
             "index": 0
           }
@@ -270,7 +252,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        2360,
+        3060,
         2760
       ]
     },
@@ -281,51 +263,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        2360,
+        3060,
         2960
-      ]
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "entree",
-              "stringValue": "={{ $json.entree }}{{ $json.query }}"
-            },
-            {
-              "name": "document",
-              "stringValue": "=sortie.md"
-            },
-            {
-              "name": "kinName",
-              "stringValue": "={{ $json.kinName }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "0590f8f9-31e0-435f-bfa5-0b65827e9efa",
-      "name": "entree",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        2620,
-        2760
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "return {\"json\": {\"response\": $item(0).$node[\"entree\"].json}};"
-      },
-      "id": "fdc2aaec-fd3a-47fb-af09-68e1c279a461",
-      "name": "Return entrée",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        5880,
-        2600
       ]
     },
     {
@@ -343,10 +282,6 @@
             {
               "name": "Content-Type",
               "value": "application/json"
-            },
-            {
-              "name": "Bearer",
-              "value": "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"
             }
           ]
         },
@@ -364,56 +299,6 @@
         "openAiApi": {
           "id": "WY3bm7GCb9qfewyS",
           "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "aggregate": "aggregateAllItemData",
-        "options": {}
-      },
-      "id": "809b1d91-9810-4c73-8047-f5b9010cfa03",
-      "name": "Aggregate",
-      "type": "n8n-nodes-base.aggregate",
-      "typeVersion": 1,
-      "position": [
-        5100,
-        2600
-      ]
-    },
-    {
-      "parameters": {
-        "resource": "file",
-        "owner": {
-          "__rl": true,
-          "value": "DigitalKin-ai",
-          "mode": "list",
-          "cachedResultName": "DigitalKin-ai",
-          "cachedResultUrl": "https://github.com/DigitalKin-ai"
-        },
-        "repository": {
-          "__rl": true,
-          "value": "kinCIR",
-          "mode": "list",
-          "cachedResultName": "kinCIR",
-          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
-        },
-        "filePath": "=prompts/{{ $node[\"Foreach Assistant\"].json.data.name.replace(/[\\s\\W]+/g, '_').toLowerCase() }}.md",
-        "fileContent": "={{ $node[\"Foreach Assistant\"].json.data.instructions }}",
-        "commitMessage": "=n8n : {{ $('entree').item.json[\"entree\"] }}"
-      },
-      "id": "514d3fde-9da1-4989-999f-3148ed10745c",
-      "name": "Create Prompt File",
-      "type": "n8n-nodes-base.github",
-      "typeVersion": 1,
-      "position": [
-        4560,
-        2900
-      ],
-      "credentials": {
-        "githubApi": {
-          "id": "Q3KiSughyw3eRp87",
-          "name": "GitHub account"
         }
       }
     },
@@ -442,8 +327,8 @@
       "name": "Get Prompt File",
       "type": "n8n-nodes-base.github",
       "position": [
-        3940,
-        2760
+        4240,
+        2400
       ],
       "typeVersion": 1,
       "alwaysOutputData": true,
@@ -453,6 +338,7 @@
           "name": "GitHub account"
         }
       },
+      "disabled": true,
       "continueOnFail": true
     },
     {
@@ -460,8 +346,7 @@
         "conditions": {
           "boolean": [
             {
-              "value1": "={{ $json.path }}",
-              "operation": "notEqual"
+              "value1": "={{ typeof $json.documentContent === \"undefined\" }}"
             }
           ]
         }
@@ -471,8 +356,217 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        4360,
+        4660,
+        2400
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "id": "df74a044-c7a7-40db-bca0-c22a0f763483",
+      "name": "Foreach Assistant",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        3740,
         2760
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "b9174e8a-3cad-400d-a760-fca8a27498d0",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        5720,
+        2600
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "repository": "https://github.com/DigitalKin-ai/kinCIR",
+        "additionalOptions": {
+          "recursive": true
+        }
+      },
+      "id": "a07c3fb4-9e31-43b4-9657-ac50589bb4b2",
+      "name": "GitHub Document Loader1",
+      "type": "@n8n/n8n-nodes-langchain.documentGithubLoader",
+      "typeVersion": 1,
+      "position": [
+        5740,
+        2760
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chunkSize": 500,
+        "chunkOverlap": 100
+      },
+      "id": "fa13b4d3-31ce-4131-8549-255f24809fd3",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        5880,
+        2940
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node[\"Foreach Assistant\"].json.data.instructions }}",
+              "operation": "notEqual",
+              "value2": "{{ $json.data.instructions }}"
+            }
+          ]
+        }
+      },
+      "id": "0e2e8c25-5cbf-46aa-8839-01b408369c9a",
+      "name": "IF Different",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4820,
+        2340
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "destinationKey": "documentContent",
+        "options": {}
+      },
+      "id": "2af8fd73-cd62-4ae2-a075-551a77bea917",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        4460,
+        2400
+      ],
+      "alwaysOutputData": true,
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "id": "8ff9f68d-fd61-44e1-b20f-176949e75c0c",
+      "name": "Limit1",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        6140,
+        2380
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "017890a5-3123-43ea-9b19-c79031ed9c69",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3980,
+        2400
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "id": "fdc2a4a6-fb5d-4c73-8879-2c1e18b9de82",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        5460,
+        2380
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "=kincir_dynergie"
+            },
+            {
+              "name": "demandeur",
+              "stringValue": "={{ $json.demandeur }}"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $json.demandeurId }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "={{ $json.producteurId }}"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "demande",
+              "stringValue": "={{ $json.demande }}"
+            },
+            {
+              "name": "message",
+              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $json.demandeur }}\n\n{{ $json.demande }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ad16881c-43d4-403e-89ae-7fd37373acb4",
+      "name": "message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3300,
+        2760
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\": $node[\"message\"].json};"
+      },
+      "id": "5655a5cf-9d53-4c6e-a852-c36a25778b18",
+      "name": "Return message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6360,
+        2380
       ]
     },
     {
@@ -502,222 +596,55 @@
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        4700,
-        2460
+        5060,
+        2120
       ],
       "credentials": {
         "githubApi": {
           "id": "Q3KiSughyw3eRp87",
           "name": "GitHub account"
         }
-      }
-    },
-    {
-      "parameters": {
-        "fieldToSplitOut": "data",
-        "include": "allOtherFields",
-        "options": {}
       },
-      "id": "df74a044-c7a7-40db-bca0-c22a0f763483",
-      "name": "Foreach Assistant",
-      "type": "n8n-nodes-base.splitOut",
-      "typeVersion": 1,
-      "position": [
-        3740,
-        2760
-      ]
+      "disabled": true,
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
-        "options": {}
-      },
-      "id": "b9174e8a-3cad-400d-a760-fca8a27498d0",
-      "name": "Embeddings OpenAI1",
-      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
-      "typeVersion": 1,
-      "position": [
-        5300,
-        2820
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "repository": "https://github.com/DigitalKin-ai/kinCIR",
-        "additionalOptions": {}
-      },
-      "id": "a07c3fb4-9e31-43b4-9657-ac50589bb4b2",
-      "name": "GitHub Document Loader1",
-      "type": "@n8n/n8n-nodes-langchain.documentGithubLoader",
-      "typeVersion": 1,
-      "position": [
-        5320,
-        2980
-      ],
-      "credentials": {
-        "githubApi": {
-          "id": "Q3KiSughyw3eRp87",
-          "name": "GitHub account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "chunkSize": 2500,
-        "chunkOverlap": 250
-      },
-      "id": "fa13b4d3-31ce-4131-8549-255f24809fd3",
-      "name": "Recursive Character Text Splitter",
-      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
-      "typeVersion": 1,
-      "position": [
-        5460,
-        3160
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $node[\"Foreach Assistant\"].json.data.instructions }}",
-              "operation": "notEqual",
-              "value2": "{{ $json.data.instructions }}"
-            }
-          ]
-        }
-      },
-      "id": "0e2e8c25-5cbf-46aa-8839-01b408369c9a",
-      "name": "IF Different",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        4500,
-        2580
-      ]
-    },
-    {
-      "parameters": {
-        "setAllData": false,
-        "destinationKey": "documentContent",
-        "options": {}
-      },
-      "id": "2af8fd73-cd62-4ae2-a075-551a77bea917",
-      "name": "Convert to/from binary data",
-      "type": "n8n-nodes-base.moveBinaryData",
-      "typeVersion": 1.1,
-      "position": [
-        4140,
-        2760
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "8ff9f68d-fd61-44e1-b20f-176949e75c0c",
-      "name": "Limit1",
-      "type": "n8n-nodes-base.limit",
-      "typeVersion": 1,
-      "position": [
-        5660,
-        2600
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "insert",
-        "pineconeIndex": {
+        "resource": "file",
+        "owner": {
           "__rl": true,
-          "value": "kins",
+          "value": "DigitalKin-ai",
           "mode": "list",
-          "cachedResultName": "kins"
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
         },
-        "options": {
-          "clearNamespace": true
-        }
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=prompts/{{ $node[\"Foreach Assistant\"].json.data.name.replace(/[\\s\\W]+/g, '_').toLowerCase() }}.md",
+        "fileContent": "={{ $node[\"Foreach Assistant\"].json.data.instructions }}",
+        "commitMessage": "=n8n"
       },
-      "id": "32a42944-0df5-4dc5-a309-487cee4373a8",
-      "name": "Synchronisation GitHub -> Pinecone1",
-      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "id": "514d3fde-9da1-4989-999f-3148ed10745c",
+      "name": "Create Prompt File",
+      "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        5300,
+        5060,
         2600
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "id": "b466f731-1cf2-47f0-a908-78981cea18d9",
-      "name": "Embeddings OpenAI",
-      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
-      "typeVersion": 1,
-      "position": [
-        2900,
-        2980
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "repository": "https://github.com/DigitalKin-ai/kinCIR",
-        "additionalOptions": {}
-      },
-      "id": "a9795de5-70e9-4f8a-aa4c-04f4ea6fbc55",
-      "name": "GitHub Document Loader",
-      "type": "@n8n/n8n-nodes-langchain.documentGithubLoader",
-      "typeVersion": 1,
-      "position": [
-        2920,
-        3140
       ],
       "credentials": {
         "githubApi": {
           "id": "Q3KiSughyw3eRp87",
           "name": "GitHub account"
         }
-      }
-    },
-    {
-      "parameters": {
-        "chunkSize": 2500,
-        "chunkOverlap": 250
       },
-      "id": "dbdc7647-3737-4806-be2f-eb216d5d83e7",
-      "name": "Recursive Character Text Splitter1",
-      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
-      "typeVersion": 1,
-      "position": [
-        3060,
-        3320
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "74d34c52-73c6-4489-a152-032183539d94",
-      "name": "Limit",
-      "type": "n8n-nodes-base.limit",
-      "typeVersion": 1,
-      "position": [
-        3260,
-        2760
-      ]
+      "disabled": true,
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -730,16 +657,16 @@
         },
         "options": {
           "clearNamespace": true,
-          "pineconeNamespace": "sortie"
+          "pineconeNamespace": "={{ $node[\"message\"].json.kin }}"
         }
       },
-      "id": "6b3c7590-bcb4-439d-8afd-e918b90fa95f",
-      "name": "Synchronisation GitHub -> Pinecone",
+      "id": "32a42944-0df5-4dc5-a309-487cee4373a8",
+      "name": "Synchronisation Globale",
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "typeVersion": 1,
       "position": [
-        2900,
-        2760
+        5720,
+        2380
       ],
       "credentials": {
         "pineconeApi": {
@@ -747,14 +674,34 @@
           "name": "PineconeApi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "content": "## potentiellement :\n\nDécouper manuellement pour avoir les metadatas\n"
+      },
+      "id": "22e1f9f2-820b-44d8-840e-f0a9a418ef17",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        5520,
+        2860
+      ]
     }
   ],
   "pinData": {
     "When clicking \"Execute Workflow\"": [
       {
         "json": {
-          "entree": "1) Le but de notre recherche est de mettre en évidence l’intérêt et la sensibilité croissants envers la consommation de mode éthique en tant qu'objectif de recherche, avec une focalisation sur les aspects sociaux et environnementaux dans les habitudes de consommation françaises.\\n\\n2) Citations potentielles pour l'État de l'Art:\\n   - \"Le développement d'un consumérisme éthique dans les pays développés et l'attention croissante que portent les parties prenantes aux enjeux sociaux et environnementaux dans les filières de production de la mode.\" (Achabou & Rink, 2014)\\n   - \"Les raisons du faible engouement pour les produits de la mode éthique parmi les consommateurs français.\" (Achabou & Rink, 2014)\\n   - \"Les canaux de distribution utilisés pour l’achat de produits de mode et les pratiques concernant le devenir des vêtements usagés.\" (Achabou & Rink, 2014)\\n   - \"Les perceptions et associations faites par les consommateurs envers le concept de mode éthique.\" (Achabou & Rink, 2014)\\n\\n3) Requête aux extraits d'études:\\n   - Pourriez-vous fournir des informations détaillées sur la perception et les habitudes de consommation liées à la mode éthique en France émergeant de vos recherches?\\n   - Comment les consommateurs français comprennent-ils la mode éthique et quelles sont leurs pratiques concernant l'achat et le recyclage des vêtements?\\n\\n4) Réponse avec liste d'extraits verbatim en langue d'origine avec référence détaillée:\\n\\n   - \"Les parties prenantes accordent de plus en plus une attention particulière aux conditions sociales et aux enjeux environnementaux qui se posent dans les filières de production.\" (Achabou & Rink, 2014, p. [insert page number here])\\n   \\n   - \"L’objectif de cette recherche a été de comprendre les raisons du faible engouement des consommateurs pour les produits de la mode éthique dans le contexte français.\" (Achabou & Rink, 2014, p. [insert page number here])\\n   \\n   - \"Concernant le devenir des vêtements usagés, 55,6 % des répondants déclarent les donner à des proches, 83,8% pour des organismes caritatifs, 30,3% les recyclent, 18,3% les revendent, et 14,9% les jettent à la poubelle.\" (Achabou & Rink, 2014, p. [insert page number here])\\n   \\n   - \"Plusieurs idées ont été associées à ce concept [mode éthique]. Pour les répondants il s’agit d’une mode qui n’exploite pas l’animal 'produits sans matière animale', 'pas d'exploitation animale (pas de cuir, de soie, de fourrure)', 'sa...\" (Achabou & Rink, 2014, p. [insert page number here])\\n\\nVeuillez noter que les références de page exactes sont manquantes et devraient être ajoutées en fonction des emplacements exacts des citations dans le document d'origine. # Tache : ajoute ça dans le doc",
-          "kinName": "kincir_dynergie"
+          "query": "Réalise une première version du document en entier",
+          "kinName": "kincir_dynergie",
+          "demandeur": "KinCIR - Générateur de programme R&D",
+          "demandeurId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
+          "producteurId": "asst_RMuliVrHho2VxBhfZBG1cnTN",
+          "contexte": "L’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\n\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\nLes thématiques de recherche sont :  \nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.",
+          "intentionDUsage": "Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.",
+          "demande": "Réalise une première version du document en entier",
+          "message": "# Contexte\n\nL’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\n\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\nLes thématiques de recherche sont :  \nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.\n\n# Intention d'Usage\n\nCes éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.\n\n# Demande de KinCIR - Générateur de programme R&D\n\n"
         }
       }
     ]
@@ -774,6 +721,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-18T07:08:34.000Z",
-  "versionId": "5991ce14-f860-49e3-b303-3aa25ca2095e"
+  "updatedAt": "2023-12-19T22:23:43.000Z",
+  "versionId": "777c190b-4353-4e10-b336-a581735774cb"
 }
