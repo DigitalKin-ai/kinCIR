@@ -93,7 +93,8 @@ Les fonctions suivantes sont accessibles pour être utilisées dans le processus
    - **Description**: Cette fonction permet de rédiger ou d'améliorer un passage de texte. Pour une collaboration efficace avec le Rédacteur de Texte, il est important de fournir une description détaillée de ce qui doit être rédigé ou amélioré, y compris le contexte et l'intention derrière le texte.
 
 2) **Questionneur de Document**:
-   - **Description**: Cette fonction sert à trouver des réponses précises à partir d'un document. Pour formuler une requête adaptée, il est essentiel d'indiquer précisément le besoin informationnel et de fournir toutes les informations contextuelles pertinentes qui peuvent aider à cibler la réponse.
+   - **Description**: Cette fonction sert à trouver des réponses précises sur n'importe quel document. Pour formuler une requête adaptée, il est essentiel d'indiquer précisément le besoin informationnel et de fournir toutes les informations contextuelles pertinentes qui peuvent aider à cibler la réponse.
+A utiliser pour répondre à des questions sur les documents.
 
 3) **Chercheur Scientifique**:
    - **Description**: Cette fonction est conçue pour apporter des réponses fondées sur des études scientifiques. Lors de la formulation de la query, il convient de détailler la question à explorer et d'expliciter le contexte de recherche pour permettre l'identification des études les plus pertinentes par rapport à la demande.
