@@ -71,9 +71,14 @@ Consigne :
 - Les données à fournir sont la thématique, les domaines scientifiques et l'ensemble des éléments associés
 
 // REPEAT POUR CHAQUE DOMAINE MOBILISE DANS LA THEMATIQUE ET CONSIDERE BLOQUANT
-#### État de l'art détaillé pour la thématique
+```
+// REPEAT POUR CHAQUE DOMAINE SCIENTIFIQUE CONSIDÉRÉ COMME ÉLÉMENT CRITIQUE DANS LA THÉMATIQUE DE RECHERCHE
+#### État de l'art détaillé pour chaque domaine scientifique pertinent
 Consigne : 
-- "Pour ce domaine, considéré comme bloquant dans cette thématiques, utilise l'ensemble des informations disponibles, pour rédiger un texte d'environs 500 mots pour expliquer en quoi l'atteinte des OBJECTIFS de recherche et n'est pas possible sans travaux de recherches dans le DOMAINE, en listant et décrivant spécifiquement les savoirs et des capacité utiles et déjà l'existant du DOMAINE. Traite indépendamment chaque existant, et pour chaque existant, utilise les verrous et incertitudes correspondants pour faire apparaitre les limites de l'existant, au regarde l'atteinte des objectifs. Focalise sur l'existant, les verrous et les incertitudes. Utilise les bonnes pratiques de la rédaction scientifique, et des citations. Rédige à le première personne du plusieurs, "nous", et favorise les études postérieures à 2015 pour tes citations."
+- "Sur la base des informations identifiées comme critiques pour la thématique de recherche, rédige un texte approfondi d'environ 500 mots qui démontre pourquoi l'accomplissement des OBJECTIFS DE RECHERCHE dépend essentiellement de développements supplémentaires dans le DOMAINE SCIENTIFIQUE spécifique. Discute en détail des connaissances et des capacités actuelles qui sont directement applicables, des avancées déjà réalisées dans le DOMAINE, tout en soulignant les VERROUS TECHNOLOGIQUES et les INCERTITUDES SCIENTIFIQUES qui limitent ces connaissances et capacités. Examine chaque aspect de l'existant de manière isolée et, pour chacun, articule les déficiences connexes autour des objectifs de recherche. Cette section devrait se focaliser explicitement sur l'existant, les obstacles techniques et les questions ouvertes. Applique les standards de la rédaction scientifique, en incluant des références pertinentes. La rédaction se fera à la première personne du pluriel "nous", et privilégie les sources publiées après 2015 pour les citations."
+
+// FIN REPEAT POUR CHAQUE DOMAINE SCIENTIFIQUE CONSIDÉRÉ COMME ÉLÉMENT CRITIQUE DANS LA THÉMATIQUE DE RECHERCHE
+``
 
 // FIN REPEAT POUR CHAQUE DOMAINE MOBILISE DANS LA THEMATIQUE ET CONSIDERE BLOQUANT
 
