@@ -1,2 +1,2 @@
 Désolé, mais la partie améliorée n'a pas été fournie. Voici donc le Document Complet Initial :
-Pour rédiger le passage demandé dans le cadre du programme de R&D de WeDressFair, je n'ai pas reçu les informations nécessaires du document 'document-de-sortie.md' ou 'ProgRD.txt'. Il est essentiel de me fournir le contenu de ces documents ou des détails supplémentaires afin de pouvoir procéder à la rédaction requise.
+Pour donner suite à votre demande, il est nécessaire de disposer du contenu exact de 'document-de-sortie.md' ou 'ProgRD.txt'. Sans cette information, il n'est pas possible de rédiger ou d'améliorer le passage souhaité pour le programme de R&D de WeDressFair.
