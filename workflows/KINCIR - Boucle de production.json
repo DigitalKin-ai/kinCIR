@@ -56,17 +56,6 @@
         ]
       ]
     },
-    "Questionneur d'études": {
-      "ai_tool": [
-        [
-          {
-            "node": "PRODUCTEUR : Rédacteur scientifique et améliorateur de l'état de l'art",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Acquéreur de Citations": {
       "ai_tool": [
         [
@@ -245,6 +234,17 @@
           }
         ]
       ]
+    },
+    "CHERCHEUR SCIENTIFIQUE": {
+      "ai_tool": [
+        [
+          {
+            "node": "PRODUCTEUR : Rédacteur scientifique et améliorateur de l'état de l'art",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2023-12-14T15:10:25.981Z",
@@ -311,8 +311,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        640,
-        -260
+        420,
+        -140
       ]
     },
     {
@@ -337,8 +337,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        380,
-        -260
+        160,
+        -140
       ]
     },
     {
@@ -404,8 +404,8 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1,
       "position": [
-        -100,
-        -260
+        -320,
+        -140
       ],
       "webhookId": "c1f40942-501c-4b73-ab6e-22df752df854",
       "credentials": {
@@ -428,8 +428,8 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1,
       "position": [
-        -100,
-        -100
+        -320,
+        20
       ],
       "webhookId": "d41a317d-544c-4a6e-834b-96e000dbd8e0",
       "credentials": {
@@ -461,35 +461,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        160,
-        -260
-      ]
-    },
-    {
-      "parameters": {
-        "name": "questionneur_d_etudes",
-        "description": "Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
-        "workflowId": "f4z3JUKhsFgmKRgZ",
-        "fields": {
-          "values": [
-            {
-              "name": "kinName",
-              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $json.intentionDUsage }}"
-            }
-          ]
-        }
-      },
-      "id": "dd43ff07-9e56-4900-bd84-e038f0354cde",
-      "name": "Questionneur d'études",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        620,
-        420
+        -60,
+        -140
       ]
     },
     {
@@ -714,8 +687,8 @@
       "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
       "typeVersion": 1.1,
       "position": [
-        -100,
-        -420
+        -320,
+        -300
       ]
     },
     {
@@ -782,33 +755,6 @@
     },
     {
       "parameters": {
-        "name": "architecte",
-        "description": "=# Rôle\n\nARCHITECTE : Cartographe des Connexions et Communications des Assistants GPT\n\n# Comment l'appeler\n\nPour solliciter l'ARCHITECTE dans votre processus de travail, utilisez la formulation suivante :\n\n- Commencez par indiquer clairement que vous vous adressez à l'ARCHITECTE.\n- Précisez la nature de votre demande, qu'il s'agisse d'une demande de création de carte, d'analyse de connexion, ou de collecte d'informations.\n- Fournissez des détails spécifiques sur ce que vous attendez de l'ARCHITECTE, comme des informations sur les connexions spécifiques à analyser ou les types de données techniques nécessaires.\n- Indiquez tout contexte ou précédent travail qui peut aider l'ARCHITECTE à comprendre et à répondre efficacement à votre demande.\n\nExemple d'appel :\n\n``Bonjour ARCHITECTE,\nJe souhaite que tu crées une carte détaillée montrant les connexions actuelles entre nos différents Assistants GPT. Nous avons récemment intégré de nouvelles interfaces, et il est crucial de comprendre comment elles s'articulent avec les systèmes existants. Pourrais-tu inclure dans ta carte des détails sur les types de communications et les flux de données entre chaque point de connexion ?\nMerci d'avance.``\n",
-        "workflowId": "bfK26nrTMV5n0oJU",
-        "fields": {
-          "values": [
-            {
-              "name": "kinName",
-              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
-            }
-          ]
-        }
-      },
-      "id": "432055f1-ac21-4800-9afa-6d6c485f5e2d",
-      "name": "ARCHITECTE",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        200,
-        120
-      ]
-    },
-    {
-      "parameters": {
         "name": "ressources_ia",
         "description": "= sert à analyser et améliorer les interactions avec les GPTs, en assurant la précision, la clarté et la pertinence des demandes posées. Pour solliciter mon aide, exposez-moi simplement votre prompt et indiquez l'objectif que vous cherchez à atteindre ou le problème que vous souhaitez résoudre, et je mettrai mes compétences à disposition pour optimiser votre expérience avec l'assistant GPT.",
         "workflowId": "imN4HxXd5zhpJoyV",
@@ -868,6 +814,33 @@
         1900,
         560
       ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_etudes",
+        "description": "Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "fields": {
+          "values": [
+            {
+              "name": "kinName",
+              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "dd43ff07-9e56-4900-bd84-e038f0354cde",
+      "name": "CHERCHEUR SCIENTIFIQUE",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        620,
+        420
+      ]
     }
   ],
   "pinData": {},
@@ -892,6 +865,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2023-12-18T10:33:28.000Z",
-  "versionId": "2424be90-87b6-4b1d-bbb6-a2d5ef5216d0"
+  "updatedAt": "2023-12-19T09:56:37.000Z",
+  "versionId": "0827b998-e372-4d05-ac25-f1889a6f7803"
 }
