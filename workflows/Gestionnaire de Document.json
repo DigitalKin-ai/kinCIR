@@ -1,0 +1,444 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gestionnaire de plan envoie message": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "message": {
+      "main": [
+        [
+          {
+            "node": "Get Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Assistant": {
+      "main": [
+        [
+          {
+            "node": "Gestionnaire de Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gestionnaire de Document": {
+      "main": [
+        [
+          {
+            "node": "Gestionnaire de plan envoie message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de Document": {
+      "ai_tool": [
+        [
+          {
+            "node": "Gestionnaire de Document",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur de Document": {
+      "ai_tool": [
+        [
+          {
+            "node": "Gestionnaire de Document",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-17T16:54:57.131Z",
+  "id": "6llpRqvjZ5beOQhf",
+  "meta": null,
+  "name": "Gestionnaire de Document",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "8ea1e5c7-8c3d-4888-bb4c-6a6aeb947167",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        540,
+        -240
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "20ac1c9b-733f-4d4f-aafb-eafafd76d1d2",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        540,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('entree').item.json[\"telegramChat\"] }}",
+        "text": "=_Gestionnaire de Plan:_\n\n{{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "64be8299-e7e9-4165-b502-4f6b2f7ec6c4",
+      "name": "Gestionnaire de plan envoie message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        1820,
+        -240
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\":$node[\"Gestionnaire de Document\"].json.output}};"
+      },
+      "id": "b7ba1d66-d049-4573-913f-6e241aae448c",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2040,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/assistants/{{ $('mission').item.json[\"producteurId\"] }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4f3df8d9-6a98-4113-9d07-a4303737a0dc",
+      "name": "Get Assistant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1260,
+        -240
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "={{ $json.kin }}"
+            },
+            {
+              "name": "=demandeur",
+              "stringValue": "={{ $json.demandeur }}"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $json.demandeurId }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "={{ $json.producteurId }}"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "demande",
+              "stringValue": "={{ $json.demande }}"
+            },
+            {
+              "name": "message",
+              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $json.demandeur }}\n\n{{ $json.demande }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "907a0185-be39-4a2a-bcd0-fc40c68fb4c5",
+      "name": "message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1040,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "=kincir_dynergie"
+            },
+            {
+              "name": "demandeur",
+              "stringValue": "Sébastien"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $json.demandeurId }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "={{ $json.producteurId }}"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "demande",
+              "stringValue": "={{ $json.chat_input }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ddccc92b-1d10-4367-b983-cf37b43fc90e",
+      "name": "mission",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        840,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_OU9dV374aiNux7W99B6YD7xg",
+        "text": "=# Mission\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Intention d'usage\n\n{{ $('entree').item.json[\"intentionDUsage\"] }}\n\n# Input du Manager\n\n{{ $json.output }}",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "7bff8141-c2c2-44af-90d2-dff34b590ab5",
+      "name": "Gestionnaire de Document",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        -240
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_document",
+        "description": "Donne une réponse précise issues du document en cours de rédaction à partir d'un besoin informationnel.",
+        "workflowId": "ebLHEt0swZVT9tks",
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
+            },
+            {
+              "name": "demandeur",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "=asst_RMuliVrHho2VxBhfZBG1cnTN"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $node[\"message\"].json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "47dbc9ed-5874-4ece-bbb1-eec882cf6a52",
+      "name": "Questionneur de Document",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "name": "redacteur_de_document",
+        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
+        "workflowId": "0T67aHjuqQEnrTN0",
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
+            },
+            {
+              "name": "demandeur",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "=asst_RMuliVrHho2VxBhfZBG1cnTN"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $node[\"message\"].json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "b58e43c1-fca9-49a4-af54-05e9a85991eb",
+      "name": "Rédacteur de Document",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        80
+      ]
+    }
+  ],
+  "pinData": {
+    "mission": [
+      {
+        "json": {
+          "kin": "kincir_dynergie",
+          "demandeur": "Sébastien Deschaux",
+          "demandeurId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
+          "producteurId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
+          "contexte": "L’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\n\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\nLes thématiques de recherche sont :  \nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.",
+          "intentionDUsage": "Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.",
+          "demande": "Réalise une première version du document en entier"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-19T21:51:25.000Z",
+  "versionId": "d4918df8-be3f-408c-b460-569d67d10be4"
+}
