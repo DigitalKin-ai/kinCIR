@@ -1,0 +1,669 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Document": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Explication du travail",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchroniser GitHub -> Pinecone": {
+      "main": [
+        [
+          {
+            "node": "Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchroniser GitHub -> Pinecone1": {
+      "main": [
+        [
+          {
+            "node": "Explication du travail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Assistant": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "message": {
+      "main": [
+        [
+          {
+            "node": "Synchroniser GitHub -> Pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur d'Extrait du Document": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "Make Edits",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrait": {
+      "main": [
+        [
+          {
+            "node": "Get Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Explication du travail": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub": {
+      "main": [
+        [
+          {
+            "node": "Synchroniser GitHub -> Pinecone1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur": {
+      "main": [
+        [
+          {
+            "node": "Get Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Make Edits": {
+      "main": [
+        [
+          {
+            "node": "GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Document": {
+      "main": [
+        [
+          {
+            "node": "Extrait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Documents": {
+      "main": [
+        [
+          {
+            "node": "Input Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input Message": {
+      "main": [
+        [
+          {
+            "node": "Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-16T09:07:47.697Z",
+  "id": "0T67aHjuqQEnrTN0",
+  "meta": null,
+  "name": "Rédacteur de Document",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "d24bc942-ffc8-4b30-8a18-57a842237b3d",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"response\":$json.text}};"
+      },
+      "id": "b378bfc1-e1e8-421c-969b-2c915bdfe4a0",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2300,
+        720
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d86438d5-5178-47c4-b6ed-e2090bdb6380",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -440,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "={{ $node[\"Document\"].json.path }}",
+        "additionalParameters": {}
+      },
+      "id": "4c1a2c61-86bb-4122-a6af-3ec79df4ee0f",
+      "name": "Get Document",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        500
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "destinationKey": "documentContent",
+        "options": {}
+      },
+      "id": "cb96cef1-26fb-4652-81a7-7227b1a39a66",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        1240,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "65b82899-bd07-4347-bfcd-4bf3c9e1de0b",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1940,
+        920
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "d6khXiG3YxUunViW"
+      },
+      "id": "957bcc81-533f-4e51-bcf1-f18ddd52abd5",
+      "name": "Synchroniser GitHub -> Pinecone",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        0,
+        300
+      ],
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "workflowId": "d6khXiG3YxUunViW"
+      },
+      "id": "0a0f5eef-adae-4bdc-8224-6bc20f491729",
+      "name": "Synchroniser GitHub -> Pinecone1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        720
+      ],
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "content": "## Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
+        "height": 348.839423945907,
+        "width": 548.1198073088228
+      },
+      "id": "11c174c6-e302-4e52-a1d8-f2fb923cc627",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -220,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/assistants/{{ $('message').item.json[\"producteurId\"] }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "68146989-558d-46e9-bae2-82b0b4047b5a",
+      "name": "Get Assistant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        440,
+        500
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "=kincir_dynergie"
+            },
+            {
+              "name": "demandeur",
+              "stringValue": "={{ $json.demandeur }}"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $json.demandeurId }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "={{ $json.producteurId }}"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "demande",
+              "stringValue": "={{ $json.query }}"
+            },
+            {
+              "name": "message",
+              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $json.demandeur }}\n\n{{ $json.demande }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "298db015-cb88-4b00-8510-a822d01d4510",
+      "name": "message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        -220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "name": "acquereur_d_extrait_du_document",
+        "description": "Acquéreur d'Extrait du Document\n\nRetourne un extrait du Document à partir d'une demande",
+        "workflowId": "2JRhtxSoct8OyuuI",
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"message\"].json[\"kin\"] }}"
+            },
+            {
+              "name": "demandeur",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "=asst_RMuliVrHho2VxBhfZBG1cnTN"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $node[\"message\"].json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "c5f6b737-9441-4dca-8a73-05f96332d3b1",
+      "name": "Acquéreur d'Extrait du Document",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        800,
+        760
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "workflowId": "2JRhtxSoct8OyuuI"
+      },
+      "id": "9a2b6c0a-9e6f-4ccc-8c39-ac562674bf56",
+      "name": "Extrait",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        220,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "prompt": "=# Ton Rôle\n\nTu es le debriefeur de la fonction : \"Rédacteur de Document : Améliore une partie du document de sortie.\" de n8n.\n\n# Tâche demandée\n\n{{ $('message').item.json[\"demande\"] }}\n\n# Instructions \n\nCompare les deux extraits :\nExplique simplement le travail qui vient d'être effectué sur {{ $node[\"Extrait\"].json[\"source\"] }}.\n\n# Entrée : Extrait initial\n ``\n`{{ $('Extrait').item.json[\"extrait\"] }}\n``\n\n# Résultat : Extrait modifié\n ``\n{{ $('Rédacteur').item.json.output }}"
+      },
+      "id": "6c2e42f6-7332-428d-b0cb-c686119f4fb1",
+      "name": "Explication du travail",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        1920,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "={{ $node[\"Document\"].json.path }}",
+        "fileContent": "={{ $json.modifiedDocumentContent }}",
+        "commitMessage": "=n8n : {{ $node[\"message\"].json[\"demande\"] }}"
+      },
+      "id": "ba6c3f8b-ebd2-4cda-b271-08614ae01c5e",
+      "name": "GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        500
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_RMuliVrHho2VxBhfZBG1cnTN",
+        "text": "={{ $node[\"message\"].json.message }}\n----------------------------------------------\n{{ $node[\"Extrait\"].json.extraitEtendu }}\n----------------------------------------------\n{{ $node[\"Extrait\"].json.extrait }}\n\n# Tâche\n\nAméliore l'extrait cible, en t'assurant que la continuité soit respectée. Réponds uniquement avec l'extrait cible amélioré.",
+        "nativeTools": [
+          "code_interpreter"
+        ],
+        "options": {}
+      },
+      "id": "ab9cfbf4-ded0-4716-8393-b2f8a7764a5a",
+      "name": "Rédacteur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        640,
+        500
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const documentContent = $json.documentContent;\nconst minLine = parseInt($node[\"Extrait\"].json.minLine);\nconst maxLine = parseInt($node[\"Extrait\"].json.maxLine);\nconst newContent = $node[\"Rédacteur\"].json.output;\n\nconst lines = documentContent.split('\\n');\n\n// Vérifiez que minLine et maxLine sont dans les limites du document\nif(minLine < 0 || minLine >= lines.length || maxLine < 0 || maxLine >= lines.length) {\n    return {\"json\": {\"error\": \"minLine or maxLine is out of bounds\"}};\n}\n\nconst before = lines.slice(0, minLine);\nconst after = lines.slice(maxLine + 1);\n\nconst modifiedDocumentContent = [...before, newContent, ...after].join('\\n');\n\nreturn {\"json\":{\"documentContent\":documentContent,\"minLine\":minLine,\"maxLine\":maxLine,\"before\":before, \"after\":after, \"modifiedDocumentContent\": modifiedDocumentContent}};\n"
+      },
+      "id": "0ae2883f-4437-46f7-90f7-545802dd85b4",
+      "name": "Make Edits",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1460,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "Fdyk6mhC3BfpMdya"
+      },
+      "id": "aec82b38-7d4d-4914-a48f-b09a68500916",
+      "name": "Document",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        0,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "hD7yCDCuhTu3T774"
+      },
+      "id": "98566bf7-afe5-4d19-8450-b29799563415",
+      "name": "Documents",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return $node[\"message\"].json;"
+      },
+      "id": "553cd2b8-d5a9-41d9-88c7-521f17bb9cda",
+      "name": "Input Message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        300
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "query": "Réalise une première version du document en entier",
+          "kinName": "kincir_dynergie",
+          "demandeur": "KinCIR - Générateur de programme R&D",
+          "demandeurId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
+          "producteurId": "asst_RMuliVrHho2VxBhfZBG1cnTN",
+          "contexte": "L’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\n\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\nLes thématiques de recherche sont :  \nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.",
+          "intentionDUsage": "Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR."
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "fonction"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-19T22:25:16.000Z",
+  "versionId": "0b1454b6-525f-425e-b890-5fe9aa2efc1e"
+}
