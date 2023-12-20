@@ -1,3 +1,39 @@
+# Le 20 décembre 2023 à 16:41:03 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+La demande initiale étant très sommaire ("réponds juste 'GO'"), la reformulation suivante incorpore le contexte fourni pour générer une requête détaillée et spécifique qui pourrait être adressée à un assistant IA avec des objectifs concrets en rapport avec la déclaration d'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) pour l'entreprise WeDressFair.
+
+---
+
+Cher Assistant,
+
+Nous avons besoin de préparer une déclaration d'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) pour notre entreprise WeDressFair, spécialisée dans la mode durable et éthique. Il est crucial que nous puissions démontrer, à travers des documents significatifs, l'ampleur et la profondeur de nos travaux de recherche dans le domaine. Nos objectifs de recherche concernent l'influence sur les habitudes de consommation et de production de mode durable et éthique.
+
+Pour ce faire, je requiers les actions suivantes :
+
+1. Utilisez les "documents disponibles" pour assembler un dossier montrant comment notre entreprise travaille à influencer à la fois la consommation et la production de mode éthique. Mettez l'accent sur :
+   - Les avancées significatives réalisées (voir "avancement-de-la-mission.md"),
+   - Les évaluations de la qualité et l'impact de nos actions (consulter "fonction-d-evaluation-qualite.md" et "feedback-humain.md"),
+   - Les processus en place pour promouvoir et certifier les fabricants d’articles de mode durable (référez-vous à "process-du-producteur.md" et "process-du-manager.md").
+
+2. Analysez les "logs-des-erreurs.md" et "procedures-d-exceptions.md" pour identifier toute difficulté technique ou opérationnelle qui a été surmontée, ce qui pourrait être pertinent pour illustrer notre effort continu en R&D.
+
+3. Examinez l'"historique-des-conversations.md" pour des études de cas ou des témoignages pouvant appuyer les efforts pour influencer les tendances de consommation.
+
+4. Évaluez notre documentation et procédures actuelles de R&D (se référer notamment à "programme-r-et-d-client--document-de-sortie.md" et "plan-du-document-de-sortie.md") pour garantir que notre méthodologie et nos résultats sont bien alignés avec les critères du CIR.
+
+5. Recueillez des données sur les thématiques de recherche spécifiques à partir de nos ressources internes (telles que "ressources-ia-difficultes-des-assistants.md") pour prouver l'innovation et l'originalité de notre approche.
+
+Une fois que vous avez rassemblé et analysé ces informations, veuillez préparer un résumé structuré qui pourra servir d'appui pour notre rescrit CIR, en soulignant notre contribution au développement de la mode durable et éthique et en montrant l'impact de nos activités sur l'environnement et la consommation.
+
+Cordialement,
+[Le nom du membre de l'équipe DigitalKin]
+
+P.S. : La consigne "GO" a été interprétée comme l'autorisation de débuter les actions requises ci-dessus.
+
+---
+``
+
 # Le 20 décembre 2023 à 16:40:51 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
