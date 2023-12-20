@@ -1,3 +1,9 @@
+# Le 20 décembre 2023 à 15:59:53 : Message de  asst_PtFkjK3WpkPD5u6ZLc6toZ0q - kincir_dynergie
+
+``
+Je rencontre des difficultés pour fournir une vue d'ensemble de l'architecture des assistants GPT en lien avec le thème de la mode durable et éthique. Comment puis-je améliorer ma performance pour mieux répondre à cette demande?
+``
+
 # Le 20 décembre 2023 à 15:59:42 : Message de  asst_PtFkjK3WpkPD5u6ZLc6toZ0q - kincir_dynergie
 
 ``
