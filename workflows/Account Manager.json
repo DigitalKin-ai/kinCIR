@@ -1,49 +1,44 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
-    "Nico reçoit un email": {
+    "Execute Workflow Trigger": {
       "main": [
         [
           {
-            "node": "IF est une commande",
+            "node": "message",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "IF est une commande": {
+    "On new manual Chat Message": {
       "main": [
         [
           {
-            "node": "Get Email",
+            "node": "message",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Get Email": {
+    "Get Assistant": {
       "main": [
         [
           {
-            "node": "mission",
+            "node": "ACCOUNT MANAGER : Gestionnaire de la relation client",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "ACCOUNT MANAGER : Gestionnaire de la relation client": {
+    "message": {
       "main": [
         [
           {
-            "node": "message1",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Stockage et Envoi du Message",
+            "node": "Get Assistant",
             "type": "main",
             "index": 0
           }
@@ -83,70 +78,9 @@
         ]
       ]
     },
-    "message": {
+    "ACCOUNT MANAGER : Gestionnaire de la relation client": {
       "main": [
-        [
-          {
-            "node": "Documents",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Documents": {
-      "main": [
-        [
-          {
-            "node": "Get Assistant",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Assistant": {
-      "main": [
-        [
-          {
-            "node": "ACCOUNT MANAGER : Gestionnaire de la relation client",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "RESSOURCES IA": {
-      "ai_tool": [
-        [
-          {
-            "node": "ACCOUNT MANAGER : Gestionnaire de la relation client",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "message1": {
-      "main": [
-        [
-          {
-            "node": "Rédacteur d'Email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "mission": {
-      "main": [
-        [
-          {
-            "node": "message",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     }
   },
@@ -157,87 +91,8 @@
   "nodes": [
     {
       "parameters": {
-        "pollTimes": {
-          "item": [
-            {
-              "mode": "everyX",
-              "value": 3,
-              "unit": "minutes"
-            }
-          ]
-        },
-        "filters": {}
-      },
-      "id": "7b424c87-55ac-4d74-9b75-44f112ff71a0",
-      "name": "Nico reçoit un email",
-      "type": "n8n-nodes-base.gmailTrigger",
-      "typeVersion": 1,
-      "position": [
-        -220,
-        -320
-      ],
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iPrbr6qZiWHu93N9",
-          "name": "Gmail account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $json.Subject.toLowerCase() }}",
-              "operation": "contains",
-              "value2": "kincir"
-            },
-            {
-              "value1": "={{ $json.From }}",
-              "operation": "notEqual",
-              "value2": "mailer-daemon@googlemail.com"
-            },
-            {
-              "value1": "={{ $json.From }}",
-              "operation": "notEqual",
-              "value2": "l.reynolds@digitalkin.ai"
-            }
-          ]
-        }
-      },
-      "id": "89e30844-13d2-4e72-9c87-92850a6ceb03",
-      "name": "IF est une commande",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        0,
-        -320
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "get",
-        "messageId": "={{ $json.id }}"
-      },
-      "id": "d7067ed8-bef7-44a3-8068-9cbe915b1483",
-      "name": "Get Email",
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2.1,
-      "position": [
-        220,
-        -320
-      ],
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iPrbr6qZiWHu93N9",
-          "name": "Gmail account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "assistantId": "asst_usns6lJ8oyA82LlY5kcC3lOh",
-        "text": "=# Documents disponibles via les Outils Questionneur  et Rédacteur de Document\n\n{{ $node[\"Documents\"].json.documentsDisponibles }}\n\n{{ $node[\"message\"].json.message }}",
+        "text": "=# Documents disponibles via les Outils Questionneur et Rédacteur de Document\n\n{{ $node[\"Documents\"].json.documentsDisponibles }}\n\n{{ $node[\"messageddd\"].json.message }}",
         "nativeTools": [
           "code_interpreter",
           "retrieval"
@@ -249,8 +104,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        240,
-        160
+        1420,
+        460
       ],
       "credentials": {
         "openAiApi": {
@@ -260,132 +115,25 @@
       }
     },
     {
-      "parameters": {
-        "name": "redacteur_de_document",
-        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
-        "workflowId": "0T67aHjuqQEnrTN0",
-        "fields": {
-          "values": [
-            {
-              "name": "kin",
-              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "=asst_RMuliVrHho2VxBhfZBG1cnTN"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $node[\"message\"].json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
-            }
-          ]
-        }
-      },
-      "id": "ac3c7c6a-ae32-417e-9f96-e6a9735ba012",
-      "name": "Rédacteur de Document",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "parameters": {},
+      "id": "b135f5e2-682b-46f0-9b75-53859aa818e4",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        120,
-        540
+        720,
+        460
       ]
     },
     {
-      "parameters": {
-        "name": "questionneur_de_documents",
-        "description": "Donne une réponse précise issues du document demandé à partir d'un besoin informationnel.",
-        "workflowId": "ebLHEt0swZVT9tks",
-        "fields": {
-          "values": [
-            {
-              "name": "kin",
-              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "=langchain"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $node[\"message\"].json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
-            }
-          ]
-        }
-      },
-      "id": "d8c7a246-175f-4c3b-9304-027723fd5875",
-      "name": "Questionneur de Documents",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
+      "parameters": {},
+      "id": "d5d8f1e1-a5b6-4c68-bf27-30ed8787fa0b",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
       "position": [
-        -20,
-        540
-      ]
-    },
-    {
-      "parameters": {
-        "name": "scratchpad",
-        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
-        "workflowId": "wTbd0CgnGrumh0qf",
-        "fields": {
-          "values": [
-            {
-              "name": "kin",
-              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "=langchain"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $node[\"message\"].json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
-            }
-          ]
-        }
-      },
-      "id": "0331d419-b764-4999-98b6-74ecf20ebae1",
-      "name": "ScratchPad",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        660,
-        540
+        720,
+        260
       ]
     },
     {
@@ -403,22 +151,18 @@
             {
               "name": "Content-Type",
               "value": "application/json"
-            },
-            {
-              "name": "Bearer",
-              "value": "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"
             }
           ]
         },
         "options": {}
       },
-      "id": "55dfda8c-1333-4e7d-9395-6fcea007b0e6",
+      "id": "9fdc6931-5524-4806-b386-5637f5c84a95",
       "name": "Get Assistant",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        20,
-        160
+        1220,
+        460
       ],
       "credentials": {
         "openAiApi": {
@@ -429,239 +173,176 @@
     },
     {
       "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "kin",
-              "stringValue": "={{ $json.kin }}"
-            },
-            {
-              "name": "=demandeur",
-              "stringValue": "={{ $('Get Email').item.json.From }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "=asst_usns6lJ8oyA82LlY5kcC3lOh"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $json.intentionDUsage }}"
-            },
-            {
-              "name": "demande",
-              "stringValue": "={{ $json.demande }}"
-            },
-            {
-              "name": "message",
-              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $('Get Email').item.json.From }}\n\nLe {{(() => {\n    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };\n    return new Date().toLocaleString('fr-FR', options);\n})(); }}\nDe : {{ $('Get Email').item.json.From }}\nCc : {{ $('Get Email').item.json.cc }}\n\nSujet : {{ $('Get Email').item.json.Subject }}\nSnippet : {{ $('Get Email').item.json.snippet }}"
-            }
-          ]
-        },
-        "options": {}
+        "content": "# ENTREE STANDARD",
+        "height": 640.6189249242677,
+        "width": 536.692184943248
       },
-      "id": "5ed94664-4c54-4a52-b0e1-7c03fe52c814",
-      "name": "message",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
+      "id": "c9c3377d-efc6-40b9-9944-3999cfe2b678",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
       "position": [
-        0,
-        -80
+        600,
+        40
       ]
     },
     {
       "parameters": {
-        "workflowId": "hD7yCDCuhTu3T774"
+        "workflowId": "uM0Ul7juoL7DAqRB"
       },
-      "id": "d0b58f87-7320-4a59-b832-97453ee67915",
-      "name": "Documents",
+      "id": "20add3b4-293f-4cca-b7fc-1682f9ec9072",
+      "name": "message",
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        220,
-        -80
+        960,
+        460
       ]
     },
     {
       "parameters": {
-        "name": "ressources_ia",
-        "description": "Améliore ton prompt (Assistant) à partir d'un problème à résoudre ou demande d'amélioration. Gère les problèmes de performance personnels des Assistants.",
-        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "name": "redacteur_de_document",
+        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
+        "workflowId": "0T67aHjuqQEnrTN0",
+        "responsePropertyName": "message",
         "fields": {
           "values": [
             {
-              "name": "kin",
-              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "=asst_RMuliVrHho2VxBhfZBG1cnTN"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $node[\"message\"].json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
             }
           ]
         }
       },
-      "id": "a58c593b-0318-42e8-b724-d1f8a9ee4d98",
-      "name": "RESSOURCES IA",
+      "id": "f6b40894-0404-4d00-b85f-97857a4e2f0f",
+      "name": "Rédacteur de Document",
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        420,
-        680
+        2000,
+        920
       ]
     },
     {
       "parameters": {
-        "workflowId": "rr8aeSM8QYyY8Po4"
-      },
-      "id": "b424df39-e380-483b-9d0b-735076bd17e6",
-      "name": "Rédacteur d'Email",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        840,
-        160
-      ]
-    },
-    {
-      "parameters": {
+        "name": "questionneur_de_documents",
+        "description": "Donne une réponse précise issue du document demandé à partir d'un besoin informationnel.",
+        "workflowId": "ebLHEt0swZVT9tks",
+        "responsePropertyName": "message",
         "fields": {
           "values": [
-            {
-              "name": "kin",
-              "stringValue": "={{ $node[\"mission\"].json.kin }}"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $node[\"mission\"].json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $node[\"mission\"].json.intentionDUsage }}"
-            },
-            {
-              "name": "demande",
-              "stringValue": "={{ $json.output }}"
-            },
             {
               "name": "message",
-              "stringValue": "=# Contexte\n\n{{ $node[\"mission\"].json.contexte }}\n\n# Intention d'Usage\n\n{{ $node[\"mission\"].json.intentionDUsage }}\n\n# Demande de {{ $node[\"Get Assistant\"].json.name }}\n\n{{ $json.output }}"
-            },
-            {
-              "name": "messageId",
-              "stringValue": "={{ $('Get Email').item.json[\"id\"] }}"
-            },
-            {
-              "name": "to",
-              "stringValue": "={{ $('Get Email').item.json[\"To\"] }}"
-            },
-            {
-              "name": "cc",
-              "stringValue": "={{ $('Get Email').item.json[\"cc\"] }}"
-            },
-            {
-              "name": "from",
-              "stringValue": "={{ $('Get Email').item.json[\"from\"] }}"
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
             }
           ]
-        },
-        "options": {}
+        }
       },
-      "id": "35a4b9ba-fd01-408c-9783-dae9a0b4e62d",
-      "name": "message1",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        600,
-        160
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "j0SCDvxSSQWIWFIO"
-      },
-      "id": "6b88275a-240c-4d7d-b212-b12c74f41943",
-      "name": "Stockage et Envoi du Message",
-      "type": "n8n-nodes-base.executeWorkflow",
+      "id": "1f544201-561f-4d6a-b525-c82df0279e85",
+      "name": "Questionneur de Documents",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        600,
-        -40
+        1860,
+        920
       ]
     },
     {
       "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "responsePropertyName": "message",
         "fields": {
           "values": [
             {
-              "name": "kin",
-              "stringValue": "=kincir_dynergie"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "Sébastien"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "=asst_K25pMgsChtj1PKEenv0pM8LZ"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "asst_K25pMgsChtj1PKEenv0pM8LZ"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "=L’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \\nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\\n\\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\\nLes thématiques de recherche sont :  \\nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \\nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement."
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "=Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR."
-            },
-            {
-              "name": "demande",
-              "stringValue": "={{ $json.chat_input }}{{ $json[\"message\"][\"text\"] }}\n\nConseil :Utilise dans l'ordre :\n1) Questionneur de docs\n2) Checheur\n3) Rédacteur de doc\n4) ScratchPad"
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
             }
           ]
-        },
-        "options": {}
+        }
       },
-      "id": "005047b2-18d6-40c5-a4c4-dfa0c5041d37",
-      "name": "mission",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
+      "id": "e1ff5138-d55a-4809-9e3e-b1988c5a5102",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
       "position": [
-        -220,
-        -80
+        2140,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS STANDARD",
+        "height": 224.32004875594802,
+        "width": 447.22204993824914
+      },
+      "id": "e6b69a0b-af0f-47e0-83f0-bfcfeb3f0271",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1820,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS SPECIFIQUES",
+        "height": 413.4919569863578,
+        "width": 468.47826732357714
+      },
+      "id": "972a31ea-c64a-49f6-8f9a-3dab9f7d7b1a",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# COLLABORATEURS",
+        "height": 224.32004875594802,
+        "width": 355.66820106337036
+      },
+      "id": "a1d40c94-6276-494a-a5dd-0f8a16847574",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        940,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# SORTIE STANDARD",
+        "height": 273.96047817628465,
+        "width": 382.2960085494244
+      },
+      "id": "7620a662-5499-4f4a-bf3b-95666ae5e289",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let message = $node[\"message\"].json;\n\nif (Object.keys($json).length == 1) {\n  message.demande = $json[Object.keys($json)[0]];\n} else {\n  message.demande = JSON.stringify($json);\n}\n\nreturn {\"message\":JSON.stringify(message)};"
+      },
+      "id": "9cb75887-c303-424c-b135-037540f0fe0d",
+      "name": "nouveau message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2380,
+        440
       ]
     }
   ],
@@ -673,9 +354,9 @@
   },
   "staticData": {
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1703069200,
+      "lastTimeChecked": 1703084102,
       "possibleDuplicates": [
-        "18c86d5e1c50f4a6"
+        "18c87b9130373ab0"
       ]
     }
   },
@@ -687,7 +368,7 @@
       "name": "kin"
     }
   ],
-  "triggerCount": 1,
-  "updatedAt": "2023-12-20T10:51:16.000Z",
-  "versionId": "5a9970ac-b445-4360-afff-7edf140461ee"
+  "triggerCount": 2,
+  "updatedAt": "2023-12-20T17:17:50.000Z",
+  "versionId": "695640c8-f5fb-4f82-9e86-f56b37189e98"
 }
