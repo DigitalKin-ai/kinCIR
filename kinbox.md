@@ -176,3 +176,27 @@ Peattie, K. (2010). Green Consumption: Behavior and Norms. *Annual Review of Env
 Pookulangara, S., & Shephard, A. (2013). Slow fashion movement: Understanding consumer perceptions—An exploratory study. *Journal of Retailing and Consumer Services*, 20(2), 200–206.
 
 Schwartz, S. H. (1977). Normative influences on altruism. In L. Berkowitz (Ed.), *Advances in experimental social psychology* (Vol. 10, pp. 221–279). Academic Press.
+
+- User: Continue :)
+
+- Assistant : #### Etat de l'art en Marketing et communication
+
+Le marketing et la communication jouent un rôle déterminant dans la promotion de la mode durable et éthique. Le défi réside dans le développement de campagnes qui non seulement informent mais aussi persuadent et inspirent les consommateurs à adopter des choix éthiques et écologiques dans leurs achats de mode. Bien que de nombreuses techniques de marketing vert et des plateformes numériques soient disponibles pour donner vie aux campagnes de sensibilisation, il existe néanmoins un verrou important : la difficulté d’évaluer l'impact et l'efficacité des campagnes en raison de la saturation publicitaire, de l'influence des pairs et de l'évolution constante des tendances.
+
+Les capacités actuelles dans le domaine comprennent les compétences pour créer du contenu engageant, employer le storytelling pour établir un lien émotionnel avec les consommateurs, et utiliser les réseaux sociaux pour atteindre un large public (Kapferer, 2010; Smith, 2011). Par exemple, l'utilisation de stratégies de marketing de contenu permet de communiquer l'histoire derrière chaque produit durable, créant ainsi de la valeur ajoutée pour le consommateur concerné par les questions éthiques et environnementales (Pullman et al., 2009). Toutefois, ces capacités sont limitées par la question de la saturation de l'information – les consommateurs sont bombardés de messages et il devient de plus en plus difficile d'émerger et de maintenir leur attention. En outre, il est nécessaire de comprendre de quelle manière les consommateurs perçoivent les messages liés à la durabilité et comment ces perceptions influencent leurs comportements d'achat (Belz & Peattie, 2009; Cheah & Phau, 2011).
+
+Il est donc impératif que DurableFashion se penche sur le développement de campagnes marketing innovantes qui sont à la fois informatives et captivantes, et qui permettent de mesurer précisément leur retour sur investissement (ROI) (Smith, 2011). Cela implique une évaluation précise de l'efficacité des messages transmis et la capacité à ajuster rapidement les stratégies de communication pour s'adapter aux retours du marché et aux changements dans les attitudes des consommateurs. Seule une compréhension approfondie et mise à jour des dynamiques de communication peut contribuer à faire progresser la mission de DurableFashion et à attirer efficacement les consommateurs vers des pratiques de mode plus durables et éthiques (Nielson & Mont, 2018).
+
+## Bibliographie
+
+Belz, F.-M., & Peattie, K. (2009). Sustainability Marketing: A Global Perspective. Wiley.
+
+Cheah, I., & Phau, I. (2011). Attitudes towards environmentally friendly products: The influence of ecoliteracy, interpersonal influence and value orientation. *Marketing Intelligence & Planning*, 29(5), 452–472.
+
+Kapferer, J.-N. (2010). The New Strategic Brand Management: Creating and Sustaining Brand Equity Long Term. Kogan Page.
+
+Nielson, K. S., & Mont, O. (2018). The Influence of Consumer Responsibility on the Effectiveness of Environmental Marketing. *Journal of Environmental Psychology*, 58, 11–22.
+
+Pullman, M. E., Maloni, M. J., & Carter, C. R. (2009). Food for thought: Social versus environmental sustainability practices and performance outcomes. *Journal of Supply Chain Management*, 45(4), 38–54.
+
+Smith, A. N. (2011). The role of social media in marketing communication: From buzz to strategies. *Corporate Communications: An International Journal*, 16(3), 202–217.
