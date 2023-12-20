@@ -1,3 +1,15 @@
+# Le 20 décembre 2023 à 19:52:46 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'entreprise DurableFashion opère dans le secteur de la mode durable et éthique. Elle concentre ses activités sur la certification de fabricants conformes à ses standards en matière de durabilité et d'éthique, la promotion et la vente de ces produits à travers des canaux en ligne et des boutiques physiques. Avec pour mission globale de renforcer la part de mode durable dans l'industrie, la société cherche à influencer positivement les comportements de consommation et de production en faveur de pratiques responsables et éthiques. Les trois axes de recherche principaux portent sur l'influence exercée sur les consommateurs pour orienter leurs achats vers des marques responsables, l'influence sur les marques pour qu'elles adoptent des pratiques de production éthiques, et la mesure de l'impact des actions de DurableFashion sur la consommation et l'environnement.
+
+Pour démontrer son éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR), DurableFashion souhaite mettre en avant ces travaux de recherche. L'utilisation des documents cités servira à appuyer la demande de rescrit CIR, reflétant sa quête de promouvoir une mode plus responsable.
+
+Vous me demandez de poursuivre le travail sans autre précision, je présume donc que vous attendez une analyse des documents disponibles pour extraire les informations pertinentes qui démontreraient l'engagement de DurableFashion dans des activités de recherche et développement (R&D) répondant aux critères du CIR. 
+
+Je vais continuer en évaluant les documents mentionnés, en commençant par identifier ceux qui sont les plus susceptibles de contenir des informations pertinentes pour le dossier CIR, tels que le programme de recherche et développement, le document de sortie et les logs des erreurs pouvant montrer la démarche d’amélioration continue de l'entreprise. Ensuite, je m'assurerai que les données collectées sont présentées de manière à souligner la nature innovante des activités et leur contribution à l'avancement des connaissances ou des technologies dans le domaine de la mode durable.
+``
+
 # Le 20 décembre 2023 à 19:52:33 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
