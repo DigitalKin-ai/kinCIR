@@ -68,7 +68,7 @@ Consignes :
 ### Thématique N°n
 Consignes :
 - Le but du texte à rédiger est d'expliquer que l'on va d'abord déterminer le périmètre de l'état de l'art en éliminant du périmètre les travaux qui ne demande pas d'activité de R&D, puis établir un état de l'art détaillé pour les travaux qui demandent des activités de R&D.
-- Le format est un texte de 200 mots maximum
+Avant de plonger dans le cœur des recherches, notre démarche consiste à circonscrire précisément l'état de l'art. Pour ce faire, nous distinguerons d'abord les travaux qui ne nécessitent pas d'efforts de R&D de ceux qui, en revanche, impliquent un investissement en recherche et développement. Ensuite, nous établirons un état de l'art approfondi pour ces derniers, identifiant les avancées scientifiques actuelles et les zones d'ombre qui nécessitent encore des travaux de R&D.
 - Le style du texte est l'écriture scientifique
 - Le ton du texte est détendu et engageant
  
