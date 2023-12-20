@@ -129,28 +129,6 @@
         ]
       ]
     },
-    "IF .md1": {
-      "main": [
-        [
-          {
-            "node": "Aggregate1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Documents1": {
-      "main": [
-        [
-          {
-            "node": "IF .md1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Structured Output Parser": {
       "ai_outputParser": [
         [
@@ -262,42 +240,8 @@
     },
     {
       "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "kin",
-              "stringValue": "=kincir_dynergie"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "={{ $json.demandeur }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $json.demandeurId }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "={{ $json.producteurId }}"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $json.intentionDUsage }}"
-            },
-            {
-              "name": "demande",
-              "stringValue": "={{ $json.query }}"
-            },
-            {
-              "name": "message",
-              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $json.demandeur }}\n\n{{ $json.demande }}"
-            }
-          ]
-        },
+        "mode": "raw",
+        "jsonOutput": "={{JSON.stringify($json)}}",
         "options": {}
       },
       "id": "b1ec19b4-9f93-4c03-8325-bbfd36824c28",
@@ -492,87 +436,6 @@
     },
     {
       "parameters": {
-        "fieldsToAggregate": {
-          "fieldToAggregate": [
-            {
-              "fieldToAggregate": "path"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "fb7c819d-9d90-4d70-b2c5-950568b5a4f7",
-      "name": "Aggregate1",
-      "type": "n8n-nodes-base.aggregate",
-      "typeVersion": 1,
-      "position": [
-        660,
-        720
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $json.name.toLowerCase() }}",
-              "operation": "endsWith",
-              "value2": ".md"
-            },
-            {
-              "value1": "{{ $json.name.toLowerCase() }}",
-              "value2": ".txt"
-            }
-          ]
-        },
-        "combineOperation": "any"
-      },
-      "id": "f02f874f-8621-450b-a382-2851433cda76",
-      "name": "IF .md1",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        420,
-        720
-      ]
-    },
-    {
-      "parameters": {
-        "resource": "file",
-        "operation": "list",
-        "owner": {
-          "__rl": true,
-          "value": "DigitalKin-ai",
-          "mode": "list",
-          "cachedResultName": "DigitalKin-ai",
-          "cachedResultUrl": "https://github.com/DigitalKin-ai"
-        },
-        "repository": {
-          "__rl": true,
-          "value": "kinCIR",
-          "mode": "list",
-          "cachedResultName": "kinCIR",
-          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
-        },
-        "filePath": "="
-      },
-      "id": "87ef1887-2dbc-4afd-983d-5af137f65985",
-      "name": "Get Documents1",
-      "type": "n8n-nodes-base.github",
-      "typeVersion": 1,
-      "position": [
-        180,
-        720
-      ],
-      "credentials": {
-        "githubApi": {
-          "id": "Q3KiSughyw3eRp87",
-          "name": "GitHub account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
         "jsCode": "return {\"json\":$json};"
       },
@@ -600,7 +463,7 @@
     },
     {
       "parameters": {
-        "prompt": "={{ $node[\"message\"].json.message }}\n\n# Liste des documents disponibles\n\n{{ $json.path }}\n\n# Tâche\n\nParmi les documents disponibles, lequel correspond le mieux à la demande ?\n\nRéponds uniquement avec le path du document. Si vraiment aucun document ne correspond, invente un nom de document.",
+        "prompt": "=# Documents disponibles\n\n{{ $node[\"message\"].json.documentsDisponibles }}\n\n# Contexte\n\n{{ $node[\"message\"].json.contexte }}\n\n# Intention d'Usage\n\n{{ $node[\"message\"].json.intentionDUsage }}\n\n# Demande\n\n{{ $node[\"message\"].json[\"demandeurId\"] }} : {{ $node[\"message\"].json[\"demandeur\"] }} :\n``\n{{ $node[\"message\"].json[\"demande\"] }}\n``\n\n# Tâche\n\nParmi les documents disponibles, lequel correspond le mieux à la demande ?\n\nRéponds uniquement avec le path du document. Si vraiment aucun document ne correspond, invente un nom de document.",
         "hasOutputParser": true
       },
       "id": "8a929606-f808-4a02-bb65-ae5681fb4417",
@@ -610,6 +473,19 @@
       "position": [
         480,
         300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# FIX"
+      },
+      "id": "9f2a9b62-1d7b-4bcb-a179-8af1a4f92cc9",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        180
       ]
     }
   ],
@@ -639,12 +515,12 @@
   "tags": [
     {
       "createdAt": "2023-12-17T10:07:55.424Z",
-      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
       "id": "DzuSxffpFOEBRhld",
-      "name": "fonction"
+      "name": "outil"
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-19T23:05:35.000Z",
-  "versionId": "8b405f7d-0d70-40da-8fa1-61cb82bf6d5b"
+  "updatedAt": "2023-12-20T15:27:51.000Z",
+  "versionId": "6a2686b2-3b73-4325-abec-b116de8c90d7"
 }
