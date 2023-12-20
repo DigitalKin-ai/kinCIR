@@ -1,0 +1,614 @@
+{
+  "active": true,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Add Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Documents": {
+      "main": [
+        [
+          {
+            "node": "IF Kin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input 1 Data": {
+      "main": [
+        [
+          {
+            "node": "Return Standardized JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Formatteur de message Kin",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Formatteur de message Kin",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "Add Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stockage de message Humain": {
+      "main": [
+        [
+          {
+            "node": "Input 1 Data",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Stockage de Message Kin": {
+      "main": [
+        [
+          {
+            "node": "Input 1 Data",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Add Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Return Standardized JSON1": {
+      "main": [
+        [
+          {
+            "node": "Formatteur de message Humain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Adapter JSON Humain": {
+      "main": [
+        [
+          {
+            "node": "Return Standardized JSON1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Return Standardized JSON2": {
+      "main": [
+        [
+          {
+            "node": "Formatteur de message Kin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Adapter JSON Kin": {
+      "main": [
+        [
+          {
+            "node": "Return Standardized JSON2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Formatteur de message Humain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inclure Message formatté": {
+      "main": [
+        [
+          {
+            "node": "Input 1 Data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Stockage de message Humain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formatteur de message Humain": {
+      "main": [
+        [
+          {
+            "node": "Inclure Message formatté",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Kin": {
+      "main": [
+        [
+          {
+            "node": "Adapter JSON Kin",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Adapter JSON Humain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formatteur de message Kin": {
+      "main": [
+        [
+          {
+            "node": "Stockage de Message Kin",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Input 1 Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-20T13:40:16.251Z",
+  "id": "moQpTX0H8nd5ZN7Y",
+  "meta": null,
+  "name": "Standardizer de Message de Sortie",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "abc7449f-8c44-489f-8b1b-8822b416f779",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const messageSchema = {\n   \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n   \"title\": \"Schema de Message\",\n   \"type\": \"object\",\n   \"properties\": {\n      \"kin\": {\n         \"type\": \"string\",\n         \"default\": \"kincir_dynergie\",\n         \"description\": \"Identifiant du 'kin' impliqué dans le processus ou l'opération.\"\n      },\n      \"demandeur\": {\n         \"type\": \"string\",\n         \"default\": \"kincir_dynergie\",\n         \"description\": \"Nom du demandeur ou de l'entité demandant l'action ou l'information.\"\n      },\n      \"demandeurId\": {\n         \"type\": \"string\",\n         \"default\": \"asst_PtFkjK3WpkPD5u6ZLc6toZ0q\",\n         \"description\": \"Identifiant unique du demandeur.\"\n      },\n      \"producteurId\": {\n         \"type\": \"string\",\n         \"default\": \"asst_PtFkjK3WpkPD5u6ZLc6toZ0q\",\n         \"description\": \"Identifiant unique du producteur ou de l'entité produisant les données ou l'information.\"\n      },\n      \"contexte\": {\n         \"type\": \"string\",\n         \"default\": \"L’entreprise DurableFashion est spécialisée dans la mode durable et éthique. \\\\nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\\\\n\\\\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\\\\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\\\\nLes thématiques de recherche sont : \\\\nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques. \\\\nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\\\\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.\",\n         \"description\": \"Description du contexte dans lequel les informations sont utilisées ou générées, centrée sur l'entreprise WeDressFair et ses activités.\"\n      },\n      \"intentionDUsage\": {\n         \"type\": \"string\",\n         \"default\": \"Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.\",\n         \"description\": \"Explique l'intention d'utilisation des données, en l'occurrence pour démontrer l'éligibilité au crédit d'impôt recherche.\"\n      },\n      \"demande\": {\n         \"type\": \"string\",\n         \"default\": \"Assesse et continue ton travail.\",\n         \"description\": \"L’entreprise DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE.\\r\\nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\\r\\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\\r\\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\\r\\nLes objectifs de recherche sont :\\r\\nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.\\r\\nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\\r\\nParvenir à montrer l’impact des actions sur la consommation de biens de mode et mesurer cet impact sur l’environnement.\\r\\n\"\n      },\n     \"documentsDisponibles\": {\n         \"type\": \"array\",\n         \"default\":  \n[\n\"ressources-ia-difficultes-des-assistants.md\",\n\"programme-r-et-d-client--document-de-sortie.md\",\n\"process-du-producteur.md\",\n\"process-du-manager.md\",\n\"procedures-d-exceptions.md\",\n\"plan-du-document-de-sortie.md\",\n\"logs-des-erreurs.md\",\n\"historique-des-conversations.md\",\n\"guide.md\",\n\"fonction-d-evaluation-qualite.md\",\n\"feedback-humain.md\",\n\"avancement-de-la-mission.md\"\n],\n         \"description\": \"Liste des documents disponibles pour la mission. Cette liste peut être utilisée pour référencer des ressources pertinentes ou nécessaires.\"\n      }\n   },\n   \"additionalProperties\": false\n};\n\nfunction standardizeJson(json) {\n    // Clone l'objet pour éviter de modifier l'original\n    let standardizedJson = JSON.parse(JSON.stringify(json));\n\n    // Parcourir chaque propriété définie dans le schéma\n    for (let key in messageSchema.properties) {\n        if (messageSchema.properties.hasOwnProperty(key)) {\n            // Si la propriété n'existe pas dans l'objet json, \n            // ou si sa valeur est undefined, appliquer la valeur par défaut\n            if (!standardizedJson.hasOwnProperty(key) || standardizedJson[key] === undefined) {\n                standardizedJson[key] = messageSchema.properties[key].default;\n            }\n        }\n    }\n\n    return standardizedJson;\n}\n\n\nlet json = $json;\nlet standardizedJson = standardizeJson(json);\n\nreturn {\"json\":standardizedJson};"
+      },
+      "id": "2994e133-0fc8-432e-a311-2775d9d842ee",
+      "name": "Return Standardized JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2180,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "hD7yCDCuhTu3T774"
+      },
+      "id": "b08f823a-b565-4f3b-b24b-b8de41d08439",
+      "name": "Add Documents",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        160,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "86fe57f0-52de-4ed5-82cb-58459b8d7ed5",
+      "name": "Input 1 Data",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1960,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "eb987c47-ee3b-4929-a846-c3ba0f35cb90",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        80
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchema": "{\n   \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n   \"title\": \"Schema de Message\",\n   \"type\": \"object\",\n   \"properties\": {\n      \"kin\": {\n         \"type\": \"string\",\n         \"default\": \"kincir_dynergie\",\n         \"description\": \"Identifiant du 'kin' impliqué dans le processus ou l'opération.\"\n      },\n      \"demandeur\": {\n         \"type\": \"string\",\n         \"default\": \"kincir_dynergie\",\n         \"description\": \"Nom du demandeur ou de l'entité demandant l'action ou l'information.\"\n      },\n      \"demandeurId\": {\n         \"type\": \"string\",\n         \"default\": \"asst_PtFkjK3WpkPD5u6ZLc6toZ0q\",\n         \"description\": \"Identifiant unique du demandeur.\"\n      },\n      \"producteurId\": {\n         \"type\": \"string\",\n         \"default\": \"asst_PtFkjK3WpkPD5u6ZLc6toZ0q\",\n         \"description\": \"Identifiant unique du producteur ou de l'entité produisant les données ou l'information.\"\n      },\n      \"contexte\": {\n         \"type\": \"string\",\n         \"default\": \"L’entreprise DurableFashion est spécialisée dans la mode durable et éthique. \\\\nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\\\\n\\\\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\\\\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\\\\nLes thématiques de recherche sont : \\\\nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques. \\\\nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\\\\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.\",\n         \"description\": \"Description du contexte dans lequel les informations sont utilisées ou générées, centrée sur l'entreprise WeDressFair et ses activités.\"\n      },\n      \"intentionDUsage\": {\n         \"type\": \"string\",\n         \"default\": \"Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.\",\n         \"description\": \"Explique l'intention d'utilisation des données, en l'occurrence pour démontrer l'éligibilité au crédit d'impôt recherche.\"\n      },\n      \"demande\": {\n         \"type\": \"string\",\n         \"default\": \"Assesse et continue ton travail.\",\n         \"description\": \"L’entreprise DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE.\\r\\nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\\r\\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\\r\\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\\r\\nLes objectifs de recherche sont :\\r\\nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.\\r\\nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\\r\\nParvenir à montrer l’impact des actions sur la consommation de biens de mode et mesurer cet impact sur l’environnement.\\r\\n\"\n      },\n     \"documentsDisponibles\": {\n         \"type\": \"array\",\n         \"default\":  \n[\n\"ressources-ia-difficultes-des-assistants.md\",\n\"programme-r-et-d-client--document-de-sortie.md\",\n\"process-du-producteur.md\",\n\"process-du-manager.md\",\n\"procedures-d-exceptions.md\",\n\"plan-du-document-de-sortie.md\",\n\"logs-des-erreurs.md\",\n\"historique-des-conversations.md\",\n\"guide.md\",\n\"fonction-d-evaluation-qualite.md\",\n\"feedback-humain.md\",\n\"avancement-de-la-mission.md\"\n],\n         \"description\": \"Liste des documents disponibles pour la mission. Cette liste peut être utilisée pour référencer des ressources pertinentes ou nécessaires.\"\n      }\n   },\n   \"additionalProperties\": false\n}"
+      },
+      "id": "c61bee34-ef7d-4efb-b78f-47b42b6fceba",
+      "name": "Structured Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        100
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "053099aa-d55e-408f-9aff-80f73c62f229",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -80,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## todo : dynamic schema"
+      },
+      "id": "315d1241-e204-4a72-b7c7-1ac035745564",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "zFvWhh3Py5ll45B3"
+      },
+      "id": "2f456c6a-4b4d-4b6b-9326-1b00265fcace",
+      "name": "Stockage de message Humain",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "j0SCDvxSSQWIWFIO"
+      },
+      "id": "d5cb4b5f-f8c0-40af-9c62-91cdab9e5953",
+      "name": "Stockage de Message Kin",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 4
+            }
+          ]
+        }
+      },
+      "id": "3855f9cc-ac13-4e6e-868b-21607c791c13",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -80,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const messageSchema = {\n   \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n   \"title\": \"Schema de Message\",\n   \"type\": \"object\",\n   \"properties\": {\n      \"kin\": {\n         \"type\": \"string\",\n         \"default\": \"kincir_dynergie\",\n         \"description\": \"Identifiant du 'kin' impliqué dans le processus ou l'opération.\"\n      },\n      \"demandeur\": {\n         \"type\": \"string\",\n         \"default\": \"kincir_dynergie\",\n         \"description\": \"Nom du demandeur ou de l'entité demandant l'action ou l'information.\"\n      },\n      \"demandeurId\": {\n         \"type\": \"string\",\n         \"default\": \"asst_PtFkjK3WpkPD5u6ZLc6toZ0q\",\n         \"description\": \"Identifiant unique du demandeur.\"\n      },\n      \"producteurId\": {\n         \"type\": \"string\",\n         \"default\": \"asst_PtFkjK3WpkPD5u6ZLc6toZ0q\",\n         \"description\": \"Identifiant unique du producteur ou de l'entité produisant les données ou l'information.\"\n      },\n      \"contexte\": {\n         \"type\": \"string\",\n         \"default\": \"L’entreprise DurableFashion est spécialisée dans la mode durable et éthique. \\\\nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\\\\n\\\\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\\\\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\\\\nLes thématiques de recherche sont : \\\\nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques. \\\\nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\\\\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.\",\n         \"description\": \"Description du contexte dans lequel les informations sont utilisées ou générées, centrée sur l'entreprise WeDressFair et ses activités.\"\n      },\n      \"intentionDUsage\": {\n         \"type\": \"string\",\n         \"default\": \"Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.\",\n         \"description\": \"Explique l'intention d'utilisation des données, en l'occurrence pour démontrer l'éligibilité au crédit d'impôt recherche.\"\n      },\n      \"demande\": {\n         \"type\": \"string\",\n         \"default\": \"Assesse et continue ton travail.\",\n         \"description\": \"L’entreprise DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE.\\r\\nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\\r\\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\\r\\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\\r\\nLes objectifs de recherche sont :\\r\\nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.\\r\\nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\\r\\nParvenir à montrer l’impact des actions sur la consommation de biens de mode et mesurer cet impact sur l’environnement.\\r\\n\"\n      },\n     \"documentsDisponibles\": {\n         \"type\": \"array\",\n         \"default\":  \n[\n\"ressources-ia-difficultes-des-assistants.md\",\n\"programme-r-et-d-client--document-de-sortie.md\",\n\"process-du-producteur.md\",\n\"process-du-manager.md\",\n\"procedures-d-exceptions.md\",\n\"plan-du-document-de-sortie.md\",\n\"logs-des-erreurs.md\",\n\"historique-des-conversations.md\",\n\"guide.md\",\n\"fonction-d-evaluation-qualite.md\",\n\"feedback-humain.md\",\n\"avancement-de-la-mission.md\"\n],\n         \"description\": \"Liste des documents disponibles pour la mission. Cette liste peut être utilisée pour référencer des ressources pertinentes ou nécessaires.\"\n      }\n   },\n   \"additionalProperties\": false\n};\n\nfunction standardizeJson(json) {\n    // Clone l'objet pour éviter de modifier l'original\n    let standardizedJson = JSON.parse(JSON.stringify(json));\n\n    // Supprimer les propriétés qui ne sont pas définies dans le schéma\n    Object.keys(standardizedJson).forEach(key => {\n        if (!messageSchema.properties.hasOwnProperty(key)) {\n            delete standardizedJson[key];\n        }\n    });\n\n    // Parcourir chaque propriété définie dans le schéma\n    for (let key in messageSchema.properties) {\n        if (messageSchema.properties.hasOwnProperty(key)) {\n            // Si la propriété n'existe pas dans l'objet json, \n            // ou si sa valeur est undefined, appliquer la valeur par défaut\n            if (!standardizedJson.hasOwnProperty(key) || standardizedJson[key] === undefined) {\n                standardizedJson[key] = messageSchema.properties[key].default;\n            }\n        }\n    }\n\n    return standardizedJson;\n}\n\nlet json = $json;\nlet standardizedJson = standardizeJson(json);\n\nreturn {\"json\":standardizedJson};"
+      },
+      "id": "c54859be-0bd8-4684-ae4f-295da8c385f1",
+      "name": "Return Standardized JSON1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Duplicated code\n",
+        "height": 289.64060719985974
+      },
+      "id": "76df586c-53e7-4412-bd0e-bbf72e5b4e89",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        820,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function adaptJson(json) {\n  let standardizedJson = json;  \n\n  if (json.chat_input) {\n    json.demande = json.chat_input;\n    json.demandeur = \"un membre de l'équipe DigitalKin\";\n    json.demandeurId = \"\";\n  }\n  \n  if (json.message && json.message.from) {\n    json.demandeur = json.message.from.username + \" \"+ json.message.from.first_name + \" \"+ json.message.from.last_name;\n    json.demande =  json.message.text;\n  }\n\n    return standardizedJson;\n}\n\nlet json = $json;\nlet standardizedJson = adaptJson(json);\n\nreturn {\"json\":standardizedJson};"
+      },
+      "id": "7562fa03-0a37-4fb9-be5c-cfcdd1e9eb82",
+      "name": "Adapter JSON Humain",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const messageSchema = {\n   \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n   \"title\": \"Schema de Message\",\n   \"type\": \"object\",\n   \"properties\": {\n      \"kin\": {\n         \"type\": \"string\",\n         \"default\": \"kincir_dynergie\",\n         \"description\": \"Identifiant du 'kin' impliqué dans le processus ou l'opération.\"\n      },\n      \"demandeur\": {\n         \"type\": \"string\",\n         \"default\": \"kincir_dynergie\",\n         \"description\": \"Nom du demandeur ou de l'entité demandant l'action ou l'information.\"\n      },\n      \"demandeurId\": {\n         \"type\": \"string\",\n         \"default\": \"asst_PtFkjK3WpkPD5u6ZLc6toZ0q\",\n         \"description\": \"Identifiant unique du demandeur.\"\n      },\n      \"producteurId\": {\n         \"type\": \"string\",\n         \"default\": \"asst_PtFkjK3WpkPD5u6ZLc6toZ0q\",\n         \"description\": \"Identifiant unique du producteur ou de l'entité produisant les données ou l'information.\"\n      },\n      \"contexte\": {\n         \"type\": \"string\",\n         \"default\": \"L’entreprise DurableFashion est spécialisée dans la mode durable et éthique. \\\\nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\\\\n\\\\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\\\\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\\\\nLes thématiques de recherche sont : \\\\nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques. \\\\nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\\\\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.\",\n         \"description\": \"Description du contexte dans lequel les informations sont utilisées ou générées, centrée sur l'entreprise WeDressFair et ses activités.\"\n      },\n      \"intentionDUsage\": {\n         \"type\": \"string\",\n         \"default\": \"Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.\",\n         \"description\": \"Explique l'intention d'utilisation des données, en l'occurrence pour démontrer l'éligibilité au crédit d'impôt recherche.\"\n      },\n      \"demande\": {\n         \"type\": \"string\",\n         \"default\": \"Assesse et continue ton travail.\",\n         \"description\": \"L’entreprise DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE.\\r\\nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\\r\\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\\r\\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\\r\\nLes objectifs de recherche sont :\\r\\nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.\\r\\nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\\r\\nParvenir à montrer l’impact des actions sur la consommation de biens de mode et mesurer cet impact sur l’environnement.\\r\\n\"\n      },\n     \"documentsDisponibles\": {\n         \"type\": \"array\",\n         \"default\":  \n[\n\"ressources-ia-difficultes-des-assistants.md\",\n\"programme-r-et-d-client--document-de-sortie.md\",\n\"process-du-producteur.md\",\n\"process-du-manager.md\",\n\"procedures-d-exceptions.md\",\n\"plan-du-document-de-sortie.md\",\n\"logs-des-erreurs.md\",\n\"historique-des-conversations.md\",\n\"guide.md\",\n\"fonction-d-evaluation-qualite.md\",\n\"feedback-humain.md\",\n\"avancement-de-la-mission.md\"\n],\n         \"description\": \"Liste des documents disponibles pour la mission. Cette liste peut être utilisée pour référencer des ressources pertinentes ou nécessaires.\"\n      }\n   },\n   \"additionalProperties\": false\n};\n\nfunction standardizeJson(json) {\n    // Clone l'objet pour éviter de modifier l'original\n    let standardizedJson = JSON.parse(JSON.stringify(json));\n\n    // Supprimer les propriétés qui ne sont pas définies dans le schéma\n    Object.keys(standardizedJson).forEach(key => {\n        if (!messageSchema.properties.hasOwnProperty(key)) {\n            delete standardizedJson[key];\n        }\n    });\n\n    // Parcourir chaque propriété définie dans le schéma\n    for (let key in messageSchema.properties) {\n        if (messageSchema.properties.hasOwnProperty(key)) {\n            // Si la propriété n'existe pas dans l'objet json, \n            // ou si sa valeur est undefined, appliquer la valeur par défaut\n            if (!standardizedJson.hasOwnProperty(key) || standardizedJson[key] === undefined) {\n                standardizedJson[key] = messageSchema.properties[key].default;\n            }\n        }\n    }\n\n    return standardizedJson;\n}\n\nlet json = $json;\nlet standardizedJson = standardizeJson(json);\n\nreturn {\"json\":standardizedJson};"
+      },
+      "id": "6228e093-b1b9-4b63-bea2-ebbfe346f3fb",
+      "name": "Return Standardized JSON2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Duplicated code\n",
+        "height": 289.64060719985974
+      },
+      "id": "fa10027b-d4ce-4eed-a7ba-fe40de431bd1",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        820,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function adaptJson(json) {\n  let standardizedJson = json;  \n\n  if (json.query) {\n    json.demande = json.query;\n  }\n  \n    return standardizedJson;\n}\n\nfunction isJSON(variable) {\n    if (typeof variable !== \"string\") {\n        return false;\n    }\n    try {\n        JSON.parse(variable);\n        return true;\n    } catch (e) {\n        return false;\n    }\n}\n\nlet json = JSON.parse($json.message);\nif (isJSON(json.message)) {\n  let messageJson = JSON.parse(json.message);\n  \n  // Merge the objects\n  json = { ...json, ...messageJson };\n}\n\nif (json.query) {\n  json.demande = json.query;\n}\n\nlet standardizedJson = adaptJson(json);\n\nreturn {\"json\":standardizedJson};"
+      },
+      "id": "9b0d5afb-3aba-41db-8994-1707660efbc1",
+      "name": "Adapter JSON Kin",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "24a4eb3c-cb63-43ba-a831-05b3a6d6a8f9",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        600
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"Return Standardized JSON1\"].json;\njson.demande = $json.text;\n\nreturn {\"json\":json};"
+      },
+      "id": "a0bb5b05-c33b-4a56-b827-76ed6af3bc79",
+      "name": "Inclure Message formatté",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Improvement : lui donne raccès au feedback passés des humains",
+        "height": 162.17743384709144
+      },
+      "id": "92616749-8c31-43c9-98bc-fec4fa84aaec",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "prompt": "={{ JSON.stringify($json) }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=### Rôle\nLe Formateur de Message travaille en coulisse pour transformer les entrées brèves ou imprécises des utilisateurs en hypothèses claires et structurées sur leurs intentions, évitant ainsi les questions directes pour une interaction plus fluide avec les assistants IA.\n\n### Contexte d'Utilisation\nOpérant principalement lors de communications indirectes ou avec des transcriptions de messages vocaux, ce rôle se focalise sur l'interprétation des messages pour faciliter la compréhension et l'action des IA.\n\n### Proposition de Valeur\nSans interroger l'utilisateur, le Formateur de Message enrichit la requête par une interprétation approfondie, en tenant compte des erreurs potentielles de transcription et des imprécisions, afin d'augmenter la pertinence des réponses de l'IA.\n\n### Instructions de Traitement\n- Extraire et clarifier les intentions potentielles de l'utilisateur sans demander de précisions supplémentaires.\n- Améliorer la qualité des entrées pour offrir une hypothèse bien définie de la requête initiale.\n- Assurer la construction d'une hypothèse de demande complète, même lorsque la communication initiale est brève ou ambiguë.\n\n### Outils Disponibles\nL'accès n'est pas nécessaire aux outils pour ce rôle, puisqu'il s'agit de travailler de manière autonome pour traiter les entrées des utilisateurs.\n\n### Résultats Attendus\nUn énoncé reformulé de manière autonome, claire et précise qui reflète la meilleure interprétation possible de la requête de l'utilisateur, préparé pour le traitement par l'assistant IA. Ce processus assurera une interaction efficace, sans que l'assistant n'ait besoin de poser des questions supplémentaires à l'humain."
+            }
+          ]
+        }
+      },
+      "id": "359376d4-1f0b-4893-9fd8-15c2779fed39",
+      "name": "Formatteur de message Humain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        1120,
+        400
+      ],
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.query }}",
+              "operation": "isNotEmpty"
+            },
+            {
+              "value1": "={{ $json.output }}",
+              "operation": "isNotEmpty"
+            },
+            {
+              "value1": "={{ $json.text }}",
+              "operation": "isNotEmpty"
+            },
+            {
+              "value1": "={{ $json.response }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "03b6f029-dfe8-4b4a-81a7-996a3bc70d16",
+      "name": "IF Kin",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        360,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "prompt": "={{ JSON.stringify($json) }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Rôle du Formateur de Message du Décideur IA\nLe Formateur de Message agit comme un raffineur de requêtes, transformant la demande initiale en entrées structurées (JSON) qui serviront à influencer les décisions et les actions de la sous-unité fonctionnelle selon le modèle d'impact.\n\n# Contexte d'Utilisation\nL'assistant se concentre sur l'amélioration de la spécificité de la demande en fonction de l'intention d'usage et du contexte nécessaire à l'impact désiré. Le but est de s'assurer que chaque demande entre dans les paramètres définis par l'Impact Model et la sous-unité fonctionnelle.\n\n# Proposition de Valeur\nEn enrichissant la requête avec des détails alignés sur l'Impact Model, le Décideur IA garantit des réponses plus pertinentes et des actions plus efficaces en alignant les résultats attendus avec les interventions proposées.\n\n# Instructions de Traitement\n- Identifier clairement l'intention derrière la demande et le contexte de la sous-unité fonctionnelle.\n- Structurer l'information à l'aide de JSON, en tenant compte des paramètres de l'Impact Model pour une transmission optimisée.\n- Formuler les entrées en s'assurant qu'elles sont prêtes à être intégrées dans un processus de prise de décision éclairé et basé sur l'impact.\n\n# Outils Disponibles\n- Les outils externes ne sont pas directement accessibles. Cependant, la structuration de l'entrée et de la sortie en JSON est à ajuster pour assurer une intégration transparente avec les systèmes utilisant l'Impact Model.\n\n# Exemple d'Application du Processus\nEn prenant en compte les aspects fonctionnels, émotionnels et relationnels du contexte d'utilisation, le Décideur IA restructure une demande ambiguë en entrée claire et spécifique qui maximise l'impact positif selon l'Impact Model.\n\n# Résultats Attendus\nUn diagnostic clair de la demande initiale ajusté pour correspondre aux paramètres de l'Impact Model, aboutissant à une proposition de message formaté et prêt à être traité par la sous-unité fonctionnelle.\n\nCe processus renforcé par l'Impact Model assure que le Formateur de Message du Décideur IA reste un outil décisionnel précis, maximisant l'efficacité et l'impact positif de chaque action entreprise."
+            }
+          ]
+        },
+        "hasOutputParser": true
+      },
+      "id": "a7c0dcf0-4ffb-4b3d-9e26-0ba942cea24c",
+      "name": "Formatteur de message Kin",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        1120,
+        -120
+      ],
+      "retryOnFail": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": [
+        0
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2023-12-20T23:00:00.000Z",
+  "versionId": "b36af733-a8df-4fbb-8473-d838a5335acb"
+}
