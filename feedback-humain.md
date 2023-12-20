@@ -1,3 +1,15 @@
+# Le 20 décembre 2023 à 17:55:38 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+DurableFashion, spécialiste de la mode durable et éthique, s'est fixé pour mission de valoriser et commercialiser les produits de fabricants d'articles de mode responsables. En mettant l'accent sur des pratiques durables et éthiques, l’entreprise ambitionne de modifier les habitudes de consommation et de production dans l'industrie de la mode. À cet effet, elle se concentre sur trois axes de recherche principaux :
+
+1. Inciter les consommateurs à privilégier l'achat de vêtements issus de marques engagées dans une démarche responsable et éthique.
+2. Encourager les marques de mode à adopter et pérenniser des méthodes de production écoresponsables et éthiques.
+3. Évaluer et démontrer l'impact des initiatives prises par l'entreprise sur les tendances de consommation en mode durable, ainsi que leur répercussion sur l'environnement.
+
+Ces informations sont collectées par DigitalKin dans le but de soutenir la demande d'éligibilité de DurableFashion au dispositif Crédit Impôt Recherche (CIR), en justifiant l'engagement de l'entreprise dans des travaux de recherche significatifs en lien avec la mode durable.
+``
+
 # Le 20 décembre 2023 à 17:54:16 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
