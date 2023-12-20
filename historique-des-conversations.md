@@ -1,3 +1,9 @@
+# Le 20 décembre 2023 à 15:57:36 : Message de  asst_PtFkjK3WpkPD5u6ZLc6toZ0q - kincir_dynergie
+
+``
+architecture système complexe
+``
+
 # Le 20 décembre 2023 à 15:57:13 : Message de  asst_PtFkjK3WpkPD5u6ZLc6toZ0q - kincir_dynergie
 
 ``
