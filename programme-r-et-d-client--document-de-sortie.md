@@ -42,9 +42,16 @@ Sur ce fondement, l'entreprise WeDressFair s'inscrit dans un contexte où la dur
 # Présentation du programme de R&D
 
 Ce dossier présente le programme de R&D de la société, dans le but d'obtenir un avis préalable de l'administration sur l'éligibilité des travaux au dispositif CIR.
-Ce dossier présente le programme de R&D de la société WeDressFair, spécialisée dans la mode durable et éthique, dans le but d'obtenir un avis préalable de l'administration sur l'éligibilité des travaux au dispositif CIR.
+```
+Ce dossier présente le programme de R&D de l'entreprise WeDressFair, dans le but d'obtenir un avis préalable de l'administration sur l'éligibilité des travaux au dispositif CIR.
 
 ## Contexte scientifique et économique
+
+Nous opérons dans un contexte où la sensibilisation aux enjeux de durabilité est plus prononcée que jamais, situant ainsi WeDressFair au coeur des efforts pour une mode plus responsable. Pionnière dans l'identification et la certification de fabricants d’articles de mode durable et éthique, notre entreprise promeut et commercialise ces produits par le biais de canaux numériques et de points de vente physiques. Ce faisant, nous cherchons à transformer les habitudes de consommation et à encourager les marques à adopter des pratiques éthiques.
+
+Le contexte économique actuel révèle un intérêt croissant pour une consommation plus consciente, positionnant l'entreprise à l'avant-garde de l'innovation en termes de mode durable. WeDressFair s'engage donc à augmenter la part de mode durable et éthique sur le marché, tout en surmontant les défis liés à la modification des comportements d'achat et des méthodes de production. Notre principal défi de recherche est de déterminer comment influencer la consommation et la production d'articles de mode responsable et éthique de manière significative et mesurable.
+```
+
 
 Nous vivons dans un époque où la consommation responsable gagne en importance, et au sein de ce mouvement global, WeDressFair se distingue en tant que leader de la mode durable et éthique. Notre activité est axée sur l'identification et la certification de fabricants qui produisent selon des critères stricts de durabilité et d'éthique, la mise en avant des articles qu'ils produisent pour leurs qualités responsables, et la commercialisation de ces biens par le biais de plateformes en ligne ainsi que de boutiques physiques.
 
