@@ -205,6 +205,50 @@
           }
         ]
       ]
+    },
+    "CHERCHEUR SCIENTIFIQUE": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de Documents": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur de Document": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2023-12-16T09:07:47.697Z",
@@ -487,10 +531,9 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        800,
+        480,
         760
-      ],
-      "disabled": true
+      ]
     },
     {
       "parameters": {
@@ -632,6 +675,178 @@
         440,
         300
       ]
+    },
+    {
+      "parameters": {
+        "name": "chercheur_scientifique",
+        "description": "Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
+            },
+            {
+              "name": "demandeur",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "=asst_RMuliVrHho2VxBhfZBG1cnTN"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $node[\"message\"].json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "941c1a7d-8331-42ae-8f89-3ea1708f1101",
+      "name": "CHERCHEUR SCIENTIFIQUE",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        460,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "name": "redacteur_de_document",
+        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
+        "workflowId": "0T67aHjuqQEnrTN0",
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
+            },
+            {
+              "name": "demandeur",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "=asst_RMuliVrHho2VxBhfZBG1cnTN"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $node[\"message\"].json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "983ae509-e51c-4b30-ab6c-936befac58b6",
+      "name": "Rédacteur de Document",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        740,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_documents",
+        "description": "Donne une réponse précise issues du document demandé à partir d'un besoin informationnel.",
+        "workflowId": "ebLHEt0swZVT9tks",
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
+            },
+            {
+              "name": "demandeur",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "=asst_RMuliVrHho2VxBhfZBG1cnTN"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $node[\"message\"].json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "ffdd007a-82c6-4dcf-b4d9-e056aef67667",
+      "name": "Questionneur de Documents",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        600,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
+            },
+            {
+              "name": "demandeur",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $node[\"message\"].json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
+            }
+          ]
+        }
+      },
+      "id": "7aefe8af-ac1a-4bea-9d69-0c74ba182c29",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        880,
+        940
+      ]
     }
   ],
   "pinData": {
@@ -664,6 +879,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-19T22:25:16.000Z",
-  "versionId": "0b1454b6-525f-425e-b890-5fe9aa2efc1e"
+  "updatedAt": "2023-12-20T10:22:38.000Z",
+  "versionId": "4233b7cd-8e9c-424d-83bc-33c4eacdf0a2"
 }
