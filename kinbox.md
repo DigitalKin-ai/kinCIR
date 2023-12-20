@@ -35,3 +35,76 @@ Cependant, atteindre cet objectif est loin d'être simple. Les obstacles à la r
 Malgré ces obstacles, plusieurs initiatives existent déjà dans ce domaine. Des labels de certification tels que Fair Trade et GOTS (Global Organic Textile Standard) ont été créés pour garantir la conformité des produits à certaines normes éthiques et écologiques. De même, de nombreuses marques émergentes se focalisent exclusivement sur la mode durable et tentent de positionner la responsabilité sociale et environnementale au cœur de leur modèle d'affaires.
 
 Les efforts de DurableFashion, visant à influencer la consommation et la production en faveur d'une mode plus responsable, sont donc particulièrement pertinents et viennent compléter ces initiatives existantes. Il est à espérer que le programme de R&D de l'entreprise contribuera à débloquer de nouvelles voies pour une mode qui ne sacrifie ni l'avenir de notre planète ni l'équité sociale, et qu'il pourra inspirer et encourager d'autres acteurs du domaine à suivre cette direction.
+
+- User: Continue :)
+
+- Assistant : ## Présentation des thématiques de recherche
+
+### Thématique de Recherche 1 : Transparence de la Chaîne d'Approvisionnement
+OBJECTIFS DE RECHERCHE : Développer un système permettant de tracer de manière fiable et transparente toute la chaîne d'approvisionnement des articles de mode, depuis la matière première jusqu'au produit fini.
+QUESTIONS DE RECHERCHE :
+- Comment peut-on assurer la traçabilité complète des matériaux et des pratiques utilisées dans la production de mode durable et éthique ?
+- De quelle manière la technologie peut-elle contribuer à améliorer la transparence et l'authenticité des informations transmises aux consommateurs ?
+
+DOMAINES SCIENTIFIQUES MOBILISÉS :
+- Systèmes d'information : pour l'intégration et l'analyse des données à travers la chaîne d'approvisionnement.
+- Technologies blockchain : pour le développement d'une plateforme sécurisée et inviolable de suivi.
+- Sciences sociales et comportementales : pour comprendre l'impact de la transparence sur les choix des consommateurs.
+
+### Thématique de Recherche 2 : Matériaux Innovants et Écoresponsables
+OBJECTIFS DE RECHERCHE : Identifier et valoriser des matériaux de substitution durables pour une production de mode moins polluante et plus éthique.
+QUESTIONS DE RECHERCHE :
+- Quels nouveaux matériaux durables peuvent remplacer ceux actuellement utilisés et considérés comme nocifs pour l'environnement ?
+- Comment ces matériaux innovants peuvent-ils être intégrés dans les processus de production existants ?
+
+DOMAINES SCIENTIFIQUES MOBILISÉS :
+- Chimie des matériaux : pour la création et l'étude de nouveaux composés.
+- Ingénierie textile : pour l'intégration de ces matériaux dans le processus de fabrication des articles de mode.
+- Écologie industrielle : pour évaluer l'impact environnemental des nouveaux matériaux et méthodes de production.
+
+### Thématique de Recherche 3 : Influence des Consommateurs
+OBJECTIFS DE RECHERCHE : Comprendre et encourager les comportements d'achat en faveur de la mode éthique et responsable.
+QUESTIONS DE RECHERCHE :
+- Quels facteurs influencent le plus les décisions d'achat en matière de mode durable ?
+- Comment les initiatives d'information et de sensibilisation peuvent-elles modifier les habitudes de consommation ?
+
+DOMAINES SCIENTIFIQUES MOBILISÉS :
+- Psychologie du consommateur : pour analyser les motivations et résistances dans les choix d'achat.
+- Marketing et communication : pour élaborer des campagnes efficaces en faveur de la mode durable.
+- Économie comportementale : pour comprendre l'effet des incitations sur les décisions d'achat.
+
+Ces trois thématiques de recherche sont essentielles pour atteindre les objectifs de DurableFashion, chacune mobilisant des champs d'expertise variés et contribuant à un aspect crucial du changement souhaité dans l'industrie de la mode.
+## État de l'art
+
+### Etat de l'art sur la thématique Transparence de la Chaîne d'Approvisionnement
+
+|                               | Thématique : Transparence de la Chaîne d'Approvisionnement | Besoin de R&D ? |
+|-------------------------------|------------------------------------------------------------|-----------------|
+| **Systèmes d'information**    | [APPORTS ATTENDUS] Intégrer et analyser les flux de données de la chaîne logistique pour assurer une transparence totale. [IMPORTANCE] Fondamental pour la crédibilité et l'adoption de la mode durable par les consommateurs. [EXISTANTS] Systèmes ERP, bases de données dédiées, outils d'analyse de données. [VERROUS] Interopérabilité entre différents acteurs et standardisation des données. [STATUS] Bloquant. | Besoin R&D |
+| **Technologies blockchain**   | [APPORTS ATTENDUS] Création d'une plateforme de suivi sécurisée et inviolable pour certifier l'authenticité des produits. [IMPORTANCE] Hautement stratégique pour une transparence irréprochable. [EXISTANTS] Protocoles de blockchain existants, smart contracts, outils cryptographiques. [VERROUS] Adaptation aux spécificités de la chaîne d'approvisionnement de la mode, éducation et acceptation du marché. [STATUS] Bloquant. | Besoin R&D |
+| **Sciences sociales et comportementales** | [APPORTS ATTENDUS] Comprendre l'influence de la transparence sur les décisions d'achat des consommateurs. [IMPORTANCE] Crucial pour la mise en œuvre des stratégies de communication. [EXISTANTS] Modèles de comportement du consommateur, études sur la réputation des marques, techniques d'enquête et d'analyse. [VERROUS] Manque de données spécifiques à la mode durable, difficulté à quantifier l'impact de la transparence. [STATUS] Bloquant. | Besoin R&D |
+
+### Etat de l'art sur la thématique Matériaux Innovants et Écoresponsables
+
+|                               | Thématique : Matériaux Innovants et Écoresponsables | Besoin de R&D ? |
+|-------------------------------|-----------------------------------------------------|-----------------|
+| **Chimie des matériaux**      | [APPORTS ATTENDUS] Développement de nouveaux composés durables et performants pour l'industrie de la mode. [IMPORTANCE] Essentiel pour une substitution efficace et respectueuse de l'environnement. [EXISTANTS] Recherche sur les biopolymères, matériaux recyclés, composites à faible empreinte écologique. [VERROUS] Scalabilité, coûts de production et intégration dans les processus existants. [STATUS] Bloquant. | Besoin R&D |
+| **Ingénierie textile**        | [APPORTS ATTENDUS] Adaptation des processus de fabrication à l'utilisation de nouveaux matériaux durables. [IMPORTANCE] Nécessaire pour l'implémentation pratique des innovations matérielles. [EXISTANTS] Technologies de tissage et de traitement des fibres, protocoles de test de durabilité. [VERROUS] Manque de standards, besoin de formation, résistance au changement dans l'industrie. [STATUS] Bloquant. | Besoin R&D |
+| **Écologie industrielle**     | [APPORTS ATTENDUS] Evaluation de l'impact environnemental des matériaux et méthodes de production proposés. [IMPORTANCE] Indispensable pour garantir une réelle durabilité des innovations. [EXISTANTS] Méthodologies d'ACV (Analyse du Cycle de Vie), indicateurs de durabilité, benchmarks environnementaux. [VERROUS] Complexité des évaluations multicritères, manque de données de long terme. [STATUS] Bloquant. | Besoin R&D |
+
+### Etat de l'art sur la thématique Influence des Consommateurs
+
+|                               | Thématique : Influence des Consommateurs | Besoin de R&D ? |
+|-------------------------------|------------------------------------------|-----------------|
+| **Psychologie du consommateur** | [APPORTS ATTENDUS] Analyses approfondies des motivations et résistances des consommateurs envers la mode durable. [IMPORTANCE] Déterminant pour l'élaboration de stratégies d'influence efficaces. [EXISTANTS] Théories psychologiques du comportement d'achat, études démographiques, analyses des tendances. [VERROUS] Manque d'insights spécifiques liés à la durabilité dans la mode, défis liés aux biais cognitifs. [STATUS] Bloquant. | Besoin R&D |
+| **Marketing et communication**   | [APPORTS ATTENDUS] Outils et campagnes adaptés pour promouvoir la mode durable. [IMPORTANCE] Fondamental pour l'adoption des pratiques durables par les consommateurs. [EXISTANTS] Stratégies de marketing vert, plateformes de communication digitale, campagnes de sensibilisation. [VERROUS] Efficacité des messages durables, saturation de l'information, mesure du ROI. [STATUS] Bloquant. | Besoin R&D |
+| **Économie comportementale**    | [APPORTS ATTENDUS] Compréhension des effets des incitations économiques sur les choix d'achat durables. [IMPORTANCE] Capitale pour le design de politiques incitatives pertinentes. [EXISTANTS] Modèles d'incitation et de nudge, pricing éthique, études de cas. [VERROUS] Adaptation des modèles aux spécificités de la mode durable, manque de données longitudinales. [STATUS] Bloquant. | Besoin R&D |
+#### Etat de l'art en Systèmes d'information
+
+L'industrie de la mode durable et éthique nécessite une transparence totale de la chaîne d'approvisionnement pour garantir aux consommateurs l'authenticité des produits qu'ils achètent. Cette transparence peut être atteinte grâce aux systèmes d'information qui jouent un rôle critique dans l'intégration et l'analyse des données tout au long de la chaîne logistique. Les systèmes ERP (Enterprise Resource Planning) existants, par exemple, peuvent fournir des informations sur la trace des matières premières et des produits finis, mais ils présentent des défis majeurs en termes d'interopérabilité entre divers acteurs de la chaîne d'approvisionnement et de standardisation des données. De plus, en ce qui concerne la collecte, le stockage et l'analyse de grandes quantités de données, il est essentiel que ces systèmes soient améliorés pour permettre une meilleure transparence.
+
+Il existe également des outils d'analyse de données avancés qui sont capables de traiter des données hétérogènes et de les présenter sous une forme compréhensible par les utilisateurs finaux. Cependant, le verrou principal réside dans la capacité à collecter des données précises et fiables tout au long de la chaîne logistique dans un format standardisé, ce qui est souvent compliqué par la diversité des acteurs et des pratiques. Ainsi, malgré le fait que les systèmes d'information et les technologies associées comme la RFID (identification par radiofréquence) et les bases de données dédiées constituent un champ d'étude bien développé, leur application pratique à l'industrie de la mode durable est entravée par ces verrous.
+
+Nous reconnaissons que pour relever ces défis et faire avancer la thématique de la transparence de la chaîne d'approvisionnement, il est indispensable de mener des travaux de recherche axés sur le développement de normes ouvertes et interopérables pour l'échange d'informations entre différentes entreprises et plateformes. Cela nécessite une approche multidisciplinaire qui intègre à la fois la technologie et les pratiques organisationnelles pour faciliter le suivi transparent des produits tout au long de la chaîne logistique. En outre, des études comportementales sur la manière dont la transparence affecte les décisions des consommateurs peuvent orienter le développement de systèmes d'information qui non seulement fournissent l'information nécessaire, mais la présentent également d'une manière qui influence les habitudes d'achat de manière positive (Beth et al., 2018; Jones et al., 2019).
+
+La capacité de DurableFashion à influencer de manière significative la consommation et la production d'articles de mode responsable et éthique dépend donc crucialement de l'avancement des travaux de recherche et de développement dans le domaine des systèmes d'information. Une meilleure compréhension de la façon dont ces systèmes peuvent être adaptés aux besoins spécifiques de la mode durable et éthique, ainsi que la mise en place de normes appropriées, sont deux éléments clés pour l'atteinte des objectifs de l'entreprise en matière de mode durable (Susan et al., 2021).
