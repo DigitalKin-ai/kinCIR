@@ -1,0 +1,246 @@
+{
+  "active": false,
+  "connections": {
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF .md": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Documents": {
+      "main": [
+        [
+          {
+            "node": "IF .md",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Get Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-19T18:16:44.912Z",
+  "id": "hD7yCDCuhTu3T774",
+  "meta": null,
+  "name": "Ajouteur des Documents Disponibles",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Ajouteur des Documents Disponibles",
+        "height": 428.23515993933074,
+        "width": 548.1198073088228
+      },
+      "id": "ff5fc4a6-bc13-4dac-a182-919fac0980e6",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -460,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let message = $node[\"Execute Workflow Trigger\"].json;\n\nmessage.documentsDisponibles = $json.documentsDisponibles;\n\nreturn {\"json\":message};"
+      },
+      "id": "bf9d693e-f70e-4440-8a62-6d3e9d8f606b",
+      "name": "Reponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        420,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "path",
+              "renameField": true,
+              "outputFieldName": "documentsDisponibles"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e7a7e59b-eea4-4363-8253-35c03f11604d",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.name.toLowerCase() }}",
+              "operation": "endsWith",
+              "value2": ".md"
+            },
+            {
+              "value1": "{{ $json.name.toLowerCase() }}",
+              "value2": ".txt"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "b0a9f42f-2559-4f9e-a074-c4424a416541",
+      "name": "IF .md",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## TODO : Access en fonction du demandeur\n"
+      },
+      "id": "e764e539-47e5-4823-82a5-f74115854ca8",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "list",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "="
+      },
+      "id": "268fb12b-283f-476a-89e4-5b7a270a4dbe",
+      "name": "Get Documents",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        300
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "content": "## TODO : CACHING\n",
+        "height": 363.23751893489367
+      },
+      "id": "daaf75f0-3b49-4857-a48b-fd521bfb9e71",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        256.76248106510633
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f0439fd4-8d6b-41d4-8417-6e3875f74449",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        480
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "29114202-fe56-419b-bd4d-b10ab51f4a45",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        300
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-20T14:01:50.000Z",
+  "versionId": "294fe87f-f229-4be1-bc4e-59dda0819185"
+}
