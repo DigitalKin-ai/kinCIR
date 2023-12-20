@@ -1,3 +1,11 @@
+# Le 20 décembre 2023 à 19:52:33 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'entreprise DurableFashion, spécialisée dans la mode durable et éthique, recherche à démontrer son éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) pour des travaux centrés sur l'influence de la consommation et de la production de vêtements responsables et éthiques. L'entreprise souhaite souligner et mesurer l'impact de ses activités sur la consommation de mode durable et sur l'environnement.
+
+Je comprends donc que ma mission consiste à poursuivre l'évaluation de la documentation disponible et à contribuer à la préparation des éléments nécessaires pour le rescrit CIR, en se concentrant sur l'aspect recherche et développement de DurableFashion. Il faut détailler les démarches de recherche, les processus impliqués et l'impact environnemental des activités, afin de soutenir la candidature de l'entreprise au dispositif CIR.
+``
+
 # Le 20 décembre 2023 à 19:25:54 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
