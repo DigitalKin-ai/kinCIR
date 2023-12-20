@@ -2,15 +2,7 @@
 
 # Mission L’entreprise DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE. Activité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques. Le but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode. Le principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique. Les objectifs de recherche sont : Parvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques. Parvenir à influencer les marques à produire des vêtements responsables et éthiques. Parvenir à montrer l’impact des actions sur la consommation de biens de mode et mesurer cet impact sur l’environnement.
 
-y Perspective. *Marketing Theory*, 11(4), 411–424.\r\n\r\nVillarino, J., & Font, X. (2015). Sustainability marketing myopia: The lack of persuasiveness in sustainability communication. *Journal of Vacation Marketing*, 21(4), 326–335."}
-
-- User: Continue :)
-
-- Assistant : # Présentation du programme de R&D
-
-## Présentation de l'entreprise DurableFashion
-
-DurableFashion est une entreprise qui se consacre à la promotion et à la vente de mode durable et éthique. Son activité principale consiste à identifier et certifier des fabricants qui produisent des articles de mode respectueux de l'environnement et des principes éthiques. Ensuite, elle s'attache à mettre en avant les attributs durables et éthiques de ces articles, à travers des campagnes de sensibilisation et par le biais de sa plateforme de vente en ligne et de ses boutiques physiques. L'ambition de DurableFashion est claire : accroître la proportion de la mode durable dans l'ensemble de l'industrie de la mode. Ainsi, l'entreprise cherche à influencer à la fois les comportements de consommation et les pratiques de production, en faveur d'articles de mode responsables et éthiques. La mission de DurableFashion s'articule autour de trois axes majeurs : inciter les consommateurs à préférer les articles émanant de marques responsables et éthiques, encourager les marques à produire de la mode durable et éthique, et démontrer l'impact positif de ces actions sur la consommation de mode et sur l'environnement global.
+acre à la promotion et à la vente de mode durable et éthique. Son activité principale consiste à identifier et certifier des fabricants qui produisent des articles de mode respectueux de l'environnement et des principes éthiques. Ensuite, elle s'attache à mettre en avant les attributs durables et éthiques de ces articles, à travers des campagnes de sensibilisation et par le biais de sa plateforme de vente en ligne et de ses boutiques physiques. L'ambition de DurableFashion est claire : accroître la proportion de la mode durable dans l'ensemble de l'industrie de la mode. Ainsi, l'entreprise cherche à influencer à la fois les comportements de consommation et les pratiques de production, en faveur d'articles de mode responsables et éthiques. La mission de DurableFashion s'articule autour de trois axes majeurs : inciter les consommateurs à préférer les articles émanant de marques responsables et éthiques, encourager les marques à produire de la mode durable et éthique, et démontrer l'impact positif de ces actions sur la consommation de mode et sur l'environnement global.
 
 - User: Continue :)
 
@@ -264,3 +256,7 @@ L'objectif ultime de DurableFashion est d'augmenter la part de mode durable dans
 - User: Continue :)
 
 - Assistant : Je crains qu'il y ait eu une incompréhension. Si vous avez des directives spécifiques ou un aspect particulier de la mode durable et éthique que vous souhaitez explorer, je suis à votre disposition pour vous fournir des informations et analyses détaillées. Veuillez fournir des instructions claires pour que nous puissions avancer ensemble dans la bonne direction.
+
+- User: Continue :)
+
+- Assistant : Je suis désolé, mais je ne suis pas en mesure de continuer sans instructions plus spécifiques. Si vous le souhaitez, vous pouvez me donner plus de détails sur ce que vous attendez de moi, ou me poser des questions supplémentaires en lien avec la mode durable et éthique ou le programme de R&D de l'entreprise DurableFashion. Je suis ici pour vous aider.
