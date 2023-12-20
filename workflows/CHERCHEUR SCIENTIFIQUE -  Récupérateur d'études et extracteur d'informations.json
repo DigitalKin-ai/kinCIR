@@ -1,22 +1,22 @@
 {
   "active": false,
   "connections": {
-    "Execute Workflow Trigger": {
+    "Get Assistant": {
       "main": [
         [
           {
-            "node": "mission",
+            "node": "Chercheur Scientifique",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "When clicking \"Execute Workflow\"": {
+    "Execute Workflow Trigger": {
       "main": [
         [
           {
-            "node": "mission",
+            "node": "message",
             "type": "main",
             "index": 0
           }
@@ -27,29 +27,7 @@
       "main": [
         [
           {
-            "node": "mission",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "RESSOURCES IA": {
-      "ai_tool": [
-        [
-          {
-            "node": "Chercheur Scientifique",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Chercheur Scientifique": {
-      "main": [
-        [
-          {
-            "node": "Reponse",
+            "node": "message",
             "type": "main",
             "index": 0
           }
@@ -67,12 +45,12 @@
         ]
       ]
     },
-    "Get Assistant": {
-      "main": [
+    "Acquéreur de Citations": {
+      "ai_tool": [
         [
           {
             "node": "Chercheur Scientifique",
-            "type": "main",
+            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -89,7 +67,7 @@
         ]
       ]
     },
-    "Acquéreur de Citations": {
+    "Questionneur de Documents": {
       "ai_tool": [
         [
           {
@@ -100,11 +78,33 @@
         ]
       ]
     },
-    "mission": {
+    "Rédacteur de Document": {
+      "ai_tool": [
+        [
+          {
+            "node": "Chercheur Scientifique",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad": {
+      "ai_tool": [
+        [
+          {
+            "node": "Chercheur Scientifique",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chercheur Scientifique": {
       "main": [
         [
           {
-            "node": "message",
+            "node": "nouveau message",
             "type": "main",
             "index": 0
           }
@@ -118,71 +118,9 @@
   "name": "CHERCHEUR SCIENTIFIQUE -  Récupérateur d'études et extracteur d'informations",
   "nodes": [
     {
-      "parameters": {},
-      "id": "cb4a8070-4773-4355-a116-c9954f8cd12c",
-      "name": "Execute Workflow Trigger",
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "typeVersion": 1,
-      "position": [
-        1440,
-        240
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "return {\"json\":{\"response\": $node[\"Chercheur Scientifique\"].json.output}};"
-      },
-      "id": "850d8625-af1c-4dd8-a8fa-600014b4caeb",
-      "name": "Reponse",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2860,
-        260
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "3b7793c9-18e0-49f9-a0d5-9b33c63340fb",
-      "name": "When clicking \"Execute Workflow\"",
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        1440,
-        460
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "2fbfb86f-996f-412c-beb1-46f565a433df",
-      "name": "On new manual Chat Message",
-      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
-      "typeVersion": 1.1,
-      "position": [
-        1440,
-        40
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## CHERCHEUR SCIENTIFIQUE: En tant qu'assistant GPT avec accès à une large base de données, mon objectif est de fournir des réponses sourcées et détaillées aux demandes d'information des utilisateurs.",
-        "height": 443.0545261129006,
-        "width": 548.1198073088228
-      },
-      "id": "eba90136-3881-4fb9-8cf2-fb15bc01d9c6",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        1760,
-        -220
-      ]
-    },
-    {
       "parameters": {
         "assistantId": "asst_hNyr1QuF0nptyuRJJAiOa1gV",
-        "text": "={{ $node[\"message\"].json.message }}",
+        "text": "=# Documents disponibles\n\n{{ $node[\"message\"].json.documentsDisponibles }}\n\n# Contexte\n\n{{ $node[\"message\"].json.contexte }}\n\n# Intention d'Usage\n\n{{ $node[\"message\"].json.intentionDUsage }}\n\n# Demande\n\n{{ $node[\"message\"].json[\"demandeurId\"] }} : {{ $node[\"message\"].json[\"demandeur\"] }} :\n``\n{{ $node[\"message\"].json[\"demande\"] }}\n``",
         "nativeTools": [
           "code_interpreter",
           "retrieval"
@@ -194,8 +132,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        2480,
-        260
+        2960,
+        140
       ],
       "credentials": {
         "openAiApi": {
@@ -206,88 +144,7 @@
     },
     {
       "parameters": {
-        "name": "ressources_ia",
-        "description": "=Améliore ton prompt (Assistant) à partir d'un problème à résoudre ou demande d'amélioration. Gère les problèmes de performance personnels des Assistants.",
-        "workflowId": "imN4HxXd5zhpJoyV",
-        "fields": {
-          "values": [
-            {
-              "name": "kinName",
-              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
-            },
-            {
-              "name": "assistantId",
-              "stringValue": "asst_L05RD7upJZbxUfZ06MPISYv5"
-            }
-          ]
-        }
-      },
-      "id": "66af0df8-3be3-4053-bec2-7d07f3f2a65b",
-      "name": "RESSOURCES IA",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        2040,
-        720
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "kin",
-              "stringValue": "={{ $json.kin }}"
-            },
-            {
-              "name": "=demandeur",
-              "stringValue": "={{ $json.demandeur }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $json.demandeurId }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "={{ $json.producteurId }}"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $json.intentionDUsage }}"
-            },
-            {
-              "name": "demande",
-              "stringValue": "={{ $json.demande }}"
-            },
-            {
-              "name": "message",
-              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $json.demandeur }}\n\n{{ $json.demande }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "bbbf5323-73c3-4b8b-b76c-52ae6c9ef11b",
-      "name": "message",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        2020,
-        260
-      ]
-    },
-    {
-      "parameters": {
-        "url": "=https://api.openai.com/v1/assistants/{{ $('mission').item.json[\"producteurId\"] }}",
+        "url": "=https://api.openai.com/v1/assistants/{{ $('message').item.json[\"producteurId\"] }}",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "openAiApi",
         "sendHeaders": true,
@@ -305,13 +162,13 @@
         },
         "options": {}
       },
-      "id": "63a5e0fa-c739-4316-8b71-3e5e1753f050",
+      "id": "a822871b-6fcb-438c-9adc-88d780ff949f",
       "name": "Get Assistant",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        2240,
-        260
+        2700,
+        135
       ],
       "credentials": {
         "openAiApi": {
@@ -321,46 +178,164 @@
       }
     },
     {
+      "parameters": {},
+      "id": "e4cca7a1-261b-41d8-991e-e322fe0d0560",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        2220,
+        135
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d97e6e5b-f91c-4177-a045-de03fac085e3",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        2220,
+        -65
+      ]
+    },
+    {
       "parameters": {
-        "name": "questionneur_d_etudes",
-        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
-        "workflowId": "yQ79P9nuVKhkwZpD",
+        "content": "# ENTREE STANDARD",
+        "height": 536.060150033849,
+        "width": 536.692184943248
+      },
+      "id": "99630865-7231-4a3a-bcab-afcd13436bed",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2100,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "uM0Ul7juoL7DAqRB"
+      },
+      "id": "a4c1d32c-19f5-4e57-8b12-36accef0e5d0",
+      "name": "message",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2460,
+        135
+      ]
+    },
+    {
+      "parameters": {
+        "name": "redacteur_de_document",
+        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
+        "workflowId": "0T67aHjuqQEnrTN0",
+        "responsePropertyName": "=message",
         "fields": {
           "values": [
             {
-              "name": "kin",
-              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "=asst_RMuliVrHho2VxBhfZBG1cnTN"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $node[\"message\"].json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
             }
           ]
         }
       },
-      "id": "992a0d02-43fd-4cb2-8717-0b7244583cb2",
+      "id": "f9261b0e-9832-4c1a-8a3b-b4dad23c4df7",
+      "name": "Rédacteur de Document",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3540,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_documents",
+        "description": "Donne une réponse précise issue du document demandé à partir d'un besoin informationnel.",
+        "workflowId": "ebLHEt0swZVT9tks",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "ce7f2610-06e8-463c-bcb4-261de4ce8398",
+      "name": "Questionneur de Documents",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3400,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "19fbf97a-6def-4e25-8f48-86ad566f1f06",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3680,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS STANDARD",
+        "height": 224.32004875594802,
+        "width": 447.22204993824914
+      },
+      "id": "b94bb288-286d-4f03-95ed-1e9d0316db57",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3360,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_etudes",
+        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
+        "workflowId": "yQ79P9nuVKhkwZpD",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "8a858ac5-da9f-4dde-9838-290d2f29435a",
       "name": "Questionneur d'Etudes",
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2740,
-        580
+        3140,
+        740
       ]
     },
     {
@@ -368,148 +343,101 @@
         "name": "acquereur_de_citations",
         "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
         "workflowId": "It2FPpnGNxaxojxY",
+        "responsePropertyName": "message",
         "fields": {
           "values": [
             {
-              "name": "kin",
-              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "=asst_RMuliVrHho2VxBhfZBG1cnTN"
-            },
-            {
-              "name": "contexte",
+              "name": "message",
               "stringValue": "={{ $node[\"message\"].json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
             }
           ]
         }
       },
-      "id": "f439d5e2-a855-4c18-980f-143941cbfaa6",
+      "id": "ca9dd2ca-4628-4f47-ab93-866c59259150",
       "name": "Acquéreur de Citations",
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2600,
-        580
+        2980,
+        740
       ]
     },
     {
       "parameters": {
-        "name": "scratchpad",
-        "description": "Crée une copie de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise donnée en entrée.",
-        "workflowId": "wTbd0CgnGrumh0qf",
-        "fields": {
-          "values": [
-            {
-              "name": "kin",
-              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "=asst_RMuliVrHho2VxBhfZBG1cnTN"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $node[\"message\"].json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
-            }
-          ]
-        }
+        "content": "# OUTILS SPECIFIQUES",
+        "height": 413.4919569863578,
+        "width": 468.47826732357714
       },
-      "id": "99b8d5b1-5a98-4677-9869-70b6f157557b",
-      "name": "ScratchPad",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "id": "28caf69c-7cbe-4a71-bea1-6747240e9740",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        2440,
-        700
+        2860,
+        540
       ]
     },
     {
       "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "kin",
-              "stringValue": "=kincir_dynergie"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "Sébastien"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $json.demandeurId }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "={{ $json.producteurId }}"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $json.intentionDUsage }}"
-            },
-            {
-              "name": "demande",
-              "stringValue": "={{ $json.chat_input }}"
-            }
-          ]
-        },
-        "options": {}
+        "content": "# COLLABORATEURS",
+        "height": 224.32004875594802,
+        "width": 355.66820106337036
       },
-      "id": "902d71a3-48cb-439b-8f90-f3d0105ccf7b",
-      "name": "mission",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
+      "id": "32ff50e3-2553-4976-ad51-2577f0457b62",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
       "position": [
-        1780,
-        260
+        2480,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Accès DB Etudes",
+        "height": 272.5167132732499,
+        "width": 391.3636040958942
+      },
+      "id": "6ae7ef41-22f0-4efb-9c92-741a2c4ef01d",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2900,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let message = $node[\"message\"].json;\n\nif (Object.keys($json).length == 1) {\n  message.demande = $json[Object.keys($json)[0]];\n} else {\n  message.demande = JSON.stringify($json);\n}\n\nreturn {\"message\":JSON.stringify(message)};"
+      },
+      "id": "2f7dd2a4-b92f-4c59-a988-2f1235cdc2c1",
+      "name": "nouveau message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3740,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# SORTIE STANDARD",
+        "height": 273.96047817628465,
+        "width": 382.2960085494244
+      },
+      "id": "7bc12f29-fb9d-4f53-a736-846bc38a87e8",
+      "name": "Sticky Note8",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3600,
+        40
       ]
     }
   ],
-  "pinData": {
-    "mission": [
-      {
-        "json": {
-          "kin": "kincir_dynergie",
-          "demandeur": "Sébastien Deschaux",
-          "demandeurId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
-          "producteurId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
-          "contexte": "L’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\n\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\nLes thématiques de recherche sont :  \nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.",
-          "intentionDUsage": "Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.",
-          "demande": "Donne moi des infos sur la mode durable"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -518,13 +446,13 @@
   "staticData": null,
   "tags": [
     {
-      "createdAt": "2023-12-17T10:07:55.424Z",
-      "updatedAt": "2023-12-17T10:07:55.424Z",
-      "id": "DzuSxffpFOEBRhld",
-      "name": "fonction"
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-19T21:51:34.000Z",
-  "versionId": "e9a9edf6-20be-42fa-ab08-e5d9f783c8c6"
+  "updatedAt": "2023-12-20T17:18:33.000Z",
+  "versionId": "7cf3edf5-104c-491b-be92-8d8a0793705a"
 }
