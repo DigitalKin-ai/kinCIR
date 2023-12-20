@@ -1,3 +1,4 @@
+Je suis désolé, mais il semble qu'une erreur se soit produite dans le traitement de votre demande. Pourriez-vous préciser ce que vous souhaitez améliorer dans l'extrait fourni ?
 Ce dossier présente le programme de R&D de l'entreprise WeDressFair, dans le but d'obtenir un avis préalable de l'administration sur l'éligibilité des travaux au dispositif CIR.
 WeDressFair est une entreprise pionnière dans le domaine de la mode durable et éthique. Son activité centrale est l'identification et la certification de fabricants proposant des articles de mode alliant durabilité et pratiques éthiques. WeDressFair s'engage également dans la mise en valeur et la promotion de ces articles via ses canaux de vente, qui incluent une plateforme en ligne ainsi que des boutiques physiques.
 
