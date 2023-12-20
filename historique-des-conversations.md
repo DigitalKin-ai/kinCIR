@@ -1,3 +1,9 @@
+# Le 20 décembre 2023 à 15:57:43 : Message de  asst_PtFkjK3WpkPD5u6ZLc6toZ0q - kincir_dynergie
+
+``
+Je souhaite obtenir le schéma actuel des connexions entre les Assistants GPT pour comprendre leur structure de communication.
+``
+
 # Le 20 décembre 2023 à 15:57:36 : Message de  asst_PtFkjK3WpkPD5u6ZLc6toZ0q - kincir_dynergie
 
 ``
