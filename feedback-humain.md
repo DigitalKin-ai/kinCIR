@@ -1,3 +1,19 @@
+# Le 20 décembre 2023 à 17:50:38 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+DurableFashion est une entreprise qui œuvre dans le domaine de la mode avec une approche axée sur la durabilité et l'éthique. Son activité principale inclut la reconnaissance et la certification des fabricants qui produisent des articles de mode respectant ces principes, en promouvant ensuite ces articles pour souligner leur caractère durable et éthique. La commercialisation de ces articles s'effectue à la fois en ligne et dans des boutiques physiques détenues par l'entreprise.
+
+L'entreprise vise à accroître la proportion de la mode durable et éthique au sein de l'industrie globale de la mode. Dans cette optique, elle s'est fixé plusieurs objectifs de recherche : 
+
+1. Influencer le comportement des consommateurs pour les encourager à acheter des vêtements émanant de marques engagées dans la responsabilité sociale et l'éthique.
+2. Inciter les marques de mode à adopter et à maintenir des pratiques de production responsables et éthiques.
+3. Démontrer concrètement l'impact des initiatives de l'entreprise sur les habitudes de consommation de produits de mode et évaluer cet impact du point de vue environnemental.
+
+Ces objectifs sont essentiels puisqu'ils contribuent à une stratégie globale visant à modifier tant la demande que l'offre dans le secteur de la mode, pour qu'elles s'alignent sur des principes durables et éthiques.
+
+Le membre de l'équipe DigitalKin précise que cette information sert à justifier l'éligibilité de l'entreprise au dispositif Crédit Impôt Recherche (CIR), démontrant que DurableFashion mène des travaux de recherche significatifs dans le secteur de la mode durable, dans le cadre d'un rescrit CIR.
+``
+
 # Le 20 décembre 2023 à 17:49:33 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
