@@ -1,3 +1,9 @@
+# Le 20 décembre 2023 à 16:22:17 : Message de  asst_PtFkjK3WpkPD5u6ZLc6toZ0q - kincir_dynergie
+
+``
+Création d'une copie temporaire pour obtenir le schéma actuel des connexions entre les Assistants GPT.
+``
+
 # Le 20 décembre 2023 à 16:19:46 : Message de  asst_PtFkjK3WpkPD5u6ZLc6toZ0q - kincir_dynergie
 
 ``
