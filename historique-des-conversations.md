@@ -1,3 +1,9 @@
+# Le 20 décembre 2023 à 15:56:28 : Message de  asst_PtFkjK3WpkPD5u6ZLc6toZ0q - kincir_dynergie
+
+``
+Donne-moi le schéma actuel des connexions entre les Assistants GPT.
+``
+
 # Le 20 décembre 2023 à 15:56:12 : Message de KinCIR - Générateur de programme R&D (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
