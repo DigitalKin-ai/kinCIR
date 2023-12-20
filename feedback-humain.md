@@ -1,3 +1,9 @@
+# Le 20 décembre 2023 à 15:57:23 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Hello ! Pourrais-je avoir une vue d'ensemble de l'architecture ?
+``
+
 # Le 20 décembre 2023 à 15:53:39 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
