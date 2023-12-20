@@ -1,3 +1,32 @@
+# Le 20 décembre 2023 à 19:00:41 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Dans le cadre de la préparation d'un dossier pour démontrer l'éligibilité de l'entreprise DurableFashion au dispositif Crédit Impôt Recherche (CIR), il est nécessaire de valoriser les travaux de recherche menés par l'entreprise qui visent à favoriser une consommation et production de mode responsable et éthique. Pour cela, il faut rassembler et structurer les informations pertinentes qui démontrent l'effort en recherche et développement dans les trois axes mentionnés :
+
+1. **Influencer les consommateurs :** Expliquer les méthodes de recherche adoptées pour inciter les consommateurs à acheter des vêtements de marques responsables et éthiques, en mentionnant par exemple :
+
+   - Les études comportementales menées pour comprendre les décisions d'achat.
+   - Les stratégies marketing élaborées pour promouvoir ces achats.
+   - Les programmes de sensibilisation ou éducatifs créés.
+   - Les analyses de tendances et de réactions des consommateurs aux campagnes.
+
+2. **Influencer les marques :** Présenter les approches de recherche pilotées pour encourager les marques à adopter des pratiques durables et éthiques, telles que :
+
+   - Les enquêtes et audits réalisés pour évaluer les pratiques actuelles des marques.
+   - Les analyses de coût-bénéfice illustrant l'impact positif de telles pratiques.
+   - Les collaborations et partenariats avec des fabricants engagés dans la mode éthique.
+   - Les incitations et certifications proposées pour valoriser les efforts des marques.
+
+3. **Mesurer l'impact :** Exposer les méthodes et outils de recherche déployés pour évaluer l'impact de l'activité de DurableFashion sur les habitudes de consommation et sur l'environnement, y compris :
+
+   - Les mesures de réduction de l'empreinte carbone des produits vendus.
+   - Les statistiques de vente des articles durables avant et après les campagnes de sensibilisation.
+   - Les enquêtes de satisfaction client concernant l'offre de produits éthiques.
+   - Les analyses d'impact environnemental liées à la consommation de mode durable.
+
+En synthétisant ces informations de manière cohérente et détaillée, DurableFashion pourra étayer sa demande de rescrit CIR, soulignant la cohérence et la profondeur de ses travaux de recherche en faveur de la mode durable et éthique. Il sera ainsi possible de mettre en avant le rôle de l'entreprise dans la transformation du secteur de la mode vers des pratiques plus responsables.
+``
+
 # Le 20 décembre 2023 à 18:15:00 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
