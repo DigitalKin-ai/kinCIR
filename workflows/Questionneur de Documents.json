@@ -1,17 +1,6 @@
 {
   "active": false,
   "connections": {
-    "Question and Answer Chain": {
-      "main": [
-        [
-          {
-            "node": "Reponse",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "GPT4": {
       "ai_languageModel": [
         [
@@ -45,39 +34,6 @@
         ]
       ]
     },
-    "Execute Workflow Trigger": {
-      "main": [
-        [
-          {
-            "node": "message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "When clicking \"Execute Workflow\"": {
-      "main": [
-        [
-          {
-            "node": "message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "message": {
-      "main": [
-        [
-          {
-            "node": "Document",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Document": {
       "main": [
         [
@@ -105,6 +61,50 @@
         [
           {
             "node": "Question and Answer Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "message": {
+      "main": [
+        [
+          {
+            "node": "Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Question and Answer Chain": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
             "type": "main",
             "index": 0
           }
@@ -188,106 +188,6 @@
       }
     },
     {
-      "parameters": {},
-      "id": "d9f2e3aa-6b82-4fe7-a86e-5622ee6448c0",
-      "name": "Execute Workflow Trigger",
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "typeVersion": 1,
-      "position": [
-        1240,
-        180
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "return {\"json\":{\"response\":$json.response.text}};"
-      },
-      "id": "195e998b-3320-4b4e-a57a-999a77dd7042",
-      "name": "Reponse",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2540,
-        180
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "800ba6ce-d965-4f91-bf45-f8234eadd192",
-      "name": "When clicking \"Execute Workflow\"",
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        1240,
-        400
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## - Donne une réponse précise issues du document demandé de rédaction à partir d'un besoin informationnel.",
-        "height": 407.4890980686969,
-        "width": 548.1198073088228
-      },
-      "id": "6d874bbb-799d-41da-accc-c5149f602988",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        1500,
-        -260
-      ]
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "kin",
-              "stringValue": "={{ $json.kin }}"
-            },
-            {
-              "name": "=demandeur",
-              "stringValue": "={{ $json.demandeur }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $json.demandeurId }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "={{ $json.producteurId }}"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $json.intentionDUsage }}"
-            },
-            {
-              "name": "demande",
-              "stringValue": "={{ $json.demande }}"
-            },
-            {
-              "name": "message",
-              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $json.demandeur }}\n\n{{ $json.demande }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "301902e0-1c41-4cf3-8f53-1ec7954fa9ab",
-      "name": "message",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        1500,
-        180
-      ]
-    },
-    {
       "parameters": {
         "workflowId": "Fdyk6mhC3BfpMdya"
       },
@@ -353,25 +253,88 @@
         1920,
         180
       ]
+    },
+    {
+      "parameters": {},
+      "id": "825b88ec-238f-4abd-8a78-c15123876191",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        175
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "83cd0c38-949f-4539-b941-4a60b9ef5508",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1020,
+        -25
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# ENTREE STANDARD",
+        "height": 536.060150033849,
+        "width": 536.692184943248
+      },
+      "id": "df2a1f41-3309-4e45-a9c7-29e64a9b10aa",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        900,
+        -140
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "uM0Ul7juoL7DAqRB"
+      },
+      "id": "8fc41a4b-b573-40ed-a097-7438a234b974",
+      "name": "message",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        175
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# SORTIE STANDARD",
+        "height": 273.96047817628465,
+        "width": 382.2960085494244
+      },
+      "id": "42433185-7998-4ecd-8a59-4c0fab663aa5",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let message = $node[\"message\"].json;\n\nif (Object.keys($json).length == 1) {\n  message.demande = $json[Object.keys($json)[0]];\n} else {\n  message.demande = JSON.stringify($json);\n}\n\nreturn {\"message\":JSON.stringify(message)};"
+      },
+      "id": "a8f2fc56-36e1-4a49-a11e-8a4481b77c0d",
+      "name": "nouveau message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2700,
+        180
+      ]
     }
   ],
-  "pinData": {
-    "When clicking \"Execute Workflow\"": [
-      {
-        "json": {
-          "query": "IL y a quoi dans le document Évaluation de la Qualité",
-          "kinName": "kincir_dynergie",
-          "demandeur": "KinCIR - Générateur de programme R&D",
-          "demandeurId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
-          "producteurId": "asst_RMuliVrHho2VxBhfZBG1cnTN",
-          "contexte": "L’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\n\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\nLes thématiques de recherche sont :  \nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.",
-          "intentionDUsage": "Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.",
-          "demande": "IL y a quoi dans le document Évaluation de la Qualité",
-          "message": "# Contexte\n\nL’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\n\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\nLes thématiques de recherche sont :  \nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.\n\n# Intention d'Usage\n\nCes éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.\n\n# Demande de KinCIR - Générateur de programme R&D\n\nRéalise une première version du document en entier"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -380,13 +343,13 @@
   "staticData": null,
   "tags": [
     {
-      "createdAt": "2023-12-17T10:07:55.424Z",
-      "updatedAt": "2023-12-17T10:07:55.424Z",
-      "id": "DzuSxffpFOEBRhld",
-      "name": "fonction"
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-19T22:54:34.000Z",
-  "versionId": "4b47cc7f-074b-4cb2-a43a-ef494423d575"
+  "updatedAt": "2023-12-20T17:17:01.000Z",
+  "versionId": "af7f0df2-1409-46e8-bfb3-19494d46adf2"
 }
