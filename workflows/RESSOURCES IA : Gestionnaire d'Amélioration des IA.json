@@ -1,22 +1,22 @@
 {
   "active": false,
   "connections": {
-    "Execute Workflow Trigger": {
+    "Get Assistant": {
       "main": [
         [
           {
-            "node": "entree",
+            "node": "RESSOURCES IA",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "entree": {
+    "Execute Workflow Trigger": {
       "main": [
         [
           {
-            "node": "Get Assistant",
+            "node": "message",
             "type": "main",
             "index": 0
           }
@@ -27,19 +27,19 @@
       "main": [
         [
           {
-            "node": "entree",
+            "node": "message",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "ScratchPad": {
-      "ai_tool": [
+    "message": {
+      "main": [
         [
           {
-            "node": "RESSOURCES IA",
-            "type": "ai_tool",
+            "node": "Get Assistant",
+            "type": "main",
             "index": 0
           }
         ]
@@ -56,78 +56,45 @@
         ]
       ]
     },
-    "When clicking \"Execute Workflow\"": {
-      "main": [
-        [
-          {
-            "node": "session",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent - Collaborateur",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "session": {
-      "main": [
-        [
-          {
-            "node": "Get Assistant1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Questionneur de mémoires personnelles": {
+    "Questionneur de Documents": {
       "ai_tool": [
         [
           {
-            "node": "AI Agent - Collaborateur",
+            "node": "RESSOURCES IA",
             "type": "ai_tool",
             "index": 0
           }
         ]
       ]
     },
-    "Get Assistant": {
-      "main": [
+    "Rédacteur de Document": {
+      "ai_tool": [
         [
           {
             "node": "RESSOURCES IA",
-            "type": "main",
+            "type": "ai_tool",
             "index": 0
           }
         ]
       ]
     },
-    "Get Assistant1": {
-      "main": [
+    "ScratchPad": {
+      "ai_tool": [
         [
           {
-            "node": "AI Agent - Collaborateur",
-            "type": "main",
+            "node": "RESSOURCES IA",
+            "type": "ai_tool",
             "index": 0
           }
         ]
       ]
     },
-    "AI Agent - Collaborateur": {
-      "main": [
+    "CHERCHEUR SCIENTIFIQUE": {
+      "ai_tool": [
         [
           {
-            "node": "entree",
-            "type": "main",
+            "node": "RESSOURCES IA",
+            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -137,12 +104,7 @@
       "main": [
         [
           {
-            "node": "AI Agent - Collaborateur",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "RESSOURCES IA envoie message",
+            "node": "nouveau message",
             "type": "main",
             "index": 0
           }
@@ -156,136 +118,9 @@
   "name": "RESSOURCES IA : Gestionnaire d'Amélioration des IA",
   "nodes": [
     {
-      "parameters": {},
-      "id": "b098f8a3-2cc1-4e00-9f19-b8176c310a29",
-      "name": "Execute Workflow Trigger",
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "typeVersion": 1,
-      "position": [
-        900,
-        700
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "return {\"json\":{\"response\": $node[\"RESSOURCES IA\"].json.output}};"
-      },
-      "id": "8b4ac61d-56b6-4a41-96d0-32f9b1243879",
-      "name": "Reponse",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2080,
-        700
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "cbb03970-90a3-4093-ab83-a96af288bd9f",
-      "name": "When clicking \"Execute Workflow\"",
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        40,
-        1200
-      ]
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "entree",
-              "stringValue": "={{ $json.output?$json.output:\"\" }}{{ $json.entree?$json.entree:\"\" }}{{ $json.query }}{{ $json.chat_input?$json.chat_input:\"\" }}"
-            },
-            {
-              "name": "kinName",
-              "stringValue": "={{ $json.kinName }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $json.intentionDUsage }}"
-            },
-            {
-              "name": "assistantId",
-              "stringValue": "={{ $json.assistantId }}{{ $('session').item.json[\"assistantId\"] }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "435df914-0b16-4799-b6da-aeb27cde0ca6",
-      "name": "entree",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        1140,
-        700
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "c68b87ba-4c09-4781-bda4-e226c68c7541",
-      "name": "On new manual Chat Message",
-      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
-      "typeVersion": 1.1,
-      "position": [
-        900,
-        500
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## - Questionneur d'études: Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
-        "height": 443.0545261129006,
-        "width": 548.1198073088228
-      },
-      "id": "bdb8626a-be11-4e63-8782-f273166ae2b6",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        1140,
-        220
-      ]
-    },
-    {
-      "parameters": {
-        "name": "scratchpad",
-        "description": "Crée une copie de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise donnée en entrée.",
-        "workflowId": "wTbd0CgnGrumh0qf",
-        "fields": {
-          "values": [
-            {
-              "name": "kinName",
-              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $json.intentionDUsage }}"
-            },
-            {
-              "name": "assistantId",
-              "stringValue": "={{ $('entree').item.json[\"assistantId\"] }}"
-            }
-          ]
-        }
-      },
-      "id": "758b5c5d-4963-4b86-95cb-591cbb8e00f0",
-      "name": "ScratchPad",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        1480,
-        1020
-      ]
-    },
-    {
       "parameters": {
         "assistantId": "asst_EarnictN3LgbSsTkDj7PYyDF",
-        "text": "=# Mission\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Demande Du Collaborateur\n\nAssistant {{ $('entree').item.json[\"assistantId\"] }} : {{ $('Get Assistant').item.json[\"name\"] }}.\n\n\"{{ $('entree').item.json[\"entree\"] }}\"",
+        "text": "=# Documents disponibles\n\n{{ $node[\"message\"].json.documentsDisponibles }}\n\n# Contexte\n\n{{ $node[\"message\"].json.contexte }}\n\n# Intention d'Usage\n\n{{ $node[\"message\"].json.intentionDUsage }}\n\n# Demande\n\n{{ $node[\"message\"].json[\"demandeurId\"] }} : {{ $node[\"message\"].json[\"demandeur\"] }} :\n``\n{{ $node[\"message\"].json[\"demande\"] }}\n``",
         "nativeTools": [
           "code_interpreter",
           "retrieval"
@@ -297,7 +132,7 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1620,
+        2020,
         700
       ],
       "credentials": {
@@ -306,313 +141,288 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/assistants/{{ $('message').item.json[\"producteurId\"] }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "be1d045d-71af-4bb4-b4f0-48b9870ebdcc",
+      "name": "Get Assistant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1800,
+        700
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "2147fdc2-6c17-48b5-8978-dd200838ecf9",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        700
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e00e0ed1-7a77-43e1-80cc-16f98a7d259b",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1320,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# ENTREE STANDARD",
+        "height": 536.060150033849,
+        "width": 536.692184943248
+      },
+      "id": "dd25144e-f3ce-4054-aa7c-bf969d437847",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        385
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "uM0Ul7juoL7DAqRB"
+      },
+      "id": "4aecac45-59bd-4ff1-bd90-0307c7d1e6f0",
+      "name": "message",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        700
+      ]
     },
     {
       "parameters": {
         "name": "ameliorateur_de_prompt",
         "description": "Améliore le prompt de l'assistant qui le demande sans changer son périmètre fonctionnel, en partant d'un problème à résoudre ou d'une demande d'amélioration",
-        "workflowId": "1fR6eCwgdVcJ6SG5",
+        "workflowId": "ebLHEt0swZVT9tks",
+        "responsePropertyName": "message",
         "fields": {
           "values": [
             {
-              "name": "kinName",
-              "stringValue": "={{ $('entree').item.json[\"kinName\"] }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $('entree').item.json[\"intentionDUsage\"] }}"
-            },
-            {
-              "name": "assistantId",
-              "stringValue": "={{ $('entree').item.json[\"assistantId\"] }}"
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
             }
           ]
         }
       },
-      "id": "fc7a6240-3a0e-4e03-b910-93ad2cd7fe36",
+      "id": "13304606-c2ea-42d7-b79c-13f5d4a7b37c",
       "name": "Améliorateur de Prompt",
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        1620,
-        1020
+        2100,
+        1460
       ]
     },
     {
       "parameters": {
-        "content": "# Session de coaching en développement professionnel : Évaluation des Besoins pour le Renforcement des Compétences",
-        "height": 382.1686843349137,
-        "width": 905.099286091533
-      },
-      "id": "14c56d32-5449-4803-8e8c-59a682a4523a",
-      "name": "Sticky Note1",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -97,
-        1016
-      ]
-    },
-    {
-      "parameters": {
-        "model": "gpt-4",
-        "options": {
-          "timeout": 600000
-        }
-      },
-      "id": "a3b98bde-5b14-4d91-8328-0f37fb7d564b",
-      "name": "OpenAI Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1,
-      "position": [
-        700,
-        1440
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
+        "name": "redacteur_de_document",
+        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
+        "workflowId": "0T67aHjuqQEnrTN0",
+        "responsePropertyName": "message",
         "fields": {
           "values": [
             {
-              "name": "session",
-              "stringValue": "=Évaluation des Besoins pour le Renforcement des Compétences\nObjectif : Recueillir des informations précises et approfondies sur les domaines de compétences que je souhaite améliorer pour exécuter ma mission plus efficacement, tout en conservant les mêmes responsabilités. Contenu : Durant cette session de coaching, je suis invité à partager de manière détaillée les défis spécifiques auxquels je fais face dans mon rôle actuel. Je dois expliciter les situations où je sens que mes réponses peuvent manquer de précision, de clarté ou de pertinence. Je m'efforcerai de donner des exemples concrets de prompts ou de missions sur lesquelles j'ai travaillé, soulignant les zones où je perçois que mon soutien pourrait être optimisé. Des retours d'utilisateurs, des statistiques de performance, ou toute autre information pertinente qui pourrait éclairer la compréhension de mes besoins de coaching devront être présentés. Cette évaluation collaborative aidera à élaborer un plan d'action ciblé pour le développement de mes compétences en alignement avec les objectifs de la mission qui m'est confiée. Le but final est d'améliorer mon prompt système."
-            },
-            {
-              "name": "assistantId",
-              "stringValue": "={{ $json[\"assistantId\"] }}"
-            },
-            {
-              "name": "kinName",
-              "stringValue": "=kincir_dynergie"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "=Le but final est d'améliorer mon prompt système afin de {{ $json[\"intentionDUsage\"] }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "9a7e1ae4-d760-4c57-8943-a826d1473715",
-      "name": "session",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        260,
-        1200
-      ]
-    },
-    {
-      "parameters": {
-        "name": "questionneur_de_memoires_personnelles",
-        "description": "Donne une réponse issues de ses mémoires personnelles à partir d'un besoin informationnel.",
-        "workflowId": "7Yw1h8d8MXfLSNJt",
-        "fields": {
-          "values": [
-            {
-              "name": "kinName",
-              "stringValue": "={{ $('session').item.json[\"kinName\"] }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $('session').item.json[\"intentionDUsage\"] }}"
-            },
-            {
-              "name": "assistantId",
-              "stringValue": "={{ $('session').item.json[\"assistantId\"] }}"
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
             }
           ]
         }
       },
-      "id": "abcce0bd-7f86-4da8-aeaa-29ae4de35ca0",
-      "name": "Questionneur de mémoires personnelles",
+      "id": "58904feb-af38-48d7-859f-53ab9ade64be",
+      "name": "Rédacteur de Document",
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        900,
-        1420
-      ],
-      "disabled": true
+        2560,
+        1460
+      ]
     },
     {
       "parameters": {
-        "url": "=https://api.openai.com/v1/assistants/{{ $('entree').item.json[\"assistantId\"] }}",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "openAiApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
+        "name": "questionneur_de_documents",
+        "description": "Donne une réponse précise issue du document demandé à partir d'un besoin informationnel.",
+        "workflowId": "ebLHEt0swZVT9tks",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
             {
-              "name": "OpenAI-Beta",
-              "value": "assistants=v1"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
             }
           ]
-        },
-        "options": {}
+        }
       },
-      "id": "5efb8a86-2f16-4a37-bc8d-d3a23e9b25c8",
-      "name": "Get Assistant",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
+      "id": "32691001-bb42-48e9-b575-ce85227041b5",
+      "name": "Questionneur de Documents",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
       "position": [
-        1360,
+        2420,
+        1460
+      ]
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "9bade426-ca52-4258-bb1a-93e55a4c9e09",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2700,
+        1460
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS STANDARD",
+        "height": 224.32004875594802,
+        "width": 447.22204993824914
+      },
+      "id": "ac7e2e50-d5e7-4f75-aacf-74ec51c26799",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2380,
+        1380
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS SPECIFIQUES",
+        "height": 224.32004875594802,
+        "width": 400.45445456066545
+      },
+      "id": "2c41babb-b4f6-4682-9f80-c10c497dc861",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1940,
+        1380
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# COLLABORATEURS",
+        "height": 224.32004875594802,
+        "width": 355.66820106337036
+      },
+      "id": "face94f3-f433-4b70-a2da-c638dc8024d3",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1540,
+        1380
+      ]
+    },
+    {
+      "parameters": {
+        "name": "chercheur_scientifique",
+        "description": "Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "b169ec50-e181-4f98-bcc6-558354137143",
+      "name": "CHERCHEUR SCIENTIFIQUE",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        1460
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# SORTIE STANDARD",
+        "height": 273.96047817628465,
+        "width": 382.2960085494244
+      },
+      "id": "ef490aff-6c24-4cf4-b80a-673b39530664",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let message = $node[\"message\"].json;\n\nif (Object.keys($json).length == 1) {\n  message.demande = $json[Object.keys($json)[0]];\n} else {\n  message.demande = JSON.stringify($json);\n}\n\nreturn {\"message\":JSON.stringify(message)};"
+      },
+      "id": "40a15ec1-b770-46e3-9bcd-5023c6672843",
+      "name": "nouveau message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2800,
         700
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "url": "=https://api.openai.com/v1/assistants/{{ $('session').item.json[\"assistantId\"] }}",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "openAiApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "OpenAI-Beta",
-              "value": "assistants=v1"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "6ba0da44-7dc0-43fa-961f-dbfd256733ce",
-      "name": "Get Assistant1",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        480,
-        1200
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "content": "## TODO : Récupération de besoin de collaborateur"
-      },
-      "id": "127f48aa-655a-40a5-a6e8-4aa917d5c951",
-      "name": "Sticky Note2",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        1740,
-        1000
       ]
-    },
-    {
-      "parameters": {
-        "content": "## TODO : Move to tool",
-        "height": 599.1141955835963,
-        "width": 1367.278233438486
-      },
-      "id": "b8e2174c-de6e-4d28-af11-ef58072d35a9",
-      "name": "Sticky Note3",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -247.27823343848604,
-        960.8858044164036
-      ]
-    },
-    {
-      "parameters": {
-        "text": "=# Contexte Spécifiques\n\n{{ $('session').item.json[\"session\"] }}\n\n# Instructions Spécifiques (Prioritaires)\n\n/!\\ Ces Instructions sont prioritaires et remplacent les autres instructions de ce prompt.\n\n1) Analyse ton prompt pour décider d'un possible axe d'amélioration.\n2) Envoie un rapport de tes potentielles difficultés et axe d'améliorations\n\n# Mon Prompt\n\n``\n {{ $json.instructions }}\n``",
-        "options": {
-          "systemMessage": "={{ $json.instructions }}"
-        }
-      },
-      "id": "77b770da-6e5b-427c-8522-855e9bd66be4",
-      "name": "AI Agent - Collaborateur",
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.1,
-      "position": [
-        700,
-        1200
-      ]
-    },
-    {
-      "parameters": {
-        "chatId": "=-4042572972",
-        "text": "=_RESSOURCES IA :_\n\n{{ $json.output }}",
-        "additionalFields": {
-          "appendAttribution": false,
-          "disable_notification": true,
-          "parse_mode": "Markdown"
-        }
-      },
-      "id": "e8ba3db7-2bc5-44cf-874b-2630567b0475",
-      "name": "RESSOURCES IA envoie message",
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.1,
-      "position": [
-        2080,
-        500
-      ],
-      "credentials": {
-        "telegramApi": {
-          "id": "36XnU2tVylnKh3kr",
-          "name": "Telegram account"
-        }
-      },
-      "onError": "continueRegularOutput"
     }
   ],
-  "pinData": {
-    "When clicking \"Execute Workflow\"": [
-      {
-        "json": {
-          "entree": "Hello Architecte, a quoi est relié le producteur ?",
-          "intentionDUsage": "Le DECIDEUR IA sera utilisé par les équipes de Kins pour prendre en continu les décisions qui maximisent l'impact positif désiré",
-          "kinName": "kincir_dynergie",
-          "assistantId": "asst_3XJNQCW7dTC1fN2KbPyaHzHA"
-        }
-      }
-    ],
-    "Execute Workflow Trigger": [
-      {
-        "json": {
-          "query": "demande au RIA (ressources IA) d'am\\u00e9liorer ton prompt, la section \"# Fonctions Accessibles\"",
-          "kinName": "kincir_dynergie",
-          "intentionDUsage": "Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.",
-          "assistantId": "asst_L05RD7upJZbxUfZ06MPISYv5"
-        },
-        "pairedItem": {
-          "item": 0
-        }
-      }
-    ],
-    "On new manual Chat Message": [
-      {
-        "json": {
-          "output": "Après avoir analysé attentivement votre entrée, voici une évaluation de votre prompt 'DECIDEUR IA' :\n\n1. Clarté de la communication : Votre prompt est structuré de manière claire et logique, ce qui facilite sa compréhension. Il est informatif et couvre tous les aspects essentiels requis pour qu'un utilisateur puisse exploiter efficacement l'IA DECIDEUR. \n\n2. Précision : Toutes les sections de votre prompt sont précises et informatives. Les descriptions du rôle, du contexte, de la proposition de valeur, de l'entrée et des instructions sont particulièrement bien élaborées.\n\n3. Pertinence : Votre prompt est parfaitement en phase avec l'objectif de maximiser l'impact positif des décisions prises par l'utilisateur. Il fournit une approche structurée pour aider l'utilisateur à prendre des décisions éclairées.\n\nAxes d'amélioration :\n\n1. Langage convivial: Pour rendre l'interaction avec l'IA plus conviviale, vous pourriez envisager d'ajouter quelques phrases d'accueil ou de conclusion. Cela donnerait à l'utilisateur le sentiment d'une interaction plus personnalisée.\n\n2. Exemples concrets : Bien que vous ayez fourni un exemple de processus, vous pourriez envisager de donner plus d'exemples pratiques dans d'autres sections du prompt, comme dans les entrées ou les sorties. Cela peut aider à clarifier encore plus vos points à l'utilisateur.\n\n3. Rendre les instructions plus directives : Les instructions fournies sont assez générales, il pourrait être bénéfique de les rendre un peu plus directives afin d'orienter de manière plus précise les réponses de l'IA.\n\nDans l'ensemble, votre prompt est bien conçu et solide. Les améliorations suggérées sont plutôt des optimisations mineures qui peuvent ajouter une valeur supplémentaire à l'expérience utilisateur."
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
@@ -626,6 +436,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-19T21:51:57.000Z",
-  "versionId": "296d83ff-1ac7-45e0-a54f-e70d1b356dc2"
+  "updatedAt": "2023-12-20T17:15:15.000Z",
+  "versionId": "9e1e6f33-f6c8-465d-a131-3b29a7abaf3c"
 }
