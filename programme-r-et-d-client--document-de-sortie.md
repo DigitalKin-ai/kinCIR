@@ -42,9 +42,17 @@ Sur ce fondement, l'entreprise WeDressFair s'inscrit dans un contexte où la dur
 # Présentation du programme de R&D
 
 Ce dossier présente le programme de R&D de la société, dans le but d'obtenir un avis préalable de l'administration sur l'éligibilité des travaux au dispositif CIR.
+Ce dossier présente le programme de R&D de la société WeDressFair, spécialisée dans la mode durable et éthique, dans le but d'obtenir un avis préalable de l'administration sur l'éligibilité des travaux au dispositif CIR.
 
 ## Contexte scientifique et économique
 
+Nous vivons dans un époque où la consommation responsable gagne en importance, et au sein de ce mouvement global, WeDressFair se distingue en tant que leader de la mode durable et éthique. Notre activité est axée sur l'identification et la certification de fabricants qui produisent selon des critères stricts de durabilité et d'éthique, la mise en avant des articles qu'ils produisent pour leurs qualités responsables, et la commercialisation de ces biens par le biais de plateformes en ligne ainsi que de boutiques physiques.
+
+Le contexte économique et scientifique souligne un intérêt grandissant pour des alternatives de mode qui respectent tant l'environnement que les droits des travailleurs, tout en reconnaissant que le parcours vers un changement de paradigme dans les habitudes de consommation et les pratiques de production des marques est jonché d'obstacles significatifs. WeDressFair, par conséquent, vise à augmenter substantiellement la proportion de mode éthique et durable dans l'industrie de la mode globale.
+
+Notre question de recherche centrale s'intéresse aux moyens d'influencer de manière effective la consommation et la production pour encourager une mode éthiquement responsable. Pour y parvenir, une compréhension approfondie de diverses thématiques est requise, notamment comment inciter les consommateurs à opter pour des achats responsables et mesurer l'impact environnemental des activités de notre entreprise.
+
+Le programme de R&D de WeDressFair se concentre donc sur trois axes : déterminer les facteurs psychologiques et comportementaux qui favorisent le choix des consommateurs en faveur de marques durables, identifier les incitations économiques et politiques qui pousseraient les marques à opter pour des procédés de production plus équitables, et développer des méthodologies sophistiquées pour quantifier l'impact environnemental des pratiques de consommation et de production durables.
 Dans un monde où la consommation responsable prend une place de plus en plus importante, notre société, WeDressFair, se positionne comme un acteur clé de la mode durable et éthique. Notre coeur de métier repose sur l'identification et la certification de fabricants d’articles de mode qui respectent ces valeurs. Nous nous attachons à promouvoir l'aspect durable et éthique des articles que nous commercialisons via internet et nos boutiques physiques.
 
 Le contexte actuel de la société montre un réel engouement pour des articles de mode qui respectent à la fois l'environnement et les travailleurs qui les produisent. Cela étant dit, de nombreux défis subsistent dans le changement des habitudes de consommation et dans l'adoption de pratiques de production responsables au sein des marques. Pour adresser ces défis, WeDressFair se donne pour but d'augmenter significativement la part de mode durable et éthique dans l'industrie globale de la mode.
