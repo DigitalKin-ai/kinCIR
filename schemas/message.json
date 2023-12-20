@@ -1,0 +1,42 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "Schema de Message",
+   "type": "object",
+   "properties": {
+      "kin": {
+         "type": "string",
+         "default": "kincir_dynergie",
+         "description": "Identifiant du 'kin' impliqué dans le processus ou l'opération."
+      },
+      "demandeur": {
+         "type": "string",
+         "default": "kincir_dynergie",
+         "description": "Nom du demandeur ou de l'entité demandant l'action ou l'information."
+      },
+      "demandeurId": {
+         "type": "string",
+         "default": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
+         "description": "Identifiant unique du demandeur."
+      },
+      "producteurId": {
+         "type": "string",
+         "default": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
+         "description": "Identifiant unique du producteur ou de l'entité produisant les données ou l'information."
+      },
+      "contexte": {
+         "type": "string",
+         "default": "L’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \\nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\\n\\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\\nLes thématiques de recherche sont : \\nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques. \\nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.",
+         "description": "Description du contexte dans lequel les informations sont utilisées ou générées, centrée sur l'entreprise WeDressFair et ses activités."
+      },
+      "intentionDUsage": {
+         "type": "string",
+         "default": "Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.",
+         "description": "Explique l'intention d'utilisation des données, en l'occurrence pour démontrer l'éligibilité au crédit d'impôt recherche."
+      },
+      "demande": {
+         "type": "string",
+         "default": "Assesse et continue to travail.",
+         "description": "Description de la demande ou de l'action requise, avec une valeur par défaut indiquant une évaluation et une continuation du travail."
+      }
+   }
+}
