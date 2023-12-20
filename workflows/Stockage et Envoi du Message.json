@@ -1,0 +1,484 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Document": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "Ajouter en début de fichier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "message": {
+      "main": [
+        [
+          {
+            "node": "Get Demandeur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub": {
+      "main": [
+        [
+          {
+            "node": "Synchroniser GitHub -> Pinecone1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Demandeur": {
+      "main": [
+        [
+          {
+            "node": "Message à ajouter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message à ajouter": {
+      "main": [
+        [
+          {
+            "node": "Envoi de notification Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envoi de notification Telegram": {
+      "main": [
+        [
+          {
+            "node": "Get Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ajouter en début de fichier": {
+      "main": [
+        [
+          {
+            "node": "GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synchroniser GitHub -> Pinecone1": {
+      "main": [
+        [
+          {
+            "node": "Return message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-20T10:26:00.979Z",
+  "id": "j0SCDvxSSQWIWFIO",
+  "meta": null,
+  "name": "Stockage et Envoi du Message",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "4bd1efff-fbf6-4296-990b-1b7e30d1c8d2",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        840,
+        200
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "id": "9537d93c-2fe6-4246-98fe-3ff84b9d8675",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        840,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=historique-des-conversations.md",
+        "additionalParameters": {}
+      },
+      "id": "68e21a84-8bd0-4311-8cfb-2f59b540e081",
+      "name": "Get Document",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        200
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "destinationKey": "documentContent",
+        "options": {}
+      },
+      "id": "58c7c414-201a-4913-8dcd-04c145dcfb85",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        2100,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "d6khXiG3YxUunViW"
+      },
+      "id": "d0b6dd2d-acb5-45dd-8982-f44274a11391",
+      "name": "Synchroniser GitHub -> Pinecone1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2640,
+        440
+      ],
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "content": "## Stocke et envoie le message sur Telegram",
+        "height": 348.839423945907,
+        "width": 548.1198073088228
+      },
+      "id": "73c582d3-648a-4e40-a529-765b007ed470",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "=kincir_dynergie"
+            },
+            {
+              "name": "demandeur",
+              "stringValue": "={{ $json.demandeur }}"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $json.demandeurId }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "={{ $json.producteurId }}"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "demande",
+              "stringValue": "={{ $json.demande }}\n{{ $json.query }}"
+            },
+            {
+              "name": "message",
+              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $json.demandeur }}\n\n{{ $json.demande }}\n{{ $json.query }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b040db68-2a67-4e8a-adb0-55e76c88fce2",
+      "name": "message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1060,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=historique-des-conversations.md",
+        "fileContent": "={{ $json.modifiedDocumentContent }}",
+        "commitMessage": "=n8n : {{ $node[\"message\"].json[\"demande\"] }}"
+      },
+      "id": "ab1b3f50-8e29-4d06-bf2a-5cfd91a94177",
+      "name": "GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        2540,
+        200
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/assistants/{{ $('message').item.json[\"demandeurId\"] }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "77a61e32-a548-4fc8-94a7-5cff2c6cd3a9",
+      "name": "Get Demandeur",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1280,
+        200
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "messageAAjouter",
+              "stringValue": "=# Le {{(() => {\n    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };\n    return new Date().toLocaleString('fr-FR', options);\n})(); }} : Message de {{ $json[\"name\"] }} ({{ $json[\"id\"] }})\n\n``\n{{ $('message').item.json[\"message\"] }}\n``\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "138ecc80-a52e-4b24-a416-ca8e8d02f0aa",
+      "name": "Message à ajouter",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1480,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "=-4042572972",
+        "text": "=poopc",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true
+        }
+      },
+      "id": "996265f4-5ad1-41a5-84fc-d06f8263e958",
+      "name": "Envoi de notification Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        1680,
+        200
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const documentContent = $json.documentContent;\nconst newContent = $node[\"Message à ajouter\"].json.messageAAjouter;\n\n// Ajoute newContent au début du document\nconst modifiedDocumentContent = newContent + '\\n' + documentContent;\n\nreturn {\"json\":{\"modifiedDocumentContent\": modifiedDocumentContent}};\n"
+      },
+      "id": "32379e3d-cac9-4fcd-a3bf-3385a814408b",
+      "name": "Ajouter en début de fichier",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2320,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":$node[\"message\"].json};"
+      },
+      "id": "f15257e4-53a7-4ce7-80d0-d509cb623347",
+      "name": "Return message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2860,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## TODO : mettre a jour pour 1 fichier seulement",
+        "width": 459.0963167910128
+      },
+      "id": "0f0becfe-1280-44b3-89cf-dccf6333e109",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        400
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "query": "Réalise une première version du document en entier",
+          "kinName": "kincir_dynergie",
+          "demandeur": "KinCIR - Générateur de programme R&D",
+          "demandeurId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
+          "producteurId": "asst_RMuliVrHho2VxBhfZBG1cnTN",
+          "contexte": "L’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\n\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\nLes thématiques de recherche sont :  \nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.",
+          "intentionDUsage": "Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR."
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "fonction"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-20T10:54:56.000Z",
+  "versionId": "de8cc2ff-5628-4880-8ccd-a5db48001e62"
+}
