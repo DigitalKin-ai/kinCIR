@@ -67,17 +67,6 @@
         ]
       ]
     },
-    "message1": {
-      "main": [
-        [
-          {
-            "node": "message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "CHERCHEUR SCIENTIFIQUE": {
       "ai_tool": [
         [
@@ -159,6 +148,28 @@
           }
         ]
       ]
+    },
+    "Kin Boiron": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kin CIR": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2023-12-19T11:20:32.807Z",
@@ -168,13 +179,13 @@
   "nodes": [
     {
       "parameters": {},
-      "id": "3f6b8950-b46d-44f0-8e68-348238a78d8a",
+      "id": "be781341-227c-4084-aee8-7d662e982c3e",
       "name": "On new manual Chat Message",
       "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
       "typeVersion": 1.1,
       "position": [
-        -460,
-        -80
+        460,
+        820
       ],
       "disabled": true
     },
@@ -183,13 +194,13 @@
         "mode": "runOnceForEachItem",
         "jsCode": "return {\"json\":{\"response\":$node[\"Assistant\"].json.output}};"
       },
-      "id": "658fec03-f0e5-424c-a447-151579749bf6",
+      "id": "944c9521-a4a5-4962-9320-051ab41346e4",
       "name": "Reponse",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1260,
-        -260
+        2180,
+        640
       ]
     },
     {
@@ -202,13 +213,13 @@
           "parse_mode": "Markdown"
         }
       },
-      "id": "9a0c1f2a-834b-48bd-b05d-bb7197c69c5b",
+      "id": "b89a221f-717b-4a09-af8a-3ed02c17309a",
       "name": "Envoi de message",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.1,
       "position": [
-        1020,
-        -260
+        1940,
+        640
       ],
       "credentials": {
         "telegramApi": {
@@ -242,13 +253,13 @@
         },
         "options": {}
       },
-      "id": "11b94e57-06b6-410f-9299-1180e54c4c9c",
+      "id": "e1ba3fdc-2001-432e-b71d-bc1bffddc7c9",
       "name": "Get Assistant",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        400,
-        -260
+        1320,
+        640
       ],
       "credentials": {
         "openAiApi": {
@@ -297,13 +308,13 @@
         },
         "options": {}
       },
-      "id": "f381b0bb-709c-4a8c-93dd-a4b689c707d0",
+      "id": "1e3f053a-47df-494d-a079-8cdee206a927",
       "name": "message",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        0,
-        -260
+        920,
+        640
       ]
     },
     {
@@ -328,38 +339,38 @@
             },
             {
               "name": "contexte",
-              "stringValue": "={{ $json.contexte }}"
+              "stringValue": "=L’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \\nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\\n\\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\\nLes thématiques de recherche sont :  \\nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \\nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement."
             },
             {
               "name": "intentionDUsage",
-              "stringValue": "={{ $json.intentionDUsage }}"
+              "stringValue": "=Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR."
             },
             {
               "name": "demande",
-              "stringValue": "={{ $json.chat_input }}"
+              "stringValue": "={{ $json.chat_input }}{{ $json[\"message\"][\"text\"] }}\n\nConseil :Utilise dans l'ordre :\n1) Questionneur de docs\n2) Checheur\n3) Rédacteur de doc\n4) ScratchPad"
             }
           ]
         },
         "options": {}
       },
-      "id": "e9ae3cb3-76fd-4fea-bfaf-106548c60f20",
+      "id": "f248a251-e5b7-49c4-976c-694a690f0ba7",
       "name": "mission",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        -240,
-        -260
+        700,
+        640
       ]
     },
     {
       "parameters": {},
-      "id": "bccc1e06-a835-4736-91e1-be806f1dff49",
+      "id": "6cc74ecf-9db4-473c-9854-be71be563220",
       "name": "When clicking \"Execute Workflow\"",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -460,
-        -260
+        460,
+        640
       ]
     },
     {
@@ -402,13 +413,13 @@
         },
         "options": {}
       },
-      "id": "bc7e9607-52e5-4f4b-a039-50d42c08c5a5",
+      "id": "24a3471e-6a57-41ff-9fa9-58bc7e18ab4e",
       "name": "message1",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        1020,
-        -60
+        1940,
+        840
       ]
     },
     {
@@ -445,31 +456,31 @@
           ]
         }
       },
-      "id": "a13528f3-1f19-4821-83d8-485b6271fa83",
+      "id": "2f80140d-7718-4cc6-a823-a51a379b1fdc",
       "name": "CHERCHEUR SCIENTIFIQUE",
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        380,
-        200
+        1300,
+        1100
       ]
     },
     {
       "parameters": {
         "assistantId": "asst_K25pMgsChtj1PKEenv0pM8LZ",
-        "text": "=# Documents disponibles via les Outils Questionneur et Rédacteur de Document\n\n{{ $node[\"Documents\"].json.documentsDisponibles }}\n\n{{ $node[\"message\"].json.message }}",
+        "text": "=# Documents disponibles via les Outils Questionneur de Documents et Rédacteur de Document\n\n{{ $node[\"Documents\"].json.documentsDisponibles }}\n\n{{ $node[\"message\"].json.message }}",
         "nativeTools": [
           "code_interpreter"
         ],
         "options": {}
       },
-      "id": "7e14ef1c-653c-4d4e-9325-f8c3993716c5",
+      "id": "b428cab2-bb11-4211-9a9c-a3842a960639",
       "name": "Assistant",
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        620,
-        -260
+        1540,
+        640
       ],
       "credentials": {
         "openAiApi": {
@@ -512,13 +523,13 @@
           ]
         }
       },
-      "id": "dbbbbbfa-5035-43e2-95e4-67989a7ce3dd",
+      "id": "29a2c154-ae53-434b-9024-9b5733e57e47",
       "name": "Rédacteur de Document",
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        660,
-        200
+        1580,
+        1100
       ]
     },
     {
@@ -555,26 +566,26 @@
           ]
         }
       },
-      "id": "03cd5db4-ef8e-4cef-b96e-cb5e6adac196",
+      "id": "ac7dbd55-b75f-431e-8884-a3ab38e479c3",
       "name": "Questionneur de Documents",
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        520,
-        200
+        1440,
+        1100
       ]
     },
     {
       "parameters": {
         "workflowId": "hD7yCDCuhTu3T774"
       },
-      "id": "61b83ccf-a9e4-4726-bbc1-99835359040e",
+      "id": "cb9b6f54-c565-4835-8105-d433d877aba6",
       "name": "Documents",
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        200,
-        -260
+        1120,
+        640
       ]
     },
     {
@@ -588,13 +599,13 @@
           ]
         }
       },
-      "id": "50939857-74ef-40fc-9e63-a0b6361626f0",
+      "id": "82f29496-bd25-4f4f-b929-d659ed282e84",
       "name": "Schedule Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.1,
       "position": [
-        -460,
-        -440
+        460,
+        460
       ]
     },
     {
@@ -631,30 +642,63 @@
           ]
         }
       },
-      "id": "bbbf1174-35e9-4249-ab82-81143df07cc7",
+      "id": "860a943b-60e6-4787-a0e7-ebb2a5bffb5e",
       "name": "ScratchPad",
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        800,
-        200
+        1720,
+        1100
       ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "9b0ffb28-dca5-4780-8ec7-8fdcf4fb92d8",
+      "name": "Kin Boiron",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        440,
+        1200
+      ],
+      "webhookId": "d41a317d-544c-4a6e-834b-96e000dbd8e0",
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "a240b0a3-a36b-45ff-abf7-da008d283226",
+      "name": "Kin CIR",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        440,
+        1040
+      ],
+      "webhookId": "c1f40942-501c-4b73-ab6e-22df752df854",
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "Jarvis"
+        }
+      }
     }
   ],
   "pinData": {
-    "mission": [
-      {
-        "json": {
-          "kin": "kincir_dynergie",
-          "demandeur": "Sébastien Deschaux",
-          "demandeurId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
-          "producteurId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
-          "contexte": "L’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\n\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\nLes thématiques de recherche sont :  \nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.",
-          "intentionDUsage": "Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.",
-          "demande": "1) Trouve quoi améliorer dans le document via le questionneur 2) Cherche des infos pour l'améliorer via le chercheur 3) Améliore via le rédacteur4) Reflect & plan via le scratchpad"
-        }
-      }
-    ],
     "On new manual Chat Message": [
       {
         "json": {
@@ -671,7 +715,7 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrencyRules": [
-        22
+        10
       ]
     }
   },
@@ -683,7 +727,7 @@
       "name": "kin"
     }
   ],
-  "triggerCount": 1,
-  "updatedAt": "2023-12-19T22:58:53.000Z",
-  "versionId": "fab2ae42-e52d-42a8-b9a2-e5991d2e487d"
+  "triggerCount": 3,
+  "updatedAt": "2023-12-20T10:49:04.000Z",
+  "versionId": "9f2e7b02-410b-4229-9851-33a5c932b0b3"
 }
