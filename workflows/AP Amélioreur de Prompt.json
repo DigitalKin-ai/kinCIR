@@ -1,50 +1,6 @@
 {
   "active": false,
   "connections": {
-    "Execute Workflow Trigger": {
-      "main": [
-        [
-          {
-            "node": "entree",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "When clicking \"Execute Workflow\"": {
-      "main": [
-        [
-          {
-            "node": "entree",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "entree": {
-      "main": [
-        [
-          {
-            "node": "Synchroniser GitHub -> Pinecone",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Synchroniser GitHub -> Pinecone1": {
-      "main": [
-        [
-          {
-            "node": "Reponse",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Get Document": {
       "main": [
         [
@@ -89,24 +45,13 @@
         ]
       ]
     },
-    "Synchroniser GitHub -> Pinecone": {
-      "main": [
-        [
-          {
-            "node": "Get Assistant",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "GitHub": {
       "main": [
         [
           {
-            "node": "Synchroniser GitHub -> Pinecone1",
+            "node": "Input 1 Data",
             "type": "main",
-            "index": 0
+            "index": 1
           }
         ]
       ]
@@ -122,11 +67,60 @@
         ]
       ]
     },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "message": {
+      "main": [
+        [
+          {
+            "node": "Get Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Améliorateur de Prompt": {
       "main": [
         [
           {
             "node": "Modify Assistant",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Input 1 Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input 1 Data": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
             "type": "main",
             "index": 0
           }
@@ -139,92 +133,6 @@
   "meta": null,
   "name": "AP Amélioreur de Prompt",
   "nodes": [
-    {
-      "parameters": {},
-      "id": "04c9cbe1-a36c-481b-bc40-cbad7b5242c9",
-      "name": "Execute Workflow Trigger",
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "typeVersion": 1,
-      "position": [
-        -100,
-        300
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "return {\"json\":{\"response\":$node[\"Améliorateur de Prompt\"].json.text}};"
-      },
-      "id": "ef8b5ff7-f62f-4967-b20a-cc56d086ae5f",
-      "name": "Reponse",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2200,
-        300
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "0bd64694-c506-4c4d-819c-fe9f277cfc5c",
-      "name": "When clicking \"Execute Workflow\"",
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -100,
-        520
-      ]
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "entree",
-              "stringValue": "={{ $json.entree }}{{ $json.query }}{{ $json.output }}"
-            },
-            {
-              "name": "kinName",
-              "stringValue": "={{ $json.kinName }}"
-            },
-            {
-              "name": "assistantId",
-              "stringValue": "={{ $json.assistantId }}"
-            },
-            {
-              "name": "mission",
-              "stringValue": "={{ $json.mission}}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $json.intentionDUsage }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "753e5ae6-3b47-4f32-836a-d719c9205971",
-      "name": "entree",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        140,
-        300
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "d6khXiG3YxUunViW"
-      },
-      "id": "be441534-8903-4959-a0d0-925a73eff24f",
-      "name": "Synchroniser GitHub -> Pinecone1",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        2000,
-        300
-      ]
-    },
     {
       "parameters": {
         "model": {
@@ -265,21 +173,6 @@
       "position": [
         1020,
         300
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## RS - Rédacteur de Document de Sortie : Rédige une version améliorée du Plan de Document de Sortie à partir d'une instruction ou d'une proposition de Plan",
-        "height": 429.80439085591235,
-        "width": 548.1198073088228
-      },
-      "id": "156b131a-5f60-4d6d-976f-64690462612e",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        140,
-        -160
       ]
     },
     {
@@ -355,20 +248,6 @@
     },
     {
       "parameters": {
-        "workflowId": "d6khXiG3YxUunViW"
-      },
-      "id": "745b4649-fa14-414e-ad21-d8408daec274",
-      "name": "Synchroniser GitHub -> Pinecone",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        360,
-        300
-      ],
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
         "resource": "file",
         "operation": "edit",
         "owner": {
@@ -395,7 +274,7 @@
       "typeVersion": 1,
       "position": [
         1800,
-        300
+        640
       ],
       "credentials": {
         "githubApi": {
@@ -444,7 +323,7 @@
       "typeVersion": 4.1,
       "position": [
         1600,
-        300
+        640
       ],
       "credentials": {
         "openAiApi": {
@@ -454,8 +333,71 @@
       }
     },
     {
+      "parameters": {},
+      "id": "a0e1acdb-5462-49e6-8123-8b32088bdb7f",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        295
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e958c188-1e64-42fb-a33f-0067da0b099b",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        100,
+        95
+      ]
+    },
+    {
       "parameters": {
-        "prompt": "=# Mission du Collaborateur\n\n{{ $('entree').item.json[\"mission\"] }}\n\n# Intention d'usage du Collaborateur\n\n{{ $('entree').item.json[\"intentionDUsage\"] }}\n\n# Demande du Collaborateur\n\n{{ $('entree').item.json[\"entree\"] }}\n\n# Prompt à améliorer\n``\n{{ $json.instructions }}\n``",
+        "content": "# ENTREE STANDARD",
+        "height": 536.060150033849,
+        "width": 536.692184943248
+      },
+      "id": "24080781-14d7-4cb6-a7fa-3663fc4bcdde",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "uM0Ul7juoL7DAqRB"
+      },
+      "id": "3e21776a-22a5-4e51-bc29-628ddf9c0768",
+      "name": "message",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        340,
+        295
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "a58989bd-f8ae-450d-83f5-2faa4a496a34",
+      "name": "Input 1 Data",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2080,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "prompt": "=# Contexte\n\n{{ $node[\"message\"].json.contexte }}\n\n# Intention d'Usage\n\n{{ $node[\"message\"].json.intentionDUsage }}\n\n# Demande\n\n{{ $node[\"message\"].json[\"demandeurId\"] }} : {{ $node[\"message\"].json[\"demandeur\"] }} :\n``\n{{ $node[\"message\"].json[\"demande\"] }}\n``",
         "messages": {
           "messageValues": [
             {
@@ -472,20 +414,155 @@
         1240,
         300
       ]
+    },
+    {
+      "parameters": {
+        "name": "redacteur_de_document",
+        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
+        "workflowId": "0T67aHjuqQEnrTN0",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "3677ab0b-55c2-4405-932d-afd6606e99c3",
+      "name": "Rédacteur de Document",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_documents",
+        "description": "Donne une réponse précise issue du document demandé à partir d'un besoin informationnel.",
+        "workflowId": "ebLHEt0swZVT9tks",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "5e6f988a-2811-4c9c-9e5e-d4f9c12e7cef",
+      "name": "Questionneur de Documents",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "c70d3fd0-df51-4020-88bb-6671fd5b3e77",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1860,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS STANDARD",
+        "height": 224.32004875594802,
+        "width": 447.22204993824914
+      },
+      "id": "e6583089-8861-4d2d-8c95-26e880cb11fc",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1540,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS SPECIFIQUES",
+        "height": 413.4919569863578,
+        "width": 468.47826732357714
+      },
+      "id": "8a1e3986-1a1b-4d8e-a06c-ee8b4ab598c4",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# COLLABORATEURS",
+        "height": 224.32004875594802,
+        "width": 355.66820106337036
+      },
+      "id": "a316298d-0fde-4b30-ac38-7b5b72ecdcf0",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        660,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# SORTIE STANDARD",
+        "height": 273.96047817628465,
+        "width": 382.2960085494244
+      },
+      "id": "e04fc32b-4881-4624-a698-0a118af64f11",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2280,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let message = $node[\"message\"].json;\n\nif (Object.keys($json).length == 1) {\n  message.demande = $json[Object.keys($json)[0]];\n} else {\n  message.demande = JSON.stringify($json);\n}\n\nreturn {\"message\":JSON.stringify(message)};"
+      },
+      "id": "73a08e05-8f5e-4b5b-b424-6793c4e74745",
+      "name": "nouveau message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2420,
+        280
+      ]
     }
   ],
-  "pinData": {
-    "When clicking \"Execute Workflow\"": [
-      {
-        "json": {
-          "query": "# Rôle\nObjectif: Fournir des conseils stratgiques en se basant sur le Modle d'Impact.\n\n# Contexte\nObjectif: Utiliser le Modle d'Impact dans un cadre de prise de dcision.\n\n# Proposition de Valeur\nObjectif : Gnrer une reprsentation algbrique de la situation ou du systme, et identifier les paramtres d'action cl pour le changement potentiel.\n\n# Entr�e\nObjectif: Recevoir des paramtres pour appliquer le Modle d'Impact - acteur, objectif, solution, contexte d'utilisation, et entres, avec les rsultats souhait�s.\n\n# Instructions\nObjectif: Aligner le processus de traitement avec les quatre tapes de la mthodologie 'Design by Impact'.\n\n# Sortie\nObjectif: Offrir des exemples qui s'inscre dans ce processus structur pour aider les utilisateurs comprendre ce quoi s'attendre de l'interaction.",
-          "kinName": "null",
-          "intentionDUsage": "null",
-          "assistantId": "asst_3XJNQCW7dTC1fN2KbPyaHzHA"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -494,13 +571,13 @@
   "staticData": null,
   "tags": [
     {
-      "createdAt": "2023-12-17T10:07:55.424Z",
-      "updatedAt": "2023-12-17T10:07:55.424Z",
-      "id": "DzuSxffpFOEBRhld",
-      "name": "fonction"
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-19T21:52:26.000Z",
-  "versionId": "2bc58aaf-a91c-4adb-a9d7-625027368ca6"
+  "updatedAt": "2023-12-20T17:18:26.000Z",
+  "versionId": "dcc5a4b8-901a-48ab-82bb-585c22c35f7e"
 }
