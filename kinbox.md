@@ -144,3 +144,35 @@ Zheng, Z., Xie, S., Dai, H., Chen, X., & Wang, H. (2017). An Overview of Blockch
 Casey, M. J., & Wong, P. (2017). Global Supply Chains Are About to Get Better, Thanks to Blockchain. *Harvard Business Review*.
 
 Howson, P. (2020). Tackling Climate Change with Blockchain. *Nature Climate Change*, 10(5), 347–348.
+
+- User: Continue :)
+
+- Assistant : ### Etat de l'art sur la thématique Influence des Consommateurs
+
+|                               | Thématique : Influence des Consommateurs                                      | Besoin de R&D ?  |
+|-------------------------------|--------------------------------------------------------------------------------|------------------|
+| **Psychologie du consommateur** | [APPORTS ATTENDUS] Comprendre en profondeur les facteurs motivant ou freinant les choix de consommation de mode durable et éthique. [IMPORTANCE] Essentiel pour la création de stratégies ciblées et efficaces dans la promotion de la mode éthique. [EXISTANTS] Modèles de comportement d'achat, enquêtes sur les attitudes des consommateurs, études sur le facteurs influençant les décisions d'achat. [VERROUS] Manque de recherches spécifiques sur la mode durable et éthique, diversité des profils consommateurs, complexité des motivations et résistances individuelles. [STATUS] Bloquant. | Besoin R&D |
+| **Marketing et communication**   | [APPORTS ATTENDUS] Élaboration de campagnes marketing spécifiquement adaptées à la promotion de la mode durable. [IMPORTANCE] Incontournable pour façonner les perceptions et encourager l'adoption de pratiques d'achat responsable. [EXISTANTS] Techniques de marketing vert, plateformes digitales pour campagnes de sensibilisation, approches de storytelling engagées. [VERROUS] Difficultés à mesurer l'efficacité réelle des campagnes de sensibilisation, saturation publicitaire, réticence des consommateurs face au changement. [STATUS] Bloquant. | Besoin R&D |
+| **Économie comportementale**    | [APPORTS ATTENDUS] Étude des effets de différents types d'incitations sur le comportement d'achat en matière de mode durable. [IMPORTANCE] Capital pour concevoir des politiques et des incitations efficaces à l'achat durable. [EXISTANTS] Théories sur les incitations comportementales, études de cas sur les effets de politiques de pricing éthique. [VERROUS] Manque d'études spécifiques à la mode durable, difficulté à généraliser les résultats des études comportementales à l'ensemble des consommateurs. [STATUS] Bloquant. | Besoin R&D |
+
+#### Etat de l'art en Psychologie du consommateur
+
+Dans le domaine de la mode durable et éthique, les consommateurs sont la clé pour assurer un marché florissant et une demande stable. Comprendre les motivations derrière leurs choix s'avère donc crucial. Les travaux de recherche en psychologie du consommateur apportent une aide précieuse pour déchiffrer ces motivations et les barrières qui empêchent les consommateurs de choisir des produits durables. À ce titre, les études existantes offrent un aperçu général des facteurs influençant les comportements d'achat (e.g., conscience environnementale, recherche d'authenticité, méfiance à l’égard des actions 'greenwashing'). Cependant, les verrous résident dans la granularité des données et leur interprétation spécifique pour la mode durable et éthique. La diversité des profils de consommateurs, avec leurs motivations propres et leurs résistances aux changements, complique l'élaboration de stratégies d'influence efficaces et personnalisées.
+
+Les capacités actuelles en psychologie du consommateur, basées en partie sur des cadres théoriques établis comme la théorie de l'action rationnelle ou la théorie du comportement planifié, mettent en lumière la complexité des décisions d'achat, incluant les considérations liées à l'éthique et à la durabilité (Ajzen, 1991; Schwartz, 1977). De plus, des données issues d’enquêtes et d’études de marché complètent ces cadres en fournissant des insights sur les attitudes spécifiques des consommateurs envers la mode durable (Peattie, 2010; Micheletti, 2003). Néanmoins, pour avancer vers l'atteinte des objectifs de DurableFashion, il est nécessaire de lever les verrous liés à la compréhension des motivations spécifiques et des obstacles psychologiques qui entravent l'achat de mode durable. Il en va de même pour définir des stratégies d'influence basées sur des stimuli et des messages précis qui résonnent avec les valeurs des consommateurs et qui répondent directement à leurs aspirations pour une mode éthique (Carrington et al., 2014).
+
+Cela nécessite donc des études approfondies et un suivi longitudinal des comportements d'achat en relation avec la mode durable, afin de concevoir des interventions qui peuvent réellement transformer les habitudes de consommation. La transition vers une mode durable et éthique s'accompagne inévitablement de changements dans les perceptions et priorités des consommateurs, et les travaux de recherche en psychologie du consommateur sont essentiels pour guider et soutenir ce processus (Pookulangara & Shephard, 2013).
+
+## Bibliographie
+
+Ajzen, I. (1991). The theory of planned behavior. *Organizational Behavior and Human Decision Processes*, 50(2), 179–211.
+
+Carrington, M.J., Neville, B.A., & Whitwell, G.J. (2014). Why Ethical Consumers Don't Walk Their Talk: Towards a Framework for Understanding the Gap Between the Ethical Purchase Intentions and Actual Buying Behavior of Ethically Minded Consumers. *Journal of Business Ethics*, 116(1), 173–191.
+
+Micheletti, M. (2003). Political Virtue and Shopping: Individuals, Consumerism, and Collective Action. Palgrave Macmillan.
+
+Peattie, K. (2010). Green Consumption: Behavior and Norms. *Annual Review of Environment and Resources*, 35, 195–228.
+
+Pookulangara, S., & Shephard, A. (2013). Slow fashion movement: Understanding consumer perceptions—An exploratory study. *Journal of Retailing and Consumer Services*, 20(2), 200–206.
+
+Schwartz, S. H. (1977). Normative influences on altruism. In L. Berkowitz (Ed.), *Advances in experimental social psychology* (Vol. 10, pp. 221–279). Academic Press.
