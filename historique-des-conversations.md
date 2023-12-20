@@ -1,3 +1,9 @@
+# Le 20 décembre 2023 à 16:17:34 : Message de  asst_PtFkjK3WpkPD5u6ZLc6toZ0q - kincir_dynergie
+
+``
+Assurer le suivi continu des travaux de recherche en cours, comprendre la mission de l'entreprise WeDressFair dans le cadre de l'éligibilité au Crédit Impôt Recherche, évaluer les activités de recherche en mode durable pour démontrer l'éligibilité au CIR, fournir des données actualisées sur les projets de recherche, faire un suivi et une évaluation des projets de recherche de WeDressFair, et présenter un rapport d'évaluation des projets de recherche en mode durable.
+``
+
 # Le 20 décembre 2023 à 16:15:38 : Message de  asst_PtFkjK3WpkPD5u6ZLc6toZ0q - kincir_dynergie
 
 ``
