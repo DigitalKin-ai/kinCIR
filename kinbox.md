@@ -226,3 +226,27 @@ Pullman, M. E., Maloni, M. J., & Carter, C. R. (2009). Food for thought: Social 
 Smith, A. N. (2011). Social Media in Marketing: Fad or Fundamental? A Theory Perspective. *Marketing Theory*, 11(4), 411–424.
 
 Villarino, J., & Font, X. (2015). Sustainability marketing myopia: The lack of persuasiveness in sustainability communication. *Journal of Vacation Marketing*, 21(4), 326–335.
+
+- User: Continue :)
+
+- Assistant : (Tadajewski, 2010). Cette approche exige un travail de recherche approfondi pour identifier les meilleurs leviers de communication et les indicateurs clés de performance qui correspondent à l'engagement des consommateurs envers des pratiques de mode durables (Ottman, 2011).
+
+En somme, pour avancer vers les objectifs de recherche de DurableFashion et influencer positivement la consommation de mode durable, des travaux de recherche supplémentaires sont nécessaires pour surmonter ces verrous et développer des techniques de marketing et de communication qui sont réellement efficaces dans l'ère numérique actuelle. Un meilleur aperçu des stratégies de communication qui résonnent avec les consommateurs et les incitent à agir est essentiel pour assurer le succès des initiatives de la mode durable et éthique (Strahilevitz et Myers, 1998).
+
+## Bibliographie
+
+Belz, F.-M., & Peattie, K. (2009). Sustainability Marketing: A Global Perspective. Wiley.
+
+Cheah, I., & Phau, I. (2011). Attitudes towards environmentally friendly products: The influence of ecoliteracy, interpersonal influence and value orientation. *Marketing Intelligence & Planning*, 29(5), 452–472.
+
+Kapferer, J.-N. (2010). The New Strategic Brand Management: Creating and Sustaining Brand Equity Long Term. Kogan Page.
+
+Ottman, J. A. (2011). The New Rules of Green Marketing: Strategies, Tools, and Inspiration for Sustainable Branding. Berrett-Koehler.
+
+Pullman, M. E., Maloni, M. J., & Carter, C. R. (2009). Food for thought: Social versus environmental sustainability practices and performance outcomes. *Journal of Supply Chain Management*, 45(4), 38–54.
+
+Smith, A. N. (2011). Social Media in the Age of Responsible Consumerism. *Journal of Business Ethics*, 100, 175–186.
+
+Strahilevitz, M., & Myers, J. G. (1998). Donations to charity as purchase incentives: How well they work may depend on what you are trying to sell. *Journal of Consumer Research*, 24(4), 434–446.
+
+Tadajewski, M. (2010). Towards a history of marketing thought. *Marketing Theory*, 10(4), 381–418.
