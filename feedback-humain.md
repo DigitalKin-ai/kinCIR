@@ -1,3 +1,9 @@
+# Le 20 décembre 2023 à 17:05:36 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Le membre de l'équipe DigitalKin a demandé des informations sur la performance actuelle des ressources d'intelligence artificielle (IA) chez WeDressFair, une société spécialisée dans la mode durable et éthique. Le membre cherche spécifiquement à obtenir un aperçu des performances de l'IA dans le contexte de leurs recherches qui visent à influencer la consommation et la production de mode éthique. Cette demande semble être faite dans le but d'évaluer l'éligibilité de l'entreprise à un dispositif de Crédit d’Impôt Recherche, pour leurs travaux en lien avec la mode durable.
+``
+
 # Le 20 décembre 2023 à 17:04:58 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
