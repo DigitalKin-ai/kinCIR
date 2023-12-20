@@ -71,7 +71,7 @@
       "main": [
         [
           {
-            "node": "Get Embedding",
+            "node": "IF Path",
             "type": "main",
             "index": 0
           }
@@ -154,6 +154,46 @@
           }
         ]
       ]
+    },
+    "IF Path": {
+      "main": [
+        [
+          {
+            "node": "Get Embedding",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "message1": {
+      "main": [
+        [
+          {
+            "node": "Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Document": {
+      "main": [
+        [
+          {
+            "node": "message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2023-12-18T06:02:25.817Z",
@@ -168,7 +208,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        100,
+        -100,
         300
       ]
     },
@@ -179,7 +219,7 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        100,
+        -100,
         500
       ]
     },
@@ -233,7 +273,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        560,
+        720,
         300
       ],
       "credentials": {
@@ -269,7 +309,7 @@
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        980,
+        1140,
         300
       ],
       "credentials": {
@@ -290,7 +330,7 @@
       "type": "n8n-nodes-base.moveBinaryData",
       "typeVersion": 1.1,
       "position": [
-        1200,
+        1360,
         300
       ]
     },
@@ -304,7 +344,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1640,
+        1800,
         300
       ]
     },
@@ -345,7 +385,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        1420,
+        1580,
         300
       ]
     },
@@ -387,7 +427,7 @@
             },
             {
               "name": "path",
-              "stringValue": "={{ $json.path }}"
+              "stringValue": "={{ $json.path?$json.path:$json.document_path }}"
             }
           ]
         },
@@ -398,7 +438,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        340,
+        120,
         300
       ]
     },
@@ -431,7 +471,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        780,
+        940,
         300
       ],
       "credentials": {
@@ -619,6 +659,92 @@
           "name": "PineconeApi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.path }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "3a1ddaf9-ffa0-45d7-a8cf-b144a4bb9199",
+      "name": "IF Path",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        320,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "Fdyk6mhC3BfpMdya"
+      },
+      "id": "9e9b9313-6c3d-40ee-b161-4eae6d803673",
+      "name": "Document",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        520,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "=kincir_dynergie"
+            },
+            {
+              "name": "demandeur",
+              "stringValue": "={{ $json.demandeur }}"
+            },
+            {
+              "name": "demandeurId",
+              "stringValue": "={{ $json.demandeurId }}"
+            },
+            {
+              "name": "producteurId",
+              "stringValue": "={{ $json.producteurId }}"
+            },
+            {
+              "name": "contexte",
+              "stringValue": "={{ $json.contexte }}"
+            },
+            {
+              "name": "intentionDUsage",
+              "stringValue": "={{ $json.intentionDUsage }}"
+            },
+            {
+              "name": "demande",
+              "stringValue": "={{ $json.query }}"
+            },
+            {
+              "name": "message",
+              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $json.demandeur }}\n\n{{ $json.demande }}\n\nPath \"{{ $json.path?$json.path:$json.document_path }}\" failed I need to get an exceptions-related documents"
+            },
+            {
+              "name": "path",
+              "stringValue": "={{ $json.path?$json.path:$json.document_path }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3b3ae82e-eff6-400d-b484-22f175e29e64",
+      "name": "message1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        320,
+        520
+      ]
     }
   ],
   "pinData": {
@@ -650,6 +776,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-19T22:49:35.000Z",
-  "versionId": "a1ecc9d0-21c1-4fab-a3e4-1d02241f6ff5"
+  "updatedAt": "2023-12-20T08:14:48.000Z",
+  "versionId": "172cdab6-eb2b-48dc-9655-da2dd8a7d6d5"
 }
