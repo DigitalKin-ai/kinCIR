@@ -2,7 +2,7 @@
 
 # Mission L’entreprise DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE. Activité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques. Le but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode. Le principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique. Les objectifs de recherche sont : Parvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques. Parvenir à influencer les marques à produire des vêtements responsables et éthiques. Parvenir à montrer l’impact des actions sur la consommation de biens de mode et mesurer cet impact sur l’environnement.
 
- (2010). The New Strategic Brand Management: Creating and Sustaining Brand Equity Long Term. Kogan Page Publishers.\r\n\r\nPullman, M. E., Maloni, M. J., & Carter, C. R. (2009). Food for thought: Social versus environmental sustainability practices and performance outcomes. *Journal of Supply Chain Management*, 45(4), 38–54.\r\n\r\nSmith, A. N. (2011). Social Media in Marketing: Fad or Fundamental? A Theory Perspective. *Marketing Theory*, 11(4), 411–424.\r\n\r\nVillarino, J., & Font, X. (2015). Sustainability marketing myopia: The lack of persuasiveness in sustainability communication. *Journal of Vacation Marketing*, 21(4), 326–335."}
+y Perspective. *Marketing Theory*, 11(4), 411–424.\r\n\r\nVillarino, J., & Font, X. (2015). Sustainability marketing myopia: The lack of persuasiveness in sustainability communication. *Journal of Vacation Marketing*, 21(4), 326–335."}
 
 - User: Continue :)
 
@@ -260,3 +260,7 @@ L'objectif ultime de DurableFashion est d'augmenter la part de mode durable dans
 - User: Continue :)
 
 - Assistant : Je suis désolé, mais sans instructions supplémentaires ou un sujet spécifique à aborder, je ne suis pas en mesure de continuer de façon pertinente. Si vous avez d'autres éléments à ajouter ou des questions concernant les recherches et les thématiques de R&D liées à la mode durable et éthique, je vous invite à les partager afin que nous puissions progresser efficacement.
+
+- User: Continue :)
+
+- Assistant : Je crains qu'il y ait eu une incompréhension. Si vous avez des directives spécifiques ou un aspect particulier de la mode durable et éthique que vous souhaitez explorer, je suis à votre disposition pour vous fournir des informations et analyses détaillées. Veuillez fournir des instructions claires pour que nous puissions avancer ensemble dans la bonne direction.
