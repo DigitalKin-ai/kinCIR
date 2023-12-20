@@ -1,3 +1,20 @@
+# Le 20 décembre 2023 à 14:24:35 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+# Contexte
+
+Demande d'information concernant les dernières découvertes ou avancements de la part des chercheurs scientifiques.
+
+# Intention d'Usage
+
+La demande vise à obtenir des informations sur les dernières avancées de la recherche scientifique pour la documentation ou l'analyse.
+
+# Demande de Utilisateur
+
+Demander aux chercheurs scientifiques des détails sur leurs dernières découvertes ou avancements dans leur domaine de recherche.
+
+``
+
 Ici doivent être stockés les messages de l'équipe, et infos.
 
 Emmanuel Théry
