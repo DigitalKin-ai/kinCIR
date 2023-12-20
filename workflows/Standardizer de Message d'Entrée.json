@@ -1,0 +1,126 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Standardizer de Message de Sortie",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Standardizer de Message de Sortie": {
+      "main": [
+        [
+          {
+            "node": "Return Standardized JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-20T13:06:27.582Z",
+  "id": "uM0Ul7juoL7DAqRB",
+  "meta": null,
+  "name": "Standardizer de Message d'Entrée",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "34082663-e320-4e10-a6ad-b0aea5e75a32",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        400,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## TODO : Integration schéma via GITHUB\n"
+      },
+      "id": "3fe645a8-7c6e-437e-bfa6-15170892efcc",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        400,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## TODO : Integration Autres schemas\n"
+      },
+      "id": "3d1d4cdf-f1f0-41c6-9526-3dac7f1660b5",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        700,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const messageSchema = {\n   \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n   \"title\": \"Schema de Message\",\n   \"type\": \"object\",\n   \"properties\": {\n      \"kin\": {\n         \"type\": \"string\",\n         \"default\": \"kincir_dynergie\",\n         \"description\": \"Identifiant du 'kin' impliqué dans le processus ou l'opération.\"\n      },\n      \"demandeur\": {\n         \"type\": \"string\",\n         \"default\": \"kincir_dynergie\",\n         \"description\": \"Nom du demandeur ou de l'entité demandant l'action ou l'information.\"\n      },\n      \"demandeurId\": {\n         \"type\": \"string\",\n         \"default\": \"asst_PtFkjK3WpkPD5u6ZLc6toZ0q\",\n         \"description\": \"Identifiant unique du demandeur.\"\n      },\n      \"producteurId\": {\n         \"type\": \"string\",\n         \"default\": \"asst_PtFkjK3WpkPD5u6ZLc6toZ0q\",\n         \"description\": \"Identifiant unique du producteur ou de l'entité produisant les données ou l'information.\"\n      },\n      \"contexte\": {\n         \"type\": \"string\",\n         \"default\": \"L’entreprise DurableFashion est spécialisée dans la mode durable et éthique. \\\\nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\\\\n\\\\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\\\\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\\\\nLes thématiques de recherche sont : \\\\nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques. \\\\nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\\\\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.\",\n         \"description\": \"Description du contexte dans lequel les informations sont utilisées ou générées, centrée sur l'entreprise WeDressFair et ses activités.\"\n      },\n      \"intentionDUsage\": {\n         \"type\": \"string\",\n         \"default\": \"Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.\",\n         \"description\": \"Explique l'intention d'utilisation des données, en l'occurrence pour démontrer l'éligibilité au crédit d'impôt recherche.\"\n      },\n      \"demande\": {\n         \"type\": \"string\",\n         \"default\": \"Assesse et continue ton travail.\",\n         \"description\": \"L’entreprise DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE.\\r\\nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\\r\\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\\r\\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\\r\\nLes objectifs de recherche sont :\\r\\nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.\\r\\nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\\r\\nParvenir à montrer l’impact des actions sur la consommation de biens de mode et mesurer cet impact sur l’environnement.\\r\\n\"\n      },\n     \"documentsDisponibles\": {\n         \"type\": \"array\",\n         \"default\":  \n[\n\"ressources-ia-difficultes-des-assistants.md\",\n\"programme-r-et-d-client--document-de-sortie.md\",\n\"process-du-producteur.md\",\n\"process-du-manager.md\",\n\"procedures-d-exceptions.md\",\n\"plan-du-document-de-sortie.md\",\n\"logs-des-erreurs.md\",\n\"historique-des-conversations.md\",\n\"guide.md\",\n\"fonction-d-evaluation-qualite.md\",\n\"feedback-humain.md\",\n\"avancement-de-la-mission.md\"\n],\n         \"description\": \"Liste des documents disponibles pour la mission. Cette liste peut être utilisée pour référencer des ressources pertinentes ou nécessaires.\"\n      }\n   },\n   \"additionalProperties\": false\n};\n\nfunction standardizeJson(json) {\n    // Clone l'objet pour éviter de modifier l'original\n    let standardizedJson = JSON.parse(JSON.stringify(json));\n\n    // Parcourir chaque propriété définie dans le schéma\n    for (let key in messageSchema.properties) {\n        if (messageSchema.properties.hasOwnProperty(key)) {\n            // Si la propriété n'existe pas dans l'objet json, \n            // ou si sa valeur est undefined, appliquer la valeur par défaut\n            if (!standardizedJson.hasOwnProperty(key) || standardizedJson[key] === undefined) {\n                standardizedJson[key] = messageSchema.properties[key].default;\n            }\n        }\n    }\n\n    return standardizedJson;\n}\n\n\nlet json = $json;\nlet standardizedJson = standardizeJson(json);\n\nreturn {\"json\":standardizedJson};"
+      },
+      "id": "35b5b6dd-e20c-4703-8dcc-6118d6390031",
+      "name": "Return Standardized JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        820,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## TODO : Create router workflow"
+      },
+      "id": "888cfd06-6862-4243-8be4-c6c30762cbfa",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "moQpTX0H8nd5ZN7Y"
+      },
+      "id": "290695e8-f55c-4ea9-bf8c-ad85798852bc",
+      "name": "Standardizer de Message de Sortie",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        620,
+        400
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-20T17:48:33.000Z",
+  "versionId": "1d35faeb-f468-4eb5-8813-acfa8edf8e87"
+}
