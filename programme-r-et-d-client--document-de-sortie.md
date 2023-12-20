@@ -1,3 +1,13 @@
+WeDressFair est une entreprise pionnière dans le domaine de la mode durable et éthique. Son activité centrale est l'identification et la certification de fabricants proposant des articles de mode alliant durabilité et pratiques éthiques. WeDressFair s'engage également dans la mise en valeur et la promotion de ces articles via ses canaux de vente, qui incluent une plateforme en ligne ainsi que des boutiques physiques.
+
+La vision de WeDressFair est de déclencher un changement significatif dans l'industrie de la mode en accroissant la part du marché occupée par les produits durables et éthiques. Cela implique un travail de fond sur les mentalités, tant du côté des consommateurs que des producteurs.
+
+Au cœur des objectifs de recherche de WeDressFair réside la volonté d'influencer positivement les habitudes de consommation ainsi que les pratiques de production pour s'orienter vers un avenir plus responsable. Les thématiques sur lesquelles se concentrent les recherches de l'entreprise sont les suivantes : 
+- Modifier les comportements d'achat des consommateurs en faveur de vêtements issus de marques responsables et éthiques.
+- Encourager les marques de mode à adopter une démarche de fabrication qui respecte des standards élevés en matière de responsabilité sociale et environnementale.
+- Évaluer l'impact écologique et social des initiatives adoptées par WeDressFair afin de quantifier l'influence réelle de l'entreprise sur les tendances de consommation dans le secteur de la mode. 
+
+Ces axes de recherche sous-tendent l'engagement de WeDressFair envers la création d'un écosystème de mode vertueux, où éthique et durabilité ne sont plus des options, mais des impératifs.
 ## Contexte scientifique et économique
 ## Contexte scientifique et économique
 
