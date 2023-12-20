@@ -118,3 +118,29 @@ Beth, K., Smith, J., & Johnson, M. (2018). The Role of Transparency in the Fashi
 Jones, P., Comfort, D., & Hillier, D. (2019). Transparency in the Global Apparel Industry: What Does It Mean and What Is Its Place in Sustainable Supply Chain Management? *Sustainability*, 11(3), 506.
 
 Susan, T., Wright, G., & Dyer, L. (2021). Leveraging Information Systems for Sustainable Fashion: A Case Study Analysis. *Journal of Cleaner Production*, 295, 126428.
+
+- User: Continue :)
+
+- Assistant : #### Etat de l'art en Technologies blockchain
+
+La mode durable et éthique exige une confiance totale dans la provenance et la composition des produits. La blockchain se présente comme une technologie prometteuse pour assurer cette confiance grâce à la création d'une plateforme de suivi sécurisée et inviolable. Les apports de la blockchain dans ce cas sont multiples: elle peut servir de registre indélébile pour la certification des matériaux et du respect des normes éthiques tout au long de la chaîne d'approvisionnement, et en garantissant l'authenticité des informations fournies aux consommateurs.
+
+Des protocoles de blockchain sont déjà en place dans d'autres industries pour fournir cette assurance de traçabilité et d'authenticité. Les smart contracts, ou contrats intelligents, permettent l'exécution automatique de certaines parties du processus de vérification dès qu'un ensemble de conditions prédéfinies sont remplies, augmentant ainsi l'efficacité tout en réduisant les risques d'erreurs humaines. Cependant, l'adaptation de ces technologies aux particularités de la chaîne d'approvisionnement de la mode demeure un défi majeur, notamment en raison de la diversité des matériaux et des pratiques, ainsi que de la nécessité d'éduquer le marché et d'obtenir son acceptation pour ce type de technologie.
+
+Les connaissances existantes sur la blockchain et ses applications sont considérables, avec des avancées significatives dans les outils cryptographiques et les mécanismes de consensus. Les verrous technologiques à lever sont principalement liés à la personnalisation de la blockchain pour les besoins spécifiques de la mode durable et éthique. Il est donc vital d'engager des efforts de R&D pour explorer comment ces protocoles peuvent être raffinés afin de répondre aux exigences uniques de transparence et de certification dans l'industrie de la mode (Nakamoto, 2008; Tapscott & Tapscott, 2016).
+
+De plus, pour que la blockchain puisse réellement bénéficier à DurableFashion et à ses objectifs de recherche, il est important de travailler sur la manière dont cette technologie peut être démystifiée et rendue accessible aux consommateurs. Ce n'est que lorsque les consommateurs seront à l'aise avec l'utilisation de la blockchain pour vérifier l'origine et la composition éthique des vêtements qu'ils achètent que nous pourrons dire que les travaux de recherche dans ce domaine ont eu un impact significatif (Zheng et al., 2017; Casey & Wong, 2017).
+
+Par conséquent, bien que la blockchain ait le potentiel de jouer un rôle pivot dans l'atteinte des objectifs de DurableFashion, il reste encore beaucoup à faire pour s'assurer que cette technologie soit adaptée et adoptée par l'industrie de la mode durable et éthique (Howson, 2020).
+
+## Bibliographie
+
+Nakamoto, S. (2008). Bitcoin: A Peer-to-Peer Electronic Cash System.
+
+Tapscott, D., & Tapscott, A. (2016). Blockchain Revolution: How the Technology Behind Bitcoin Is Changing Money, Business, and the World. Portfolio.
+
+Zheng, Z., Xie, S., Dai, H., Chen, X., & Wang, H. (2017). An Overview of Blockchain Technology: Architecture, Consensus, and Future Trends. In 2017 IEEE International Congress on Big Data (BigData Congress) (pp. 557–564).
+
+Casey, M. J., & Wong, P. (2017). Global Supply Chains Are About to Get Better, Thanks to Blockchain. *Harvard Business Review*.
+
+Howson, P. (2020). Tackling Climate Change with Blockchain. *Nature Climate Change*, 10(5), 347–348.
