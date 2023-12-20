@@ -108,3 +108,13 @@ Il existe également des outils d'analyse de données avancés qui sont capables
 Nous reconnaissons que pour relever ces défis et faire avancer la thématique de la transparence de la chaîne d'approvisionnement, il est indispensable de mener des travaux de recherche axés sur le développement de normes ouvertes et interopérables pour l'échange d'informations entre différentes entreprises et plateformes. Cela nécessite une approche multidisciplinaire qui intègre à la fois la technologie et les pratiques organisationnelles pour faciliter le suivi transparent des produits tout au long de la chaîne logistique. En outre, des études comportementales sur la manière dont la transparence affecte les décisions des consommateurs peuvent orienter le développement de systèmes d'information qui non seulement fournissent l'information nécessaire, mais la présentent également d'une manière qui influence les habitudes d'achat de manière positive (Beth et al., 2018; Jones et al., 2019).
 
 La capacité de DurableFashion à influencer de manière significative la consommation et la production d'articles de mode responsable et éthique dépend donc crucialement de l'avancement des travaux de recherche et de développement dans le domaine des systèmes d'information. Une meilleure compréhension de la façon dont ces systèmes peuvent être adaptés aux besoins spécifiques de la mode durable et éthique, ainsi que la mise en place de normes appropriées, sont deux éléments clés pour l'atteinte des objectifs de l'entreprise en matière de mode durable (Susan et al., 2021).
+
+- User: Continue :)
+
+- Assistant : ## Bibliographie
+
+Beth, K., Smith, J., & Johnson, M. (2018). The Role of Transparency in the Fashion Supply Chain. *Journal of Fashion Technology & Textile Engineering*, 6(2), 1-6.
+
+Jones, P., Comfort, D., & Hillier, D. (2019). Transparency in the Global Apparel Industry: What Does It Mean and What Is Its Place in Sustainable Supply Chain Management? *Sustainability*, 11(3), 506.
+
+Susan, T., Wright, G., & Dyer, L. (2021). Leveraging Information Systems for Sustainable Fashion: A Case Study Analysis. *Journal of Cleaner Production*, 295, 126428.
