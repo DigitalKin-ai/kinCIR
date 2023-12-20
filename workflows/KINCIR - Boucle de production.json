@@ -23,28 +23,6 @@
         ]
       ]
     },
-    "Kin Boiron": {
-      "main": [
-        [
-          {
-            "node": "mission",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Kin CIR": {
-      "main": [
-        [
-          {
-            "node": "mission",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "mission": {
       "main": [
         [
@@ -391,54 +369,6 @@
           "name": "OpenAi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "updates": [
-          "message"
-        ],
-        "additionalFields": {}
-      },
-      "id": "f80ae8aa-821b-4c16-958b-6be083577e5b",
-      "name": "Kin CIR",
-      "type": "n8n-nodes-base.telegramTrigger",
-      "typeVersion": 1,
-      "position": [
-        -320,
-        -140
-      ],
-      "webhookId": "c1f40942-501c-4b73-ab6e-22df752df854",
-      "credentials": {
-        "telegramApi": {
-          "id": "lCt7ijUIUZl2RYIR",
-          "name": "Jarvis"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "updates": [
-          "message"
-        ],
-        "additionalFields": {}
-      },
-      "id": "1693e784-fa1c-428c-8fff-8f39c390f106",
-      "name": "Kin Boiron",
-      "type": "n8n-nodes-base.telegramTrigger",
-      "typeVersion": 1,
-      "position": [
-        -320,
-        20
-      ],
-      "webhookId": "d41a317d-544c-4a6e-834b-96e000dbd8e0",
-      "credentials": {
-        "telegramApi": {
-          "id": "36XnU2tVylnKh3kr",
-          "name": "Telegram account"
-        }
-      },
-      "disabled": true
     },
     {
       "parameters": {
@@ -865,6 +795,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2023-12-19T09:56:37.000Z",
-  "versionId": "0827b998-e372-4d05-ac25-f1889a6f7803"
+  "updatedAt": "2023-12-20T08:20:50.000Z",
+  "versionId": "9164c16d-f3bf-40fd-89af-3bdeb4daa7fd"
 }
