@@ -1,3 +1,9 @@
+# Le 20 décembre 2023 à 17:02:23 : Message de  asst_PtFkjK3WpkPD5u6ZLc6toZ0q - un membre de l'équipe DigitalKin
+
+``
+Message Formateur
+``
+
 # Le 20 décembre 2023 à 17:02:20 : Message de  asst_PtFkjK3WpkPD5u6ZLc6toZ0q - kincir_dynergie
 
 ``
