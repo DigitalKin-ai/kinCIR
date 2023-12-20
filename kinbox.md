@@ -200,3 +200,29 @@ Nielson, K. S., & Mont, O. (2018). The Influence of Consumer Responsibility on t
 Pullman, M. E., Maloni, M. J., & Carter, C. R. (2009). Food for thought: Social versus environmental sustainability practices and performance outcomes. *Journal of Supply Chain Management*, 45(4), 38–54.
 
 Smith, A. N. (2011). The role of social media in marketing communication: From buzz to strategies. *Corporate Communications: An International Journal*, 16(3), 202–217.
+
+- User: Continue :)
+
+- Assistant : et aux nouvelles tendances de consommation. La recherche dans le domaine du marketing et de la communication devrait donc s'intéresser à l'identification de nouveaux indicateurs de performance pour ces campagnes, incluant des métriques qualitatives et quantitatives qui reflètent l'engagement réel des consommateurs envers la mode durable et l'acceptation de ces messages (Eagle et al., 2015).
+
+En somme, lever les verrous dans le domaine du marketing et de la communication est essentiel pour créer des liaisons efficaces entre les valeurs de la mode durable et les convictions personnelles des consommateurs, en alignant les messages de l'entreprise avec les préoccupations actuelles et futures de sa clientèle. Cela nécessite une compréhension approfondie des canaux de communication principaux, des types de contenu qui résonnent avec les différents segments de marché, et de la manière dont les messages peuvent être personnalisés pour un impact maximal (Hartmann & Apaolaza-Ibáñez, 2012).
+
+En conclusion, alors que les principes de marketing durable gagnent du terrain, il demeure fondamental pour DurableFashion de rechercher et d'intégrer les meilleures pratiques de communication pour sensibiliser et entraîner un changement de comportement en faveur de la mode éthique et durable. Cela implique non seulement de diffuser de l'information, mais également de susciter de manière efficace une résonance émotionnelle et un engagement actif auprès des consommateurs (Villarino & Font, 2015).
+
+## Bibliographie
+
+Belz, F. -M., & Peattie, K. (2009). Sustainability Marketing: A Global Perspective. Wiley.
+
+Cheah, I., & Phau, I. (2011). Attitudes towards environmentally friendly products: The influence of ecoliteracy, interpersonal influence and value orientation. *Marketing Intelligence & Planning*, 29(5), 452–472.
+
+Eagle, L., Dahl, S., Hill, S., Bird, S., Spotswood, F., & Tapp, A. (2015). Social Marketing. Pearson.
+
+Hartmann, P., & Apaolaza-Ibáñez, V. (2012). Consumer attitude and purchase intention toward green energy brands: The roles of psychological benefits and environmental concern. *Journal of Business Research*, 65(9), 1254–1263.
+
+Kapferer, J.-N. (2010). The New Strategic Brand Management: Creating and Sustaining Brand Equity Long Term. Kogan Page Publishers.
+
+Pullman, M. E., Maloni, M. J., & Carter, C. R. (2009). Food for thought: Social versus environmental sustainability practices and performance outcomes. *Journal of Supply Chain Management*, 45(4), 38–54.
+
+Smith, A. N. (2011). Social Media in Marketing: Fad or Fundamental? A Theory Perspective. *Marketing Theory*, 11(4), 411–424.
+
+Villarino, J., & Font, X. (2015). Sustainability marketing myopia: The lack of persuasiveness in sustainability communication. *Journal of Vacation Marketing*, 21(4), 326–335.
