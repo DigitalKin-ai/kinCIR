@@ -1,3 +1,9 @@
+# Le 20 décembre 2023 à 17:52:55 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+DurableFashion est une entreprise engagée dans la promotion et la vente de mode éthique et durable. En identifiant, certifiant et mettant en avant les fabricants qui adhèrent à ces principes, DurableFashion cherche à augmenter l'influence de la mode durable dans l'industrie. L'objectif principal est d'orienter à la fois les consommateurs vers des choix de consommation responsables et éthiques et les marques vers une production respectueuse de ces valeurs. De plus, DurableFashion aspire à quantifier l'impact environnemental de ses actions pour prouver l'efficacité de ses démarches. Le membre de l'équipe DigitalKin qui a fourni ces informations souligne l'objectif de ces recherches dans le contexte de l'éligibilité au dispositif du Crédit d'Impôt Recherche (CIR), en vue d'un rescrit CIR.
+``
+
 # Le 20 décembre 2023 à 17:52:33 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
