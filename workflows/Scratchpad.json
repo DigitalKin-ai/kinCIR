@@ -12,7 +12,7 @@
         ]
       ]
     },
-    "When clicking \"Execute Workflow\"": {
+    "On new manual Chat Message": {
       "main": [
         [
           {
@@ -23,7 +23,18 @@
         ]
       ]
     },
-    "GPT": {
+    "message": {
+      "main": [
+        [
+          {
+            "node": "Get Demandeur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Model": {
       "ai_languageModel": [
         [
           {
@@ -34,7 +45,7 @@
         ]
       ]
     },
-    "Get Assisstant": {
+    "Get Demandeur": {
       "main": [
         [
           {
@@ -45,22 +56,11 @@
         ]
       ]
     },
-    "message": {
-      "main": [
-        [
-          {
-            "node": "Get Assisstant",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "ScratchPad": {
       "main": [
         [
           {
-            "node": "Reponse",
+            "node": "nouveau message",
             "type": "main",
             "index": 0
           }
@@ -75,38 +75,52 @@
   "nodes": [
     {
       "parameters": {},
-      "id": "858bf691-5560-404f-beb1-61f786ed1cb6",
+      "id": "cac15a8c-7ae8-4ed7-8b27-1ec1878e9568",
       "name": "Execute Workflow Trigger",
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        1420,
-        240
+        2060,
+        135
       ]
     },
     {
       "parameters": {},
-      "id": "07438f4d-0db6-4356-92a0-262b3e0ab784",
-      "name": "When clicking \"Execute Workflow\"",
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
+      "id": "2232a16f-1ff7-415c-9200-642a3123c771",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
       "position": [
-        1420,
-        460
+        2060,
+        -65
       ]
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "const item = $json;\n\n// Initialize an empty string to store the formatted response\nlet responseString = '';\n\n// Iterate over each key-value pair in the item\nfor (const key in item) {\n    responseString += `# ${key}\\n\\n${item[key]}\\n\\n`;\n}\n\n// Return the formatted string in JSON format\nreturn { json: { response: responseString } };\n"
+        "content": "# ENTREE STANDARD",
+        "height": 536.060150033849,
+        "width": 536.692184943248
       },
-      "id": "c235903a-c726-4d4e-8f11-73d5c52d2109",
-      "name": "Reponse",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "id": "0e0963d7-d1f9-4353-a76e-0c6723cdd7e4",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
       "position": [
-        2480,
-        240
+        1940,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "uM0Ul7juoL7DAqRB"
+      },
+      "id": "d019cffb-d721-4060-97f4-7fce8733ec4a",
+      "name": "message",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        135
       ]
     },
     {
@@ -117,17 +131,15 @@
           "mode": "list",
           "cachedResultName": "gpt-4-1106-preview"
         },
-        "options": {
-          "timeout": 600000
-        }
+        "options": {}
       },
-      "id": "72e49b3b-84fd-45b4-ac22-c58327be90e5",
-      "name": "GPT",
+      "id": "33cf7f46-5177-4e46-bb28-c36be4178ead",
+      "name": "OpenAI Model",
       "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
       "typeVersion": 1,
       "position": [
-        2140,
-        480
+        2800,
+        320
       ],
       "credentials": {
         "openAiApi": {
@@ -151,22 +163,18 @@
             {
               "name": "Content-Type",
               "value": "application/json"
-            },
-            {
-              "name": "Bearer",
-              "value": "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"
             }
           ]
         },
         "options": {}
       },
-      "id": "c5cec6e1-a694-4c54-9e6a-4b2ef6df37e9",
-      "name": "Get Assisstant",
+      "id": "4bb93940-de1d-4fb5-ae18-f9cf513c644d",
+      "name": "Get Demandeur",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1900,
-        240
+        2540,
+        140
       ],
       "credentials": {
         "openAiApi": {
@@ -177,92 +185,55 @@
     },
     {
       "parameters": {
-        "content": "## - ScratchPad : Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise en donnée en  entrée.",
-        "height": 429.80439085591235,
-        "width": 548.1198073088228
-      },
-      "id": "4a1bd07d-5eb0-46e1-be33-2083bfc075c5",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        1680,
-        -240
-      ]
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
+        "prompt": "=# Contexte\n\n{{ $node[\"message\"].json.contexte }}\n\n# Intention d'Usage\n\n{{ $node[\"message\"].json.intentionDUsage }}\n\n# Demande\n\n{{ $node[\"message\"].json[\"demandeurId\"] }} : {{ $node[\"message\"].json[\"demandeur\"] }} :\n``\n{{ $node[\"message\"].json[\"demande\"] }}\n``",
+        "messages": {
+          "messageValues": [
             {
-              "name": "kin",
-              "stringValue": "={{ $json.kin }}"
-            },
-            {
-              "name": "=demandeur",
-              "stringValue": "={{ $json.demandeur }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $json.demandeurId }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "={{ $json.producteurId }}"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $json.intentionDUsage }}"
-            },
-            {
-              "name": "demande",
-              "stringValue": "={{ $json.demande }}"
-            },
-            {
-              "name": "message",
-              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $json.demandeur }}\n\n{{ $json.demande }}"
+              "message": "=# Rôle Principal (plus important)\n\nScratchpad de l'Assistant {{ $('Get Demandeur').item.json[\"name\"] }}.\n\nEn tant que scratchpad, tu aides {{ $('Get Demandeur').item.json[\"name\"] }} avec sa demande. Contrairement à {{ $('Get Demandeur').item.json[\"name\"] }}, tu n'as pas accès à des Fonctions. Tu peux seulement faire de ton mieux avec une chaine Langchain simple.\n\nRéponds avec la réponse à la demande de {{ $('Get Demandeur').item.json[\"name\"] }}.\n\n# Prompt Système de {{ $('Get Demandeur').item.json[\"name\"] }}.\n\n``\n{{ $('Get Demandeur').item.json[\"instructions\"] }}\n``"
             }
           ]
-        },
-        "options": {}
-      },
-      "id": "92a09677-a595-4361-b08a-c34b8377b63e",
-      "name": "message",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        1680,
-        240
-      ]
-    },
-    {
-      "parameters": {
-        "prompt": "=# Rôle Principal (plus important)\n\nScratchpad de l'Assistant {{ $('Get Assisstant').item.json[\"name\"] }}.\n\nEn tant que scratchpad, tu aides {{ $('Get Assisstant').item.json[\"name\"] }} avec sa demande. Contrairement à {{ $('Get Assisstant').item.json[\"name\"] }}, tu n'as pas accès à des Fonctions. Tu peux seulement faire de ton mieux avec une chaine Langchain simple.\n\nRéponds avec la réponse à la demande de {{ $('Get Assisstant').item.json[\"name\"] }}.\n\n# Demande\n\n{{ $('message').item.json[\"query\"] }}"
+        }
       },
       "id": "726cbf52-e51f-459b-95e2-74a510507ff7",
       "name": "ScratchPad",
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.2,
       "position": [
-        2120,
-        240
+        2780,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# SORTIE STANDARD",
+        "height": 280.594696271387,
+        "width": 382.2960085494244
+      },
+      "id": "135a3cd1-020c-493f-b5a9-e07bac774901",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3480,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let message = $node[\"message\"].json;\n\nif (Object.keys($json).length == 1) {\n  message.demande = $json[Object.keys($json)[0]];\n} else {\n  message.demande = JSON.stringify($json);\n}\n\nreturn {\"message\":JSON.stringify(message)};"
+      },
+      "id": "19957d3d-8675-44ae-a810-78a893823488",
+      "name": "nouveau message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3620,
+        140
       ]
     }
   ],
-  "pinData": {
-    "When clicking \"Execute Workflow\"": [
-      {
-        "json": {
-          "entree": "Quels sont les verrous scientifiques et techniques qui bloquent le développement de s chiens et des chats",
-          "kinName": "kincir_dynergie"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -271,13 +242,13 @@
   "staticData": null,
   "tags": [
     {
-      "createdAt": "2023-12-17T10:07:55.424Z",
-      "updatedAt": "2023-12-17T10:07:55.424Z",
-      "id": "DzuSxffpFOEBRhld",
-      "name": "fonction"
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-19T20:20:34.000Z",
-  "versionId": "b4e4f235-0b00-4d85-ae19-821d344698e7"
+  "updatedAt": "2023-12-20T17:17:42.000Z",
+  "versionId": "2cffe8ec-517f-48fc-af2f-80af19b017d3"
 }
