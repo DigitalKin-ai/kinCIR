@@ -1,3 +1,17 @@
+# Le 20 décembre 2023 à 19:10:55 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Il semblerait que le client, Kincir d'Énergie, souhaite poursuivre les efforts pour démontrer l'éligibilité au Crédit Impôt Recherche (CIR) pour des travaux de recherche axés sur la mode durable et éthique. Avec l'entreprise DurableFashion, qui œuvre dans l'identification, la certification et la promotion de fabricants d'articles de mode durable et éthique, ainsi que dans la commercialisation de ces articles, ils cherchent à influencer les consommateurs et les marques vers des comportements plus responsables et éthiques dans la mode.
+
+Le contexte mentionné souligne l'objectif d'accroître la part de la mode durable et éthique dans l'ensemble de l'industrie de la mode. Cela inclut l'influence sur les habitudes de consommation et de production, l'évaluation de l'impact des activités de DurableFashion sur ces habitudes et la mesure des conséquences environnementales.
+
+La demande "Assesse et continue ton travail." implique un travail précédent déjà entamé sur ce thème. L'intention serait donc de procéder à l'évaluation des progrès accomplis et de continuer les travaux dans cette direction. Il semble que le destinataire de ce message soit en charge d'effectuer cette évaluation et la continuation du projet, en s'appuyant potentiellement sur les nombreux documents disponibles comme des schémas de connexion actuels, des ressources sur les défis des assistants IA, ou encore des logs d'erreurs qui pourraient informer sur les problèmes rencontrés jusqu'à présent.
+
+La proposition de valeur de ce travail serait de fournir des preuves concrètes et mesurables que les recherches menées par DurableFashion peuvent être éligibles au CIR, ce qui serait un avantage financier et pourrait potentiellement accélérer la mission de l'entreprise.
+
+Pour procéder, il serait nécessaire de compiler et interpréter les informations extraites des documents disponibles, d'évaluer l'état d'avancement des travaux R&D et d'identifier les lacunes ou les domaines qui nécessitent un focus pour justifier le CIR. Il conviendrait également d'assurer une documentation adéquate et de préparer un plan de continuation qui aborde les aspects critiques identifiés lors de l'évaluation. Cela nécessitera une compréhension approfondie des critères du CIR ainsi que de la méthodologie de recherche et des objectifs spécifiques de DurableFashion.
+``
+
 # Le 20 décembre 2023 à 19:03:44 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
