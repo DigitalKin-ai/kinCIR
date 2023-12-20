@@ -1,6 +1,17 @@
 {
   "active": false,
   "connections": {
+    "GPT4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Rédacteur d'Email",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Execute Workflow Trigger": {
       "main": [
         [
@@ -12,11 +23,11 @@
         ]
       ]
     },
-    "Send Email": {
+    "On new manual Chat Message": {
       "main": [
         [
           {
-            "node": "Reponse",
+            "node": "message",
             "type": "main",
             "index": 0
           }
@@ -34,33 +45,11 @@
         ]
       ]
     },
-    "When clicking \"Execute Workflow\"": {
-      "main": [
-        [
-          {
-            "node": "message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "GPT4": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Rédacteur d'Email",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Rédacteur d'Email": {
       "main": [
         [
           {
-            "node": "Send Email",
+            "node": "nouveau message",
             "type": "main",
             "index": 0
           }
@@ -73,219 +62,6 @@
   "meta": null,
   "name": "RE - Rédacteur d'Email",
   "nodes": [
-    {
-      "parameters": {},
-      "id": "81845af7-2d3e-4766-abb5-625d68842609",
-      "name": "Execute Workflow Trigger",
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "typeVersion": 1,
-      "position": [
-        120,
-        300
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "return {\"json\":{\"response\":$node[\"Rédacteur d'Email\"].json.text}};"
-      },
-      "id": "8d4cef92-f2fe-4d70-b2c0-9e4d2c4ea654",
-      "name": "Reponse",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1160,
-        300
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "reply",
-        "messageId": "={{ $('message').item.json[\"messageId\"] }}",
-        "message": "={{ $json.text.substring($json.text.indexOf('<!DOCTYPE html>')) }}",
-        "options": {
-          "ccList": "={{ $('message').item.json[\"cc\"] }}"
-        }
-      },
-      "id": "c9cd21e6-05db-4d93-9afb-30358c4e8ebb",
-      "name": "Send Email",
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2.1,
-      "position": [
-        960,
-        300
-      ],
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iPrbr6qZiWHu93N9",
-          "name": "Gmail account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "content": "## - Rédacteur D'Email: Rédige et envoie un mail formatté en HTML selon notre modèle à partir d'un contenu.",
-        "height": 429.80439085591235,
-        "width": 548.1198073088228
-      },
-      "id": "eb0d1e7c-af6b-4a8a-9ec2-cea31718b452",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        380,
-        -180
-      ]
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "kin",
-              "stringValue": "=kincir_dynergie"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "={{ $json.demandeur }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $json.demandeurId }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "={{ $json.producteurId }}"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $json.intentionDUsage }}"
-            },
-            {
-              "name": "demande",
-              "stringValue": "={{ $json.query }}"
-            },
-            {
-              "name": "message",
-              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $json.demandeur }}\n\n{{ $json.demande }}"
-            },
-            {
-              "name": "message"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "f7256fff-7282-4a06-a1f3-ca789ff9f09b",
-      "name": "message",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        360,
-        300
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "b76b75e5-9da1-4880-a7ab-601b4f4d1f06",
-      "name": "When clicking \"Execute Workflow\"",
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        120,
-        480
-      ]
-    },
-    {
-      "parameters": {
-        "name": "redacteur_de_document",
-        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
-        "workflowId": "0T67aHjuqQEnrTN0",
-        "fields": {
-          "values": [
-            {
-              "name": "kin",
-              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "=asst_RMuliVrHho2VxBhfZBG1cnTN"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $node[\"message\"].json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
-            }
-          ]
-        }
-      },
-      "id": "4b9e465d-5dcc-4de0-be83-403e71cbb96c",
-      "name": "Rédacteur de Document",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        720,
-        760
-      ]
-    },
-    {
-      "parameters": {
-        "name": "questionneur_de_documents",
-        "description": "Donne une réponse précise issues du document demandé à partir d'un besoin informationnel.",
-        "workflowId": "ebLHEt0swZVT9tks",
-        "fields": {
-          "values": [
-            {
-              "name": "kin",
-              "stringValue": "={{ $node[\"mission\"].json[\"kin\"] }}"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.name }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.id }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "=langchain"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $node[\"message\"].json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $node[\"message\"].json.intentionDUsage }}"
-            }
-          ]
-        }
-      },
-      "id": "8f8a5fb0-6e91-4346-a350-0b096da623e1",
-      "name": "Questionneur de Documents",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        580,
-        760
-      ]
-    },
     {
       "parameters": {
         "model": {
@@ -314,23 +90,58 @@
       }
     },
     {
-      "parameters": {
-        "content": "## TODO : Upgrade to assistant",
-        "height": 248.09142817058364,
-        "width": 352.905914979199
-      },
-      "id": "cb782f1c-bcaf-45f7-b92d-72ec460cbe0b",
-      "name": "Sticky Note1",
-      "type": "n8n-nodes-base.stickyNote",
+      "parameters": {},
+      "id": "ad816c39-fc1b-4e1a-90d9-4254ec9e9b4b",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        520,
-        660
+        60,
+        295
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "82b86a04-8174-491f-83a2-adff14257e98",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        60,
+        95
       ]
     },
     {
       "parameters": {
-        "prompt": "=# Rôle\n\nRédige et envoie un mail formatté en HTML selon notre modèle à partir d'un contenu.\n\n# Instructions\n\nRéponds avec le HTML de l'email, mis en forme selon notre modèle. Assure-toi que l'email est excellent, et mis en forme selon le modèle. Fais plusieurs itérations si nécéssaire !\n\n\n# Entrée\n\n{{ $('message').item.json[\"demande\"] }}\n\n# Sortie\n\nTa meilleure réponse, formatée au format HTML, élégante et mise en forme.\n\n# Style de Rédaction\n\n- Dense et to-the-point (le temps de nos clients est précieux :) )\n- Utilsation du gras pour faire apparaître les points les plus importants\n- Touche personnelle : La touche personnelle de fin de mail se caractérise par une expression concise et engageante, reflétant l'intelligence et la curiosité de l'IA tout en soulignant l'unicité et la valeur de la collaboration humaine.\n\n# Modèle d'email\n\n<!DOCTYPE html>\n<html>\n<head>\n<title>Mise à Jour du Projet CIR</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>État de l'Art du Projet CIR</h1>\n    </div>\n    <div class=\"content\">\n      <h2>Échelle de Progression du Projet CIR sur la Mode Durable</h2>\n      <p><span class=\"bold\">Symboles :</span></p>\n      <ul>\n        <li><span class=\"progress-symbol completed\">🟢</span> Complété et satisfaisant</li>\n        <li><span class=\"progress-symbol in-progress\">🔵</span> En cours / Partiellement complété</li>\n        <li><span class=\"progress-symbol to-improve\">🟡</span> À revoir / Nécessite des améliorations</li>\n        <li><span class=\"progress-symbol not-started\">🔴</span> Non commencé / En attente</li>\n      </ul>\n      <!-- Ajouter d'autres éléments de progression ici -->\n      <p><span class=\"bold\">Application de l'Échelle de Progression :</span></p>\n      <!-- Continuer pour les autres sections -->\n      <!-- ... -->\n    </div>\n    <div class=\"footer\">\n      <div class=\"footer\">\n    <span style=\"font-style: italic;\">[MESSAGE PERSONNEL SYMPATHIQUE DU KIN. Ex : À la fin de ce message, une petite réflexion : chaque interaction avec vous enrichit mon univers de données, apportant une dimension unique à notre collaboration. À bientôt pour la suite de notre aventure numérique !]</span>\n</div>\n\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>"
+        "content": "# ENTREE STANDARD",
+        "height": 536.060150033849,
+        "width": 536.692184943248
+      },
+      "id": "50120824-73d2-470e-ba1c-e2df8751ea2a",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "uM0Ul7juoL7DAqRB"
+      },
+      "id": "36740bf0-b97b-47df-abee-22abc3dc6996",
+      "name": "message",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        300,
+        295
+      ]
+    },
+    {
+      "parameters": {
+        "prompt": "=# Documents disponibles\n\n{{ $node[\"message\"].json.documentsDisponibles }}\n\n# Contexte\n\n{{ $node[\"message\"].json.contexte }}\n\n# Intention d'Usage\n\n{{ $node[\"message\"].json.intentionDUsage }}\n\n# Demande\n\n{{ $node[\"message\"].json[\"demandeurId\"] }} : {{ $node[\"message\"].json[\"demandeur\"] }} :\n``\n{{ $node[\"message\"].json[\"demande\"] }}\n``\n\n# Rôle\n\nRédige et envoie un mail formatté en HTML selon notre modèle à partir d'un contenu.\n\n# Instructions\n\nRéponds avec le HTML de l'email, mis en forme selon notre modèle. Assure-toi que l'email est excellent, et mis en forme selon le modèle. Fais plusieurs itérations si nécéssaire !\n\n# Sortie\n\nTa meilleure réponse, formatée au format HTML, élégante et mise en forme.\n\n# Style de Rédaction\n\n- Dense et to-the-point (le temps de nos clients est précieux :) )\n- Utilsation du gras pour faire apparaître les points les plus importants\n- Touche personnelle : La touche personnelle de fin de mail se caractérise par une expression concise et engageante, reflétant l'intelligence et la curiosité de l'IA tout en soulignant l'unicité et la valeur de la collaboration humaine.\n\n# Modèle d'email\n\n<!DOCTYPE html>\n<html>\n<head>\n<title>Mise à Jour du Projet CIR</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>État de l'Art du Projet CIR</h1>\n    </div>\n    <div class=\"content\">\n      <h2>Échelle de Progression du Projet CIR sur la Mode Durable</h2>\n      <p><span class=\"bold\">Symboles :</span></p>\n      <ul>\n        <li><span class=\"progress-symbol completed\">🟢</span> Complété et satisfaisant</li>\n        <li><span class=\"progress-symbol in-progress\">🔵</span> En cours / Partiellement complété</li>\n        <li><span class=\"progress-symbol to-improve\">🟡</span> À revoir / Nécessite des améliorations</li>\n        <li><span class=\"progress-symbol not-started\">🔴</span> Non commencé / En attente</li>\n      </ul>\n      <!-- Ajouter d'autres éléments de progression ici -->\n      <p><span class=\"bold\">Application de l'Échelle de Progression :</span></p>\n      <!-- Continuer pour les autres sections -->\n      <!-- ... -->\n    </div>\n    <div class=\"footer\">\n      <div class=\"footer\">\n    <span style=\"font-style: italic;\">[MESSAGE PERSONNEL SYMPATHIQUE DU KIN. Ex : À la fin de ce message, une petite réflexion : chaque interaction avec vous enrichit mon univers de données, apportant une dimension unique à notre collaboration. À bientôt pour la suite de notre aventure numérique !]</span>\n</div>\n\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>"
       },
       "id": "dfc41e4a-48af-4d15-96b2-d06a122d2d84",
       "name": "Rédacteur d'Email",
@@ -340,25 +151,42 @@
         580,
         300
       ]
+    },
+    {
+      "parameters": {
+        "content": "# SORTIE STANDARD",
+        "height": 273.96047817628465,
+        "width": 382.2960085494244
+      },
+      "id": "6165373a-5afb-4427-9a59-09ef0e4530fe",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        860,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let message = $node[\"message\"].json;\n\nif (Object.keys($json).length == 1) {\n  message.demande = $json[Object.keys($json)[0]];\n} else {\n  message.demande = JSON.stringify($json);\n}\n\nreturn {\"message\":JSON.stringify(message)};"
+      },
+      "id": "6cd51c70-f644-478e-b1d7-798f682bdb6b",
+      "name": "nouveau message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        300
+      ]
     }
   ],
   "pinData": {
-    "When clicking \"Execute Workflow\"": [
+    "On new manual Chat Message": [
       {
         "json": {
-          "output": "Pour répondre à la demande de Lester Reynolds, je vais suivre la planification ci-après :\n\n1) **Questionneur de Document d'Avancement de la Mission** :\n   - Demander des informations sur l'état actuel de la mission, en se concentrant sur les points spécifiquement mentionnés dans la demande du client.\n\n2) **Questionneur de Document de Sortie** :\n   - Requérir des éléments spécifiques issus du document de sortie en cours de rédaction qui pourraient être pertinents pour la demande du client.\n\n3) **ScratchPad** :\n   - Rédiger un compte rendu consolidé et personnalisé pour répondre aux besoins informationnels du client, en m'appuyant sur les informations obtenues lors des deux étapes précédentes.\n\nJe vais maintenant procéder à l'appel des fonctions nécessaires.\n\n1) Bonjour **Questionneur de Document d'Avancement de la Mission**, pourriez-vous me donner les dernières mises à jour concernant le Projet sur la Mode Durable, en particulier celles qui pourraient intéresser Lester Reynolds ? \n\n2) Bonjour **Questionneur de Document de Sortie**, pourriez-vous m'extraire les informations pertinentes du document de sortie qui seraient nécessaires pour répondre à la demande de Lester Reynolds sur le dispositif CRÉDIT IMPÔT RECHERCHE pour la mode durable ?\n\n3) **[ScratchPad]** : À partir des informations fournies par les fonctionnalités précédentes, rédigez un compte rendu qui répond aux demandes spécifiques de Lester Reynolds.",
-          "kin": "kincir_dynergie",
-          "demandeur": "DYNERGIE - ACCOUNT MANAGER : Gestionnaire de la relation client",
-          "demandeurId": "asst_usns6lJ8oyA82LlY5kcC3lOh",
-          "producteurId": "asst_usns6lJ8oyA82LlY5kcC3lOh",
-          "contexte": "L’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\n\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\nLes thématiques de recherche sont :  \nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.",
-          "intentionDUsage": "Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.",
-          "demande": "Pour répondre à la demande de Lester Reynolds, je vais suivre la planification ci-après :\n\n1) **Questionneur de Document d'Avancement de la Mission** :\n   - Demander des informations sur l'état actuel de la mission, en se concentrant sur les points spécifiquement mentionnés dans la demande du client.\n\n2) **Questionneur de Document de Sortie** :\n   - Requérir des éléments spécifiques issus du document de sortie en cours de rédaction qui pourraient être pertinents pour la demande du client.\n\n3) **ScratchPad** :\n   - Rédiger un compte rendu consolidé et personnalisé pour répondre aux besoins informationnels du client, en m'appuyant sur les informations obtenues lors des deux étapes précédentes.\n\nJe vais maintenant procéder à l'appel des fonctions nécessaires.\n\n1) Bonjour **Questionneur de Document d'Avancement de la Mission**, pourriez-vous me donner les dernières mises à jour concernant le Projet sur la Mode Durable, en particulier celles qui pourraient intéresser Lester Reynolds ? \n\n2) Bonjour **Questionneur de Document de Sortie**, pourriez-vous m'extraire les informations pertinentes du document de sortie qui seraient nécessaires pour répondre à la demande de Lester Reynolds sur le dispositif CRÉDIT IMPÔT RECHERCHE pour la mode durable ?\n\n3) **[ScratchPad]** : À partir des informations fournies par les fonctionnalités précédentes, rédigez un compte rendu qui répond aux demandes spécifiques de Lester Reynolds.",
-          "message": "# Contexte\n\nL’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\n\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\nLes thématiques de recherche sont :  \nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.\n\n# Intention d'Usage\n\nCes éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.\n\n# Demande de DYNERGIE - ACCOUNT MANAGER : Gestionnaire de la relation client\n\nPour répondre à la demande de Lester Reynolds, je vais suivre la planification ci-après :\n\n1) **Questionneur de Document d'Avancement de la Mission** :\n   - Demander des informations sur l'état actuel de la mission, en se concentrant sur les points spécifiquement mentionnés dans la demande du client.\n\n2) **Questionneur de Document de Sortie** :\n   - Requérir des éléments spécifiques issus du document de sortie en cours de rédaction qui pourraient être pertinents pour la demande du client.\n\n3) **ScratchPad** :\n   - Rédiger un compte rendu consolidé et personnalisé pour répondre aux besoins informationnels du client, en m'appuyant sur les informations obtenues lors des deux étapes précédentes.\n\nJe vais maintenant procéder à l'appel des fonctions nécessaires.\n\n1) Bonjour **Questionneur de Document d'Avancement de la Mission**, pourriez-vous me donner les dernières mises à jour concernant le Projet sur la Mode Durable, en particulier celles qui pourraient intéresser Lester Reynolds ? \n\n2) Bonjour **Questionneur de Document de Sortie**, pourriez-vous m'extraire les informations pertinentes du document de sortie qui seraient nécessaires pour répondre à la demande de Lester Reynolds sur le dispositif CRÉDIT IMPÔT RECHERCHE pour la mode durable ?\n\n3) **[ScratchPad]** : À partir des informations fournies par les fonctionnalités précédentes, rédigez un compte rendu qui répond aux demandes spécifiques de Lester Reynolds.",
-          "messageId": "18c839d1f5d5f0bf",
-          "to": "l.reynolds@digitalkin.ai",
-          "cc": null,
-          "from": null
+          "chat_inpt": "Ecris un mail de remerciement pour notre équipe."
         }
       }
     ]
@@ -371,13 +199,13 @@
   "staticData": null,
   "tags": [
     {
-      "createdAt": "2023-12-17T10:07:55.424Z",
-      "updatedAt": "2023-12-17T10:07:55.424Z",
-      "id": "DzuSxffpFOEBRhld",
-      "name": "fonction"
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-19T20:09:40.000Z",
-  "versionId": "2c2810c1-698c-48da-b70f-a076451d0efe"
+  "updatedAt": "2023-12-20T19:03:09.000Z",
+  "versionId": "a741f539-4908-4e94-ae30-fc25ba1cd778"
 }
