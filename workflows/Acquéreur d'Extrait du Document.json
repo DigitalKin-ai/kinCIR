@@ -163,35 +163,6 @@
             "type": "main",
             "index": 0
           }
-        ],
-        [
-          {
-            "node": "message1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "message1": {
-      "main": [
-        [
-          {
-            "node": "Document",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Document": {
-      "main": [
-        [
-          {
-            "node": "message",
-            "type": "main",
-            "index": 0
-          }
         ]
       ]
     }
@@ -391,46 +362,8 @@
     },
     {
       "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "kin",
-              "stringValue": "=kincir_dynergie"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "={{ $json.demandeur }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $json.demandeurId }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "={{ $json.producteurId }}"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $json.intentionDUsage }}"
-            },
-            {
-              "name": "demande",
-              "stringValue": "={{ $json.query }}"
-            },
-            {
-              "name": "message",
-              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $json.demandeur }}\n\n{{ $json.demande }}"
-            },
-            {
-              "name": "path",
-              "stringValue": "={{ $json.path?$json.path:$json.document_path }}"
-            }
-          ]
-        },
+        "mode": "raw",
+        "jsonOutput": "={{JSON.stringify($json)}}",
         "options": {}
       },
       "id": "9a8653cc-8e7b-4758-8ed3-94ff9d5d8f7d",
@@ -682,68 +615,15 @@
     },
     {
       "parameters": {
-        "workflowId": "Fdyk6mhC3BfpMdya"
+        "content": "# FIX"
       },
-      "id": "9e9b9313-6c3d-40ee-b161-4eae6d803673",
-      "name": "Document",
-      "type": "n8n-nodes-base.executeWorkflow",
+      "id": "b49af98c-6444-4dfb-9bfc-7fe75a0c7d2d",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        520,
-        520
-      ]
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "kin",
-              "stringValue": "=kincir_dynergie"
-            },
-            {
-              "name": "demandeur",
-              "stringValue": "={{ $json.demandeur }}"
-            },
-            {
-              "name": "demandeurId",
-              "stringValue": "={{ $json.demandeurId }}"
-            },
-            {
-              "name": "producteurId",
-              "stringValue": "={{ $json.producteurId }}"
-            },
-            {
-              "name": "contexte",
-              "stringValue": "={{ $json.contexte }}"
-            },
-            {
-              "name": "intentionDUsage",
-              "stringValue": "={{ $json.intentionDUsage }}"
-            },
-            {
-              "name": "demande",
-              "stringValue": "={{ $json.query }}"
-            },
-            {
-              "name": "message",
-              "stringValue": "=# Contexte\n\n{{ $json.contexte }}\n\n# Intention d'Usage\n\n{{ $json.intentionDUsage }}\n\n# Demande de {{ $json.demandeur }}\n\n{{ $json.demande }}\n\nPath \"{{ $json.path?$json.path:$json.document_path }}\" failed I need to get an exceptions-related documents"
-            },
-            {
-              "name": "path",
-              "stringValue": "={{ $json.path?$json.path:$json.document_path }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "3b3ae82e-eff6-400d-b484-22f175e29e64",
-      "name": "message1",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        320,
-        520
+        1720,
+        240
       ]
     }
   ],
@@ -770,12 +650,12 @@
   "tags": [
     {
       "createdAt": "2023-12-17T10:07:55.424Z",
-      "updatedAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
       "id": "DzuSxffpFOEBRhld",
-      "name": "fonction"
+      "name": "outil"
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-20T08:14:48.000Z",
-  "versionId": "172cdab6-eb2b-48dc-9655-da2dd8a7d6d5"
+  "updatedAt": "2023-12-20T15:27:58.000Z",
+  "versionId": "4d3d96f2-329f-42a5-aeba-b67ce709fe56"
 }
