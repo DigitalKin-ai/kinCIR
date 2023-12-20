@@ -1,3 +1,15 @@
+# Le 20 décembre 2023 à 17:51:59 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'entreprise DurableFashion, spécialisée dans la mode durable et éthique, vise à étendre l'influence de ces principes dans l'industrie de la mode. Pour cela, elle poursuit des activités telles que l'identification et la certification de fabricants d'articles de mode répondant à ces critères, ainsi que la promotion et la vente de ces produits via Internet et des boutiques physiques. L'objectif ultime de DurableFashion est de modifier les tendances de consommation et de production vers des pratiques plus durables et éthiques en matière de mode. Leurs objectifs de recherche comprennent:
+
+1. Influencer les consommateurs à acheter des vêtements de marques responsables et éthiques.
+2. Encourager les marques à produire des vêtements dans le respect de ces mêmes valeurs.
+3. Démontrer l'impact des initiatives de l'entreprise sur la consommation de mode et évaluer cet impact environnemental.
+
+Ces informations sont requises pour démontrer l'éligibilité de DurableFashion au Crédit d'Impôt Recherche (CIR), via un rescrit CIR en soulignant les travaux de recherche menés sur la thématique de la mode durable.
+``
+
 # Le 20 décembre 2023 à 17:50:38 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
