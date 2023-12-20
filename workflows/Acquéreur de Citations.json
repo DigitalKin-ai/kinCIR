@@ -1,0 +1,264 @@
+{
+  "active": false,
+  "connections": {
+    "GPT4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Acquéreur de Citations",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Retriever d'études",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Acquéreur de Citations",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retriever d'études": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur de Citations": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "thread": {
+      "main": [
+        [
+          {
+            "node": "Acquéreur de Citations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-17T10:34:52.199Z",
+  "id": "It2FPpnGNxaxojxY",
+  "meta": null,
+  "name": "Acquéreur de Citations",
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4-1106-preview",
+          "mode": "list",
+          "cachedResultName": "gpt-4-1106-preview"
+        },
+        "options": {}
+      },
+      "id": "96561783-d636-4fe5-a849-e6ff7d28421c",
+      "name": "GPT4",
+      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        480
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "topK": 8
+      },
+      "id": "d5920fca-9983-4384-9315-bc2eb56f1ed4",
+      "name": "Vector Store Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "8f21f9a2-03cc-44df-9856-3686e67d8489",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        940
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "=kins",
+          "mode": "id"
+        },
+        "options": {
+          "pineconeNamespace": "etudes",
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "type",
+                "value": "etude"
+              }
+            ]
+          }
+        }
+      },
+      "id": "c3323eaf-8151-495d-88cf-bd2005e1ec7b",
+      "name": "Retriever d'études",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        800
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "query": "={{ $json.query }}\n\n# Instructions\n\nA partir des extraits ci-dessus, réponds avec une liste de citations verbatim des études pertinentes en langue d'origine avec référence détaillée."
+      },
+      "id": "5537f3d7-f03f-4927-846b-f3be78b99f61",
+      "name": "Acquéreur de Citations",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        1120,
+        240
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a95e436f-efb3-40a6-8da5-b7199995380f",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        640,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# ENTREE STANDARD",
+        "height": 321.0581333052329,
+        "width": 394.73572518012327
+      },
+      "id": "9ac606b0-80f5-4ae6-b424-bd5906f1ed67",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        480,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let mission = \"\";\n\nlet thread = mission + \"\\n\\n- Assistant:\";\n\nif (Object.keys($json).length == 1) {\n  thread += $json[Object.keys($json)[0]];\n} else {\n  thread += JSON.stringify($json);\n}\n\nthread = thread.length > 25000 ? thread.substring(thread.length - 25000) : thread;\n\nthread = $json.mission + \"\\n\\n\" + thread;\n\nreturn {\"mission\":$json.mission,\"thread\":thread,\"query\":$json.query};"
+      },
+      "id": "cac3e4ce-4e2c-41ac-a071-a48831edc9f6",
+      "name": "thread",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"response\":$json.response.text};"
+      },
+      "id": "9f21d916-1b69-427a-a4a5-600b3e677b0f",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        240
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-20T20:32:09.000Z",
+  "versionId": "fceb7241-6e9b-4fe4-a469-6b5d9eaf8682"
+}
