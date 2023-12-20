@@ -1,3 +1,13 @@
+# Le 20 décembre 2023 à 17:15:36 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Un membre de l'équipe DigitalKin chez WeDressFair, spécialisé dans la mode durable et éthique, demande l'évaluation de la performance actuelle de leur assistant IA, Kincir Dynergie, en termes de ressources et d'efficacité. Cette demande a pour contexte l'activité de l'entreprise, qui consiste à identifier et certifier des fabricants d’articles de mode durable et éthique, promouvoir leurs articles sous l'angle durable et éthique, et commercialiser leurs produits tant en ligne qu'en magasins physiques.
+
+L'objectif final de WeDressFair est d'augmenter la proportion de la mode durable et éthique dans l'industrie globale. La recherche de l'entreprise vise à influencer la consommation et la production en faveur de pratiques responsables et éthiques dans la mode. Les axes de recherche comprennent les méthodologies pour inciter les consommateurs à choisir des vêtements de marques responsables, encourager les marques elles-mêmes à adopter des pratiques durables et éthiques, et démontrer l'impact des activités de l'entreprise sur la consommation et l'environnement.
+
+La demande concerne spécifiquement l'évaluation des performances de l'assistant IA Kincir Dynergie et pourrait impliquer l'examen de documents tels que le "programme de R&D (recherche et développement)" et le "feedback humain", pour comprendre comment l'IA contribue aux objectifs de l'entreprise. Cette information sera utilisée pour justifier l'éligibilité au Crédit Impôt Recherche (CIR), démontrant que l'entreprise entreprend des travaux de recherche significatifs sur le thème de la mode durable, ce qui est crucial dans le cadre d'un rescrit CIR.
+``
+
 # Le 20 décembre 2023 à 17:13:44 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
