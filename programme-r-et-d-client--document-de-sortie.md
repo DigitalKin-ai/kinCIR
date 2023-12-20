@@ -1,3 +1,4 @@
+Ce dossier présente le programme de R&D de l'entreprise WeDressFair, dans le but d'obtenir un avis préalable de l'administration sur l'éligibilité des travaux au dispositif CIR.
 Il semble y avoir une erreur dans votre demande. Si vous souhaitez que j'examine ou modifie un extrait spécifique du document que vous avez téléchargé, veuillez fournir cet extrait.
 ## Contexte scientifique et économique
 
