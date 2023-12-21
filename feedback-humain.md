@@ -1,3 +1,11 @@
+# Le 21 décembre 2023 à 16:54:01 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Kincir_dynergie souhaite évaluer et poursuivre des travaux dans le cadre de leur éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) pour des travaux de recherche sur le thème de la mode durable. Cette entreprise, DurableFashion, opère dans le secteur de la mode durable et éthique, où son activité principale est d'identifier et de certifier des fabricants d’articles de mode durable et éthique, promouvoir ces articles et les commercialiser en ligne et dans ses boutiques. Elle vise à accroître la part de la mode durable dans l'industrie en influençant les consommateurs et les producteurs vers des choix plus responsables et éthiques. Pour cela, DurableFashion se concentre sur des thématiques de recherche spécifiques telles que l'influence sur les habitudes d'achat des consommateurs et l'encouragement des marques à produire de manière responsable.
+
+Les documents disponibles pourront servir à rassembler des preuves d'activités de recherche et de développement (R&D) qui correspondent aux critères du CIR, démontrant ainsi l'investissement de DurableFashion dans la recherche sur la mode durable et l'effet de ses activités sur la consommation éthique et ses impacts environnementaux. Ces éléments pourront être intégrés dans le dossier de rescrit CIR pour justifier l'engagement de l'entreprise dans des projets de R&D éligibles au crédit d'impôt.
+``
+
 # Le 21 décembre 2023 à 16:53:40 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
