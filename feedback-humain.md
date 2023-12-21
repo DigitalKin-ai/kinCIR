@@ -1,3 +1,18 @@
+# Le 21 décembre 2023 à 12:59:52 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Il semble qu'il y ait une demande de la part de Kincir d'énergie pour une continuation du travail en cours liée au dispositif de crédit d'impôt recherche (CIR). La requête « Assesse et continue ton travail » est probablement une instruction pour évaluer l'avancement actuel de la mission et poursuivre les tâches associées à la préparation ou à la soumission d'une demande de rescrit CIR pour les travaux de recherche sur la mode durable et éthique.
+
+Afin de traiter cette demande, l'assistant pourrait donc:
+- Évaluer la situation actuelle et les progrès du projet de recherche et développement en consultant les documents pertinents comme l'"avancement-de-la-mission.md" ou "programme-r-et-d-client--document-de-sortie.md".
+- Organiser ou mettre à jour la documentation justificative requise pour le rescrit CIR, comprenant des descriptions des projets de recherche, les procédures suivies, et leur pertinence par rapport aux critères du CIR, potentiellement en examinant des documents comme "schemas-de-connexion-actuels.md", "process-du-producer.md", ou "plan-du-document-de-sortie.md".
+- Identifier tout écart ou lacune dans la recherche ou la documentation qui nécessite une attention, en se référant éventuellement aux "logs-des-erreurs.md" et "feedback-humain.md" pour déterminer les domaines à améliorer ou à clarifier.
+- Continuer le travail en cours en accord avec le plan établi et les procédures internes de l'entreprise DurableFashion, en prenant soin de suivre le "guide.md", les "procedures-d-exceptions.md" ou les autres ressources nécessaires.
+
+L'assistant focalise sur les aspects suivants de la mission : la certification des fabricants, la promotion des articles de mode durable et éthique, et l'impact mesurable des activités de l'entreprise sur la consommation et l'environnement. Ces éléments sont centraux pour démontrer l'éligibilité au CIR et justifier les crédits d'impôt pour les activités de recherche sur la mode durable.
+
+``
+
 # Le 21 décembre 2023 à 12:58:13 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
