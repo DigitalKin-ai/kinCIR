@@ -1,3 +1,15 @@
+# Le 21 décembre 2023 à 13:29:11 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Étant donné le contexte fourni, l'entreprise DurableFashion œuvre dans le secteur de la mode durable et éthique. Elle certifie des fabricants d'articles de mode qui adhèrent à des pratiques durables et éthiques, fait la promotion de ces articles et les vend en ligne et dans des boutiques. Leur but est d'accroître la part de la mode durable et éthique dans l'industrie globale de la mode.
+
+Leur principal objectif de recherche est d'influencer les habitudes de consommation et de production vers des méthodes plus responsables et éthiques. Ils cherchent à encourager les consommateurs à acheter des vêtements de marques durables et éthiques et à inciter les marques elles-mêmes à adopter des pratiques de production responsables. En outre, ils souhaitent démontrer et mesurer l'impact de leurs activités sur la consommation de mode et l'impact environnemental résultant.
+
+L'intention d'usage indiquée est de rassembler les preuves nécessaires pour démontrer l'éligibilité de l'entreprise au Crédit d'Impôt Recherche (CIR), en lien avec leurs travaux de recherche sur la mode durable, dans le cadre d'un rescrit CIR.
+
+Pour répondre à la demande, "Assesse et continue ton travail", je fournirai une évaluation structurée de l’adéquation des activités actuelles de l'entreprise avec les critères d'éligibilité du dispositif CIR, basée sur les documents tels que les schémas de connexion actuels, ressources IA, programme R&D client, etc., en tenant compte des informations contenues dans les historiques des conversations, feedbacks humains et logs d'erreurs pour détailler les évolutions et innovations récentes. Toutefois, pour ne pas outrepasser mon rôle, je vais réorganiser les données fournies par le client pour établir une base solide qui pourrait être utilisée par l'assistance IA pour continuer le travail demandé avec les documents fournis.
+``
+
 # Le 21 décembre 2023 à 13:28:27 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
