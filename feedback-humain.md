@@ -1,3 +1,21 @@
+# Le 21 décembre 2023 à 16:53:21 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+En se basant sur la demande "Assesse et continue ton travail", il semble que le demandeur souhaite que je poursuive mon travail de traitement et d'analyse des informations. Compte tenu du contexte de l'entreprise DurableFashion spécialisée dans la mode durable et éthique, et du but d'influencer la consommation et la production de mode éthique, ainsi que du but spécifique de l'intention d'usage liée au dispositif CRÉDIT IMPÔT RECHERCHE (CIR), je vais interpréter cette demande comme une instruction pour continuer à préparer la documentation et l'analyse nécessaire à la démonstration de l'éligibilité de DurableFashion au CIR.
+
+Cela impliquerait de procéder à l'examen des documents fournis (tels que les "schémas de connexion actuels", "programme R&D client - document de sortie", "plan du document de sortie", etc.) afin d'extraire des preuves pertinentes des travaux de recherche en cours ou déjà effectués par l'entreprise. Ces informations seront ensuite structurées de manière à mettre en évidence comment les activités de recherche actuelles de DurableFashion correspondent aux critères d'éligibilité du CIR, notamment en ce qui concerne le développement de nouvelles méthodes pour influencer la consommation et la production en faveur de la mode durable et éthique.
+
+Le travail comprendrait également la mise en évidence de la façon dont l'entreprise mesure l'impact de ses actions sur la consommation de mode durable et son impact environnemental, ce qui est crucial pour prouver la nature tangible et sérieuse des recherches menées par l'entreprise.
+
+Ainsi, le travail à poursuivre serait :
+1. Analyse des documents pour identifier les preuves de travaux de recherche et développement correspondant aux critères du CIR.
+2. Synthèse des informations pertinentes en un récapitulatif ou un rapport démontrant l'éligibilité au CIR.
+3. Mise en évidence des méthodes de mesure de l'impact environnemental des activités de DurableFashion, alignées sur les objectifs de recherche.
+4. Assurer la cohérence et la pertinence de l'information pour soutenir l'application au rescrit CIR par l'entreprise.
+
+En continuant ce travail, DurableFashion pourra approcher de son but d'acquérir le crédit d'impôt pour ses recherches en mode durable, ce qui pourra aider à financer ses ambitions de rendre la mode plus éthique et responsable.
+``
+
 # Le 21 décembre 2023 à 16:52:49 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
