@@ -1,3 +1,20 @@
+# Le 21 décembre 2023 à 16:44:41 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Kincir_d'Energie a besoin d'assistance pour démontrer l'éligibilité de ses travaux de recherche sur la mode durable et éthique au programme de Crédit Impôt Recherche (CIR). La tâche consiste à poursuivre l'évaluation et le soutien en fournissant les preuves nécessaires pour le rescrit CIR.
+
+Dans ce contexte, l'utilisation des documents disponibles devrait inclure la collecte des informations suivantes :
+- Le processus par lequel DurableFashion identifie et certifie les fabricants de mode durable.
+- Les méthodologies utilisées pour promouvoir les articles durables et éthiques.
+- Les stratégies et les résultats liés à l'influence des consommateurs pour choisir des vêtements responsables.
+- Les approches pour encourager les marques à adopter une production plus durable et éthique.
+- Les mesures et données mettant en évidence l'impact des activités de DurableFashion sur la consommation de mode éthique et son effet sur l'environnement.
+
+Il est essentiel de présenter la relation entre les activités de recherche et d'innovation de l'entreprise et les critères d'éligibilité du CIR, notamment en démontrant comment ces activités correspondent aux travaux de R&D et contribuent ainsi à l'avancée de la connaissance ou de la technologie dans le domaine de la mode durable. Des documents tels que le programme de R&D, les procédures d'exceptions, les logs d'erreur, et le feedback humain peuvent apporter des preuves d'une démarche d'amélioration continue et d'exploration scientifique.
+
+Tous ces éléments seront organisés et formulés de manière à décrire de façon concise et précise le cadre des travaux de recherche et développement de DurableFashion, leurs buts, objectifs, méthodologies et impacts, afin de défendre efficacement leur éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE.
+``
+
 # Le 21 décembre 2023 à 15:00:55 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
