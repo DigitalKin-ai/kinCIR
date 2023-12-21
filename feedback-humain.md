@@ -1,3 +1,13 @@
+# Le 21 décembre 2023 à 11:00:45 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'entreprise DurableFashion, axée sur la promotion de la mode durable et éthique, souhaite démontrer son éligibilité pour le dispositif CRÉDIT IMPÔT RECHERCHE (CIR) par la mise en avant de ses travaux de recherche. Les activités principales comprennent l'identification et la certification de fabricants d'articles de mode durable, la mise en valeur de la dimension durable et éthique de ces articles, ainsi que leur commercialisation en ligne et en boutique. 
+
+Le but fondamental de DurableFashion est d'accroître la part de la mode éthique dans l'industrie vestimentaire. L'objectif de recherche prioritaire est d'influencer les habitudes de consommation et de production vers plus de responsabilité et d'éthique. Les thèmes de recherche portent sur l'influence exercée sur les consommateurs pour favoriser l'achat auprès de marques durables, l'encouragement des marques à adopter une production éthique, et la démonstration de l'impact des activités de DurableFashion sur la consommation et l'environnement.
+
+Pour répondre à la demande d'assistance et poursuivre le travail, il est nécessaire d'établir un dossier prouvant l'engagement de l'entreprise dans des activités de recherche conforme aux exigences du CIR. Ce dossier devra inclure la documentation des processus de recherche, les méthodes d'évaluation de l'impact environnemental, les retours et interactions avec les consommateurs, ainsi que les logs d'erreurs et d'autres documents pertinents fournis par l'entreprise. Ces éléments doivent attester de la nature continue, systématique et approfondie de la recherche conduite par DurableFashion et ainsi justifier l'éligibilité de l'entreprise au CIR.
+``
+
 # Le 21 décembre 2023 à 07:00:18 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
