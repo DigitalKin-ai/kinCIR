@@ -1,3 +1,13 @@
+# Le 21 décembre 2023 à 16:57:01 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'utilisateur, représenté ici par "kincir_dynergie" de l'entreprise DurableFashion, cherche à démontrer leur éligibilité pour bénéficier du dispositif Crédit Impôt Recherche (CIR) concernant leurs travaux de recherche sur la mode durable. La demande implicite est donc de préparer et structure la documentation nécessaire pour appuyer la demande de rescrit CIR. Les documents à disposition sont des ressources internes qui pourraient contenir des informations sur les processus, les stratégies de recherche et développement, les résultats et indicateurs de qualité, ainsi que d'autres données pertinentes pour construire un dossier solide.
+
+Pour répondre efficacement à cette demande, il faut procéder à une évaluation des documents disponibles, en les examinant pour identifier les preuves de travaux de recherche et de développement conformément aux critères d'éligibilité du CIR. Il faut ensuite continuer le travail en organisant et synthétisant ces preuves de manière cohérente pour mettre en avant les efforts de l'entreprise dans la recherche pour influencer positivement les pratiques de consommation et de production de la mode durable et éthique.
+
+La documentation devrait montrer comment les activités de l'entreprise contribuent à l'avancement de la connaissance dans le domaine de la mode durable, mettent en lumière des innovations ou des améliorations significatives, et mesurent l'impact environnemental de leurs initiatives. Le but final étant de présenter un rapport clair et convaincant qui répond aux exigences administratives du dispositif CIR.
+``
+
 # Le 21 décembre 2023 à 16:56:39 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
