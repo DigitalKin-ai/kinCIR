@@ -1,3 +1,19 @@
+# Le 21 décembre 2023 à 16:55:59 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+La demande "Assesse et continue ton travail." semble être une instruction brève pour évaluer et poursuivre des travaux en cours, liés vraisemblablement à des activités de recherche sur la mode durable et éthique chez l'entreprise DurableFashion. Cette instruction pourrait être destinée à un membre de l'équipe de recherche ou à un assistant collaborant au projet de recherche.
+
+En considérant le contexte fourni et l'intention d'usage, il est probable que la demande concerne l'évaluation de l'avancée des travaux de recherche dans le domaine de la mode durable et éthique, ainsi que la continuation de ces travaux en vue de préparer ou compléter une demande de Crédit Impôt Recherche (CIR).
+
+D'après les documents disponibles, des éléments tels que le "programme R&D client - document de sortie", "avancement de la mission", et la "fonction d'évaluation qualité" pourraient être pertinents pour réaliser une évaluation de l'état actuel des travaux de recherche. Ensuite, pour continuer le travail, des ressources telles que le "plan du document de sortie" ou les "logs des erreurs" pourraient servir à planifier la suite des activités et à améliorer les processus si nécessaire.
+
+La reformulation de la demande pour l'assistant IA pourrait être la suivante :
+
+"Évalue l'état courant des projets de recherche sur la mode durable et éthique et procède avec les prochaines étapes nécessaires pour préparer une demande de Crédit Impôt Recherche, en utilisant les documents pertinents disponibles." 
+
+Cet énoncé résume la tâche en fournissant une direction claire concernant l'évaluation et la continuation du travail, et il est adapté à une saisie par un assistant IA qui peut traiter des demandes liées à la gestion de projets de recherche et à la préparation de dossiers administratifs.
+``
+
 # Le 21 décembre 2023 à 16:55:41 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
