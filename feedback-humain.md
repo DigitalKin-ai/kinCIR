@@ -1,3 +1,11 @@
+# Le 21 décembre 2023 à 13:39:46 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+La société DurableFashion, concentrée sur le développement et la promotion de la mode durable et éthique, cherche à certifier des fabricants d'articles de mode qui respectent ces principes et à vendre leurs produits à travers des canaux en ligne et des boutiques physiques. Avec pour aspiration principale l'expansion de la part de la mode durable et éthique dans l'ensemble du secteur, DurableFashion vise spécifiquement à influencer à la fois les consommateurs pour qu'ils choisissent des vêtements de marques responsables et éthiques et les marques elles-mêmes pour qu'elles produisent de tels vêtements. L'impact des actions de l'entreprise sur la consommation de mode et l'environnement est également un point crucial de leur étude.
+
+Dans le contexte de cette requête, l'intention claire est d'utiliser les documents fournis pour appuyer la demande de DurableFashion concernant leur éligibilité au dispositif Crédit Impôt Recherche (CIR), afin d'obtenir un avantage fiscal pour leurs recherches portant sur l'influence dans les habitudes de consommation et de production de la mode éthique et durable. Il s'agit donc de poursuivre le travail déjà établi, en l'évaluant et en le continuant, dans le but de consolider leur dossier de rescrit CIR avec les informations nécessaires à la démonstration de l'aspect innovant et de la qualité scientifique de leurs travaux de recherche.
+``
+
 # Le 21 décembre 2023 à 13:39:13 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
