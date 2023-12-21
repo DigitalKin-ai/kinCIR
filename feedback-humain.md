@@ -1,3 +1,11 @@
+# Le 21 décembre 2023 à 12:45:15 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Il semble que vous souhaitiez poursuivre votre travail dans le cadre de l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR), en se concentrant sur des travaux de recherche liés à la mode durable et éthique. Votre intention est vraisemblablement de compiler et d'organiser les informations nécessaires pour démontrer que vos activités de recherche et développement (R&D) répondent aux critères du CIR. Cela inclut la mise en évidence de votre impact sur les habitudes de consommation et de production de mode responsable, ainsi que sur l'environnement.
+
+Pour y parvenir, vous devez probablement structurer votre documentation pour révéler comment vos activités s'intègrent dans les thématiques de recherche identifiées, démontrant ainsi leur caractère novateur et systématique, éléments clés pour une réclamation CIR. Vous devriez prévoir d'inclure des études de cas, des résultats de recherche quantitatifs et qualitatifs, des témoignages de changements de comportement des consommateurs et des marques, et toute autre preuve de l'efficacité et de l'impact de vos initiatives sur votre domaine d'activité.
+``
+
 # Le 21 décembre 2023 à 12:43:17 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
