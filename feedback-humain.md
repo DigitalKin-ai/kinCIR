@@ -1,3 +1,13 @@
+# Le 21 décembre 2023 à 16:52:49 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Kincir_dynergie a demandé de continuer le travail sur l'évaluation de l'éligibilité au dispositif Crédit d'Impôt Recherche (CIR) pour DurableFashion, avec un focus sur la recherche menée par l'entreprise dans le domaine de la mode durable et éthique. La documentation disponible semble indiquer que l'entreprise s'efforce d'évaluer et de promouvoir des pratiques de mode responsables et souhaite mesurer l'impact de ses actions sur les comportements des consommateurs et des producteurs dans l'industrie de la mode. Les résultats de ces recherches peuvent potentiellement justifier l'éligibilité de DurableFashion au CIR, à condition qu'ils correspondent aux critères d'admissibilité du dispositif.
+
+Il sera nécessaire d'examiner les documents pertinents, comme le programme de R&D du client, le plan du document de sortie, et l'historique des conversations pour établir la nature précise et la portée des recherches effectuées. Ceci pourrait comprendre l'analyse des schémas de connexion actuels, l'évaluation de la qualité des ressources IA en ce qui concerne les difficultés des assistants, et l'existence de procédures d'exception. Cette analyse devra mettre en évidence comment les activités de recherche de DurableFashion contribuent à l'innovation et à la création de connaissances dans le domaine de la mode durable, deux critères clés pour le CIR.
+
+Après avoir collecté les informations pertinentes à partir de la documentation disponible et construit une compréhension complète des efforts de recherche de DurableFashion, le travail consistera à rédiger une synthèse soulignant la conformité de ces efforts avec les exigences du CIR, afin de faciliter la demande de rescrit. Il faudra veiller à ce que les démarches et résultats de recherche mettent en avant une réelle quête d'innovation, d'expérimentation et de développement de nouvelles connaissances ou technologies dans le secteur de la mode durable et éthique.
+``
+
 # Le 21 décembre 2023 à 16:51:57 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
