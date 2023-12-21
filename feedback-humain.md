@@ -1,3 +1,13 @@
+# Le 21 décembre 2023 à 12:41:17 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'entreprise DurableFashion, spécialisée dans l'identification, la certification et la commercialisation d'articles de mode durable et éthique, vise à influencer positivement les comportements de consommation et de production dans le secteur de la mode. La demande initiale, "Assesse et continue ton travail," fait probablement référence à la nécessité d'évaluer les avancées actuelles et de poursuivre les efforts en matière de recherche et de développement (R&D) pour démontrer l'éligibilité de l'entreprise au Crédit Impôt Recherche (CIR), un dispositif fiscal français destiné à soutenir les activités de recherche et de développement des entreprises.
+
+Les documents disponibles, tels que les schémas de connexion actuels, les ressources sur les difficultés des assistants IA, les documents de sortie, les processus de production et de gestion, les procédures d'exception, les plans de documents, les logs d'erreurs, Kinbox, l'historique des conversations, les guides, la fonction d'évaluation de qualité, le feedback humain, et l'avancement de la mission, seront cruciaux pour constituer le dossier de rescrit CIR. Ils pourront éventuellement fournir des données concrètes sur les activités de recherche et de développement, en s'appuyant sur les thématiques de recherche définies par l'entreprise.
+
+En continuant le travail, DurableFashion devra mettre l'accent sur la documentation et la quantification des avancées de ses travaux de R&D, afin d'appuyer la demande de CIR. Ceci implique probablement la nécessité d'organiser les documents pertinents, de rédiger des rapports techniques détaillant la recherche effectuée, et de préparer des analyses montrant l'impact de la mode durable et éthique sur la consommation et l'environnement.
+``
+
 # Le 21 décembre 2023 à 12:35:00 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
