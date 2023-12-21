@@ -1,3 +1,17 @@
+# Le 21 décembre 2023 à 16:58:11 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'entreprise DurableFashion se concentre sur la promotion et la commercialisation de la mode durable et éthique. Elle vise à influencer positivement à la fois la consommation et la production dans l'industrie de la mode, en s'assurant que les marques produisent des vêtements responsables et que les consommateurs choisissent de privilégier des articles provenant de marques éthiques.
+
+Le but final est de pouvoir montrer l'impact tangible des initiatives de l'entreprise sur les habitudes de consommation et, par extension, sur l'environnement. Afin d'atteindre cet objectif, l'entreprise s'engage dans des activités de recherche et développement qui sont essentielles pour justifier l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR).
+
+L'intention d'usage de la documentation disponible est de fournir des preuves et des arguments détaillés pour soutenir une demande de rescrit CIR auprès des autorités fiscales. Cela implique la démonstration de la nature innovante et sérieuse des travaux de recherche menés par DurableFashion pour encourager une mode plus responsable.
+
+La requête « Assesse et continue ton travail » indique que le demandeur souhaite évaluer et poursuivre le travail en cours pour atteindre ces objectifs stratégiques. Il est essentiel de maintenir un haut niveau de qualité dans les efforts de recherche pour maximiser les chances d'obtenir le soutien fiscal du CIR, ce qui contribuera à financer davantage les recherches de l'entreprise dans ce domaine.
+
+Le traitement de cette demande implique de procéder à l'évaluation des travaux de recherche en cours, en se référant potentiellement aux documents comme les schémas de connexion actuels, les ressources sur les difficultés des assistants IA, les programmes R&D, les processus internes, les procédures d'exceptions, les historiques des conversations, etc., pour ensuite continuer à développer ces travaux de manière ciblée et documenter tout progrès, en tenant compte des critères du Crédit Impôt Recherche.
+``
+
 # Le 21 décembre 2023 à 16:57:01 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
