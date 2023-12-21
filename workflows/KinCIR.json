@@ -1,0 +1,950 @@
+{
+  "active": true,
+  "connections": {
+    "CHERCHEUR SCIENTIFIQUE": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur de Citations": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'Etudes": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de Documents": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur de Document": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur de Programme R&D": {
+      "main": [
+        [
+          {
+            "node": "sortie",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sortie": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur d'avancement",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown": {
+      "main": [
+        [
+          {
+            "node": "Envoi de notification Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nico reçoit un email": {
+      "main": [
+        [
+          {
+            "node": "IF est une commande",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF est une commande": {
+      "main": [
+        [
+          {
+            "node": "Get Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF MISSION ACCOMPLIE": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur d'Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Email": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "thread": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kin Boiron": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kin CIR": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "Update Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Document": {
+      "main": [
+        [
+          {
+            "node": "IF MISSION ACCOMPLIE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data1": {
+      "main": [
+        [
+          {
+            "node": "thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-20T17:51:19.109Z",
+  "id": "CpyxM3zfMFkkjUN6",
+  "meta": null,
+  "name": "KinCIR",
+  "nodes": [
+    {
+      "parameters": {
+        "assistantId": "asst_K25pMgsChtj1PKEenv0pM8LZ",
+        "text": "={{ $node[\"mission\"].json.mission }}\n\n# CONVERSATION\n\n{{ $json.thread }}",
+        "nativeTools": [
+          "code_interpreter"
+        ],
+        "options": {}
+      },
+      "id": "7ef981a2-3a69-4cc5-b159-98e86c879db7",
+      "name": "Rédacteur de Programme R&D",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4540,
+        500
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "redacteur_de_document",
+        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
+        "workflowId": "0T67aHjuqQEnrTN0",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "ddbb99ef-99d8-4c8c-a14e-165657cc34e2",
+      "name": "Rédacteur de Document",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5060,
+        1000
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_documents",
+        "description": "Donne une réponse précise issue du document demandé à partir d'un besoin informationnel.",
+        "workflowId": "ebLHEt0swZVT9tks",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "b4c7f786-5b43-4fa8-b69f-55e58e11beae",
+      "name": "Questionneur de Documents",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4900,
+        1000
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "a311728c-51ed-4211-89a6-e8875c2b803d",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5180,
+        1000
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS STANDARD",
+        "height": 224.32004875594802,
+        "width": 447.22204993824914
+      },
+      "id": "86eb446d-1166-4f53-84d2-f1e586c30e58",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4860,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_etudes",
+        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
+        "workflowId": "yQ79P9nuVKhkwZpD",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "2a7e3e6b-4925-4062-b86f-5404df9c8359",
+      "name": "Questionneur d'Etudes",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4620,
+        1120
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "acquereur_de_citations",
+        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
+        "workflowId": "It2FPpnGNxaxojxY",
+        "fields": {
+          "values": [
+            {
+              "name": "thread",
+              "stringValue": "={{ $node[\"thread\"].json.thread }} "
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"mission\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "b8bcab01-c491-4a36-841e-655f08a27434",
+      "name": "Acquéreur de Citations",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4460,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS SPECIFIQUES",
+        "height": 413.4919569863578,
+        "width": 468.47826732357714
+      },
+      "id": "7d29208b-b438-4903-9ec6-683eb40491b4",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4360,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# COLLABORATEURS",
+        "height": 224.32004875594802,
+        "width": 355.66820106337036
+      },
+      "id": "508a8277-993e-447b-925e-23a809232680",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3980,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "name": "chercheur_scientifique",
+        "description": "Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "da726498-6928-44b2-84a2-135ddd603c4c",
+      "name": "CHERCHEUR SCIENTIFIQUE",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4180,
+        1000
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Accès DB Etudes",
+        "height": 272.5167132732499,
+        "width": 391.3636040958942
+      },
+      "id": "0dc79674-646d-4946-beab-324771e39aea",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "=-1002105587743",
+        "text": "={{ $json.escapedText.substring($json.escapedText.length - 4000) }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "138b7aaa-db4e-4285-863f-51ca45d9c53c",
+      "name": "Envoi de notification Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        5100,
+        300
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "Jarvis"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "sortie = $node[\"thread\"].json.thread.replace(/^([\"`]+)|([\"`]+)$/g, '');\n\n// Enlever les guillemets de début et de fin\nsortie += $json.output.replace(/^([\"`]+)|([\"`]+)$/g, ''); \n\n// Corriger le \\n\nsortie = sortie.replace('\\n', '\\r\\n');\n\n\nreturn {\"thread\":sortie};"
+      },
+      "id": "1aff54fe-bf4c-43ef-959c-95900cf82c34",
+      "name": "sortie",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4880,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\n// Exemple d'utilisation\nconst originalText = $json.output;\nconst escapedText = escapeMarkdownV2(originalText);\n\nreturn {\"json\":{\"escapedText\":escapedText}};\n"
+      },
+      "id": "161924eb-5719-4a81-9700-ef53b66c7df8",
+      "name": "Escape Markdown",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 3,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "id": "1aed7f42-10e5-41ef-b0f2-9c5c8ff28c14",
+      "name": "Nico reçoit un email",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1,
+      "position": [
+        2800,
+        -80
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.Subject.toLowerCase() }}",
+              "operation": "contains",
+              "value2": "kincir"
+            },
+            {
+              "value1": "={{ $json.From }}",
+              "operation": "notEqual",
+              "value2": "mailer-daemon@googlemail.com"
+            },
+            {
+              "value1": "={{ $json.From }}",
+              "operation": "notEqual",
+              "value2": "l.reynolds@digitalkin.ai"
+            }
+          ]
+        }
+      },
+      "id": "07db26bf-09ad-4680-9241-5cfa00f60928",
+      "name": "IF est une commande",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3020,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "={{ $json.id }}"
+      },
+      "id": "49a05f15-e662-4ce8-9f41-531b55006c3e",
+      "name": "Get Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        3240,
+        -80
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node[\"sortie\"].json.thread }}",
+              "operation": "contains",
+              "value2": "[MISSION ACCOMPLIE]"
+            }
+          ]
+        }
+      },
+      "id": "ab59fc46-c516-43ce-b529-95285c9f74bb",
+      "name": "IF MISSION ACCOMPLIE",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        5540,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# ENTREE MANUELLE",
+        "height": 305.41358227832,
+        "width": 564.7093096988182
+      },
+      "id": "c6a4d113-9a99-4401-a8ff-604a8db6876a",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2831,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "thread = $json.thread;\nthread = thread.length > 25000 ? thread.substring(thread.length - 25000) : thread;\n\nreturn {\"thread\":thread};"
+      },
+      "id": "19107397-2ada-4a40-852c-23908c8b0f44",
+      "name": "thread",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4340,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION\n\n{{ $json.snippet }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "={{ $json.thread }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "49084e73-a934-420d-bdcb-6e04fe27c87e",
+      "name": "mission",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3560,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "45463de2-3ec0-49e9-8880-ad245db4b867",
+      "name": "Kin Boiron",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        3240,
+        -280
+      ],
+      "webhookId": "d41a317d-544c-4a6e-834b-96e000dbd8e0",
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "086c953c-09d8-4265-bb9d-d2d8948f835a",
+      "name": "Kin CIR",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        3240,
+        -460
+      ],
+      "webhookId": "60f72252-8bc4-4bd2-8da1-fca151f2113f",
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "Jarvis"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1HeHEmtJGj1e2wLwwbI9MnrlDV-JdObTH",
+          "mode": "list",
+          "cachedResultName": "kinCIR.md",
+          "cachedResultUrl": "https://drive.google.com/file/d/1HeHEmtJGj1e2wLwwbI9MnrlDV-JdObTH/view?usp=drivesdk"
+        },
+        "binaryPropertyName": "thread",
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/rtf"
+            }
+          }
+        }
+      },
+      "name": "Google Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        3760,
+        120
+      ],
+      "typeVersion": 1,
+      "id": "9a6584ce-a648-47cc-9b36-2a361337aa0b",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "fileName": "kinCIR.md",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "a61b437b-6d38-41aa-ac4f-9ea625728980",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        5100,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "fileId": {
+          "__rl": true,
+          "value": "1HeHEmtJGj1e2wLwwbI9MnrlDV-JdObTH",
+          "mode": "list",
+          "cachedResultName": "kinCIR.md",
+          "cachedResultUrl": "https://drive.google.com/file/d/1HeHEmtJGj1e2wLwwbI9MnrlDV-JdObTH/view?usp=drivesdk"
+        },
+        "changeFileContent": true,
+        "inputDataFieldName": "thread",
+        "options": {}
+      },
+      "id": "20370e04-2743-482e-883c-ff9d9721bf94",
+      "name": "Update Document",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        5320,
+        500
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "e344e8a0-5a3c-4638-999c-4b8312494979",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        3260,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "rr8aeSM8QYyY8Po4"
+      },
+      "id": "9e3da5cb-40d5-4d7f-8580-b95cb90328d1",
+      "name": "Rédacteur d'Email",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5780,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://kins.app.n8n.cloud/webhook/redacteur-d-email",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "5bcba682-2f9f-48d2-afbd-5260a8c1e46d",
+      "name": "Rédacteur d'avancement",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        5100,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "id": "1b130f6a-2e1c-4a94-9fd8-d9e13a38cb77",
+      "name": "Convert to/from binary data1",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        3960,
+        120
+      ]
+    }
+  ],
+  "pinData": {
+    "mission": [
+      {
+        "json": {
+          "mission": "# MISSION\n\n# Mission L’entreprise DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE. Activité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques. Le but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode. Le principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique. Les objectifs de recherche sont : Parvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques. Parvenir à influencer les marques à produire des vêtements responsables et éthiques. Parvenir à montrer l’impact des actions sur la consommation de biens de mode et mesurer cet impact sur l’environnement."
+        }
+      }
+    ],
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "snippet": "# Mission L’entreprise DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE. Activité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques. Le but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode. Le principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique. Les objectifs de recherche sont : Parvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques. Parvenir à influencer les marques à produire des vêtements responsables et éthiques. Parvenir à montrer l’impact des actions sur la consommation de biens de mode et mesurer cet impact sur l’environnement."
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": [
+        14
+      ]
+    },
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1703179693,
+      "possibleDuplicates": [
+        "18c8d6bb085658c3"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 3,
+  "updatedAt": "2023-12-21T17:30:22.000Z",
+  "versionId": "7ea8dc1e-b044-48d2-8da2-687b65df8b2d"
+}
