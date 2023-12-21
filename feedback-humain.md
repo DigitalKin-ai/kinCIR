@@ -1,3 +1,13 @@
+# Le 21 décembre 2023 à 12:56:11 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Dans cette demande, il semble que "kincir_dynergie" cherche à obtenir une évaluation et une continuation de l'activité en cours liée au dispositif de Crédit d'Impôt Recherche (CIR) pour l'entreprise DurableFashion. L'intention principale est de démontrer l'éligibilité de l'entreprise DurableFashion au CIR par rapport à ses travaux de recherche sur la mode durable et éthique.
+
+Pour répondre à cela, il est indispensable de procéder à l'évaluation des documents disponibles tels que les procédures d'exception, les rapports d'avancement de la mission, le guide, l'historique des conversations, et tous les autres documents pertinents, afin de structurer un dossier solide pour le rescrit CIR. Cette évaluation permettrait de vérifier si les activités et travaux de recherche actuels correspondent aux critères requis par l'administration pour l'obtention du CIR. Ensuite, ces éléments devront être compilés de manière cohérente et présentés pour poursuivre le travail souhaité, qui consiste probablement à enrichir et compléter le dossier CIR.
+
+La demande de "kincir_dynergie" est donc de faire le point sur la situation actuelle et de poursuivre la structuration et la rédaction d'un dossier de CIR, en mettant l'accent sur l'impact des activités de DurableFashion sur la consommation responsable et l'environnement. Cela inclut l'examen du programme de recherche et développement, des méthodes d'évaluation de la qualité, et des retours déjà obtenus, pour mesurer et documenter l'influence de l'entreprise sur la consommation et la production de mode durable.
+``
+
 # Le 21 décembre 2023 à 12:54:46 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
