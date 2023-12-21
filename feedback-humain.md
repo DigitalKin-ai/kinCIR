@@ -1,3 +1,9 @@
+# Le 21 décembre 2023 à 12:52:51 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Kincir_dynergie, représentant de l'entreprise DurableFashion spécialisée dans la mode durable et éthique, souhaite utiliser les documents à disposition pour démontrer l'éligibilité au dispositif Crédit Impôt Recherche (CIR) de leurs travaux de recherche sur le thème de la mode durable. La justification s'appuie sur des activités visant à influencer la consommation et la production de vêtements responsables et éthiques, ainsi qu'à mesurer l'impact de ces activités sur l'environnement. L'intention est de préparer une requête pour un rescrit CIR. Il est demandé de procéder avec l'évaluation et la poursuite du travail déjà entamé dans ce processus.
+``
+
 # Le 21 décembre 2023 à 12:51:50 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
