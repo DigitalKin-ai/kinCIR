@@ -1,3 +1,15 @@
+# Le 21 décembre 2023 à 12:50:40 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'instruction donnée, "Assesse et continue ton travail", semble être une demande abrégée ou ambigüe pour une évaluation suivie d'une continuation du travail en cours. En tenant compte du contexte fourni, la société DurableFashion s'efforce d'influencer le marché de la mode vers des pratiques plus durables et éthiques, et la demande actuelle se rapporte à démontrer l'éligibilité de leurs travaux de recherche pour le dispositif de Crédit Impôt Recherche (CIR).
+
+Dans cette optique, la tâche à réaliser serait de procéder à une évaluation des travaux de recherche et des activités en cours pour ensuite poursuivre les efforts en vue de réunir les informations et la documentation nécessaires à l'appui de la demande de CIR.
+
+En prenant comme hypothèse que l'intention du demandeur est d'obtenir un rapport d'évaluation de l'état actuel, ainsi que des directives pour la suite du processus d'éligibilité au CIR, voici la formulation améliorée de la demande:
+
+"Pour soutenir notre prétention au Crédit Impôt Recherche, effectue une évaluation approfondie de nos programmes de recherche actuels relatifs à la mode durable. Après cette évaluation, assemblons les preuves et la documentation afférentes prouvant notre engagement dans des activités de R&D éligibles au CIR. Cela inclura l'analyse de notre influence sur les habitudes de consommation et de production dans l'industrie, ainsi que l'impact environnemental de nos actions. Ensuite, continue le travail en cours pour ces activités en planifiant les étapes suivantes nécessaires pour optimiser notre positionnement dans le cadre du rescrit CIR."
+``
+
 # Le 21 décembre 2023 à 12:45:15 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
