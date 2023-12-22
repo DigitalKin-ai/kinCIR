@@ -67,22 +67,6 @@
         ]
       ]
     },
-    "Rédacteur de Programme R&D": {
-      "main": [
-        [
-          {
-            "node": "sortie",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Escape Markdown",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "sortie": {
       "main": [
         [
@@ -155,17 +139,6 @@
         [
           {
             "node": "mission",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "thread": {
-      "main": [
-        [
-          {
-            "node": "Rédacteur de Programme R&D",
             "type": "main",
             "index": 0
           }
@@ -259,6 +232,33 @@
           }
         ]
       ]
+    },
+    "Rédacteur de Programme R&D": {
+      "main": [
+        [
+          {
+            "node": "sortie",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "thread": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2023-12-20T17:51:19.109Z",
@@ -266,30 +266,6 @@
   "meta": null,
   "name": "KinCIR",
   "nodes": [
-    {
-      "parameters": {
-        "assistantId": "asst_K25pMgsChtj1PKEenv0pM8LZ",
-        "text": "={{ $node[\"mission\"].json.mission }}\n\n# CONVERSATION\n\n{{ $json.thread }}",
-        "nativeTools": [
-          "code_interpreter"
-        ],
-        "options": {}
-      },
-      "id": "7ef981a2-3a69-4cc5-b159-98e86c879db7",
-      "name": "Rédacteur de Programme R&D",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4540,
-        500
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
     {
       "parameters": {
         "name": "redacteur_de_document",
@@ -673,20 +649,6 @@
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "thread = $json.thread;\nthread = thread.length > 25000 ? thread.substring(thread.length - 25000) : thread;\n\nreturn {\"thread\":thread};"
-      },
-      "id": "19107397-2ada-4a40-852c-23908c8b0f44",
-      "name": "thread",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        4340,
-        500
-      ]
-    },
-    {
-      "parameters": {
         "fields": {
           "values": [
             {
@@ -868,23 +830,6 @@
     },
     {
       "parameters": {
-        "url": "https://kins.app.n8n.cloud/webhook/redacteur-d-email",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={{ $json }}",
-        "options": {}
-      },
-      "id": "5bcba682-2f9f-48d2-afbd-5260a8c1e46d",
-      "name": "Rédacteur d'avancement",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        5100,
-        80
-      ]
-    },
-    {
-      "parameters": {
         "setAllData": false,
         "sourceKey": "thread",
         "destinationKey": "thread",
@@ -899,6 +844,62 @@
       "position": [
         3960,
         120
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://kins.app.n8n.cloud/webhook/redacteur-d-email",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "5bcba682-2f9f-48d2-afbd-5260a8c1e46d",
+      "name": "Rédacteur d'avancement",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        5100,
+        80
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_K25pMgsChtj1PKEenv0pM8LZ",
+        "text": "={{ $node[\"mission\"].json.mission }}\n\n# CONVERSATION\n\n{{ $json.thread }}",
+        "nativeTools": [
+          "code_interpreter"
+        ],
+        "options": {}
+      },
+      "id": "7ef981a2-3a69-4cc5-b159-98e86c879db7",
+      "name": "Rédacteur de Programme R&D",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4540,
+        500
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "thread = $json.thread;\nthread = thread.length > 25000 ? thread.substring(thread.length - 25000) : thread;\n\nreturn {\"thread\":thread};"
+      },
+      "id": "19107397-2ada-4a40-852c-23908c8b0f44",
+      "name": "thread",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4340,
+        500
       ]
     }
   ],
@@ -930,10 +931,9 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1703242194,
+      "lastTimeChecked": 1703276192,
       "possibleDuplicates": [
-        "18c912561ec060ab",
-        "18c912561d11a1c7"
+        "18c932c52f21811c"
       ]
     }
   },
@@ -946,6 +946,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2023-12-22T11:00:24.000Z",
-  "versionId": "7ea8dc1e-b044-48d2-8da2-687b65df8b2d"
+  "updatedAt": "2023-12-22T20:18:39.000Z",
+  "versionId": "4e256438-78e1-4dd5-ba61-f4d2450b41af"
 }
