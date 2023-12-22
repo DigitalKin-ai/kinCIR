@@ -1,3 +1,15 @@
+# Le 22 décembre 2023 à 11:11:55 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'entreprise DurableFashion se consacre à encourager une industrie de la mode plus responsable et éthique. Elle est activement engagée dans la certification de fabricants d'articles de mode durable, dans la promotion de ces produits soulignant leur caractère écologique et vertueux, ainsi que dans leur commercialisation en ligne et dans des points de vente physiques. L'objectif principal est d'augmenter l'influence de la mode durable dans le secteur tout en sensibilisant et en orientant à la fois les consommateurs vers des choix plus responsables et les marques vers des pratiques de production éthiques.
+
+Les initiatives de recherche de DurableFashion visent à démontrer comment influencer efficacement les comportements d'achat en faveur de vêtements issus de marques soucieuses de leur impact environnemental et social, ainsi qu'à inciter l'industrie de la mode à adopter des procédés de fabrication respectueux de ces principes. En outre, l'entreprise s'efforce de quantifier l'impact de ses activités sur les tendances de consommation et sur l'environnement.
+
+L'intention derrière la demande actuelle est d'utiliser les données et les résultats des recherches pour étayer une demande de Crédit d’Impôt Recherche (CIR). Ce rescrit CIR aiderait à financer les travaux de recherche en démontrant leur caractère novateur et leur contribution au progrès dans le domaine de la mode durable.
+
+Ainsi, l'assistant est appelé à poursuivre son travail, en se basant sur une analyse des documents disponibles et sur le contexte fourni, pour structurer les éléments probants qui attestent de la nature de recherche et de développement (R&D) des activités de DurableFashion. Cela implique la consolidation de preuves, l'analyse des efforts de recherche effectués, et la présentation de l'impact positif de ces travaux sur la consommation responsable et sur l'environnement, afin de répondre aux critères exigés par le dispositif CIR.
+``
+
 # Le 22 décembre 2023 à 11:10:45 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
