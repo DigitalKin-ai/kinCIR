@@ -1,3 +1,16 @@
+# Le 22 décembre 2023 à 11:20:05 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Il semblerait que Kincir d'Énergie, représentant de DurableFashion, souhaite poursuivre et étayer le travail relatif au dispositif Crédit Impôt Recherche (CIR), spécifiquement axé sur des travaux de recherche dans le secteur de la mode durable et éthique. La finalité est de présenter des éléments convaincants qui démontreront l'éligibilité de l'entreprise au rescrit CIR. Ce travail implique l'utilisation des ressources et documents à disposition, en soulignant notamment les efforts en matière de recherche pour influencer la consommation et la production de mode durable.
+
+Ma tâche consiste, par conséquent, à analyser et à synthétiser les informations disponibles pour formuler une réponse structurée qui mettrait en évidence les recherches menées par DurableFashion dans les trois thématiques suivantes :
+1. L'influence sur les consommateurs pour orienter leurs achats vers des vêtements de marques responsables et éthiques.
+2. L'influence sur les marques pour les inciter à produire de manière plus responsable et éthique.
+3. La démonstration de l'impact des activités de DurableFashion sur la consommation de mode et la mesure de cet impact sur l'environnement.
+
+Pour cela, j'intègrerai les résultats des recherches, les méthodologies utilisées et tous les progrès documentés dans les ressources mentionnées, afin de construire un argumentaire solide pour le rescrit CIR.
+``
+
 # Le 22 décembre 2023 à 11:20:01 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
