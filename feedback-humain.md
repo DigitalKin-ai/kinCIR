@@ -1,3 +1,15 @@
+# Le 22 décembre 2023 à 11:16:05 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Kinbox, 
+
+Poursuivre le traitement des éléments pour justifier l'éligibilité de DurableFashion au dispositif Crédit Impôt Recherche et préparer adéquatement le rescrit CIR. Il semble que les efforts de l'entreprise vers l'influence de la consommation et de la production de mode responsable et éthique s'alignent sur les axes de recherche pertinent pour le CIR. Ensuite, valorise les stratégies adoptées pour encourager les consommateurs à opter pour des vêtements issus de marques éthiques et responsables, ainsi que les mesures mises en œuvre pour convaincre les marques de produire de tels vêtements. Il est également important de décrire l'impact des activités de DurableFashion sur l'achat de produits de mode et sur la mesure de cet impact environnemental.
+
+Amicalement,
+
+Kincir d'énergie.
+``
+
 # Le 22 décembre 2023 à 11:14:38 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
