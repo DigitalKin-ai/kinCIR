@@ -1,3 +1,11 @@
+# Le 22 décembre 2023 à 07:00:19 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Kincir_d'énergie, une entreprise spécialisée dans la mode durable et éthique, cherche à augmenter l'impact de la mode écoresponsable sur le marché. Leur objectif principal de recherche est d'influencer la consommation et la production en faveur de la mode durable. Ils concentrent leurs efforts sur trois axes principaux : convaincre les consommateurs de choisir des marques responsables, encourager les fabricants à produire de manière éthique et mesurer l'impact environnemental de leurs activités.
+
+Dans le but de démontrer leur éligibilité au dispositif Crédit Impôt Recherche (CIR), cet ensemble de documents et d'informations sera utilisé pour prouver l'importance et la validité de leurs travaux de recherche dans le secteur spécifique de la mode durable et éthique. Il s'agit donc de continuer à travailler sur cette base pour préparer et rendre un dossier credible pour le rescrit CIR.
+``
+
 # Le 22 décembre 2023 à 03:00:35 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
