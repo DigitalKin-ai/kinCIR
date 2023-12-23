@@ -1,0 +1,823 @@
+{
+  "active": false,
+  "connections": {
+    "CHERCHEUR SCIENTIFIQUE": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur d'Histoires",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur de Citations": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur d'Histoires",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'Etudes": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur d'Histoires",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de Documents": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur d'Histoires",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur de Document": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur d'Histoires",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur d'Histoires",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sortie": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown": {
+      "main": [
+        [
+          {
+            "node": "Envoi de notification Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF MISSION ACCOMPLIE": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "Update Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Document": {
+      "main": [
+        [
+          {
+            "node": "IF MISSION ACCOMPLIE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data1": {
+      "main": [
+        [
+          {
+            "node": "thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "thread": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur d'Histoires",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kin Simba": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur d'Histoires": {
+      "main": [
+        [
+          {
+            "node": "sortie",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur d'Histoires1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-23T17:18:59.535Z",
+  "id": "12FLnPHo27ESJDC9",
+  "meta": null,
+  "name": "Simba - Rédacteur d'Histoires",
+  "nodes": [
+    {
+      "parameters": {
+        "name": "redacteur_de_document",
+        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
+        "workflowId": "0T67aHjuqQEnrTN0",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "919a3d6e-6fd1-45eb-8eea-99439eb84f2e",
+      "name": "Rédacteur de Document",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5060,
+        1000
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_documents",
+        "description": "Donne une réponse précise issue du document demandé à partir d'un besoin informationnel.",
+        "workflowId": "ebLHEt0swZVT9tks",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "db7b9271-1653-4516-82b8-c3b27ccb6398",
+      "name": "Questionneur de Documents",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4900,
+        1000
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "40ee3ceb-053d-4d85-a4b1-cb918543acf3",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5180,
+        1000
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS STANDARD",
+        "height": 224.32004875594802,
+        "width": 447.22204993824914
+      },
+      "id": "1ac7bf0c-f5d5-4730-b81b-77023c392289",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4860,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_etudes",
+        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
+        "workflowId": "yQ79P9nuVKhkwZpD",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "a769f937-89d3-43bd-a820-9902e33a7fdf",
+      "name": "Questionneur d'Etudes",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4620,
+        1120
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "acquereur_de_citations",
+        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
+        "workflowId": "It2FPpnGNxaxojxY",
+        "fields": {
+          "values": [
+            {
+              "name": "thread",
+              "stringValue": "={{ $node[\"thread\"].json.thread }} "
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"mission\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "55d93783-a0ac-4925-ade4-df7034611f6f",
+      "name": "Acquéreur de Citations",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4460,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS SPECIFIQUES",
+        "height": 413.4919569863578,
+        "width": 468.47826732357714
+      },
+      "id": "ff6fbce2-50e3-4b80-a95f-9df5ea8569fd",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4360,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# COLLABORATEURS",
+        "height": 224.32004875594802,
+        "width": 355.66820106337036
+      },
+      "id": "5ad41ffe-e90e-4a68-8020-3e552ce3bda5",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3980,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "name": "chercheur_scientifique",
+        "description": "Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "6f0f9586-e1a7-4407-9122-f24a9da81336",
+      "name": "CHERCHEUR SCIENTIFIQUE",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4180,
+        1000
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Accès DB Etudes",
+        "height": 272.5167132732499,
+        "width": 391.3636040958942
+      },
+      "id": "adeda8d4-ebf9-49cf-9741-21b50b7c5958",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "=-964821790",
+        "text": "={{ $json.escapedText.substring($json.escapedText.length - 4000) }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "0bd9d306-c784-4d74-b835-6af863322722",
+      "name": "Envoi de notification Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        5100,
+        300
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "Jarvis"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "sortie = $node[\"thread\"].json.thread.replace(/^([\"`]+)|([\"`]+)$/g, '');\n\n// Enlever les guillemets de début et de fin\nsortie += $json.output.replace(/^([\"`]+)|([\"`]+)$/g, ''); \n\n// Corriger le \\n\nsortie = sortie.replace('\\n', '\\r\\n');\n\n\nreturn {\"thread\":sortie};"
+      },
+      "id": "ddce1b6d-d82a-47b0-b8bf-bd4f4206d2cd",
+      "name": "sortie",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4880,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\n// Exemple d'utilisation\nconst originalText = $json.output;\nconst escapedText = escapeMarkdownV2(originalText);\n\nreturn {\"json\":{\"escapedText\":escapedText}};\n"
+      },
+      "id": "bfc97f67-fc18-4b38-bc94-4db72a175189",
+      "name": "Escape Markdown",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node[\"sortie\"].json.thread }}",
+              "operation": "contains",
+              "value2": "[MISSION ACCOMPLIE]"
+            }
+          ]
+        }
+      },
+      "id": "4a9913ed-a533-40b8-beb8-54a9f826727c",
+      "name": "IF MISSION ACCOMPLIE",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        5540,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# ENTREE MANUELLE",
+        "height": 305.41358227832,
+        "width": 564.7093096988182
+      },
+      "id": "af47ab52-f2f7-48f7-acc2-12679ad550be",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2831,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION\n\n{{ $json.snippet }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "={{ $json.thread }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "8d215ed6-01f2-4d33-82a3-f7eb196af5d2",
+      "name": "mission",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3560,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1wPXdHl9DQ584uEloIEh5rApbM734NRFfbP_ZTOqn1rU",
+          "mode": "list",
+          "cachedResultName": "Histoire de Simba",
+          "cachedResultUrl": "https://docs.google.com/document/d/1wPXdHl9DQ584uEloIEh5rApbM734NRFfbP_ZTOqn1rU/edit?usp=drivesdk"
+        },
+        "binaryPropertyName": "thread",
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/rtf"
+            }
+          }
+        }
+      },
+      "name": "Google Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        3760,
+        120
+      ],
+      "typeVersion": 1,
+      "id": "ce351929-2dd1-4c93-8bb6-063966d9846c",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "fileName": "kinCIR.md",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "18e99691-76a1-4488-afbb-61caeab0690b",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        5100,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "fileId": {
+          "__rl": true,
+          "value": "1wPXdHl9DQ584uEloIEh5rApbM734NRFfbP_ZTOqn1rU",
+          "mode": "list",
+          "cachedResultName": "Histoire de Simba",
+          "cachedResultUrl": "https://docs.google.com/document/d/1wPXdHl9DQ584uEloIEh5rApbM734NRFfbP_ZTOqn1rU/edit?usp=drivesdk"
+        },
+        "changeFileContent": true,
+        "inputDataFieldName": "thread",
+        "options": {}
+      },
+      "id": "7f8c7133-f5f8-45c1-90ae-901b0cacbae3",
+      "name": "Update Document",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        5320,
+        500
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "fd6bbb3c-d371-47ce-a302-27a84f291ab2",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        3260,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "rr8aeSM8QYyY8Po4"
+      },
+      "id": "d6c4b528-2dc9-4837-81f3-b3128d4fbc77",
+      "name": "Rédacteur d'Email",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5780,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "id": "bd14fe2a-ab05-4543-8568-850e7087c73e",
+      "name": "Convert to/from binary data1",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        3960,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "thread = $json.thread;\nthread = thread.length > 25000 ? thread.substring(thread.length - 25000) : thread;\n\nreturn {\"thread\":thread};"
+      },
+      "id": "1d3a13d5-e263-4af9-b0af-0a1e652f6918",
+      "name": "thread",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4340,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "fa5d62bd-841e-423c-a648-ad402bf99fc1",
+      "name": "Kin Simba",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        3260,
+        -60
+      ],
+      "webhookId": "7115f1ac-46b8-4e87-bc90-5984b2e7bba9",
+      "credentials": {
+        "telegramApi": {
+          "id": "XeOznB3QV7UZKDZG",
+          "name": "Baby Simba"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_3j4rO0zsoCGlGwSBQgGdgtKd",
+        "text": "={{ $node[\"mission\"].json.mission }}\n\n# CONVERSATION\n\n{{ $json.thread }}",
+        "nativeTools": [
+          "code_interpreter"
+        ],
+        "options": {}
+      },
+      "id": "76e6919d-8574-4de0-b949-f3a6d7deebdd",
+      "name": "Rédacteur d'Histoires",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4540,
+        500
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "yMHrsNKR0mzRKHyX",
+          "name": "OpenAI - Simba"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_3j4rO0zsoCGlGwSBQgGdgtKd",
+        "text": "={{ $node[\"mission\"].json.mission }}\n\n# CONVERSATION\n\n{{ $json.thread }}",
+        "nativeTools": [
+          "code_interpreter"
+        ],
+        "options": {}
+      },
+      "id": "9aee094c-9f65-4910-8e73-8212a344218b",
+      "name": "Rédacteur d'Histoires1",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4440,
+        -140
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "yMHrsNKR0mzRKHyX",
+          "name": "OpenAI - Simba"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "9623f1f8-cd36-4c7e-9cc8-d7f9b0926eb4",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        4100,
+        -240
+      ]
+    }
+  ],
+  "pinData": {
+    "mission": [
+      {
+        "json": {
+          "mission": "# MISSION\n\n# Ecris une histoire de Noël sur Lester le papa, Aurore la maman, Simba le bébé Lion. Aurore est enceinte de Eléa."
+        }
+      }
+    ],
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "snippet": "# Mission L’entreprise DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE. Activité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques. Le but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode. Le principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique. Les objectifs de recherche sont : Parvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques. Parvenir à influencer les marques à produire des vêtements responsables et éthiques. Parvenir à montrer l’impact des actions sur la consommation de biens de mode et mesurer cet impact sur l’environnement."
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": [
+        14
+      ]
+    },
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1703327980,
+      "possibleDuplicates": [
+        "18c96426800ccbd1"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2023-12-23T18:27:25.000Z",
+  "versionId": "1e653406-8655-4974-95c2-07193d9c001c"
+}
