@@ -1,72 +1,6 @@
 {
   "active": false,
   "connections": {
-    "CHERCHEUR SCIENTIFIQUE": {
-      "ai_tool": [
-        [
-          {
-            "node": "Rédacteur d'Histoires",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Acquéreur de Citations": {
-      "ai_tool": [
-        [
-          {
-            "node": "Rédacteur d'Histoires",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Questionneur d'Etudes": {
-      "ai_tool": [
-        [
-          {
-            "node": "Rédacteur d'Histoires",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Questionneur de Documents": {
-      "ai_tool": [
-        [
-          {
-            "node": "Rédacteur d'Histoires",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Rédacteur de Document": {
-      "ai_tool": [
-        [
-          {
-            "node": "Rédacteur d'Histoires",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ScratchPad": {
-      "ai_tool": [
-        [
-          {
-            "node": "Rédacteur d'Histoires",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "sortie": {
       "main": [
         [
@@ -224,81 +158,6 @@
   "nodes": [
     {
       "parameters": {
-        "name": "redacteur_de_document",
-        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
-        "workflowId": "0T67aHjuqQEnrTN0",
-        "responsePropertyName": "message",
-        "fields": {
-          "values": [
-            {
-              "name": "message",
-              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
-            }
-          ]
-        }
-      },
-      "id": "919a3d6e-6fd1-45eb-8eea-99439eb84f2e",
-      "name": "Rédacteur de Document",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        5060,
-        1000
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "name": "questionneur_de_documents",
-        "description": "Donne une réponse précise issue du document demandé à partir d'un besoin informationnel.",
-        "workflowId": "ebLHEt0swZVT9tks",
-        "responsePropertyName": "message",
-        "fields": {
-          "values": [
-            {
-              "name": "message",
-              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
-            }
-          ]
-        }
-      },
-      "id": "db7b9271-1653-4516-82b8-c3b27ccb6398",
-      "name": "Questionneur de Documents",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4900,
-        1000
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "name": "scratchpad",
-        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
-        "workflowId": "wTbd0CgnGrumh0qf",
-        "responsePropertyName": "message",
-        "fields": {
-          "values": [
-            {
-              "name": "message",
-              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
-            }
-          ]
-        }
-      },
-      "id": "40ee3ceb-053d-4d85-a4b1-cb918543acf3",
-      "name": "ScratchPad",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        5180,
-        1000
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
         "content": "# OUTILS STANDARD",
         "height": 224.32004875594802,
         "width": 447.22204993824914
@@ -310,58 +169,6 @@
       "position": [
         4860,
         920
-      ]
-    },
-    {
-      "parameters": {
-        "name": "questionneur_d_etudes",
-        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
-        "workflowId": "yQ79P9nuVKhkwZpD",
-        "responsePropertyName": "message",
-        "fields": {
-          "values": [
-            {
-              "name": "message",
-              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
-            }
-          ]
-        }
-      },
-      "id": "a769f937-89d3-43bd-a820-9902e33a7fdf",
-      "name": "Questionneur d'Etudes",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4620,
-        1120
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "name": "acquereur_de_citations",
-        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
-        "workflowId": "It2FPpnGNxaxojxY",
-        "fields": {
-          "values": [
-            {
-              "name": "thread",
-              "stringValue": "={{ $node[\"thread\"].json.thread }} "
-            },
-            {
-              "name": "mission",
-              "stringValue": "={{ $node[\"mission\"].json.mission }}"
-            }
-          ]
-        }
-      },
-      "id": "55d93783-a0ac-4925-ade4-df7034611f6f",
-      "name": "Acquéreur de Citations",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4460,
-        1100
       ]
     },
     {
@@ -392,46 +199,6 @@
       "position": [
         3980,
         920
-      ]
-    },
-    {
-      "parameters": {
-        "name": "chercheur_scientifique",
-        "description": "Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
-        "workflowId": "f4z3JUKhsFgmKRgZ",
-        "responsePropertyName": "message",
-        "fields": {
-          "values": [
-            {
-              "name": "message",
-              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
-            }
-          ]
-        }
-      },
-      "id": "6f0f9586-e1a7-4407-9122-f24a9da81336",
-      "name": "CHERCHEUR SCIENTIFIQUE",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4180,
-        1000
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "content": "## Accès DB Etudes",
-        "height": 272.5167132732499,
-        "width": 391.3636040958942
-      },
-      "id": "adeda8d4-ebf9-49cf-9741-21b50b7c5958",
-      "name": "Sticky Note7",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        4400,
-        1020
       ]
     },
     {
@@ -818,6 +585,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2023-12-23T18:27:25.000Z",
-  "versionId": "1e653406-8655-4974-95c2-07193d9c001c"
+  "updatedAt": "2023-12-24T10:58:14.000Z",
+  "versionId": "5f469ee3-3d3a-48e9-9661-69d200f4f807"
 }
