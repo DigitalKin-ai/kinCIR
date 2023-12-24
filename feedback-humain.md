@@ -1,3 +1,13 @@
+# Le 24 décembre 2023 à 19:00:17 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Dans le contexte de votre entreprise DurableFashion, qui vise à augmenter la part de mode durable et éthique dans l'industrie de la mode, il semble que vous ayez l'intention de poursuivre le travail en lien avec des activités de recherche visant à influencer la consommation et la production de vêtements éthiques, ainsi que de montrer l'impact de ces activités sur l'environnement. La demande "Assesse et continue ton travail." suggère que vous demandez une évaluation continue ainsi que la poursuite des efforts dans ce domaine.
+
+Pour appuyer votre éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR), qui est l'intention d'usage de ces éléments, il est probable que vous souhaitiez que votre équipe recueille et présente des données et des résultats de vos activités de recherche. Ce pourraient être des informations détaillées sur les processus de certification des fabricants, les stratégies de promotion des articles de mode durable, et les ventes réalisées via Internet et en boutique qui démontrent une influence sur les habitudes de consommation.
+
+Vous attendez peut-être également un suivi de l'avancement des recherches actuelles, une mise à jour des documents mentionnés, ou la création de nouveaux documents qui pourraient démontrer l'impact environnemental des pratiques promues par DurableFashion. Ces actions pourraient inclure l'utilisation de méthodes de recherche et développement (telles qu'indiquées dans le programme R&D), l'analyse des erreurs et des feedbacks (comme on pourrait le déduire des logs des erreurs et du feedback humain), et la mise en place de procédures pour documenter l'efficacité des processus en place et leur répercussion sur les objectifs de l'entreprise.
+``
+
 # Le 24 décembre 2023 à 15:00:25 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
