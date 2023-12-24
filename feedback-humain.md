@@ -1,3 +1,13 @@
+# Le 24 décembre 2023 à 15:00:25 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'entreprise DurableFashion cherche à démontrer qu'elle est éligible au dispositif Crédit Impôt Recherche (CIR) en mettant en avant ses travaux de recherche sur la mode durable. Pour ce faire, elle souhaite présenter ses activités de recherche et développement, y compris les méthodes visant à influencer la consommation et la production vers des choix plus responsables et éthiques.
+
+L'intention ici est d'examiner, évaluer et progresser dans la préparation d'un dossier pour un rescrit CIR qui met en lumière les efforts de l'entreprise dans ce domaine. Il est important de structurer les informations de manière à refléter le sérieux des travaux de recherche et leur potentiel d'impact sur l'industrie de la mode en matière de durabilité et d'éthique.
+
+Pour répondre à cette demande, il faut rédiger une synthèse cohérente qui intègre les divers documents disponibles, en mettant l'accent sur les procédés de recherche et développement, l'approche méthodologique et les résultats attendus. Cette synthèse devrait également présenter comment DurableFashion répond aux critères d'éligibilité au CIR à travers ses activités de R&D, ainsi qu'une estimation des retombées positives sur l'environnement et la société.
+``
+
 # Le 24 décembre 2023 à 11:00:17 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
