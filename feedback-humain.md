@@ -1,3 +1,13 @@
+# Le 25 décembre 2023 à 03:00:26 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'entreprise DurableFashion, spécialisée dans la mode durable et éthique, focalise ses efforts sur l'identification et la certification de fabricants d'articles de mode respectueux de l'environnement et socialement responsables. En faisant la promotion et en commercialisant ces articles par internet et dans ses boutiques, l'entreprise vise à accroître la part de mode durable et éthique au sein de l'industrie. L'objectif clé de ses activités de recherche et développement est d'influencer tant la consommation que la production d'articles de mode responsables, en mettant l'accent sur l'achat de vêtements issus de marques responsables et éthiques, ainsi que sur l'incitation des marques elles-mêmes à adopter des pratiques de production durable. DurableFashion cherche également à démontrer et mesurer l'impact de ses actions sur la consommation de biens de mode et leur conséquence sur l'environnement.
+
+La demande est de poursuivre le travail actuel, avec l'objectif implicite d'utiliser les documents fournis pour appuyer l'éligibilité de DurableFashion au dispositif CRÉDIT IMPÔT RECHERCHE (CIR). Cette requête est émise dans le cadre d'un rescrit CIR, qui implique une analyse et une synthèse des données de R&D de l'entreprise pour prouver que ses travaux de recherche sont conformes aux critères d'éligibilité du dispositif français de soutien à l'innovation.
+
+En continuant le travail, il pourrait s'agir de rassembler et d'analyser des preuves à partir des documents disponibles, tels que les schémas de connexion actuels, les ressources sur les difficultés des assistants IA, les documents de sortie relatifs au programme de R&D, le processus des producteurs et des managers, les procédures d'exception, les plans de documents de sortie, les logs d'erreurs, les outils comme Kinbox, l'historique des conversations, les guides et fonctionnalités d'évaluation de la qualité, ainsi que les retours humains et le suivi de la progression de la mission. Ces éléments contribueront à démontrer que DurableFashion mène bien des recherches scientifiques et techniques dans le cadre de son activité, ce qui justifierait l'accès aux avantages fiscaux liés au CRÉDIT IMPÔT RECHERCHE.
+``
+
 # Le 24 décembre 2023 à 23:00:11 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
