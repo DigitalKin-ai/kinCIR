@@ -1,3 +1,20 @@
+# Le 25 décembre 2023 à 07:00:29 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'entreprise DurableFashion, spécialisée dans la mode durable et éthique, a pour activité principale d'identifier et de certifier des fabricants d'articles de mode qui respectent les principes de durabilité et d'éthique. Elle s'engage aussi dans la promotion de ces articles tout en les commercialisant à travers son réseau de vente en ligne et ses boutiques physiques. Le but ultime de DurableFashion est d'augmenter significativement la part de la mode durable et éthique au sein de l'industrie globale de la mode.
+
+Dans le cadre de son objectif principal, DurableFashion concentre ses efforts de recherche sur la manière d'influer sur les comportements de consommation et de production en faveur des vêtements responsables et éthiquement produits. À cet effet, l'entreprise poursuit plusieurs axes de recherche thématiques, notamment :
+1. L'influence des consommateurs afin de les inciter à choisir des vêtements issus de marques responsables et éthiques.
+2. L'influence des marques pour les motiver à produire des vêtements dans le respect des principes de responsabilité et d'éthique.
+3. La démonstration de l'impact des activités de l'entreprise sur les habitudes de consommation de la mode et l'évaluation de cet impact sur l'environnement.
+
+L'intention d'usage des éléments fournis par DurableFashion est de démontrer l'éligibilité de l'entreprise au dispositif du Crédit d'Impôt Recherche (CIR) en mettant en avant les travaux de recherche menés sur le thème de la mode durable, dans le cadre d'un rescrit CIR.
+
+Pour continuer dans cette direction, il est recommandé que DurableFashion compile et synthétise les informations issues des documents disponibles, tels que les "schémas de connexion actuels", "ressources IA - difficultés des assistants", "programme R&D client - document de sortie", et autres documents pertinents. Ces informations devraient être organisées de manière à présenter clairement les travaux de recherche effectués, les méthodes utilisées, et les résultats obtenus. Il est également important de lier directement ces travaux aux objectifs de recherche et d'identifier comment ils contribuent à l'avancée vers une mode plus durable et éthique.
+
+En consolidant ces données, DurableFashion pourra présenter un dossier solide pour justifier de son éligibilité au CIR, en mettant en lumière les innovations et les avancées significatives réalisées dans le domaine de la mode durable grâce à ses initiatives de recherche et de développement.
+``
+
 # Le 25 décembre 2023 à 03:00:26 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
