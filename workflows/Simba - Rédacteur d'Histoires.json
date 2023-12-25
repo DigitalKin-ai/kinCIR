@@ -230,7 +230,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "sortie = $node[\"thread\"].json.thread.replace(/^([\"`]+)|([\"`]+)$/g, '');\n\n// Enlever les guillemets de début et de fin\nsortie += $json.output.replace(/^([\"`]+)|([\"`]+)$/g, ''); \n\n// Corriger le \\n\nsortie = sortie.replace('\\n', '\\r\\n');\n\n\nreturn {\"thread\":sortie};"
+        "jsCode": "sortie = $node[\"thread\"].json.entireThread.replace(/^([\"`]+)|([\"`]+)$/g, '');\n\n// Enlever les guillemets de début et de fin\nsortie += $json.output.replace(/^([\"`]+)|([\"`]+)$/g, ''); \n\n// Corriger le \\n\nsortie = sortie.replace('\\n', '\\r\\n');\n\n\nreturn {\"thread\":sortie};"
       },
       "id": "ddce1b6d-d82a-47b0-b8bf-bd4f4206d2cd",
       "name": "sortie",
@@ -323,10 +323,10 @@
         "operation": "download",
         "fileId": {
           "__rl": true,
-          "value": "1wPXdHl9DQ584uEloIEh5rApbM734NRFfbP_ZTOqn1rU",
+          "value": "160c2Rbgr-bff5NVgEZX8ItS66A76Gfce",
           "mode": "list",
-          "cachedResultName": "Histoire de Simba",
-          "cachedResultUrl": "https://docs.google.com/document/d/1wPXdHl9DQ584uEloIEh5rApbM734NRFfbP_ZTOqn1rU/edit?usp=drivesdk"
+          "cachedResultName": "histoire_de_simba.md",
+          "cachedResultUrl": "https://drive.google.com/file/d/160c2Rbgr-bff5NVgEZX8ItS66A76Gfce/view?usp=drivesdk"
         },
         "binaryPropertyName": "thread",
         "options": {
@@ -359,7 +359,7 @@
         "sourceKey": "thread",
         "destinationKey": "thread",
         "options": {
-          "fileName": "kinCIR.md",
+          "fileName": "Histoire de Simba",
           "mimeType": "text/markdown",
           "useRawData": true
         }
@@ -378,10 +378,10 @@
         "operation": "update",
         "fileId": {
           "__rl": true,
-          "value": "1wPXdHl9DQ584uEloIEh5rApbM734NRFfbP_ZTOqn1rU",
+          "value": "160c2Rbgr-bff5NVgEZX8ItS66A76Gfce",
           "mode": "list",
-          "cachedResultName": "Histoire de Simba",
-          "cachedResultUrl": "https://docs.google.com/document/d/1wPXdHl9DQ584uEloIEh5rApbM734NRFfbP_ZTOqn1rU/edit?usp=drivesdk"
+          "cachedResultName": "histoire_de_simba.md",
+          "cachedResultUrl": "https://drive.google.com/file/d/160c2Rbgr-bff5NVgEZX8ItS66A76Gfce/view?usp=drivesdk"
         },
         "changeFileContent": true,
         "inputDataFieldName": "thread",
@@ -447,7 +447,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "thread = $json.thread;\nthread = thread.length > 25000 ? thread.substring(thread.length - 25000) : thread;\n\nreturn {\"thread\":thread};"
+        "jsCode": "entireThread = $json.thread;\nthread = $json.thread;\nthread = thread.length > 25000 ? \"[...]\" + thread.substring(thread.length - 25000) : thread;\n\nreturn {\"thread\":thread, \"entireThread\":entireThread};"
       },
       "id": "1d3a13d5-e263-4af9-b0af-0a1e652f6918",
       "name": "thread",
@@ -484,8 +484,8 @@
     },
     {
       "parameters": {
-        "assistantId": "asst_3j4rO0zsoCGlGwSBQgGdgtKd",
-        "text": "={{ $node[\"mission\"].json.mission }}\n\n# CONVERSATION\n\n{{ $json.thread }}",
+        "assistantId": "asst_EcyCc7IvadKRNYD3erLm3rCq",
+        "text": "=# MISSION GLOBALE\n\n{{ $node[\"mission\"].json.mission }}\n\n# TACHE\n\n{{ $json.thread }}",
         "nativeTools": [
           "code_interpreter"
         ],
@@ -501,8 +501,8 @@
       ],
       "credentials": {
         "openAiApi": {
-          "id": "yMHrsNKR0mzRKHyX",
-          "name": "OpenAI - Simba"
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
         }
       }
     },
@@ -546,7 +546,7 @@
     "mission": [
       {
         "json": {
-          "mission": "# MISSION\n\n# Ecris une histoire sur Simba et Eléa, des enfants qui sont frère et soeur. Alors le public cible de cette histoire c'est simba qui a 4 ans et ? Éléa qui a 2 ans bientôt . On peut dire que . Le thème c'est de . Savoir préparer les choses On va faire un cadre fantastique .. Les personnages principaux ce sera éléa la petite sœur et simba le grand frère simba est un bébé lion aventureux curieux et intelligent et éléa est toute douce et et quoi d'autre intelligente belle patiente intelligente belle et patiente et ? Et ils ont un papa Nicolas et une maman Aurore ils habitent à Lyon mais là dans dans l'histoire c'est pas forcément la même chose parce que c'est une histoire fantastique et ils vont avoir des aventures mais on sait pas trop quoi il faut que il faut raconter une histoire ? C'est l'humour ce sera simba qui fera des trucs rigolos"
+          "mission": "Créer une histoire pour Mila, centrée sur l'affirmation de soi, avec comme personnage secondaire sa cousine Louena, qui apprendra à partager. L'aventure se déroulera dans un royaume enneigé, où les deux princesses recevront des pouvoirs magiques le jour de leur 7ème Noël. Mila sera insatisfaite de son pouvoir, qu'elle considère comme inutile, et Louena, plus confiante, ne voudra pas partager le sien. Leur quête les mènera à chercher une fleur spéciale pour la maman de Mila, à offrir le lendemain de Noël.\n\nÉtape 1: Sélection du Point de Départ\nPoint de Départ: Thème - L'affirmation de soi, avec un sous-thème sur le partage.\nProblème: Manque de confiance en soi de Mila et difficulté de Louena à partager.\nPublic Cible: Enfants de 7-8 ans. Longueur estimée: 1 000-3 000 mots.\nProchaine Étape: Construction de la Trame Narrative\nNous allons maintenant développer l'histoire en suivant les étapes de la structure narrative: Introduction, Élément Déclencheur, Quête, Retour Au Calme, Conclusion."
         }
       }
     ],
@@ -585,6 +585,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2023-12-24T18:52:36.000Z",
-  "versionId": "249566dc-c8a6-4978-882b-f7fbef8b646d"
+  "updatedAt": "2023-12-25T15:13:29.000Z",
+  "versionId": "3cd05677-6d09-4256-946c-5ddb8cde650f"
 }
