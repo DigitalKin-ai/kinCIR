@@ -1,3 +1,13 @@
+# Le 25 décembre 2023 à 15:01:04 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'entreprise DurableFashion sollicite une évaluation et une poursuite du travail en lien avec ses activités de recherche et la promotion de la mode durable. Elle a pour but d'influencer positivement les habitudes de consommation et de production dans l'industrie de la mode, en mettant l'accent sur la durabilité et l'éthique. Les éléments fournis seront utilisés pour prouver leur éligibilité au dispositif Crédit Impôt Recherche (CIR), démontrant ainsi l'importance de leur travail de recherche et son impact environnemental.
+
+Pour répondre à cette demande, il est nécessaire d'examiner les documents disponibles, d'évaluer l'avancement des recherches et de continuer à travailler sur les axes principaux de la politique de R&D de DurableFashion, centrée sur l'influence des comportements d'achats et de production en faveur de la mode durable. Cela inclut l'analyse du programme de R&D, l'évaluation de l'impact des activités sur la consommation de biens de mode, ainsi que l'examen des feedbacks humains et des documents relatifs au processus de certification des fabricants.
+
+L'évaluation des documents doit mettre en évidence l'approche méthodique et scientifique des recherches de l'entreprise, tout en soulignant les contributions spécifiques au développement durable et à l'éthique dans la mode, justifiant ainsi leur prétention au CIR.
+``
+
 # Le 25 décembre 2023 à 11:00:49 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
