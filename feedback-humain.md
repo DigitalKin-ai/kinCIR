@@ -1,3 +1,17 @@
+# Le 27 décembre 2023 à 23:00:57 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Kincir_dynergie demande la poursuite des efforts dans le cadre de l'élaboration du rescrit CIR pour les travaux de recherche sur la mode durable. Cette requête concerne spécifiquement l'évaluation et la continuation du travail entrepris pour démontrer l'éligibilité de l'entreprise DurableFashion au dispositif du Crédit d'Impôt Recherche. 
+
+Le travail doit se concentrer sur la mise en évidence des différentes activités de l'entreprise liées à la promotion d'une mode éthique et durable, à savoir : la certification de fabricants d’articles de mode écoresponsables, la commercialisation et la promotion de ces articles axée sur leur durabilité et leur caractère éthique, et l'influence exercée sur les consommateurs et les producteurs pour favoriser des pratiques de consommation et de production plus responsables. 
+
+L'évaluation implique une revue des documents existants, y compris des schémas de connexion, des ressources sur les difficultés des assistants IA, des programmes R&D, des processus du producteur et du manager, des procédures d'exceptions, des plans de document de sortie, des logs d’erreur, l’utilisation de Kinbox, l’historique des conversations, des guides, des fonctions d’évaluation de la qualité, des feedbacks humains, et de l'avancement de la mission. 
+
+Toute cette documentation doit être examinée afin de construire un dossier justificatif solide illustrant comment les activités de recherches de DurableFashion sont en lien direct avec les critères du CIR, et permettent de mesurer l'impact de la mode durable sur les habitudes de consommation et l'environnement. Il ne s'agit pas de créer des documents mais plutôt d'examiner et de poursuivre le travail de recherche et de documentation nécessaire pour appuyer la demande de rescrit CIR de l’entreprise. 
+
+La finalité est de structurer les efforts de recherche et de les aligner clairement avec les objectifs du dispositif CIR afin d'optimiser les chances d'éligibilité de DurableFashion.
+``
+
 # Le 27 décembre 2023 à 19:00:55 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
