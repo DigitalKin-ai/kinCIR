@@ -200,11 +200,6 @@
         ]
       ]
     },
-    "When clicking \"Execute Workflow\"": {
-      "main": [
-        []
-      ]
-    },
     "Rédacteur d'Email": {
       "main": [
         [
@@ -260,16 +255,22 @@
         ]
       ]
     },
-    "Conversion en Markdown1": {
-      "main": [
-        []
-      ]
-    },
     "Remove ticks": {
       "main": [
         [
           {
             "node": "thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "mission",
             "type": "main",
             "index": 0
           }
@@ -596,7 +597,7 @@
     {
       "parameters": {
         "content": "# ENTREE MANUELLE",
-        "height": 305.41358227832,
+        "height": 388.6718049899828,
         "width": 564.7093096988182
       },
       "id": "cc18fbc4-c746-4bc7-b72f-62d467378801",
@@ -604,8 +605,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        4111,
-        -20
+        4260,
+        -140
       ]
     },
     {
@@ -640,7 +641,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        4840,
+        4640,
         20
       ]
     },
@@ -770,8 +771,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        5960,
-        -360
+        4340,
+        20
       ]
     },
     {
@@ -1004,6 +1005,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2023-12-21T13:37:46.000Z",
-  "versionId": "c1cd23f6-d998-487f-839b-31248467f429"
+  "updatedAt": "2023-12-28T08:09:58.000Z",
+  "versionId": "13fdbcfa-f040-491d-bf81-7418a8f855c6"
 }
