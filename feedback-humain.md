@@ -1,3 +1,13 @@
+# Le 29 décembre 2023 à 23:00:21 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Kincir_dynergie,
+
+Poursuivant l'effort entamé, nous nous penchons à nouveau sur l'élaboration de votre dossier pour démontrer l'éligibilité de DurableFashion au Crédit d'Impôt Recherche (CIR). L'entreprise, championne de la mode durable et éthique, vise à influencer significativement et positivement les tendances de consommation et de production dans l'industrie de la mode. Pour atteindre cet objectif, les efforts de recherche se concentrent sur trois axes majeurs : inciter les consommateurs à choisir des vêtements issus de marques responsables, encourager les marques à envisager une production respectueuse des critères de durabilité et d'éthique, et enfin, quantifier l'impact des actions de l'entreprise sur la consommation de mode durable et sur l'environnement.
+
+Le travail en cours cherche à synthétiser les résultats et les progressions de ces recherches, ainsi que le mode opératoire de DurableFashion, pour asseoir la légitimité de l'accès au dispositif CIR. Les recherches et les initiatives prises sont cruciales non seulement pour DurableFashion et ses affiliés, mais aussi pour le mouvement global vers une industrie de la mode plus responsable. Compte tenu de l'importance de ce travail, je m'engage à la poursuite de l'assemblage méticuleux des éléments nécessaires à la construction d'un dossier solide et convaincant.
+``
+
 # Le 29 décembre 2023 à 19:00:44 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
