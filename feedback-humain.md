@@ -1,3 +1,20 @@
+# Le 30 décembre 2023 à 15:00:28 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Compréhension de la tâche:
+
+DurableFashion, une entreprise axée sur la mode durable et éthique, se concentre sur la certification de fabricants respectueux de ces valeurs, en promouvant et en vendant leurs produits. Elle vise à influencer positivement les consommateurs et les marques dans leurs pratiques d'achat et de production pour la mode éthique. Le contexte implique une recherche orientée vers l'impact de ces actions sur la consommation et l'environnement. L'objectif actuel est de démontrer l'éligibilité de l'entreprise au CIR, un dispositif d'incitation fiscale pour la recherche et le développement, par rapport à ses travaux sur le thème de la mode durable.
+
+Hypothèse de la demande reformulée pour traitement sans clarification supplémentaire:
+"Procéder à l’évaluation et continuer le travail en cours, dans le but de préparer et de fournir la documentation et les preuves nécessaires attestant que les activités de recherche et développement de DurableFashion sur l'influence de la mode durable dans les habitudes de consommation et de production satisfont aux critères du CRÉDIT IMPÔT RECHERCHE, en vue d'un rescrit CIR."
+
+Traitement requis sans interaction supplémentaire:
+- Examiner les documents mentionnés pour identifier ceux pertinents à la démonstration des activités de R&D de l'entreprise.
+- Synthétiser les données et informations à partir des documents sélectionnés pour montrer comment elles contribuent à la recherche en mode durable.
+- Compiler les éléments pertinents sous forme d'un rapport détaillant l'éligibilité au CIR.
+- Assurer que la documentation met en évidence non seulement les activités de R&D, mais également leur impact sur la consommation de mode durable et leurs effets bénéfiques sur l'environnement.
+``
+
 # Le 30 décembre 2023 à 11:00:18 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
