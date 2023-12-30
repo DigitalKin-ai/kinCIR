@@ -1,3 +1,13 @@
+# Le 30 décembre 2023 à 11:00:18 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Compris, je vais élaborer un texte qui synthétise la demande initiale en tenant compte du contexte fourni.
+
+---
+
+L'entreprise DurableFashion, qui se consacre à la promotion et à la vente de mode durable et éthique, cherche actuellement à justifier son éligibilité pour le dispositif CRÉDIT IMPÔT RECHERCHE (CIR). Pour ce faire, elle met en avant son engagement dans des activités de recherche et développement visant à influencer positivement les comportements de consommation et de production dans le domaine de la mode éthique. Les axes principaux de cette recherche sont d'inciter les consommateurs à choisir des vêtements produits de manière responsable et à encourager les marques à adopter des pratiques de fabrication durables et éthiques, tout en évaluant l'impact de ces initiatives sur l'adoption de la mode durable et leur effet sur l'environnement. Les documents et ressources accumulés jusqu'à présent seront examinés pour soutenir la demande de rescrit CIR et démontrer l'implication active de DurableFashion dans des travaux de recherche significatifs alignés aux objectifs de ce dispositif fiscal.
+``
+
 # Le 30 décembre 2023 à 07:00:48 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
