@@ -1,3 +1,15 @@
+# Le 31 décembre 2023 à 11:00:17 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Bien, il semble que Kincir d'Énergie, représentant de l'entreprise DurableFashion, spécialisée dans la mode durable et éthique, souhaite poursuivre et évaluer le travail en cours. L'entreprise se concentre sur l'identification et la certification de fabricants d'articles de mode durables et éthiques, la promotion de ces articles en mettant en avant leur durabilité et leur éthique, et la commercialisation de ces produits via Internet et ses boutiques physiques.
+
+Le principal but de DurableFashion est d'augmenter l'impact de la mode durable et éthique au sein de l'industrie de la mode. Ses objectifs de recherche ont pour finalité d'influencer à la fois les consommateurs à choisir des vêtements produits de manière responsable et éthique, et les marques à en produire.
+
+Dans le cadre d'un rescrit pour le Crédit d'Impôt Recherche (CIR), DurableFashion entend présenter des éléments démontrant l'éligibilité de ses travaux de recherche dans le domaine de la mode éco-responsable.
+
+Actuellement, Kincir d'Énergie demande d'assesser et de continuer le travail en cours, probablement en se référant à l'avancement du projet de recherche et au recensement de la documentation nécessaire à l'éligibilité au CIR. Cela sous-entend de procéder à une évaluation de la qualité et de l'avancement des travaux de recherche et de la documentation déjà produite, tout en continuant les efforts de recherche et de développement conformément aux objectifs établis.
+``
+
 # Le 31 décembre 2023 à 07:00:17 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
