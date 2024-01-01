@@ -1,3 +1,13 @@
+# Le 1 janvier 2024 à 11:00:27 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Il semblerait que la demande initiale soit une instruction pour poursuivre une tâche déjà entreprise, possiblement liée à l'évaluation ou au traitement de documents dans le contexte de la mode durable et éthique. La demande pourrait concerner l'analyse des documents mentionnés, notamment ceux relatifs aux recherches effectuées par l'entreprise DurableFashion ou pourrait nécessiter une continuation dans la préparation d'un dossier pour le crédit d'impôt recherche (CIR).
+
+La reformulation de la demande pour l'assistant IA pourrait être :
+
+"Poursuivre l'évaluation en cours et le traitement des documents pertinents afin de préparer et compléter le dossier de l'entreprise DurableFashion pour démontrer son éligibilité au crédit d'impôt recherche en lien avec ses travaux de recherche sur la mode durable et éthique. Cette évaluation doit prendre en compte l'influence de l'entreprise sur la consommation éthique et durable ainsi que sur la production de mode éco-responsable. Les résultats devront être compilés pour appuyer la demande de rescrit CIR."
+``
+
 # Le 1 janvier 2024 à 07:00:27 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
