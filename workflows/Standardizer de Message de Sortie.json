@@ -596,7 +596,7 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrencyRules": [
-        12
+        0
       ]
     }
   },
@@ -609,6 +609,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-01T11:00:00.000Z",
+  "updatedAt": "2024-01-01T23:00:00.000Z",
   "versionId": "b36af733-a8df-4fbb-8473-d838a5335acb"
 }
