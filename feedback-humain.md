@@ -1,3 +1,15 @@
+# Le 3 janvier 2024 à 14:48:20 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+D'après la demande soumise, il semble que l'intention sous-jacente est de recevoir une évaluation et un transfert des tâches liées à la préparation du dossier de Crédit Impôt Recherche (CIR) pour des recherches sur le thème de la mode durable. Le demandeur, anglais DurableFashion, vise à prouver que ses travaux de recherche pour influencer la consommation et la production de vêtements responsables et éthiques sont éligibles au CIR.
+
+Pour former un message qui reflète cette intention, voici une formulation potentielle destinée à être traitée par un assistant IA :
+
+"Effectuer une révision et une consolidation du dossier CIR pour assurer l’éligibilité des recherches menées par DurableFashion dans le domaine de la mode durable et éthique. Cela inclut la structuration des preuves des thématiques de recherche sur l’influence des consommateurs et des marques vers des pratiques de mode plus responsables, documentation à présenter dans le cadre d'un rescrit CIR."
+
+Cette reformulation vise à faire comprendre que le rôle de l'IA est d'évaluer l'état actuel du dossier et de poursuivre le travail en compilant et en structurant les informations nécessaires pour répondre à la demande de crédit d'impôt mentionné.
+``
+
 # Le 3 janvier 2024 à 14:46:58 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
