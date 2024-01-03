@@ -1,3 +1,13 @@
+# Le 3 janvier 2024 à 15:14:04 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'intention de la demande semble être de continuer le travail en cours qui consiste à évaluer et poursuivre les efforts liés à l'éligibilité de l'entreprise DurableFashion au dispositif CRÉDIT IMPÔT RECHERCHE (CIR). L'entreprise cherche à démontrer que ses travaux de recherche sur l'influence de la consommation et de la production de la mode durable et éthique répondent aux critères d'éligibilité pour un rescrit CIR.
+
+Pour énoncer cette demande de manière claire et précise, sans demander d'informations supplémentaires :
+
+"DurableFashion vous demande de procéder à l'évaluation des activités de recherche actuelles de l'entreprise et de continuer à documenter de manière systématique les progrès accomplis. L'objectif est de présenter des preuves concrètes l'éligibilité de l'entreprise au dispositif de CRÉDIT IMPÔT RECHERCHE, en focalisant sur les méthodes utilisées pour influencer la consommation et la production en faveur de la mode durable et éthique. Cela inclut la préparation et le rassemblement des données probantes, analyses et documents pertinents (comme ceux énumérés dans la liste des documents disponibles), qui mettent en lumière l'impact des actions de DurableFashion sur les pratiques de consommation de mode responsable et leur effet sur l'environnement."
+``
+
 # Le 3 janvier 2024 à 15:12:50 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
