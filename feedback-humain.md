@@ -1,3 +1,13 @@
+# Le 3 janvier 2024 à 12:26:50 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'intention de Kincir d'Energie, qui œuvre pour DurableFashion, semble être de poursuivre et d'évaluer les travaux qui contribuent à la recherche dans le domaine de la mode durable et éthique. DurableFashion vise à influencer les comportements d'achat et de production pour favoriser une mode responsable. Pour cela, l'entreprise a besoin de prouver son éligibilité au dispositif Crédit Impôt Recherche (CIR), ce qui nécessite de montrer que ses activités de recherche sont suffisamment substantielles et pertinentes.
+
+Kincir d'Energie souhaite qu'on porte un regard critique sur l'avancement des travaux et qu'on continue de documenter et d'améliorer les processus et les résultats obtenus jusqu'à présent. Cela implique de s'appuyer sur les documents disponibles, comme les schémas de connexion, les ressources sur les difficultés des assistants IA, ou les logs d'erreurs, pour étayer et optimiser la recherche et le développement.
+
+En analysant ces éléments, l'objectif est de formaliser les avancées de la mission de DurableFashion, de les évaluer par rapport aux objectifs en matière d'influence sur la consommation et la production de mode durable, et de présenter ces informations de manière cohérente et convaincante pour un rescrit CIR.
+``
+
 # Le 3 janvier 2024 à 12:26:28 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
