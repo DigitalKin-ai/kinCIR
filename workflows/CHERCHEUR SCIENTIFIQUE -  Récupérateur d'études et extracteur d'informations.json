@@ -67,39 +67,6 @@
         ]
       ]
     },
-    "Questionneur de Documents": {
-      "ai_tool": [
-        [
-          {
-            "node": "Chercheur Scientifique",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Rédacteur de Document": {
-      "ai_tool": [
-        [
-          {
-            "node": "Chercheur Scientifique",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ScratchPad": {
-      "ai_tool": [
-        [
-          {
-            "node": "Chercheur Scientifique",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Chercheur Scientifique": {
       "main": [
         [
@@ -229,93 +196,6 @@
     },
     {
       "parameters": {
-        "name": "redacteur_de_document",
-        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
-        "workflowId": "0T67aHjuqQEnrTN0",
-        "responsePropertyName": "=message",
-        "fields": {
-          "values": [
-            {
-              "name": "message",
-              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
-            }
-          ]
-        }
-      },
-      "id": "f9261b0e-9832-4c1a-8a3b-b4dad23c4df7",
-      "name": "Rédacteur de Document",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        3540,
-        620
-      ]
-    },
-    {
-      "parameters": {
-        "name": "questionneur_de_documents",
-        "description": "Donne une réponse précise issue du document demandé à partir d'un besoin informationnel.",
-        "workflowId": "ebLHEt0swZVT9tks",
-        "responsePropertyName": "message",
-        "fields": {
-          "values": [
-            {
-              "name": "message",
-              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
-            }
-          ]
-        }
-      },
-      "id": "ce7f2610-06e8-463c-bcb4-261de4ce8398",
-      "name": "Questionneur de Documents",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        3400,
-        620
-      ]
-    },
-    {
-      "parameters": {
-        "name": "scratchpad",
-        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
-        "workflowId": "wTbd0CgnGrumh0qf",
-        "responsePropertyName": "message",
-        "fields": {
-          "values": [
-            {
-              "name": "message",
-              "stringValue": "={{ JSON.stringify($node[\"message\"].json) }}"
-            }
-          ]
-        }
-      },
-      "id": "19fbf97a-6def-4e25-8f48-86ad566f1f06",
-      "name": "ScratchPad",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        3680,
-        620
-      ]
-    },
-    {
-      "parameters": {
-        "content": "# OUTILS STANDARD",
-        "height": 224.32004875594802,
-        "width": 447.22204993824914
-      },
-      "id": "b94bb288-286d-4f03-95ed-1e9d0316db57",
-      "name": "Sticky Note5",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        3360,
-        540
-      ]
-    },
-    {
-      "parameters": {
         "name": "questionneur_d_etudes",
         "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
         "workflowId": "yQ79P9nuVKhkwZpD",
@@ -374,21 +254,6 @@
       "typeVersion": 1,
       "position": [
         2860,
-        540
-      ]
-    },
-    {
-      "parameters": {
-        "content": "# COLLABORATEURS",
-        "height": 224.32004875594802,
-        "width": 355.66820106337036
-      },
-      "id": "32ff50e3-2553-4976-ad51-2577f0457b62",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        2480,
         540
       ]
     },
@@ -453,6 +318,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-21T14:52:21.000Z",
-  "versionId": "c4a8c123-bde3-4928-a8d2-dff89d59c056"
+  "updatedAt": "2024-01-03T11:30:12.000Z",
+  "versionId": "0e7adae5-f7f1-4ccd-88e0-4a6b892264c8"
 }
