@@ -1,3 +1,17 @@
+# Le 3 janvier 2024 à 12:20:47 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Il semble que kincir_dynergie ait demandé l'évaluation et la poursuite de certaines activités liées à la mode durable et, plus précisément, au processus d'éligibilité pour le dispositif de Crédit d'Impôt Recherche (CIR) en lien avec les travaux de recherche sur la consommation de biens de mode durable et leurs impacts environnementaux. Pour ce faire, il faut examiner et synthétiser les documents disponibles afin de préparer un dossier solide démontrant l'éligibilité au CIR.
+
+Pour traiter cette demande, il faut d'abord trier et analyser les documents pertinents pour extraire les informations spécifiques démontrant les efforts de recherche de l'entreprise DurableFashion dans les domaines mentionnés. Cela inclut des points tels que les schémas de connexion actuels, les ressources sur les difficultés des assistants IA (qui peuvent refléter l'implication dans la R&D), le programme R&D client et les divers processus impliqués dans la mission de l'entreprise.
+
+Ensuite, il convient de rédiger un résumé clair et structuré détaillant les recherches entreprises, les méthodologies utilisées, les résultats jusqu'à présent et les objectifs à long terme. Ce résumé mettra en évidence les efforts innovants et continus dans le domaine de la mode durable, tout en soulignant leur importance pour influencer la production et la consommation d'une mode plus responsable.
+
+Le dossier doit également contenir des preuves de l'impact environnemental des activités de DurableFashion et comment celles-ci contribuent à une mode plus durable. Cela peut inclure l'utilisation de matériaux éco-responsables, les processus de certification éthique, les campagnes de sensibilisation auprès des consommateurs et des fabricants, et la mesure de l'efficacité de ces initiatives.
+
+Enfin, il faut préparer ce dossier dans un format conforme aux exigences du CIR, en mettant l'accent sur l'innovation et l'efficacité de la recherche, pour démontrer sans ambiguïté que les travaux de DurableFashion correspondent bien au critère de recherche et développement du dispositif. Cela permettra de justifier la demande de crédit d'impôt et d'encourager le soutien continu à l'entreprise dans ses initiatives de mode durable.
+``
+
 # Le 3 janvier 2024 à 12:13:40 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
