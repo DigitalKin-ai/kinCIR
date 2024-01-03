@@ -1,3 +1,15 @@
+# Le 3 janvier 2024 à 12:12:33 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Le demandeur, kincir_dynergie de l'entreprise DurableFashion, travaille dans le secteur de la mode durable et a pour principale activité la certification de fabricants d'articles de mode éthiques, la promotion de ces articles en insistant sur leurs aspects durables et éthiques, et la commercialisation de ces produits à travers leur présence en ligne et dans des boutiques physiques. L'objectif global de DurableFashion est d'accroître la part des articles de mode durable et éthique dans l'industrie de la mode.
+
+La mission principale est axée sur deux axes d'influence : encourager les consommateurs à opter pour des vêtements issus de marques responsables et inciter les marques elles-mêmes à produire de manière responsable et éthique. Un point clé est également de quantifier et d'exposer l'impact des initiatives de DurableFashion sur la consommation de mode durable et d'évaluer cet impact sur l'environnement.
+
+Les documents disponibles pourraient servir à appuyer une demande de Crédit Impôt Recherche (CIR), montrant ainsi l'éligibilité de DurableFashion à ce dispositif grâce à ses travaux de recherche en faveur de la mode durable. L'intention d'usage est de présenter ces éléments dans le cadre d'un rescrit CIR, afin de bénéficier du soutien fiscal dédié aux activités de recherche et développement.
+
+Pour continuer le travail comme demandé, je me concentrerai sur une analyse et une synthèse des documents disponibles pour préparer un dossier solide qui démontre clairement l'engagement de DurableFashion dans la recherche et le développement de méthodes et produits favorisant une mode plus durable et éthique. Cela inclura potentiellement des références aux schémas de connexion actuels, aux ressources sur les difficultés rencontrées par les assistants IA dans ce domaine, à des extraits du programme R&D du client, ainsi qu'à des informations pertinentes issues de l'historique des conversations, de l'avancement de la mission, et des divers guides et procédures disponibles qui documentent le processus de travail de l'entreprise.
+``
+
 # Le 3 janvier 2024 à 12:11:11 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
