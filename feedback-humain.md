@@ -1,3 +1,15 @@
+# Le 3 janvier 2024 à 12:29:58 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Kincir_dynergie demande de poursuivre l'évaluation et le traitement de l'information disponible.
+
+Contexte: DurableFashion, une entreprise dédiée à la promotion et à la commercialisation de la mode durable et éthique, vise à influence la production et la consommation de vêtements responsables. L'objectif est d'augmenter la part de la mode éthique dans l'industrie et de mesurer l'impact environnemental de leurs actions.
+
+Intention d'usage: L'entreprise souhaite démontrer son éligibilité au Crédit Impôt Recherche (CIR) pour ses travaux de recherche concentrés sur la mode durable et éthique, via un rescrit CIR.
+
+Demande: Continuer l'évaluation et le traitement de l'information pertinente pour soutenir la demande de CIR de DurableFashion, en utilisant les documents disponibles pour extraire et organiser les données nécessaires à la démonstration de l'éligibilité au crédit d'impôt.
+``
+
 # Le 3 janvier 2024 à 12:29:04 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
