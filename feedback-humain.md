@@ -1,3 +1,15 @@
+# Le 3 janvier 2024 à 12:25:46 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'entreprise DurableFashion, opérant dans le secteur de la mode durable et éthique, a pour activité principale d'identifier et de certifier des fabricants qui produisent des articles de mode respectant ces valeurs. La promotion des articles certifiés et leur commercialisation, tant en ligne qu'à travers des boutiques physiques, font également partie de leur core business. Leur mission fondamentale est de faire croître la part de la mode durable et éthique au sein de l'industrie globale de la mode.
+
+La recherche menée par DurableFashion vise essentiellement à influencer à la fois la consommation et la production de mode de manière responsable et éthique. Les axes de recherche s'articulent autour de trois thématiques majeures : encourager les consommateurs à opter pour des vêtements de marques engagées dans la durabilité et l'éthique, inciter les marques à produire des vêtements respectueux de ces principes, et quantifier l'impact des activités de l'entreprise sur la consommation de mode ainsi que son empreinte environnementale.
+
+Les documents disponibles mentionnés dans la requête semblent être des ressources internes destinées à démontrer l'éligibilité de DurableFashion au dispositif Crédit Impôt Recherche (CIR). Le rescrit CIR est un mécanisme qui permet aux entreprises de sécuriser leurs démarches concernant le CIR, un avantage fiscal en France visant à soutenir les entreprises engagées dans des projets de recherche et développement.
+
+La demande exprimée « Assesse et continue ton travail » indique que l'assistant IA est sollicité pour évaluer et poursuivre ses efforts dans le travail préparatoire pour le dossier de rescrit CIR. Cela pourrait impliquer l'analyse des documents disponibles pour synthétiser les activités de recherche, justifier l'éligibilité au CIR au regard des travaux effectués en lien avec les objectifs de recherche de l'entreprise, et mettre en avant Comment les thématiques de recherche se concrétisent en actions ou en programmes spécifiques susceptibles d'être éligibles au titre du CIR.
+``
+
 # Le 3 janvier 2024 à 12:21:53 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
