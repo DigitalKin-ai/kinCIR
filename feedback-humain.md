@@ -1,3 +1,21 @@
+# Le 3 janvier 2024 à 13:39:59 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'intention de l'entreprise DurableFashion est d'utiliser les documents fournis pour démontrer que ses travaux de recherche correspondent aux critères du dispositif CRÉDIT IMPÔT RECHERCHE (CIR). Ces travaux sont axés sur l'influence de la consommation et de la production dans le secteur de la mode responsable et éthique, et sur la mesure de l'impact de leurs activités sur la consommation de biens de mode et sur l'environnement.
+
+L'objectif derrière la fourniture de ces documents est potentiellement double : d'une part, établir et documenter la nature et la portée des recherches entreprises par DurableFashion pour répondre aux exigences du rescrit CIR, et d'autre part, offrir une base de références qui pourra être utilisée pour argumenter l'éligibilité de leurs travaux de recherche au CIR.
+
+Nous devrons donc examiner et enrichir ces documents en insistant sur les aspects suivants :
+
+1. La manière dont les recherches entreprises contribuent à la connaissance scientifique dans le domaine de la mode durable et éthique.
+2. La description détaillée du processus de recherche et développement, y compris les méthodologies utilisées, les expériences ou études de cas conduites, et les résultats obtenus le cas échéant.
+3. L'exposition claire des objectifs de recherche et de la manière dont ces derniers s'intègrent dans les objectifs globaux de l'entreprise, en lien avec la promotion de la consommation et de la production de mode éthique et responsable.
+4. La mise en évidence de tout obstacle ou difficulté technique rencontré durant les travaux de recherche et la manière dont ils ont été surmontés, ce qui démontre un véritable travail de recherche et d'innovation.
+5. La compilation d'évidences et de données issues des activités de recherche qui montrent de façon tangible l'impact des initiatives de DurableFashion sur les habitudes de consommation et les pratiques de production dans la mode.
+
+Il conviendra également d'organiser de manière cohérente les éléments apportés afin qu'ils forment un dossier convaincant, qui répond aux attentes spécifiques liées au rescrit CIR.
+``
+
 # Le 3 janvier 2024 à 13:39:05 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
