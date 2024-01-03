@@ -1,3 +1,13 @@
+# Le 3 janvier 2024 à 15:33:30 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+D'après les informations fournies, la société DurableFashion œuvre pour promouvoir la mode durable et éthique, en mettant en lumière et en commercialisant des articles de fabricants respectueux de ces valeurs. L'entreprise vise à influencer à la fois les consommateurs pour qu'ils privilégient les vêtements responsables et éthiques, et les marques pour qu'elles produisent de tels articles. De plus, elle cherche à démontrer et mesurer l'impact de ses actions sur la consommation de mode et sur l'environnement.
+
+L'intention derrière la demande transmise est d'apporter des preuves de l'éligibilité de DurableFashion au Crédit d'Impôt Recherche (CIR), en justifiant les travaux de recherche effectués dans le secteur de la mode durable. Il est important de démontrer que les activités de l'entreprise cadrent avec les critères du CIR, qui est un dispositif de soutien fiscal aux entreprises engageant des dépenses en recherche et développement (R&D).
+
+Pour continuer le travail, il serait nécessaire de mettre en évidence les éléments spécifiques et les travaux de recherche de DurableFashion qui pourraient être considérés comme éligibles au CIR. Cela pourrait comprendre, par exemple, le développement de méthodes pour influencer les comportements d'achat, l'élaboration de critères et de processus de certification pour les fabricants d'articles de mode durable, ou encore la mise en place d'études pour suivre et mesurer l'impact environnemental des produits promus par l'entreprise.
+``
+
 # Le 3 janvier 2024 à 15:27:45 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
