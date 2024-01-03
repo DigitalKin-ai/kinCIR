@@ -1,3 +1,19 @@
+# Le 3 janvier 2024 à 14:41:01 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Entendu, je vais enchaîner et continuer le travail déjà entamé.
+
+Sur la base du contexte fourni précédemment, il semble que l'entreprise DurableFashion souhaite montrer l'éligibilité de ses travaux de recherche sur la mode durable pour bénéficier du dispositif Crédit Impôt Recherche (CIR). Les éléments mentionnés - tels que les documents disponibles, l'activité de l'entreprise, son but et ses objectifs de recherche - seront utilisés pour construire un dossier justificatif en vue d'un rescrit CIR.
+
+En prenant en compte l'intention d'usage spécifié, la tâche ici est probablement d'évaluer la progression actuelle du travail en ce qui concerne les différents aspects des activités de recherche et développement et de documenter cette évaluation. Cela implique potentiellement de compulser et synthétiser l'information tirée des documents mentionnés pour articuler clairement en quoi les travaux entrepris par DurableFashion répondent aux critères du dispositif CIR, plus spécifiquement dans le cadre de la mode éthique et durable.
+
+Ce travail peut inclure la rédaction de rapports sur le statut des divers projets de R&D, l'analyse des procédures d'exception en place pour gérer les écarts par rapport aux plans de recherche initiaux, ainsi que l'évaluation des retours et du feedback des utilisateurs concernant les articles de mode durable promus par l'entreprise.
+
+Il faut aussi souligner l'importance d'illustrer comment les recherches menées influencent tant les consommateurs que les marques dans leurs décisions respectives d'acheter et de produire des articles de mode durables et éthiques, ainsi que démontrer cet impact sur l'environnement, deux éléments cruciaux pour justifier de l'éligibilité au CIR. 
+
+Cet ensemble d'activités préparées pourrait ensuite être présenté aux autorités fiscales pour appuyer la demande de rescrit CIR de DurableFashion.
+``
+
 # Le 3 janvier 2024 à 14:37:32 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
