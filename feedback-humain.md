@@ -1,3 +1,21 @@
+# Le 3 janvier 2024 à 13:41:34 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'intention du demandeur, kincir_dynergie de l'entreprise DurableFashion, est de poursuivre et d'affirmer le travail déjà en cours lié à la recherche dans le domaine de la mode durable et éthique. Cela comprend la certification des fabricants, la promotion des articles responsables, ainsi que leur commercialisation. L'objectif sous-jacent est de créer un impact significatif sur la consommation et la production dans le secteur de la mode éthique, tout en mesurant l'impact environnemental de ces activités.
+
+Le contexte fourni indique également un besoin spécifique de justifier l'éligibilité aux avantages fiscaux offerts par le dispositif CRÉDIT IMPÔT RECHERCHE (CIR) pour soutenir les efforts de recherche et de développement. La demande semble faire référence à une évaluation et à une continuation du travail de recherche et développement, probablement en vue de préparer ou de compléter un dossier pour un rescrit CIR. Cela pourrait impliquer de documenter les méthodologies de recherche, les résultats obtenus, les difficultés rencontrées, et d'organiser le suivi des avancements et des retours.
+
+Sur cette base, le travail peut impliquer les actions suivantes :
+
+1. Réaliser une évaluation du travail de recherche effectué jusqu'à présent, en lien avec les objectifs de DurableFashion.
+2. Identifier les documents pertinents parmi ceux disponibles qui pourraient soutenir la demande de CIR, en se concentrant sur ceux qui présentent des preuves des efforts de R&D, tels que les résultats de recherche, les plans et programmes de R&D, les schémas de connexion actuels, les processus de production et de gestion, etc.
+3. Organiser et synthétiser les informations de ces documents pour démontrer clairement les activités de recherche et de développement engagées par l'entreprise.
+4. Élaborer un argumentaire pour montrer comment ces travaux contribuent au champ de la mode durable et éthique et comment ils influencent la consommation et la production responsables.
+5. Veiller à ce que les documents et les preuves fournis répondent bien aux critères d'éligibilité du dispositif CIR.
+   
+Afin de répondre efficacement à la demande, il serait important de procéder à l'analyse et à la synthèse des informations disponibles, en mettant l'accent sur leur pertinence par rapport aux thématiques de recherche et aux exigences du CIR. Cela aidera DurableFashion à démontrer la légitimité de ses travaux de R&D et à avancer dans son objectif d'obtenir un rescrit CIR favorable.
+``
+
 # Le 3 janvier 2024 à 13:40:03 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
