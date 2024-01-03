@@ -1,3 +1,9 @@
+# Le 3 janvier 2024 à 19:27:26 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'intention du demandeur semble être de continuer à travailler sur un projet de recherche concernant la mode durable et éthique. Il/elle cherche à utiliser les documents disponibles pour démontrer l'éligibilité de l'entreprise DurableFashion au dispositif Crédit Impôt Recherche (CIR) pour ses travaux de recherche sur l'influence des comportements de consommation et de production vis-à-vis de la mode durable et éthique. Ce rescrit CIR vise à montrer l'impact des activités de l'entreprise sur la consommation de mode durable et à mesurer cet impact sur l'environnement. La requête "Assesse et continue ton travail." signifierait vraisemblablement "Évalue et poursuis ta contribution."
+``
+
 # Le 3 janvier 2024 à 19:00:35 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
