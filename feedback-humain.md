@@ -1,3 +1,15 @@
+# Le 3 janvier 2024 à 12:06:39 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+Kincir d'énergie,
+
+Poursuivant notre collaboration, je comprends que l'objectif est de continuer à développer le dossier afin de démontrer l'éligibilité au Crédit d'Impôt Recherche (CIR) pour les travaux que DurableFashion mène autour de la mode durable. Ce dossier servira pour un rescrit CIR et doit mettre en évidence les activités de recherche et de développement de l'entreprise qui visent à influencer la consommation et la production de mode responsable et éthique. Avec les documents disponibles, l'accent sera également mis sur la mesure de l'impact des activités de DurableFashion sur l'environnement pour appuyer cette demande.
+
+Le contenu produit devra être structuré pour souligner comment chaque élément de recherche répond aux critères d'éligibilité du CIR, c'est-à-dire qu'il contribue à la recherche scientifique ou technique, qu'il est novateur et qu'il n'est pas routine pour l'entreprise. En plus de clarifier la nature des travaux de recherche et des expérimentations menées, il faudra démontrer comment ceux-ci sont intégrés dans l'orientation stratégique de DurableFashion, notamment en termes de promotion et de commercialisation d'une mode durable.
+
+Je vais donc poursuivre l’analyse et la structuration de ces donnés en gardant à l'esprit le but ultime qui est d'obtenir l'approbation pour le CIR.
+``
+
 # Le 3 janvier 2024 à 12:05:24 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
