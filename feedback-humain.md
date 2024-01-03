@@ -1,3 +1,13 @@
+# Le 3 janvier 2024 à 12:37:54 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L’entreprise DurableFashion, se concentrant sur la mode durable et éthique, cherche à certifier et promouvoir des fabricants responsables, à vendre leurs produits en ligne et en boutique, avec un engagement pour augmenter l'influence de la mode durable dans l'ensemble de l'industrie. Leur objectif de recherche vise à affecter les comportements de consommation et de production vers des choix plus éthiques et responsables, visant à démontrer et quantifier l'impact de leurs actions sur l'environnement et la consommation de mode durable.
+
+La requête suggère une démarche visant à obtenir le Crédit Impôt Recherche (CIR) pour les projets de recherche de DurableFashion axés sur la mode durable. Les documents disponibles doivent être utilisés pour établir l'éligibilité de DurableFashion à ce dispositif fiscal et préparer un dossier pour un rescrit CIR, soulignant l'adéquation des travaux de recherche de l'entreprise avec les critères d'attribution du CIR.
+
+En tant que Formateur de Message, mon rôle est de synthétiser cette information et de préparer l'assistant IA pour qu'il puisse continuer son travail, en se basant sur l'ensemble des documents disponibles et le contexte fourni pour élaborer un dossier convaincant sur l'admissibilité de l'entreprise au CIR lié à la recherche dans le domaine de la mode durable et éthique.
+``
+
 # Le 3 janvier 2024 à 12:36:21 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
