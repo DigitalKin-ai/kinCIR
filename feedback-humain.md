@@ -1,3 +1,17 @@
+# Le 3 janvier 2024 à 12:31:07 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+
+
+L'entreprise DurableFashion œuvre dans le secteur de la mode durable et éthique. Sa mission principale est de favoriser une augmentation de la part de mode durable dans l'industrie de la mode en identifiant et certifiant des fabricants qui adhèrent à des pratiques durables et éthiques. Elle met en avant et commercialise ces articles via le web et des boutiques physiques, avec l'objectif de modifier les habitudes de consommation et de production vers des options plus responsables et éthiques. Les axes de recherche de l'entreprise incluent l'influence sur le comportement des consommateurs pour qu'ils choisissent des vêtements issus de marques responsables, inciter les marques à produire de manière durable et éthique, et évaluer l'impact de ces mesures sur la consommation et l'environnement.
+
+Dans ce contexte, l'entreprise souhaite démontrer son éligibilité au Crédit Impôt Recherche (CIR) pour ses travaux de recherche dans le domaine de la mode durable. Elle entend prouver que ses activités de recherche correspondent aux critères du dispositif CIR par la présentation de divers documents officiels et des données pertinentes qui détaillent ses processus de recherche et de développement, ainsi que les difficultés rencontrées et les progrès réalisés.
+
+Pour contribuer à cette mission, l'assistance doit donc se poursuivre en se concentrant sur la collecte, l'organisation et l'interprétation des informations contenues dans les documents listés, ainsi qu'en continuant le travail entamé afin de fournir une preuve solide pour le rescrit CIR. La documentation qui sera élaborée devra clairement indiquer comment les activités de l'entreprise s'inscrivent dans le cadre de la recherche et du développement selon les lignes directrices du CIR, souligner les défis spécifiques de la recherche dans ce secteur et la manière dont ceux-ci sont surmontés, et enfin, mettre en évidence les avancées significatives réalisées grâce à ces recherches.
+
+En somme, nous devons continuer à organiser et structurer les informations liées aux activités de recherche de DurableFashion pour étayer son éligibilité au CIR, tout en mettant en avant le caractère innovant et pertinent de ses travaux dans le domaine de la mode durable et éthique.
+``
+
 # Le 3 janvier 2024 à 12:30:12 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
