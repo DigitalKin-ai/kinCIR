@@ -1,0 +1,1260 @@
+{
+  "active": false,
+  "connections": {
+    "CHERCHEUR SCIENTIFIQUE": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur de Citations": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'Etudes": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de Documents": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur de Document": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown": {
+      "main": [
+        [
+          {
+            "node": "Envoi de notification Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nico reçoit un email": {
+      "main": [
+        [
+          {
+            "node": "IF est une commande",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF est une commande": {
+      "main": [
+        [
+          {
+            "node": "Get Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF MISSION ACCOMPLIE": {
+      "main": [
+        [
+          {
+            "node": "entree email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Email": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kin Boiron": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kin CIR": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "Update Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data1": {
+      "main": [
+        [
+          {
+            "node": "thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sortie": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IF MISSION ACCOMPLIE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data2": {
+      "main": [
+        [
+          {
+            "node": "Create Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Document": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree email": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur d'Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "thread": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "sortie",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-04T07:38:09.913Z",
+  "id": "kU1cRxbWB2uH3uhe",
+  "meta": null,
+  "name": "KinCIR - Version RAG (non fonctionnel)",
+  "nodes": [
+    {
+      "parameters": {
+        "name": "redacteur_de_document",
+        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
+        "workflowId": "0T67aHjuqQEnrTN0",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "4891c459-5dd3-47d2-bfb1-6d407bb277a6",
+      "name": "Rédacteur de Document",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5120,
+        1200
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_documents",
+        "description": "Donne une réponse précise issue du document demandé à partir d'un besoin informationnel.",
+        "workflowId": "ebLHEt0swZVT9tks",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "163f9391-ca7a-4652-a80c-8987babea97c",
+      "name": "Questionneur de Documents",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4960,
+        1200
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "1985c317-8a7f-4e69-aa58-4d1d40bce704",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5240,
+        1200
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS STANDARD",
+        "height": 224.32004875594802,
+        "width": 447.22204993824914
+      },
+      "id": "38c0f2a8-6c2d-4df8-9480-0ed4dffd5523",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4920,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_etudes",
+        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
+        "workflowId": "yQ79P9nuVKhkwZpD",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "fb272a1a-6dc8-45e0-b073-916b65418d5d",
+      "name": "Questionneur d'Etudes",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4680,
+        1320
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "acquereur_de_citations",
+        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
+        "workflowId": "It2FPpnGNxaxojxY",
+        "fields": {
+          "values": [
+            {
+              "name": "thread",
+              "stringValue": "={{ $node[\"thread\"].json.thread }} "
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"mission\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "eabd7cc0-eba2-42d8-b057-c219b80363cd",
+      "name": "Acquéreur de Citations",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4520,
+        1300
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS SPECIFIQUES",
+        "height": 413.4919569863578,
+        "width": 468.47826732357714
+      },
+      "id": "10a6a4dd-c6b4-45be-b8fc-4e45df0eb22a",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4420,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# COLLABORATEURS",
+        "height": 224.32004875594802,
+        "width": 355.66820106337036
+      },
+      "id": "f76143fb-aca9-408c-a17b-23ec0b662ed5",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4040,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "name": "chercheur_scientifique",
+        "description": "Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "a5e7dbc9-ec86-4000-82cd-639b417c15bc",
+      "name": "CHERCHEUR SCIENTIFIQUE",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4240,
+        1200
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Accès DB Etudes",
+        "height": 272.5167132732499,
+        "width": 391.3636040958942
+      },
+      "id": "cdacaf66-340f-482f-a9a8-6f73c11e3123",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4460,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "=-1002105587743",
+        "text": "={{ $json.escapedText.substring($json.escapedText.length - 4000) }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "933ff549-753a-47c8-b72a-116369ab36f9",
+      "name": "Envoi de notification Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        5320,
+        300
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "Jarvis"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet originalText = '';\nif ($json.output != null) {\n  originalText = $json.output;\n} else {\n  originalText = $json.text;\n}\n\nconst escapedText = escapeMarkdownV2(originalText);\n\nreturn {\"json\":{\"escapedText\":escapedText}};\n"
+      },
+      "id": "05f492b6-a07d-47db-a404-a0696f7ce07b",
+      "name": "Escape Markdown",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 300,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "id": "998e0c07-dc2e-4e12-848a-7a3b061e249a",
+      "name": "Nico reçoit un email",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        -80
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.Subject.toLowerCase() }}",
+              "operation": "contains",
+              "value2": "kincir"
+            },
+            {
+              "value1": "={{ $json.From }}",
+              "operation": "notEqual",
+              "value2": "mailer-daemon@googlemail.com"
+            },
+            {
+              "value1": "={{ $json.From }}",
+              "operation": "notEqual",
+              "value2": "l.reynolds@digitalkin.ai"
+            }
+          ]
+        }
+      },
+      "id": "29c13771-798a-48dd-b6d9-ff18f890a9af",
+      "name": "IF est une commande",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2520,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "={{ $json.id }}",
+        "simple": false,
+        "options": {}
+      },
+      "id": "67333834-b355-4bda-ac5e-9ace4dd53309",
+      "name": "Get Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2740,
+        -80
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node[\"sortie\"].json.thread.toLowerCase() }}",
+              "operation": "contains",
+              "value2": "[mission accomplie]"
+            }
+          ]
+        }
+      },
+      "id": "cbcf9a44-477f-483f-b9de-1502bd9dab8e",
+      "name": "IF MISSION ACCOMPLIE",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        5320,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# ENTREE MANUELLE",
+        "height": 305.41358227832,
+        "width": 564.7093096988182
+      },
+      "id": "7f9c9cfd-1726-4cb8-93ce-0bda35dda4f6",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2331,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.text }}"
+            },
+            {
+              "name": "titre",
+              "stringValue": "={{ $json.subject.replace(/[\\\\/:*?\"<>|\\x00-\\x1F]/g, '-') }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "Accomplis la mission. Continue à partir de l'étape à réaliser."
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "7194012a-9c1a-4eef-ab71-6b9495e8a29d",
+      "name": "mission",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3060,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "3b933885-068c-41b2-b11a-dee0d9ee1ce6",
+      "name": "Kin Boiron",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        -280
+      ],
+      "webhookId": "28b33caf-08d7-4ec8-bc89-cb6377f5bf95",
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "aaf7ad5b-bed7-4e36-a1bf-4d964062c090",
+      "name": "Kin CIR",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        -460
+      ],
+      "webhookId": "242b4512-082d-47a0-9348-940da882ad0f",
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "Jarvis"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $node[\"Create Document\"].json.id }}",
+          "mode": "id"
+        },
+        "binaryPropertyName": "thread",
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/rtf"
+            }
+          }
+        }
+      },
+      "name": "Google Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        3760,
+        120
+      ],
+      "typeVersion": 1,
+      "id": "a96a146e-5971-46f7-9c50-565c4aabc133",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "fileName": "kinCIR.md",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "c27175aa-40cf-44e4-a990-16e0c8890c43",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        5320,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $node[\"Create Document\"].json.id }}",
+          "mode": "id"
+        },
+        "changeFileContent": true,
+        "inputDataFieldName": "thread",
+        "options": {}
+      },
+      "id": "944b0c6b-19ba-4fb6-9a13-637fa9c04581",
+      "name": "Update Document",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        5540,
+        500
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "7243f30c-40e3-463e-8b7d-55f022f0a662",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        2540,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "rr8aeSM8QYyY8Po4"
+      },
+      "id": "3909e86d-a647-4f1d-b706-fd6bceda30ef",
+      "name": "Rédacteur d'Email",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5800,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "id": "68463a0e-1b1b-4577-81bb-a41be3f88823",
+      "name": "Convert to/from binary data1",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        3960,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_K25pMgsChtj1PKEenv0pM8LZ",
+        "text": "={{ $node[\"mission\"].json.mission }}\n\n# CONVERSATION\n\n{{ $json.thread }}",
+        "nativeTools": [
+          "code_interpreter"
+        ],
+        "options": {}
+      },
+      "id": "2ac6c399-1f33-49e3-b648-2a15cb38089b",
+      "name": "Rédacteur de Programme R&D",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4520,
+        940
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "entireThread = $json.thread;\nthread = $json.thread;\nconst MAX_LENGTH = 25000;\n\nif (thread.length > MAX_LENGTH) {\n    thread = \"[...]\" + thread.substring(thread.length - MAX_LENGTH);\n    remainingThread = entireThread.substring(0, entireThread.length - MAX_LENGTH);\n} else {\n    remainingThread = \"\"; // Aucun contenu restant si la longueur du fil est inférieure à MAX_LENGTH\n}\n\nlet sortie = \"\";\n\nif ($json.sortie != \"\") {\n  sortie = $json.sortie;\n} else {\n  sortie = $node[\"mission\"].json.thread;\n}\n\nreturn {\"sortie\": sortie, \"thread\": thread, \"entireThread\": entireThread, \"remainingThread\": remainingThread};"
+      },
+      "id": "d65b3da0-3ed9-424f-9e54-b2a98d63a3c1",
+      "name": "thread",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4340,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let sortie = '';\n\n// Ajouter l'output sans guillemets de début et de fin\nif ($json.output != null) {\n  sortie += '\\n\\n' + $json.output.replace(/^([\"`]+)|([\"`]+)$/g, ''); \n} else {\n  sortie += '\\n\\n' + $json.text.replace(/^([\"`]+)|([\"`]+)$/g, ''); \n}\n\n\n// Corriger le \\n\nsortie = sortie.replace('\\n', '\\r\\n');\n\nlet thread = $node[\"thread\"].json.entireThread.replace(/^([\"`]+)|([\"`]+)$/g, '');\n\n// Enlever toutes les lignes qui contiennent les instructions\nthread = thread.replace(/.*Prochaine étape.*$/gmi, '');\nthread = sortie.replace(/.*Étape suivante.*$/gmi, '');\nthread = thread.replace(/^.*niveau de boucle.*$/gmi, '');\n\n\n// Ajouter l'output sans guillemets de début et de fin\nif ($json.output != null) {\n  thread += '\\n\\n' + $json.output.replace(/^([\"`]+)|([\"`]+)$/g, ''); \n} else {\n  thread += '\\n\\n' + $json.text.replace(/^([\"`]+)|([\"`]+)$/g, ''); \n}\n\n// Corriger le \\n\nthread = thread.replace('\\n', '\\r\\n');\n\nreturn {\"sortie\":sortie, \"thread\":thread};"
+      },
+      "id": "fc9fbfb5-f479-421d-8b12-334124153b9d",
+      "name": "sortie",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5100,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "maxTokens": 4096,
+          "temperature": 0.7,
+          "timeout": 600000
+        }
+      },
+      "id": "1c51c8c7-f0fd-40b1-89fb-a3f23c078f0a",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        4440,
+        720
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.snippet }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "={{ $json.thread }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "ce8060ff-6832-4897-894c-8e4f3e988b43",
+      "name": "mission1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3520,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.snippet }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "={{ $json.thread }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "a098cc1a-dec1-4dcd-a7e6-4629bf8b2dc1",
+      "name": "mission2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3700,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "fileName": "={{ $json.titre }}.md",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "448f03a2-c5b4-4298-ad6f-13eac3853651",
+      "name": "Convert to/from binary data2",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        3280,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.snippet }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "={{ $json.thread }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "6b179d3b-71f5-4768-99d8-1123803f8707",
+      "name": "mission3",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3320,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "binaryData": true,
+        "binaryPropertyName": "thread",
+        "name": "={{ $node[\"mission\"].json.titre.replace(/[\\\\/:*?\"<>|\\x00-\\x1F]/g, '-') }}_{{ new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'long' }).format($now) }}.md",
+        "parents": [
+          "1PFOpdripUGox5KdYPQUbw7MxIA5C9a0F"
+        ],
+        "options": {}
+      },
+      "name": "Create Document",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        3520,
+        120
+      ],
+      "typeVersion": 1,
+      "id": "49176977-598d-4d73-90ba-7694352c5a62",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let infosMail = $node[\"Get Email\"].json;\nlet createdDocument = $node[\"Create Document\"].json;\nlet sortie = $node[\"sortie\"].json;\n\n\nreturn {\n  \"infosMail\": infosMail,\n  \"createdDocument\": createdDocument,\n  \"sortie\": sortie\n};"
+      },
+      "id": "04d0dab0-9fe5-4025-a247-22161cb1f66d",
+      "name": "entree email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5580,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $node[\"Get Email\"].json[\"id\"] }}",
+        "message": "=Bonjour,\n\nMission bien reçue, je m'y mets immédiatement.\n\nAutomatiquement vôtre,\n\nKinCIR",
+        "options": {}
+      },
+      "id": "f31102e9-84a2-4d81-bbfb-51ba334efedd",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        3280,
+        -60
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 15
+      },
+      "id": "7479ceb5-19f0-48ed-950b-0a0d31a9624b",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1,
+      "position": [
+        4580,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "text": "={{ $node[\"mission\"].json.mission }}\n\n# CONVERSATION\n\n{{ $json.thread }}",
+        "options": {
+          "humanMessage": "TOOLS\n------\nAssistant can ask the user to use tools to look up information that may be helpful in answering the users original question. The tools the human can use are:\n\n{tools}\n\n{format_instructions}\n\nUSER'S INPUT\n--------------------\nHere is the user's input (remember to respond with a markdown code snippet of a json blob with a single action, and NOTHING else):\n\n{{input}}",
+          "systemMessage": "# CONTEXTE DE L’ENTREPRISE\nL’ENTREPRISE dont on parle\n\nLe CONTEXTE (ce dont on parle) : \n\nOBJECTIVE GLOBAL DE L’ENTREPRISE (ce que l’entreprise cherche à changer dans le monde)\nExemple : Augmenter la part de mode durable\n\n# CONTEXTE DES RECHERCHES\n\nPRINCIPALE QUESTION DE RECHERCHE (La question dont la réponse permet d’atteindre l’objectif de recherche :\nExemple : Comment influencer la consommation et la production d'articles de mode responsable et éthique. \n\nPRINCIPAL OBJECTIF DE RECHERCHE (Ce que les travaux de R&D cherchent à rendre possible, et qui contribuera à l’objectif global) : \nExemple : Parvenir à influencer la consommation et la production d’articles de mode responsable et éthique. \n\n\n# STRUCTURE DE L’INFORMATION\n\nOBJECTIF DE RECHERCHE / QUESTION DE RECHERCHE\nUne QUESTION DE RECHERCHE correspond à un OBJECTIF DE RECHERCHE : répondre à la QUESTION DE RECHERCHE permet d’atteindre l’OBJECTIF DE RECHERCHE. Pour atteindre l’OBJECTIF DE RECHERCHE il faut poser la QUESTION DE RECHERCHE correspondante.\n\nTHÉMATIQUE DE RECHERCHE / OBJECTIF DE RECHERCHE \nUne THÉMATIQUE DE RECHERCHE contribue à répondre à une QUESTION DE RECHERCHE, de sorte à se rapprocher d’un OBJECTIF DE RECHERCHE. Une THÉMATIQUE DE RECHERCHE peut contribuer à répondre à plusieurs QUESTION DE RECHERCHE, et donc à l’atteinte de plusieurs OBJECTIF DE RECHERCHE\n\nDOMAINE SCIENTIFIQUE / THÉMATIQUE DE RECHERCHE :\nUne THÉMATIQUE DE RECHERCHE peut s’appuyer sur plusieurs domaines scientifiques pour atteindre ses OBJECTIFS DE RECHERCHE. Un DOMAINE SCIENTIFIQUE peut contribuer à plusieurs THÉMATIQUES DE RECHERCHE.\n\nUne THÉMATIQUE DE RECHERCHE : \n- Pose des QUESTIONS DE RECHERCHE\n- Vise à atteindre des OBJECTIFS DE RECHERCHE\n- Mobilise différents DOMAINES SCIENTIFIQUES\n- Cherche à lever des VERROUS TECHNOLOGIQUES\n- Cherche à comprendre des INCERTITUDES SCIENTIFIQUES\n- Regroupe des TRAVAUX DE RECHERCHE\n\nDOMAINE SCIENTIFIQUE\nLes connaissances et capacités d'un DOMAINE SCIENTIFIQUE sont décrites par son ÉTAT DE L’ART, qui regroupe CE QUE L’ON SAIT et CE QUE L’ON SAIT FAIRE dans le DOMAINE SCIENTIFIQUE. \n\nTRAVAUX DE RECHERCHE / THÉMATIQUE DE RECHERCHE\nDes TRAVAUX DE RECHERCHE s’inscrivent dans une THÉMATIQUE DE RECHERCHE. Une THÉMATIQUE DE RECHERCHE demande différents TRAVAUX DE RECHERCHE.\n\n\nVERROUS TECHNOLOGIQUE / THÉMATIQUE DE RECHERCHE\nUne THÉMATIQUE DE RECHERCHE cherche à solutionner des VERROUS TECHNOLOGIQUES. Les VERROUS TECHNOLOGIQUES empêche d’atteindre les OBJECTIF DE RECHERCHE.\n\n\nINCERTITUDES SCIENTIFIQUES / THÉMATIQUE DE RECHERCHE\nUne THÉMATIQUE DE RECHERCHE cherche à comprendre des INCERTITUDES SCIENTIFIQUES. Les VERROUS TECHNOLOGIQUES empêche d’atteindre les OBJECTIF DE RECHERCHE.\n\n# STYLE DE REDACTION\nQuand tu rédiges, tu inséres habilement des extraits des articles scientifiques, toujours entre guillemets, et en citant ta source conformément aux bonnes pratique de citation en rédaction scientifique . Tu n'utilises pas non plus de liens dynamique. Tu considères que le support de ton texte sera du papier.\n\nTu utilises les bonnes pratiques de citations scientifique courte : (nom auteur principal, année de publication). Exemple : (Yan et al., 2020) ou Yan et al., (2020)\n\nTu ne cites jamais le nom du fichier, ni le nombre de références.\n\n# INSTRUCTIONS\n0) Demande le contexte de l'entreprise et le contexte de recherche. Ne retourne rien, passe à l'étape suivante\n\n1) Affiche le  titre  \"# Présentation du programme de R&D\"\nAffiche  le sous titre  \"## Présentation de l'entreprise\" + le nom de l'entreprise\nRédige en texte une brève présentation de l'entreprise, de son but, et de ses activités. \nRetourne seulement ton résultat, et la prochaine étape à effectuer (2).\n\n2) Affiche le titre : \"## Contexte scientifique et économique\" + le SUJET\nRédige une introduction sur le SUJET dont parlent les recherches, en soulignant le besoin d'évolutions vers l'objectif de recherche, les enjeux si nous ne parvenons pas à atteindre ces objectifs. Introduit également les éléments bloquants dans la situation actuelle qui font que l'objectif n'est pas du tout atteint à ce jour. Donne ensuite des exemples de démarches similaires entreprises par d'autres acteurs. Conclut en espérant que les travaux pourront servir à faire évoluer la situation.\nRetourne seulement ton résultat, et la prochaine étape à effectuer (3).\n\n3) Affiche le titre \"## Présentation des thématiques de recherche\"\nImagine 3 thématiques de recherche à partir des informations dont tu disposes. La réduction des couts ne peut pas faire directement l'objet d'une thématique de recherche. Ne retourne rien à ce stade.\n\nDocumente et organise les informations relatives aux thématiques de recherche de chacune des thématiques. Soit spécifique et donne des détails.  Organise  hiérarchiquement les éléments relatifs aux thématiques.\n\nPour chacune des THEMATIQUES DE RECHERCHE, liste les DOMAINES SCIENTIFIQUES qu'elle mobilise. \n\nPour chaque DOMAINE SCIENTIFIQUE  mobilisé pour la THEMATIQUE DE RECHERCHE, détermine :\n- [APPORTS ATTENDUS]  du domaine sur la thématique et spécifiquement ce qui l'apportera\n- [IMPORTANCE] de ces apports pour l'avancement de la thématique\n- [EXISTANTS] en termes de capacités et connaissances du domaine nécessaire pour  l'avancement de la thématique. Liste au moins 3 existants.\n- [VERROUS] en termes de capacités et connaissances manquantes pour permettre l'atteinte de l'objectif de la thématique.\n- [STATUT] : \"BLOQUANT, TRAVAUX R&D NÉCESSAIRES\" si les objectifs sont impossibles à atteindre avec l'existant ou \"EXISTANT SUFFISANT\", si l'existant permet déjà les apports attendus.\n- [PÉRIMÈTRE] : \"RÉALISABLE EN INTERNE\" si ce domaine scientifique peut entrer dans le PÉRIMÈTRE DES RECHERCHES DE L’ENTREPRISE \n\nSoit spécifique et précise des détails. Il peut y avoir plusieurs points par élément. Procède par étapes.\n\nPrésente ensuite synthétiquement pour chacune des thématiques de recherche :\n-  leur nom, nom leurs objectifs de recherche, leurs questions de recherche,\n- les domaines scientifiques qu'elle mobilise pour atteindre ses objectifs, avec pour chacun de ces domaines, les apports attendus, les existants et  les verrous, en un petit texte.\n\nRetourne seulement ton résultat, et la prochaine étape à effectuer.\n\n4) Affiche le titre :  \"## État de l'art\"\n\n5) Réalisation du Tableau de thématique :\nPour la première thématique non encore traitée par cette étape (ie. \"5.1.\", \"5.2.\", \"5.3.\", etc.) :\n- Affiche le titre  \"### Etat de l'art sur la thématique \" +%NUMERO THEMATIQUE% + Nom de la Thématique\n- Génère un tableau structuré en markdown, avec les domaines scientifiques numérotés listés en lignes, et la première thématique de recherche en colonne, précédés de \"Thématique : \", suivie d'une colonne \"Besoin de R&D Interne ?\".\n- Dans chaque case du tableau, à partir des informations sur le domaine pour la thématique,  insère les apports attendus du domaine pour la thématique, l'importance de ces apports, les existants déjà disponibles, les verrous restant à lever, et l'intégralité du statut.\n- Si le statut est \"BLOQUANT, TRAVAUX R&D NÉCESSAIRES\", et que le périmètre est \"RÉALISABLE EN INTERNE\" insère dans la case suivante de la ligne, \"Travaux de R&D prévus\". Dans les autres cas, insère dans la case suivante de la ligne,  \"Pas de travaux R&D prévus\".\n\nRetourne seulement ton résultat, et la prochaine étape à effectuer (6.%NUMERO THEMATIQUE EN COURS%.1.).\n\n6) Ajout d'une Sous-partie de la thématique - Réalisation de l'Etat de l'art du domaine :\nPour le premier domaine de recherche bloquant encore non traité : \n- Affiche le titre  \"#### Etat de l'art en + Nom de la Thématique en cours + \", domaine \" +  %NUMERO DOMAINE% + Nom du domaine\".\n-  Utilise l'ensemble des informations disponibles pour rédiger un texte d'au moins 500 mots pour expliquer en quoi l'atteinte des OBJECTIFS de recherche et n'est pas possible sans travaux de recherches dans le DOMAINE, en listant et décrivant spécifiquement les savoirs et des capacité utiles et déjà l'existant du DOMAINE. Traite indépendamment chaque existant, et pour chaque existant, utilise les verrous et incertitudes correspondants pour faire apparaitre les limites de l'existant, au regarde l'atteinte des objectifs. Focalise sur l'existant, les verrous et les incertitudes. Utilise les bonnes pratiques de la rédaction scientifique, et des citations. Rédige à le première personne du plusieurs, \"nous\", et favorise les études postérieures à 2015 pour tes citations. Donne des détails.\n\nRetourne seulement ton résultat, et la prochaine étape à effectuer (7).\n\n7) Identifie la prochaine étape :\n- S'il reste un domaine non traité dans la Thématique en cours, la prochaine étape est la réalisation de la sous-partie associée (ie.  6.%NUMERO THEMATIQUE EN COURS%.%NUMERO PROCHAIN DOMAINE%, par exemple \"6.1.3. - Nom de la Thématique, nom du domaine\"), \n- Si tous les domaines de la thématique en cours sont traités, la prochaine étape est la prochaine Thématique (ie 5.%NUMERO PROCHAINE THEMATIQUE, par exemple \"5.3. - Nom de la Thématique\") .\n- Si tous les domaines de la thématique en cours sont traités, et que la thématique en cours est la dernière thématique (le 3 ème), alors la prochaine étape est 8.\n\n8) - Affiche le titre : \"## Incertitudes et verrous scientifiques et techniques\" \n- Par thématique, liste les capacités nécessaires à l'atteinte des objectifs, mais rendues impossible par l'existence de verrous ou de manque de connaissances scientifiques.\n- Pour chaque capacité indisponible, liste les verrous spécifiques et les manques spécifiques de connaissances qui la rende indisponible. - Supprime les titres qui parlent de thématique dans le résultat.\n- Reformule les titres des capacités en commençant soit par \"De la complexité à\" + verbe ou \"De la complexité de\" + nom. Conserve les verrous et manques de connaissances associés.\n\nPour chacune des complexités :\n- Affiche le titre : ### Nom de la complexité\n- Explique en quoi consiste la complexité implique des incertitudes sur la capacité à atteindre les objectifs de recherche. Développe ensuite les incertitudes résultantes de chacun des verrous ou manques associés.  Souligne bien le rapport entre le sujet de complexité, les objectifs de recherche qui pourraient ne pas pouvoir etre atteint, et les effets d'une compréhension insuffisante pour les activités de l'entreprise. Parle à la première personne du pluriel, \"nous\".\n\nRetourne seulement ton résultat, et la prochaine étape à effectuer (9).\n\n9) - Affiche le titre  \"## Travaux de R&D pour lever les verrous et incertitudes\"\n- Regroupe transversalement les manques de connaissances, les incertitudes et les verrous, puis, pour chacun de ces éléments, propose des travaux de recherche qui permettraient de lever les verrous, les incertitudes ou d'acquérir les connaissances. Donne quelques précisions sur le but des travaux.\n- Regroupe et organise ces travaux en workpackages (WP).\n\nRetourne seulement ton résultat, et la prochaine étape à effectuer (10).\n\n10) - Affiche le titre  \"## Bibliographie\" \n- Rédige une bibliographie avec les références détaillées de toutes les citations que tu as utilisées depuis le début. Respecte les bonnes pratiques de bibliographie scientifique. Retourne seulement la bibliographie.\n- Si la bibliographie est complète, affiche \"[MISSION ACCOMPLIE]\"."
+        }
+      },
+      "id": "1f363b70-8af0-49ff-87ef-a9ac964f036d",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.1,
+      "position": [
+        4520,
+        500
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4576443b-4042-4f07-8105-e1bd861a2ffc",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        6200,
+        640
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f47523d7-7141-40a5-baeb-5123eaa06a7f",
+      "name": "Question and Answer Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        6420,
+        640
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "snippet": "# Mission L’entreprise DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE. Activité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques. Le but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode. Le principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique. Les objectifs de recherche sont : Parvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques. Parvenir à influencer les marques à produire des vêtements responsables et éthiques. Parvenir à montrer l’impact des actions sur la consommation de biens de mode et mesurer cet impact sur l’environnement."
+        }
+      }
+    ],
+    "mission1": [
+      {
+        "json": {
+          "mission": "ENTREPRISE : DurableFashion\nCONTEXTE DE L’ENTREPRISE: DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE.\nActivités de l’entreprise : \nIdentifier et certifier des fabricants d’articles de mode durable et éthique, \nFaire la promotion des articles des fabricants certifiés en soulignant l’aspect durable et éthique,\nCommercialiser les articles des fabricants certifiés via internet et ses boutiques. \nOBJECTIF DE L’ENTREPRISE : L’entreprise désire augmenter la part de mode durable et éthique dans la mode. \nPRINCIPAL OBJECTIF DE RECHERCHE : Le programme de recherche de DurableFashion est de développer ses capacités à influencer la consommation, et la production, d’articles de mode responsable et éthique. \nLes THÉMATIQUES de recherche sont : \nCapacité à influencer les consommateurs à réaliser des achats d’articles de mode responsable et éthique. \nCapacité à influencer les marques à produire des articles de mode responsable et éthique.\nCapacité à mesurer et diffuser l’impact des actions en faveur de la mode durable et éthique sur la consommation et la production.\nPÉRIMÈTRE DES RECHERCHES DE L’ENTREPRISE :\nL’entreprise souhaite focaliser ses travaux de recherche en priorité sur la création de capacités d’influence des consommateurs et des producteurs.\nL’entreprise NE souhaite PAS directement intervenir ni dans l’organisation des supply chain, ni sur les problématiques d’organisation de la production industrielle, ni dans les procédés de conception et de fabrication des textiles."
+        }
+      }
+    ],
+    "mission2": [
+      {
+        "json": {
+          "mission": "L'entreprise KANOPEE est spécialisée dans la création de services et solutions innovantes pour le monde de la construction et de l'immobilier. \nActivité : Kanopée pilote la création de startups dans son secteur. Elle réunit régulièrement un grand nombre de décideurs du domaine, pour les faire travailler ensemble à résoudre des problèmes transversaux à la filière. Quand une solution possible est imaginée, Kanopée trouve des porteurs de projet, des premiers clients et des financements pour lancer une startup, et le produit ainsi développé contribue à faire avancer les acteurs du domaine et l'avancement général de l’innovation dans domaine.\nL'objectif de Kanopee est d'accélérer la vitesse d’évolution de la construction et l'immobilier par l’innovation.\nL’objectif de recherche de l’entreprise est de réussir à mieux comprendre et actionner les mécanismes d’émergence, de développement et d’adoption des solutions innovantes.\n\nLes thématiques de recherche sont : \nLa capacité de mobilisation des acteurs pour l’amélioration de la situation actuelle\nLa capacité de conviction des dirigeants pour accélérer l’adoption des innovations existantes et futures\nLa capacité à améliorer les taux de réussite des Innovations dans le secteur par la mutualisation et le partage des expériences sur le sujet \nLa société dispose de plusieurs atouts :\nL'accès à un réseaux important de dirigeants\nLa connaissance détaillée d'un grand nombre de projets de startup dans le secteurs depuis la naissance de ces projets\nUne forte reconnaissance de son expertise en approches coopératives.\nL'influence suffisante pour proposer des démarches communes et fédératives\nLa grande expérience entrepreneuriale de ses 2 fondateurs"
+        }
+      }
+    ],
+    "mission3": [
+      {
+        "json": {
+          "mission": "RDLand est une entreprise spécialisée dans la conception de programmes de R&D et le financement de la R&D.\nLe but de l’entreprise est de maximiser les chances de succès de recherches à fort potentiel d’impact, quel que soit le domaine.\nPour celà, l’entreprise accompagne les entreprises dans l’élaboration de leurs programmes de recherche, la définition des grandes thématiques et objectifs, la formalisation de ces programmes et l’obtention de financements permettant de les réaliser.\nL’objectif de recherche de l’entreprise est de réussir à mieux comprendre et actionner les mécanismes de détection, financement et réalisation des recherches à plus fort potentiel d’impact.\n\nLes thématiques de recherche sont : \nLes capacités à maximiser la détection d’opportunités de recherche à fort potentiel d’impact.\nLes capacités de construction des programmes de recherches collaboratifs pour maximiser leur potentiel de succès.\nLes capacités d’optimisation d’obtention de financements publics et privés pour maximiser les taux de concrétisation des recherches.\n\nL’entreprise dispose d’une grande expérience dans son métier, d’un important réseau dans le domaine de la R&D et des financements publics et privés, et d’une importante base de données sur les différents dispositifs de financement."
+        }
+      }
+    ],
+    "mission": [
+      {
+        "json": {
+          "titre": "Programme R&D Boiron",
+          "thread": "Accomplis la mission. Continue à partir de l'étape à réaliser.",
+          "mission": "# Résumé Exécutif pour Boiron\r\n\r\n## Boiron : Un Tournant Stratégique vers le Cannabis Thérapeutique\r\nBoiron, leader mondial dans la fabrication de produits homéopathiques, réoriente sa stratégie vers la recherche et le développement dans le domaine du cannabis thérapeutique. Cette évolution stratégique s'appuie sur un siècle d'expertise dans la production de médicaments homéopathiques de haute qualité.\r\n\r\n### Vision et Mission :\r\n- Boiron s'engage à maximiser l'impact positif de ses innovations dans le domaine de la santé et du bien-être.\r\n- La société vise à harmoniser l'utilisation de l'homéopathie avec les avancées modernes dans le domaine du cannabis thérapeutique, ouvrant la voie à de nouvelles solutions de santé.\r\n\r\n### Principes Fondateurs :\r\n- Boiron croit fermement à l'intégration de méthodes de traitement naturelles et modernes pour améliorer la qualité de vie.\r\n- La société envisage un avenir où l'homéopathie et le cannabis thérapeutique coexistent, offrant une approche globale du bien-être.\r\n\r\n### Objectifs de Recherche :\r\n- Explorer les propriétés médicinales du cannabis et leur intégration dans des produits de santé innovants.\r\n- Concentrer les efforts de R&D sur le développement de produits combinant les principes de l'homéopathie et les avantages du cannabis.\r\n\r\n### Axes de Recherche :\r\n1. Développement de produits à base de cannabis pour des applications thérapeutiques, en alignement avec les normes homéopathiques.\r\n2. Étude approfondie des interactions entre l'homéopathie et le cannabis pour créer des solutions de santé holistiques.\r\n\r\n### Atouts de Boiron :\r\n- Une expérience centenaire dans la fabrication de produits homéopathiques de haute qualité.\r\n- Une présence forte sur le marché international, avec des opérations dans 59 pays.\r\n- Une équipe dédiée et à la pointe de l'innovation dans le domaine de la santé naturelle.\r\n\r\n### Réorientation Stratégique :\r\n- Réallouer une partie substantielle de l'effectif de Boiron pour se concentrer sur la recherche et le développement du cannabis thérapeutique.\r\n- Adapter les infrastructures existantes aux nouvelles exigences et opportunités offertes par le secteur du cannabis thérapeutique.\r\n\r\n### Engagement pour l'Avenir :\r\n- Boiron reste engagé dans sa mission de fournir des solutions de santé innovantes et responsables.\r\n- La société continue de promouvoir une vision holistique de la santé, qui guérit sans nuire, en intégrant les dernières avancées en matière de cannabis thérapeutique.\r\n"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": [
+        14
+      ]
+    },
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1704332607,
+      "possibleDuplicates": [
+        "18cd223c138c6fc6"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-04T09:02:08.000Z",
+  "versionId": "faf9508e-2871-4141-905a-0748d2d25a74"
+}
