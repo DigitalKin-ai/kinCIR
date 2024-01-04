@@ -1,0 +1,1216 @@
+{
+  "active": false,
+  "connections": {
+    "CHERCHEUR SCIENTIFIQUE": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Acquéreur de Citations": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'Etudes": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de Documents": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur de Document": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ScratchPad": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown": {
+      "main": [
+        [
+          {
+            "node": "Envoi de notification Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nico reçoit un email": {
+      "main": [
+        [
+          {
+            "node": "IF est une commande",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF est une commande": {
+      "main": [
+        [
+          {
+            "node": "Get Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF MISSION ACCOMPLIE": {
+      "main": [
+        [
+          {
+            "node": "entree email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Email": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kin Boiron": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kin CIR": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "Update Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Document": {
+      "main": [
+        [
+          {
+            "node": "IF MISSION ACCOMPLIE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data1": {
+      "main": [
+        [
+          {
+            "node": "thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "thread": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur de Programme R&D",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sortie": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data2": {
+      "main": [
+        [
+          {
+            "node": "Create Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Document": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree email": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur d'Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur de Programme R&D": {
+      "main": [
+        [
+          {
+            "node": "sortie",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-04T09:01:58.335Z",
+  "id": "KQiqbfxmbpqOIIi2",
+  "meta": null,
+  "name": "KinCIR - Version Assistant GPT",
+  "nodes": [
+    {
+      "parameters": {
+        "name": "redacteur_de_document",
+        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
+        "workflowId": "0T67aHjuqQEnrTN0",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "a392b981-4d4b-47ae-a919-5981bb401bd5",
+      "name": "Rédacteur de Document",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5120,
+        1200
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_documents",
+        "description": "Donne une réponse précise issue du document demandé à partir d'un besoin informationnel.",
+        "workflowId": "ebLHEt0swZVT9tks",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "0322290b-c1e2-493f-827b-933ceb126e00",
+      "name": "Questionneur de Documents",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4960,
+        1200
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "scratchpad",
+        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
+        "workflowId": "wTbd0CgnGrumh0qf",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "9851a274-9161-4d1b-9a68-608d450e43df",
+      "name": "ScratchPad",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5240,
+        1200
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS STANDARD",
+        "height": 224.32004875594802,
+        "width": 447.22204993824914
+      },
+      "id": "c1b30c20-aa37-4331-86fc-fc452d3c9f22",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4920,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_etudes",
+        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
+        "workflowId": "yQ79P9nuVKhkwZpD",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "c5ebcaa5-4e90-4bdb-905f-ef98ded033cc",
+      "name": "Questionneur d'Etudes",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4680,
+        1320
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "acquereur_de_citations",
+        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
+        "workflowId": "It2FPpnGNxaxojxY",
+        "fields": {
+          "values": [
+            {
+              "name": "thread",
+              "stringValue": "={{ $node[\"thread\"].json.thread }} "
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"mission\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "73aa4a69-0acc-4f79-bb98-a772aaf7a8c1",
+      "name": "Acquéreur de Citations",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4520,
+        1300
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "# OUTILS SPECIFIQUES",
+        "height": 413.4919569863578,
+        "width": 468.47826732357714
+      },
+      "id": "338ad49e-7088-4102-a466-e58f947e4c50",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4420,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# COLLABORATEURS",
+        "height": 224.32004875594802,
+        "width": 355.66820106337036
+      },
+      "id": "4bd77f36-87f7-48d8-bc35-0b441498e7b0",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4040,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "name": "chercheur_scientifique",
+        "description": "Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
+        "workflowId": "f4z3JUKhsFgmKRgZ",
+        "responsePropertyName": "message",
+        "fields": {
+          "values": [
+            {
+              "name": "message",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "90dfc6e8-6ef6-49ed-8a53-922b3b99a6ff",
+      "name": "CHERCHEUR SCIENTIFIQUE",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4240,
+        1200
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Accès DB Etudes",
+        "height": 272.5167132732499,
+        "width": 391.3636040958942
+      },
+      "id": "83d77815-0625-4ba9-bb1c-febc9a932005",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4460,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "=-1002105587743",
+        "text": "={{ $json.escapedText.substring($json.escapedText.length - 4000) }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "512c2aa8-9635-45f4-8438-d77ae067ac20",
+      "name": "Envoi de notification Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        5100,
+        300
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "Jarvis"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet originalText = '';\nif ($json.output != null) {\n  originalText = $json.output;\n} else {\n  originalText = $json.text;\n}\n\nconst escapedText = escapeMarkdownV2(originalText);\n\nreturn {\"json\":{\"escapedText\":escapedText}};\n"
+      },
+      "id": "82dfe884-2b09-4ad9-bd7d-9638ad31e06e",
+      "name": "Escape Markdown",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 300,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "id": "c4621011-170b-4137-a186-cb5f770b163a",
+      "name": "Nico reçoit un email",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        -80
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.Subject.toLowerCase() }}",
+              "operation": "contains",
+              "value2": "kincir"
+            },
+            {
+              "value1": "={{ $json.From }}",
+              "operation": "notEqual",
+              "value2": "mailer-daemon@googlemail.com"
+            },
+            {
+              "value1": "={{ $json.From }}",
+              "operation": "notEqual",
+              "value2": "l.reynolds@digitalkin.ai"
+            }
+          ]
+        }
+      },
+      "id": "7805e0e9-0a54-4334-9a1b-3803cfe6fa34",
+      "name": "IF est une commande",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2520,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "={{ $json.id }}",
+        "simple": false,
+        "options": {}
+      },
+      "id": "6dcfff4c-a7ac-493e-b98d-cd69f0863b6b",
+      "name": "Get Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2740,
+        -80
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node[\"sortie\"].json.thread.toLowerCase() }}",
+              "operation": "contains",
+              "value2": "[mission accomplie]"
+            }
+          ]
+        }
+      },
+      "id": "ac04cdec-cc22-4377-8928-9d758b7f950b",
+      "name": "IF MISSION ACCOMPLIE",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        5540,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# ENTREE MANUELLE",
+        "height": 305.41358227832,
+        "width": 564.7093096988182
+      },
+      "id": "bacbd404-bc74-4bda-ac98-a1367ba25a8c",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2331,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.text }}"
+            },
+            {
+              "name": "titre",
+              "stringValue": "={{ $json.subject.replace(/[\\\\/:*?\"<>|\\x00-\\x1F]/g, '-') }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "Accomplis la mission. Continue à partir de l'étape à réaliser."
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "6ff187be-2e9d-40e0-be83-04e183a6446b",
+      "name": "mission",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3060,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "8cc8eff1-4947-439a-b0bc-e0a08850acfc",
+      "name": "Kin Boiron",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        -280
+      ],
+      "webhookId": "43220339-ae14-4866-b9c2-b00952bcd64c",
+      "credentials": {
+        "telegramApi": {
+          "id": "36XnU2tVylnKh3kr",
+          "name": "Telegram account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "bfec7930-f035-43c7-a61d-9d0c2fa96161",
+      "name": "Kin CIR",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        -460
+      ],
+      "webhookId": "4127dbca-ae0e-4332-a007-c58caaa7fe44",
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "Jarvis"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $node[\"Create Document\"].json.id }}",
+          "mode": "id"
+        },
+        "binaryPropertyName": "thread",
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/rtf"
+            }
+          }
+        }
+      },
+      "name": "Google Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        3760,
+        120
+      ],
+      "typeVersion": 1,
+      "id": "aaeda673-7a71-4ac5-ae93-168907ff040d",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "fileName": "kinCIR.md",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "5cce7c8d-afe4-477c-acee-2beb61da45bc",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        5100,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $node[\"Create Document\"].json.id }}",
+          "mode": "id"
+        },
+        "changeFileContent": true,
+        "inputDataFieldName": "thread",
+        "options": {}
+      },
+      "id": "02758d93-4963-4183-b5cd-b90aa477a8f5",
+      "name": "Update Document",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        5320,
+        500
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "590de38b-79d0-45bb-b9cc-ac993be5b847",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "rr8aeSM8QYyY8Po4"
+      },
+      "id": "fa91af8c-009a-4390-978c-45916862bae7",
+      "name": "Rédacteur d'Email",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5980,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "id": "fc785107-768b-486e-8531-c42b7334ad8c",
+      "name": "Convert to/from binary data1",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        3960,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_K25pMgsChtj1PKEenv0pM8LZ",
+        "text": "={{ $node[\"mission\"].json.mission }}\n\n# CONVERSATION\n\n{{ $json.thread }}",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "423ad70b-1176-4b38-9793-4bf05b5efe91",
+      "name": "Rédacteur de Programme R&D",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4520,
+        500
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "entireThread = $json.thread;\nthread = $json.thread;\nconst MAX_LENGTH = 25000;\n\nif (thread.length > MAX_LENGTH) {\n    thread = \"[...]\" + thread.substring(thread.length - MAX_LENGTH);\n    remainingThread = entireThread.substring(0, entireThread.length - MAX_LENGTH);\n} else {\n    remainingThread = \"\"; // Aucun contenu restant si la longueur du fil est inférieure à MAX_LENGTH\n}\n\nreturn {\"thread\": thread, \"entireThread\": entireThread, \"remainingThread\": remainingThread};"
+      },
+      "id": "5692a76e-3208-4e93-b8ba-71e76bfbd446",
+      "name": "thread",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4300,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let sortie = $node[\"thread\"].json.entireThread.replace(/^([\"`]+)|([\"`]+)$/g, '');\n\n// Enlever toutes les lignes qui contiennent les instructions\nsortie = sortie.replace(/.*Prochaine étape.*$/gmi, '');\nsortie = sortie.replace(/.*Étape suivante.*$/gmi, '');\nsortie = sortie.replace(/^.*niveau de boucle.*$/gmi, '');\n\n\n// Ajouter l'output sans guillemets de début et de fin\nif ($json.output != null) {\n  sortie += '\\n\\n' + $json.output.replace(/^([\"`]+)|([\"`]+)$/g, ''); \n} else {\n  sortie += '\\n\\n' + $json.text.replace(/^([\"`]+)|([\"`]+)$/g, ''); \n}\n\n\n// Corriger le \\n\nsortie = sortie.replace('\\n', '\\r\\n');\n\n\nreturn {\"thread\":sortie};"
+      },
+      "id": "26e08663-a1b3-437e-9cdb-ea9296a0cdaf",
+      "name": "sortie",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4880,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.snippet }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "={{ $json.thread }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "a437fa26-e645-415e-b5e2-e0c614e55833",
+      "name": "mission1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3520,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.snippet }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "={{ $json.thread }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "ffa3d919-94d9-4758-a6c7-f43ac1c6c095",
+      "name": "mission2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3700,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "fileName": "={{ $json.titre }}.md",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "f5954361-5c4f-45d3-aa4d-2460c9a1d8d5",
+      "name": "Convert to/from binary data2",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        3280,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.snippet }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "={{ $json.thread }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "11bbd430-3d50-4c44-b9cf-d2f50b666771",
+      "name": "mission3",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3320,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "binaryData": true,
+        "binaryPropertyName": "thread",
+        "name": "={{ $node[\"mission\"].json.titre.replace(/[\\\\/:*?\"<>|\\x00-\\x1F]/g, '-') }}_{{ new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'long' }).format($now) }}.md",
+        "parents": [
+          "1PFOpdripUGox5KdYPQUbw7MxIA5C9a0F"
+        ],
+        "options": {}
+      },
+      "name": "Create Document",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        3520,
+        120
+      ],
+      "typeVersion": 1,
+      "id": "4d58e33c-3e2e-4762-999f-436b0ccada89",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let infosMail = $node[\"Get Email\"].json;\nlet createdDocument = $node[\"Create Document\"].json;\nlet sortie = $node[\"sortie\"].json;\n\n\nreturn {\n  \"infosMail\": infosMail,\n  \"createdDocument\": createdDocument,\n  \"sortie\": sortie\n};"
+      },
+      "id": "fc5b9ab7-1859-42d4-9096-a7f4d6ffa54d",
+      "name": "entree email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5760,
+        360
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "fae5a3c8-af0f-4448-b103-8c643cac4ba4",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        460,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "fa68d2d8-0d9c-4155-a85f-011438892bcb",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.1,
+      "position": [
+        680,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.text }}"
+            },
+            {
+              "name": "titre",
+              "stringValue": "={{ $json.subject.replace(/[\\\\/:*?\"<>|\\x00-\\x1F]/g, '-') }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "Accomplis la mission. Continue à partir de l'étape à réaliser."
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "cc6396d1-ae64-4f0a-83bd-58011ab74914",
+      "name": "mission4",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3140,
+        1020
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "snippet": "# Mission L’entreprise DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE. Activité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques. Le but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode. Le principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique. Les objectifs de recherche sont : Parvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques. Parvenir à influencer les marques à produire des vêtements responsables et éthiques. Parvenir à montrer l’impact des actions sur la consommation de biens de mode et mesurer cet impact sur l’environnement."
+        }
+      }
+    ],
+    "mission1": [
+      {
+        "json": {
+          "mission": "ENTREPRISE : DurableFashion\nCONTEXTE DE L’ENTREPRISE: DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE.\nActivités de l’entreprise : \nIdentifier et certifier des fabricants d’articles de mode durable et éthique, \nFaire la promotion des articles des fabricants certifiés en soulignant l’aspect durable et éthique,\nCommercialiser les articles des fabricants certifiés via internet et ses boutiques. \nOBJECTIF DE L’ENTREPRISE : L’entreprise désire augmenter la part de mode durable et éthique dans la mode. \nPRINCIPAL OBJECTIF DE RECHERCHE : Le programme de recherche de DurableFashion est de développer ses capacités à influencer la consommation, et la production, d’articles de mode responsable et éthique. \nLes THÉMATIQUES de recherche sont : \nCapacité à influencer les consommateurs à réaliser des achats d’articles de mode responsable et éthique. \nCapacité à influencer les marques à produire des articles de mode responsable et éthique.\nCapacité à mesurer et diffuser l’impact des actions en faveur de la mode durable et éthique sur la consommation et la production.\nPÉRIMÈTRE DES RECHERCHES DE L’ENTREPRISE :\nL’entreprise souhaite focaliser ses travaux de recherche en priorité sur la création de capacités d’influence des consommateurs et des producteurs.\nL’entreprise NE souhaite PAS directement intervenir ni dans l’organisation des supply chain, ni sur les problématiques d’organisation de la production industrielle, ni dans les procédés de conception et de fabrication des textiles."
+        }
+      }
+    ],
+    "mission2": [
+      {
+        "json": {
+          "mission": "L'entreprise KANOPEE est spécialisée dans la création de services et solutions innovantes pour le monde de la construction et de l'immobilier. \nActivité : Kanopée pilote la création de startups dans son secteur. Elle réunit régulièrement un grand nombre de décideurs du domaine, pour les faire travailler ensemble à résoudre des problèmes transversaux à la filière. Quand une solution possible est imaginée, Kanopée trouve des porteurs de projet, des premiers clients et des financements pour lancer une startup, et le produit ainsi développé contribue à faire avancer les acteurs du domaine et l'avancement général de l’innovation dans domaine.\nL'objectif de Kanopee est d'accélérer la vitesse d’évolution de la construction et l'immobilier par l’innovation.\nL’objectif de recherche de l’entreprise est de réussir à mieux comprendre et actionner les mécanismes d’émergence, de développement et d’adoption des solutions innovantes.\n\nLes thématiques de recherche sont : \nLa capacité de mobilisation des acteurs pour l’amélioration de la situation actuelle\nLa capacité de conviction des dirigeants pour accélérer l’adoption des innovations existantes et futures\nLa capacité à améliorer les taux de réussite des Innovations dans le secteur par la mutualisation et le partage des expériences sur le sujet \nLa société dispose de plusieurs atouts :\nL'accès à un réseaux important de dirigeants\nLa connaissance détaillée d'un grand nombre de projets de startup dans le secteurs depuis la naissance de ces projets\nUne forte reconnaissance de son expertise en approches coopératives.\nL'influence suffisante pour proposer des démarches communes et fédératives\nLa grande expérience entrepreneuriale de ses 2 fondateurs"
+        }
+      }
+    ],
+    "mission3": [
+      {
+        "json": {
+          "mission": "RDLand est une entreprise spécialisée dans la conception de programmes de R&D et le financement de la R&D.\nLe but de l’entreprise est de maximiser les chances de succès de recherches à fort potentiel d’impact, quel que soit le domaine.\nPour celà, l’entreprise accompagne les entreprises dans l’élaboration de leurs programmes de recherche, la définition des grandes thématiques et objectifs, la formalisation de ces programmes et l’obtention de financements permettant de les réaliser.\nL’objectif de recherche de l’entreprise est de réussir à mieux comprendre et actionner les mécanismes de détection, financement et réalisation des recherches à plus fort potentiel d’impact.\n\nLes thématiques de recherche sont : \nLes capacités à maximiser la détection d’opportunités de recherche à fort potentiel d’impact.\nLes capacités de construction des programmes de recherches collaboratifs pour maximiser leur potentiel de succès.\nLes capacités d’optimisation d’obtention de financements publics et privés pour maximiser les taux de concrétisation des recherches.\n\nL’entreprise dispose d’une grande expérience dans son métier, d’un important réseau dans le domaine de la R&D et des financements publics et privés, et d’une importante base de données sur les différents dispositifs de financement."
+        }
+      }
+    ],
+    "mission": [
+      {
+        "json": {
+          "titre": "Programme R&D Boiron",
+          "thread": "Accomplis la mission. Continue à partir de l'étape à réaliser.",
+          "mission": "# Résumé Exécutif pour Boiron\r\n\r\n## Boiron : Un Tournant Stratégique vers le Cannabis Thérapeutique\r\nBoiron, leader mondial dans la fabrication de produits homéopathiques, réoriente sa stratégie vers la recherche et le développement dans le domaine du cannabis thérapeutique. Cette évolution stratégique s'appuie sur un siècle d'expertise dans la production de médicaments homéopathiques de haute qualité.\r\n\r\n### Vision et Mission :\r\n- Boiron s'engage à maximiser l'impact positif de ses innovations dans le domaine de la santé et du bien-être.\r\n- La société vise à harmoniser l'utilisation de l'homéopathie avec les avancées modernes dans le domaine du cannabis thérapeutique, ouvrant la voie à de nouvelles solutions de santé.\r\n\r\n### Principes Fondateurs :\r\n- Boiron croit fermement à l'intégration de méthodes de traitement naturelles et modernes pour améliorer la qualité de vie.\r\n- La société envisage un avenir où l'homéopathie et le cannabis thérapeutique coexistent, offrant une approche globale du bien-être.\r\n\r\n### Objectifs de Recherche :\r\n- Explorer les propriétés médicinales du cannabis et leur intégration dans des produits de santé innovants.\r\n- Concentrer les efforts de R&D sur le développement de produits combinant les principes de l'homéopathie et les avantages du cannabis.\r\n\r\n### Axes de Recherche :\r\n1. Développement de produits à base de cannabis pour des applications thérapeutiques, en alignement avec les normes homéopathiques.\r\n2. Étude approfondie des interactions entre l'homéopathie et le cannabis pour créer des solutions de santé holistiques.\r\n\r\n### Atouts de Boiron :\r\n- Une expérience centenaire dans la fabrication de produits homéopathiques de haute qualité.\r\n- Une présence forte sur le marché international, avec des opérations dans 59 pays.\r\n- Une équipe dédiée et à la pointe de l'innovation dans le domaine de la santé naturelle.\r\n\r\n### Réorientation Stratégique :\r\n- Réallouer une partie substantielle de l'effectif de Boiron pour se concentrer sur la recherche et le développement du cannabis thérapeutique.\r\n- Adapter les infrastructures existantes aux nouvelles exigences et opportunités offertes par le secteur du cannabis thérapeutique.\r\n\r\n### Engagement pour l'Avenir :\r\n- Boiron reste engagé dans sa mission de fournir des solutions de santé innovantes et responsables.\r\n- La société continue de promouvoir une vision holistique de la santé, qui guérit sans nuire, en intégrant les dernières avancées en matière de cannabis thérapeutique.\r\n"
+        }
+      }
+    ],
+    "mission4": [
+      {
+        "json": {
+          "titre": "Programme R&D Boiron",
+          "thread": "Accomplis la mission. Continue à partir de l'étape à réaliser.",
+          "mission": "# Résumé Exécutif pour Boiron\r\n\r\n## Boiron : Un Tournant Stratégique vers le Cannabis Thérapeutique\r\nBoiron, leader mondial dans la fabrication de produits homéopathiques, réoriente sa stratégie vers la recherche et le développement dans le domaine du cannabis thérapeutique. Cette évolution stratégique s'appuie sur un siècle d'expertise dans la production de médicaments homéopathiques de haute qualité.\r\n\r\n### Vision et Mission :\r\n- Boiron s'engage à maximiser l'impact positif de ses innovations dans le domaine de la santé et du bien-être.\r\n- La société vise à harmoniser l'utilisation de l'homéopathie avec les avancées modernes dans le domaine du cannabis thérapeutique, ouvrant la voie à de nouvelles solutions de santé.\r\n\r\n### Principes Fondateurs :\r\n- Boiron croit fermement à l'intégration de méthodes de traitement naturelles et modernes pour améliorer la qualité de vie.\r\n- La société envisage un avenir où l'homéopathie et le cannabis thérapeutique coexistent, offrant une approche globale du bien-être.\r\n\r\n### Objectifs de Recherche :\r\n- Explorer les propriétés médicinales du cannabis et leur intégration dans des produits de santé innovants.\r\n- Concentrer les efforts de R&D sur le développement de produits combinant les principes de l'homéopathie et les avantages du cannabis.\r\n\r\n### Axes de Recherche :\r\n1. Développement de produits à base de cannabis pour des applications thérapeutiques, en alignement avec les normes homéopathiques.\r\n2. Étude approfondie des interactions entre l'homéopathie et le cannabis pour créer des solutions de santé holistiques.\r\n\r\n### Atouts de Boiron :\r\n- Une expérience centenaire dans la fabrication de produits homéopathiques de haute qualité.\r\n- Une présence forte sur le marché international, avec des opérations dans 59 pays.\r\n- Une équipe dédiée et à la pointe de l'innovation dans le domaine de la santé naturelle.\r\n\r\n### Réorientation Stratégique :\r\n- Réallouer une partie substantielle de l'effectif de Boiron pour se concentrer sur la recherche et le développement du cannabis thérapeutique.\r\n- Adapter les infrastructures existantes aux nouvelles exigences et opportunités offertes par le secteur du cannabis thérapeutique.\r\n\r\n### Engagement pour l'Avenir :\r\n- Boiron reste engagé dans sa mission de fournir des solutions de santé innovantes et responsables.\r\n- La société continue de promouvoir une vision holistique de la santé, qui guérit sans nuire, en intégrant les dernières avancées en matière de cannabis thérapeutique.\r\n"
+        }
+      }
+    ],
+    "Create Document": [
+      {
+        "json": {
+          "kind": "drive#file",
+          "id": "16A_0QjSrlMUhIzlloNYD3K5bvQSDMuNZ",
+          "name": "Programme R&D Boiron_jeudi 4 janvier 2024 à 09:10:15 UTC.md",
+          "mimeType": "application/octet-stream"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": [
+        14
+      ]
+    },
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1704332607,
+      "possibleDuplicates": [
+        "18cd223c138c6fc6"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-04T09:36:23.000Z",
+  "versionId": "f5f0eeac-c0d8-47f9-afdf-0c3764b4a65a"
+}
