@@ -96,30 +96,15 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        60,
+        220,
         300
-      ]
-    },
-    {
-      "parameters": {
-        "content": "# ENTREE STANDARD",
-        "height": 536.060150033849,
-        "width": 536.692184943248
-      },
-      "id": "50120824-73d2-470e-ba1c-e2df8751ea2a",
-      "name": "Sticky Note4",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -60,
-        -20
       ]
     },
     {
       "parameters": {
         "operation": "reply",
         "messageId": "={{ $node[\"Execute Workflow Trigger\"].json[\"infosMail\"][\"id\"] }}",
-        "message": "={{ $node[\"Email\"].json[\"text\"] }}",
+        "message": "={{ $node[\"Email\"].json.text.substring($node[\"Email\"].json.text.indexOf('<!DOCTYPE html>')) }}",
         "options": {
           "attachmentsUi": {
             "attachmentsBinary": [
@@ -226,6 +211,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-03T21:43:03.000Z",
-  "versionId": "5145d5ff-d95b-4048-9c08-cb42faccd267"
+  "updatedAt": "2024-01-03T23:30:37.000Z",
+  "versionId": "642a77b8-63ad-49ac-bd6a-9ad2d49804e4"
 }
