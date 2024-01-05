@@ -103,6 +103,11 @@
             "node": "Google Drive",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "entree email",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -130,17 +135,6 @@
       ]
     },
     "Kin Boiron": {
-      "main": [
-        [
-          {
-            "node": "mission",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Kin CIR": {
       "main": [
         [
           {
@@ -210,7 +204,7 @@
       "main": [
         [
           {
-            "node": "Basic LLM Chain",
+            "node": "Rédacteur de Programme R&D1",
             "type": "main",
             "index": 0
           }
@@ -222,11 +216,6 @@
         [
           {
             "node": "Convert to/from binary data",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Rédacteur d'avancement",
             "type": "main",
             "index": 0
           }
@@ -277,7 +266,18 @@
         ]
       ]
     },
-    "Basic LLM Chain": {
+    "KinCIR reçoit un email via Seb": {
+      "main": [
+        [
+          {
+            "node": "IF est une commande",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur de Programme R&D1": {
       "main": [
         [
           {
@@ -293,11 +293,22 @@
         ]
       ]
     },
-    "KinCIR reçoit un email via Seb": {
+    "QAlice": {
       "main": [
         [
           {
-            "node": "IF est une commande",
+            "node": "IF est une commande1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF est une commande1": {
+      "main": [
+        [
+          {
+            "node": "Envoi de notification Telegram1",
             "type": "main",
             "index": 0
           }
@@ -525,7 +536,7 @@
     },
     {
       "parameters": {
-        "chatId": "=-1002105587743",
+        "chatId": "=-918658471",
         "text": "={{ $json.escapedText.substring($json.escapedText.length - 4000) }}",
         "additionalFields": {
           "appendAttribution": false,
@@ -543,8 +554,8 @@
       ],
       "credentials": {
         "telegramApi": {
-          "id": "lCt7ijUIUZl2RYIR",
-          "name": "Jarvis"
+          "id": "7Cv0eExXur33zcQL",
+          "name": "QAlice"
         }
       },
       "onError": "continueRegularOutput"
@@ -657,16 +668,16 @@
         "fields": {
           "values": [
             {
-              "name": "mission",
-              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.text }}"
-            },
-            {
               "name": "titre",
               "stringValue": "={{ $json.subject.replace(/[\\\\/:*?\"<>|\\x00-\\x1F]/g, '-') }}"
             },
             {
               "name": "thread",
               "stringValue": "Accomplis la mission. Continue à partir de l'étape à réaliser."
+            },
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.text }}"
             }
           ]
         },
@@ -702,30 +713,6 @@
         "telegramApi": {
           "id": "36XnU2tVylnKh3kr",
           "name": "Telegram account"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "updates": [
-          "message"
-        ],
-        "additionalFields": {}
-      },
-      "id": "5c4b1daf-e62c-4e59-8490-414e7f1c0be7",
-      "name": "Kin CIR",
-      "type": "n8n-nodes-base.telegramTrigger",
-      "typeVersion": 1,
-      "position": [
-        2740,
-        -460
-      ],
-      "webhookId": "4d1103cd-3ddd-418e-a698-b0031c93c5b4",
-      "credentials": {
-        "telegramApi": {
-          "id": "lCt7ijUIUZl2RYIR",
-          "name": "Jarvis"
         }
       },
       "disabled": true
@@ -820,7 +807,8 @@
       "position": [
         2760,
         120
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -852,25 +840,6 @@
         3960,
         120
       ]
-    },
-    {
-      "parameters": {
-        "url": "https://kins.app.n8n.cloud/webhook/redacteur-d-email",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={{ $json }}",
-        "options": {}
-      },
-      "id": "b9c3f804-6659-4d5e-8299-8a56716c767a",
-      "name": "Rédacteur d'avancement",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        5100,
-        80
-      ],
-      "disabled": true,
-      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -938,8 +907,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        4540,
-        660
+        4520,
+        280
       ],
       "credentials": {
         "openAiApi": {
@@ -1107,10 +1076,11 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.2,
       "position": [
-        4520,
-        500
+        4500,
+        120
       ],
-      "retryOnFail": true
+      "retryOnFail": true,
+      "disabled": true
     },
     {
       "parameters": {
@@ -1118,7 +1088,7 @@
           "item": [
             {
               "mode": "everyX",
-              "value": 300,
+              "value": 3,
               "unit": "minutes"
             }
           ]
@@ -1139,6 +1109,131 @@
           "name": "Gmail Seb"
         }
       }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
+        "text": "={{ $node[\"mission\"].json.mission }}\n\n# CONVERSATION\n\n{{ $json.thread }}",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "a2423c9e-2070-498d-bf6c-89d2c932a01f",
+      "name": "Rédacteur de Programme R&D1",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4520,
+        500
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "5c4b1daf-e62c-4e59-8490-414e7f1c0be7",
+      "name": "QAlice",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        2280,
+        -460
+      ],
+      "webhookId": "4d1103cd-3ddd-418e-a698-b0031c93c5b4",
+      "credentials": {
+        "telegramApi": {
+          "id": "7Cv0eExXur33zcQL",
+          "name": "QAlice"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.message.text }}",
+              "operation": "contains",
+              "value2": "/start"
+            }
+          ]
+        }
+      },
+      "id": "46fc1674-8436-414d-8d12-b19e4e14a6ec",
+      "name": "IF est une commande1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2520,
+        -460
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "=-918658471",
+        "text": "=Starting...",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true
+        }
+      },
+      "id": "11ff9e9b-28f5-4acb-830e-1f18c26f8dc1",
+      "name": "Envoi de notification Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        2740,
+        -580
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "7Cv0eExXur33zcQL",
+          "name": "QAlice"
+        }
+      },
+      "disabled": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.text }}"
+            },
+            {
+              "name": "titre",
+              "stringValue": "={{ $json.subject.replace(/[\\\\/:*?\"<>|\\x00-\\x1F]/g, '-') }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "Accomplis la mission. Continue à partir de l'étape à réaliser."
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "94150bf8-5808-4e05-aa0e-cfc5986f4567",
+      "name": "mission4",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3120,
+        1020
+      ]
     }
   ],
   "pinData": {
@@ -1170,7 +1265,7 @@
         }
       }
     ],
-    "mission": [
+    "mission4": [
       {
         "json": {
           "titre": "Programme R&D Boiron",
@@ -1198,9 +1293,9 @@
       ]
     },
     "node:KinCIR reçoit un email via Seb": {
-      "lastTimeChecked": 1704450681,
+      "lastTimeChecked": 1704475015,
       "possibleDuplicates": [
-        "18cd92d6ca739786"
+        "18cdaa0ec0d335f6"
       ]
     }
   },
@@ -1212,7 +1307,7 @@
       "name": "kin"
     }
   ],
-  "triggerCount": 1,
-  "updatedAt": "2024-01-05T11:00:08.000Z",
-  "versionId": "d54920c8-644a-4e30-ad99-288bf16fdb9c"
+  "triggerCount": 2,
+  "updatedAt": "2024-01-05T17:18:05.000Z",
+  "versionId": "ba30d30c-7541-49e4-8516-75c169b01a4c"
 }
