@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "CHERCHEUR SCIENTIFIQUE": {
       "ai_tool": [
@@ -72,17 +72,6 @@
         [
           {
             "node": "Envoi de notification Telegram",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Nico reçoit un email": {
-      "main": [
-        [
-          {
-            "node": "IF est une commande",
             "type": "main",
             "index": 0
           }
@@ -298,6 +287,17 @@
           },
           {
             "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "KinCIR reçoit un email via Seb": {
+      "main": [
+        [
+          {
+            "node": "IF est une commande",
             "type": "main",
             "index": 0
           }
@@ -565,41 +565,12 @@
     },
     {
       "parameters": {
-        "pollTimes": {
-          "item": [
-            {
-              "mode": "everyX",
-              "value": 300,
-              "unit": "minutes"
-            }
-          ]
-        },
-        "filters": {}
-      },
-      "id": "e257845d-04f1-4713-acb4-ff06aea40cd8",
-      "name": "Nico reçoit un email",
-      "type": "n8n-nodes-base.gmailTrigger",
-      "typeVersion": 1,
-      "position": [
-        2300,
-        -80
-      ],
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iPrbr6qZiWHu93N9",
-          "name": "Gmail account"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
         "conditions": {
           "string": [
             {
               "value1": "={{ $json.Subject.toLowerCase() }}",
               "operation": "contains",
-              "value2": "kincir"
+              "value2": "kincir seb"
             },
             {
               "value1": "={{ $json.From }}",
@@ -640,8 +611,8 @@
       ],
       "credentials": {
         "gmailOAuth2": {
-          "id": "iPrbr6qZiWHu93N9",
-          "name": "Gmail account"
+          "id": "yl887W245hBejl4r",
+          "name": "Gmail Seb"
         }
       }
     },
@@ -1140,6 +1111,34 @@
         500
       ],
       "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 300,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "id": "e257845d-04f1-4713-acb4-ff06aea40cd8",
+      "name": "KinCIR reçoit un email via Seb",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        -80
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "yl887W245hBejl4r",
+          "name": "Gmail Seb"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1197,6 +1196,12 @@
       "possibleDuplicates": [
         "18cd4fd8b790f941"
       ]
+    },
+    "node:KinCIR reçoit un email via Seb": {
+      "lastTimeChecked": 1704450681,
+      "possibleDuplicates": [
+        "18cd92d6ca739786"
+      ]
     }
   },
   "tags": [
@@ -1208,6 +1213,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-04T15:56:17.000Z",
-  "versionId": "137ffe46-b0bb-4720-be0b-39e0271c730a"
+  "updatedAt": "2024-01-05T11:00:08.000Z",
+  "versionId": "d54920c8-644a-4e30-ad99-288bf16fdb9c"
 }
