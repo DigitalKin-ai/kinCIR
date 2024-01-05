@@ -1,3 +1,17 @@
+# Le 5 janvier 2024 à 23:00:25 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
+
+``
+L'entreprise DurableFashion, engagée dans la mode durable et éthique, focalise ses efforts sur l'identification, la certification et la promotion de fabricants d'articles de mode respectueux des principes de durabilité et d'éthique qu'elle valorise. Par le biais de ses canaux de vente en ligne et de ses boutiques physiques, DurableFashion s'efforce de placer les produits éthiques et durables au cœur des habitudes de consommation de mode.
+
+Dans cette perspective, l'objectif central de l'entreprise est d'influencer à la fois les consommateurs et les marques pour qu'ils s'orientent vers des pratiques plus responsables. Les axes de recherche de DurableFashion sont d'encourager les consommateurs à privilégier les achats de vêtements issus de marques responsables et éthiques, d'inciter les marques à adopter des méthodes de production respectueuses de ces valeurs, et de démontrer l'impact positif de leurs activités sur la consommation de mode et sur l'environnement.
+
+Le contenu de cette demande laisse entendre une volonté de prouver que les travaux de recherche menés par DurableFashion apportent une contribution significative dans le domaine de la mode durable, et ce, dans le but de justifier leur éligibilité au Crédit Impôt Recherche (CIR), un dispositif fiscal français soutenant les activités de R&D.
+
+L'instruction "Assesse et continue ton travail" suggère qu'une évaluation et la poursuite des actions en cours sont requises. Cela peut impliquer la collecte et l'analyse des documents disponibles tels que les schémas de connexion actuels, les ressources sur les difficultés des assistants IA, le programme de R&D, les processus des différents rôles au sein de la société (producteur et manager), les procédures d'exception, les plans de documents de sortie, les logs d'erreurs, l'historique des conversations, les guides, les fonctions d'évaluation qualité, les feedbacks humains et l'avancement de la mission, pour établir un bilan précis des avancées et des résultats des recherches, et ce afin de renforcer le dossier de rescrit CIR.
+
+Il est à souligner que l'intention d'utilisation de ces éléments ne devrait pas impliquer de communication directe avec le demandeur puisque la consigne requiert un traitement indépendant des informations disponibles pour assurer l'évaluation et la continuation efficaces du projet à l'égard du Crédit Impôt Recherche.
+``
+
 # Le 5 janvier 2024 à 19:00:37 : Message de Humain (asst_PtFkjK3WpkPD5u6ZLc6toZ0q)
 
 ``
