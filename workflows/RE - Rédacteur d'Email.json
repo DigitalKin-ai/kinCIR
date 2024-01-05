@@ -96,7 +96,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        220,
+        340,
         300
       ]
     },
@@ -211,6 +211,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-03T23:30:37.000Z",
-  "versionId": "642a77b8-63ad-49ac-bd6a-9ad2d49804e4"
+  "updatedAt": "2024-01-05T13:59:32.000Z",
+  "versionId": "e0e0921f-5575-40ae-ba02-334a781a6328"
 }
