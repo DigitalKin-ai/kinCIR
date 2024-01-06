@@ -16,7 +16,7 @@
       "ai_retriever": [
         [
           {
-            "node": "Questionneur d'Etudes",
+            "node": "MultiQuery Retriever",
             "type": "ai_retriever",
             "index": 0
           }
@@ -34,6 +34,28 @@
         ]
       ]
     },
+    "Questionneur d'Etudes": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Questionneur d'Etudes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Pinecone Vector Store": {
       "ai_vectorStore": [
         [
@@ -45,45 +67,23 @@
         ]
       ]
     },
-    "Execute Workflow Trigger": {
-      "main": [
-        [
-          {
-            "node": "message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "On new manual Chat Message": {
-      "main": [
-        [
-          {
-            "node": "message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "message": {
-      "main": [
+    "MultiQuery Retriever": {
+      "ai_retriever": [
         [
           {
             "node": "Questionneur d'Etudes",
-            "type": "main",
+            "type": "ai_retriever",
             "index": 0
           }
         ]
       ]
     },
-    "Questionneur d'Etudes": {
-      "main": [
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
         [
           {
-            "node": "nouveau message",
-            "type": "main",
+            "node": "MultiQuery Retriever",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -156,7 +156,7 @@
     },
     {
       "parameters": {
-        "query": "=# Documents disponibles\n\n{{ $node[\"message\"].json.documentsDisponibles }}\n\n# Contexte\n\n{{ $node[\"message\"].json.contexte }}\n\n# Intention d'Usage\n\n{{ $node[\"message\"].json.intentionDUsage }}\n\n# Demande\n\n{{ $node[\"message\"].json[\"demandeurId\"] }} : {{ $node[\"message\"].json[\"demandeur\"] }} :\n``\n{{ $node[\"message\"].json[\"demande\"] }}\n``\n\n# Tâche\n\nQuestionneur de D'études : Retourne des citations précises issues des extraits proposés afin derépondre à la demande informationnelle."
+        "query": "=# Instructions de l'Assistant Questionneur d'études scientifiques\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nPour la création de query, injecte des mots-clés.\n\nPour chaque information, précise la provenance de l'information (nom auteur principal, année de publication).\nExemple : (Yan et al., 2020) ou Yan et al., (2020)\n\n\n# Misison Globale\n\n{{ $json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $json.query }}"
       },
       "id": "f9f5623e-d497-4bf9-bd7c-c88a831ca096",
       "name": "Questionneur d'Etudes",
@@ -164,6 +164,31 @@
       "typeVersion": 1.1,
       "position": [
         2140,
+        180
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3e236bff-7cb0-4fea-999e-c8e6b61c368f",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"response\":$json.response.text};"
+      },
+      "id": "05470c52-33c5-4484-a7dc-1e700b8f1d78",
+      "name": "nouveau message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2580,
         180
       ]
     },
@@ -203,83 +228,41 @@
       }
     },
     {
-      "parameters": {},
-      "id": "3e236bff-7cb0-4fea-999e-c8e6b61c368f",
-      "name": "Execute Workflow Trigger",
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "parameters": {
+        "options": {
+          "queryCount": 2
+        }
+      },
+      "id": "dcd474b4-422a-4a55-b50b-55012b72ecb8",
+      "name": "MultiQuery Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverMultiQuery",
       "typeVersion": 1,
       "position": [
-        1620,
-        175
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "670af865-8acf-4c6f-9c6f-3a3ba0fc7fd1",
-      "name": "On new manual Chat Message",
-      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
-      "typeVersion": 1.1,
-      "position": [
-        1620,
-        -25
+        2520,
+        380
       ]
     },
     {
       "parameters": {
-        "content": "# ENTREE STANDARD",
-        "height": 536.060150033849,
-        "width": 536.692184943248
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
       },
-      "id": "57352472-a808-4f46-9ac1-4be7d545e54a",
-      "name": "Sticky Note4",
-      "type": "n8n-nodes-base.stickyNote",
+      "id": "0c536d71-761b-46c4-a17b-4a82bf1c283d",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        1500,
-        -140
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "uM0Ul7juoL7DAqRB"
-      },
-      "id": "c99cbd93-7e05-470f-a8e9-acb87c8e8bb8",
-      "name": "message",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        1860,
-        175
-      ]
-    },
-    {
-      "parameters": {
-        "content": "# SORTIE STANDARD",
-        "height": 273.96047817628465,
-        "width": 382.2960085494244
-      },
-      "id": "ee16f5a5-bbba-4c1d-a606-5797b3ce0941",
-      "name": "Sticky Note7",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        2660,
-        80
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let message = $node[\"message\"].json;\n\nif (Object.keys($json).length == 1) {\n  message.demande = $json[Object.keys($json)[0]];\n} else {\n  message.demande = JSON.stringify($json);\n}\n\nreturn {\"message\":JSON.stringify(message)};"
-      },
-      "id": "05470c52-33c5-4484-a7dc-1e700b8f1d78",
-      "name": "nouveau message",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2800,
-        180
-      ]
+        2520,
+        600
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -298,6 +281,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-20T17:17:14.000Z",
-  "versionId": "f1203a8f-4dbc-4899-a0e0-87703979e557"
+  "updatedAt": "2024-01-06T14:09:56.000Z",
+  "versionId": "a5c3c691-34da-42d9-bca4-c8d6703012f9"
 }
