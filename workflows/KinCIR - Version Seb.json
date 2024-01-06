@@ -23,17 +23,6 @@
         ]
       ]
     },
-    "Questionneur d'Etudes": {
-      "ai_tool": [
-        [
-          {
-            "node": "Rédacteur de Programme R&D",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Questionneur de Documents": {
       "ai_tool": [
         [
@@ -101,11 +90,6 @@
         [
           {
             "node": "Google Drive",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "entree email",
             "type": "main",
             "index": 0
           }
@@ -204,7 +188,7 @@
       "main": [
         [
           {
-            "node": "Rédacteur de Programme R&D1",
+            "node": "(n8n Seb) KinCIR - Générateur de programme R&D",
             "type": "main",
             "index": 0
           }
@@ -277,22 +261,6 @@
         ]
       ]
     },
-    "Rédacteur de Programme R&D1": {
-      "main": [
-        [
-          {
-            "node": "sortie",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Escape Markdown",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "QAlice": {
       "main": [
         [
@@ -309,6 +277,33 @@
         [
           {
             "node": "Envoi de notification Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'Etudes": {
+      "ai_tool": [
+        [
+          {
+            "node": "(n8n Seb) KinCIR - Générateur de programme R&D",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "(n8n Seb) KinCIR - Générateur de programme R&D": {
+      "main": [
+        [
+          {
+            "node": "sortie",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Escape Markdown",
             "type": "main",
             "index": 0
           }
@@ -410,31 +405,6 @@
         4920,
         1120
       ]
-    },
-    {
-      "parameters": {
-        "name": "questionneur_d_etudes",
-        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
-        "workflowId": "yQ79P9nuVKhkwZpD",
-        "responsePropertyName": "message",
-        "fields": {
-          "values": [
-            {
-              "name": "message",
-              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
-            }
-          ]
-        }
-      },
-      "id": "54d1d4d7-69ec-47eb-a9dd-05f996a5fa7e",
-      "name": "Questionneur d'Etudes",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4680,
-        1320
-      ],
-      "disabled": true
     },
     {
       "parameters": {
@@ -1112,31 +1082,6 @@
     },
     {
       "parameters": {
-        "assistantId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
-        "text": "={{ $node[\"mission\"].json.mission }}\n\n# CONVERSATION\n\n{{ $json.thread }}",
-        "nativeTools": [
-          "code_interpreter",
-          "retrieval"
-        ],
-        "options": {}
-      },
-      "id": "a2423c9e-2070-498d-bf6c-89d2c932a01f",
-      "name": "Rédacteur de Programme R&D1",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4520,
-        500
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "updates": [
           "message"
         ],
@@ -1234,6 +1179,77 @@
         3120,
         1020
       ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_etudes",
+        "description": "Le Questionneur d'études retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée en Anglais, contenant :\n- Les informations que tu cherche, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n",
+        "workflowId": "yQ79P9nuVKhkwZpD",
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "={{ JSON.stringify($node[\"mission\"].json.mission) }}"
+            }
+          ]
+        }
+      },
+      "id": "a26b907c-61db-46ad-803d-ecd1f7de382d",
+      "name": "Questionneur d'Etudes",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4700,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_etudes",
+        "description": "Le Questionneur d'études retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée en Anglais, contenant :\n- Les informations que tu cherche, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n",
+        "workflowId": "yQ79P9nuVKhkwZpD",
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "={{ JSON.stringify($node[\"mission\"].json.mission) }}"
+            }
+          ]
+        }
+      },
+      "id": "e3c28ae3-168c-4e0f-b2fe-bd4b79b8140a",
+      "name": "Questionneur d'Etudes1",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5720,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
+        "text": "={{ $node[\"mission\"].json.mission }}\n\n# CONVERSATION\n\n{{ $json.thread }}",
+        "nativeTools": [
+          "code_interpreter",
+          "retrieval"
+        ],
+        "options": {}
+      },
+      "id": "a2423c9e-2070-498d-bf6c-89d2c932a01f",
+      "name": "(n8n Seb) KinCIR - Générateur de programme R&D",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4520,
+        500
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1293,9 +1309,9 @@
       ]
     },
     "node:KinCIR reçoit un email via Seb": {
-      "lastTimeChecked": 1704475015,
+      "lastTimeChecked": 1704581700,
       "possibleDuplicates": [
-        "18cdaa0ec0d335f6"
+        "18ce0fcabd48b438"
       ]
     }
   },
@@ -1308,6 +1324,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-05T17:18:05.000Z",
-  "versionId": "ba30d30c-7541-49e4-8516-75c169b01a4c"
+  "updatedAt": "2024-01-06T22:57:01.000Z",
+  "versionId": "53ba9157-cb78-4c46-97e0-de2604e2cf9b"
 }
