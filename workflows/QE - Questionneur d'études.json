@@ -88,6 +88,539 @@
           }
         ]
       ]
+    },
+    "Google Scholar Search (SerpApi)": {
+      "main": [
+        [
+          {
+            "node": "IF Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Results": {
+      "main": [
+        [
+          {
+            "node": "Foreach Result",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Foreach Result": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Set identifyMetadata",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "hasResults",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set identifyMetadata": {
+      "main": [
+        [
+          {
+            "node": "Format identifyMetadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format identifyMetadata": {
+      "main": [
+        [
+          {
+            "node": "LLM Answer identifyMetadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Answer identifyMetadata": {
+      "main": [
+        [
+          {
+            "node": "output identifyMetadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "output identifyMetadata": {
+      "main": [
+        [
+          {
+            "node": "identifyMetadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "identifyMetadata": {
+      "main": [
+        [
+          {
+            "node": "Set studyRelevance",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set studyRelevance": {
+      "main": [
+        [
+          {
+            "node": "Format studyRelevance",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format studyRelevance": {
+      "main": [
+        [
+          {
+            "node": "LLM Answer studyRelevance",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Answer studyRelevance": {
+      "main": [
+        [
+          {
+            "node": "output studyRelevance",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "output studyRelevance": {
+      "main": [
+        [
+          {
+            "node": "studyRelevance",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "studyRelevance": {
+      "main": [
+        [
+          {
+            "node": "IF Relevant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Relevant": {
+      "main": [
+        [
+          {
+            "node": "url",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Continue Loop1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format googleScholarResult": {
+      "main": [
+        [
+          {
+            "node": "Format output",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Continue Loop4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "postProcessing": {
+      "main": [
+        [
+          {
+            "node": "executeOutput",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format output": {
+      "main": [
+        [
+          {
+            "node": "postProcessing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "url": {
+      "main": [
+        [
+          {
+            "node": "IF no URL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Results": {
+      "main": [
+        [
+          {
+            "node": "Hara-kiri",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format fullData": {
+      "main": [
+        [
+          {
+            "node": "Persist In Vector DB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "doiExtractor": {
+      "main": [
+        [
+          {
+            "node": "pdfUrl",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Continue Loop1": {
+      "main": [
+        [
+          {
+            "node": "Continue Loop2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Continue Loop2": {
+      "main": [
+        [
+          {
+            "node": "Continue Loop3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Continue Loop4": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Continue Loop3": {
+      "main": [
+        [
+          {
+            "node": "Continue Loop4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format documentAgentData": {
+      "main": [
+        [
+          {
+            "node": "Populate new Document Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pdfUrl": {
+      "main": [
+        [
+          {
+            "node": "Apify PDF Crawler1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Populate new Document Agent": {
+      "main": [
+        [
+          {
+            "node": "postProcessing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Done": {
+      "main": [
+        [
+          {
+            "node": "Loop Done2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Done2": {
+      "main": [
+        [
+          {
+            "node": "postProcessing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "hasResults": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Loop Done",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "concatUrls": {
+      "main": [
+        [
+          {
+            "node": "Format fullData",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Not Empty": {
+      "main": [
+        [
+          {
+            "node": "doiExtractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check API Error": {
+      "main": [
+        [
+          {
+            "node": "Aggregate PDF text1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF no URL1": {
+      "main": [
+        [
+          {
+            "node": "IF PDF1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Continue Loop2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate PDF text1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apify Website Content Crawler1": {
+      "main": [
+        [
+          {
+            "node": "IF Not Empty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Format documentAgentData",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Format googleScholarResult",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "concatUrls",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apify PDF Crawler1": {
+      "main": [
+        [
+          {
+            "node": "Check API Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF PDF1": {
+      "main": [
+        [
+          {
+            "node": "pdfUrl",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Apify Website Content Crawler1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Continue Loop2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Continue Loop2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2023-12-18T17:45:00.944Z",
@@ -263,6 +796,759 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "url": "https://serpapi.com/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "engine",
+              "value": "google_scholar"
+            },
+            {
+              "name": "q",
+              "value": "={{ $node['searchQuery'].json[\"text\"].trim() }}"
+            },
+            {
+              "name": "as_ylo",
+              "value": "2020"
+            },
+            {
+              "name": "num",
+              "value": "10"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d36b4068-48fc-4d00-a174-1c19bab383a0",
+      "name": "Google Scholar Search (SerpApi)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        4700,
+        1660
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node['Google Scholar Search (SerpApi)'].json.search_information.organic_results_state }}",
+              "operation": "notEqual",
+              "value2": "={{ \"Fully empty\" }}"
+            }
+          ]
+        }
+      },
+      "id": "294b63d8-3c66-48a6-923c-152863e00513",
+      "name": "IF Results",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4900,
+        1660
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "organic_results",
+        "options": {}
+      },
+      "id": "2b351f43-66cb-45d6-af02-24e1cff081d7",
+      "name": "Foreach Result",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 2,
+      "position": [
+        5100,
+        1580
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "77256e5e-0c62-47e6-8fd8-6f792d8eebed",
+      "name": "No Results",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        5100,
+        1740
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "aaed693b-dbee-4d5c-8af6-a68e4daa27d5",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        5780,
+        1580
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "text",
+              "value": "=### Search Intention\n\n{{ $node[\"searchIntention\"].json[\"text\"] }}\n\n### Google Scholar Result\n\nTitle: {{ $json.title }}\nSnippet: {{ $json.snippet }}\nAuthors Summary: {{ $json.publication_info.summary }}\nResource: {{ ($json.resources)?$json.resources[0].link:(\"https://sci-hub.se/\"+$json.link) }}\nJSON:\n```json\n{{ JSON.stringify($json) }}\n```\n\n### Search Result Metadata \n\nUsing the information provided, preface with what the data is, then list of all the relevant Metadata information found for this result.\n\nResult Metadata: "
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "94d617ee-6a8c-4919-9989-630890551387",
+      "name": "Set identifyMetadata",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        6220,
+        1580
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const nodeThought = $node[\"thought1\"].json;\nconst nodeSetIdentifyMetadata = $node[\"Set identifyMetadata\"].json;\n\nconst thought = {\n  \"instance\": nodeThought.instance,\n  \"text\": nodeSetIdentifyMetadata.text,\n  \"user\": nodeThought.user,\n  \"researchAgentId\": nodeThought.researchAgentId,\n  \"forceId\": nodeThought.researchAgentId,\n  \"searchIntention\": $node[\"searchIntention\"].json['text'],\n  \"searchQuery\": $node[\"searchQuery\"].json['text'],\n  \"templateId\": nodeThought.templateId,\n  \"dataServiceId\": nodeThought.dataServiceId,\n  \"agentSpecification\": nodeThought.agentSpecification,\n  \"populationId\": nodeThought.populationId\n};\n\nconst parameters = {\n  \"namespace\": \"identifyMetadata\",\n  \"tokens\": 200,\n  \"temperature\": 1,\n  \"addToWorkingMemory\": false\n};\n\nconst result = {...thought, ...parameters};\n\nreturn { \"json\": { \"thought\": [result]}};"
+      },
+      "id": "97867fde-cea8-4b97-85bd-3d7438de8674",
+      "name": "Format identifyMetadata",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        6420,
+        1580
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "DxE1ZV3e1L9wqvCf"
+      },
+      "id": "b9094f78-3a56-4161-8a97-76fee047cc5a",
+      "name": "LLM Answer identifyMetadata",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        6620,
+        1580
+      ],
+      "notesInFlow": true,
+      "notes": "ID #02 - LLM Answer: This workflow leverages OpenAI's GPT-4 model to generate well-structured and informative answers to user queries. It incorporates nodes for input formatting, working memory retrieval, GPT-4 model execution, and output presentation. The workflow enables users to quickly obtain accurate information and support decision-making processes."
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "thought",
+        "options": {}
+      },
+      "id": "c111e7ef-0d95-41f8-86c5-d106703beb18",
+      "name": "output identifyMetadata",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        6820,
+        1580
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const ouputIdentifyMetadata = $node[\"output identifyMetadata\"].json;\n\nconst text = ouputIdentifyMetadata.text\n\nreturn { \"json\": { text }};"
+      },
+      "id": "282643d6-ff0a-4dd2-aae0-60ea1f0b1cab",
+      "name": "identifyMetadata",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        7020,
+        1580
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "text",
+              "value": "=### Search Intention\n\n{{ $node[\"searchIntention\"].json[\"text\"] }}\n\n### Google Scholar Result Metdata\n\n{{ $node[\"identifyMetadata\"].json[\"text\"] }}\n\nTitle: {{ $node[\"Split In Batches\"].json[\"title\"] }}\nSnippet: {{ $node[\"Split In Batches\"].json.snippet }}\nAuthors Summary: {{ $node[\"Split In Batches\"].json.publication_info.summary }}\nResource URL: {{ ($item(0).$node[\"Split In Batches\"].json.resources) ? $node[\"Split In Batches\"].json.resources[0].link : (\"https://sci-hub.se/\" + $node[\"Split In Batches\"].json.link) }}\n\n### Study Relevance\n\nDoes the Google Scholar Result seem relevant to the Search Intention? Answer with Yes or No, and a short explanation.\n\nStudy Relevance:\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c6cde520-f7e6-4121-aa04-b06da8b32cf0",
+      "name": "Set studyRelevance",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        6220,
+        1800
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const nodeThought = $node[\"thought1\"].json;\n\nconst thought = {\n  \"instance\": nodeThought.instance,\n  \"text\": $node['Set studyRelevance'].json['text'],\n  \"user\": nodeThought.user,\n  \"researchAgentId\": nodeThought.researchAgentId,\n  \"forceId\": nodeThought.researchAgentId,\n  \"searchIntention\": $node[\"searchIntention\"].json['text'],\n  \"searchQuery\": $node[\"searchQuery\"].json['text'],\n  \"templateId\": nodeThought.templateId,\n  \"dataServiceId\": nodeThought.dataServiceId,\n  \"agentSpecification\": nodeThought.agentSpecification,\n  \"populationId\": nodeThought.populationId\n};\n\nconst parameters = {\n  \"namespace\": \"studyRelevance\",\n  \"tokens\": 200,\n  \"temperature\": 1,\n  \"addToWorkingMemory\": false\n};\n\nconst result = {...thought, ...parameters};\n\nreturn { \"json\": { \"thought\": [result]}};"
+      },
+      "id": "287638f2-eb97-44c0-9863-5dbe102f1f34",
+      "name": "Format studyRelevance",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        6420,
+        1800
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "DxE1ZV3e1L9wqvCf"
+      },
+      "id": "77350201-fa39-4e9f-bba4-2195e1fe0455",
+      "name": "LLM Answer studyRelevance",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        6620,
+        1800
+      ],
+      "notesInFlow": true,
+      "notes": "ID #02 - LLM Answer: This workflow leverages OpenAI's GPT-4 model to generate well-structured and informative answers to user queries. It incorporates nodes for input formatting, working memory retrieval, GPT-4 model execution, and output presentation. The workflow enables users to quickly obtain accurate information and support decision-making processes."
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "thought",
+        "options": {}
+      },
+      "id": "e8322a7b-83b2-4c98-9a3d-ed66e2c1e650",
+      "name": "output studyRelevance",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        6820,
+        1800
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const ouputStudyRelevance = $node[\"output studyRelevance\"].json;\n\nconst text = ouputStudyRelevance.text\n\nreturn { \"json\": { text }};"
+      },
+      "id": "fea90007-3b34-493e-96c7-6610035c4134",
+      "name": "studyRelevance",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        7020,
+        1800
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node[\"studyRelevance\"].json.text.split('\\n')[0].toLowerCase() }}",
+              "value2": "yes"
+            }
+          ]
+        }
+      },
+      "id": "6779413d-c39e-4ab4-8b28-ef42074a18ba",
+      "name": "IF Relevant",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        7220,
+        1800
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const nodeThought = $node[\"thought1\"].json;\nconst nodeSearchIntention = $node[\"searchIntention\"].json;\nconst nodeSearchQuery = $node[\"searchQuery\"].json;\nconst nodepdfUrl = $node[\"pdfUrl\"].json;\nconst nodeAggregate = $node[\"Aggregate1\"].json;\nconst identifyMetadata = $node['identifyMetadata'].json;\n\nconst thought = {\n  \"instance\": nodeThought.instance,\n  \"agentId\": nodeThought.agentId,\n  \"agent\": nodeThought.agent,\n  \"agentName\": nodeThought.agentName,\n  \"agentNeeds\": nodeThought.agentNeeds,\n  \"agentIdentity\": nodeThought.agentIdentity,\n  \"agentFunction\": nodeThought.agentFunction,\n  \"dataServiceId\": nodeThought.dataServiceId,\n  \"populationId\": nodeThought.populationId,\n  \"maxDocumentsCount\": nodeThought.maxDocumentsCount,\n  \"providerId\": nodeThought.providerId,\n  \"namespace\": \"source\",\n  \"shortText\": identifyMetadata.text,\n  \"text\": nodeAggregate.text,\n  \"searchIntention\": nodeSearchIntention.text,\n  \"searchQuery\": nodeSearchQuery.text,\n  \"pdf\": nodepdfUrl.text,\n};\n\nreturn { \"json\": thought};"
+      },
+      "id": "26191d2a-8699-4889-bb22-e7af30a7062b",
+      "name": "Format googleScholarResult",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        10260,
+        1780
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "989ed829-b1e5-4491-95bb-db5a3ac88a06",
+      "name": "postProcessing",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        10640,
+        1780
+      ],
+      "notesInFlow": true
+    },
+    {
+      "parameters": {},
+      "id": "b18bdb80-2cf5-4099-8cfa-43030bcdf1dc",
+      "name": "executeOutput",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        10840,
+        1780
+      ],
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const allData = [];\nlet counter = 0;\n\ndo {\n  try {\n    const items = $items(\"Format googleScholarResult\", 0, counter).map(item => item.json);\n    allData.push.apply(allData, items);\n  } catch (error) {\n    return [{json: {\"thought\": allData}}];\n  }\n    counter++;\n} while(true);"
+      },
+      "id": "b1cf737a-970d-476a-8fde-d40a88723dd9",
+      "name": "Format output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        10440,
+        1780
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const url = $node[\"Split In Batches\"].json.resources ? $node[\"Split In Batches\"].json.resources[0].link : \"https://sci-hub.se/\" +  $node[\"Split In Batches\"].json.link;\n\nconst matches = url.match(/\\S+\\.[a-zA-Z]+\\S+/ig);\n\nreturn { \"json\": {\"text\" : matches[0] }};"
+      },
+      "id": "bb7be387-3919-4322-ab4c-c9cd03a1ed3d",
+      "name": "url",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        7460,
+        1800
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "Czfc4WbAtZGGai6E"
+      },
+      "id": "36451eb3-8613-4f17-b7d0-7b5f65e1888b",
+      "name": "Persist In Vector DB",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        10240,
+        1120
+      ],
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const nodeThought = $node[\"thought1\"].json;\nconst nodeSearchIntention = $node[\"searchIntention\"].json;\nconst nodeSearchQuery = $node[\"searchQuery\"].json;\nconst nodeIdentifyMetadata = $node[\"identifyMetadata\"].json;\nconst nodeSplitInBatches = $node[\"Split In Batches\"].json;\nconst nodeAggregate = $node[\"Aggregate1\"].json;\nconst nodepdfUrl = $node[\"pdfUrl\"].json;\n\nconst thought = {\n  \"instance\": nodeThought.instance,\n  \"agentId\": nodeThought.agentId,\n  \"forceId\": nodeThought.agentId,\n  \"user\": \"myself\",\n  \"agentName\": nodeThought.agentName,\n  \"agentNeeds\": nodeThought.agentNeeds,\n  \"agentFunction\": nodeThought.agentFunction,\n  \"dataServiceId\": nodeThought.dataServiceId,\n  \"populationId\": nodeThought.populationId,\n  \"providerId\": nodeThought.providerId,\n  \"namespace\": \"source\",\n  \"pdf\": nodepdfUrl.text,\n  \"text\": $json.text.sources,\n  \"searchIntention\": nodeSearchIntention.text,\n  \"searchQuery\": nodeSearchQuery.text,\n  \"title\": nodeSplitInBatches.title,\n  \"snippet\": nodeSplitInBatches.snippet,\n  \"authorsSummary\": nodeSplitInBatches.publication_info.summary,\n  \"source\": nodeSplitInBatches.resources ? nodeSplitInBatches.resources[0].link : (\"https://sci-hub.se/\" + nodeSplitInBatches.link)\n};\n\n\nconst parameters = {\n  \"namespace\": \"agent\",\n}\n\nreturn { \"json\": { \"thought\": [{...thought, ...parameters}]}};"
+      },
+      "id": "065cd3d7-89b2-4b5d-a0de-2d19e7ff38f2",
+      "name": "Format fullData",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        10060,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const text = $node['Apify Website Content Crawler1'].json.text;\n\nconst doi = text.match(/\\b(?:10[.][0-9]{4,}(?:[.][0-9]+)*\\/(?:(?![\"&\\'<>])\\S)+)\\b/ig)[0].trim();\nconst date = text.match(/(?:downloaded\\son\\s(?:\\d{4}-\\d{2}-\\d{2}))/ig)[0]?.replace('downloaded on', '').trim();\nconst doiSplit = doi.split('/');\nconst scihubPdf = `https://sci-hub.se/downloads/${date}/fd/${doiSplit[0]}@${doiSplit[1]}.pdf`\n\nreturn { \"json\": {\"text\" : scihubPdf, \"doi\": doi, \"date\": date }};"
+      },
+      "id": "254ccb2f-29f5-41b7-8298-2b77d96036e7",
+      "name": "doiExtractor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        8460,
+        1880
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const nodeThought = $node[\"thought1\"].json;\nconst nodeSplitInBatches = $node[\"Split In Batches\"].json;\nconst nodeAggregate = $node[\"Aggregate1\"].json;\n\nconst thought = {\n  \"text\": nodeAggregate.text,\n  \"agentCharLimit\": 1000,\n  \"populationId\": nodeThought.agentId,\n  \"source\": nodeSplitInBatches.resources ? nodeSplitInBatches.resources[0].link : (\"https://sci-hub.se/\" + nodeSplitInBatches.link),\n  \"templateId\": \"KDyLeBwQ13k3TZpH\",\n  \"consumerAgentId\": nodeThought.agentId\n};\n\nreturn { \"json\": {\"thought\": [thought]}};"
+      },
+      "id": "d8d5129f-7bcb-4974-a4c5-68a28ae7b1b0",
+      "name": "Format documentAgentData",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        10080,
+        1400
+      ]
+    },
+    {
+      "parameters": {
+        "queue": "Document Agent: Populate-c2sDYcF6Na1TkLEA",
+        "options": {
+          "arguments": {
+            "argument": [
+              {
+                "key": "expiration",
+                "value": "={{ 1000*60*60 }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "c8e1f2c4-9b38-4548-9a16-1200b538bbd0",
+      "name": "Populate new Document Agent",
+      "type": "n8n-nodes-base.rabbitmq",
+      "typeVersion": 1.1,
+      "position": [
+        10300,
+        1400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e55f532e-4404-479d-b21e-053dad09a1ae",
+      "name": "Continue Loop1",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        7460,
+        2100
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e35d4ff7-3414-479a-98c5-ebd1e5d38823",
+      "name": "Continue Loop2",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        8060,
+        2100
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "bf947c9c-9a5c-461b-9dd4-ca46ef5f7855",
+      "name": "Continue Loop4",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        10440,
+        2100
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "53cd18c4-dbe9-4f1b-ac6c-65368436e41b",
+      "name": "Continue Loop3",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        8420,
+        2100
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return { \"json\": {\"text\": $json.text}};"
+      },
+      "id": "fe13f129-091a-4b31-b4d9-7359c51b8fe2",
+      "name": "pdfUrl",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        8740,
+        1780
+      ]
+    },
+    {
+      "parameters": {
+        "queue": "=Research Agent-Terminate-{{ $node['thought1'].json.agentId }}",
+        "options": {
+          "arguments": {
+            "argument": [
+              {
+                "key": "expiration",
+                "value": "={{ 1000* 60 * 5 }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "f06e6d69-2fd6-43ce-8d0b-f1b3cc46a497",
+      "name": "Hara-kiri",
+      "type": "n8n-nodes-base.rabbitmq",
+      "typeVersion": 1.1,
+      "position": [
+        5300,
+        1740
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e49f60aa-f6db-4929-bb65-3607bc01ab45",
+      "name": "Loop Done",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        6520,
+        2360
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "1fd6084b-c6eb-4053-853a-f08ac354d74b",
+      "name": "Loop Done2",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        10480,
+        2360
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const results = $json;\n\nreturn { \"json\": {\"text\" : results.length > 0 && results.filter((x) => x.substring(0, 3).toLowerCase() === 'yes').length > 0 }};\n"
+      },
+      "id": "06269bf0-9672-446f-9340-f13a5126b553",
+      "name": "hasResults",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6040,
+        2360
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.text }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "a0edd1b5-3c9e-4ce6-b6cc-ca2d0fe7084f",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        6260,
+        2360
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const allData = [];\nlet counter = 0;\n\ndo {\n  try {\n    const items = $items(\"Aggregate1\", 0, counter).map(item => item.json);\n    allData.push.apply(allData, items);\n  } catch (error) {\n    const text = {'sources': allData.map((x) => x.source)?.join(', ')}\n    return {json: {text}};\n  }\n    counter++;\n} while(true);"
+      },
+      "id": "c6c279bc-3913-4d09-a094-073ff5bfc061",
+      "name": "concatUrls",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        9880,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.title }}",
+              "operation": "notEqual",
+              "value2": "={{ \"Sci-Hub: article not found\" }}"
+            }
+          ]
+        }
+      },
+      "id": "b19164f6-b6d8-40a4-9b91-a98b45a93093",
+      "name": "IF Not Empty",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        8260,
+        1880
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ !!$json.error }}"
+            }
+          ]
+        }
+      },
+      "id": "298626c2-3ed7-4076-96b4-ff2aef083af0",
+      "name": "Check API Error",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        9140,
+        1780
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $node['url'].matches == null }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "841e2dcc-e365-4cac-8682-96a8295508a2",
+      "name": "IF no URL1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        7660,
+        1800
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "var aggregatedText = \"\";\n\nfor (const item of $input.all()) {\n  aggregatedText += item.json;\n}\n\nreturn { \"json\": {\"text\": aggregatedText}};"
+      },
+      "id": "ccdc567a-bbaa-47cb-859e-adaf330a2dab",
+      "name": "Aggregate PDF text1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        9340,
+        1780
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/apify~website-content-crawler/run-sync-get-dataset-items",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n    \"crawlerType\": \"playwright:firefox\",\n    \"debugMode\": false,\n    \"maxCrawlDepth\": 0,\n    \"maxCrawlPages\": 1 ,\n    \"proxyConfiguration\": {\n        \"useApifyProxy\": true\n    },\n    \"removeElementsCssSelector\": \"header, nav, footer\",\n    \"saveHtml\": false,\n    \"saveMarkdown\": false,\n    \"saveScreenshots\": false,\n    \"startUrls\": [\n        {\n            \"url\": \"{{ ($json.text.substring(0,4).toLowerCase() == \"http\")?\"\":\"https://\" }}{{ $json.text.replaceAll(\"\\\"\",\"\").trim() }}\"\n        }\n    ],\n    \"textExtractor\": \"{{ ($node[\"thought1\"].json[\"textExtractor\"]) ? $node[\"thought1\"].json[\"textExtractor\"] : \"unfluff\" }}\"\n}",
+        "options": {}
+      },
+      "id": "5e948c7d-178a-417d-a41b-88f35a9a8d94",
+      "name": "Apify Website Content Crawler1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        8060,
+        1880
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n  item.json.source = $node[\"pdfUrl\"].json.text;\n}\n\nreturn $input.all();"
+      },
+      "id": "7404afd0-fe9e-41d5-875c-c85f29648e6a",
+      "name": "Aggregate1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        9540,
+        1780
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/yir~pdf-scraper/run-sync",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n    \"url\": \"{{ ($json.text.substring(0,4).toLowerCase() == \"http\")?\"\":\"https://\" }}{{ $json.text.replaceAll(\"\\\"\",\"\").trim() }}\"\n}",
+        "options": {}
+      },
+      "id": "91961400-0196-4baa-9eb8-765a0da51aff",
+      "name": "Apify PDF Crawler1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        8960,
+        1780
+      ],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 2000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.text }}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "contains",
+              "value2": ".pdf"
+            },
+            {
+              "operation": "contains",
+              "value2": "https://sci-hub",
+              "output": 1
+            }
+          ]
+        }
+      },
+      "id": "af143d88-9d4c-4492-94c1-ccde5f0872d7",
+      "name": "IF PDF1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        7880,
+        1800
+      ]
     }
   ],
   "pinData": {
@@ -290,6 +1576,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-07T10:52:30.000Z",
-  "versionId": "22603c22-309c-474c-bb39-243f3c176ef4"
+  "updatedAt": "2024-01-07T11:16:10.000Z",
+  "versionId": "ab29c68d-7fcf-4fc0-adf0-405f306bc54d"
 }
