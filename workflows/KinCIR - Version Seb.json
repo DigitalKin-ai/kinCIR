@@ -71,7 +71,7 @@
       "main": [
         [
           {
-            "node": "Get Email",
+            "node": "Get existing document",
             "type": "main",
             "index": 0
           }
@@ -166,7 +166,7 @@
       "main": [
         [
           {
-            "node": "mission",
+            "node": "Get Email",
             "type": "main",
             "index": 0
           }
@@ -304,6 +304,28 @@
           },
           {
             "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get existing document": {
+      "main": [
+        [
+          {
+            "node": "IF Document n'existe pas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Document n'existe pas": {
+      "main": [
+        [
+          {
+            "node": "Get Email",
             "type": "main",
             "index": 0
           }
@@ -571,14 +593,14 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        2520,
+        2000,
         -80
       ]
     },
     {
       "parameters": {
         "operation": "get",
-        "messageId": "={{ $json.id }}",
+        "messageId": "={{ $node[\"KinCIR reçoit un email via Seb\"].json.id?$node[\"KinCIR reçoit un email via Seb\"].json.id:\"18cda3a756ab4d79\" }}",
         "simple": false,
         "options": {}
       },
@@ -775,8 +797,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        2760,
-        120
+        2480,
+        140
       ],
       "disabled": true
     },
@@ -995,7 +1017,16 @@
         "parents": [
           "1PFOpdripUGox5KdYPQUbw7MxIA5C9a0F"
         ],
-        "options": {}
+        "options": {
+          "propertiesUi": {
+            "propertyValues": [
+              {
+                "key": "mailId",
+                "value": "={{ $node[\"Get Email\"].json.id }}"
+              }
+            ]
+          }
+        }
       },
       "name": "Create Document",
       "type": "n8n-nodes-base.googleDrive",
@@ -1070,7 +1101,7 @@
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1,
       "position": [
-        2300,
+        1780,
         -80
       ],
       "credentials": {
@@ -1250,6 +1281,51 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "list",
+        "useQueryString": true,
+        "queryString": "=properties has { key='mailId' and value='{{ $json.id }}' }",
+        "limit": 1,
+        "options": {}
+      },
+      "name": "Get existing document",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        2240,
+        -80
+      ],
+      "typeVersion": 1,
+      "id": "abc3c310-ebd7-4326-ba7d-c7057d1844a7",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json }}",
+              "value2": "={{ {} }}"
+            }
+          ]
+        }
+      },
+      "id": "619630ad-90a5-485f-a8d2-4c0cb83b6859",
+      "name": "IF Document n'existe pas",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2480,
+        -80
+      ]
     }
   ],
   "pinData": {
@@ -1309,9 +1385,9 @@
       ]
     },
     "node:KinCIR reçoit un email via Seb": {
-      "lastTimeChecked": 1704581700,
+      "lastTimeChecked": 1704620989,
       "possibleDuplicates": [
-        "18ce0fcabd48b438"
+        "18ce3541d947c065"
       ]
     }
   },
@@ -1324,6 +1400,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-06T22:57:01.000Z",
-  "versionId": "53ba9157-cb78-4c46-97e0-de2604e2cf9b"
+  "updatedAt": "2024-01-07T10:45:37.000Z",
+  "versionId": "23823a16-5967-4280-9e21-cd3094a38470"
 }
