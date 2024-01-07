@@ -265,7 +265,16 @@
       }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "Spécifiquement je cherche l'étude 'Scale is all you need' de OpenIA.",
+          "mission": "\"ENTREPRISE : DurableFashion\\nCONTEXTE DE L’ENTREPRISE: DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE.\\nActivités de l’entreprise : \\nIdentifier et certifier des fabricants d’articles de mode durable et éthique, \\nFaire la promotion des articles des fabricants certifiés en soulignant l’aspect durable et éthique,\\nCommercialiser les articles des fabricants certifiés via internet et ses boutiques. \\nOBJECTIF DE L’ENTREPRISE : L’entreprise désire augmenter la part de mode durable et éthique dans la mode. \\nPRINCIPAL OBJECTIF DE RECHERCHE : Le programme de recherche de DurableFashion est de développer ses capacités à influencer la consommation, et la production, d’articles de mode responsable et éthique. \\nLes THÉMATIQUES de recherche sont : \\nCapacité à influencer les consommateurs à réaliser des achats d’articles de mode responsable et éthique. \\nCapacité à influencer les marques à produire des articles de mode responsable et éthique.\\nCapacité à mesurer et diffuser l’impact des actions en faveur de la mode durable et éthique sur la consommation et la production.\\nPÉRIMÈTRE DES RECHERCHES DE L’ENTREPRISE :\\nL’entreprise souhaite focaliser ses travaux de recherche en priorité sur la création de capacités d’influence des consommateurs et des producteurs.\\nL’entreprise NE souhaite PAS directement intervenir ni dans l’organisation des supply chain, ni sur les problématiques d’organisation de la production industrielle, ni dans les procédés de conception et de fabrication des textiles.\""
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -281,6 +290,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-06T14:09:56.000Z",
-  "versionId": "a5c3c691-34da-42d9-bca4-c8d6703012f9"
+  "updatedAt": "2024-01-07T10:52:30.000Z",
+  "versionId": "22603c22-309c-474c-bb39-243f3c176ef4"
 }
