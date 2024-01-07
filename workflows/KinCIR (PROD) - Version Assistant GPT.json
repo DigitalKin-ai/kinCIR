@@ -93,11 +93,12 @@
       "main": [
         [
           {
-            "node": "Get Email",
+            "node": "Get existing document",
             "type": "main",
             "index": 0
           }
-        ]
+        ],
+        []
       ]
     },
     "IF MISSION ACCOMPLIE": {
@@ -309,6 +310,28 @@
         [
           {
             "node": "thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get existing document": {
+      "main": [
+        [
+          {
+            "node": "IF Document n'existe pas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Document n'existe pas": {
+      "main": [
+        [
+          {
+            "node": "Get Email",
             "type": "main",
             "index": 0
           }
@@ -590,7 +613,7 @@
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1,
       "position": [
-        2300,
+        1740,
         -80
       ],
       "credentials": {
@@ -627,14 +650,14 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        2520,
+        1940,
         -80
       ]
     },
     {
       "parameters": {
         "operation": "get",
-        "messageId": "={{ $json.id?$json.id:\"18c8903272883d35\" }}",
+        "messageId": "={{ $node[\"Nico reçoit un email\"].json.id?$node[\"Nico reçoit un email\"].json.id:\"18c8903272883d35\" }}",
         "simple": false,
         "options": {}
       },
@@ -857,7 +880,8 @@
       "position": [
         2500,
         180
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -1051,7 +1075,16 @@
         "parents": [
           "1PFOpdripUGox5KdYPQUbw7MxIA5C9a0F"
         ],
-        "options": {}
+        "options": {
+          "propertiesUi": {
+            "propertyValues": [
+              {
+                "key": "mailId",
+                "value": "={{ $node[\"Get Email\"].json.id }}"
+              }
+            ]
+          }
+        }
       },
       "name": "Create Document",
       "type": "n8n-nodes-base.googleDrive",
@@ -1147,6 +1180,51 @@
         4260,
         320
       ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "list",
+        "useQueryString": true,
+        "queryString": "=properties has { key='mailId' and value='{{ $json.id }}' }",
+        "limit": 1,
+        "options": {}
+      },
+      "name": "Get existing document",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        2200,
+        -80
+      ],
+      "typeVersion": 1,
+      "id": "0b3e4948-0598-432b-a82c-0ac70326f8fe",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json }}",
+              "value2": "={{ {} }}"
+            }
+          ]
+        }
+      },
+      "id": "ba22346c-f1eb-43fa-9990-1d15912da033",
+      "name": "IF Document n'existe pas",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2460,
+        -80
+      ]
     }
   ],
   "pinData": {
@@ -1224,6 +1302,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-06T22:57:00.000Z",
-  "versionId": "ce5e7041-87e3-45b8-9b84-d0717086a072"
+  "updatedAt": "2024-01-07T10:41:37.000Z",
+  "versionId": "9a539a3f-93da-41ac-a7b5-223599cd5d19"
 }
