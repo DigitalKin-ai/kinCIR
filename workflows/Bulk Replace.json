@@ -1,0 +1,394 @@
+{
+  "active": false,
+  "connections": {
+    "Update Workflow": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Workflow": {
+      "main": [
+        [
+          {
+            "node": "Clean JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Foreach Workflow": {
+      "main": [
+        [
+          {
+            "node": "Limit (remove at own risk)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Foreach Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Get Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit (remove at own risk)": {
+      "main": [
+        [
+          {
+            "node": "IF not this Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF not this Workflow": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean JSON": {
+      "main": [
+        [
+          {
+            "node": "JSON Modifications",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JSON Modifications": {
+      "main": [
+        [
+          {
+            "node": "Update Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean JSON1": {
+      "main": [
+        [
+          {
+            "node": "JSON Modifications1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JSON Modifications1": {
+      "main": [
+        [
+          {
+            "node": "Update Workflow1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Workflow (Single)": {
+      "main": [
+        [
+          {
+            "node": "Clean JSON1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "workflowId": {
+      "main": [
+        [
+          {
+            "node": "Get Workflow (Single)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-07T11:04:56.564Z",
+  "id": "IbVoJWKwat8MaUbJ",
+  "meta": null,
+  "name": "Bulk Replace",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "update",
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $('Split In Batches').item.json[\"id\"] }}",
+          "mode": "id"
+        },
+        "workflowObject": "={{ JSON.stringify($json) }}"
+      },
+      "id": "d66b0e2f-16dc-4919-8a6c-bd18cacafa9e",
+      "name": "Update Workflow",
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        }
+      },
+      "id": "620be35b-80d9-4d45-8132-38c991f2320e",
+      "name": "Get Workflow",
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "filters": {}
+      },
+      "id": "d0fbdecd-ca56-4817-9790-11870c61bbfd",
+      "name": "Foreach Workflow",
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "779b237a-b0ac-4e48-92e5-385a229be9aa",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {
+          "reset": false
+        }
+      },
+      "id": "621e43fa-0379-4f4c-bbea-0361946dc2fb",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        2000,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "limit"
+      },
+      "id": "8a3f7950-1027-497a-9d58-dd0bc6683db8",
+      "name": "Limit (remove at own risk)",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 2,
+      "position": [
+        1580,
+        200
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.id == 119 }}"
+            }
+          ]
+        }
+      },
+      "id": "d21062e0-ff09-4e25-9b79-de7df9d8008a",
+      "name": "IF not this Workflow",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "var newJson = $json;\n\ndelete newJson.createdAt;\ndelete newJson.updatedAt;\ndelete newJson.id;\ndelete newJson.active;\ndelete newJson.staticData;\ndelete newJson.pinData;\ndelete newJson.versionId;\ndelete newJson.triggerCount;\n//delete newJson.tags;\n\nnewJson.settings = {};\n\nreturn {\"json\":newJson};"
+      },
+      "id": "7863c1f6-a8b8-4fad-a5a1-518e83981d1d",
+      "name": "Clean JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        2440,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "var originalJson = $node[\"Clean JSON\"].json;\n\n// JSON changes\n/*\nObject.keys(originalJson.nodes).forEach(function(k){\n  if (\"parameters\" in originalJson.nodes[k]) {\n    if (\"workflowId\" in originalJson.nodes[k].parameters) {\n\n    }\n   }\n});\n*/\n\n// String changes\nvar originalJsonString = JSON.stringify(originalJson);\nvar newJsonString = originalJsonString;\n\nvar newJsonString = newJsonString.replaceAll(/providerAgentId/g, 'providerAgentId');\nvar newJsonString = newJsonString.replaceAll(/consumerAgentId/g, 'consumerAgentId');\n\nvar newJson = JSON.parse(newJsonString);\n\nreturn {\"json\":newJson};"
+      },
+      "id": "d4d50849-ec2f-4240-a4cf-b6692b51d50b",
+      "name": "JSON Modifications",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $node[\"workflowId\"].json.workflowId }}",
+          "mode": "id"
+        },
+        "workflowObject": "={{ JSON.stringify($json) }}"
+      },
+      "id": "483bf1a6-c47a-4e3a-909f-3ea3dd8baedf",
+      "name": "Update Workflow1",
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "var newJson = $json;\n\ndelete newJson.createdAt;\ndelete newJson.updatedAt;\ndelete newJson.id;\ndelete newJson.active;\ndelete newJson.staticData;\ndelete newJson.pinData;\ndelete newJson.versionId;\ndelete newJson.triggerCount;\n//delete newJson.tags;\n\nnewJson.settings = {};\n\nreturn {\"json\":newJson};"
+      },
+      "id": "a4cf1eb9-4351-42ff-af35-22b940a5ff88",
+      "name": "Clean JSON1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "var originalJson = $node[\"Clean JSON1\"].json;\n\n// JSON changes\n/*\nObject.keys(originalJson.nodes).forEach(function(k){\n  if (\"parameters\" in originalJson.nodes[k]) {\n    if (\"workflowId\" in originalJson.nodes[k].parameters) {\n\n      \n      if (originalJson.nodes[k].parameters.workflowId == 40){\n        originalJson.nodes[k].parameters.workflowId = \"vioR8KiJdIufbjbU\";\n      }\n  \n  \n    }\n   }\n});\n*/\n\n// String changes\nvar originalJsonString = JSON.stringify(originalJson);\nvar newJsonString = originalJsonString;\n\nvar newJsonString = newJsonString.replaceAll(/input/g, 'Input');\n\nvar newJson = JSON.parse(newJsonString);\n\nreturn {\"json\":newJson};"
+      },
+      "id": "9d305b04-649e-4a4a-9f18-407624a99a1c",
+      "name": "JSON Modifications1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        2020,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $node[\"workflowId\"].json.workflowId }}",
+          "mode": "id"
+        }
+      },
+      "id": "eec87470-0250-4388-9f79-bc74bf871964",
+      "name": "Get Workflow (Single)",
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "workflowId",
+              "value": "xC2cdP7uSwifo11v"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b43fcb36-1d7c-4112-a270-96e0128de81f",
+      "name": "workflowId",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        560
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-01-07T11:05:17.438Z",
+      "updatedAt": "2024-01-07T11:05:17.438Z",
+      "id": "g3tbWolPRHSWqvlU",
+      "name": "QoL"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-07T11:05:18.000Z",
+  "versionId": "c811950b-3150-4844-ba5f-ac0483394029"
+}
