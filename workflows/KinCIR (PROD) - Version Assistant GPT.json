@@ -97,8 +97,7 @@
             "type": "main",
             "index": 0
           }
-        ],
-        []
+        ]
       ]
     },
     "IF MISSION ACCOMPLIE": {
@@ -455,7 +454,8 @@
       "position": [
         4680,
         1320
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -880,8 +880,7 @@
       "position": [
         2500,
         180
-      ],
-      "disabled": true
+      ]
     },
     {
       "parameters": {
@@ -1211,8 +1210,8 @@
         "conditions": {
           "boolean": [
             {
-              "value1": "={{ $json }}",
-              "value2": "={{ {} }}"
+              "value1": "={{ Object.keys($json).length === 0 }}",
+              "value2": true
             }
           ]
         }
@@ -1287,9 +1286,9 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1704703912,
+      "lastTimeChecked": 1704738562,
       "possibleDuplicates": [
-        "18ce8456ce630a0d"
+        "18cea56244da90e9"
       ]
     }
   },
@@ -1302,6 +1301,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-08T08:54:34.000Z",
-  "versionId": "9a539a3f-93da-41ac-a7b5-223599cd5d19"
+  "updatedAt": "2024-01-08T18:30:35.000Z",
+  "versionId": "fac5dc15-c9ac-4522-9a7b-5370ba073a71"
 }
