@@ -151,17 +151,6 @@
         ]
       ]
     },
-    "Update Document": {
-      "main": [
-        [
-          {
-            "node": "IF MISSION ACCOMPLIE",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "When clicking \"Execute Workflow\"": {
       "main": [
         [
@@ -200,6 +189,11 @@
         [
           {
             "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IF MISSION ACCOMPLIE",
             "type": "main",
             "index": 0
           }
@@ -571,19 +565,8 @@
         "conditions": {
           "string": [
             {
-              "value1": "={{ $json.Subject.toLowerCase() }}",
-              "operation": "contains",
-              "value2": "kincir seb"
-            },
-            {
-              "value1": "={{ $json.From }}",
-              "operation": "notEqual",
-              "value2": "mailer-daemon@googlemail.com"
-            },
-            {
-              "value1": "={{ $json.From }}",
-              "operation": "notEqual",
-              "value2": "l.reynolds@digitalkin.ai"
+              "value1": "={{ $json.To }}",
+              "value2": "kincir@digitalkin.ai"
             }
           ]
         }
@@ -636,8 +619,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        5540,
-        500
+        5100,
+        700
       ]
     },
     {
@@ -811,8 +794,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        5980,
-        360
+        5560,
+        680
       ]
     },
     {
@@ -1053,8 +1036,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        5760,
-        360
+        5340,
+        680
       ]
     },
     {
@@ -1237,34 +1220,10 @@
     },
     {
       "parameters": {
-        "name": "questionneur_d_etudes",
-        "description": "Le Questionneur d'études retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée en Anglais, contenant :\n- Les informations que tu cherche, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n",
-        "workflowId": "yQ79P9nuVKhkwZpD",
-        "fields": {
-          "values": [
-            {
-              "name": "mission",
-              "stringValue": "={{ JSON.stringify($node[\"mission\"].json.mission) }}"
-            }
-          ]
-        }
-      },
-      "id": "e3c28ae3-168c-4e0f-b2fe-bd4b79b8140a",
-      "name": "Questionneur d'Etudes1",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        5720,
-        500
-      ]
-    },
-    {
-      "parameters": {
         "assistantId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
         "text": "={{ $node[\"mission\"].json.mission }}\n\n# CONVERSATION\n\n{{ $json.thread }}",
         "nativeTools": [
-          "code_interpreter",
-          "retrieval"
+          "code_interpreter"
         ],
         "options": {}
       },
@@ -1386,9 +1345,9 @@
       ]
     },
     "node:KinCIR reçoit un email via Seb": {
-      "lastTimeChecked": 1704743400,
+      "lastTimeChecked": 1704795114,
       "possibleDuplicates": [
-        "18ceaa0258f126f9"
+        "18cedb50c68eedef"
       ]
     }
   },
@@ -1401,6 +1360,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-08T19:51:27.000Z",
-  "versionId": "8c528c5a-d42a-4ede-9139-44bfdffcef30"
+  "updatedAt": "2024-01-09T10:12:41.000Z",
+  "versionId": "7a4ef175-7a78-4523-8e37-8f60839c0650"
 }
