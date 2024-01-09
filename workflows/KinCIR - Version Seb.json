@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "CHERCHEUR SCIENTIFIQUE": {
       "ai_tool": [
@@ -565,7 +565,8 @@
         "conditions": {
           "string": [
             {
-              "value1": "={{ $json.To }}",
+              "value1": "={{ $json.To.toLowerCase() }}",
+              "operation": "contains",
               "value2": "kincir@digitalkin.ai"
             }
           ]
@@ -1345,9 +1346,9 @@
       ]
     },
     "node:KinCIR reçoit un email via Seb": {
-      "lastTimeChecked": 1704795114,
+      "lastTimeChecked": 1704836939,
       "possibleDuplicates": [
-        "18cedb50c68eedef"
+        "18cf0334a2ee51c9"
       ]
     }
   },
@@ -1360,6 +1361,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-09T10:12:41.000Z",
-  "versionId": "7a4ef175-7a78-4523-8e37-8f60839c0650"
+  "updatedAt": "2024-01-09T22:07:05.000Z",
+  "versionId": "b65fbaa9-7602-4e40-adb2-3c56927559cb"
 }
