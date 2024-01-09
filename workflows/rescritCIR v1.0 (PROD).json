@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "CHERCHEUR SCIENTIFIQUE": {
       "ai_tool": [
@@ -126,7 +126,7 @@
       "main": [
         [
           {
-            "node": "Rédacteur de Programme R&D",
+            "node": "Basic LLM Chain",
             "type": "main",
             "index": 0
           }
@@ -154,22 +154,6 @@
         [
           {
             "node": "Rédacteur d'Email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Rédacteur de Programme R&D": {
-      "main": [
-        [
-          {
-            "node": "sortie",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Escape Markdown",
             "type": "main",
             "index": 0
           }
@@ -291,7 +275,7 @@
       "main": [
         [
           {
-            "node": "mission",
+            "node": "Get InitEmail",
             "type": "main",
             "index": 0
           }
@@ -314,6 +298,33 @@
         [
           {
             "node": "IF Document n'existe pas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "sortie",
             "type": "main",
             "index": 0
           }
@@ -611,7 +622,8 @@
         "conditions": {
           "string": [
             {
-              "value1": "={{ $json.To }}",
+              "value1": "={{ $json.To.toLowerCase() }}",
+              "operation": "contains",
               "value2": "rescritcir@digitalkin.ai"
             }
           ]
@@ -681,8 +693,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        2840,
-        320
+        2380,
+        160
       ],
       "disabled": true
     },
@@ -720,7 +732,7 @@
     {
       "parameters": {
         "assistantId": "asst_K25pMgsChtj1PKEenv0pM8LZ",
-        "text": "={{ $json.instructions }}\n\n# MISSION GLOBALE\n\n{{ $node[\"mission\"].json.mission }}\n\n# CONVERSATION\n\n{{ $json.thread }}",
+        "text": "=\n# CONVERSATION\n\n{{ $json.thread }}",
         "nativeTools": [
           "code_interpreter",
           "retrieval"
@@ -745,7 +757,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let entireThread = $json.thread;\nlet thread = $json.thread;\nlet instructions = $node[\"mission\"].json.instructions;\nconst MAX_LENGTH = 25000;\n\nif (thread.length > MAX_LENGTH) {\n    thread = \"[...]\" + thread.substring(thread.length - MAX_LENGTH);\n    remainingThread = entireThread.substring(0, entireThread.length - MAX_LENGTH);\n} else {\n    remainingThread = \"\"; // Aucun contenu restant si la longueur du fil est inférieure à MAX_LENGTH\n}\n\nreturn {\"thread\": thread, \"entireThread\": entireThread, \"remainingThread\": remainingThread, \"instructions\": instructions};"
+        "jsCode": "let entireThread = $json.thread;\nlet thread = $json.thread;\nlet instructions = $node[\"mission\"].json.instructions;\nconst MAX_LENGTH = 24500;\n\nif (thread.length > MAX_LENGTH) {\n    thread = \"[...]\" + thread.substring(thread.length - MAX_LENGTH);\n    remainingThread = entireThread.substring(0, entireThread.length - MAX_LENGTH);\n} else {\n    remainingThread = \"\"; // Aucun contenu restant si la longueur du fil est inférieure à MAX_LENGTH\n}\n\nreturn {\"thread\": thread, \"entireThread\": entireThread, \"remainingThread\": remainingThread, \"instructions\": instructions};"
       },
       "id": "5692a76e-3208-4e93-b8ba-71e76bfbd446",
       "name": "thread",
@@ -759,7 +771,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let sortie = $node[\"thread\"].json.entireThread.replace(/^([\"]+)|([\"]+)$/g, '');\nlet instructions = '';\n\n// Enlever toutes les lignes qui contiennent les instructions\nsortie = sortie.replace(/.*Prochaine étape.*$/gmi, '');\nsortie = sortie.replace(/.*Étape suivante.*$/gmi, '');\nsortie = sortie.replace(/^.*niveau de boucle.*$/gmi, '');\nsortie = sortie.replace(/``.*``/gmi, '');\n\n// Ajouter l'output sans guillemets de début et de fin\nif ($json.output != null) {\n  sortie += '\\n\\n' + $json.output.replace(/^([\"]+)|([\"]+)$/g, ''); \n  instructions = $json.output.match(/``.*``/gmi, '');\n  instructions = instructions ? instructions.join('\\n') : '';\n} else {\n  sortie += '\\n\\n' + $json.text.replace(/^([\"]+)|([\"]+)$/g, '');\n  instructions = $json.text.match(/``.*``/gmi, '');\n  instructions = instructions ? instructions.join('\\n') : '';\n}\n\n// Corriger le \\n\nsortie = sortie.replace('\\n', '\\r\\n');\n\nreturn {\"mission\": $node[\"mission\"].json.mission,\"thread\":sortie, \"instructions\" : instructions, \"mailId\": $node[\"Get Email\"].json.id};"
+        "jsCode": "let sortie = $node[\"thread\"].json.entireThread.replace(/^([\"]+)|([\"]+)$/g, '');\nlet output = $json.output?$json.output:$json.text;\nlet instructions = '';\n\n// Enlever toutes les lignes qui contiennent les instructions\nsortie = sortie.replace(/.*Prochaine étape.*$/gmi, '');\nsortie = sortie.replace(/.*Étape suivante.*$/gmi, '');\nsortie = sortie.replace(/^.*niveau de boucle.*$/gmi, '');\nsortie = sortie.replace(/``.*``/gmi, '');\n\n\nsortie += '\\n\\n' + output.replace(/^([\"]+)|([\"]+)$/g, ''); \ninstructions = output.match(/``.*``/gmi, '');\ninstructions = instructions ? instructions.join('\\n') : '';\n\n// Failsafe TODOLIST\nif (instructions == '') {\n  var cleanOutput = output.replace(/`/g, \"\");\n  \n  // Trouver la dernière occurrence de \"TODOLIST\"\n  var lastIndex =  cleanOutput.lastIndexOf(\"TODOLIST\");\n\n    // Si \"TODOLIST\" n'est pas trouvé, renvoyer une chaîne vide\n    if (lastIndex !== -1) {\n        // Extraire et retourner le texte après la dernière occurrence de \"TODOLIST\"\n        instructions =  cleanOutput.substring(lastIndex + \"TODOLIST\".length);\n        instrcutions = \"``\" + instructions + \"``\";\n    } \n}\n\n// Failsafe Étape\nif (instructions == '') {\n  var cleanOutput = output.replace(/`/g, \"\");\n  \n  // Trouver la dernière occurrence de \"TODOLIST\"\n  var lastIndex =  cleanOutput.lastIndexOf(\"Étape\");\n\n    // Si \"TODOLIST\" n'est pas trouvé, renvoyer une chaîne vide\n    if (lastIndex !== -1) {\n        // Extraire et retourner le texte après la dernière occurrence de \"TODOLIST\"\n        instructions =  cleanOutput.substring(lastIndex + \"TODOLIST\".length);\n        instrcutions = \"``\" + instructions + \"``\";\n    } \n}\n\n// Corriger le \\n\nsortie = sortie.replace('\\n', '\\r\\n');\n\nreturn {\"mission\": $node[\"mission\"].json.mission,\"thread\":sortie, \"instructions\" : instructions, \"mailId\": $node[\"Get Email\"].json.id};"
       },
       "id": "26e08663-a1b3-437e-9cdb-ea9296a0cdaf",
       "name": "sortie",
@@ -1017,7 +1029,7 @@
             "propertyValues": [
               {
                 "key": "mailId",
-                "value": "={{ $node[\"Nico reçoit un email\"].json.id }}"
+                "value": "={{ $json.mailId?$json.mailId:$node[\"Nico reçoit un email\"].json.id }}"
               }
             ]
           }
@@ -1086,7 +1098,7 @@
             },
             {
               "name": "mailId",
-              "stringValue": "={{ $node[\"Nico reçoit un email\"].json.id }}"
+              "stringValue": "={{ $json.mailId?$json.mailId:$node[\"Nico reçoit un email\"].json.id }}"
             }
           ]
         },
@@ -1127,7 +1139,7 @@
     {
       "parameters": {
         "operation": "get",
-        "messageId": "={{ $node[\"Nico reçoit un email\"].json.id }}",
+        "messageId": "={{ $json.mailId?$json.mailId:$node[\"Nico reçoit un email\"].json.id }}",
         "simple": false,
         "options": {}
       },
@@ -1203,6 +1215,60 @@
           "name": "Google Drive account"
         }
       }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "e77f2205-ff8b-4163-a3fb-eee4e5790db1",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        -80
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "prompt": "Accomplis la prochaine étape de la mission.",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# MISSION GLOBALE\n\n{{ $node[\"mission\"].json.mission }}\n\n# CONTEXTE DE L’ENTREPRISE\nL’ENTREPRISE dont on parle\n\nLe CONTEXTE (ce dont on parle) : \n\nOBJECTIVE GLOBAL DE L’ENTREPRISE (ce que l’entreprise cherche à changer dans le monde)\nExemple : Augmenter la part de mode durable\n\n# CONTEXTE DES RECHERCHES\n\nPRINCIPALE QUESTION DE RECHERCHE (La question dont la réponse permet d’atteindre l’objectif de recherche :\nExemple : Comment influencer la consommation et la production d'articles de mode responsable et éthique. \n\nPRINCIPAL OBJECTIF DE RECHERCHE (Ce que les travaux de R&D cherchent à rendre possible, et qui contribuera à l’objectif global) : \nExemple : Parvenir à influencer la consommation et la production d’articles de mode responsable et éthique. \n\n# STRUCTURE DE L’INFORMATION\n\nOBJECTIF DE RECHERCHE / QUESTION DE RECHERCHE\nUne QUESTION DE RECHERCHE correspond à un OBJECTIF DE RECHERCHE : répondre à la QUESTION DE RECHERCHE permet d’atteindre l’OBJECTIF DE RECHERCHE. Pour atteindre l’OBJECTIF DE RECHERCHE il faut poser la QUESTION DE RECHERCHE correspondante.\n\nTHÉMATIQUE DE RECHERCHE / OBJECTIF DE RECHERCHE \nUne THÉMATIQUE DE RECHERCHE contribue à répondre à une QUESTION DE RECHERCHE, de sorte à se rapprocher d’un OBJECTIF DE RECHERCHE. Une THÉMATIQUE DE RECHERCHE peut contribuer à répondre à plusieurs QUESTION DE RECHERCHE, et donc à l’atteinte de plusieurs OBJECTIF DE RECHERCHE\n\nDOMAINE SCIENTIFIQUE / THÉMATIQUE DE RECHERCHE :\nUne THÉMATIQUE DE RECHERCHE peut s’appuyer sur plusieurs domaines scientifiques pour atteindre ses OBJECTIFS DE RECHERCHE. Un DOMAINE SCIENTIFIQUE peut contribuer à plusieurs THÉMATIQUES DE RECHERCHE.\n\nUne THÉMATIQUE DE RECHERCHE : \n- Pose des QUESTIONS DE RECHERCHE\n- Vise à atteindre des OBJECTIFS DE RECHERCHE\n- Mobilise différents DOMAINES SCIENTIFIQUES\n- Cherche à lever des VERROUS TECHNOLOGIQUES\n- Cherche à comprendre des INCERTITUDES SCIENTIFIQUES\n- Regroupe des TRAVAUX DE RECHERCHE\n\nDOMAINE SCIENTIFIQUE\nLes connaissances et capacités d'un DOMAINE SCIENTIFIQUE sont décrites par son ÉTAT DE L’ART, qui regroupe CE QUE L’ON SAIT et CE QUE L’ON SAIT FAIRE dans le DOMAINE SCIENTIFIQUE. \n\nTRAVAUX DE RECHERCHE / THÉMATIQUE DE RECHERCHE\nDes TRAVAUX DE RECHERCHE s’inscrivent dans une THÉMATIQUE DE RECHERCHE. Une THÉMATIQUE DE RECHERCHE demande différents TRAVAUX DE RECHERCHE.\n\nVERROUS TECHNOLOGIQUE / THÉMATIQUE DE RECHERCHE\nUne THÉMATIQUE DE RECHERCHE cherche à solutionner des VERROUS TECHNOLOGIQUES. Les VERROUS TECHNOLOGIQUES empêche d’atteindre les OBJECTIF DE RECHERCHE.\n\nINCERTITUDES SCIENTIFIQUES / THÉMATIQUE DE RECHERCHE\nUne THÉMATIQUE DE RECHERCHE cherche à comprendre des INCERTITUDES SCIENTIFIQUES. Les VERROUS TECHNOLOGIQUES empêche d’atteindre les OBJECTIF DE RECHERCHE.\n\n# STYLE DE REDACTION\nQuand tu rédiges, tu insères habilement des extraits des articles scientifiques, toujours entre guillemets, et en citant ta source conformément aux bonnes pratique de citation en rédaction scientifique . Tu n'utilises pas non plus de liens dynamique. Tu considères que le support de ton texte sera du papier.\n\nTu utilises les bonnes pratiques de citations scientifique courte : (nom auteur principal, année de publication). Exemple : (Yan et al., 2020) ou Yan et al., (2020)\n\nTu ne cites jamais le nom du fichier, ni le nombre de références.\n\n# INSTRUCTIONS\n\nInstructions globales :\n- Si tu souhaites écrire des informations qui ne seront pas dans le document final (type instructions, réflexions, notes), ajoute les toujours entre deux paires de backticks (``).\n- Une seule étape à la fois : attends avant de continuer.\n\n1) Rédaction de la partie Présentation du programme de R&D :\n- Affiche le  titre  \"# Présentation du programme de R&D\"\n- Affiche  le sous titre  \"## Présentation de l'entreprise\" + le nom de l'entreprise\n- Rédige en texte une brève présentation de l'entreprise, de son but, et de ses activités. \n- Affiche \"``Étape Suivante : 2) Rédaction de la partie Contexte scientifique et économique``\".\n\n2) Rédaction de la partie Contexte scientifique et économique :\n- Affiche le titre : \"## Contexte scientifique et économique\" + le SUJET\n- Rédige une introduction sur le SUJET dont parlent les recherches, en soulignant les besoins d'évolutions vers l'objectif de recherche, les enjeux si nous ne parvenons pas à atteindre ces objectifs. Introduit également les éléments bloquants dans la situation actuelle qui font que l'objectif n'est pas du tout atteint à ce jour.\n- Donne ensuite des exemples de démarches similaires entreprises par d'autres acteurs.\n- Conclus en espérant que les travaux pourront servir à faire évoluer la situation.\n- Affiche \"``Étape Suivante : 3) Choix des thématiques de recherche``\".\n\n3) Choix des thématiques de recherche :\n- Affiche le titre \"## Présentation des thématiques de recherche\"\n- Utilise les informations dont tu dispose sur l'entreprise et tes connaissances pour choisir 3 thématiques de recherche \"A\", \"B\", et \"C\" appropriées pour l'entreprise (La réduction des cots ne peut pas faire directement l'objet d'une thématique de recherche).\n- Affiche \"``Étape Suivante : 4) Précisions sur les 3 thématiques de recherche``\".\n\n4) Précisions sur les 3 thématiques de recherche :\n- Pour chacune des THEMATIQUES DE RECHERCHE, liste 3 DOMAINES SCIENTIFIQUES qu'elle mobilise. \n- Pour chaque DOMAINE SCIENTIFIQUE  mobilisé pour la THEMATIQUE DE RECHERCHE, détermine :\n   - [APPORTS ATTENDUS]  du domaine sur la thématique et spécifiquement ce qui l'apportera\n   - [IMPORTANCE] de ces apports pour l'avancement de la thématique.\n   - [EXISTANTS] en termes de capacités et connaissances du domaine nécessaire pour  l'avancement de la thématique. Liste au moins 3 existants.\n   - [VERROUS] en termes de capacités et connaissances manquantes pour permettre l'atteinte de l'objectif de la thématique.\n   - [STATUT] : \"BLOQUANT, TRAVAUX R&D NÉCESSAIRES\" si les objectifs sont impossibles à atteindre avec l'existant ou \"EXISTANT SUFFISANT\", si l'existant permet déjà les apports attendus.\n   - [PÉRIMÈTRE] : \"RÉALISABLE EN INTERNE\" si ce domaine scientifique peut entrer dans le PÉRIMÈTRE DES RECHERCHES DE L’ENTREPRISE .\n-> Sois spécifique et précise des détails. Il peut y avoir plusieurs points par élément. Procède étape par étape.\n- Pour chacune des thématiques de recherche, présente ensuite en un petit texte  :\n   - Son nom, ses objectifs de recherche, ses questions de recherche, les domaines scientifiques qu'elle mobilise pour atteindre ses objectifs, avec pour chacun de ses domaines :\n      - les apports attendus, les existants et  les verrous.\n- Affiche le titre :  \"## État de l'art\",\n- Affiche \"``Étape Suivante : 5) Tableau de la Thématique A``\".\n\n5) Réalisation du Tableau de la thématique demandée:\n- Affiche le titre  ### Etat de l'art sur la thématique [A/B/C] - Nom de la Thématique\n- Génère un tableau structuré en markdown, avec les domaines scientifiques numérotés listés en lignes, et la première thématique de recherche en colonne, précédés de \"Thématique : \", suivie d'une colonne \"Besoin de R&D Interne ?\".\n- Dans chaque case du tableau, à partir des informations sur le domaine pour la thématique,  insère les apports attendus du domaine pour la thématique, l'importance de ces apports, les existants déjà disponibles, les verrous restant à lever, et l'intégralité du statut.\n- Si le statut est \"BLOQUANT, TRAVAUX R&D NÉCESSAIRES\", et que le périmètre est \"RÉALISABLE EN INTERNE\" insère dans la case suivante de la ligne, \"Travaux de R&D prévus\". Dans les autres cas, insère dans la case suivante de la ligne,  \"Pas de travaux R&D prévus\".\n- Affiche \"``Étape Suivante : 6) Thématique demandée : [A/B/C] - Nom de la Thématique, domaine 1``\".\n\n6) Rédaction de l'état de l'art de la thématique & domaine demandé:\n- Affiche le titre  #### Etat de l'art sur la thématique [A/B/C] - Nom de la Thématique, domaine n° NUMDOMAINE - Nom du domaine.\n-  En te basant sur l'ensemble des informations disponibles, rédige un texte d'au moins 500 mots pour expliquer en quoi l'atteinte des OBJECTIFS de recherche et n'est pas possible sans travaux de recherches dans le DOMAINE, en listant et décrivant spécifiquement les savoirs et des capacités utiles et déjà l'existant du DOMAINE. Traite indépendamment chaque existant, et pour chaque existant, utilise les verrous et incertitudes correspondants pour faire apparaitre les limites de l'existant, au regarde l'atteinte des objectifs. Focalise sur l'existant, les verrous et les incertitudes. Utilise les bonnes pratiques de la rédaction scientifique, et des citations. Rédige à le première personne du plusieurs, \"nous\", et favorise les études postérieures à 2015 pour tes citations. Donne des détails.\n- Affiche \"``Etape complétée : Etat de l'art sur la thématique [A/B/C] - Nom de la Thématique, domaine n° NUMDOMAINE - Nom du domaine.``\"\n- Affiche \"``Étape Suivante : 7) Choix de la prochaine étape``\".\n\n7) Choix de la prochaine étape:\n- Les étapes sont, dans l'ordre:\n\t- Tableau Thématique A,\n\t- Etat de l'art de Thématique A domaine 1,\n\t- Etat de l'art de Thématique A domaine 2,\n\t- Etat de l'art de Thématique A domaine 3,\n\t- Tableau Thématique B,\n\t- Etat de l'art de Thématique B domaine 1,\n\t- Etat de l'art de Thématique B domaine 2,\n\t- Etat de l'art de Thématique B domaine 3,\n\t- Tableau Thématique C,\n\t- Etat de l'art de Thématique C domaine 1,\n\t- Etat de l'art de Thématique C domaine 2,\n\t- Etat de l'art de Thématique C domaine 3.\n\t- Etape 8.\n- A partir des informations données, affiche seulement la prochaine étape à réaliser entre deux paires de backticks (``).\n\n\n8) (seulement une fois les 9 états de l'art écrits) Incertitudes et verrous scientifiques et techniques :\n- Affiche le titre : \"## Incertitudes et verrous scientifiques et techniques\" \n- Par thématique, liste les capacités nécessaires à l'atteinte des objectifs, mais rendues impossible par l'existence de verrous ou de manque de connaissances scientifiques.\n- Pour chaque capacité indisponible, liste les verrous spécifiques et les manques spécifiques de connaissances qui la rende indisponible. - Supprime les titres qui parlent de thématique dans le résultat.\n- Reformule les titres des capacités en commençant soit par \"De la complexité à\" + verbe ou \"De la complexité de\" + nom. Conserve les verrous et manques de connaissances associés.\n\nPour chacune des complexités :\n- Affiche le titre : ### Nom de la complexité\n- Explique en quoi consiste la complexité implique des incertitudes sur la capacité à atteindre les objectifs de recherche. Développe ensuite les incertitudes résultantes de chacun des verrous ou manques associés.  Souligne bien le rapport entre le sujet de complexité, les objectifs de recherche qui pourraient ne pas pouvoir etre atteint, et les effets d'une compréhension insuffisante pour les activités de l'entreprise. Parle à la première personne du pluriel, \"nous\".\n- Affiche \"``Étape Suivante : 9)``\".\n\n9) - Affiche le titre  \"## Travaux de R&D pour lever les verrous et incertitudes\"\n- Regroupe transversalement les manques de connaissances, les incertitudes et les verrous, puis, pour chacun de ces éléments, propose des travaux de recherche qui permettraient de lever les verrous, les incertitudes ou d'acquérir les connaissances. Donne quelques précisions sur le but des travaux.\n- Regroupe et organise ces travaux en workpackages (WP).\n- Affiche \"``Étape Suivante : 10)``\".\n\n10) - Affiche le titre  \"## Bibliographie\" \n- Rédige une bibliographie avec les références détaillées de toutes les citations que tu as utilisées depuis le début. Respecte les bonnes pratiques de bibliographie scientifique.\n- Si la bibliographie est complète, affiche \"``[MISSION ACCOMPLIE]``\"."
+            },
+            {
+              "type": "AIMessagePromptTemplate",
+              "message": "={{ $json.remainingThread }}\n"
+            },
+            {
+              "type": "AIMessagePromptTemplate",
+              "message": "={{ $json.thread }}"
+            },
+            {
+              "type": "HumanMessagePromptTemplate",
+              "message": "={{ $json.instructions }}"
+            }
+          ]
+        }
+      },
+      "id": "097c3d45-be31-41ce-abde-1992bbf88e4f",
+      "name": "Basic LLM Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        4380,
+        -320
+      ]
     }
   ],
   "pinData": {
@@ -1257,9 +1323,9 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1704797767,
+      "lastTimeChecked": 1704837077,
       "possibleDuplicates": [
-        "18ceddda6cfef772"
+        "18cf0355bd1c6a1a"
       ]
     }
   },
@@ -1272,6 +1338,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-09T10:57:48.000Z",
-  "versionId": "c9c16130-8d7b-4f28-b1c5-60e39eb8ad49"
+  "updatedAt": "2024-01-09T22:07:07.000Z",
+  "versionId": "88a288cd-46c8-49a4-9d4b-34194a83dad0"
 }
