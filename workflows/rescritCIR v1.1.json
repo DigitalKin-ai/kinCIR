@@ -1,66 +1,11 @@
 {
   "active": true,
   "connections": {
-    "CHERCHEUR SCIENTIFIQUE": {
-      "ai_tool": [
-        [
-          {
-            "node": "Rédacteur de Programme R&D",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Acquéreur de Citations": {
-      "ai_tool": [
-        [
-          {
-            "node": "Rédacteur de Programme R&D",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Questionneur d'Etudes": {
       "ai_tool": [
         [
           {
-            "node": "Rédacteur de Programme R&D",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Questionneur de Documents": {
-      "ai_tool": [
-        [
-          {
-            "node": "Rédacteur de Programme R&D",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Rédacteur de Document": {
-      "ai_tool": [
-        [
-          {
-            "node": "Rédacteur de Programme R&D",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ScratchPad": {
-      "ai_tool": [
-        [
-          {
-            "node": "Rédacteur de Programme R&D",
+            "node": "Rédacteur",
             "type": "ai_tool",
             "index": 0
           }
@@ -126,7 +71,7 @@
       "main": [
         [
           {
-            "node": "Basic LLM Chain",
+            "node": "Rédacteur",
             "type": "main",
             "index": 0
           }
@@ -193,7 +138,7 @@
         ],
         [
           {
-            "node": "mission",
+            "node": "Get Document",
             "type": "main",
             "index": 0
           }
@@ -326,7 +271,18 @@
         ]
       ]
     },
-    "Basic LLM Chain": {
+    "Manager": {
+      "main": [
+        [
+          {
+            "node": "sortie",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur": {
       "main": [
         [
           {
@@ -335,7 +291,7 @@
             "index": 0
           },
           {
-            "node": "sortie",
+            "node": "Manager",
             "type": "main",
             "index": 0
           }
@@ -348,96 +304,6 @@
   "meta": null,
   "name": "rescritCIR v1.1",
   "nodes": [
-    {
-      "parameters": {
-        "name": "redacteur_de_document",
-        "description": "Rédige une version améliorée d'un passage du document demandé à partir d'une demande détaillée",
-        "workflowId": "0T67aHjuqQEnrTN0",
-        "responsePropertyName": "message",
-        "fields": {
-          "values": [
-            {
-              "name": "message",
-              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
-            }
-          ]
-        }
-      },
-      "id": "d94ab638-6df8-4f7a-a145-088c314cb466",
-      "name": "Rédacteur de Document",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4620,
-        760
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "name": "questionneur_de_documents",
-        "description": "Donne une réponse précise issue du document demandé à partir d'un besoin informationnel.",
-        "workflowId": "ebLHEt0swZVT9tks",
-        "responsePropertyName": "message",
-        "fields": {
-          "values": [
-            {
-              "name": "message",
-              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
-            }
-          ]
-        }
-      },
-      "id": "e395ee4d-de66-4d0a-b6d4-059c68384189",
-      "name": "Questionneur de Documents",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4460,
-        760
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "name": "scratchpad",
-        "description": "Crée une copie temporaire de toi même, sans les accès aux fonctions, afin de pouvoir répondre aux demandes de génération textuelles et de reflexion (exemples : prendre le temps de rédiger, faire plusieurs itérations pour améliorer un texte, etc.), à partir d'une demande précise et détaillée donnée en entrée.",
-        "workflowId": "wTbd0CgnGrumh0qf",
-        "responsePropertyName": "message",
-        "fields": {
-          "values": [
-            {
-              "name": "message",
-              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
-            }
-          ]
-        }
-      },
-      "id": "4dd37922-e0cb-48d0-b4ec-26565ee703d4",
-      "name": "ScratchPad",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4740,
-        760
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "content": "# OUTILS STANDARD",
-        "height": 224.32004875594802,
-        "width": 447.22204993824914
-      },
-      "id": "913b1df1-44fe-4f78-bb00-1bd3e4ea3e4d",
-      "name": "Sticky Note5",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        4420,
-        680
-      ]
-    },
     {
       "parameters": {
         "name": "questionneur_d_etudes",
@@ -457,108 +323,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        4180,
-        880
+        4220,
+        600
       ],
       "disabled": true
-    },
-    {
-      "parameters": {
-        "name": "acquereur_de_citations",
-        "description": "Retourne des citations précises issues d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle.",
-        "workflowId": "It2FPpnGNxaxojxY",
-        "fields": {
-          "values": [
-            {
-              "name": "thread",
-              "stringValue": "={{ $node[\"thread\"].json.thread }} "
-            },
-            {
-              "name": "mission",
-              "stringValue": "={{ $node[\"mission\"].json.mission }}"
-            }
-          ]
-        }
-      },
-      "id": "eed3c912-7542-4a22-a504-cc2db41d914f",
-      "name": "Acquéreur de Citations",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4020,
-        860
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "content": "# OUTILS SPECIFIQUES",
-        "height": 413.4919569863578,
-        "width": 468.47826732357714
-      },
-      "id": "b8b5ff23-a4a0-4d69-9eec-1bc642d513c3",
-      "name": "Sticky Note6",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        3920,
-        680
-      ]
-    },
-    {
-      "parameters": {
-        "content": "# COLLABORATEURS",
-        "height": 224.32004875594802,
-        "width": 355.66820106337036
-      },
-      "id": "dd8d49b8-06a0-4955-a9a8-1b40e67170d7",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        3540,
-        680
-      ]
-    },
-    {
-      "parameters": {
-        "name": "chercheur_scientifique",
-        "description": "Donne une réponse précise issues d'études pertinentes à partir d'une demande informationnelle.",
-        "workflowId": "f4z3JUKhsFgmKRgZ",
-        "responsePropertyName": "message",
-        "fields": {
-          "values": [
-            {
-              "name": "message",
-              "stringValue": "={{ JSON.stringify($node[\"thread\"].json) }}"
-            }
-          ]
-        }
-      },
-      "id": "51665ae3-9bf4-437c-a843-5cdc471f9735",
-      "name": "CHERCHEUR SCIENTIFIQUE",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        3740,
-        760
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "content": "## Accès DB Etudes",
-        "height": 272.5167132732499,
-        "width": 391.3636040958942
-      },
-      "id": "88b5e61f-1c71-45d6-9804-1db86a49cc89",
-      "name": "Sticky Note7",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        3960,
-        780
-      ]
     },
     {
       "parameters": {
@@ -611,15 +379,17 @@
             }
           ]
         },
-        "filters": {}
+        "simple": false,
+        "filters": {},
+        "options": {}
       },
       "id": "ea56438f-d722-42b6-8c91-b2eaae8e33e4",
       "name": "Nico reçoit un email",
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1,
       "position": [
-        2360,
-        -240
+        2300,
+        -220
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -633,9 +403,14 @@
         "conditions": {
           "string": [
             {
-              "value1": "={{ $json.To.toLowerCase() }}",
+              "value1": "={{ $json.to.value[0].address }}",
               "operation": "contains",
               "value2": "rescritcirbeta@digitalkin.ai"
+            },
+            {
+              "value1": "={{ $json.from.value[0].address }}",
+              "operation": "notEqual",
+              "value2": "=l.reynolds@digitalkin.ai"
             }
           ]
         }
@@ -645,8 +420,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        2600,
-        -240
+        2560,
+        -220
       ]
     },
     {
@@ -704,8 +479,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        2380,
-        360
+        2560,
+        160
       ],
       "disabled": true
     },
@@ -742,33 +517,8 @@
     },
     {
       "parameters": {
-        "assistantId": "asst_K25pMgsChtj1PKEenv0pM8LZ",
-        "text": "=\n# CONVERSATION\n\n{{ $json.thread }}",
-        "nativeTools": [
-          "code_interpreter",
-          "retrieval"
-        ],
-        "options": {}
-      },
-      "id": "519bb1a0-6906-421d-adf8-ee2a3c45eac2",
-      "name": "Rédacteur de Programme R&D",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4400,
-        140
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let entireThread = $json.thread;\nlet thread = $json.thread;\nlet instructions = $node[\"mission\"].json.instructions;\nconst MAX_LENGTH = 24500;\n\nif (thread.length > MAX_LENGTH) {\n    thread = \"[...]\" + thread.substring(thread.length - MAX_LENGTH);\n    remainingThread = entireThread.substring(0, entireThread.length - MAX_LENGTH);\n} else {\n    remainingThread = \"\"; // Aucun contenu restant si la longueur du fil est inférieure à MAX_LENGTH\n}\n\nreturn {\"thread\": thread, \"entireThread\": entireThread, \"remainingThread\": remainingThread, \"instructions\": instructions};"
+        "jsCode": "let entireThread = $json.thread;\nlet thread = $json.thread;\nlet instructions = $json.instructions?$json.instructions:$node[\"mission\"].json.instructions;\nconst MAX_LENGTH = 24500;\n\nif (thread.length > MAX_LENGTH) {\n    thread = \"[...]\" + thread.substring(thread.length - MAX_LENGTH);\n    remainingThread = entireThread.substring(0, entireThread.length - MAX_LENGTH);\n} else {\n    remainingThread = \"\"; // Aucun contenu restant si la longueur du fil est inférieure à MAX_LENGTH\n}\n\nreturn {\"thread\": thread, \"entireThread\": entireThread, \"remainingThread\": remainingThread, \"instructions\": instructions};"
       },
       "id": "889e41c6-75e9-4e8f-8b3a-af5512d622dc",
       "name": "thread",
@@ -782,15 +532,15 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let sortie = $node[\"thread\"].json.entireThread.replace(/^([\"]+)|([\"]+)$/g, '');\nlet output = $json.output?$json.output:$json.text;\nlet instructions = '';\n\n// Enlever toutes les lignes qui contiennent les instructions\nsortie = sortie.replace(/.*Prochaine étape.*$/gmi, '');\nsortie = sortie.replace(/.*Étape suivante.*$/gmi, '');\nsortie = sortie.replace(/^.*niveau de boucle.*$/gmi, '');\nsortie = sortie.replace(/``.*``/gmi, '');\n\n\nsortie += '\\n\\n' + output.replace(/^([\"]+)|([\"]+)$/g, ''); \ninstructions = output.match(/``.*``/gmi, '');\ninstructions = instructions ? instructions.join('\\n') : '';\n\n// Failsafe TODOLIST\nif (instructions == '') {\n  var cleanOutput = output.replace(/`/g, \"\");\n  \n  // Trouver la dernière occurrence de \"TODOLIST\"\n  var lastIndex =  cleanOutput.lastIndexOf(\"TODOLIST\");\n\n    // Si \"TODOLIST\" n'est pas trouvé, renvoyer une chaîne vide\n    if (lastIndex !== -1) {\n        // Extraire et retourner le texte après la dernière occurrence de \"TODOLIST\"\n        instructions =  cleanOutput.substring(lastIndex + \"TODOLIST\".length);\n        instrcutions = \"``\" + instructions + \"``\";\n    } \n}\n\n// Failsafe Étape\nif (instructions == '') {\n  var cleanOutput = output.replace(/`/g, \"\");\n  \n  // Trouver la dernière occurrence de \"TODOLIST\"\n  var lastIndex =  cleanOutput.lastIndexOf(\"Étape\");\n\n    // Si \"TODOLIST\" n'est pas trouvé, renvoyer une chaîne vide\n    if (lastIndex !== -1) {\n        // Extraire et retourner le texte après la dernière occurrence de \"TODOLIST\"\n        instructions =  cleanOutput.substring(lastIndex + \"Étape\".length);\n        instrcutions = \"``\" + instructions + \"``\";\n    } \n}\n\n// Failsafe étape\nif (instructions == '') {\n  var cleanOutput = output.replace(/`/g, \"\");\n  \n  // Trouver la dernière occurrence de \"TODOLIST\"\n  var lastIndex =  cleanOutput.lastIndexOf(\"étape\");\n\n    // Si \"TODOLIST\" n'est pas trouvé, renvoyer une chaîne vide\n    if (lastIndex !== -1) {\n        // Extraire et retourner le texte après la dernière occurrence de \"TODOLIST\"\n        instructions =  cleanOutput.substring(lastIndex + \"étape\".length);\n        instrcutions = \"``\" + instructions + \"``\";\n    } \n}\n\n// Corriger le \\n\nsortie = sortie.replace('\\n', '\\r\\n');\n\nreturn {\"mission\": $node[\"mission\"].json.mission,\"thread\":sortie, \"instructions\" : instructions, \"mailId\": $node[\"Get Email\"].json.id};"
+        "jsCode": "let sortie = $node[\"thread\"].json.entireThread;\nlet output = $node[\"Rédacteur\"].json.output;\n\n// Enlever toutes les lignes qui contiennent les instructions\nsortie += '\\n\\n' + output; \nsortie = sortie.replace(/.*Prochaine étape.*$/gmi, '');\nsortie = sortie.replace(/.*Étape suivante.*$/gmi, '');\nsortie = sortie.replace(/^.*niveau de boucle.*$/gmi, '');\nsortie = sortie.replace(/```.*```/gmi, '');\nsortie = sortie.replace(/``.*``/gmi, '');\nsortie = sortie.replace(/`.*`/gmi, '');\nsortie = sortie.replace('\\n', '\\r\\n'); // Corriger le \\n\n\nreturn {\"mission\": $node[\"mission\"].json.mission,\"thread\":sortie, \"instructions\" : $json.output, \"mailId\": $node[\"Get Email\"].json.id};"
       },
       "id": "8afc6fac-6301-42a5-b89e-cee309272cca",
       "name": "sortie",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4760,
-        140
+        4740,
+        340
       ]
     },
     {
@@ -956,8 +706,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        3080,
-        -240
+        3040,
+        -220
       ]
     },
     {
@@ -1022,8 +772,8 @@
       "type": "n8n-nodes-base.moveBinaryData",
       "typeVersion": 1.1,
       "position": [
-        3080,
-        -40
+        3040,
+        -20
       ]
     },
     {
@@ -1049,8 +799,8 @@
       "name": "Create Document",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        3300,
-        -40
+        3260,
+        -20
       ],
       "typeVersion": 1,
       "id": "e6762081-6c53-4c08-bb27-471f2512b92e",
@@ -1121,8 +871,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        2840,
-        -40
+        2800,
+        -20
       ]
     },
     {
@@ -1159,8 +909,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        2600,
-        -40
+        2560,
+        -20
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -1214,8 +964,8 @@
       "name": "Get existing document (init)",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        2840,
-        -240
+        2800,
+        -220
       ],
       "typeVersion": 1,
       "id": "82ca986f-efa2-4f6e-89fe-b9516306f1c4",
@@ -1239,8 +989,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        4400,
-        -80
+        4360,
+        -60
       ],
       "credentials": {
         "openAiApi": {
@@ -1263,8 +1013,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        3540,
-        -40
+        3500,
+        -20
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -1301,20 +1051,74 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.2,
       "position": [
-        4380,
-        -320
+        4340,
+        -300
       ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let instructions = '';\n\n\ninstructions = $json.output.match(/``.*``/gmi, '')[0];\n//instructions = instructions ? instructions.join('\\n') : '';\n\n// Failsafe Étape\nif (instructions == '') {\n  var cleanOutput = output.replace(/`/g, \"\");\n  \n  // Trouver la dernière occurrence de \"TODOLIST\"\n  var lastIndex =  cleanOutput.lastIndexOf(\"Étape\");\n\n    // Si \"TODOLIST\" n'est pas trouvé, renvoyer une chaîne vide\n    if (lastIndex !== -1) {\n        // Extraire et retourner le texte après la dernière occurrence de \"TODOLIST\"\n        instructions =  cleanOutput.substring(lastIndex + \"Étape\".length);\n        instrcutions = \"``\" + instructions + \"``\";\n    } \n}\n\n// Failsafe étape\nif (instructions == '') {\n  var cleanOutput = output.replace(/`/g, \"\");\n  \n  // Trouver la dernière occurrence de \"TODOLIST\"\n  var lastIndex =  cleanOutput.lastIndexOf(\"étape\");\n\n    // Si \"TODOLIST\" n'est pas trouvé, renvoyer une chaîne vide\n    if (lastIndex !== -1) {\n        // Extraire et retourner le texte après la dernière occurrence de \"TODOLIST\"\n        instructions =  cleanOutput.substring(lastIndex + \"étape\".length);\n        instrcutions = \"``\" + instructions + \"``\";\n    } \n}\n\nreturn { \"instructions\" : instructions};"
+      },
+      "id": "4f8793ac-65bc-4476-a6e7-eb932689140a",
+      "name": "sortie1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5340,
+        -340
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_1Z1EK9l3h5AnHlVVkT4FuZq7",
+        "text": "=INSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS. Tu choisis la prochaine étape :\nA partir de l'avancement données, expplique en un court parapgraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique le numéro de la prochaine étape, et les informations nécessaires.\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT\n======\n\n{{ $node[\"thread\"].json.thread }}\n\nDERNIER CONTENU REDIGÉ\n======\n{{ $json.output }}\n\nINSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS. Tu choisis la prochaine étape :\nA partir de l'avancement données, expplique en un court parapgraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique le numéro de la prochaine étape, et les informations nécessaires.",
+        "nativeTools": [
+          "code_interpreter"
+        ],
+        "options": {}
+      },
+      "id": "5f49e944-5655-43ef-a62d-771f174d5119",
+      "name": "Manager",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        340
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_1Z1EK9l3h5AnHlVVkT4FuZq7",
+        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTODO\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}",
+        "nativeTools": [
+          "code_interpreter"
+        ],
+        "options": {}
+      },
+      "id": "519bb1a0-6906-421d-adf8-ee2a3c45eac2",
+      "name": "Rédacteur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        140
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
     }
   ],
   "pinData": {
-    "When clicking \"Execute Workflow\"": [
-      {
-        "json": {
-          "snippet": "# Mission L’entreprise DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE. Activité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques. Le but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode. Le principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique. Les objectifs de recherche sont : Parvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques. Parvenir à influencer les marques à produire des vêtements responsables et éthiques. Parvenir à montrer l’impact des actions sur la consommation de biens de mode et mesurer cet impact sur l’environnement.",
-          "mailId": "18c8903272883d35"
-        }
-      }
-    ],
     "mission1": [
       {
         "json": {
@@ -1344,6 +1148,13 @@
           "mission": "# Résumé Exécutif pour Boiron\r\n\r\n## Boiron : Un Tournant Stratégique vers le Cannabis Thérapeutique\r\nBoiron, leader mondial dans la fabrication de produits homéopathiques, réoriente sa stratégie vers la recherche et le développement dans le domaine du cannabis thérapeutique. Cette évolution stratégique s'appuie sur un siècle d'expertise dans la production de médicaments homéopathiques de haute qualité.\r\n\r\n### Vision et Mission :\r\n- Boiron s'engage à maximiser l'impact positif de ses innovations dans le domaine de la santé et du bien-être.\r\n- La société vise à harmoniser l'utilisation de l'homéopathie avec les avancées modernes dans le domaine du cannabis thérapeutique, ouvrant la voie à de nouvelles solutions de santé.\r\n\r\n### Principes Fondateurs :\r\n- Boiron croit fermement à l'intégration de méthodes de traitement naturelles et modernes pour améliorer la qualité de vie.\r\n- La société envisage un avenir où l'homéopathie et le cannabis thérapeutique coexistent, offrant une approche globale du bien-être.\r\n\r\n### Objectifs de Recherche :\r\n- Explorer les propriétés médicinales du cannabis et leur intégration dans des produits de santé innovants.\r\n- Concentrer les efforts de R&D sur le développement de produits combinant les principes de l'homéopathie et les avantages du cannabis.\r\n\r\n### Axes de Recherche :\r\n1. Développement de produits à base de cannabis pour des applications thérapeutiques, en alignement avec les normes homéopathiques.\r\n2. Étude approfondie des interactions entre l'homéopathie et le cannabis pour créer des solutions de santé holistiques.\r\n\r\n### Atouts de Boiron :\r\n- Une expérience centenaire dans la fabrication de produits homéopathiques de haute qualité.\r\n- Une présence forte sur le marché international, avec des opérations dans 59 pays.\r\n- Une équipe dédiée et à la pointe de l'innovation dans le domaine de la santé naturelle.\r\n\r\n### Réorientation Stratégique :\r\n- Réallouer une partie substantielle de l'effectif de Boiron pour se concentrer sur la recherche et le développement du cannabis thérapeutique.\r\n- Adapter les infrastructures existantes aux nouvelles exigences et opportunités offertes par le secteur du cannabis thérapeutique.\r\n\r\n### Engagement pour l'Avenir :\r\n- Boiron reste engagé dans sa mission de fournir des solutions de santé innovantes et responsables.\r\n- La société continue de promouvoir une vision holistique de la santé, qui guérit sans nuire, en intégrant les dernières avancées en matière de cannabis thérapeutique.\r\n"
         }
       }
+    ],
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "output": "``` La prochaine étape à réaliser, suivant l'ordre déterminé par les instructions, est l'état de l'art pour la Thématique A, domaine 1, qui concerne la Psychologie comportementale. ```"
+        }
+      }
     ]
   },
   "settings": {
@@ -1358,9 +1169,9 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1704839778,
+      "lastTimeChecked": 1704883908,
       "possibleDuplicates": [
-        "18cf05e8f8191ac3"
+        "18cf2ffee0ae2b27"
       ]
     }
   },
@@ -1373,6 +1184,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-09T22:39:14.000Z",
-  "versionId": "3aa80ce7-2870-4a09-92a9-f20fff814b38"
+  "updatedAt": "2024-01-10T10:59:54.000Z",
+  "versionId": "50bf788c-7c77-4b8e-95d5-2f7f1d30b59f"
 }
