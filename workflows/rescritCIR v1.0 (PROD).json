@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "CHERCHEUR SCIENTIFIQUE": {
       "ai_tool": [
@@ -625,6 +625,11 @@
               "value1": "={{ $json.To.toLowerCase() }}",
               "operation": "contains",
               "value2": "rescritcir@digitalkin.ai"
+            },
+            {
+              "value1": "={{ $json.From }}",
+              "operation": "notContains",
+              "value2": "l.reynolds@digitalkin.ai"
             }
           ]
         }
@@ -1323,9 +1328,9 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1704837077,
+      "lastTimeChecked": 1704883908,
       "possibleDuplicates": [
-        "18cf0355bd1c6a1a"
+        "18cf2ffee0ae2b27"
       ]
     }
   },
@@ -1338,6 +1343,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-09T22:07:07.000Z",
-  "versionId": "88a288cd-46c8-49a4-9d4b-34194a83dad0"
+  "updatedAt": "2024-01-10T10:54:30.000Z",
+  "versionId": "2694354b-050c-4a28-b4be-7bb244f45723"
 }
