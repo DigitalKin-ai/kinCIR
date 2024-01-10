@@ -1,0 +1,1109 @@
+{
+  "active": true,
+  "connections": {
+    "Questionneur d'Etudes": {
+      "ai_tool": [
+        [
+          {
+            "node": "Rédacteur",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown": {
+      "main": [
+        [
+          {
+            "node": "Envoi de notification Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nico reçoit un email": {
+      "main": [
+        [
+          {
+            "node": "IF est une commande",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF est une commande": {
+      "main": [
+        [
+          {
+            "node": "Get existing document (init)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "Update Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data1": {
+      "main": [
+        [
+          {
+            "node": "thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "thread": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sortie": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IF MISSION ACCOMPLIE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree email": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur d'Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get existing document": {
+      "main": [
+        [
+          {
+            "node": "Get Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Document n'existe pas": {
+      "main": [
+        [
+          {
+            "node": "Get InitEmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF MISSION ACCOMPLIE": {
+      "main": [
+        [
+          {
+            "node": "entree email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data2": {
+      "main": [
+        [
+          {
+            "node": "Create Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "Get Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "missionInit": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Email": {
+      "main": [
+        [
+          {
+            "node": "Get existing document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get InitEmail": {
+      "main": [
+        [
+          {
+            "node": "missionInit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "missionInit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Document": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get existing document (init)": {
+      "main": [
+        [
+          {
+            "node": "IF Document n'existe pas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Document": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manager": {
+      "main": [
+        [
+          {
+            "node": "sortie",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Manager",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-10T12:00:41.940Z",
+  "id": "PHcd3E52aZpxRhrJ",
+  "meta": null,
+  "name": "rescritCIR v1.2",
+  "nodes": [
+    {
+      "parameters": {
+        "name": "questionneur_d_etudes",
+        "description": "Le Questionneur d'études retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée en Anglais, contenant :\n- Les informations que tu cherche, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n",
+        "workflowId": "yQ79P9nuVKhkwZpD",
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "={{ JSON.stringify($node[\"mission\"].json.mission) }}"
+            }
+          ]
+        }
+      },
+      "id": "01fcdda3-6d70-47c2-a73b-0d3b745e6092",
+      "name": "Questionneur d'Etudes",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4240,
+        700
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "chatId": "=-1002105587743",
+        "text": "={{ $json.escapedText.substring($json.escapedText.length - 3900) }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "a4b9abc6-a3c6-47c5-b7f9-10c45bf0c1cf",
+      "name": "Envoi de notification Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4980,
+        -60
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "KinCIR Dynergie"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet originalText = '';\nif ($json.output != null) {\n  originalText = $json.output;\n} else {\n  originalText = $json.text;\n}\n\noriginalText = $node[\"Get existing document\"].json.name + \"\\n\\n\" + originalText\n\nconst escapedText = escapeMarkdownV2(originalText);\n\nreturn {\"json\":{\"escapedText\":escapedText}};\n"
+      },
+      "id": "12378545-713f-4a59-8305-20eeb58b8d3b",
+      "name": "Escape Markdown",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4760,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 3,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {},
+        "options": {}
+      },
+      "id": "beb50093-c793-4533-9b7e-167e540a0fd1",
+      "name": "Nico reçoit un email",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        -220
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.to.value[0].address }}",
+              "operation": "contains",
+              "value2": "rescritcirbeta@digitalkin.ai"
+            },
+            {
+              "value1": "={{ $json.from.value[0].address }}",
+              "operation": "notEqual",
+              "value2": "=l.reynolds@digitalkin.ai"
+            }
+          ]
+        }
+      },
+      "id": "b8e6171d-cde6-4cc0-b4dc-199473f2b862",
+      "name": "IF est une commande",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "fileName": "kinCIR.md",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "bba4fab5-3c07-44fb-9b0e-0b97a9a926b8",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        4980,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $node[\"Get existing document\"].json.id }}",
+          "mode": "id"
+        },
+        "changeFileContent": true,
+        "inputDataFieldName": "thread",
+        "options": {}
+      },
+      "id": "86beb44a-bac7-4f36-bdbf-3baaba6eb8b7",
+      "name": "Update Document",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        5200,
+        140
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "d5279eab-6f8f-4e19-ba8a-a4d24aded145",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        160
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "workflowId": "rr8aeSM8QYyY8Po4"
+      },
+      "id": "cb160531-0ef7-4034-a772-2687d9e0ba23",
+      "name": "Rédacteur d'Email",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5420,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "id": "615e1ba1-49dd-4680-9284-f4921ff04af1",
+      "name": "Convert to/from binary data1",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        3980,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let entireThread = $json.thread;\nlet thread = $json.thread;\nlet instructions = $json.instructions?$json.instructions:$node[\"mission\"].json.instructions;\nconst MAX_LENGTH = 15000;\n\nif (thread.length > MAX_LENGTH) {\n    thread = \"Le début du document est déjà rédigé, voici les denières parties rédigées :\\n[...]\" + thread.substring(thread.length - MAX_LENGTH);\n    remainingThread = entireThread.substring(0, entireThread.length - MAX_LENGTH);\n} else {\n    remainingThread = \"\"; // Aucun contenu restant si la longueur du fil est inférieure à MAX_LENGTH\n}\n\nreturn {\"thread\": thread, \"entireThread\": entireThread, \"remainingThread\": remainingThread, \"instructions\": instructions};"
+      },
+      "id": "bc837795-41f4-419d-989f-3f54dd33e02f",
+      "name": "thread",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4200,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let sortie = $node[\"thread\"].json.entireThread;\nlet output = $node[\"Rédacteur\"].json.output;\n\n// Enlever toutes les lignes qui contiennent les instructions\nsortie += '\\n\\n' + output; \nsortie = sortie.replace(/.*Prochaine étape.*$/gmi, '');\nsortie = sortie.replace(/.*Étape suivante.*$/gmi, '');\nsortie = sortie.replace(/^.*niveau de boucle.*$/gmi, '');\nsortie = sortie.replace(/```.*```/gmi, '');\nsortie = sortie.replace(/``.*``/gmi, '');\n//sortie = sortie.replace(/`.*`/gmi, '');\nsortie = sortie.replace('\\n', '\\r\\n'); // Corriger le \\n\n\nreturn {\"mission\": $node[\"mission\"].json.mission,\"thread\":sortie, \"instructions\" : $json.output, \"mailId\": $node[\"Get Email\"].json.id};"
+      },
+      "id": "39c2984e-73e4-4b50-b92e-501c258c1088",
+      "name": "sortie",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4740,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.snippet }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "={{ $json.thread }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "3e7c2e16-1f2d-4307-9de0-d88708bbe941",
+      "name": "mission1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3000,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.snippet }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "={{ $json.thread }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "aea25a36-0f91-4608-87c8-a2f54563afd7",
+      "name": "mission2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3180,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.snippet }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "={{ $json.thread }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "6cb3a4ec-4d4a-49c2-8b8f-e2a5bc716ec6",
+      "name": "mission3",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        2800,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let infosMail = $node[\"Get Email\"].json;\nlet createdDocument = $node[\"Get existing document\"].json;\nlet sortie = $node[\"sortie\"].json;\n\n\nreturn {\n  \"infosMail\": infosMail,\n  \"createdDocument\": createdDocument,\n  \"sortie\": sortie\n};"
+      },
+      "id": "c4123082-22cb-411a-8a0e-9a433c08cb1a",
+      "name": "entree email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5200,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=# MISSION GLOBALE\n\n{{ $json.text }}"
+            },
+            {
+              "name": "titre",
+              "stringValue": "={{ $json.subject.replace(/[\\\\/:*?\"<>|\\x00-\\x1F]/g, '-') }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "Accomplis la mission. Continue à partir de l'étape à réaliser."
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "13e0a3ae-e1cb-4432-937d-1b96607963e1",
+      "name": "mission4",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        2620,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "list",
+        "useQueryString": true,
+        "queryString": "=properties has { key='mailId' and value='{{ $json.id }}' }",
+        "limit": 1,
+        "options": {}
+      },
+      "name": "Get existing document",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        3540,
+        140
+      ],
+      "typeVersion": 1,
+      "id": "4be0639b-ae74-4735-af6a-f4aca92ee560",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($json).length === 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "d13e5042-9abf-48a9-a03a-6c5a15f23e4c",
+      "name": "IF Document n'existe pas",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3040,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "KQiqbfxmbpqOIIi2"
+      },
+      "id": "cade2197-a603-4fed-aa6b-9252ae3131b5",
+      "name": "Loop",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5200,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.instructions.toLowerCase() }}",
+              "operation": "contains",
+              "value2": "[mission accomplie]"
+            }
+          ]
+        }
+      },
+      "id": "976d3461-b9f3-41bf-9317-cb9daaac77d7",
+      "name": "IF MISSION ACCOMPLIE",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4980,
+        340
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b35f0d62-1320-4bf8-b209-7475828c03d6",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        2840,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "instructions",
+        "destinationKey": "instructions",
+        "options": {
+          "fileName": "={{ $json.titre }}.md",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "a682a633-2f70-465e-934f-9caeb30d192a",
+      "name": "Convert to/from binary data2",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        3040,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "binaryData": true,
+        "binaryPropertyName": "instructions",
+        "name": "={{ $node[\"missionInit\"].json.titre.replace(/[\\\\/:*?\"<>|\\x00-\\x1F]/g, '-') }}_{{ new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'long' }).format($now) }}.md",
+        "parents": [
+          "1PFOpdripUGox5KdYPQUbw7MxIA5C9a0F"
+        ],
+        "options": {
+          "propertiesUi": {
+            "propertyValues": [
+              {
+                "key": "mailId",
+                "value": "={{ $json.mailId?$json.mailId:$node[\"Nico reçoit un email\"].json.id }}"
+              }
+            ]
+          }
+        }
+      },
+      "name": "Create Document",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        3260,
+        -20
+      ],
+      "typeVersion": 1,
+      "id": "b61f3b9e-19f1-4a4d-8b23-dd4bf44ccf92",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "={{ $json.mission }}"
+            },
+            {
+              "name": "instructions",
+              "stringValue": "={{ $json.instructions }}"
+            },
+            {
+              "name": "mailId",
+              "stringValue": "={{ $json.mailId }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "1280253e-8234-4b69-b464-0d68bd3f3bac",
+      "name": "mission",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3080,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "={{ $json.text }}"
+            },
+            {
+              "name": "titre",
+              "stringValue": "={{ $json.subject.replace(/[\\\\/:*?\"<>|\\x00-\\x1F]/g, '-') }}"
+            },
+            {
+              "name": "instructions",
+              "stringValue": "=``Accomplis la mission à partir du début.``"
+            },
+            {
+              "name": "mailId",
+              "stringValue": "={{ $json.mailId?$json.mailId:$node[\"Nico reçoit un email\"].json.id }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "0a5ef39b-af51-456d-9cc1-7f0e638f0dc2",
+      "name": "missionInit",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        2800,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "={{ $json.mailId }}",
+        "simple": false,
+        "options": {}
+      },
+      "id": "63da6719-249e-4c23-8868-da264cc348b4",
+      "name": "Get Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        3300,
+        140
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "={{ $json.mailId?$json.mailId:$node[\"Nico reçoit un email\"].json.id }}",
+        "simple": false,
+        "options": {}
+      },
+      "id": "e8b88df5-2cda-4429-a5b3-c75c7e37406e",
+      "name": "Get InitEmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2560,
+        -20
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $node[\"Get existing document\"].json.id }}",
+          "mode": "id"
+        },
+        "binaryPropertyName": "thread",
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/rtf"
+            }
+          }
+        }
+      },
+      "name": "Get Document",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        3760,
+        140
+      ],
+      "typeVersion": 1,
+      "id": "accceb89-af91-4e98-8efa-b6f8eee93504",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "list",
+        "useQueryString": true,
+        "queryString": "=properties has { key='mailId' and value='{{ $json.id }}' }",
+        "limit": 1,
+        "options": {}
+      },
+      "name": "Get existing document (init)",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        2800,
+        -220
+      ],
+      "typeVersion": 1,
+      "id": "d4240155-a6ce-4fe1-9f63-41df7e3e2c9e",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $node[\"Get InitEmail\"].json[\"id\"] }}",
+        "message": "=Bonjour,\n\nMission bien reçue, je m'y mets immédiatement.\n\nAutomatiquement vôtre,\n\nKinCIR",
+        "options": {
+          "replyToSenderOnly": true
+        }
+      },
+      "id": "cfcf957e-b143-4873-ae22-0fcbc47400a0",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        3500,
+        -20
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_5OL3fln1KrQnhQE5H4TnvBkT",
+        "text": "=INSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS : tu annonces clairement la prochaine étape au rédacteur.\n\n- Si sont listées dans \"Dernières Instructions\" ou \"Rédaction réalisée\" les Thématiques choisis et Domaines par thématique, liste les avec leur Lettre / numéro. Exemple :\n\n``\nTHEMATIQUES ET THEMES :\n- Thématique A : %NOM%\n   - Thématique A, Domaine 1 : %NOM%\n   - Thématique A, Domaine 2 : %NOM%\n   - Thématique A, Domaine 3 : %NOM%\n- Thématique B : %NOM%\n   - Thématique B, Domaine 1 : [Encore non défini]\n   - Thématique B, Domaine 2 : [Encore non défini]\n   - Thématique B, Domaine 3 : [Encore non défini]\n- Thématique C : %NOM%\netc.\n``\n\n- Quel travail vient d'être réalisé dans \"Rédaction réalisée\" Fais le point sur l'avancement en listant l'ensemble des Etapes, avec TODO/DONE. Les parties avant \"[...]\" sont toutes \"DONE\", et les parties doivent être exécutées dans l'ordre (pas de retour en arrière ou amélioration). Exemple :\n\n``\nTODOLIST :\n- Présentation de l'entreprise (TODO/DONE)\n- Contexte scientifique et économique (TODO/DONE)\n- Présentation des thématiques de recherche (TODO/DONE)\n- Périmètre des besoins de R&D (TODO/DONE)\n- Tableau Thématique A (TODO/DONE)\n- Etat de l'art de Thématique A domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 3 (TODO/DONE)\n- Tableau Thématique B (TODO/DONE)\n- Etat de l'art de Thématique B domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 3 (TODO/DONE)\n- Tableau Thématique C (TODO/DONE)\n- Etat de l'art de Thématique C domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 3 (TODO/DONE)\n- Incertitudes et verrous scientifiques et techniques (TODO/DONE)\n- Travaux de R&D pour lever les verrous et incertitudes (TODO/DONE)\n- Bibliographie (TODO/DONE)\n``\n\n- Puis choisis la prochaine étape : A partir de l'avancement données, explique en un court parapgraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique clairement au rédacteur la prochaine étape avec son numéro.\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT\n======\n\n{{ $node[\"thread\"].json.thread }}\n\nDERNIER CONTENU REDIGÉ\n======\n\nDernières Instructions\n------\n\n{{ $node[\"thread\"].json.instructions }}\n\nRédaction réalisée\n------\n\n{{ $json.output }}\n\nINSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS : tu annonces clairement la prochaine étape au rédacteur.\n\n- Si sont listées dans \"Dernières Instructions\" ou \"Rédaction réalisée\" les Thématiques choisis et Domaines par thématique, liste les avec leur Lettre / numéro. Exemple :\n\n``\nTHEMATIQUES ET THEMES :\n- Thématique A : %NOM%\n   - Thématique A, Domaine 1 : %NOM%\n   - Thématique A, Domaine 2 : %NOM%\n   - Thématique A, Domaine 3 : %NOM%\n- Thématique B : %NOM%\n   - Thématique B, Domaine 1 : [Encore non défini]\n   - Thématique B, Domaine 2 : [Encore non défini]\n   - Thématique B, Domaine 3 : [Encore non défini]\n- Thématique C : %NOM%\netc.\n``\n\n- Quel travail vient d'être réalisé dans \"Rédaction réalisée\" Fais le point sur l'avancement en listant l'ensemble des Etapes, avec TODO/DONE. Les parties avant \"[...]\" sont toutes \"DONE\", et les parties doivent être exécutées dans l'ordre (pas de retour en arrière ou amélioration). Exemple :\n\n``\nTODOLIST :\n- Présentation de l'entreprise (TODO/DONE)\n- Contexte scientifique et économique (TODO/DONE)\n- Présentation des thématiques de recherche (TODO/DONE)\n- Périmètre des besoins de R&D (TODO/DONE)\n- Tableau Thématique A (TODO/DONE)\n- Etat de l'art de Thématique A domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 3 (TODO/DONE)\n- Tableau Thématique B (TODO/DONE)\n- Etat de l'art de Thématique B domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 3 (TODO/DONE)\n- Tableau Thématique C (TODO/DONE)\n- Etat de l'art de Thématique C domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 3 (TODO/DONE)\n- Incertitudes et verrous scientifiques et techniques (TODO/DONE)\n- Travaux de R&D pour lever les verrous et incertitudes (TODO/DONE)\n- Bibliographie (TODO/DONE)\n``\n\n- Puis choisis la prochaine étape : A partir de l'avancement données, explique en un court parapgraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique clairement au rédacteur la prochaine étape avec son numéro.",
+        "options": {}
+      },
+      "id": "2200d225-204c-4a87-aaa0-04743f0763f1",
+      "name": "Manager",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        340
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_ddXfHDOSyS7NJsoinaOJTOy5",
+        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
+        "options": {}
+      },
+      "id": "591b4f82-f07a-44a0-98c4-82ac1fc754b3",
+      "name": "Rédacteur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        140
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "mission1": [
+      {
+        "json": {
+          "mission": "ENTREPRISE : DurableFashion\nCONTEXTE DE L’ENTREPRISE: DurableFashion est spécialisée dans la MODE DURABLE ET ÉTHIQUE.\nActivités de l’entreprise : \nIdentifier et certifier des fabricants d’articles de mode durable et éthique, \nFaire la promotion des articles des fabricants certifiés en soulignant l’aspect durable et éthique,\nCommercialiser les articles des fabricants certifiés via internet et ses boutiques. \nOBJECTIF DE L’ENTREPRISE : L’entreprise désire augmenter la part de mode durable et éthique dans la mode. \nPRINCIPAL OBJECTIF DE RECHERCHE : Le programme de recherche de DurableFashion est de développer ses capacités à influencer la consommation, et la production, d’articles de mode responsable et éthique. \nLes THÉMATIQUES de recherche sont : \nCapacité à influencer les consommateurs à réaliser des achats d’articles de mode responsable et éthique. \nCapacité à influencer les marques à produire des articles de mode responsable et éthique.\nCapacité à mesurer et diffuser l’impact des actions en faveur de la mode durable et éthique sur la consommation et la production.\nPÉRIMÈTRE DES RECHERCHES DE L’ENTREPRISE :\nL’entreprise souhaite focaliser ses travaux de recherche en priorité sur la création de capacités d’influence des consommateurs et des producteurs.\nL’entreprise NE souhaite PAS directement intervenir ni dans l’organisation des supply chain, ni sur les problématiques d’organisation de la production industrielle, ni dans les procédés de conception et de fabrication des textiles."
+        }
+      }
+    ],
+    "mission2": [
+      {
+        "json": {
+          "mission": "L'entreprise KANOPEE est spécialisée dans la création de services et solutions innovantes pour le monde de la construction et de l'immobilier. \nActivité : Kanopée pilote la création de startups dans son secteur. Elle réunit régulièrement un grand nombre de décideurs du domaine, pour les faire travailler ensemble à résoudre des problèmes transversaux à la filière. Quand une solution possible est imaginée, Kanopée trouve des porteurs de projet, des premiers clients et des financements pour lancer une startup, et le produit ainsi développé contribue à faire avancer les acteurs du domaine et l'avancement général de l’innovation dans domaine.\nL'objectif de Kanopee est d'accélérer la vitesse d’évolution de la construction et l'immobilier par l’innovation.\nL’objectif de recherche de l’entreprise est de réussir à mieux comprendre et actionner les mécanismes d’émergence, de développement et d’adoption des solutions innovantes.\n\nLes thématiques de recherche sont : \nLa capacité de mobilisation des acteurs pour l’amélioration de la situation actuelle\nLa capacité de conviction des dirigeants pour accélérer l’adoption des innovations existantes et futures\nLa capacité à améliorer les taux de réussite des Innovations dans le secteur par la mutualisation et le partage des expériences sur le sujet \nLa société dispose de plusieurs atouts :\nL'accès à un réseaux important de dirigeants\nLa connaissance détaillée d'un grand nombre de projets de startup dans le secteurs depuis la naissance de ces projets\nUne forte reconnaissance de son expertise en approches coopératives.\nL'influence suffisante pour proposer des démarches communes et fédératives\nLa grande expérience entrepreneuriale de ses 2 fondateurs"
+        }
+      }
+    ],
+    "mission3": [
+      {
+        "json": {
+          "mission": "RDLand est une entreprise spécialisée dans la conception de programmes de R&D et le financement de la R&D.\nLe but de l’entreprise est de maximiser les chances de succès de recherches à fort potentiel d’impact, quel que soit le domaine.\nPour celà, l’entreprise accompagne les entreprises dans l’élaboration de leurs programmes de recherche, la définition des grandes thématiques et objectifs, la formalisation de ces programmes et l’obtention de financements permettant de les réaliser.\nL’objectif de recherche de l’entreprise est de réussir à mieux comprendre et actionner les mécanismes de détection, financement et réalisation des recherches à plus fort potentiel d’impact.\n\nLes thématiques de recherche sont : \nLes capacités à maximiser la détection d’opportunités de recherche à fort potentiel d’impact.\nLes capacités de construction des programmes de recherches collaboratifs pour maximiser leur potentiel de succès.\nLes capacités d’optimisation d’obtention de financements publics et privés pour maximiser les taux de concrétisation des recherches.\n\nL’entreprise dispose d’une grande expérience dans son métier, d’un important réseau dans le domaine de la R&D et des financements publics et privés, et d’une importante base de données sur les différents dispositifs de financement."
+        }
+      }
+    ],
+    "mission4": [
+      {
+        "json": {
+          "titre": "Programme R&D Boiron",
+          "thread": "Accomplis la mission. Continue à partir de l'étape à réaliser.",
+          "mission": "# Résumé Exécutif pour Boiron\r\n\r\n## Boiron : Un Tournant Stratégique vers le Cannabis Thérapeutique\r\nBoiron, leader mondial dans la fabrication de produits homéopathiques, réoriente sa stratégie vers la recherche et le développement dans le domaine du cannabis thérapeutique. Cette évolution stratégique s'appuie sur un siècle d'expertise dans la production de médicaments homéopathiques de haute qualité.\r\n\r\n### Vision et Mission :\r\n- Boiron s'engage à maximiser l'impact positif de ses innovations dans le domaine de la santé et du bien-être.\r\n- La société vise à harmoniser l'utilisation de l'homéopathie avec les avancées modernes dans le domaine du cannabis thérapeutique, ouvrant la voie à de nouvelles solutions de santé.\r\n\r\n### Principes Fondateurs :\r\n- Boiron croit fermement à l'intégration de méthodes de traitement naturelles et modernes pour améliorer la qualité de vie.\r\n- La société envisage un avenir où l'homéopathie et le cannabis thérapeutique coexistent, offrant une approche globale du bien-être.\r\n\r\n### Objectifs de Recherche :\r\n- Explorer les propriétés médicinales du cannabis et leur intégration dans des produits de santé innovants.\r\n- Concentrer les efforts de R&D sur le développement de produits combinant les principes de l'homéopathie et les avantages du cannabis.\r\n\r\n### Axes de Recherche :\r\n1. Développement de produits à base de cannabis pour des applications thérapeutiques, en alignement avec les normes homéopathiques.\r\n2. Étude approfondie des interactions entre l'homéopathie et le cannabis pour créer des solutions de santé holistiques.\r\n\r\n### Atouts de Boiron :\r\n- Une expérience centenaire dans la fabrication de produits homéopathiques de haute qualité.\r\n- Une présence forte sur le marché international, avec des opérations dans 59 pays.\r\n- Une équipe dédiée et à la pointe de l'innovation dans le domaine de la santé naturelle.\r\n\r\n### Réorientation Stratégique :\r\n- Réallouer une partie substantielle de l'effectif de Boiron pour se concentrer sur la recherche et le développement du cannabis thérapeutique.\r\n- Adapter les infrastructures existantes aux nouvelles exigences et opportunités offertes par le secteur du cannabis thérapeutique.\r\n\r\n### Engagement pour l'Avenir :\r\n- Boiron reste engagé dans sa mission de fournir des solutions de santé innovantes et responsables.\r\n- La société continue de promouvoir une vision holistique de la santé, qui guérit sans nuire, en intégrant les dernières avancées en matière de cannabis thérapeutique.\r\n"
+        }
+      }
+    ],
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "output": "``` La prochaine étape à réaliser, suivant l'ordre déterminé par les instructions, est l'état de l'art pour la Thématique A, domaine 1, qui concerne la Psychologie comportementale. ```"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": [
+        14
+      ]
+    },
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1704918760,
+      "possibleDuplicates": [
+        "18cf513bd5da7af6"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-10T20:33:41.000Z",
+  "versionId": "422aa1ee-b434-4c79-8a5c-e60553dbcae5"
+}
