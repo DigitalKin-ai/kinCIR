@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Questionneur d'Etudes": {
       "ai_tool": [
@@ -396,7 +396,8 @@
           "id": "iPrbr6qZiWHu93N9",
           "name": "Gmail account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -518,7 +519,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let entireThread = $json.thread;\nlet thread = $json.thread;\nlet instructions = $json.instructions?$json.instructions:$node[\"mission\"].json.instructions;\nconst MAX_LENGTH = 24500;\n\nif (thread.length > MAX_LENGTH) {\n    thread = \"[...]\" + thread.substring(thread.length - MAX_LENGTH);\n    remainingThread = entireThread.substring(0, entireThread.length - MAX_LENGTH);\n} else {\n    remainingThread = \"\"; // Aucun contenu restant si la longueur du fil est inférieure à MAX_LENGTH\n}\n\nreturn {\"thread\": thread, \"entireThread\": entireThread, \"remainingThread\": remainingThread, \"instructions\": instructions};"
+        "jsCode": "let entireThread = $json.thread;\nlet thread = $json.thread;\nlet instructions = $json.instructions?$json.instructions:$node[\"mission\"].json.instructions;\nconst MAX_LENGTH = 22500;\n\nif (thread.length > MAX_LENGTH) {\n    thread = \"Le début du document est déjà rédigé, voici les denières parties rédigées :\\n[...]\" + thread.substring(thread.length - MAX_LENGTH);\n    remainingThread = entireThread.substring(0, entireThread.length - MAX_LENGTH);\n} else {\n    remainingThread = \"\"; // Aucun contenu restant si la longueur du fil est inférieure à MAX_LENGTH\n}\n\nreturn {\"thread\": thread, \"entireThread\": entireThread, \"remainingThread\": remainingThread, \"instructions\": instructions};"
       },
       "id": "889e41c6-75e9-4e8f-8b3a-af5512d622dc",
       "name": "thread",
@@ -532,7 +533,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let sortie = $node[\"thread\"].json.entireThread;\nlet output = $node[\"Rédacteur\"].json.output;\n\n// Enlever toutes les lignes qui contiennent les instructions\nsortie += '\\n\\n' + output; \nsortie = sortie.replace(/.*Prochaine étape.*$/gmi, '');\nsortie = sortie.replace(/.*Étape suivante.*$/gmi, '');\nsortie = sortie.replace(/^.*niveau de boucle.*$/gmi, '');\nsortie = sortie.replace(/```.*```/gmi, '');\nsortie = sortie.replace(/``.*``/gmi, '');\nsortie = sortie.replace(/`.*`/gmi, '');\nsortie = sortie.replace('\\n', '\\r\\n'); // Corriger le \\n\n\nreturn {\"mission\": $node[\"mission\"].json.mission,\"thread\":sortie, \"instructions\" : $json.output, \"mailId\": $node[\"Get Email\"].json.id};"
+        "jsCode": "let sortie = $node[\"thread\"].json.entireThread;\nlet output = $node[\"Rédacteur\"].json.output;\n\n// Enlever toutes les lignes qui contiennent les instructions\nsortie += '\\n\\n' + output; \nsortie = sortie.replace(/.*Prochaine étape.*$/gmi, '');\nsortie = sortie.replace(/.*Étape suivante.*$/gmi, '');\nsortie = sortie.replace(/^.*niveau de boucle.*$/gmi, '');\nsortie = sortie.replace(/```.*```/gmi, '');\nsortie = sortie.replace(/``.*``/gmi, '');\n//sortie = sortie.replace(/`.*`/gmi, '');\nsortie = sortie.replace('\\n', '\\r\\n'); // Corriger le \\n\n\nreturn {\"mission\": $node[\"mission\"].json.mission,\"thread\":sortie, \"instructions\" : $json.output, \"mailId\": $node[\"Get Email\"].json.id};"
       },
       "id": "8afc6fac-6301-42a5-b89e-cee309272cca",
       "name": "sortie",
@@ -1072,7 +1073,7 @@
     {
       "parameters": {
         "assistantId": "asst_1Z1EK9l3h5AnHlVVkT4FuZq7",
-        "text": "=INSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS. Tu choisis la prochaine étape :\nA partir de l'avancement données, expplique en un court parapgraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique le numéro de la prochaine étape, et les informations nécessaires.\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT\n======\n\n{{ $node[\"thread\"].json.thread }}\n\nDERNIER CONTENU REDIGÉ\n======\n{{ $json.output }}\n\nINSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS. Tu choisis la prochaine étape :\nA partir de l'avancement données, expplique en un court parapgraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique le numéro de la prochaine étape, et les informations nécessaires.",
+        "text": "=INSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS : tu annonces la prochaine étape au rédacteur.\n\n- Commence par faire le point sur l'avancement en listant l'ensemble des parties du document, avec TODO/DONE. Attention les parties avant \"[...]\" sont toutes \"DONE\", et les parties doivent être exécutées dans l'ordre (pas de retour en arrière ou amélioration).\n\nTODOLIST :\n- Présentation de l'entreprise (TODO/DONE)\n- Contexte scientifique et économique (TODO/DONE)\n- Présentation des thématiques de recherche (TODO/DONE)\n- Périmètre des besoins de R&D (TODO/DONE)\n- Tableau Thématique A (TODO/DONE)\n- Etat de l'art de Thématique A domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 3 (TODO/DONE)\n- Tableau Thématique B (TODO/DONE)\n- Etat de l'art de Thématique B domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 3 (TODO/DONE)\n- Tableau Thématique C (TODO/DONE)\n- Etat de l'art de Thématique C domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 3 (TODO/DONE)\n- Incertitudes et verrous scientifiques et techniques (TODO/DONE)\n- Travaux de R&D pour lever les verrous et incertitudes (TODO/DONE)\n- Bibliographie (TODO/DONE)\n\nTu choisis la prochaine étape :\nA partir de l'avancement données, explique en un court parapgraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique clairement la prochaine étape avec son numéro.\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT\n======\n\n{{ $node[\"thread\"].json.thread }}\n\nDERNIER CONTENU REDIGÉ\n======\n\nInstructions\n------\n\n{{ $node[\"thread\"].json.instructions }}\n\nRédaction réalisée\n------\n\n{{ $json.output }}\n\nINSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS : tu annonces la prochaine étape au rédacteur.\n\n- Commence par faire le point sur l'avancement en listant l'ensemble des parties du document, avec TODO/DONE. Attention les parties avant \"[...]\" sont toutes \"DONE\", et les parties doivent être exécutées dans l'ordre (pas de retour en arrière ou amélioration).\n\nTODOLIST :\n- Présentation de l'entreprise (TODO/DONE)\n- Contexte scientifique et économique (TODO/DONE)\n- Présentation des thématiques de recherche (TODO/DONE)\n- Périmètre des besoins de R&D (TODO/DONE)\n- Tableau Thématique A (TODO/DONE)\n- Etat de l'art de Thématique A domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 3 (TODO/DONE)\n- Tableau Thématique B (TODO/DONE)\n- Etat de l'art de Thématique B domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 3 (TODO/DONE)\n- Tableau Thématique C (TODO/DONE)\n- Etat de l'art de Thématique C domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 3 (TODO/DONE)\n- Incertitudes et verrous scientifiques et techniques (TODO/DONE)\n- Travaux de R&D pour lever les verrous et incertitudes (TODO/DONE)\n- Bibliographie (TODO/DONE)\n\nTu choisis la prochaine étape :\nA partir de l'avancement données, explique en un court parapgraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique clairement la prochaine étape avec son numéro.",
         "nativeTools": [
           "code_interpreter"
         ],
@@ -1169,9 +1170,9 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1704883908,
+      "lastTimeChecked": 1704887600,
       "possibleDuplicates": [
-        "18cf2ffee0ae2b27"
+        "18cf33846c270c1d"
       ]
     }
   },
@@ -1184,6 +1185,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-10T10:59:54.000Z",
-  "versionId": "50bf788c-7c77-4b8e-95d5-2f7f1d30b59f"
+  "updatedAt": "2024-01-10T12:13:02.000Z",
+  "versionId": "671b0c43-316b-4772-899e-e74be089a275"
 }
