@@ -568,6 +568,11 @@
               "value1": "={{ $json.To.toLowerCase() }}",
               "operation": "contains",
               "value2": "kincir@digitalkin.ai"
+            },
+            {
+              "value1": "{{ $json.From }}",
+              "operation": "notContains",
+              "value2": "=s.deschaux@digitalkin.ai"
             }
           ]
         }
@@ -1361,6 +1366,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-09T22:07:05.000Z",
-  "versionId": "b65fbaa9-7602-4e40-adb2-3c56927559cb"
+  "updatedAt": "2024-01-10T08:09:48.000Z",
+  "versionId": "38965174-1a1a-4245-b275-d505787224f7"
 }
