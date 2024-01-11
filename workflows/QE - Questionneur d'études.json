@@ -830,8 +830,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        4700,
-        1660
+        3500,
+        -120
       ]
     },
     {
@@ -851,8 +851,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        4900,
-        1660
+        3700,
+        -120
       ]
     },
     {
@@ -865,8 +865,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        5100,
-        1580
+        3900,
+        -200
       ]
     },
     {
@@ -876,8 +876,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        5100,
-        1740
+        3900,
+        -40
       ]
     },
     {
@@ -890,8 +890,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 2,
       "position": [
-        5780,
-        1580
+        4580,
+        -200
       ]
     },
     {
@@ -911,8 +911,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 2,
       "position": [
-        6220,
-        1580
+        5020,
+        -200
       ]
     },
     {
@@ -925,8 +925,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        6420,
-        1580
+        5220,
+        -200
       ]
     },
     {
@@ -938,8 +938,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        6620,
-        1580
+        5420,
+        -200
       ],
       "notesInFlow": true,
       "notes": "ID #02 - LLM Answer: This workflow leverages OpenAI's GPT-4 model to generate well-structured and informative answers to user queries. It incorporates nodes for input formatting, working memory retrieval, GPT-4 model execution, and output presentation. The workflow enables users to quickly obtain accurate information and support decision-making processes."
@@ -954,8 +954,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 1,
       "position": [
-        6820,
-        1580
+        5620,
+        -200
       ]
     },
     {
@@ -968,8 +968,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        7020,
-        1580
+        5820,
+        -200
       ]
     },
     {
@@ -989,8 +989,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 2,
       "position": [
-        6220,
-        1800
+        5020,
+        20
       ]
     },
     {
@@ -1003,8 +1003,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        6420,
-        1800
+        5220,
+        20
       ]
     },
     {
@@ -1016,8 +1016,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        6620,
-        1800
+        5420,
+        20
       ],
       "notesInFlow": true,
       "notes": "ID #02 - LLM Answer: This workflow leverages OpenAI's GPT-4 model to generate well-structured and informative answers to user queries. It incorporates nodes for input formatting, working memory retrieval, GPT-4 model execution, and output presentation. The workflow enables users to quickly obtain accurate information and support decision-making processes."
@@ -1032,8 +1032,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 1,
       "position": [
-        6820,
-        1800
+        5620,
+        20
       ]
     },
     {
@@ -1046,8 +1046,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        7020,
-        1800
+        5820,
+        20
       ]
     },
     {
@@ -1066,8 +1066,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        7220,
-        1800
+        6020,
+        20
       ]
     },
     {
@@ -1080,8 +1080,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        10260,
-        1780
+        9060,
+        0
       ]
     },
     {
@@ -1091,8 +1091,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        10640,
-        1780
+        9440,
+        0
       ],
       "notesInFlow": true
     },
@@ -1103,8 +1103,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        10840,
-        1780
+        9640,
+        0
       ],
       "notesInFlow": true
     },
@@ -1117,8 +1117,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        10440,
-        1780
+        9240,
+        0
       ]
     },
     {
@@ -1131,8 +1131,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        7460,
-        1800
+        6260,
+        20
       ]
     },
     {
@@ -1144,8 +1144,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        10240,
-        1120
+        9040,
+        -660
       ],
       "retryOnFail": true
     },
@@ -1159,8 +1159,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        10060,
-        1120
+        8860,
+        -660
       ]
     },
     {
@@ -1173,8 +1173,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        8460,
-        1880
+        7260,
+        100
       ]
     },
     {
@@ -1187,8 +1187,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        10080,
-        1400
+        8880,
+        -380
       ]
     },
     {
@@ -1210,8 +1210,8 @@
       "type": "n8n-nodes-base.rabbitmq",
       "typeVersion": 1.1,
       "position": [
-        10300,
-        1400
+        9100,
+        -380
       ]
     },
     {
@@ -1221,8 +1221,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        7460,
-        2100
+        6260,
+        320
       ]
     },
     {
@@ -1232,8 +1232,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        8060,
-        2100
+        6860,
+        320
       ]
     },
     {
@@ -1243,8 +1243,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        10440,
-        2100
+        9240,
+        320
       ]
     },
     {
@@ -1254,8 +1254,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        8420,
-        2100
+        7220,
+        320
       ]
     },
     {
@@ -1268,8 +1268,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        8740,
-        1780
+        7540,
+        0
       ]
     },
     {
@@ -1291,8 +1291,8 @@
       "type": "n8n-nodes-base.rabbitmq",
       "typeVersion": 1.1,
       "position": [
-        5300,
-        1740
+        4100,
+        -40
       ]
     },
     {
@@ -1302,8 +1302,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        6520,
-        2360
+        5320,
+        580
       ]
     },
     {
@@ -1313,8 +1313,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        10480,
-        2360
+        9280,
+        580
       ]
     },
     {
@@ -1326,8 +1326,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        6040,
-        2360
+        4840,
+        580
       ]
     },
     {
@@ -1346,8 +1346,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        6260,
-        2360
+        5060,
+        580
       ]
     },
     {
@@ -1360,8 +1360,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        9880,
-        1120
+        8680,
+        -660
       ]
     },
     {
@@ -1381,8 +1381,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        8260,
-        1880
+        7060,
+        100
       ]
     },
     {
@@ -1400,8 +1400,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        9140,
-        1780
+        7940,
+        0
       ]
     },
     {
@@ -1420,8 +1420,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        7660,
-        1800
+        6460,
+        20
       ]
     },
     {
@@ -1433,8 +1433,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        9340,
-        1780
+        8140,
+        0
       ]
     },
     {
@@ -1467,8 +1467,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        8060,
-        1880
+        6860,
+        100
       ],
       "continueOnFail": true
     },
@@ -1481,8 +1481,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        9540,
-        1780
+        8340,
+        0
       ]
     },
     {
@@ -1515,8 +1515,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        8960,
-        1780
+        7760,
+        0
       ],
       "retryOnFail": true,
       "maxTries": 2,
@@ -1546,8 +1546,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        7880,
-        1800
+        6680,
+        20
       ]
     }
   ],
@@ -1576,6 +1576,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-07T11:16:10.000Z",
-  "versionId": "ab29c68d-7fcf-4fc0-adf0-405f306bc54d"
+  "updatedAt": "2024-01-11T09:09:08.000Z",
+  "versionId": "3998d9ce-ece1-42f0-be22-3f0d4df891ea"
 }
