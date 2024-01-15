@@ -45,17 +45,6 @@
         ]
       ]
     },
-    "Convert to/from binary data": {
-      "main": [
-        [
-          {
-            "node": "Update Document",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Convert to/from binary data1": {
       "main": [
         [
@@ -82,7 +71,7 @@
       "main": [
         [
           {
-            "node": "Convert to/from binary data",
+            "node": "Convert to binary data",
             "type": "main",
             "index": 0
           },
@@ -145,17 +134,6 @@
         ]
       ]
     },
-    "Convert to/from binary data2": {
-      "main": [
-        [
-          {
-            "node": "Create Document",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "mission": {
       "main": [
         [
@@ -171,7 +149,7 @@
       "main": [
         [
           {
-            "node": "Convert to/from binary data2",
+            "node": "Convert from binary data",
             "type": "main",
             "index": 0
           },
@@ -286,6 +264,44 @@
           },
           {
             "node": "Manager",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook (a brancher)": {
+      "main": [
+        [
+          {
+            "node": "Get existing document (init)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to binary data": {
+      "main": [
+        [
+          {
+            "node": "Update Document",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Respond to Webhook (à brancher)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert from binary data": {
+      "main": [
+        [
+          {
+            "node": "Create Document",
             "type": "main",
             "index": 0
           }
@@ -416,27 +432,6 @@
       "position": [
         2560,
         -220
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "jsonToBinary",
-        "convertAllData": false,
-        "sourceKey": "thread",
-        "destinationKey": "thread",
-        "options": {
-          "fileName": "kinCIR.md",
-          "mimeType": "text/markdown",
-          "useRawData": true
-        }
-      },
-      "id": "d7bec655-a22f-4204-b333-cdf1d05fbdda",
-      "name": "Convert to/from binary data",
-      "type": "n8n-nodes-base.moveBinaryData",
-      "typeVersion": 1.1,
-      "position": [
-        4980,
-        140
       ]
     },
     {
@@ -626,27 +621,6 @@
       "position": [
         2840,
         140
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "jsonToBinary",
-        "convertAllData": false,
-        "sourceKey": "instructions",
-        "destinationKey": "instructions",
-        "options": {
-          "fileName": "={{ $json.titre }}.md",
-          "mimeType": "text/markdown",
-          "useRawData": true
-        }
-      },
-      "id": "1f63d815-dbcc-4e66-ae80-70a39f439558",
-      "name": "Convert to/from binary data2",
-      "type": "n8n-nodes-base.moveBinaryData",
-      "typeVersion": 1.1,
-      "position": [
-        3040,
-        -20
       ]
     },
     {
@@ -915,6 +889,77 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "path": "155a24cc-0c8d-4dfe-96cf-00514b9668fc",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "9a26d1ee-4ab6-4b7b-8c1f-a3421822a5ad",
+      "name": "Webhook (a brancher)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        2540,
+        -540
+      ],
+      "webhookId": "155a24cc-0c8d-4dfe-96cf-00514b9668fc"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "9e4116b4-62bf-4c58-b887-2c66671df2e6",
+      "name": "Respond to Webhook (à brancher)",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        5220,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "fileName": "kinCIR.md",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "d7bec655-a22f-4204-b333-cdf1d05fbdda",
+      "name": "Convert to binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        4980,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "instructions",
+        "destinationKey": "instructions",
+        "options": {
+          "fileName": "={{ $json.titre }}.md",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "1f63d815-dbcc-4e66-ae80-70a39f439558",
+      "name": "Convert from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        3040,
+        -20
+      ]
     }
   ],
   "pinData": {
@@ -938,9 +983,9 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1705313608,
+      "lastTimeChecked": 1705349971,
       "possibleDuplicates": [
-        "18d0c9cb2f711b8b"
+        "18d0ec781d2f6325"
       ]
     }
   },
@@ -952,7 +997,7 @@
       "name": "kin"
     }
   ],
-  "triggerCount": 1,
-  "updatedAt": "2024-01-15T10:15:23.000Z",
-  "versionId": "88b9b2af-cb16-46dd-a55d-2df3c765004d"
+  "triggerCount": 2,
+  "updatedAt": "2024-01-15T20:21:11.000Z",
+  "versionId": "74002b84-d2b9-4cac-b885-bb377a9a7bfc"
 }
