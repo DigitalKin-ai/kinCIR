@@ -132,7 +132,7 @@
         ],
         [
           {
-            "node": "Get Document",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
@@ -203,7 +203,7 @@
       "main": [
         [
           {
-            "node": "missionInit",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
@@ -243,16 +243,44 @@
         ]
       ]
     },
-    "Manager": {
+    "Convert to binary data": {
       "main": [
         [
           {
-            "node": "sortie",
+            "node": "Update Document",
             "type": "main",
             "index": 0
-          },
+          }
+        ]
+      ]
+    },
+    "Convert from binary data": {
+      "main": [
+        [
           {
-            "node": "Escape Markdown",
+            "node": "Create Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "get body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get body": {
+      "main": [
+        [
+          {
+            "node": "mission",
             "type": "main",
             "index": 0
           }
@@ -275,27 +303,16 @@
         ]
       ]
     },
-    "Convert to binary data": {
+    "Manager": {
       "main": [
         [
           {
-            "node": "Update Document",
+            "node": "sortie",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Respond to Webhook (à brancher)",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Convert from binary data": {
-      "main": [
-        [
-          {
-            "node": "Create Document",
+            "node": "Escape Markdown",
             "type": "main",
             "index": 0
           }
@@ -305,7 +322,9 @@
   },
   "createdAt": "2024-01-11T09:01:26.669Z",
   "id": "GRxk3OXnPglbvGdU",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "rescritCIR v1.3 (BETA)",
   "nodes": [
     {
@@ -392,7 +411,7 @@
       "typeVersion": 1,
       "position": [
         2300,
-        -220
+        -240
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -424,7 +443,7 @@
       "typeVersion": 1,
       "position": [
         2560,
-        -220
+        -240
       ]
     },
     {
@@ -461,8 +480,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        2560,
-        160
+        2480,
+        560
       ],
       "disabled": true
     },
@@ -551,7 +570,7 @@
       "name": "Get existing document",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        3540,
+        3500,
         140
       ],
       "typeVersion": 1,
@@ -581,7 +600,7 @@
       "typeVersion": 1,
       "position": [
         3040,
-        -220
+        -240
       ]
     },
     {
@@ -612,7 +631,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        2840,
+        2800,
         140
       ]
     },
@@ -640,7 +659,7 @@
       "type": "n8n-nodes-base.googleDrive",
       "position": [
         3260,
-        -20
+        -40
       ],
       "typeVersion": 1,
       "id": "241e138e-d82b-4860-898a-4e31a1798b15",
@@ -677,7 +696,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        3080,
+        3040,
         140
       ]
     },
@@ -712,7 +731,7 @@
       "typeVersion": 3.2,
       "position": [
         2800,
-        -20
+        -40
       ]
     },
     {
@@ -727,7 +746,7 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        3300,
+        3260,
         140
       ],
       "credentials": {
@@ -750,7 +769,7 @@
       "typeVersion": 2.1,
       "position": [
         2560,
-        -20
+        -40
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -805,7 +824,7 @@
       "type": "n8n-nodes-base.googleDrive",
       "position": [
         2800,
-        -220
+        -240
       ],
       "typeVersion": 1,
       "id": "cae353fe-1aac-43e0-9568-fd8b5c549fba",
@@ -832,7 +851,7 @@
       "typeVersion": 2.1,
       "position": [
         3500,
-        -20
+        -40
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -840,61 +859,6 @@
           "name": "Gmail account"
         }
       }
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_mLYkrwBf5J3tmeyzouN5jEV8",
-        "text": "=INSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS : tu annonces clairement la prochaine étape au rédacteur.\n\n- Si sont listées dans \"Dernières Instructions\" ou \"Rédaction réalisée\" les Thématiques choisis et Domaines par thématique, liste les avec leur Lettre / numéro. Exemple :\n\n``\nTHEMATIQUES ET THEMES :\n- Thématique A : %NOM%\n   - Thématique A, Domaine 1 : %NOM%\n   - Thématique A, Domaine 2 : %NOM%\n   - Thématique A, Domaine 3 : %NOM%\n- Thématique B : %NOM%\n   - Thématique B, Domaine 1 : [Encore non défini]\n   - Thématique B, Domaine 2 : [Encore non défini]\n   - Thématique B, Domaine 3 : [Encore non défini]\n- Thématique C : %NOM%\netc.\n``\n\n- Quel travail vient d'être réalisé dans \"Rédaction réalisée\" Fais le point sur l'avancement en listant l'ensemble des Etapes, avec TODO/DONE. Les parties avant \"[...]\" sont toutes \"DONE\", et les parties doivent être exécutées dans l'ordre (pas de retour en arrière ou amélioration). Exemple :\n\n``\nTODOLIST :\n- Présentation de l'entreprise (TODO/DONE)\n- Contexte scientifique et économique (TODO/DONE)\n- Présentation des thématiques de recherche (TODO/DONE)\n- Périmètre des besoins de R&D (TODO/DONE)\n- Tableau Thématique A (TODO/DONE)\n- Etat de l'art de Thématique A domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 3 (TODO/DONE)\n- Tableau Thématique B (TODO/DONE)\n- Etat de l'art de Thématique B domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 3 (TODO/DONE)\n- Tableau Thématique C (TODO/DONE)\n- Etat de l'art de Thématique C domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 3 (TODO/DONE)\n- Incertitudes et verrous scientifiques et techniques (TODO/DONE)\n- Travaux de R&D pour lever les verrous et incertitudes (TODO/DONE)\n- Bibliographie (TODO/DONE)\n``\n\n- Puis choisis la prochaine étape : A partir de l'avancement données, explique en un court parapgraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique clairement au rédacteur la prochaine étape avec son numéro.\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT\n======\n\n{{ $node[\"thread\"].json.thread }}\n\nDERNIER CONTENU REDIGÉ\n======\n\nDernières Instructions\n------\n\n{{ $node[\"thread\"].json.instructions }}\n\nRédaction réalisée\n------\n\n{{ $json.output }}\n\nINSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS : tu annonces clairement la prochaine étape au rédacteur.\n\n- Si sont listées dans \"Dernières Instructions\" ou \"Rédaction réalisée\" les Thématiques choisis et Domaines par thématique, liste les avec leur Lettre / numéro. Exemple :\n\n``\nTHEMATIQUES ET THEMES :\n- Thématique A : %NOM%\n   - Thématique A, Domaine 1 : %NOM%\n   - Thématique A, Domaine 2 : %NOM%\n   - Thématique A, Domaine 3 : %NOM%\n- Thématique B : %NOM%\n   - Thématique B, Domaine 1 : [Encore non défini]\n   - Thématique B, Domaine 2 : [Encore non défini]\n   - Thématique B, Domaine 3 : [Encore non défini]\n- Thématique C : %NOM%\netc.\n``\n\n- Quel travail vient d'être réalisé dans \"Rédaction réalisée\" Fais le point sur l'avancement en listant l'ensemble des Etapes, avec TODO/DONE. Les parties avant \"[...]\" sont toutes \"DONE\", et les parties doivent être exécutées dans l'ordre (pas de retour en arrière ou amélioration). Exemple :\n\n``\nTODOLIST :\n- Présentation de l'entreprise (TODO/DONE)\n- Contexte scientifique et économique (TODO/DONE)\n- Présentation des thématiques de recherche (TODO/DONE)\n- Périmètre des besoins de R&D (TODO/DONE)\n- Tableau Thématique A (TODO/DONE)\n- Etat de l'art de Thématique A domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 3 (TODO/DONE)\n- Tableau Thématique B (TODO/DONE)\n- Etat de l'art de Thématique B domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 3 (TODO/DONE)\n- Tableau Thématique C (TODO/DONE)\n- Etat de l'art de Thématique C domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 3 (TODO/DONE)\n- Incertitudes et verrous scientifiques et techniques (TODO/DONE)\n- Travaux de R&D pour lever les verrous et incertitudes (TODO/DONE)\n- Bibliographie (TODO/DONE)\n``\n\n- Puis choisis la prochaine étape : A partir de l'avancement données, explique en un court parapgraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique clairement au rédacteur la prochaine étape avec son numéro.",
-        "options": {}
-      },
-      "id": "afdb51c7-6495-46d8-bb54-d09c99c5e70a",
-      "name": "Manager",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4400,
-        340
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_GQvAYhactWsRRY4PwC7bIGpP",
-        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
-        "options": {}
-      },
-      "id": "4da656ef-e30f-42f4-96a5-245c98e9f919",
-      "name": "Rédacteur",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4400,
-        140
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "id": "9e4116b4-62bf-4c58-b887-2c66671df2e6",
-      "name": "Respond to Webhook (à brancher)",
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1,
-      "position": [
-        5220,
-        -440
-      ]
     },
     {
       "parameters": {
@@ -935,15 +899,110 @@
       "typeVersion": 1.1,
       "position": [
         3040,
-        -20
+        -40
       ]
+    },
+    {
+      "parameters": {
+        "path": "rescritcirbeta",
+        "options": {}
+      },
+      "id": "c392cf65-7c8a-4215-9461-bd26a00e573e",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        2540,
+        340
+      ],
+      "webhookId": "3d8e07f6-6239-42cd-ae57-e290563cfcb0"
+    },
+    {
+      "parameters": {
+        "url": "https://kins.app.n8n.cloud/webhook/rescritcirbeta",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "1c6b1d44-d720-4f3c-99e2-c6f41b1a7dc5",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        4980,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\": $json.body};"
+      },
+      "id": "1a8c0b12-83ba-426a-8288-c069577646a5",
+      "name": "get body",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2800,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_GQvAYhactWsRRY4PwC7bIGpP",
+        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
+        "options": {}
+      },
+      "id": "4da656ef-e30f-42f4-96a5-245c98e9f919",
+      "name": "Rédacteur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        140
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_mLYkrwBf5J3tmeyzouN5jEV8",
+        "text": "=INSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS : tu annonces clairement la prochaine étape au rédacteur.\n\n- Si sont listées dans \"Dernières Instructions\" ou \"Rédaction réalisée\" les Thématiques choisis et Domaines par thématique, liste les avec leur Lettre / numéro. Exemple :\n\n``\nTHEMATIQUES ET THEMES :\n- Thématique A : %NOM%\n   - Thématique A, Domaine 1 : %NOM%\n   - Thématique A, Domaine 2 : %NOM%\n   - Thématique A, Domaine 3 : %NOM%\n- Thématique B : %NOM%\n   - Thématique B, Domaine 1 : [Encore non défini]\n   - Thématique B, Domaine 2 : [Encore non défini]\n   - Thématique B, Domaine 3 : [Encore non défini]\n- Thématique C : %NOM%\netc.\n``\n\n- Quel travail vient d'être réalisé dans \"Rédaction réalisée\" Fais le point sur l'avancement en listant l'ensemble des Etapes, avec TODO/DONE. Les parties avant \"[...]\" sont toutes \"DONE\", et les parties doivent être exécutées dans l'ordre (pas de retour en arrière ou amélioration). Exemple :\n\n``\nTODOLIST :\n- Présentation de l'entreprise (TODO/DONE)\n- Contexte scientifique et économique (TODO/DONE)\n- Présentation des thématiques de recherche (TODO/DONE)\n- Périmètre des besoins de R&D (TODO/DONE)\n- Tableau Thématique A (TODO/DONE)\n- Etat de l'art de Thématique A domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 3 (TODO/DONE)\n- Tableau Thématique B (TODO/DONE)\n- Etat de l'art de Thématique B domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 3 (TODO/DONE)\n- Tableau Thématique C (TODO/DONE)\n- Etat de l'art de Thématique C domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 3 (TODO/DONE)\n- Incertitudes et verrous scientifiques et techniques (TODO/DONE)\n- Travaux de R&D pour lever les verrous et incertitudes (TODO/DONE)\n- Bibliographie (TODO/DONE)\n``\n\n- Puis choisis la prochaine étape : A partir de l'avancement données, explique en un court parapgraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique clairement au rédacteur la prochaine étape avec son numéro.\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT\n======\n\n{{ $node[\"thread\"].json.thread }}\n\nDERNIER CONTENU REDIGÉ\n======\n\nDernières Instructions\n------\n\n{{ $node[\"thread\"].json.instructions }}\n\nRédaction réalisée\n------\n\n{{ $json.output }}\n\nINSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS : tu annonces clairement la prochaine étape au rédacteur.\n\n- Si sont listées dans \"Dernières Instructions\" ou \"Rédaction réalisée\" les Thématiques choisis et Domaines par thématique, liste les avec leur Lettre / numéro. Exemple :\n\n``\nTHEMATIQUES ET THEMES :\n- Thématique A : %NOM%\n   - Thématique A, Domaine 1 : %NOM%\n   - Thématique A, Domaine 2 : %NOM%\n   - Thématique A, Domaine 3 : %NOM%\n- Thématique B : %NOM%\n   - Thématique B, Domaine 1 : [Encore non défini]\n   - Thématique B, Domaine 2 : [Encore non défini]\n   - Thématique B, Domaine 3 : [Encore non défini]\n- Thématique C : %NOM%\netc.\n``\n\n- Quel travail vient d'être réalisé dans \"Rédaction réalisée\" Fais le point sur l'avancement en listant l'ensemble des Etapes, avec TODO/DONE. Les parties avant \"[...]\" sont toutes \"DONE\", et les parties doivent être exécutées dans l'ordre (pas de retour en arrière ou amélioration). Exemple :\n\n``\nTODOLIST :\n- Présentation de l'entreprise (TODO/DONE)\n- Contexte scientifique et économique (TODO/DONE)\n- Présentation des thématiques de recherche (TODO/DONE)\n- Périmètre des besoins de R&D (TODO/DONE)\n- Tableau Thématique A (TODO/DONE)\n- Etat de l'art de Thématique A domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 3 (TODO/DONE)\n- Tableau Thématique B (TODO/DONE)\n- Etat de l'art de Thématique B domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 3 (TODO/DONE)\n- Tableau Thématique C (TODO/DONE)\n- Etat de l'art de Thématique C domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 3 (TODO/DONE)\n- Incertitudes et verrous scientifiques et techniques (TODO/DONE)\n- Travaux de R&D pour lever les verrous et incertitudes (TODO/DONE)\n- Bibliographie (TODO/DONE)\n``\n\n- Puis choisis la prochaine étape : A partir de l'avancement données, explique en un court parapgraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique clairement au rédacteur la prochaine étape avec son numéro.",
+        "options": {}
+      },
+      "id": "afdb51c7-6495-46d8-bb54-d09c99c5e70a",
+      "name": "Manager",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        340
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {
     "When clicking \"Execute Workflow\"": [
       {
         "json": {
-          "output": "``` La prochaine étape à réaliser, suivant l'ordre déterminé par les instructions, est l'état de l'art pour la Thématique A, domaine 1, qui concerne la Psychologie comportementale. ```"
+          "mission": "Company: EpochAI\n\nContext: AI timelines to AGI and economic impact of transformative AI\n\nActivities: Development of alignment theory for large language models\n\nCorporate Objective: Educate the public on the implications of the\ntransformative impact of human-level AI.\n\nPrimary Research Objective: To report on the economic prospects of future\ngenerative AI.\n\nResearch Topics:\n\n- AI timelines to AGI\n- Economic consequences of human-level AI (growth, job losses)\n- Impact of human-level AI on the labor market\n",
+          "thread": "\r\n\n## Présentation de l'entreprise\n\nEpochAI est une entreprise pionnière dans le domaine de l'intelligence artificielle, se focalisant sur le développement de la théorie de l'alignement pour les modèles de langage de grande taille. Notre but est de sensibiliser le public aux implications transformatives de l'intelligence artificielle de niveau humain. À travers notre recherche et nos efforts d'éducation, nous cherchons à éclairer les perspectives économiques des futures générations d'IA génératives, ainsi que à anticiper les chronologies possibles vers une intelligence générale artificielle (AGI).\n\nLes activités de EpochAI se concentrent non seulement sur l'avancement technique et théorique de l'IA, mais également sur les impacts socio-économiques qui accompagnent l'émergence de technologies disruptives. Nous sommes engagés à explorer les conséquences économiques d'une IA au niveau humain, y compris les effets sur la croissance et les pertes d'emplois, ainsi que l'impact plus large sur le marché du travail. Par nos initiatives, nous visons à créer un avenir où la technologie d'IA avancée et la société peuvent coexister harmonieusement.\n\nEpochAI, consciente de la puissance potentielle de l'AGI, prend des mesures proactives pour garantir que les modèles d'IA sont alignés sur les valeurs et les objectifs éthiques, réduisant ainsi les risques tout en maximisant les bénéfices pour l'humanité. Notre entreprise est à l'avant-garde de la recherche et du développement en IA, prête à aborder les défis et les opportunités que représente la prochaine frontière de l'intelligence artificielle.",
+          "instructions": "TODOLIST :\n- Présentation de l'entreprise (DONE)\n- Contexte scientifique et économique (TODO)\n- Présentation des thématiques de recherche (TODO)\n- Périmètre des besoins de R&D Thématique A (TODO)\n- Tableau Thématique A (TODO)\n- Etat de l'art de Thématique A domaine 1 (TODO)\n- Etat de l'art de Thématique A domaine 2 (TODO)\n- Etat de l'art de Thématique A domaine 3 (TODO)\n- Incertitudes et verrous scientifiques et techniques Thématique A (TODO)\n- Travaux de R&D pour lever les verrous et incertitudes Thématique A (TODO)\n- Bibliographie Thématique A (TODO)\n- Périmètre des besoins de R&D Thématique B (TODO)\n- Tableau Thématique B (TODO)\n- Etat de l'art de Thématique B domaine 1 (TODO)\n- Etat de l'art de Thématique B domaine 2 (TODO)\n- Etat de l'art de Thématique B domaine 3 (TODO)\n- Incertitudes et verrous scientifiques et techniques Thématique B (TODO)\n- Travaux de R&D pour lever les verrous et incertitudes Thématique B (TODO)\n- Bibliographie Thématique B (TODO)\n- Périmètre des besoins de R&D Thématique C (TODO)\n- Tableau Thématique C (TODO)\n- Etat de l'art de Thématique C domaine 1 (TODO)\n- Etat de l'art de Thématique C domaine 2 (TODO)\n- Etat de l'art de Thématique C domaine 3 (TODO)\n- Incertitudes et verrous scientifiques et techniques Thématique C (TODO)\n- Travaux de R&D pour lever les verrous et incertitudes Thématique C (TODO)\n- Bibliographie Thématique C (TODO)\n- Signature (TODO)\n\nLa présentation de l'entreprise a été finalisée. La prochaine étape consiste à rédiger la partie sur le \"Contexte scientifique et économique\" lié aux chronologies de l'IA jusqu'à l'AGI et l'impact économique de l'IA transformatrice. Cette section doit aborder le sujet des recherches concernant l'IA, en mettant en évidence les besoins d'évolution et les enjeux liés à ces objectifs de recherche, ainsi que les obstacles empêchant actuellement l'atteinte de ces objectifs.\n\nRédacteur, la prochaine étape est la numéro 2 : Contexte scientifique et économique.",
+          "mailId": "18d128e743cf2c04"
         }
       }
     ]
@@ -961,9 +1020,9 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1705402574,
+      "lastTimeChecked": 1705436644,
       "possibleDuplicates": [
-        "18d11ea22065104a"
+        "18d13f2425e0217c"
       ]
     }
   },
@@ -975,7 +1034,7 @@
       "name": "kin"
     }
   ],
-  "triggerCount": 1,
-  "updatedAt": "2024-01-16T10:57:45.000Z",
-  "versionId": "2c5b9fbd-0d52-4e1e-9794-931795353b47"
+  "triggerCount": 2,
+  "updatedAt": "2024-01-16T20:24:23.000Z",
+  "versionId": "00eff4dc-ad1b-43ae-8c18-61d65c13c79a"
 }
