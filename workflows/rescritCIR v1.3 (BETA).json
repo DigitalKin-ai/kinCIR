@@ -8,6 +8,11 @@
             "node": "Rédacteur",
             "type": "ai_tool",
             "index": 0
+          },
+          {
+            "node": "Manager",
+            "type": "ai_tool",
+            "index": 0
           }
         ]
       ]
@@ -270,17 +275,6 @@
         ]
       ]
     },
-    "Webhook (a brancher)": {
-      "main": [
-        [
-          {
-            "node": "Get existing document (init)",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Convert to binary data": {
       "main": [
         [
@@ -333,10 +327,9 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        4240,
-        700
-      ],
-      "disabled": true
+        4440,
+        640
+      ]
     },
     {
       "parameters": {
@@ -892,22 +885,6 @@
     },
     {
       "parameters": {
-        "path": "155a24cc-0c8d-4dfe-96cf-00514b9668fc",
-        "responseMode": "responseNode",
-        "options": {}
-      },
-      "id": "9a26d1ee-4ab6-4b7b-8c1f-a3421822a5ad",
-      "name": "Webhook (a brancher)",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 1.1,
-      "position": [
-        2540,
-        -540
-      ],
-      "webhookId": "155a24cc-0c8d-4dfe-96cf-00514b9668fc"
-    },
-    {
-      "parameters": {
         "options": {}
       },
       "id": "9e4116b4-62bf-4c58-b887-2c66671df2e6",
@@ -974,7 +951,8 @@
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
-    "callerPolicy": "any"
+    "callerPolicy": "any",
+    "saveExecutionProgress": true
   },
   "staticData": {
     "node:Schedule Trigger": {
@@ -983,9 +961,9 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1705349971,
+      "lastTimeChecked": 1705402574,
       "possibleDuplicates": [
-        "18d0ec781d2f6325"
+        "18d11ea22065104a"
       ]
     }
   },
@@ -997,7 +975,7 @@
       "name": "kin"
     }
   ],
-  "triggerCount": 2,
-  "updatedAt": "2024-01-15T20:21:11.000Z",
-  "versionId": "74002b84-d2b9-4cac-b885-bb377a9a7bfc"
+  "triggerCount": 1,
+  "updatedAt": "2024-01-16T10:57:45.000Z",
+  "versionId": "2c5b9fbd-0d52-4e1e-9794-931795353b47"
 }
