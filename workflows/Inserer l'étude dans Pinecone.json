@@ -1,0 +1,904 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Lister les Etudes1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Récupérer le PDF1": {
+      "main": [
+        [
+          {
+            "node": "Read PDF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Extracteur de citation détaillée",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Découper en chunks": {
+      "main": [
+        [
+          {
+            "node": "Document Inserter Dynergie1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI2": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Document Inserter Dynergie1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader2": {
+      "ai_document": [
+        [
+          {
+            "node": "Document Inserter Dynergie1",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lister les Etudes1": {
+      "main": [
+        [
+          {
+            "node": "IF PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF PDF": {
+      "main": [
+        [
+          {
+            "node": "Récupérer le PDF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Token Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader2",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Results1": {
+      "main": [
+        [
+          {
+            "node": "nouveau message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouveau message1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "IF Results1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read PDF2": {
+      "main": [
+        [
+          {
+            "node": "Extracteur de citation détaillée",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Read PDF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extracteur de citation détaillée": {
+      "main": [
+        [
+          {
+            "node": "Découper en chunks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-16T11:22:40.713Z",
+  "id": "eRT6xb82oqCbX4u2",
+  "meta": null,
+  "name": "Inserer l'étude dans Pinecone",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "ab7c9c5f-4b35-4269-835f-b9a3f8dd8e61",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        300,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "e3845c45-2a0a-46fb-b6df-abf82165a5d3",
+      "name": "Récupérer le PDF1",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        900,
+        920
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "1E0oqQwRg93PO3_Ak_0lhcK0yyzTvKqL9",
+            "mode": "list",
+            "cachedResultName": "etudes",
+            "cachedResultUrl": "https://drive.google.com/drive/folders/1E0oqQwRg93PO3_Ak_0lhcK0yyzTvKqL9"
+          }
+        },
+        "options": {}
+      },
+      "id": "55f49d43-1c21-4ce9-b3c2-8166c616cc48",
+      "name": "Lister les Etudes1",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        500,
+        920
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {}
+      },
+      "id": "579b2379-6864-4564-a61c-b9974e3e30ba",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        1340
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function decouperEnSegments(texte) {\n    const TAILLE_SEGMENT = 1000;\n    let segments = [];\n    let data = \"\"\n\n    for (let i = 0; i < texte.length; i += TAILLE_SEGMENT) {\n        let segment = \"# Metadata\\n\\n\" + $json.text + \"\\n\\n# Texte extrait de l'étude\\n\\n\"\n        segment += texte.substring(i, i + TAILLE_SEGMENT);\n        segments.push(segment);\n    }\n\n    return segments;\n}\n\nlet texteLong = $node[\"Read PDF2\"].json.text;\nlet tableauSegments = decouperEnSegments(texteLong);\n\n\n\nreturn {\"json\":{\"chunks\":tableauSegments}};\n"
+      },
+      "id": "d74f5836-43a8-424c-9c0d-2f9affc9cb21",
+      "name": "Découper en chunks",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1680,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "41fcaa66-b52a-4aeb-9466-198f2b015a33",
+      "name": "Embeddings OpenAI2",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        1380
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "type",
+                "value": "etude"
+              }
+            ]
+          }
+        }
+      },
+      "id": "013de322-444a-4767-ad33-0c544a294dbd",
+      "name": "Default Data Loader2",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.name.toLowerCase() }}",
+              "operation": "endsWith",
+              "value2": "=.pdf"
+            }
+          ]
+        }
+      },
+      "id": "3a6dc348-4c0f-4927-ac24-18a01e4b341c",
+      "name": "IF PDF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        700,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "chunkSize": 5000
+      },
+      "id": "e3e944d8-559f-4c53-b5f5-0d30ae5000ba",
+      "name": "Token Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterTokenSplitter",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        1740
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"url\":$json.resource.link};"
+      },
+      "id": "f800835f-c678-45c0-960d-633d74515731",
+      "name": "nouveau message1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.resource }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "ff5c279b-5aec-4612-9e37-666714cf2a33",
+      "name": "IF Results1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        500,
+        1160
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "854eae4c-f614-4ce4-a501-952e00a59583",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        300,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {
+          "pineconeNamespace": "=etudes"
+        }
+      },
+      "id": "62d91b73-6bdd-43f8-8559-12caac9f699f",
+      "name": "Document Inserter Dynergie1",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        1160
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "33845d9d-b00c-4554-a003-7a734f8a79e0",
+      "name": "Read PDF2",
+      "type": "n8n-nodes-base.readPDF",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        1160
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {}
+      },
+      "id": "15bbcc73-223f-47ba-a746-37063aa22aab",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        900,
+        1160
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "prompt": "=# Informations\n\n{{ $json[\"text\"].substring(0,5000) }}\n[...]",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Tâche\n\nA partir des informations données, fais de ton mieux pour donner la citation détaillée de l'étude.\n\nRéponds uniquement avec la citation détaillée."
+            }
+          ]
+        }
+      },
+      "id": "9ea1dfaa-04fd-47ac-86ca-e4744a07a533",
+      "name": "Extracteur de citation détaillée",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        1320,
+        1160
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "position": 1,
+          "title": "Understanding In-Context Learning in Transformers and LLMs by Learning to Learn Discrete Functions",
+          "data_cid": "lsf4CXUrujEJ",
+          "link": "https://arxiv.org/abs/2310.03016",
+          "publication": "S Bhattamishra, A Patel, P Blunsom… - arXiv preprint arXiv …, 2023 - arxiv.org",
+          "snippet": "… However, it is still unclear if LLMs can implement learning … LLMs can learn in a manner similar to models in the stylized setting, we investigate the performance of pretrained LLMs on the …",
+          "inline_links": {
+            "versions": {
+              "cluster_id": "3583224235205117846",
+              "total": 3,
+              "link": "https://scholar.google.com/scholar?cluster=3583224235205117846&hl=en&as_sdt=0,37"
+            },
+            "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:lsf4CXUrujEJ:scholar.google.com/+%22Attention+is+all+you+need%22+LLMs&hl=en&as_sdt=0,37"
+          },
+          "resource": {
+            "name": "arxiv.org",
+            "format": "PDF",
+            "link": "https://arxiv.org/pdf/2310.03016"
+          },
+          "authors": [
+            {
+              "name": "S Bhattamishra",
+              "id": "_nNw6yEAAAAJ",
+              "link": "https://scholar.google.com/citations?user=_nNw6yEAAAAJ&hl=en&oi=sra"
+            },
+            {
+              "name": "A Patel",
+              "id": "-5goVAsAAAAJ",
+              "link": "https://scholar.google.com/citations?user=-5goVAsAAAAJ&hl=en&oi=sra"
+            },
+            {
+              "name": "P Blunsom",
+              "id": "eJwbbXEAAAAJ",
+              "link": "https://scholar.google.com/citations?user=eJwbbXEAAAAJ&hl=en&oi=sra"
+            }
+          ]
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      },
+      {
+        "json": {
+          "position": 2,
+          "title": "Attention is not all you need: the complicated case of ethically using large language models in healthcare and medicine",
+          "data_cid": "d34ztUcm59oJ",
+          "link": "https://www.thelancet.com/journals/ebiom/article/PIIS2352-3964(23)00077-4/fulltext?ref=dedataverbinders.nl",
+          "publication": "S Harrer - EBioMedicine, 2023 - thelancet.com",
+          "snippet": "… for a diabetic with high blood pressure?” to prompting LLMs with entire problem subsets of the United States Medical Licensing Examination (USMLE). The … Attention is all you need. …",
+          "type": "HTML",
+          "inline_links": {
+            "cited_by": {
+              "cites_id": "15773618309313035895",
+              "total": 76,
+              "link": "https://scholar.google.com/scholar?cites=15773618309313035895&as_sdt=5,37&sciodt=0,37&hl=en"
+            },
+            "versions": {
+              "cluster_id": "15773618309313035895",
+              "total": 7,
+              "link": "https://scholar.google.com/scholar?cluster=15773618309313035895&hl=en&as_sdt=0,37"
+            },
+            "related_articles_link": "https://scholar.google.com/scholar?q=related:d34ztUcm59oJ:scholar.google.com/&scioq=%22Attention+is+all+you+need%22+LLMs&hl=en&as_sdt=0,37"
+          },
+          "resource": {
+            "name": "thelancet.com",
+            "format": "HTML",
+            "link": "https://www.thelancet.com/journals/ebiom/article/PIIS2352-3964(23)00077-4/fulltext?ref=dedataverbinders.nl"
+          },
+          "authors": [
+            {
+              "name": "S Harrer",
+              "id": "AFDLIv8AAAAJ",
+              "link": "https://scholar.google.com/citations?user=AFDLIv8AAAAJ&hl=en&oi=sra"
+            }
+          ]
+        },
+        "pairedItem": {
+          "item": 1
+        }
+      },
+      {
+        "json": {
+          "position": 3,
+          "title": "A LLM digest for social scientist",
+          "data_cid": "1z2MId8jH4cJ",
+          "link": "https://osf.io/m74vs/download",
+          "publication": "D Valdenegro - 2023 - osf.io",
+          "snippet": "… In December 2017 a group of researchers, mainly based at Google, published a paper called “Attention Is All You Need” presenting a model architecture they named “Transformers” [9]. …",
+          "type": "PDF",
+          "inline_links": {
+            "cited_by": {
+              "cites_id": "9736540360645819863",
+              "total": 1,
+              "link": "https://scholar.google.com/scholar?cites=9736540360645819863&as_sdt=5,37&sciodt=0,37&hl=en"
+            },
+            "versions": {
+              "cluster_id": "9736540360645819863",
+              "total": 3,
+              "link": "https://scholar.google.com/scholar?cluster=9736540360645819863&hl=en&as_sdt=0,37"
+            },
+            "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:1z2MId8jH4cJ:scholar.google.com/+%22Attention+is+all+you+need%22+LLMs&hl=en&as_sdt=0,37"
+          },
+          "resource": {
+            "name": "osf.io",
+            "format": "PDF",
+            "link": "https://osf.io/m74vs/download"
+          },
+          "authors": [
+            {
+              "name": "D Valdenegro",
+              "id": "ilwTrOwAAAAJ",
+              "link": "https://scholar.google.com/citations?user=ilwTrOwAAAAJ&hl=en&oi=sra"
+            }
+          ]
+        },
+        "pairedItem": {
+          "item": 2
+        }
+      },
+      {
+        "json": {
+          "position": 4,
+          "title": "Blending Is All You Need: Cheaper, Better Alternative to Trillion-Parameters LLM",
+          "data_cid": "OTY2lM6hNRAJ",
+          "link": "https://arxiv.org/abs/2401.02994",
+          "publication": "X Lu, A Liusie, V Raina, Y Zhang… - arXiv preprint arXiv …, 2024 - arxiv.org",
+          "snippet": "… -of-theart LLMs, one may question whether a group of moderately-sized LLMs can together … that a Blended ensemble with three 6-13B parameter LLMs, outcompetes OpenAI’s 175B+ …",
+          "inline_links": {
+            "versions": {
+              "cluster_id": "1168017586994427449",
+              "total": 2,
+              "link": "https://scholar.google.com/scholar?cluster=1168017586994427449&hl=en&as_sdt=0,37"
+            },
+            "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:OTY2lM6hNRAJ:scholar.google.com/+%22Attention+is+all+you+need%22+LLMs&hl=en&as_sdt=0,37"
+          },
+          "resource": {
+            "name": "arxiv.org",
+            "format": "PDF",
+            "link": "https://arxiv.org/pdf/2401.02994"
+          },
+          "authors": [
+            {
+              "name": "A Liusie",
+              "id": "dYtKMOgAAAAJ",
+              "link": "https://scholar.google.com/citations?user=dYtKMOgAAAAJ&hl=en&oi=sra"
+            },
+            {
+              "name": "V Raina",
+              "id": "BxFBCoYAAAAJ",
+              "link": "https://scholar.google.com/citations?user=BxFBCoYAAAAJ&hl=en&oi=sra"
+            }
+          ]
+        },
+        "pairedItem": {
+          "item": 3
+        }
+      },
+      {
+        "json": {
+          "position": 5,
+          "title": "Automated Assessment of Comprehension Strategies from Self-Explanations Using LLMs",
+          "data_cid": "dLTHNhV5MusJ",
+          "link": "https://www.mdpi.com/2078-2489/14/10/567",
+          "publication": "B Nicula, M Dascalu, T Arner, R Balyan, DS McNamara - Information, 2023 - mdpi.com",
+          "snippet": "… We also analyzed how the performance of these LLM models scaled … LLMs, describing a template for the prompts to be used in the experiments. Lastly, it provides an overview of LLM …",
+          "type": "HTML",
+          "inline_links": {
+            "cited_by": {
+              "cites_id": "16947741479768929396",
+              "total": 1,
+              "link": "https://scholar.google.com/scholar?cites=16947741479768929396&as_sdt=5,37&sciodt=0,37&hl=en"
+            },
+            "versions": {
+              "cluster_id": "16947741479768929396",
+              "total": 4,
+              "link": "https://scholar.google.com/scholar?cluster=16947741479768929396&hl=en&as_sdt=0,37"
+            },
+            "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:dLTHNhV5MusJ:scholar.google.com/+%22Attention+is+all+you+need%22+LLMs&hl=en&as_sdt=0,37"
+          },
+          "resource": {
+            "name": "mdpi.com",
+            "format": "HTML",
+            "link": "https://www.mdpi.com/2078-2489/14/10/567"
+          },
+          "authors": [
+            {
+              "name": "B Nicula",
+              "id": "Sx9kQvgAAAAJ",
+              "link": "https://scholar.google.com/citations?user=Sx9kQvgAAAAJ&hl=en&oi=sra"
+            },
+            {
+              "name": "M Dascalu",
+              "id": "3L9yY8UAAAAJ",
+              "link": "https://scholar.google.com/citations?user=3L9yY8UAAAAJ&hl=en&oi=sra"
+            },
+            {
+              "name": "T Arner",
+              "id": "d_oLG6IAAAAJ",
+              "link": "https://scholar.google.com/citations?user=d_oLG6IAAAAJ&hl=en&oi=sra"
+            },
+            {
+              "name": "R Balyan",
+              "id": "gpRVRRAAAAAJ",
+              "link": "https://scholar.google.com/citations?user=gpRVRRAAAAAJ&hl=en&oi=sra"
+            },
+            {
+              "name": "DS McNamara",
+              "id": "NOxLJQUAAAAJ",
+              "link": "https://scholar.google.com/citations?user=NOxLJQUAAAAJ&hl=en&oi=sra"
+            }
+          ]
+        },
+        "pairedItem": {
+          "item": 4
+        }
+      },
+      {
+        "json": {
+          "position": 6,
+          "title": "What's the Magic Word? A Control Theory of LLM Prompting",
+          "data_cid": "fhrw7csN_QMJ",
+          "link": "https://arxiv.org/abs/2310.04444",
+          "publication": "A Bhargava, C Witkowski, M Shah… - arXiv preprint arXiv …, 2023 - arxiv.org",
+          "snippet": "… Prompt engineering is effective and important in the deployment of LLMs but is … LLMs – where the prompt is considered a control variable for modulating the output distribution of the LLM…",
+          "inline_links": {
+            "cited_by": {
+              "cites_id": "287401120743037566",
+              "total": 2,
+              "link": "https://scholar.google.com/scholar?cites=287401120743037566&as_sdt=5,37&sciodt=0,37&hl=en"
+            },
+            "versions": {
+              "cluster_id": "287401120743037566",
+              "total": 2,
+              "link": "https://scholar.google.com/scholar?cluster=287401120743037566&hl=en&as_sdt=0,37"
+            },
+            "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:fhrw7csN_QMJ:scholar.google.com/+%22Attention+is+all+you+need%22+LLMs&hl=en&as_sdt=0,37"
+          },
+          "resource": {
+            "name": "arxiv.org",
+            "format": "PDF",
+            "link": "https://arxiv.org/pdf/2310.04444"
+          },
+          "authors": [
+            {
+              "name": "A Bhargava",
+              "id": "DA8VdbYAAAAJ",
+              "link": "https://scholar.google.com/citations?user=DA8VdbYAAAAJ&hl=en&oi=sra"
+            }
+          ]
+        },
+        "pairedItem": {
+          "item": 5
+        }
+      },
+      {
+        "json": {
+          "position": 7,
+          "title": "Understanding LLMs: A Comprehensive Overview from Training to Inference",
+          "data_cid": "T_vBrDtXZO0J",
+          "link": "https://arxiv.org/abs/2401.02038",
+          "publication": "Y Liu, H He, T Han, X Zhang, M Liu, J Tian… - arXiv preprint arXiv …, 2024 - arxiv.org",
+          "snippet": "… aspects of training LLMs, while in Section 4 we will explore the technologies related to LLM’s inference and deployment. In Section 5, we will discuss the utilization of LLMs, and Section …",
+          "inline_links": {
+            "cited_by": {
+              "cites_id": "17105893198473067343",
+              "total": 1,
+              "link": "https://scholar.google.com/scholar?cites=17105893198473067343&as_sdt=5,37&sciodt=0,37&hl=en"
+            },
+            "versions": {
+              "cluster_id": "17105893198473067343",
+              "total": 2,
+              "link": "https://scholar.google.com/scholar?cluster=17105893198473067343&hl=en&as_sdt=0,37"
+            },
+            "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:T_vBrDtXZO0J:scholar.google.com/+%22Attention+is+all+you+need%22+LLMs&hl=en&as_sdt=0,37"
+          },
+          "resource": {
+            "name": "arxiv.org",
+            "format": "PDF",
+            "link": "https://arxiv.org/pdf/2401.02038"
+          },
+          "authors": [
+            {
+              "name": "Y Liu",
+              "id": "W7mUggsAAAAJ",
+              "link": "https://scholar.google.com/citations?user=W7mUggsAAAAJ&hl=en&oi=sra"
+            }
+          ]
+        },
+        "pairedItem": {
+          "item": 6
+        }
+      },
+      {
+        "json": {
+          "position": 8,
+          "title": "Balancing specialized and general skills in llms: The impact of modern tuning and data strategy",
+          "data_cid": "Q_Vg4p5_XTEJ",
+          "link": "https://arxiv.org/abs/2310.04945",
+          "publication": "Z Zhang, C Zheng, D Tang, K Sun, Y Ma, Y Bu… - arXiv preprint arXiv …, 2023 - arxiv.org",
+          "snippet": "… evaluate the generation quality of LLMs on both general and in-… that Language Learning Models (LLMs) exhibited a notable … This approach is designed to maintain the LLMs’ proficiency …",
+          "inline_links": {
+            "cited_by": {
+              "cites_id": "3557139601072125251",
+              "total": 4,
+              "link": "https://scholar.google.com/scholar?cites=3557139601072125251&as_sdt=5,37&sciodt=0,37&hl=en"
+            },
+            "versions": {
+              "cluster_id": "3557139601072125251",
+              "total": 2,
+              "link": "https://scholar.google.com/scholar?cluster=3557139601072125251&hl=en&as_sdt=0,37"
+            },
+            "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:Q_Vg4p5_XTEJ:scholar.google.com/+%22Attention+is+all+you+need%22+LLMs&hl=en&as_sdt=0,37"
+          },
+          "resource": {
+            "name": "arxiv.org",
+            "format": "PDF",
+            "link": "https://arxiv.org/pdf/2310.04945"
+          },
+          "authors": [
+            {
+              "name": "Z Zhang",
+              "id": "fRdZRHsAAAAJ",
+              "link": "https://scholar.google.com/citations?user=fRdZRHsAAAAJ&hl=en&oi=sra"
+            },
+            {
+              "name": "C Zheng",
+              "id": "3r8W35cAAAAJ",
+              "link": "https://scholar.google.com/citations?user=3r8W35cAAAAJ&hl=en&oi=sra"
+            },
+            {
+              "name": "D Tang",
+              "id": "00xg8JcAAAAJ",
+              "link": "https://scholar.google.com/citations?user=00xg8JcAAAAJ&hl=en&oi=sra"
+            }
+          ]
+        },
+        "pairedItem": {
+          "item": 7
+        }
+      },
+      {
+        "json": {
+          "position": 9,
+          "title": "Focal: A Proposed Method of Leveraging LLMs for Automating Assessments",
+          "data_cid": "2t67M9mRsVgJ",
+          "link": "http://dev.stamper.org/publications/ICCE2023-Focal.pdf",
+          "publication": "P Meyersa, A Hana, R Grewala, M Potnisa, J Stampera - dev.stamper.org",
+          "snippet": "… Focal’s integration into Learning Management Systems (LMS) not only alleviates the burden on educators but also democratizes access to high-quality assessments. These …",
+          "type": "PDF",
+          "inline_links": {
+            "versions": {
+              "cluster_id": "6391049708277325530",
+              "total": 2,
+              "link": "https://scholar.google.com/scholar?cluster=6391049708277325530&hl=en&as_sdt=0,37"
+            },
+            "cached_page_link": "http://scholar.googleusercontent.com/scholar?q=cache:2t67M9mRsVgJ:scholar.google.com/+%22Attention+is+all+you+need%22+LLMs&hl=en&as_sdt=0,37"
+          },
+          "resource": {
+            "name": "stamper.org",
+            "format": "PDF",
+            "link": "http://dev.stamper.org/publications/ICCE2023-Focal.pdf"
+          }
+        },
+        "pairedItem": {
+          "item": 8
+        }
+      },
+      {
+        "json": {
+          "position": 10,
+          "title": "From task structures to world models: What do LLMs know?",
+          "data_cid": "aVqEy9jxfRoJ",
+          "link": "https://arxiv.org/abs/2310.04276",
+          "publication": "I Yildirim, LA Paul - arXiv preprint arXiv:2310.04276, 2023 - arxiv.org",
+          "snippet": "… We answer by granting LLMs “instrumental knowledge”; knowledge defined by a certain set of … We discuss ways LLMs could recover degrees of worldly knowledge, and suggest such …",
+          "inline_links": {
+            "cited_by": {
+              "cites_id": "1908947730504637033",
+              "total": 2,
+              "link": "https://scholar.google.com/scholar?cites=1908947730504637033&as_sdt=5,37&sciodt=0,37&hl=en"
+            },
+            "versions": {
+              "cluster_id": "1908947730504637033",
+              "total": 3,
+              "link": "https://scholar.google.com/scholar?cluster=1908947730504637033&hl=en&as_sdt=0,37"
+            },
+            "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:aVqEy9jxfRoJ:scholar.google.com/+%22Attention+is+all+you+need%22+LLMs&hl=en&as_sdt=0,37"
+          },
+          "resource": {
+            "name": "arxiv.org",
+            "format": "PDF",
+            "link": "https://arxiv.org/pdf/2310.04276"
+          },
+          "authors": [
+            {
+              "name": "I Yildirim",
+              "id": "3hdOFF0AAAAJ",
+              "link": "https://scholar.google.com/citations?user=3hdOFF0AAAAJ&hl=en&oi=sra"
+            },
+            {
+              "name": "LA Paul",
+              "id": "3bFcPzYAAAAJ",
+              "link": "https://scholar.google.com/citations?user=3bFcPzYAAAAJ&hl=en&oi=sra"
+            }
+          ]
+        },
+        "pairedItem": {
+          "item": 9
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:32:35.457Z",
+      "updatedAt": "2023-12-17T10:32:35.457Z",
+      "id": "y4SS6pvxfLMwCsGn",
+      "name": "service"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-16T09:51:52.000Z",
+  "versionId": "f2d29688-5e11-421e-890f-35900f648713"
+}
