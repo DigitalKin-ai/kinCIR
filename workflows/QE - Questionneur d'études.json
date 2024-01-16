@@ -145,17 +145,6 @@
         ]
       ]
     },
-    "Inserer l'étude dans Pinecone": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
     "Merge": {
       "main": [
         [
@@ -177,11 +166,24 @@
           }
         ]
       ]
+    },
+    "Inserer l'étude dans Pinecone": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2023-12-18T17:45:00.944Z",
   "id": "yQ79P9nuVKhkwZpD",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "QE - Questionneur d'études",
   "nodes": [
     {
@@ -212,9 +214,7 @@
       }
     },
     {
-      "parameters": {
-        "topK": 8
-      },
+      "parameters": {},
       "id": "724e1b70-2ecf-4efb-952d-d5724b3e3eca",
       "name": "Vector Store Retriever",
       "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
@@ -405,20 +405,6 @@
     },
     {
       "parameters": {
-        "workflowId": "eRT6xb82oqCbX4u2"
-      },
-      "id": "cf29dbde-a4f9-4040-8099-980d0de6550e",
-      "name": "Inserer l'étude dans Pinecone",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        3060,
-        -180
-      ],
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
         "fieldToSplitOut": "organic_results",
         "options": {}
       },
@@ -493,6 +479,20 @@
         2040,
         -160
       ]
+    },
+    {
+      "parameters": {
+        "workflowId": "eRT6xb82oqCbX4u2"
+      },
+      "id": "cf29dbde-a4f9-4040-8099-980d0de6550e",
+      "name": "Inserer l'étude dans Pinecone",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3060,
+        -180
+      ],
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {
@@ -520,6 +520,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-16T10:38:51.000Z",
-  "versionId": "bd626521-c30e-4e6e-a7f3-cbafea1b7717"
+  "updatedAt": "2024-01-16T14:37:11.000Z",
+  "versionId": "8aac0e60-cdba-45a9-8518-55c49cdac475"
 }
