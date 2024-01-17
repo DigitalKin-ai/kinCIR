@@ -156,17 +156,6 @@
         ]
       ]
     },
-    "Mots-clés de recherche": {
-      "main": [
-        [
-          {
-            "node": "Google Scholar Search",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Inserer l'étude dans Pinecone": {
       "main": [
         [
@@ -174,6 +163,17 @@
             "node": "Merge",
             "type": "main",
             "index": 1
+          }
+        ]
+      ]
+    },
+    "Mots-clés de recherche": {
+      "main": [
+        [
+          {
+            "node": "Google Scholar Search",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -376,7 +376,7 @@
         "genericAuthType": "httpHeaderAuth",
         "sendQuery": true,
         "specifyQuery": "json",
-        "jsonQuery": "={\n  \"engine\": \"google_scholar\",\n  \"q\": {{ JSON.stringify($json.text) }}\n}",
+        "jsonQuery": "={\n  \"engine\": \"google_scholar\",\n  \"q\": {{ JSON.stringify($json.text) }},\n  \"as_ylo\":2019\n}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -469,19 +469,6 @@
     },
     {
       "parameters": {
-        "prompt": "=# Instructions du générateur de Query de recherche\n\n# Rôle\nObjectif : Convertir directement une question en une liste concise de mots-clés pour une recherche efficace sur Google Scholar.\nContenu : L'assistant doit générer une Query pour Google Scholar\n\n# Contexte\nObjectif : Comprendre que l'utilisateur a besoin d'effectuer une recherche ciblée sur Google Scholar et que la pertinence des mots-clés est cruciale à cet effet.\nContenu : L'utilisateur cherche à obtenir une liste de mots-clés qui lui permettront d'accéder directement aux documents académiques répondant à sa question. La sélectivité des mots-clés garantira des résultats de recherche plus précis.\n\n# Instructions\nObjectif : Produire une liste de mots-clés sans superflu, reflétant les éléments essentiels de la question.\nContenu : \n- Identifier les termes centraux et spécifiques de la question qui sont susceptibles d'être utilisés dans la littérature académique.\n- Exclure les mots de liaison et les termes génériques non pertinents pour la recherche.\n\n# Sortie\n\nContenu : La query et uniquement la query exacte qui sera entrée dans Google Schloar. Pas de mots ni avant, ni après, ni de guillemets. Utilise des OR pour les questions larges.\n\n# Misison Globale\n\n{{ $json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $json.query }}\n\n# Query\n\nQuery : "
-      },
-      "id": "8f31de23-3ac2-4ba2-b751-4331eef0cda1",
-      "name": "Mots-clés de recherche",
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.2,
-      "position": [
-        2040,
-        -160
-      ]
-    },
-    {
-      "parameters": {
         "workflowId": "eRT6xb82oqCbX4u2"
       },
       "id": "cf29dbde-a4f9-4040-8099-980d0de6550e",
@@ -493,6 +480,19 @@
         -180
       ],
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "prompt": "=# Instructions du générateur de Query de recherche\n\n# Rôle\nObjectif : Convertir directement une question en une liste concise de mots-clés pour une recherche efficace sur Google Scholar.\nContenu : L'assistant doit générer une Query pour Google Scholar\n\n# Contexte\nObjectif : Comprendre que l'utilisateur a besoin d'effectuer une recherche ciblée sur Google Scholar et que la pertinence des mots-clés est cruciale à cet effet.\nContenu : L'utilisateur cherche à obtenir une liste de mots-clés qui lui permettront d'accéder directement aux documents académiques répondant à sa question. La sélectivité des mots-clés garantira des résultats de recherche plus précis.\n\n# Instructions\nObjectif : Produire une liste de mots-clés sans superflu, reflétant les éléments essentiels de la question.\nContenu : \n- Identifier les termes centraux et spécifiques de la question qui sont susceptibles d'être utilisés dans la littérature académique.\n- Exclure les mots de liaison et les termes génériques non pertinents pour la recherche.\n\n# Sortie\n\nContenu : La query et uniquement la query exacte qui sera entrée dans Google Schloar. Pas de mots ni avant, ni après, ni de guillemets. Utilise des OR pour les questions larges.\n\n# Misison Globale\n\n{{ $json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $json.query }}\n\n# Query\n\nQuery : "
+      },
+      "id": "8f31de23-3ac2-4ba2-b751-4331eef0cda1",
+      "name": "Mots-clés de recherche",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        2040,
+        -160
+      ]
     }
   ],
   "pinData": {
@@ -520,6 +520,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-16T14:37:11.000Z",
-  "versionId": "8aac0e60-cdba-45a9-8518-55c49cdac475"
+  "updatedAt": "2024-01-17T15:20:04.000Z",
+  "versionId": "0206c0a4-55c3-4490-92a3-e4811e4ddac7"
 }
