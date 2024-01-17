@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "Lister les Etudes1",
+            "node": "Récupérer le PDF",
             "type": "main",
             "index": 0
           }
@@ -166,6 +166,17 @@
         ]
       ]
     },
+    "Récupérer le PDF": {
+      "main": [
+        [
+          {
+            "node": "Read PDF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Extracteur de citation détaillée": {
       "main": [
         [
@@ -192,8 +203,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        300,
-        920
+        500,
+        1420
       ]
     },
     {
@@ -464,26 +475,6 @@
     },
     {
       "parameters": {
-        "prompt": "=# Informations\n\n{{ $json[\"text\"].substring(0,5000) }}\n[...]",
-        "messages": {
-          "messageValues": [
-            {
-              "message": "=# Tâche\n\nA partir des informations données, fais de ton mieux pour donner la citation détaillée de l'étude.\n\nRéponds uniquement avec la citation détaillée."
-            }
-          ]
-        }
-      },
-      "id": "9ea1dfaa-04fd-47ac-86ca-e4744a07a533",
-      "name": "Extracteur de citation détaillée",
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.2,
-      "position": [
-        1420,
-        1140
-      ]
-    },
-    {
-      "parameters": {
         "model": "gpt-4-1106-preview",
         "options": {
           "timeout": 600000
@@ -519,6 +510,51 @@
         1440,
         1520
       ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "=1N33_VLDMpygDDHOAGHCRycz4zr7d3Fxq",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "c0a11a8d-e736-4f0e-a370-1aebb528a3db",
+      "name": "Récupérer le PDF",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        940,
+        1420
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "prompt": "=# Informations\n\n{{ $json[\"text\"].substring(0,5000) }}\n[...]",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Tâche\n\nA partir des informations données, fais de ton mieux pour donner la citation détaillée de l'étude.\n\nRéponds uniquement avec la citation détaillée."
+            }
+          ]
+        }
+      },
+      "id": "9ea1dfaa-04fd-47ac-86ca-e4744a07a533",
+      "name": "Extracteur de citation détaillée",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        1420,
+        1140
+      ]
     }
   ],
   "pinData": {},
@@ -537,6 +573,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-17T08:59:53.000Z",
-  "versionId": "fe278b07-6eff-4a50-82b8-439770980143"
+  "updatedAt": "2024-01-17T15:24:24.000Z",
+  "versionId": "589b7996-2dba-46dc-8e45-deac46568217"
 }
