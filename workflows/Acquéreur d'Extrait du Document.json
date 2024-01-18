@@ -169,7 +169,9 @@
   },
   "createdAt": "2023-12-18T06:02:25.817Z",
   "id": "2JRhtxSoct8OyuuI",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Acquéreur d'Extrait du Document",
   "nodes": [
     {
@@ -615,7 +617,8 @@
     },
     {
       "parameters": {
-        "content": "# FIX"
+        "content": "# FIX",
+        "height": 196.47416290345058
       },
       "id": "b49af98c-6444-4dfb-9bfc-7fe75a0c7d2d",
       "name": "Sticky Note1",
@@ -656,6 +659,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-20T15:27:58.000Z",
-  "versionId": "4d3d96f2-329f-42a5-aeba-b67ce709fe56"
+  "updatedAt": "2024-01-18T15:24:58.000Z",
+  "versionId": "22041eee-b000-42d4-acf1-6e62f90dcdd9"
 }
