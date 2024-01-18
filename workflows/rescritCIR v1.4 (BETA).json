@@ -184,6 +184,11 @@
             "node": "missionInit",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "IF Pièce Jointe",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -422,6 +427,17 @@
           }
         ]
       ]
+    },
+    "IF Pièce Jointe": {
+      "main": [
+        [
+          {
+            "node": "Inserer l'étude dans Pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-17T12:47:07.331Z",
@@ -636,7 +652,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let sortie = $node[\"thread\"].json.entireThread;\nlet output = $node[\"Rédacteur\"].json.output;\n\n// Enlever toutes les lignes qui contiennent les instructions\nsortie += '\\n\\n' + output; \nsortie = sortie.replace(/.*Prochaine étape.*$/gmi, '');\nsortie = sortie.replace(/.*Étape suivante.*$/gmi, '');\nsortie = sortie.replace(/^.*niveau de boucle.*$/gmi, '');\nsortie = sortie.replace(/```.*```/gmi, '');\nsortie = sortie.replace(/``.*``/gmi, '');\nthread = thread.replace(/^[\\r\\n]+|[\\r\\n]+$/g, '');\n\nreturn {\"mission\": $node[\"mission\"].json.mission,\"thread\":sortie, \"instructions\" : $json.output, \"mailId\": $node[\"Get Email\"].json.id};"
+        "jsCode": "let thread = $node[\"thread\"].json.entireThread;\nlet output = $node[\"Rédacteur\"].json.output;\n\n// Enlever toutes les lignes qui contiennent les instructions\nthread += '\\n\\n' + output; \nthread = thread.replace(/.*Prochaine étape.*$/gmi, '');\nthread = thread.replace(/.*Étape suivante.*$/gmi, '');\nthread = thread.replace(/^.*niveau de boucle.*$/gmi, '');\nthread = thread.replace(/```.*```/gmi, '');\nthread = thread.replace(/``.*``/gmi, '');\nthread = thread.replace(/^[\\r\\n]+|[\\r\\n]+$/g, '');\n\nreturn {\"mission\": $node[\"mission\"].json.mission,\"thread\":thread, \"instructions\" : $json.output, \"mailId\": $node[\"Get Email\"].json.id};"
       },
       "id": "6d4187d5-bf88-45a1-8583-226daaa545f0",
       "name": "sortie",
@@ -859,7 +875,9 @@
         "operation": "get",
         "messageId": "={{ $json.mailId?$json.mailId:$node[\"Nico reçoit un email\"].json.id }}",
         "simple": false,
-        "options": {}
+        "options": {
+          "downloadAttachments": true
+        }
       },
       "id": "163cc9db-f486-46ef-83ed-2d9fcaba7b67",
       "name": "Get InitEmail",
@@ -1495,6 +1513,40 @@
         2737.450901803607,
         534.7895791583167
       ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $input.item.binary != undefined }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "62561863-b4a4-4d1c-a211-9d389e474d10",
+      "name": "IF Pièce Jointe",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        5220,
+        -580
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "eRT6xb82oqCbX4u2"
+      },
+      "id": "e053f98a-ea92-44e4-9d1f-d8a28092df2e",
+      "name": "Inserer l'étude dans Pinecone",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5460,
+        -580
+      ],
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {
@@ -1520,9 +1572,9 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1705574933,
+      "lastTimeChecked": 1705618319,
       "possibleDuplicates": [
-        "18d1c30249f6f05d"
+        "18d1ec62b94a63ff"
       ]
     }
   },
@@ -1535,6 +1587,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-18T10:51:15.000Z",
-  "versionId": "7752142e-cea7-4897-b04c-32266a6471a0"
+  "updatedAt": "2024-01-18T22:54:55.000Z",
+  "versionId": "e693f80b-62b4-4bda-a0d2-156db9e060a1"
 }
