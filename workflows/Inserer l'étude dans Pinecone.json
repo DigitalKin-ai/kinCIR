@@ -5,18 +5,12 @@
       "main": [
         [
           {
-            "node": "Récupérer le PDF",
+            "node": "IF Results1",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Récupérer le PDF1": {
-      "main": [
-        [
+          },
           {
-            "node": "Read PDF2",
+            "node": "IF Pièce Jointe",
             "type": "main",
             "index": 0
           }
@@ -38,7 +32,7 @@
       "main": [
         [
           {
-            "node": "Document Inserter Dynergie1",
+            "node": "Split Out1",
             "type": "main",
             "index": 0
           }
@@ -62,28 +56,6 @@
           {
             "node": "Document Inserter Dynergie1",
             "type": "ai_document",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Lister les Etudes1": {
-      "main": [
-        [
-          {
-            "node": "IF PDF",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "IF PDF": {
-      "main": [
-        [
-          {
-            "node": "Récupérer le PDF1",
-            "type": "main",
             "index": 0
           }
         ]
@@ -129,15 +101,9 @@
             "node": "IF Results1",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Read PDF2": {
-      "main": [
-        [
+          },
           {
-            "node": "Extracteur de citation détaillée",
+            "node": "IF Pièce Jointe",
             "type": "main",
             "index": 0
           }
@@ -148,7 +114,7 @@
       "main": [
         [
           {
-            "node": "Read PDF2",
+            "node": "Upload Document",
             "type": "main",
             "index": 0
           }
@@ -170,7 +136,124 @@
       "main": [
         [
           {
-            "node": "Read PDF2",
+            "node": "Read PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read PDF": {
+      "main": [
+        [
+          {
+            "node": "Extracteur de citation détaillée",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Pièce Jointe": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Upload Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "return citation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Embedding": {
+      "main": [
+        [
+          {
+            "node": "Generate UUID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate UUID": {
+      "main": [
+        [
+          {
+            "node": "Upsert chunks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Get Embedding",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert chunks": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Document": {
+      "main": [
+        [
+          {
+            "node": "Récupérer le PDF",
             "type": "main",
             "index": 0
           }
@@ -182,6 +265,11 @@
         [
           {
             "node": "Découper en chunks",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
             "type": "main",
             "index": 0
           }
@@ -203,64 +291,9 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        500,
-        1420
+        -320,
+        980
       ]
-    },
-    {
-      "parameters": {
-        "operation": "download",
-        "fileId": {
-          "__rl": true,
-          "value": "={{ $json.id }}",
-          "mode": "id"
-        },
-        "options": {}
-      },
-      "id": "e3845c45-2a0a-46fb-b6df-abf82165a5d3",
-      "name": "Récupérer le PDF1",
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        900,
-        920
-      ],
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "Z5nSsC9JGaYw1Ng3",
-          "name": "Google Drive account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "fileFolder",
-        "returnAll": true,
-        "filter": {
-          "folderId": {
-            "__rl": true,
-            "value": "1E0oqQwRg93PO3_Ak_0lhcK0yyzTvKqL9",
-            "mode": "list",
-            "cachedResultName": "etudes",
-            "cachedResultUrl": "https://drive.google.com/drive/folders/1E0oqQwRg93PO3_Ak_0lhcK0yyzTvKqL9"
-          }
-        },
-        "options": {}
-      },
-      "id": "55f49d43-1c21-4ce9-b3c2-8166c616cc48",
-      "name": "Lister les Etudes1",
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        500,
-        920
-      ],
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "Z5nSsC9JGaYw1Ng3",
-          "name": "Google Drive account"
-        }
-      }
     },
     {
       "parameters": {
@@ -274,8 +307,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        1440,
-        1340
+        1500,
+        1360
       ],
       "credentials": {
         "openAiApi": {
@@ -287,15 +320,15 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function decouperEnSegments(texte) {\n    const TAILLE_SEGMENT = 1000;\n    let segments = [];\n    let data = \"\"\n\n    for (let i = 0; i < texte.length; i += TAILLE_SEGMENT) {\n        let segment = \"# Metadata\\n\\n\" + $node[\"Extracteur de citation détaillée\"].json.text + \"\\n\\n# Texte extrait de l'étude\\n\\n\"\n        segment += texte.substring(i, i + TAILLE_SEGMENT);\n        segments.push(segment);\n    }\n\n    return segments;\n}\n\nlet texteLong = $node[\"Read PDF2\"].json.text;\nlet tableauSegments = decouperEnSegments(texteLong);\n\n\n\nreturn {\"json\":{\"chunks\":tableauSegments}};\n"
+        "jsCode": "function decouperEnSegments(texte) {\n    const TAILLE_SEGMENT = 1000;\n    let segments = [];\n    let data = \"\"\n    let citation = $node[\"Extracteur de citation détaillée\"].json.text;\n    let documentGoogleDriveId = $node[\"Upload Document\"].json.id;\n\n    for (let i = 0; i < texte.length; i += TAILLE_SEGMENT) {\n        let extrait =  texte.substring(i, i + TAILLE_SEGMENT);\n        let extraitElargi = texte.substring(Math.max(i-1000, 0), Math.min(i + TAILLE_SEGMENT+1000, texte.length));\n        let text = \"# Citation Détaillée\\n\\n\" + citation + \"\\n\\n# Extrait de l'étude\\n\\n\" + extrait;\n\n        segments.push({\"text\": text, \"extrait\": extrait, \"extraitElargi\": extraitElargi, \"citation\": citation, \"documentGoogleDriveId\": documentGoogleDriveId});\n    }\n\n    return segments;\n}\n\nlet texteLong = $node[\"Read PDF\"].json.text;\nlet tableauSegments = decouperEnSegments(texteLong);\n\nreturn {\"json\":{\"segments\":tableauSegments}};\n"
       },
       "id": "d74f5836-43a8-424c-9c0d-2f9affc9cb21",
       "name": "Découper en chunks",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1860,
-        1140
+        2020,
+        1520
       ]
     },
     {
@@ -307,8 +340,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1,
       "position": [
-        2100,
-        1360
+        960,
+        1800
       ],
       "credentials": {
         "openAiApi": {
@@ -335,29 +368,8 @@
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1,
       "position": [
-        2180,
-        1500
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $json.name.toLowerCase() }}",
-              "operation": "endsWith",
-              "value2": "=.pdf"
-            }
-          ]
-        }
-      },
-      "id": "3a6dc348-4c0f-4927-ac24-18a01e4b341c",
-      "name": "IF PDF",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        700,
-        920
+        1040,
+        1940
       ]
     },
     {
@@ -369,8 +381,8 @@
       "type": "@n8n/n8n-nodes-langchain.textSplitterTokenSplitter",
       "typeVersion": 1,
       "position": [
-        2180,
-        1720
+        1040,
+        2160
       ]
     },
     {
@@ -383,8 +395,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        700,
-        1160
+        240,
+        1100
       ]
     },
     {
@@ -403,8 +415,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        500,
-        1160
+        40,
+        1100
       ]
     },
     {
@@ -414,49 +426,9 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        300,
-        1160
+        -180,
+        1200
       ]
-    },
-    {
-      "parameters": {
-        "mode": "insert",
-        "pineconeIndex": {
-          "__rl": true,
-          "value": "kins",
-          "mode": "list",
-          "cachedResultName": "kins"
-        },
-        "options": {
-          "pineconeNamespace": "=etudes"
-        }
-      },
-      "id": "62d91b73-6bdd-43f8-8559-12caac9f699f",
-      "name": "Document Inserter Dynergie1",
-      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
-      "typeVersion": 1,
-      "position": [
-        2100,
-        1140
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {},
-      "id": "33845d9d-b00c-4554-a003-7a734f8a79e0",
-      "name": "Read PDF2",
-      "type": "n8n-nodes-base.readPDF",
-      "typeVersion": 1,
-      "position": [
-        1120,
-        1160
-      ],
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -468,8 +440,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        900,
-        1160
+        440,
+        1100
       ],
       "onError": "continueErrorOutput"
     },
@@ -485,8 +457,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        1440,
-        1740
+        1500,
+        1760
       ],
       "credentials": {
         "openAiApi": {
@@ -507,8 +479,8 @@
       "type": "@n8n/n8n-nodes-langchain.chainSummarization",
       "typeVersion": 2,
       "position": [
-        1440,
-        1520
+        1500,
+        1540
       ]
     },
     {
@@ -516,7 +488,7 @@
         "operation": "download",
         "fileId": {
           "__rl": true,
-          "value": "=1DmE_hiCwl97muFChlwthUP862-UHNCqP",
+          "value": "={{ $json.id }}",
           "mode": "id"
         },
         "options": {}
@@ -526,9 +498,274 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        940,
-        1420
+        960,
+        1160
       ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $input.item.binary != undefined }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "ae34d98d-c3e8-48b8-8eed-f5f2c28f52ec",
+      "name": "IF Pièce Jointe",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        40,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "={{ Object.keys($binary)[0] }}"
+      },
+      "id": "33845d9d-b00c-4554-a003-7a734f8a79e0",
+      "name": "Read PDF",
+      "type": "n8n-nodes-base.readPDF",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        1160
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "=$binary",
+        "options": {}
+      },
+      "id": "50200a27-1ce7-42ad-b737-867967e82901",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        240,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"citation\":$node[\"Extracteur de citation détaillée\"].json.text, \"documentGoogleDriveId\": $node[\"Upload Document\"].json.id}};\n"
+      },
+      "id": "ed9e37a4-5174-4e70-8902-4171d9787734",
+      "name": "return citation",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3440,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "e1889570-3e87-4144-8a55-f770f9eb2ea7",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        3240,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://kins-71e4f70.svc.us-east1-gcp.pinecone.io/vectors/upsert",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"namespace\": \"etudes\",\n\"vectors\": {\n\"id\": \"{{ $node[\"Generate UUID\"].json.id }}\",\n\"metadata\": {{ JSON.stringify($node[\"Split Out1\"].json) }},\n\"values\": [{{ $json.data[0].embedding }}]\n}\n}",
+        "options": {}
+      },
+      "id": "4a8268c7-f898-44a8-af5e-87b577e309c0",
+      "name": "Upsert chunks",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        3100,
+        1520
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.openai.com/v1/embeddings ",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "input",
+              "value": "={{ $json.text }}"
+            },
+            {
+              "name": "model",
+              "value": "text-embedding-ada-002"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7e43d823-fe24-45fd-928e-11d4c552a19f",
+      "name": "Get Embedding",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2680,
+        1520
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "segments",
+        "options": {}
+      },
+      "id": "ad1b4b98-6ee5-4100-9e5a-ee1874b01ee5",
+      "name": "Split Out1",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2220,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "action": "generate",
+        "dataPropertyName": "id"
+      },
+      "id": "0cb850cd-5aea-4cad-b04c-9f2a4d285f9b",
+      "name": "Generate UUID",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {
+          "pineconeNamespace": "=etudes"
+        }
+      },
+      "id": "62d91b73-6bdd-43f8-8559-12caac9f699f",
+      "name": "Document Inserter Dynergie1",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        960,
+        1580
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "1eb838aa-3686-401b-9241-44d98dbf22ce",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2440,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "binaryData": true,
+        "binaryPropertyName": "={{ Object.keys($binary)[0] }}",
+        "name": "={{ $binary[Object.keys($binary)].fileName }}",
+        "parents": [
+          "1E0oqQwRg93PO3_Ak_0lhcK0yyzTvKqL9"
+        ],
+        "options": {
+          "propertiesUi": {
+            "propertyValues": [
+              {
+                "key": "mailId",
+                "value": "={{ $json.mailId }}"
+              }
+            ]
+          }
+        }
+      },
+      "name": "Upload Document",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        740,
+        1160
+      ],
+      "typeVersion": 1,
+      "id": "bd3caffb-0117-4bf2-8c68-8d1f01e9b4e0",
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "Z5nSsC9JGaYw1Ng3",
@@ -552,12 +789,51 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.2,
       "position": [
-        1420,
-        1140
+        1480,
+        1160
       ]
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "position": 8,
+          "title": "Effectiveness of Homeopathic Treatment for Abnormal Uterine Bleeding: A Double-Blind Randomized Clinical Trial",
+          "data_cid": "UerSW1Oi-xcJ",
+          "link": "https://www.jhpr.ir/article_115484.html",
+          "publication": "Z Naderi, Z Dadkhah, A Karimi, R Hashemi… - Hospital Practices and …, 2020 - jhpr.ir",
+          "snippet": "… Methods: This double blind randomized clinical trial study … this study, patients were assigned to first group: 25 patients … , and depression score in the homeopathic treatment group, this …",
+          "inline_links": {
+            "cited_by": {
+              "cites_id": "1728153360933251665",
+              "total": 3,
+              "link": "https://scholar.google.com/scholar?cites=1728153360933251665&as_sdt=5,44&sciodt=0,44&hl=en"
+            },
+            "versions": {
+              "cluster_id": "1728153360933251665",
+              "total": 4,
+              "link": "https://scholar.google.com/scholar?cluster=1728153360933251665&hl=en&as_sdt=0,44&as_ylo=2019"
+            },
+            "related_articles_link": "https://scholar.google.com/scholar?q=related:UerSW1Oi-xcJ:scholar.google.com/&scioq=Depressed+patients+homeopaths+randomised+controlled+trial&hl=en&as_sdt=0,44&as_ylo=2019",
+            "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:UerSW1Oi-xcJ:scholar.google.com/+Depressed+patients+homeopaths+randomised+controlled+trial&hl=en&as_sdt=0,44&as_ylo=2019"
+          },
+          "resource": {
+            "name": "jhpr.ir",
+            "format": "PDF",
+            "link": "https://www.jhpr.ir/article_115484_5e649717d78aa12d3eb3415dce96469f.pdf"
+          },
+          "authors": [
+            {
+              "name": "A Karimi",
+              "id": "lzonyj0AAAAJ",
+              "link": "https://scholar.google.com/citations?user=lzonyj0AAAAJ&hl=en&oi=sra"
+            }
+          ]
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -573,6 +849,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-18T09:31:47.000Z",
-  "versionId": "abcc6c42-24bc-4308-84cf-f8e6785660ed"
+  "updatedAt": "2024-01-18T16:33:01.000Z",
+  "versionId": "b290a2cd-bab0-48d4-89fd-c43e34867fab"
 }
