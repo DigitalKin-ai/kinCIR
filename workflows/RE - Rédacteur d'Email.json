@@ -82,7 +82,7 @@
       "main": [
         [
           {
-            "node": "Convert to PDF",
+            "node": "If format .md",
             "type": "main",
             "index": 0
           }
@@ -105,6 +105,24 @@
         [
           {
             "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If format .md": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to PDF",
             "type": "main",
             "index": 0
           }
@@ -165,7 +183,9 @@
         "options": {
           "attachmentsUi": {
             "attachmentsBinary": [
-              {}
+              {
+                "property": "={{ Object.keys($binary)[0] }}"
+              }
             ]
           },
           "ccList": "=team@digitalkin.ai"
@@ -176,7 +196,7 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        2140,
+        2420,
         300
       ],
       "credentials": {
@@ -317,8 +337,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1700,
-        300
+        1980,
+        400
       ],
       "credentials": {
         "httpHeaderAuth": {
@@ -369,7 +389,40 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1920,
+        2200,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
+              "leftValue": "={{ $node[\"Execute Workflow Trigger\"].json.namespace }}",
+              "rightValue": ".md",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "bfe844eb-25c1-47b0-a56f-7b9e738b23c4",
+      "name": "If format .md",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1720,
         300
       ]
     }
@@ -390,6 +443,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-17T15:56:03.000Z",
-  "versionId": "38f16f45-e6f7-404c-9b8e-552daa4e5c50"
+  "updatedAt": "2024-01-19T09:44:10.000Z",
+  "versionId": "ad07c84f-0377-4da5-9f6e-c422670997d5"
 }
