@@ -1,11 +1,11 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "GPT4": {
       "ai_languageModel": [
         [
           {
-            "node": "Questionneur d'Etude ( version chain)",
+            "node": "Questionneur de document ( version chain)",
             "type": "ai_languageModel",
             "index": 0
           }
@@ -60,7 +60,7 @@
       "ai_retriever": [
         [
           {
-            "node": "Questionneur d'Etude ( version chain)",
+            "node": "Questionneur de document ( version chain)",
             "type": "ai_retriever",
             "index": 0
           }
@@ -71,19 +71,8 @@
       "main": [
         [
           {
-            "node": "If",
+            "node": "If documentGoogleDriveId",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Default Data Loader": {
-      "ai_document": [
-        [
-          {
-            "node": "Questionneur d'Etude",
-            "type": "ai_document",
             "index": 0
           }
         ]
@@ -93,7 +82,7 @@
       "ai_languageModel": [
         [
           {
-            "node": "Questionneur d'Etude",
+            "node": "Questionneur de document",
             "type": "ai_languageModel",
             "index": 0
           }
@@ -104,19 +93,8 @@
       "ai_textSplitter": [
         [
           {
-            "node": "Default Data Loader",
+            "node": "Questionneur de document",
             "type": "ai_textSplitter",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Récupérer le PDF": {
-      "main": [
-        [
-          {
-            "node": "Read PDF",
-            "type": "main",
             "index": 0
           }
         ]
@@ -126,14 +104,14 @@
       "main": [
         [
           {
-            "node": "Questionneur d'Etude",
+            "node": "Questionneur de document",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Questionneur d'Etude": {
+    "Questionneur de document ( version chain)": {
       "main": [
         [
           {
@@ -144,29 +122,178 @@
         ]
       ]
     },
-    "Questionneur d'Etude ( version chain)": {
+    "Nico reçoit un email": {
       "main": [
         [
           {
-            "node": "nouveau message",
+            "node": "IF est une question",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "If": {
+    "Get existing document (init)": {
       "main": [
         [
           {
-            "node": "Récupérer le PDF",
+            "node": "IF Document existe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF est une question": {
+      "main": [
+        [
+          {
+            "node": "Get Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Thread": {
+      "main": [
+        [
+          {
+            "node": "Get existing document (init)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Document existe": {
+      "main": [
+        [
+          {
+            "node": "nouveau message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouveau message1": {
+      "main": [
+        [
+          {
+            "node": "If documentGoogleDriveId",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If documentGoogleDriveId": {
+      "main": [
+        [
+          {
+            "node": "Get existing document",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Questionneur d'Etude ( version chain)",
+            "node": "Questionneur de document ( version chain)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If PDF": {
+      "main": [
+        [
+          {
+            "node": "Read PDF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract From File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract From File": {
+      "main": [
+        [
+          {
+            "node": "Questionneur de document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de document": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree email": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur d'Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "entree email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Email": {
+      "main": [
+        [
+          {
+            "node": "Get Thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get existing document": {
+      "main": [
+        [
+          {
+            "node": "If PDF",
             "type": "main",
             "index": 0
           }
@@ -198,8 +325,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
       "typeVersion": 1,
       "position": [
-        3520,
-        880
+        3580,
+        700
       ],
       "credentials": {
         "openAiApi": {
@@ -217,8 +344,8 @@
       "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
       "typeVersion": 1,
       "position": [
-        3680,
-        1180
+        3700,
+        1000
       ]
     },
     {
@@ -230,8 +357,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1,
       "position": [
-        3620,
-        1500
+        3640,
+        1320
       ],
       "credentials": {
         "openAiApi": {
@@ -247,7 +374,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        2580,
+        2380,
         80
       ]
     },
@@ -290,8 +417,8 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "typeVersion": 1,
       "position": [
-        3620,
-        1360
+        3640,
+        1180
       ],
       "credentials": {
         "pineconeApi": {
@@ -313,7 +440,7 @@
       "typeVersion": 1,
       "position": [
         3560,
-        1180
+        960
       ],
       "credentials": {
         "openAiApi": {
@@ -331,7 +458,8 @@
       "position": [
         2320,
         680
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -345,21 +473,7 @@
       "typeVersion": 1,
       "position": [
         3560,
-        1000
-      ]
-    },
-    {
-      "parameters": {
-        "dataType": "binary",
-        "options": {}
-      },
-      "id": "a6f62050-a324-4238-8359-3745e2fe88fe",
-      "name": "Default Data Loader",
-      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
-      "typeVersion": 1,
-      "position": [
-        3600,
-        300
+        820
       ]
     },
     {
@@ -374,8 +488,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        3480,
-        280
+        3540,
+        260
       ],
       "credentials": {
         "openAiApi": {
@@ -394,8 +508,8 @@
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "typeVersion": 1,
       "position": [
-        3600,
-        480
+        3700,
+        260
       ]
     },
     {
@@ -407,29 +521,72 @@
       "type": "n8n-nodes-base.readPDF",
       "typeVersion": 1,
       "position": [
-        3220,
-        80
+        3280,
+        0
       ],
       "onError": "continueErrorOutput"
     },
     {
       "parameters": {
-        "operation": "download",
-        "fileId": {
-          "__rl": true,
-          "value": "={{ $json.documentGoogleDriveId }}",
-          "mode": "id"
+        "query": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+      },
+      "id": "62398c40-f03a-49a0-a1fe-79f3cf987802",
+      "name": "Questionneur de document ( version chain)",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        3560,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 5,
+              "unit": "minutes"
+            }
+          ]
         },
+        "simple": false,
+        "filters": {},
         "options": {}
       },
-      "id": "8ea4d452-2f18-48b0-8384-b8a44c8223e1",
-      "name": "Récupérer le PDF",
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
+      "id": "781c1d19-f61e-418c-addd-60a7f0cea663",
+      "name": "Nico reçoit un email",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1,
       "position": [
-        3040,
-        80
+        2140,
+        -240
       ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "list",
+        "useQueryString": true,
+        "queryString": "=properties has { key='mailId' and value='{{ $json.id }}' }",
+        "limit": 1,
+        "options": {}
+      },
+      "name": "Get existing document (init)",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        3020,
+        -240
+      ],
+      "typeVersion": 1,
+      "id": "354f8acb-5a71-4dc2-8a61-3ab42863802f",
+      "alwaysOutputData": true,
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "Z5nSsC9JGaYw1Ng3",
@@ -439,36 +596,88 @@
     },
     {
       "parameters": {
-        "query": "=# Instructions de l'Assistant Questionneur d'études scientifiques\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nPour la création de query, injecte des mots-clés.\n\nPour chaque information, précise la provenance de l'information (nom auteur principal, année de publication).\nExemple : (Yan et al., 2020) ou Yan et al., (2020)\n\n\n# Misison Globale\n\n{{ $json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $json.query }}"
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.to.value[0].address }}",
+              "operation": "contains",
+              "value2": "rescritcirbeta@digitalkin.ai"
+            },
+            {
+              "value1": "={{ $json.from.value[0].address }}",
+              "operation": "notEqual",
+              "value2": "=l.reynolds@digitalkin.ai"
+            },
+            {
+              "value1": "={{ $json.headers['in-reply-to'] }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
       },
-      "id": "62398c40-f03a-49a0-a1fe-79f3cf987802",
-      "name": "Questionneur d'Etude ( version chain)",
-      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
-      "typeVersion": 1.1,
+      "id": "f8caff5c-9fbc-4ccb-aecf-acfd0b3af7de",
+      "name": "IF est une question",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
       "position": [
-        3500,
-        700
+        2380,
+        -240
       ]
     },
     {
       "parameters": {
-        "operationMode": "documentLoader",
-        "options": {
-          "summarizationMethodAndPrompts": {
-            "values": {
-              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur d'études scientifiques\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim de l'étude avec citation chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"Execute Workflow Trigger\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
-              "prompt": "=# Instructions de l'Assistant Questionneur d'études scientifiques\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim de l'étude avec citation chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"Execute Workflow Trigger\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+        "operation": "get",
+        "messageId": "={{ $json.threadId }}",
+        "simple": false,
+        "options": {}
+      },
+      "id": "10f24e39-4b4d-4bb1-ba6e-2b4fccd4d7ed",
+      "name": "Get Thread",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2800,
+        -240
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($json).length !== 0 }}",
+              "value2": true
             }
-          }
+          ]
         }
       },
-      "id": "1b6ec980-1feb-4936-be62-bb3f45e7bc95",
-      "name": "Questionneur d'Etude",
-      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "id": "64268b83-76b1-4a1a-896f-7d8052097867",
+      "name": "IF Document existe",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3220,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = {\n  \"documentGoogleDriveId\": $json.id,\n  \"mission\": $node[\"Get Thread\"].json.text,\n  \"titre\": $node[\"Get Thread\"].json.subject,\n  \"mailId\": $node[\"Nico reçoit un email\"].json.id,\n  \"threadId\": $node[\"Get Thread\"].json.id,\n  \"query\": $node[\"Nico reçoit un email\"].json.text\n}\n\nreturn {\"json\":json};"
+      },
+      "id": "78b6ebd8-a5db-4d7e-9b7a-e0dc73546b5d",
+      "name": "nouveau message1",
+      "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3540,
-        80
+        3420,
+        -240
       ]
     },
     {
@@ -506,12 +715,182 @@
         "options": {}
       },
       "id": "b3efc916-deda-4175-bd2d-90c2e10589a1",
-      "name": "If",
+      "name": "If documentGoogleDriveId",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2820,
+        2620,
         80
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "a7ae3df5-163f-4bb8-b6b6-c191e229ef6f",
+              "leftValue": "={{ $binary.data.fileExtension }}",
+              "rightValue": "pdf",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "bdee51cc-744f-45aa-840e-87f751fdc910",
+      "name": "If PDF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        3040,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "destinationKey": "text",
+        "options": {}
+      },
+      "id": "ae191368-0957-4759-8318-7131451ae5d6",
+      "name": "Extract From File",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        3280,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "chunkingMode": "advanced",
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
+              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+            }
+          }
+        }
+      },
+      "id": "1b6ec980-1feb-4936-be62-bb3f45e7bc95",
+      "name": "Questionneur de document",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        3540,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "14ffa67e-76a8-42d6-9006-02a234b53139",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        3920,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "rr8aeSM8QYyY8Po4"
+      },
+      "id": "dabca4de-6d37-4fe1-adbb-193b728d2e6c",
+      "name": "Rédacteur d'Email",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4380,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let infosMail = $node[\"Get Email\"].json;\nlet createdDocument = $node[\"Get existing document (init)\"].json;\nlet sortie = $json.response.text;\n\nreturn {\n  \"infosMail\": infosMail,\n  \"createdDocument\": createdDocument,\n  \"sortie\": sortie\n};"
+      },
+      "id": "b69ef948-4d3d-4d4d-af6d-8232417e67cf",
+      "name": "entree email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4160,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "={{ $json.id }}",
+        "simple": false,
+        "options": {}
+      },
+      "id": "2d4e5ab6-c799-477b-af2b-aaff5732aeb8",
+      "name": "Get Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2600,
+        -240
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.documentGoogleDriveId }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "8ea4d452-2f18-48b0-8384-b8a44c8223e1",
+      "name": "Get existing document",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2860,
+        80
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Attention : pas de vérif de travail déjà effectué",
+        "height": 463.96241030539204
+      },
+      "id": "9d408f9b-a42d-4a4c-863c-9a1ad9ba0acd",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2100,
+        -423.96241030539204
       ]
     }
   ],
@@ -530,7 +909,14 @@
     "saveManualExecutions": true,
     "callerPolicy": "any"
   },
-  "staticData": null,
+  "staticData": {
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1705695819,
+      "possibleDuplicates": [
+        "18d2364ebe161b80"
+      ]
+    }
+  },
   "tags": [
     {
       "createdAt": "2023-12-17T21:33:59.044Z",
@@ -539,7 +925,7 @@
       "name": "kin"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2024-01-19T09:54:40.000Z",
-  "versionId": "c2ad88ed-e7e7-402f-8de0-e956285caa24"
+  "triggerCount": 1,
+  "updatedAt": "2024-01-19T20:25:22.000Z",
+  "versionId": "c3465c36-b9f0-4a40-95df-3adbf1118776"
 }
