@@ -49,7 +49,7 @@
       "main": [
         [
           {
-            "node": "Gestionnaire d'Ontologie",
+            "node": "Gestionnaire d'Amélioration de Prompt",
             "type": "main",
             "index": 0
           }
@@ -393,38 +393,6 @@
         ]
       ]
     },
-    "Gestionnaire de prompt": {
-      "main": [
-        [
-          {
-            "node": "sortie",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Escape Markdown",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Gestionnaire d'Ontologie": {
-      "main": [
-        [
-          {
-            "node": "Escape Markdown",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Gestionnaire de prompt",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Inserer le document dans Pinecone": {
       "main": [
         [
@@ -451,13 +419,45 @@
       "ai_tool": [
         [
           {
-            "node": "Gestionnaire d'Ontologie",
+            "node": "Gestionnaire d'Amélioration de Prompt",
             "type": "ai_tool",
             "index": 0
           },
           {
-            "node": "Gestionnaire de prompt",
+            "node": "Manager RSI",
             "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gestionnaire d'Amélioration de Prompt": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Manager RSI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manager RSI": {
+      "main": [
+        [
+          {
+            "node": "sortie",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Escape Markdown",
+            "type": "main",
             "index": 0
           }
         ]
@@ -554,6 +554,10 @@
               "value1": "={{ $json.from.value[0].address }}",
               "operation": "notEqual",
               "value2": "=l.reynolds@digitalkin.ai"
+            },
+            {
+              "value1": "={{ $json.headers['in-reply-to'] }}",
+              "operation": "isEmpty"
             }
           ]
         }
@@ -653,7 +657,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let thread = $node[\"thread\"].json.entireThread;\nlet output = $node[\"Gestionnaire d'Ontologie\"].json.output;\n\n// Enlever toutes les lignes qui contiennent les instructions\nthread += '\\n\\n' + output; \nthread = thread.replace(/.*Prochaine étape.*$/gmi, '');\nthread = thread.replace(/.*Étape suivante.*$/gmi, '');\nthread = thread.replace(/^.*niveau de boucle.*$/gmi, '');\nthread = thread.replace(/```.*```/gmi, '');\nthread = thread.replace(/``.*``/gmi, '');\nthread = thread.replace(/^[\\r\\n]+|[\\r\\n]+$/g, '');\n\nreturn {\"mission\": $node[\"mission\"].json.mission,\"thread\":thread, \"instructions\" : $json.output, \"mailId\": $node[\"Get Email\"].json.id};"
+        "jsCode": "let thread = $node[\"thread\"].json.entireThread;\nlet output = $node[\"Gestionnaire d'Amélioration de Prompt\"].json.output;\n\n// Enlever toutes les lignes qui contiennent les instructions\nthread += '\\n\\n' + output; \nthread = thread.replace(/.*Prochaine étape.*$/gmi, '');\nthread = thread.replace(/.*Étape suivante.*$/gmi, '');\nthread = thread.replace(/^.*niveau de boucle.*$/gmi, '');\nthread = thread.replace(/```.*```/gmi, '');\nthread = thread.replace(/``.*``/gmi, '');\nthread = thread.replace(/^[\\r\\n]+|[\\r\\n]+$/g, '');\n\nreturn {\"mission\": $node[\"mission\"].json.mission,\"thread\":thread, \"instructions\" : $json.output, \"mailId\": $node[\"Get Email\"].json.id};"
       },
       "id": "e4ae7034-6f01-42b1-83ce-f3eaa0e77d07",
       "name": "sortie",
@@ -733,7 +737,7 @@
               "value2": "[mission accomplie]"
             },
             {
-              "value1": "={{ $node[\"Gestionnaire d'Ontologie\"].json.output.toLowerCase() }}",
+              "value1": "={{ $node[\"Gestionnaire d'Amélioration de Prompt\"].json.output.toLowerCase() }}",
               "operation": "contains",
               "value2": "[mission accomplie]"
             }
@@ -1498,52 +1502,6 @@
     },
     {
       "parameters": {
-        "assistantId": "asst_Q9TLbZmBJy5rMXuRFfrwjqt5",
-        "text": "=INSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS : tu annonces clairement la prochaine étape au rédacteur.\n\n- Quel travail vient d'être réalisé dans \"Rédaction réalisée\" ? Fais le point sur l'avancement en listant l'ensemble des Etapes, avec TODO/DONE. Les parties avant \"[...]\" sont toutes \"DONE\", et les parties doivent être exécutées dans l'ordre (pas de retour en arrière ou amélioration). Modèle :\n\n``\nTODOLIST :\n- Présentation de l'entreprise (TODO/DONE)\n- Contexte scientifique et économique (TODO/DONE)\n- Présentation des thématiques de recherche (TODO/DONE)\n- Périmètre des besoins de R&D Thématique A (TODO/DONE)\n- Tableau Thématique A (TODO/DONE)\n- Etat de l'art de Thématique A domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 3 (TODO/DONE)\n- Incertitudes et verrous scientifiques et techniques Thématique A (TODO/DONE)\n- Travaux de R&D pour lever les verrous et incertitudes Thématique A (TODO/DONE)\n- Bibliographie Thématique A (TODO/DONE)\n- Périmètre des besoins de R&D Thématique B (TODO/DONE)\n- Tableau Thématique B (TODO/DONE)\n- Etat de l'art de Thématique B domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 3 (TODO/DONE)\n- Incertitudes et verrous scientifiques et techniques Thématique B (TODO/DONE)\n- Travaux de R&D pour lever les verrous et incertitudes Thématique B (TODO/DONE)\n- Bibliographie Thématique B (TODO/DONE)\n- Périmètre des besoins de R&D Thématique C (TODO/DONE)\n- Tableau Thématique C (TODO/DONE)\n- Etat de l'art de Thématique C domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 3 (TODO/DONE)\n- Incertitudes et verrous scientifiques et techniques Thématique C (TODO/DONE)\n- Travaux de R&D pour lever les verrous et incertitudes Thématique C (TODO/DONE)\n- Bibliographie Thématique C (TODO/DONE)\n- Signature (TODO/DONE)\n``\n\n- Puis choisis la prochaine étape : A partir de l'avancement données, explique en un court paragraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique clairement au rédacteur la prochaine étape avec son numéro.\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT\n======\n\n``\n{{ $node[\"thread\"].json.thread }}\n``\n\nDERNIER CONTENU REDIGÉ\n======\n\nDernières Instructions\n------\n\n``\n{{ $node[\"thread\"].json.instructions }}\n``\n\nRédaction réalisée\n------\n\n``\n{{ $json.output }}\n``\n\nINSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS : tu annonces clairement la prochaine étape au rédacteur.\n\n- Quel travail vient d'être réalisé dans \"Rédaction réalisée\" ? Fais le point sur l'avancement en listant l'ensemble des Etapes, avec TODO/DONE. Les parties avant \"[...]\" sont toutes \"DONE\", et les parties doivent être exécutées dans l'ordre (pas de retour en arrière ou amélioration). Modèle :\n\n``\nTODOLIST :\n- Présentation de l'entreprise (TODO/DONE)\n- Contexte scientifique et économique (TODO/DONE)\n- Présentation des thématiques de recherche (TODO/DONE)\n- Périmètre des besoins de R&D Thématique A (TODO/DONE)\n- Tableau Thématique A (TODO/DONE)\n- Etat de l'art de Thématique A domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique A domaine 3 (TODO/DONE)\n- Incertitudes et verrous scientifiques et techniques Thématique A (TODO/DONE)\n- Travaux de R&D pour lever les verrous et incertitudes Thématique A (TODO/DONE)\n- Bibliographie Thématique A (TODO/DONE)\n- Périmètre des besoins de R&D Thématique B (TODO/DONE)\n- Tableau Thématique B (TODO/DONE)\n- Etat de l'art de Thématique B domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique B domaine 3 (TODO/DONE)\n- Incertitudes et verrous scientifiques et techniques Thématique B (TODO/DONE)\n- Travaux de R&D pour lever les verrous et incertitudes Thématique B (TODO/DONE)\n- Bibliographie Thématique B (TODO/DONE)\n- Périmètre des besoins de R&D Thématique C (TODO/DONE)\n- Tableau Thématique C (TODO/DONE)\n- Etat de l'art de Thématique C domaine 1 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 2 (TODO/DONE)\n- Etat de l'art de Thématique C domaine 3 (TODO/DONE)\n- Incertitudes et verrous scientifiques et techniques Thématique C (TODO/DONE)\n- Travaux de R&D pour lever les verrous et incertitudes Thématique C (TODO/DONE)\n- Bibliographie Thématique C (TODO/DONE)\n- Signature (TODO/DONE)\n``\n\n- Puis choisis la prochaine étape : A partir de l'avancement données, explique en un court paragraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique clairement au rédacteur la prochaine étape avec son numéro.",
-        "options": {}
-      },
-      "id": "759b50d7-f5be-4c2d-a827-6811cac24972",
-      "name": "Gestionnaire de prompt",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4400,
-        400
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_3pQx4lfP0EN6Jstj8kozdBtC",
-        "text": "=INSTRUCTIONS\n======\n\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\n{{ $json.instructions }}",
-        "options": {}
-      },
-      "id": "c1a6c1d2-134f-4fde-833b-38cff10256ba",
-      "name": "Gestionnaire d'Ontologie",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4400,
-        140
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
         "workflowId": "eRT6xb82oqCbX4u2"
       },
       "id": "573ef485-1690-4a87-b0d4-236a31eaa793",
@@ -1593,9 +1551,55 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        4440,
+        4380,
         640
       ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_WKY0lRXB0rrJTFIm3HYv8jlE",
+        "text": "=INSTRUCTIONS\n======\n\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\n{{ $json.instructions }}",
+        "options": {}
+      },
+      "id": "c1a6c1d2-134f-4fde-833b-38cff10256ba",
+      "name": "Gestionnaire d'Amélioration de Prompt",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        140
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_jWDXAzCglxCYBwYD0gqMHZqK",
+        "text": "=INSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS : tu annonces clairement la prochaine étape au rédacteur.\n\n- Quel travail vient d'être réalisé dans \"Rédaction réalisée\" ? Fais le point sur l'avancement en listant l'ensemble des Etapes, avec TODO/DONE. Les parties avant \"[...]\" sont toutes \"DONE\", et les parties doivent être exécutées dans l'ordre (pas de retour en arrière ou amélioration). \n\n- Puis choisis la prochaine étape : A partir de l'avancement données, explique en un court paragraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique clairement au rédacteur la prochaine étape avec son numéro.\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT\n======\n\n``\n{{ $node[\"thread\"].json.thread }}\n``\n\nDERNIER CONTENU REDIGÉ\n======\n\nDernières Instructions\n------\n\n``\n{{ $node[\"thread\"].json.instructions }}\n``\n\nRédaction réalisée\n------\n\n``\n{{ $json.output }}\n``\n\nINSTRUCTIONS : MANAGER\n======\n\nEn tant que MANAGER, tu ne rédiges JAMAIS : tu annonces clairement la prochaine étape au rédacteur.\n\n- Quel travail vient d'être réalisé dans \"Rédaction réalisée\" ? Fais le point sur l'avancement en listant l'ensemble des Etapes, avec TODO/DONE. Les parties avant \"[...]\" sont toutes \"DONE\", et les parties doivent être exécutées dans l'ordre (pas de retour en arrière ou amélioration).\n\n- Puis choisis la prochaine étape : A partir de l'avancement données, explique en un court paragraphe l'avancement du travail, et donne prochaine étape à réaliser selon le processus, en expliquant ton raisonnement. Indique clairement au rédacteur la prochaine étape avec son numéro.",
+        "options": {}
+      },
+      "id": "759b50d7-f5be-4c2d-a827-6811cac24972",
+      "name": "Manager RSI",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        400
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {
@@ -1621,9 +1625,9 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1705660592,
+      "lastTimeChecked": 1705695819,
       "possibleDuplicates": [
-        "18d214b317662a9d"
+        "18d2364ebe161b80"
       ]
     }
   },
@@ -1636,6 +1640,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-19T11:00:50.000Z",
-  "versionId": "a5299c2e-61ec-4bfe-ba8f-c8fb59de87d3"
+  "updatedAt": "2024-01-19T22:58:47.000Z",
+  "versionId": "045587c7-ceb1-4014-b8a3-01a2faaba87b"
 }
