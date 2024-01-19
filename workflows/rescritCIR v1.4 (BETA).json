@@ -325,6 +325,11 @@
             "node": "Get Task",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Get ALL DOING Tasks",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -553,6 +558,10 @@
               "value1": "={{ $json.from.value[0].address }}",
               "operation": "notEqual",
               "value2": "=l.reynolds@digitalkin.ai"
+            },
+            {
+              "value1": "={{ $json.headers['in-reply-to'] }}",
+              "operation": "isEmpty"
             }
           ]
         }
@@ -638,7 +647,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let entireThread = $json.thread;\nlet thread = $json.thread;\nlet instructions = $json.instructions?$json.instructions:$node[\"mission\"].json.instructions;\nconst MAX_LENGTH = 15000;\n\nif (thread.length > MAX_LENGTH) {\n    thread = \"Le début du document est déjà rédigé, voici les denières parties rédigées :\\n[...]\" + thread.substring(thread.length - MAX_LENGTH);\n    remainingThread = entireThread.substring(0, entireThread.length - MAX_LENGTH);\n} else {\n    remainingThread = \"\"; // Aucun contenu restant si la longueur du fil est inférieure à MAX_LENGTH\n}\n\nreturn {\"thread\": thread, \"entireThread\": entireThread, \"remainingThread\": remainingThread, \"instructions\": instructions};"
+        "jsCode": "let entireThread = $json.thread;\nlet thread = $json.thread;\nlet instructions = $json.instructions?$json.instructions:$node[\"mission\"].json.instructions;\nconst MAX_LENGTH = 15000;\n\nthread = thread.replace(/.*Prochaine étape.*$/gmi, '');\nthread = thread.replace(/.*Étape suivante.*$/gmi, '');\nthread = thread.replace(/^.*niveau de boucle.*$/gmi, '');\nthread = thread.replace(/```.*```/gmi, '');\nthread = thread.replace(/``.*``/gmi, '');\nthread = thread.replace(/^[\\r\\n]+|[\\r\\n]+$/g, '');\n\nif (thread.length > MAX_LENGTH) {\n    thread = \"Le début du document est déjà rédigé, voici les denières parties rédigées :\\n[...]\" + thread.substring(thread.length - MAX_LENGTH);\n    remainingThread = entireThread.substring(0, entireThread.length - MAX_LENGTH);\n} else {\n    remainingThread = \"\"; // Aucun contenu restant si la longueur du fil est inférieure à MAX_LENGTH\n}\n\nreturn {\"thread\": thread, \"entireThread\": entireThread, \"remainingThread\": remainingThread, \"instructions\": instructions};"
       },
       "id": "f2943232-b99c-4e69-ae50-48dd527aa0a6",
       "name": "thread",
@@ -652,7 +661,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let thread = $node[\"thread\"].json.entireThread;\nlet output = $node[\"Rédacteur\"].json.output;\n\n// Enlever toutes les lignes qui contiennent les instructions\nthread += '\\n\\n' + output; \nthread = thread.replace(/.*Prochaine étape.*$/gmi, '');\nthread = thread.replace(/.*Étape suivante.*$/gmi, '');\nthread = thread.replace(/^.*niveau de boucle.*$/gmi, '');\nthread = thread.replace(/```.*```/gmi, '');\nthread = thread.replace(/``.*``/gmi, '');\nthread = thread.replace(/^[\\r\\n]+|[\\r\\n]+$/g, '');\n\nreturn {\"mission\": $node[\"mission\"].json.mission,\"thread\":thread, \"instructions\" : $json.output, \"mailId\": $node[\"Get Email\"].json.id};"
+        "jsCode": "let entireThread = $node[\"thread\"].json.entireThread;\nlet thread = $node[\"thread\"].json.entireThread;\nlet output = $node[\"Rédacteur\"].json.output;\n\nentireThread += '\\n\\n' + output;\nentireThread = entireThread.replace(/^[\\r\\n]+|[\\r\\n]+$/g, '');\n\nreturn {\"mission\": $node[\"mission\"].json.mission, \"thread\":entireThread, \"instructions\" : $json.output, \"mailId\": $node[\"Get Email\"].json.id};"
       },
       "id": "6d4187d5-bf88-45a1-8583-226daaa545f0",
       "name": "sortie",
@@ -1379,8 +1388,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        3740,
-        700
+        3443,
+        -575
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -1420,8 +1429,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        3340,
-        700
+        3043,
+        -575
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -1461,8 +1470,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        2860,
-        700
+        2563,
+        -575
       ],
       "credentials": {
         "pineconeApi": {
@@ -1481,8 +1490,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        3120,
-        700
+        2823,
+        -575
       ]
     },
     {
@@ -1495,8 +1504,8 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        3520,
-        700
+        3223,
+        -575
       ]
     },
     {
@@ -1510,8 +1519,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        2737.450901803607,
-        534.7895791583167
+        2440,
+        -740
       ]
     },
     {
@@ -1572,9 +1581,9 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1705660592,
+      "lastTimeChecked": 1705695819,
       "possibleDuplicates": [
-        "18d214b317662a9d"
+        "18d2364ebe161b80"
       ]
     }
   },
@@ -1587,6 +1596,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-19T10:36:56.000Z",
-  "versionId": "e693f80b-62b4-4bda-a0d2-156db9e060a1"
+  "updatedAt": "2024-01-19T20:24:46.000Z",
+  "versionId": "450ee17e-ddbb-4a66-8e94-b17abddccad3"
 }
