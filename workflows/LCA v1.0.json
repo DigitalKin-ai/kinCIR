@@ -541,6 +541,10 @@
               "value1": "={{ $json.from.value[0].address }}",
               "operation": "notEqual",
               "value2": "=l.reynolds@digitalkin.ai"
+            },
+            {
+              "value1": "={{ $json.headers['in-reply-to'] }}",
+              "operation": "isEmpty"
             }
           ]
         }
@@ -1601,9 +1605,9 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1705660592,
+      "lastTimeChecked": 1705695819,
       "possibleDuplicates": [
-        "18d214b317662a9d"
+        "18d2364ebe161b80"
       ]
     }
   },
@@ -1616,6 +1620,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-19T10:57:27.000Z",
-  "versionId": "56787a3d-0276-4484-b53f-aedb515e2ed3"
+  "updatedAt": "2024-01-19T22:58:19.000Z",
+  "versionId": "05430531-a906-4e84-9aa9-5eb00899c9c2"
 }
