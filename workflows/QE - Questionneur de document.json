@@ -1,0 +1,545 @@
+{
+  "active": false,
+  "connections": {
+    "GPT4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Questionneur d'Etude ( version chain)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "MultiQuery Retriever",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "MultiQuery Retriever",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MultiQuery Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Questionneur d'Etude ( version chain)",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Questionneur d'Etude",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Questionneur d'Etude",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Récupérer le PDF": {
+      "main": [
+        [
+          {
+            "node": "Read PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read PDF": {
+      "main": [
+        [
+          {
+            "node": "Questionneur d'Etude",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'Etude": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'Etude ( version chain)": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Récupérer le PDF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Questionneur d'Etude ( version chain)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-18T13:34:36.076Z",
+  "id": "anybPoo9G98Nx3qW",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "QE - Questionneur de document",
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4-1106-preview",
+          "mode": "list",
+          "cachedResultName": "gpt-4-1106-preview"
+        },
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "0485f9ff-e680-49b3-b6bd-5fc45a9b18d3",
+      "name": "GPT4",
+      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3520,
+        880
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "topK": 6
+      },
+      "id": "fafe9572-7384-4273-9e2f-c7ca7abcd1e1",
+      "name": "Vector Store Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "typeVersion": 1,
+      "position": [
+        3680,
+        1180
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "d68757c8-9f89-4bc1-863f-0dd5e9cc178a",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3620,
+        1500
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "4f779057-6061-4514-be4a-02dc7fabb628",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        2580,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"response\":$json.response.text};"
+      },
+      "id": "0eeae22c-0fea-4eb8-a9e2-fc1bf1ec3430",
+      "name": "nouveau message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3960,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {
+          "pineconeNamespace": "=etudes",
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "type",
+                "value": "etude"
+              }
+            ]
+          }
+        }
+      },
+      "id": "3cacf9a6-90c3-4e8f-a797-3fabf1499a2b",
+      "name": "Pinecone Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        3620,
+        1360
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "6938d8a5-4ba5-4fb7-a5db-ee61ffa7bf71",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3560,
+        1180
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "1632550a-0bf7-4b4c-9a07-b7fea8ca5d98",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        2320,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "queryCount": 2
+        }
+      },
+      "id": "063bccbc-cc60-49cc-811e-048397694097",
+      "name": "MultiQuery Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverMultiQuery",
+      "typeVersion": 1,
+      "position": [
+        3560,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "options": {}
+      },
+      "id": "a6f62050-a324-4238-8359-3745e2fe88fe",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        3600,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "704afbd8-5762-42f8-b3f2-a45a99ec5d76",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3480,
+        280
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chunkSize": 20000,
+        "chunkOverlap": 2000
+      },
+      "id": "83c76160-d71e-4014-83a7-38d171408b9b",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        3600,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "={{ Object.keys($binary)[0] }}"
+      },
+      "id": "e1cba2c1-36c6-4b31-bc7b-1af5b7123ff5",
+      "name": "Read PDF",
+      "type": "n8n-nodes-base.readPDF",
+      "typeVersion": 1,
+      "position": [
+        3220,
+        80
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.documentGoogleDriveId }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "8ea4d452-2f18-48b0-8384-b8a44c8223e1",
+      "name": "Récupérer le PDF",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        3040,
+        80
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "query": "=# Instructions de l'Assistant Questionneur d'études scientifiques\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nPour la création de query, injecte des mots-clés.\n\nPour chaque information, précise la provenance de l'information (nom auteur principal, année de publication).\nExemple : (Yan et al., 2020) ou Yan et al., (2020)\n\n\n# Misison Globale\n\n{{ $json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $json.query }}"
+      },
+      "id": "62398c40-f03a-49a0-a1fe-79f3cf987802",
+      "name": "Questionneur d'Etude ( version chain)",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        3500,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "operationMode": "documentLoader",
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur d'études scientifiques\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim de l'étude avec citation chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"Execute Workflow Trigger\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
+              "prompt": "=# Instructions de l'Assistant Questionneur d'études scientifiques\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim de l'étude avec citation chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"Execute Workflow Trigger\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+            }
+          }
+        }
+      },
+      "id": "1b6ec980-1feb-4936-be62-bb3f45e7bc95",
+      "name": "Questionneur d'Etude",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        3540,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "3b9d3f3b-af89-4188-ba23-093f7eccb8a8",
+              "leftValue": "={{ $json.documentGoogleDriveId != null }}",
+              "rightValue": "=null",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "de9bb8f4-3ce7-49c6-9018-d9d5aabba8ee",
+              "leftValue": "={{ $json.documentGoogleDriveId != \"null\"  }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b3efc916-deda-4175-bd2d-90c2e10589a1",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2820,
+        80
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "name": "First item",
+          "code": 1
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-19T09:54:40.000Z",
+  "versionId": "c2ad88ed-e7e7-402f-8de0-e956285caa24"
+}
