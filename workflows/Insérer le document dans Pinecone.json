@@ -114,7 +114,7 @@
       "main": [
         [
           {
-            "node": "Upload Document",
+            "node": "If PDF",
             "type": "main",
             "index": 0
           }
@@ -147,7 +147,7 @@
       "main": [
         [
           {
-            "node": "Extracteur de citation détaillée",
+            "node": "text",
             "type": "main",
             "index": 0
           }
@@ -169,7 +169,7 @@
       "main": [
         [
           {
-            "node": "Upload Document",
+            "node": "If PDF",
             "type": "main",
             "index": 0
           }
@@ -260,6 +260,46 @@
         ]
       ]
     },
+    "If PDF": {
+      "main": [
+        [
+          {
+            "node": "Upload Document",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract From File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract From File": {
+      "main": [
+        [
+          {
+            "node": "text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "text": {
+      "main": [
+        [
+          {
+            "node": "Extracteur de citation détaillée",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Extracteur de citation détaillée": {
       "main": [
         [
@@ -291,9 +331,10 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -320,
-        980
-      ]
+        -520,
+        920
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -307,7 +348,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        1500,
+        1800,
         1360
       ],
       "credentials": {
@@ -320,14 +361,14 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function decouperEnSegments(texte) {\n    const TAILLE_SEGMENT = 1000;\n    let segments = [];\n    let data = \"\"\n    let citation = $node[\"Extracteur de citation détaillée\"].json.text;\n    let documentGoogleDriveId = $node[\"Upload Document\"].json.id;\n\n    for (let i = 0; i < texte.length; i += TAILLE_SEGMENT) {\n        let extrait =  texte.substring(i, i + TAILLE_SEGMENT);\n        let extraitElargi = texte.substring(Math.max(i-1000, 0), Math.min(i + TAILLE_SEGMENT+1000, texte.length));\n        let text = \"# Citation Détaillée\\n\\n\" + citation + \"\\n\\n# Extrait de l'étude\\n\\n\" + extrait;\n\n        segments.push({\"text\": text, \"extrait\": extrait, \"extraitElargi\": extraitElargi, \"citation\": citation, \"documentGoogleDriveId\": documentGoogleDriveId});\n    }\n\n    return segments;\n}\n\nlet texteLong = $node[\"Read PDF\"].json.text;\nlet tableauSegments = decouperEnSegments(texteLong);\n\nreturn {\"json\":{\"segments\":tableauSegments}};\n"
+        "jsCode": "function decouperEnSegments(texte) {\n    const TAILLE_SEGMENT = 1000;\n    let segments = [];\n    let data = \"\"\n    let citation = $node[\"Extracteur de citation détaillée\"].json.text;\n    let documentGoogleDriveId = $node[\"Upload Document\"].json.id;\n\n    for (let i = 0; i < texte.length; i += TAILLE_SEGMENT) {\n        let extrait =  texte.substring(i, i + TAILLE_SEGMENT);\n        let extraitElargi = texte.substring(Math.max(i-1000, 0), Math.min(i + TAILLE_SEGMENT+1000, texte.length));\n        let text = \"# Citation Détaillée\\n\\n\" + citation + \"\\n\\n# Extrait de l'étude\\n\\n\" + extrait;\n\n        segments.push({\"text\": text, \"extrait\": extrait, \"extraitElargi\": extraitElargi, \"citation\": citation, \"documentGoogleDriveId\": documentGoogleDriveId});\n    }\n\n    return segments;\n}\n\nlet texteLong = $node[\"text\"].json.text;\nlet tableauSegments = decouperEnSegments(texteLong);\n\nreturn {\"json\":{\"segments\":tableauSegments}};\n"
       },
       "id": "d74f5836-43a8-424c-9c0d-2f9affc9cb21",
       "name": "Découper en chunks",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2020,
+        2320,
         1520
       ]
     },
@@ -340,8 +381,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1,
       "position": [
-        960,
-        1800
+        920,
+        2240
       ],
       "credentials": {
         "openAiApi": {
@@ -368,8 +409,8 @@
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1,
       "position": [
-        1040,
-        1940
+        1000,
+        2380
       ]
     },
     {
@@ -381,8 +422,8 @@
       "type": "@n8n/n8n-nodes-langchain.textSplitterTokenSplitter",
       "typeVersion": 1,
       "position": [
-        1040,
-        2160
+        1000,
+        2600
       ]
     },
     {
@@ -395,8 +436,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        240,
-        1100
+        -100,
+        1060
       ]
     },
     {
@@ -415,8 +456,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        40,
-        1100
+        -300,
+        1060
       ]
     },
     {
@@ -426,8 +467,8 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -180,
-        1200
+        -520,
+        1160
       ]
     },
     {
@@ -440,8 +481,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        440,
-        1100
+        100,
+        1060
       ],
       "onError": "continueErrorOutput"
     },
@@ -457,8 +498,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        1500,
-        1760
+        1460,
+        2240
       ],
       "credentials": {
         "openAiApi": {
@@ -479,8 +520,8 @@
       "type": "@n8n/n8n-nodes-langchain.chainSummarization",
       "typeVersion": 2,
       "position": [
-        1500,
-        1540
+        1460,
+        2020
       ]
     },
     {
@@ -498,8 +539,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        960,
-        1160
+        940,
+        1000
       ],
       "credentials": {
         "googleDriveOAuth2Api": {
@@ -524,8 +565,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        40,
-        1280
+        -300,
+        1240
       ]
     },
     {
@@ -537,8 +578,8 @@
       "type": "n8n-nodes-base.readPDF",
       "typeVersion": 1,
       "position": [
-        1180,
-        1160
+        1160,
+        1000
       ],
       "onError": "continueErrorOutput"
     },
@@ -552,8 +593,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        240,
-        1280
+        -100,
+        1240
       ]
     },
     {
@@ -566,7 +607,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3440,
+        3740,
         1160
       ]
     },
@@ -579,7 +620,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        3240,
+        3540,
         1160
       ]
     },
@@ -612,7 +653,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        3100,
+        3400,
         1520
       ],
       "retryOnFail": true,
@@ -659,7 +700,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        2680,
+        2980,
         1520
       ],
       "credentials": {
@@ -679,7 +720,7 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        2220,
+        2520,
         1520
       ]
     },
@@ -693,7 +734,7 @@
       "type": "n8n-nodes-base.crypto",
       "typeVersion": 1,
       "position": [
-        2880,
+        3180,
         1520
       ]
     },
@@ -715,8 +756,8 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "typeVersion": 1,
       "position": [
-        960,
-        1580
+        920,
+        2020
       ],
       "credentials": {
         "pineconeApi": {
@@ -734,7 +775,7 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        2440,
+        2740,
         1520
       ]
     },
@@ -761,8 +802,8 @@
       "name": "Upload Document",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        740,
-        1160
+        720,
+        1000
       ],
       "typeVersion": 1,
       "id": "bd3caffb-0117-4bf2-8c68-8d1f01e9b4e0",
@@ -772,6 +813,69 @@
           "name": "Google Drive account"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "a7ae3df5-163f-4bb8-b6b6-c191e229ef6f",
+              "leftValue": "={{ $binary.data.fileExtension }}",
+              "rightValue": "pdf",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "028e75e9-08b5-4803-b49c-c9f381641585",
+      "name": "If PDF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        440,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "binaryPropertyName": "={{ Object.keys($binary)[0] }}",
+        "destinationKey": "text",
+        "options": {}
+      },
+      "id": "fb332172-47a8-493b-8654-4a853f08fead",
+      "name": "Extract From File",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        940,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"text\":$json.text}};\n"
+      },
+      "id": "c12ea2cd-bee9-40d8-bb54-3dfc5376a5c0",
+      "name": "text",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1540,
+        1160
+      ]
     },
     {
       "parameters": {
@@ -789,7 +893,7 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.2,
       "position": [
-        1480,
+        1780,
         1160
       ]
     }
@@ -849,6 +953,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-19T09:18:37.000Z",
-  "versionId": "fad9f272-01c3-4f96-a040-f45b322180e5"
+  "updatedAt": "2024-01-20T10:16:38.000Z",
+  "versionId": "f9dc34b6-20c1-460b-94f2-ecfca74969ec"
 }
