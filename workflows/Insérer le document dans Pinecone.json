@@ -114,7 +114,7 @@
       "main": [
         [
           {
-            "node": "If PDF",
+            "node": "Upload Document",
             "type": "main",
             "index": 0
           }
@@ -127,17 +127,6 @@
           {
             "node": "Summarize Document",
             "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Récupérer le PDF": {
-      "main": [
-        [
-          {
-            "node": "Read PDF",
-            "type": "main",
             "index": 0
           }
         ]
@@ -169,7 +158,7 @@
       "main": [
         [
           {
-            "node": "If PDF",
+            "node": "Upload Document",
             "type": "main",
             "index": 0
           }
@@ -253,7 +242,7 @@
       "main": [
         [
           {
-            "node": "Récupérer le PDF",
+            "node": "Récupérer le document",
             "type": "main",
             "index": 0
           }
@@ -264,7 +253,7 @@
       "main": [
         [
           {
-            "node": "Upload Document",
+            "node": "Read PDF",
             "type": "main",
             "index": 0
           }
@@ -310,6 +299,17 @@
           },
           {
             "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Récupérer le document": {
+      "main": [
+        [
+          {
+            "node": "If PDF",
             "type": "main",
             "index": 0
           }
@@ -523,31 +523,6 @@
         1460,
         2020
       ]
-    },
-    {
-      "parameters": {
-        "operation": "download",
-        "fileId": {
-          "__rl": true,
-          "value": "={{ $json.id }}",
-          "mode": "id"
-        },
-        "options": {}
-      },
-      "id": "c0a11a8d-e736-4f0e-a370-1aebb528a3db",
-      "name": "Récupérer le PDF",
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        940,
-        1000
-      ],
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "Z5nSsC9JGaYw1Ng3",
-          "name": "Google Drive account"
-        }
-      }
     },
     {
       "parameters": {
@@ -802,8 +777,8 @@
       "name": "Upload Document",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        720,
-        1000
+        380,
+        1100
       ],
       "typeVersion": 1,
       "id": "bd3caffb-0117-4bf2-8c68-8d1f01e9b4e0",
@@ -843,8 +818,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        440,
-        1160
+        840,
+        1100
       ]
     },
     {
@@ -859,7 +834,7 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        940,
+        1180,
         1220
       ]
     },
@@ -896,6 +871,31 @@
         1780,
         1160
       ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "c0a11a8d-e736-4f0e-a370-1aebb528a3db",
+      "name": "Récupérer le document",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        600,
+        1100
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -953,6 +953,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-20T10:16:38.000Z",
-  "versionId": "f9dc34b6-20c1-460b-94f2-ecfca74969ec"
+  "updatedAt": "2024-01-20T11:03:17.000Z",
+  "versionId": "e84fad8a-98ac-457d-94ac-8ec9ee0f4c8e"
 }
