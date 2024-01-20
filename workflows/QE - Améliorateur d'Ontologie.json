@@ -1,0 +1,210 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "thread": {
+      "main": [
+        [
+          {
+            "node": "Améliorateur d'Ontologie",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown": {
+      "main": [
+        [
+          {
+            "node": "Envoi de notification Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Améliorateur d'Ontologie": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "sortie",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-20T10:26:02.736Z",
+  "id": "gCSnovdRZmyIsFpS",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "QE - Améliorateur d'Ontologie",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "3c69bd51-7661-4167-97d6-ab97abd4bc4e",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        2500,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "aec64cb7-95e7-41cb-80c4-fd28c05f8f5e",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        2320,
+        680
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet originalText = '';\nif ($json.output != null) {\n  originalText = $json.output;\n} else {\n  originalText = $json.text;\n}\n\noriginalText = $node[\"Get existing document\"].json.name + \"\\n\\n\" + originalText\n\nconst escapedText = escapeMarkdownV2(originalText);\n\nreturn {\"json\":{\"escapedText\":escapedText}};\n"
+      },
+      "id": "e6c183a5-5e9c-4e7d-ad62-e05881cc81fe",
+      "name": "Escape Markdown",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3420,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let entireThread = $json.thread;\nlet thread = $json.thread;\nlet instructions = $json.query;\nconst MAX_LENGTH = 15000;\n\nif (thread.length > MAX_LENGTH) {\n    thread = \"Le début du document est déjà rédigé, voici les denières parties rédigées :\\n[...]\" + thread.substring(thread.length - MAX_LENGTH);\n    remainingThread = entireThread.substring(0, entireThread.length - MAX_LENGTH);\n} else {\n    remainingThread = \"\"; // Aucun contenu restant si la longueur du fil est inférieure à MAX_LENGTH\n}\n\nreturn {\"thread\": thread, \"entireThread\": entireThread, \"remainingThread\": remainingThread, \"instructions\": instructions};"
+      },
+      "id": "c78c4c41-d9ef-4f16-ad51-0a6b77088a12",
+      "name": "thread",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2760,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let thread = $node[\"thread\"].json.entireThread;\nlet output = $node[\"Améliorateur d'Ontologie\"].json.output;\n\n// Enlever toutes les lignes qui contiennent les instructions\nthread += '\\n\\n' + output; \nthread = thread.replace(/.*Prochaine étape.*$/gmi, '');\nthread = thread.replace(/.*Étape suivante.*$/gmi, '');\nthread = thread.replace(/^.*niveau de boucle.*$/gmi, '');\nthread = thread.replace(/```.*```/gmi, '');\nthread = thread.replace(/``.*``/gmi, '');\nthread = thread.replace(/^[\\r\\n]+|[\\r\\n]+$/g, '');\n\nreturn {\"mission\": $node[\"mission\"].json.mission,\"thread\":thread, \"response\":thread, \"instructions\" : $json.output, \"mailId\": $node[\"Get Email\"].json.id};"
+      },
+      "id": "82144c2b-e019-4525-af72-0b2c378a7606",
+      "name": "sortie",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3420,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "=-4191080484",
+        "text": "={{ $json.escapedText.substring($json.escapedText.length - 3900) }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "ebd22e58-e145-43a3-8e11-3f27e078878c",
+      "name": "Envoi de notification Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3680,
+        180
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "rUijC7XE7TL12tph",
+          "name": "Lester AGI"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_3pQx4lfP0EN6Jstj8kozdBtC",
+        "text": "=INSTRUCTIONS\n======\n\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\n{{ $json.instructions }}",
+        "options": {}
+      },
+      "id": "ddb2f7b4-61a4-47ac-a33c-efb317cdd4e4",
+      "name": "Améliorateur d'Ontologie",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        300
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "name": "First item",
+          "code": 1
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1705745961,
+      "possibleDuplicates": [
+        "18d2661d0558442f"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-20T10:48:38.000Z",
+  "versionId": "488d436b-a4c1-47d0-a4a6-2868e48fe995"
+}
