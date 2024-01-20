@@ -138,12 +138,12 @@
       "main": [
         [
           {
-            "node": "Convert from binary data",
+            "node": "task",
             "type": "main",
             "index": 0
           },
           {
-            "node": "task",
+            "node": "Convert from binary data",
             "type": "main",
             "index": 0
           }
@@ -373,35 +373,7 @@
             "index": 0
           }
         ],
-        [
-          {
-            "node": "missionInit",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "When clicking \"Execute Workflow\"": {
-      "main": [
-        [
-          {
-            "node": "Get Task",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Inserer le document dans Pinecone": {
-      "main": [
-        [
-          {
-            "node": "missionInit",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Code": {
@@ -457,6 +429,39 @@
           },
           {
             "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inserer le document dans Pinecone": {
+      "main": [
+        [
+          {
+            "node": "missionInit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Améliorateur d'Ontologie": {
+      "ai_tool": [
+        [
+          {
+            "node": "Gestionnaire d'Amélioration de Prompt",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "get body",
             "type": "main",
             "index": 0
           }
@@ -607,7 +612,8 @@
       "position": [
         2280,
         -320
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -671,7 +677,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let infosMail = $node[\"Get Email\"].json;\nlet createdDocument = $node[\"Get existing document\"].json;\nlet sortie = $node[\"sortie\"].json;\n\n\nreturn {\n  \"infosMail\": infosMail,\n  \"createdDocument\": createdDocument,\n  \"sortie\": sortie\n};"
+        "jsCode": "let infosMail = $node[\"Get Email\"].json;\nlet createdDocument = $node[\"Get existing document\"].json;\nlet sortie = $node[\"sortie\"].json;\n\n\nreturn {\n  \"infosMail\": infosMail,\n  \"createdDocument\": createdDocument,\n  \"sortie\": sortie,\n  \"format\": \"md\"\n};"
       },
       "id": "afd301dd-2e7d-44e4-b3a3-89940c5e5227",
       "name": "entree email",
@@ -979,7 +985,7 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        5920,
+        5900,
         -380
       ],
       "credentials": {
@@ -1502,20 +1508,6 @@
     },
     {
       "parameters": {
-        "workflowId": "eRT6xb82oqCbX4u2"
-      },
-      "id": "573ef485-1690-4a87-b0d4-236a31eaa793",
-      "name": "Inserer le document dans Pinecone",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        5680,
-        -580
-      ],
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
         "jsCode": "let json = $json;\n\njson.namespace = \"prompts\";\n\nreturn {\"json\":json, \"binary\": $binary};"
       },
@@ -1531,7 +1523,7 @@
     {
       "parameters": {
         "name": "questionneur_de_prompt",
-        "description": "Le Questionneur de prompt retourne une réponse issue du prompt de l'assistant à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée. Tu peux également demander le prompt en entier verbatim.\n",
+        "description": "Le Questionneur de prompt retourne une réponse issue du prompt de l'assistant à partir d'une demande détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée. Tu peux également demander le prompt en entier verbatim.",
         "workflowId": "anybPoo9G98Nx3qW",
         "fields": {
           "values": [
@@ -1551,8 +1543,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        4380,
-        640
+        4460,
+        660
       ]
     },
     {
@@ -1600,6 +1592,52 @@
         }
       },
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "workflowId": "=eRT6xb82oqCbX4u2"
+      },
+      "id": "f57f1aa4-7842-479d-b998-0a76e209600e",
+      "name": "Inserer le document dans Pinecone",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5680,
+        -580
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "name": "ameliorateur_d_ontologie",
+        "description": "L'améliorateur d'Ontologie retourne une version améliorée de l'Ontologie du prompt de l'assistant à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée.",
+        "workflowId": "gCSnovdRZmyIsFpS",
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "={{ JSON.stringify($node[\"mission\"].json.mission) }}"
+            },
+            {
+              "name": "documentGoogleDriveId",
+              "stringValue": "={{ $node[\"mission\"].json.documentGoogleDriveId }}"
+            },
+            {
+              "name": "thread",
+              "stringValue": "={{ JSON.stringify($node[\"thread\"].json.thread) }}"
+            }
+          ]
+        }
+      },
+      "id": "6fe5749f-05fe-4051-9b8a-0d1a4e370f0e",
+      "name": "Améliorateur d'Ontologie",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4180,
+        660
+      ]
     }
   ],
   "pinData": {
@@ -1608,6 +1646,16 @@
         "json": {
           "name": "First item",
           "code": 1
+        }
+      }
+    ],
+    "get body": [
+      {
+        "json": {
+          "date": "2024-01-20T11:39:51.218+01:00",
+          "instructions": "``Accomplis la mission à partir du début.``",
+          "mailId": "18d2674608e2ff20",
+          "mission": "  - Dans Methodo : Faire apparaître si \"ITT ou pair protocol\"\n- Dans résultats : faire apparaître effets indésirables\n\n\n``Améliore/crée le prompt de cet assistant.``"
         }
       }
     ]
@@ -1625,9 +1673,9 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1705695819,
+      "lastTimeChecked": 1705748332,
       "possibleDuplicates": [
-        "18d2364ebe161b80"
+        "18d268633e0dd924"
       ]
     }
   },
@@ -1640,6 +1688,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-19T22:58:47.000Z",
-  "versionId": "045587c7-ceb1-4014-b8a3-01a2faaba87b"
+  "updatedAt": "2024-01-20T11:00:39.000Z",
+  "versionId": "2e1a949d-5339-4bea-970d-fc9943df3fbf"
 }
