@@ -759,6 +759,7 @@
     {
       "parameters": {
         "operation": "text",
+        "binaryPropertyName": "={{ Object.keys($binary)[0] }}",
         "destinationKey": "text",
         "options": {}
       },
@@ -911,9 +912,9 @@
   },
   "staticData": {
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1705695819,
+      "lastTimeChecked": 1705748332,
       "possibleDuplicates": [
-        "18d2364ebe161b80"
+        "18d268633e0dd924"
       ]
     }
   },
@@ -926,6 +927,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-19T20:25:22.000Z",
-  "versionId": "c3465c36-b9f0-4a40-95df-3adbf1118776"
+  "updatedAt": "2024-01-20T11:00:02.000Z",
+  "versionId": "a0fd0c72-e193-4209-ab9e-af33e8a1aa07"
 }
