@@ -70,7 +70,9 @@
   },
   "createdAt": "2023-12-18T00:16:25.152Z",
   "id": "wTbd0CgnGrumh0qf",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Scratchpad",
   "nodes": [
     {
@@ -242,6 +244,12 @@
   "staticData": null,
   "tags": [
     {
+      "createdAt": "2024-01-21T09:40:49.894Z",
+      "updatedAt": "2024-01-21T09:40:49.894Z",
+      "id": "HH1XeBJSkgxMCPd3",
+      "name": "legacy"
+    },
+    {
       "createdAt": "2023-12-17T21:33:59.044Z",
       "updatedAt": "2023-12-17T21:33:59.044Z",
       "id": "cV0ITFyTfPijMrvR",
@@ -249,6 +257,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-20T17:17:42.000Z",
-  "versionId": "2cffe8ec-517f-48fc-af2f-80af19b017d3"
+  "updatedAt": "2024-01-21T09:42:04.000Z",
+  "versionId": "0a4238f9-cc09-47d5-88df-dc9afdf91bc9"
 }
