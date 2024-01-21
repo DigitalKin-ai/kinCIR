@@ -432,6 +432,11 @@
             "node": "Get Task",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Get ALL DOING Tasks",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -1758,13 +1763,19 @@
       ]
     },
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1705776376,
+      "lastTimeChecked": 1705832677,
       "possibleDuplicates": [
-        "18d2831eba732070"
+        "18d2b8d03b5256a4"
       ]
     }
   },
   "tags": [
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    },
     {
       "createdAt": "2023-12-17T21:33:59.044Z",
       "updatedAt": "2023-12-17T21:33:59.044Z",
@@ -1773,6 +1784,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-20T22:58:18.000Z",
-  "versionId": "9b94e777-f16c-471f-b1e4-fd6cdaf83caa"
+  "updatedAt": "2024-01-21T10:58:01.000Z",
+  "versionId": "fe8982b6-6fd7-44fd-a167-5393ac7067fc"
 }
