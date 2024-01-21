@@ -114,7 +114,9 @@
   },
   "createdAt": "2023-12-18T03:48:54.885Z",
   "id": "imN4HxXd5zhpJoyV",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "RESSOURCES IA : Gestionnaire d'Amélioration des IA",
   "nodes": [
     {
@@ -429,6 +431,12 @@
   "staticData": null,
   "tags": [
     {
+      "createdAt": "2024-01-21T09:40:49.894Z",
+      "updatedAt": "2024-01-21T09:40:49.894Z",
+      "id": "HH1XeBJSkgxMCPd3",
+      "name": "legacy"
+    },
+    {
       "createdAt": "2023-12-17T21:33:59.044Z",
       "updatedAt": "2023-12-17T21:33:59.044Z",
       "id": "cV0ITFyTfPijMrvR",
@@ -436,6 +444,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-20T17:15:15.000Z",
-  "versionId": "9e1e6f33-f6c8-465d-a131-3b29a7abaf3c"
+  "updatedAt": "2024-01-21T09:41:53.000Z",
+  "versionId": "63d96139-d183-46a5-8a08-3885ec3dfa88"
 }
