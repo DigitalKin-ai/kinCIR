@@ -242,7 +242,9 @@
   },
   "createdAt": "2023-12-17T16:05:00.294Z",
   "id": "d6khXiG3YxUunViW",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Service 2 - Synchroniser GitHub -> Pinecone",
   "nodes": [
     {
@@ -419,8 +421,8 @@
     },
     {
       "parameters": {
-        "chunkSize": 500,
-        "chunkOverlap": 100
+        "chunkSize": 8000,
+        "chunkOverlap": 800
       },
       "id": "fa13b4d3-31ce-4131-8549-255f24809fd3",
       "name": "Recursive Character Text Splitter",
@@ -648,6 +650,19 @@
     },
     {
       "parameters": {
+        "content": "## potentiellement :\n\nDécouper manuellement pour avoir les metadatas\n"
+      },
+      "id": "22e1f9f2-820b-44d8-840e-f0a9a418ef17",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        5520,
+        2860
+      ]
+    },
+    {
+      "parameters": {
         "mode": "insert",
         "pineconeIndex": {
           "__rl": true,
@@ -657,7 +672,7 @@
         },
         "options": {
           "clearNamespace": true,
-          "pineconeNamespace": "={{ $node[\"message\"].json.kin }}"
+          "pineconeNamespace": "=code"
         }
       },
       "id": "32a42944-0df5-4dc5-a309-487cee4373a8",
@@ -674,19 +689,6 @@
           "name": "PineconeApi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "content": "## potentiellement :\n\nDécouper manuellement pour avoir les metadatas\n"
-      },
-      "id": "22e1f9f2-820b-44d8-840e-f0a9a418ef17",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        5520,
-        2860
-      ]
     }
   ],
   "pinData": {
@@ -714,6 +716,12 @@
   "staticData": null,
   "tags": [
     {
+      "createdAt": "2024-01-21T09:40:49.894Z",
+      "updatedAt": "2024-01-21T09:40:49.894Z",
+      "id": "HH1XeBJSkgxMCPd3",
+      "name": "legacy"
+    },
+    {
       "createdAt": "2023-12-17T10:32:35.457Z",
       "updatedAt": "2023-12-17T10:32:35.457Z",
       "id": "y4SS6pvxfLMwCsGn",
@@ -721,6 +729,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-19T22:23:43.000Z",
-  "versionId": "777c190b-4353-4e10-b336-a581735774cb"
+  "updatedAt": "2024-01-21T10:04:19.000Z",
+  "versionId": "a0da0582-6970-4b68-87db-b01c8f58d35d"
 }
