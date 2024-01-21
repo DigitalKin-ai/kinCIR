@@ -81,7 +81,9 @@
   },
   "createdAt": "2023-12-17T10:34:52.199Z",
   "id": "It2FPpnGNxaxojxY",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Acquéreur de Citations",
   "nodes": [
     {
@@ -256,9 +258,15 @@
       "updatedAt": "2023-12-20T20:25:13.009Z",
       "id": "DzuSxffpFOEBRhld",
       "name": "outil"
+    },
+    {
+      "createdAt": "2024-01-21T09:40:49.894Z",
+      "updatedAt": "2024-01-21T09:40:49.894Z",
+      "id": "HH1XeBJSkgxMCPd3",
+      "name": "legacy"
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-20T20:32:09.000Z",
-  "versionId": "fceb7241-6e9b-4fe4-a469-6b5d9eaf8682"
+  "updatedAt": "2024-01-21T09:42:37.000Z",
+  "versionId": "c1166c09-f4e5-41f3-bc3c-2be44fd46341"
 }
