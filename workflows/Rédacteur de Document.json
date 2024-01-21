@@ -203,7 +203,9 @@
   },
   "createdAt": "2023-12-16T09:07:47.697Z",
   "id": "0T67aHjuqQEnrTN0",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Rédacteur de Document",
   "nodes": [
     {
@@ -661,6 +663,12 @@
   "staticData": null,
   "tags": [
     {
+      "createdAt": "2024-01-21T09:40:49.894Z",
+      "updatedAt": "2024-01-21T09:40:49.894Z",
+      "id": "HH1XeBJSkgxMCPd3",
+      "name": "legacy"
+    },
+    {
       "createdAt": "2023-12-17T21:33:59.044Z",
       "updatedAt": "2023-12-17T21:33:59.044Z",
       "id": "cV0ITFyTfPijMrvR",
@@ -668,6 +676,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-20T17:17:59.000Z",
-  "versionId": "f3634ff1-3c88-450d-b61c-df53eea3bff1"
+  "updatedAt": "2024-01-21T09:42:14.000Z",
+  "versionId": "5524654d-3350-44f2-b0c5-ab300fde869d"
 }
