@@ -946,6 +946,12 @@
   "staticData": null,
   "tags": [
     {
+      "createdAt": "2024-01-21T09:47:18.925Z",
+      "updatedAt": "2024-01-21T09:47:18.925Z",
+      "id": "G7odwuwbJmUt0XX2",
+      "name": "prod"
+    },
+    {
       "createdAt": "2023-12-17T10:32:35.457Z",
       "updatedAt": "2023-12-17T10:32:35.457Z",
       "id": "y4SS6pvxfLMwCsGn",
@@ -953,6 +959,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-20T11:03:17.000Z",
-  "versionId": "e84fad8a-98ac-457d-94ac-8ec9ee0f4c8e"
+  "updatedAt": "2024-01-21T09:47:19.000Z",
+  "versionId": "d75d4309-994c-4ece-bdbf-a457dd888f41"
 }
