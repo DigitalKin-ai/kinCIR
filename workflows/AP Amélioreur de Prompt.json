@@ -130,7 +130,9 @@
   },
   "createdAt": "2023-12-18T04:23:18.784Z",
   "id": "1fR6eCwgdVcJ6SG5",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "AP Amélioreur de Prompt",
   "nodes": [
     {
@@ -571,6 +573,12 @@
   "staticData": null,
   "tags": [
     {
+      "createdAt": "2024-01-21T09:40:49.894Z",
+      "updatedAt": "2024-01-21T09:40:49.894Z",
+      "id": "HH1XeBJSkgxMCPd3",
+      "name": "legacy"
+    },
+    {
       "createdAt": "2023-12-17T21:33:59.044Z",
       "updatedAt": "2023-12-17T21:33:59.044Z",
       "id": "cV0ITFyTfPijMrvR",
@@ -578,6 +586,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-20T17:18:26.000Z",
-  "versionId": "dcc5a4b8-901a-48ab-82bb-585c22c35f7e"
+  "updatedAt": "2024-01-21T09:42:22.000Z",
+  "versionId": "92292d7e-fa8e-40bf-ae98-a76e6c6e7a3c"
 }
