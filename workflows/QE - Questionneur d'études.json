@@ -513,13 +513,19 @@
   "staticData": null,
   "tags": [
     {
-      "createdAt": "2023-12-17T21:33:59.044Z",
-      "updatedAt": "2023-12-17T21:33:59.044Z",
-      "id": "cV0ITFyTfPijMrvR",
-      "name": "kin"
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    },
+    {
+      "createdAt": "2024-01-21T09:47:18.925Z",
+      "updatedAt": "2024-01-21T09:47:18.925Z",
+      "id": "G7odwuwbJmUt0XX2",
+      "name": "prod"
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-17T15:20:04.000Z",
-  "versionId": "0206c0a4-55c3-4490-92a3-e4811e4ddac7"
+  "updatedAt": "2024-01-21T09:48:01.000Z",
+  "versionId": "b1858ecb-91ba-4c16-919b-e46aabb06eb1"
 }
