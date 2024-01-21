@@ -153,7 +153,9 @@
   },
   "createdAt": "2023-12-23T17:18:59.535Z",
   "id": "12FLnPHo27ESJDC9",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Simba - Rédacteur d'Histoires",
   "nodes": [
     {
@@ -222,7 +224,7 @@
       "credentials": {
         "telegramApi": {
           "id": "lCt7ijUIUZl2RYIR",
-          "name": "Jarvis"
+          "name": "KinCIR Dynergie"
         }
       },
       "onError": "continueRegularOutput"
@@ -578,6 +580,12 @@
   },
   "tags": [
     {
+      "createdAt": "2024-01-21T09:40:49.894Z",
+      "updatedAt": "2024-01-21T09:40:49.894Z",
+      "id": "HH1XeBJSkgxMCPd3",
+      "name": "legacy"
+    },
+    {
       "createdAt": "2023-12-17T21:33:59.044Z",
       "updatedAt": "2023-12-17T21:33:59.044Z",
       "id": "cV0ITFyTfPijMrvR",
@@ -585,6 +593,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2023-12-25T15:13:29.000Z",
-  "versionId": "3cd05677-6d09-4256-946c-5ddb8cde650f"
+  "updatedAt": "2024-01-21T09:43:49.000Z",
+  "versionId": "7f03ce62-05a3-4fa4-905f-525311760597"
 }
