@@ -121,16 +121,13 @@
           }
         ]
       ]
-    },
-    "nouveau message": {
-      "main": [
-        []
-      ]
     }
   },
   "createdAt": "2023-12-19T11:20:32.807Z",
   "id": "ge5mVvCJ8IYHSUQz",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "[Main] KinCIR - Rédacteur de Programme R&D",
   "nodes": [
     {
@@ -505,6 +502,12 @@
   },
   "tags": [
     {
+      "createdAt": "2024-01-21T09:40:49.894Z",
+      "updatedAt": "2024-01-21T09:40:49.894Z",
+      "id": "HH1XeBJSkgxMCPd3",
+      "name": "legacy"
+    },
+    {
       "createdAt": "2023-12-17T21:33:59.044Z",
       "updatedAt": "2023-12-17T21:33:59.044Z",
       "id": "cV0ITFyTfPijMrvR",
@@ -512,6 +515,6 @@
     }
   ],
   "triggerCount": 4,
-  "updatedAt": "2023-12-20T17:51:11.000Z",
-  "versionId": "d3191ac3-9d35-4d3a-9d59-e500cfc12054"
+  "updatedAt": "2024-01-21T09:42:27.000Z",
+  "versionId": "f6b1124b-9723-44fc-b362-c1afc8d9e9f3"
 }
