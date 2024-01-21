@@ -177,7 +177,9 @@
   },
   "createdAt": "2023-12-18T02:59:32.113Z",
   "id": "zsqDnN0duGul9emj",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "GB - GitHub Backup",
   "nodes": [
     {
@@ -490,6 +492,12 @@
   "staticData": null,
   "tags": [
     {
+      "createdAt": "2024-01-21T09:40:49.894Z",
+      "updatedAt": "2024-01-21T09:40:49.894Z",
+      "id": "HH1XeBJSkgxMCPd3",
+      "name": "legacy"
+    },
+    {
       "createdAt": "2023-12-17T10:32:35.457Z",
       "updatedAt": "2023-12-17T10:32:35.457Z",
       "id": "y4SS6pvxfLMwCsGn",
@@ -497,6 +505,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2023-12-19T21:53:52.000Z",
-  "versionId": "6dd69084-9207-4492-a543-353c7daf8a11"
+  "updatedAt": "2024-01-21T09:40:50.000Z",
+  "versionId": "94d59331-1235-4fe2-b0c8-28b0b5b27170"
 }
