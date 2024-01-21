@@ -329,7 +329,9 @@
   },
   "createdAt": "2024-01-04T15:53:52.118Z",
   "id": "cKfv5i4MDW5BK4gK",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "KinCIR - Version Seb",
   "nodes": [
     {
@@ -1359,6 +1361,12 @@
   },
   "tags": [
     {
+      "createdAt": "2024-01-21T09:40:49.894Z",
+      "updatedAt": "2024-01-21T09:40:49.894Z",
+      "id": "HH1XeBJSkgxMCPd3",
+      "name": "legacy"
+    },
+    {
       "createdAt": "2023-12-17T21:33:59.044Z",
       "updatedAt": "2023-12-17T21:33:59.044Z",
       "id": "cV0ITFyTfPijMrvR",
@@ -1366,6 +1374,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-10T08:09:48.000Z",
-  "versionId": "38965174-1a1a-4245-b275-d505787224f7"
+  "updatedAt": "2024-01-21T09:42:48.000Z",
+  "versionId": "d468e8fe-5d13-4c34-94dc-89ba6c054a3a"
 }
