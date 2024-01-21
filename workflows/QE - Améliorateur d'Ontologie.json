@@ -198,13 +198,19 @@
   },
   "tags": [
     {
-      "createdAt": "2023-12-17T21:33:59.044Z",
-      "updatedAt": "2023-12-17T21:33:59.044Z",
-      "id": "cV0ITFyTfPijMrvR",
-      "name": "kin"
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    },
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-20T10:48:38.000Z",
-  "versionId": "488d436b-a4c1-47d0-a4a6-2868e48fe995"
+  "updatedAt": "2024-01-21T09:47:29.000Z",
+  "versionId": "a2145029-f672-4c8d-841e-3b0589587c6b"
 }
