@@ -301,7 +301,9 @@
   },
   "createdAt": "2024-01-09T14:33:57.800Z",
   "id": "5spLP8WxfZljw9AI",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "rescritCIR v1.1",
   "nodes": [
     {
@@ -1178,6 +1180,12 @@
   },
   "tags": [
     {
+      "createdAt": "2024-01-21T09:40:49.894Z",
+      "updatedAt": "2024-01-21T09:40:49.894Z",
+      "id": "HH1XeBJSkgxMCPd3",
+      "name": "legacy"
+    },
+    {
       "createdAt": "2023-12-17T21:33:59.044Z",
       "updatedAt": "2023-12-17T21:33:59.044Z",
       "id": "cV0ITFyTfPijMrvR",
@@ -1185,6 +1193,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-10T12:13:02.000Z",
-  "versionId": "671b0c43-316b-4772-899e-e74be089a275"
+  "updatedAt": "2024-01-21T09:42:52.000Z",
+  "versionId": "8e8cc195-91b7-48b1-ab57-4c47d5d577aa"
 }
