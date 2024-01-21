@@ -77,16 +77,13 @@
           }
         ]
       ]
-    },
-    "ACCOUNT MANAGER : Gestionnaire de la relation client": {
-      "main": [
-        []
-      ]
     }
   },
   "createdAt": "2023-12-17T21:34:00.231Z",
   "id": "hC7WoWW2uTYj0lot",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Account Manager",
   "nodes": [
     {
@@ -362,6 +359,12 @@
   },
   "tags": [
     {
+      "createdAt": "2024-01-21T09:40:49.894Z",
+      "updatedAt": "2024-01-21T09:40:49.894Z",
+      "id": "HH1XeBJSkgxMCPd3",
+      "name": "legacy"
+    },
+    {
       "createdAt": "2023-12-17T21:33:59.044Z",
       "updatedAt": "2023-12-17T21:33:59.044Z",
       "id": "cV0ITFyTfPijMrvR",
@@ -369,6 +372,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2023-12-20T17:17:50.000Z",
-  "versionId": "695640c8-f5fb-4f82-9e86-f56b37189e98"
+  "updatedAt": "2024-01-21T09:42:08.000Z",
+  "versionId": "2db4444d-3f08-4f2e-8f1a-fb7bcec89a08"
 }
