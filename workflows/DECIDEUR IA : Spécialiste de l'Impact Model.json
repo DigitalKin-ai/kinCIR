@@ -125,7 +125,9 @@
   },
   "createdAt": "2023-12-18T16:11:44.028Z",
   "id": "tyhTUO3qCJ1Jvdjx",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "DECIDEUR IA : Spécialiste de l'Impact Model",
   "nodes": [
     {
@@ -481,6 +483,12 @@
   "staticData": null,
   "tags": [
     {
+      "createdAt": "2024-01-21T09:40:49.894Z",
+      "updatedAt": "2024-01-21T09:40:49.894Z",
+      "id": "HH1XeBJSkgxMCPd3",
+      "name": "legacy"
+    },
+    {
       "createdAt": "2023-12-17T21:33:59.044Z",
       "updatedAt": "2023-12-17T21:33:59.044Z",
       "id": "cV0ITFyTfPijMrvR",
@@ -488,6 +496,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2023-12-20T17:18:13.000Z",
-  "versionId": "126c505d-bf8d-47bd-af36-a6cd657dbd4a"
+  "updatedAt": "2024-01-21T09:42:18.000Z",
+  "versionId": "fd3e320d-985c-473d-b212-779ed0026adb"
 }
