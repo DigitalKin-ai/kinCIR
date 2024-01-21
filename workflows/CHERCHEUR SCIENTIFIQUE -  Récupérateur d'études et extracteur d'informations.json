@@ -81,7 +81,9 @@
   },
   "createdAt": "2023-12-16T10:56:15.284Z",
   "id": "f4z3JUKhsFgmKRgZ",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "CHERCHEUR SCIENTIFIQUE -  Récupérateur d'études et extracteur d'informations",
   "nodes": [
     {
@@ -311,6 +313,12 @@
   "staticData": null,
   "tags": [
     {
+      "createdAt": "2024-01-21T09:40:49.894Z",
+      "updatedAt": "2024-01-21T09:40:49.894Z",
+      "id": "HH1XeBJSkgxMCPd3",
+      "name": "legacy"
+    },
+    {
       "createdAt": "2023-12-17T21:33:59.044Z",
       "updatedAt": "2023-12-17T21:33:59.044Z",
       "id": "cV0ITFyTfPijMrvR",
@@ -318,6 +326,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-03T11:30:12.000Z",
-  "versionId": "0e7adae5-f7f1-4ccd-88e0-4a6b892264c8"
+  "updatedAt": "2024-01-21T09:42:42.000Z",
+  "versionId": "19fcca86-431a-41a1-84e7-aa9b242d9428"
 }
