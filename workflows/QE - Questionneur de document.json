@@ -240,22 +240,6 @@
         ]
       ]
     },
-    "Questionneur de document": {
-      "main": [
-        [
-          {
-            "node": "nouveau message",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "entree email": {
       "main": [
         [
@@ -294,6 +278,22 @@
         [
           {
             "node": "If PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de document": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
             "type": "main",
             "index": 0
           }
@@ -565,7 +565,7 @@
       "credentials": {
         "gmailOAuth2": {
           "id": "iPrbr6qZiWHu93N9",
-          "name": "Gmail account"
+          "name": "Gmail Nicolas"
         }
       }
     },
@@ -642,7 +642,7 @@
       "credentials": {
         "gmailOAuth2": {
           "id": "iPrbr6qZiWHu93N9",
-          "name": "Gmail account"
+          "name": "Gmail Nicolas"
         }
       }
     },
@@ -774,27 +774,6 @@
     },
     {
       "parameters": {
-        "chunkingMode": "advanced",
-        "options": {
-          "summarizationMethodAndPrompts": {
-            "values": {
-              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
-              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\""
-            }
-          }
-        }
-      },
-      "id": "1b6ec980-1feb-4936-be62-bb3f45e7bc95",
-      "name": "Questionneur de document",
-      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
-      "typeVersion": 2,
-      "position": [
-        3540,
-        80
-      ]
-    },
-    {
-      "parameters": {
         "mode": "chooseBranch"
       },
       "id": "14ffa67e-76a8-42d6-9006-02a234b53139",
@@ -851,7 +830,7 @@
       "credentials": {
         "gmailOAuth2": {
           "id": "iPrbr6qZiWHu93N9",
-          "name": "Gmail account"
+          "name": "Gmail Nicolas"
         }
       }
     },
@@ -893,6 +872,27 @@
         2100,
         -423.96241030539204
       ]
+    },
+    {
+      "parameters": {
+        "chunkingMode": "advanced",
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
+              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+            }
+          }
+        }
+      },
+      "id": "1b6ec980-1feb-4936-be62-bb3f45e7bc95",
+      "name": "Questionneur de document",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        3540,
+        80
+      ]
     }
   ],
   "pinData": {
@@ -912,9 +912,9 @@
   },
   "staticData": {
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1705832677,
+      "lastTimeChecked": 1705920636,
       "possibleDuplicates": [
-        "18d2b8d03b5256a4"
+        "18d30cb55a6ea154"
       ]
     }
   },
@@ -933,6 +933,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-21T10:25:57.000Z",
-  "versionId": "940b4a98-c115-4975-8493-a3c60968a51d"
+  "updatedAt": "2024-01-22T10:58:26.000Z",
+  "versionId": "fe46f327-feec-4435-9ee3-4cb27cb756c0"
 }
