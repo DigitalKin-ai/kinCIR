@@ -289,6 +289,17 @@
         ]
       ]
     },
+    "Récupérer le document": {
+      "main": [
+        [
+          {
+            "node": "If PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Extracteur de citation détaillée": {
       "main": [
         [
@@ -299,17 +310,6 @@
           },
           {
             "node": "Merge",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Récupérer le document": {
-      "main": [
-        [
-          {
-            "node": "If PDF",
             "type": "main",
             "index": 0
           }
@@ -854,26 +854,6 @@
     },
     {
       "parameters": {
-        "prompt": "=# Informations\n\n{{ $json[\"text\"].substring(0,5000) }}\n[...]",
-        "messages": {
-          "messageValues": [
-            {
-              "message": "=# Tâche\n\nA partir des informations données, fais de ton mieux pour donner la citation détaillée de l'étude.\n\nRéponds uniquement avec la citation détaillée."
-            }
-          ]
-        }
-      },
-      "id": "9ea1dfaa-04fd-47ac-86ca-e4744a07a533",
-      "name": "Extracteur de citation détaillée",
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.2,
-      "position": [
-        1780,
-        1160
-      ]
-    },
-    {
-      "parameters": {
         "operation": "download",
         "fileId": {
           "__rl": true,
@@ -896,6 +876,26 @@
           "name": "Google Drive account"
         }
       }
+    },
+    {
+      "parameters": {
+        "prompt": "=# Informations\n\n{{ $json[\"text\"].substring(0,5000) }}\n[...]",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Tâche\n\nA partir des informations données, fais de ton mieux pour donner la citation détaillée de l'étude.\n\nRéponds uniquement avec la citation détaillée."
+            }
+          ]
+        }
+      },
+      "id": "9ea1dfaa-04fd-47ac-86ca-e4744a07a533",
+      "name": "Extracteur de citation détaillée",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        1780,
+        1160
+      ]
     }
   ],
   "pinData": {
@@ -959,6 +959,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-21T09:47:19.000Z",
-  "versionId": "d75d4309-994c-4ece-bdbf-a457dd888f41"
+  "updatedAt": "2024-01-22T10:45:51.000Z",
+  "versionId": "57222eaf-d75e-4c89-954c-1676ed147479"
 }
