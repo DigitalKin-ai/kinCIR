@@ -45,17 +45,6 @@
         ]
       ]
     },
-    "Rédacteur d'Email": {
-      "main": [
-        [
-          {
-            "node": "Email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Edit Fields": {
       "main": [
         [
@@ -133,6 +122,17 @@
         [
           {
             "node": "sortie",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur d'Email": {
+      "main": [
+        [
+          {
+            "node": "Email",
             "type": "main",
             "index": 0
           }
@@ -231,22 +231,9 @@
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "Z5nSsC9JGaYw1Ng3",
-          "name": "Google Drive account"
+          "name": "Google Drive DK via Nicolas"
         }
       }
-    },
-    {
-      "parameters": {
-        "prompt": "=# Informations\n\n{{ JSON.stringify($json) }}\n\n# Rôle\n\nRédige et envoie un mail formatté en HTML selon notre modèle à partir d'un contenu.\n\n# Instructions\n\nRéponds avec le HTML de l'email, mis en forme selon notre modèle. Assure-toi que l'email est excellent, et mis en forme selon le modèle. Fais plusieurs itérations si nécéssaire !\n\n# Sortie\n\nTa meilleure réponse, formatée au format HTML, élégante et mise en forme.\n\n# Style de Rédaction\n\n- Dense et to-the-point (le temps de nos clients est précieux :) )\n- Utilsation du gras pour faire apparaître les points les plus importants\n- Touche personnelle : La touche personnelle de fin de mail se caractérise par une expression concise et engageante, reflétant l'intelligence et la curiosité de l'IA tout en soulignant l'unicité et la valeur de la collaboration humaine.\n\n# Modèle d'email\n\n<!DOCTYPE html>\n<html>\n<head>\n<title>Mise à Jour du Projet CIR</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>État de l'Art du Projet CIR</h1>\n    </div>\n    <div class=\"content\">\n      <h2>Échelle de Progression du Projet CIR sur la Mode Durable</h2>\n      <p><span class=\"bold\">Symboles :</span></p>\n      <ul>\n        <li><span class=\"progress-symbol completed\">🟢</span> Complété et satisfaisant</li>\n        <li><span class=\"progress-symbol in-progress\">🔵</span> En cours / Partiellement complété</li>\n        <li><span class=\"progress-symbol to-improve\">🟡</span> À revoir / Nécessite des améliorations</li>\n        <li><span class=\"progress-symbol not-started\">🔴</span> Non commencé / En attente</li>\n      </ul>\n      <!-- Ajouter d'autres éléments de progression ici -->\n      <p><span class=\"bold\">Application de l'Échelle de Progression :</span></p>\n      <!-- Continuer pour les autres sections -->\n      <!-- ... -->\n    </div>\n    <div class=\"footer\">\n      <div class=\"footer\">\n    <span style=\"font-style: italic;\">[MESSAGE PERSONNEL SYMPATHIQUE DU KIN. Ex : À la fin de ce message, une petite réflexion : chaque interaction avec vous enrichit mon univers de données, apportant une dimension unique à notre collaboration. À bientôt pour la suite de notre aventure numérique !]</span>\n</div>\n\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>"
-      },
-      "id": "dfc41e4a-48af-4d15-96b2-d06a122d2d84",
-      "name": "Rédacteur d'Email",
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.2,
-      "position": [
-        520,
-        300
-      ]
     },
     {
       "parameters": {},
@@ -468,6 +455,19 @@
         }
       },
       "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "prompt": "=# Informations\n\n{{ JSON.stringify($json) }}\n\n# Rôle\n\nRédige et envoie un mail formatté en HTML selon notre modèle à partir d'un contenu.\n\n# Instructions\n\nRéponds avec le HTML de l'email, mis en forme selon notre modèle. Assure-toi que l'email est excellent, et mis en forme selon le modèle. Fais plusieurs itérations si nécéssaire !\n\n# Sortie\n\nTa meilleure réponse, formatée au format HTML, élégante et mise en forme.\n\n# Style de Rédaction\n\n- Dense et to-the-point (le temps de nos clients est précieux :) )\n- Utilsation du gras pour faire apparaître les points les plus importants\n- Touche personnelle: La touche personnelle de fin de mail se caractérise par une expression concise et engageante, lié au sujet, reflétant l'intelligence et la curiosité de l'IA, l'unicité et la valeur de la collaboration humaine formulé à la première personne.\n\n# Modèle d'email\n\n<!DOCTYPE html>\n<html>\n<head>\n<title>Mise à Jour du Projet CIR</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>État de l'Art du Projet CIR</h1>\n    </div>\n    <div class=\"content\">\n      <h2>Échelle de Progression du Projet CIR sur la Mode Durable</h2>\n      <p><span class=\"bold\">Symboles :</span></p>\n      <ul>\n        <li><span class=\"progress-symbol completed\">🟢</span> Complété et satisfaisant</li>\n        <li><span class=\"progress-symbol in-progress\">🔵</span> En cours / Partiellement complété</li>\n        <li><span class=\"progress-symbol to-improve\">🟡</span> À revoir / Nécessite des améliorations</li>\n        <li><span class=\"progress-symbol not-started\">🔴</span> Non commencé / En attente</li>\n      </ul>\n      <!-- Ajouter d'autres éléments de progression ici -->\n      <p><span class=\"bold\">Application de l'Échelle de Progression :</span></p>\n      <!-- Continuer pour les autres sections -->\n      <!-- ... -->\n    </div>\n    <div class=\"footer\">\n      <div class=\"footer\">\n    <span style=\"font-style: italic;\">[MESSAGE PERSONNEL SYMPATHIQUE DU KIN]</span>\n</div>\n\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>"
+      },
+      "id": "dfc41e4a-48af-4d15-96b2-d06a122d2d84",
+      "name": "Rédacteur d'Email",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        520,
+        300
+      ]
     }
   ],
   "pinData": {},
@@ -492,6 +492,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-22T09:35:17.000Z",
-  "versionId": "2cff9130-e870-41f8-a14b-cdbbc0b3fc0f"
+  "updatedAt": "2024-01-23T14:13:47.000Z",
+  "versionId": "4c09c86e-9744-4e18-b214-e8a346429888"
 }
