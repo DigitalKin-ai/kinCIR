@@ -492,19 +492,13 @@
   "staticData": null,
   "tags": [
     {
-      "createdAt": "2024-01-21T09:40:49.894Z",
-      "updatedAt": "2024-01-21T09:40:49.894Z",
-      "id": "HH1XeBJSkgxMCPd3",
-      "name": "legacy"
-    },
-    {
-      "createdAt": "2023-12-17T10:32:35.457Z",
-      "updatedAt": "2023-12-17T10:32:35.457Z",
-      "id": "y4SS6pvxfLMwCsGn",
-      "name": "service"
+      "createdAt": "2024-01-07T11:05:17.438Z",
+      "updatedAt": "2024-01-07T11:05:17.438Z",
+      "id": "g3tbWolPRHSWqvlU",
+      "name": "QoL"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-21T09:40:50.000Z",
-  "versionId": "94d59331-1235-4fe2-b0c8-28b0b5b27170"
+  "updatedAt": "2024-01-23T16:19:46.000Z",
+  "versionId": "03c8299f-cbbb-48d7-ae88-e1d15886cc5c"
 }
