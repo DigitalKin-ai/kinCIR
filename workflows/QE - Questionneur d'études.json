@@ -78,9 +78,9 @@
         ],
         [
           {
-            "node": "Merge",
+            "node": "Aggregate",
             "type": "main",
-            "index": 1
+            "index": 0
           }
         ]
       ]
@@ -160,6 +160,39 @@
       "main": [
         [
           {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get body": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Google Scholar Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
             "node": "Merge",
             "type": "main",
             "index": 1
@@ -171,7 +204,7 @@
       "main": [
         [
           {
-            "node": "Google Scholar Search",
+            "node": "get body",
             "type": "main",
             "index": 0
           }
@@ -203,7 +236,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
       "typeVersion": 1,
       "position": [
-        2080,
+        2700,
         360
       ],
       "credentials": {
@@ -220,7 +253,7 @@
       "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
       "typeVersion": 1,
       "position": [
-        2480,
+        3100,
         600
       ]
     },
@@ -233,7 +266,7 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1,
       "position": [
-        2420,
+        3040,
         920
       ],
       "credentials": {
@@ -252,7 +285,7 @@
       "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
       "typeVersion": 1.1,
       "position": [
-        2060,
+        2680,
         180
       ]
     },
@@ -277,8 +310,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3460,
-        180
+        4200,
+        200
       ]
     },
     {
@@ -306,7 +339,7 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "typeVersion": 1,
       "position": [
-        2420,
+        3040,
         780
       ],
       "credentials": {
@@ -328,7 +361,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        2360,
+        2980,
         600
       ],
       "credentials": {
@@ -354,7 +387,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        2600,
+        3140,
         -160
       ]
     },
@@ -365,9 +398,10 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        1720,
-        -100
-      ]
+        1760,
+        -160
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -376,7 +410,7 @@
         "genericAuthType": "httpHeaderAuth",
         "sendQuery": true,
         "specifyQuery": "json",
-        "jsonQuery": "={\n  \"engine\": \"google_scholar\",\n  \"q\": {{ JSON.stringify($json.text) }},\n  \"as_ylo\":2019\n}",
+        "jsonQuery": "={\n  \"engine\": \"google_scholar\",\n  \"q\": {{ JSON.stringify($json.query) }},\n  \"as_ylo\":2019\n}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -393,7 +427,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        2400,
+        2920,
         -160
       ],
       "credentials": {
@@ -413,7 +447,7 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        2840,
+        3380,
         -180
       ]
     },
@@ -428,7 +462,7 @@
       "type": "@n8n/n8n-nodes-langchain.retrieverMultiQuery",
       "typeVersion": 1,
       "position": [
-        2360,
+        2980,
         420
       ]
     },
@@ -463,8 +497,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        3260,
-        180
+        4000,
+        200
       ]
     },
     {
@@ -476,14 +510,56 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        3060,
+        3600,
         -180
       ],
       "onError": "continueRegularOutput"
     },
     {
       "parameters": {
-        "prompt": "=# Instructions du générateur de Query de recherche\n\n# Rôle\nObjectif : Convertir directement une question en une liste concise de mots-clés pour une recherche efficace sur Google Scholar.\nContenu : L'assistant doit générer une Query pour Google Scholar\n\n# Contexte\nObjectif : Comprendre que l'utilisateur a besoin d'effectuer une recherche ciblée sur Google Scholar et que la pertinence des mots-clés est cruciale à cet effet.\nContenu : L'utilisateur cherche à obtenir une liste de mots-clés qui lui permettront d'accéder directement aux documents académiques répondant à sa question. La sélectivité des mots-clés garantira des résultats de recherche plus précis.\n\n# Instructions\nObjectif : Produire une liste de mots-clés sans superflu, reflétant les éléments essentiels de la question.\nContenu : \n- Identifier les termes centraux et spécifiques de la question qui sont susceptibles d'être utilisés dans la littérature académique.\n- Exclure les mots de liaison et les termes génériques non pertinents pour la recherche.\n\n# Sortie\n\nContenu : La query et uniquement la query exacte qui sera entrée dans Google Schloar. Pas de mots ni avant, ni après, ni de guillemets. Utilise des OR pour les questions larges.\n\n# Misison Globale\n\n{{ $json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $json.query }}\n\n# Query\n\nQuery : "
+        "mode": "runOnceForEachItem",
+        "jsCode": "let text = $json.text;\n\n// Use a regular expression to match text within double quotes\nlet queries = text.match(/\"([^\"]+)\"/g).map(query => query.replace(/\"/g, ''));\n\nreturn {\"json\": {\"query\": queries}};"
+      },
+      "id": "07564bf2-3b73-4b47-9fa2-113fa1932cf1",
+      "name": "get body",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2420,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "query",
+        "options": {}
+      },
+      "id": "ba67c596-eab9-4e5a-ac44-36999d5d3578",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2680,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "id": "37fae24f-90bb-47f7-a175-214d7d887b4d",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3800,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "prompt": "=# Instructions du générateur de Query de recherche\n\n## Ontologie de la Création de Query pour Google Scholar\n\n### Graphe\n\ngraph TD\n\nRequêteDeRecherche -->|élaborée via| StratégieDeRecherche\nRequêteDeRecherche -->|soumise à| CritèresDePertinence\nRequêteDeRecherche -->|améliorée par| OptimisationDeQuery\n\nStratégieDeRecherche -->|influe sur| StructureDeLaQuery\nStratégieDeRecherche -->|nécessite| Diversification\n\nCritèresDePertinence -->|guident| Filtrage\nCritèresDePertinence -->|priorisent| PrecisionEtRaffinement\n\nOptimisationDeQuery -->|comprend| ÉvaluationDeLaQuery\n\nStructureDeLaQuery -->|utilise| Filtrage\nStructureDeLaQuery -->|demande| PrecisionEtRaffinement\n\nFiltrage -->|élimine| TermesNonPertinents\nFiltrage -->|applique| CritèresExclusionnaires\n\nPrecisionEtRaffinement -->|choisit| TermesSpécifiques\nPrecisionEtRaffinement -->|exclut| TermesAmbigus\n\nDiversification -->|explore| Synonymes\nDiversification -->|ajuste| LangageScientifique\n\nÉvaluationDeLaQuery -->|compare| DifférentesQueries\nÉvaluationDeLaQuery -->|ajuste| TermesDeLaRequête\n\nclassDef default fill:#d9e9f6,stroke:#333,stroke-width:1px;\nclass TermesNonPertinents,CritèresExclusionnaires,TermsSpécifiques,TermesAmbigus,Synonymes,LangageScientifique,DifférentesQueries default;\n\n### Concepts Principaux\n\n#### Requête de Recherche (Query)\n- Compilation de termes clés sélectionnés pour leur pertinence\n\n#### Structure de recherche (Query)\n- Une fonction (ex : simulation, soudage, etc.)\n- Une forme spécifique de cette fonction (Ex : simulation en éléments finis, soudage laser,  etc.)\n- Un sujet d’application (Ex : échangeur thermique, ou pales de rotors, etc.)\n- Une forme spécifique pour ce sujet d’application ( Ex : échangeur à ailettes, pales d’hélicoptères)\n\n#### Stratégie de Recherche\n- Élaboration d'une approche systématique pour explorer différentes facettes d'un sujet\n- Adaptation des mots-clés et phrases à la logique de recherche académique\n\n#### Critères de Pertinence\n- Détermination des facteurs influençant la pertinence des résultats\n- Pondération des mots-clés selon leur importance dans le contexte de recherche\n\n#### Optimisation de Query\n- Application de techniques pour accroître la pertinence et la spécificité des requêtes\n- Analyse des résultats de recherche pour ajuster les termes de la query\n\n### Sous-éléments Liés\n\n#### Structure de la Query\n- Agencement logique des mots-clés en fonction des conventions de recherche académique\n- Usage de connecteurs logiques pour une recherche structurée\n\n#### Filtrage\n- Application de critères exclusionnaires pour éliminer les résultats non essentiels\n- Paramétrage des filtres de recherche pour restreindre le champ de la requête\n\n#### Precision et Raffinement\n- Choix judicieux des termes pour une query hautement spécifique\n- Exclusion des termes ambigus ou trop larges\n\n#### Diversification\n- Exploration de synonymes et de variantes thématiques pour accroître la couverture des recherches\n- Adaptation de la query au langage scientifique prévalant dans le domaine étudié\n\n#### Évaluation de la Query\n- Comparaison entre requêtes pour évaluer l'efficacité de la recherche\n- Ajustement basé sur les retours et la qualité des résultats obtenus\n\n#### Concaténation de Queries\n- Combinaison de plusieurs requêtes pour une exploration exhaustive\n- Emploi de techniques de recherche booléenne avancées\n\n## Relations Entre Concepts\n\n- Une **Requête de Recherche (Query)** efficace procède d'une bonne **Stratégie de Recherche** et vise à satisfaire les **Critères de Pertinence**.\n- La **Stratégie de Recherche** influence la **Structure de la Query** et détermine la mise en œuvre des techniques d'**Optimisation de Query**.\n- Les **Critères de Pertinence** guident le processus de **Filtrage** et de **Precision et Raffinement** des terms de la requête.\n- L'**Optimisation de Query** bénéficie de la **Diversification** des termes et de l'**Évaluation de la Query** pour l'adaptation en continu.\n- La **Structure de la Query** est affinée par le **Filtrage** et la recherche de **Précision et Raffinement** pour atteindre des résultats spécifiques et pertinents.\n- La **Diversification** des terms est équilibrée avec l'**Évaluation de la Query** pour garantir une couverture large tout en maintenant la précision.\n\n# Rôle\nObjectif : Convertir directement une question en une liste concise de mots-clés pour une recherche efficace sur Google Scholar.\nContenu : L'assistant doit générer des Query pour Google Scholar\n\n# Contexte\nObjectif : Comprendre que l'utilisateur a besoin d'effectuer une recherche ciblée sur Google Scholar et que la pertinence des mots-clés est cruciale à cet effet.\nContenu : L'utilisateur cherche à obtenir une liste de mots-clés qui lui permettront d'accéder directement aux documents académiques répondant à sa question. La sélectivité des mots-clés garantira des résultats de recherche plus précis.\n# Instructions\nObjectif : Produire une liste de queries permettant d'obtenir les études répondant au besoin informationnel.\n\nContenu : \n- Commence par expliquer de façon détaillée ton raisonnement étape par étape pour construire les Queries.\n- On a une CAPACITE et un SUJET : Chaque QUERY conserve le sujet, mais varie sur la formulation de l'objectif.\n- Générer 3 Queries.\n\nFormat de la liste de Queries :\n``\n- \"Query 1\",\n- \"Query 2\",\n- \"Query 3\".\n``\n\n# Mission Globale\n\n{{ $json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $json.query }}\n\n# Raisonnement & Queries\n\nRaisonnement & Queries :"
       },
       "id": "8f31de23-3ac2-4ba2-b751-4331eef0cda1",
       "name": "Mots-clés de recherche",
@@ -501,6 +577,14 @@
         "json": {
           "name": "First item",
           "code": 1
+        }
+      }
+    ],
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "In the field of thermal exchange systems design, we aim to simulate the performances of finned oil heat exchangers. To ensure the SIMULATION reflects real-world experimental results, which are crucial to verify accurate thermal exchange performance, we must understand the latest research. What is the state of the art in simulating the behaviour of finned oil heat exchangers?",
+          "mission": "\"# Objet de l’état de l’art\\n\\nExemple :\\n\\nAPPLICATION : Dans le cadre de notre métier de concepteur fabricant de\\nsystème d’échange de chaleur,\\n\\nMÉTRIQUE :\\n\\nExemple : Maximisation de la performance d’échange thermique de leurs\\nsolutions.\\n\\nOBJECTIF : Nous cherchons à maximiser la conductivité thermique de nos\\nsoudures d’alliages d’aluminium\\n\\nCONTRAINTES : ce qui doit etre respecté impérativement sur les moyens\\n\\nExemple Avec de fortes contraintes de résistance à la corrosion\\n\\nExemple global de demande :\\n\\nDans un contexte de conception de système d’échange thermiques, nous\\ncherchons à simuler les performances d’échangeurs d’huile à ailette. Pour\\nque la SIMULATION soit utile elle doit permettre de se rapprocher des\\nrésultats expérimentaux. Les premiers travaux ont montré de forts écarts\\nentre les simulation et les tests. Quel est l’état de l’art en matière de\\nsimulation de comportement d’échangeur thermique d’huile à ailettes ?\\n\""
         }
       }
     ]
@@ -526,6 +610,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-21T09:48:01.000Z",
-  "versionId": "b1858ecb-91ba-4c16-919b-e46aabb06eb1"
+  "updatedAt": "2024-01-23T10:56:52.000Z",
+  "versionId": "e7869cbf-da6e-4074-83ae-c0f16012109b"
 }
