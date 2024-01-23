@@ -1,0 +1,948 @@
+{
+  "active": true,
+  "connections": {
+    "GPT4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Questionneur de document ( version chain)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "MultiQuery Retriever",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "MultiQuery Retriever",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MultiQuery Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Questionneur de document ( version chain)",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "If documentGoogleDriveId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Questionneur de document",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Questionneur de document",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read PDF": {
+      "main": [
+        [
+          {
+            "node": "Questionneur de document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de document ( version chain)": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nico reçoit un email": {
+      "main": [
+        [
+          {
+            "node": "IF est une question",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get existing document (init)": {
+      "main": [
+        [
+          {
+            "node": "IF Document existe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF est une question": {
+      "main": [
+        [
+          {
+            "node": "Get Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Thread": {
+      "main": [
+        [
+          {
+            "node": "Get existing document (init)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Document existe": {
+      "main": [
+        [
+          {
+            "node": "nouveau message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouveau message1": {
+      "main": [
+        [
+          {
+            "node": "If documentGoogleDriveId",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If documentGoogleDriveId": {
+      "main": [
+        [
+          {
+            "node": "Get existing document",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Questionneur de document ( version chain)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If PDF": {
+      "main": [
+        [
+          {
+            "node": "Read PDF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract From File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract From File": {
+      "main": [
+        [
+          {
+            "node": "Questionneur de document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree email": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur d'Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "entree email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Email": {
+      "main": [
+        [
+          {
+            "node": "Get Thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get existing document": {
+      "main": [
+        [
+          {
+            "node": "If PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de document": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-18T13:34:36.076Z",
+  "id": "anybPoo9G98Nx3qW",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "QD - Questionneur de document",
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4-1106-preview",
+          "mode": "list",
+          "cachedResultName": "gpt-4-1106-preview"
+        },
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "0485f9ff-e680-49b3-b6bd-5fc45a9b18d3",
+      "name": "GPT4",
+      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3580,
+        700
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "topK": 6
+      },
+      "id": "fafe9572-7384-4273-9e2f-c7ca7abcd1e1",
+      "name": "Vector Store Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "typeVersion": 1,
+      "position": [
+        3700,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "d68757c8-9f89-4bc1-863f-0dd5e9cc178a",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3640,
+        1320
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "4f779057-6061-4514-be4a-02dc7fabb628",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        2380,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"response\":$json.response.text};"
+      },
+      "id": "0eeae22c-0fea-4eb8-a9e2-fc1bf1ec3430",
+      "name": "nouveau message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3960,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {
+          "pineconeNamespace": "=etudes",
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "type",
+                "value": "etude"
+              }
+            ]
+          }
+        }
+      },
+      "id": "3cacf9a6-90c3-4e8f-a797-3fabf1499a2b",
+      "name": "Pinecone Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        3640,
+        1180
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "6938d8a5-4ba5-4fb7-a5db-ee61ffa7bf71",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3560,
+        960
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "1632550a-0bf7-4b4c-9a07-b7fea8ca5d98",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        2320,
+        680
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {
+          "queryCount": 2
+        }
+      },
+      "id": "063bccbc-cc60-49cc-811e-048397694097",
+      "name": "MultiQuery Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverMultiQuery",
+      "typeVersion": 1,
+      "position": [
+        3560,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "704afbd8-5762-42f8-b3f2-a45a99ec5d76",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3540,
+        260
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chunkSize": 20000,
+        "chunkOverlap": 2000
+      },
+      "id": "83c76160-d71e-4014-83a7-38d171408b9b",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        3700,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "={{ Object.keys($binary)[0] }}"
+      },
+      "id": "e1cba2c1-36c6-4b31-bc7b-1af5b7123ff5",
+      "name": "Read PDF",
+      "type": "n8n-nodes-base.readPDF",
+      "typeVersion": 1,
+      "position": [
+        3280,
+        0
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "query": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+      },
+      "id": "62398c40-f03a-49a0-a1fe-79f3cf987802",
+      "name": "Questionneur de document ( version chain)",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        3560,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 5,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {},
+        "options": {}
+      },
+      "id": "781c1d19-f61e-418c-addd-60a7f0cea663",
+      "name": "Nico reçoit un email",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1,
+      "position": [
+        2140,
+        -240
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "list",
+        "useQueryString": true,
+        "queryString": "=properties has { key='mailId' and value='{{ $json.id }}' }",
+        "limit": 1,
+        "options": {}
+      },
+      "name": "Get existing document (init)",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        3020,
+        -240
+      ],
+      "typeVersion": 1,
+      "id": "354f8acb-5a71-4dc2-8a61-3ab42863802f",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.to.value[0].address }}",
+              "operation": "contains",
+              "value2": "rescritcirbeta@digitalkin.ai"
+            },
+            {
+              "value1": "={{ $json.from.value[0].address }}",
+              "operation": "notEqual",
+              "value2": "=l.reynolds@digitalkin.ai"
+            },
+            {
+              "value1": "={{ $json.headers['in-reply-to'] }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "f8caff5c-9fbc-4ccb-aecf-acfd0b3af7de",
+      "name": "IF est une question",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2380,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "={{ $json.threadId }}",
+        "simple": false,
+        "options": {}
+      },
+      "id": "10f24e39-4b4d-4bb1-ba6e-2b4fccd4d7ed",
+      "name": "Get Thread",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2800,
+        -240
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($json).length !== 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "64268b83-76b1-4a1a-896f-7d8052097867",
+      "name": "IF Document existe",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3220,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = {\n  \"documentGoogleDriveId\": $json.id,\n  \"mission\": $node[\"Get Thread\"].json.text,\n  \"titre\": $node[\"Get Thread\"].json.subject,\n  \"mailId\": $node[\"Nico reçoit un email\"].json.id,\n  \"threadId\": $node[\"Get Thread\"].json.id,\n  \"query\": $node[\"Nico reçoit un email\"].json.text\n}\n\nreturn {\"json\":json};"
+      },
+      "id": "78b6ebd8-a5db-4d7e-9b7a-e0dc73546b5d",
+      "name": "nouveau message1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3420,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "3b9d3f3b-af89-4188-ba23-093f7eccb8a8",
+              "leftValue": "={{ $json.documentGoogleDriveId != null }}",
+              "rightValue": "=null",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "de9bb8f4-3ce7-49c6-9018-d9d5aabba8ee",
+              "leftValue": "={{ $json.documentGoogleDriveId != \"null\"  }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b3efc916-deda-4175-bd2d-90c2e10589a1",
+      "name": "If documentGoogleDriveId",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2620,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "a7ae3df5-163f-4bb8-b6b6-c191e229ef6f",
+              "leftValue": "={{ $binary.data.fileExtension }}",
+              "rightValue": "pdf",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "bdee51cc-744f-45aa-840e-87f751fdc910",
+      "name": "If PDF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        3040,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "binaryPropertyName": "={{ Object.keys($binary)[0] }}",
+        "destinationKey": "text",
+        "options": {}
+      },
+      "id": "ae191368-0957-4759-8318-7131451ae5d6",
+      "name": "Extract From File",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        3280,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "14ffa67e-76a8-42d6-9006-02a234b53139",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        3920,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "rr8aeSM8QYyY8Po4"
+      },
+      "id": "dabca4de-6d37-4fe1-adbb-193b728d2e6c",
+      "name": "Rédacteur d'Email",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4380,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let infosMail = $node[\"Get Email\"].json;\nlet createdDocument = $node[\"Get existing document (init)\"].json;\nlet sortie = $json.response.text;\n\nreturn {\n  \"infosMail\": infosMail,\n  \"createdDocument\": createdDocument,\n  \"sortie\": sortie\n};"
+      },
+      "id": "b69ef948-4d3d-4d4d-af6d-8232417e67cf",
+      "name": "entree email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4160,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "={{ $json.id }}",
+        "simple": false,
+        "options": {}
+      },
+      "id": "2d4e5ab6-c799-477b-af2b-aaff5732aeb8",
+      "name": "Get Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2600,
+        -240
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.documentGoogleDriveId }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "8ea4d452-2f18-48b0-8384-b8a44c8223e1",
+      "name": "Get existing document",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2860,
+        80
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Attention : pas de vérif de travail déjà effectué",
+        "height": 463.96241030539204
+      },
+      "id": "9d408f9b-a42d-4a4c-863c-9a1ad9ba0acd",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2100,
+        -423.96241030539204
+      ]
+    },
+    {
+      "parameters": {
+        "chunkingMode": "advanced",
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
+              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+            }
+          }
+        }
+      },
+      "id": "1b6ec980-1feb-4936-be62-bb3f45e7bc95",
+      "name": "Questionneur de document",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        3540,
+        80
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "name": "First item",
+          "code": 1
+        }
+      }
+    ],
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "Pourriez-vous me fournir les instructions du prompt de l'assistant telles qu'elles sont r�dig�es actuellement, incluant du verbatim si possible?",
+          "mission": "\"# Informations\\n\\n{{ JSON.stringify($json) }}\\n\\n# Rôle\\n\\nRédige et envoie un mail formatté en HTML selon notre modèle à partir d'un\\ncontenu.\\n\\n# Instructions\\n\\nRéponds avec le HTML de l'email, mis en forme selon notre modèle.\\nAssure-toi que l'email est excellent, et mis en forme selon le modèle. Fais\\nplusieurs itérations si nécéssaire !\\n\\n# Sortie\\n\\nTa meilleure réponse, formatée au format HTML, élégante et mise en forme.\\n\\n# Style de Rédaction\\n\\n- Dense et to-the-point (le temps de nos clients est précieux :) )\\n- Utilsation du gras pour faire apparaître les points les plus importants\\n- Touche personnelle: La touche personnelle de fin de mail se caractérise\\npar une expression concise et engageante, lié au sujet, reflétant\\nl'intelligence et la curiosité de l'IA, l'unicité et la valeur de la\\ncollaboration humaine formulé à la première personne.\\n\\n# Modèle d'email\\n\\n<!DOCTYPE html>\\n<html>\\n<head>\\n<title>Mise à Jour du Projet CIR</title>\\n<style>\\n  body {\\n    font-family: Arial, sans-serif;\\n    margin: 0;\\n    padding: 0;\\n    background-color: #f4f4f4;\\n    color: #333;\\n  }\\n  .container {\\n    width: 80%;\\n    margin: auto;\\n    background: #fff;\\n    padding: 20px;\\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\\n  }\\n  .header, .footer {\\n    background: #007bff;\\n    color: white;\\n    padding: 10px;\\n    text-align: center;\\n  }\\n  .content {\\n    margin: 20px 0;\\n  }\\n  .logo-header, .logo-footer {\\n    text-align: center;\\n    background-color: #333;\\n    padding: 10px;\\n  }\\n  .logo-header img, .logo-footer img {\\n    height: 50px;\\n  }\\n  .link {\\n    color: #007bff;\\n    text-decoration: none;\\n  }\\n  .bold {\\n    font-weight: bold;\\n  }\\n  .progress-symbol {\\n    font-size: 20px;\\n  }\\n  .completed { color: green; }\\n  .in-progress { color: blue; }\\n  .to-improve { color: yellow; }\\n  .not-started { color: red; }\\n</style>\\n</head>\\n<body>\\n  <div class=\\\"container\\\">\\n    <div class=\\\"logo-header\\\">\\n      <a href=\\\"https://digitalkin.ai/\\\">\\n        <img src=\\\"\\nhttps://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\\\"\\nalt=\\\"DigitalKin Logo\\\">\\n      </a>\\n    </div>\\n    <div class=\\\"header\\\">\\n      <h1>État de l'Art du Projet CIR</h1>\\n    </div>\\n    <div class=\\\"content\\\">\\n      <h2>Échelle de Progression du Projet CIR sur la Mode Durable</h2>\\n      <p><span class=\\\"bold\\\">Symboles :</span></p>\\n      <ul>\\n        <li><span class=\\\"progress-symbol completed\\\">🟢</span> Complété et\\nsatisfaisant</li>\\n        <li><span class=\\\"progress-symbol in-progress\\\">🔵</span> En cours /\\nPartiellement complété</li>\\n        <li><span class=\\\"progress-symbol to-improve\\\">🟡</span> À revoir /\\nNécessite des améliorations</li>\\n        <li><span class=\\\"progress-symbol not-started\\\">🔴</span> Non\\ncommencé / En attente</li>\\n      </ul>\\n      <!-- Ajouter d'autres éléments de progression ici -->\\n      <p><span class=\\\"bold\\\">Application de l'Échelle de Progression\\n:</span></p>\\n      <!-- Continuer pour les autres sections -->\\n      <!-- ... -->\\n    </div>\\n    <div class=\\\"footer\\\">\\n      <div class=\\\"footer\\\">\\n    <span style=\\\"font-style: italic;\\\">[MESSAGE PERSONNEL SYMPATHIQUE DU\\nKIN]</span>\\n</div>\\n\\n    <div class=\\\"logo-footer\\\">\\n      <a href=\\\"https://digitalkin.ai/\\\">\\n        <img src=\\\"\\nhttps://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\\\"\\nalt=\\\"DigitalKin Logo\\\">\\n      </a>\\n    </div>\\n  </div>\\n</body>\\n</html>\\n\\n\\n``Améliore/crée le prompt de cet assistant.``\"",
+          "documentGoogleDriveId": "1GBUDXhaCdGGizTKbjKT4ec9ZiwcwNl6q"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any",
+    "errorWorkflow": "rr8aeSM8QYyY8Po4"
+  },
+  "staticData": {
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1706043693,
+      "possibleDuplicates": [
+        "18d3820dc291f1dd"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    },
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-23T21:05:57.000Z",
+  "versionId": "db6b28d7-0dfb-44e7-80cf-39d561e0f074"
+}
