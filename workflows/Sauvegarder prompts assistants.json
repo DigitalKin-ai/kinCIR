@@ -1,0 +1,452 @@
+{
+  "active": true,
+  "connections": {
+    "Get Assisstants": {
+      "main": [
+        [
+          {
+            "node": "Foreach Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Prompt File": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Exists": {
+      "main": [
+        [
+          {
+            "node": "IF Different",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Prompt File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Foreach Assistant": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Different": {
+      "main": [
+        [
+          {
+            "node": "Update Prompt File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "IF Exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Get Prompt File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Prompt File": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Create Prompt File": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Get Assisstants",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Assisstants",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-23T16:57:03.183Z",
+  "id": "nt2CeUgM28Eb9qrU",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Sauvegarder prompts assistants",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "e8e851a5-41a7-4896-bbfe-f7191f140f46",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        3060,
+        3000
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/assistants",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1e2fa633-9d86-4633-bb9a-a361514d1637",
+      "name": "Get Assisstants",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3320,
+        2800
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=prompts/{{ $node[\"Foreach Assistant\"].json.data.name.replace(/[\\s\\W]+/g, '_').toLowerCase() }}.md",
+        "additionalParameters": {}
+      },
+      "id": "439cee44-eebd-4d8a-a44a-91c9230f5847",
+      "name": "Get Prompt File",
+      "type": "n8n-nodes-base.github",
+      "position": [
+        4020,
+        2440
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true,
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ typeof $json.documentContent === \"undefined\" }}"
+            }
+          ]
+        }
+      },
+      "id": "335951ae-a62e-4262-8bb6-c6974c92a252",
+      "name": "IF Exists",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4440,
+        2440
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "id": "17e2f4c8-7e39-414e-bbfc-2c56a2c35299",
+      "name": "Foreach Assistant",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        3520,
+        2800
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node[\"Foreach Assistant\"].json.data.instructions }}",
+              "operation": "notEqual",
+              "value2": "{{ $json.data.instructions }}"
+            }
+          ]
+        }
+      },
+      "id": "1ed1c203-16be-4de3-a1f1-a4df302dde38",
+      "name": "IF Different",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4600,
+        2380
+      ]
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "destinationKey": "documentContent",
+        "options": {}
+      },
+      "id": "31f8ee8d-4b32-4a17-95a8-a92afb5904f7",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        4240,
+        2440
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "3f752349-c4b6-4ba9-b658-dc1f477eeb02",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3760,
+        2440
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=prompts/{{ $node[\"Foreach Assistant\"].json.data.name.replace(/[\\s\\W]+/g, '_').toLowerCase() }}.md",
+        "fileContent": "={{ $node[\"Foreach Assistant\"].json.data.instructions }}",
+        "commitMessage": "=Updated prompts/{{ $node[\"Foreach Assistant\"].json.data.name.replace(/[\\s\\W]+/g, '_').toLowerCase() }}.md"
+      },
+      "id": "d5385af7-155c-4874-bf3d-454272097928",
+      "name": "Update Prompt File",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        4840,
+        2160
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kinCIR",
+          "mode": "list",
+          "cachedResultName": "kinCIR",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kinCIR"
+        },
+        "filePath": "=prompts/{{ $node[\"Foreach Assistant\"].json.data.name.replace(/[\\s\\W]+/g, '_').toLowerCase() }}.md",
+        "fileContent": "={{ $node[\"Foreach Assistant\"].json.data.instructions }}",
+        "commitMessage": "=n8n"
+      },
+      "id": "ff4c2188-9e5f-4871-9d71-9087591965e7",
+      "name": "Create Prompt File",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        4840,
+        2640
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 3,
+              "triggerAtMinute": 13
+            }
+          ]
+        }
+      },
+      "id": "4e7fd82a-d8e3-460d-86d7-17ef396273a7",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        3060,
+        2800
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "query": "Réalise une première version du document en entier",
+          "kinName": "kincir_dynergie",
+          "demandeur": "KinCIR - Générateur de programme R&D",
+          "demandeurId": "asst_PtFkjK3WpkPD5u6ZLc6toZ0q",
+          "producteurId": "asst_RMuliVrHho2VxBhfZBG1cnTN",
+          "contexte": "L’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\n\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\nLes thématiques de recherche sont :  \nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.",
+          "intentionDUsage": "Ces éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.",
+          "demande": "Réalise une première version du document en entier",
+          "message": "# Contexte\n\nL’entreprise WeDressFair est spécialisée dans la mode durable et éthique. \nActivité : Elle identifie et certifie des fabricants d’articles de mode durable et éthique, fait la promotion de leurs articles soulignant l’aspect durable et éthique, et commercialise leurs articles via internet et ses boutiques.\n\nLe but de l’entreprise est d’augmenter la part de mode durable et éthique dans la mode.\nLe principal objectif de recherche est de parvenir à influencer la consommation, et la production, d’articles de mode responsable et éthique.\nLes thématiques de recherche sont :  \nParvenir à influencer les consommateurs à réaliser des achats de vêtements provenant de marques responsables et éthiques.  \nParvenir à influencer les marques à produire des vêtements responsables et éthiques.\nParvenir à montrer l’impact de nos activités sur la consommation de biens de mode et mesurer cet impact sur l’environnement.\n\n# Intention d'Usage\n\nCes éléments seront utilisés pour démontrer l'éligibilité au dispositif CRÉDIT IMPÔT RECHERCHE (CIR) de travaux de recherche sur le thème de la mode durable, dans le cadre d'un rescrit CIR.\n\n# Demande de KinCIR - Générateur de programme R&D\n\n"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2024-01-23T15:32:23.987Z",
+      "updatedAt": "2024-01-23T15:32:23.987Z",
+      "id": "wt7Cl4Mt8mR1bDh4",
+      "name": "admin"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-23T16:58:19.000Z",
+  "versionId": "3a4fb8c9-8801-46bd-a5a5-17556c5e330d"
+}
