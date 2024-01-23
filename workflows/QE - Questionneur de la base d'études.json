@@ -1,0 +1,2030 @@
+{
+  "active": false,
+  "connections": {
+    "GPT4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Questionneur d'Etudes",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "MultiQuery Retriever",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "MultiQuery Retriever",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Results": {
+      "main": [
+        [
+          {
+            "node": "Foreach Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Scholar Search": {
+      "main": [
+        [
+          {
+            "node": "IF Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MultiQuery Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Questionneur d'Etudes",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Questionneur d'Etudes",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Mots-clés de recherche",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Mots-clés de recherche",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inserer l'étude dans Pinecone": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get body": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Google Scholar Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Foreach Result": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Filtrage Initial",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree pinecone": {
+      "main": [
+        [
+          {
+            "node": "Inserer l'étude dans Pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If resource": {
+      "main": [
+        [
+          {
+            "node": "Filtrage Initial",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'Etudes": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If relevant": {
+      "main": [
+        [
+          {
+            "node": "entree pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "If resource",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mots-clés de recherche": {
+      "main": [
+        [
+          {
+            "node": "get body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If resource1": {
+      "main": [
+        []
+      ]
+    },
+    "Filtrage Initial": {
+      "main": [
+        [
+          {
+            "node": "If relevant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-18T17:45:00.944Z",
+  "id": "yQ79P9nuVKhkwZpD",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "QE - Questionneur de la base d'études",
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4-1106-preview",
+          "mode": "list",
+          "cachedResultName": "gpt-4-1106-preview"
+        },
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "5ce5f51c-53c2-4626-8a18-cfc04dcc849b",
+      "name": "GPT4",
+      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        2700,
+        360
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "724e1b70-2ecf-4efb-952d-d5724b3e3eca",
+      "name": "Vector Store Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "typeVersion": 1,
+      "position": [
+        3100,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "3ee12152-1499-45b4-8b60-c820472fe443",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3040,
+        920
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "3e236bff-7cb0-4fea-999e-c8e6b61c368f",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"response\":$json.response.text};"
+      },
+      "id": "05470c52-33c5-4484-a7dc-1e700b8f1d78",
+      "name": "nouveau message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3960,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {
+          "pineconeNamespace": "=etudes",
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "type",
+                "value": "etude"
+              }
+            ]
+          }
+        }
+      },
+      "id": "c8174531-843c-46d5-ac2c-6039ce7bf4f3",
+      "name": "Pinecone Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        3040,
+        780
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "0c536d71-761b-46c4-a17b-4a82bf1c283d",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        600
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.error }}",
+              "operation": "isEmpty"
+            }
+          ]
+        }
+      },
+      "id": "294b63d8-3c66-48a6-923c-152863e00513",
+      "name": "IF Results",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3140,
+        -160
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ed32a3c0-5917-4ee5-b373-654ddce63dfc",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        -160
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.searchapi.io/api/v1/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "specifyQuery": "json",
+        "jsonQuery": "={\n  \"engine\": \"google_scholar\",\n  \"q\": {{ JSON.stringify($json.query) }},\n  \"as_ylo\":2019\n}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d36b4068-48fc-4d00-a174-1c19bab383a0",
+      "name": "Google Scholar Search",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2920,
+        -160
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "26fekxMf72FDnCOz",
+          "name": "Search API Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "organic_results",
+        "options": {}
+      },
+      "id": "2b351f43-66cb-45d6-af02-24e1cff081d7",
+      "name": "Foreach Result",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 2,
+      "position": [
+        3380,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "queryCount": 2
+        }
+      },
+      "id": "dcd474b4-422a-4a55-b50b-55012b72ecb8",
+      "name": "MultiQuery Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverMultiQuery",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-3.5-turbo-1106",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "a61a1ec3-b4b6-4108-8dc1-ccacb46c5fed",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        2040,
+        40
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "0b2f1e64-9a15-40cb-a670-9cceffd0fc22",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        3760,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "eRT6xb82oqCbX4u2"
+      },
+      "id": "cf29dbde-a4f9-4040-8099-980d0de6550e",
+      "name": "Inserer l'étude dans Pinecone",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5080,
+        -180
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let text = $json.text;\n\n// Use a regular expression to match text within double quotes\nlet queries = text.match(/\"([^\"]+)\"/g).map(query => query.replace(/\"/g, ''));\n\nreturn {\"json\": {\"query\": queries}};"
+      },
+      "id": "07564bf2-3b73-4b47-9fa2-113fa1932cf1",
+      "name": "get body",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2420,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "query",
+        "options": {}
+      },
+      "id": "ba67c596-eab9-4e5a-ac44-36999d5d3578",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2680,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "89008859-5286-414d-8762-edf0cda3286e",
+      "name": "OpenAI Chat Model2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        4200,
+        -20
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"Foreach Result\"].json;\n\njson.relevancyAssessment = $json.text;\n\nreturn {\"json\": json};"
+      },
+      "id": "26c76676-8e88-441f-ac17-0e9fcf53b575",
+      "name": "entree pinecone",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4860,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "84ef531e-b145-4797-be6f-af01e0f58a88",
+              "leftValue": "={{ Object.keys($json.resource).length > 0 }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "1330b36a-0026-449c-9704-17531dab2b6e",
+      "name": "If resource",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        3960,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "query": "=# Instructions de l'Assistant Questionneur d'études scientifiques\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nPour la création de query, injecte des mots-clés.\n\nPour chaque information, précise la provenance de l'information (nom auteur principal, année de publication).\nExemple : (Yan et al., 2020) ou Yan et al., (2020)\n\n\n# Misison Globale\n\n{{ $json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $json.query }}"
+      },
+      "id": "f9f5623e-d497-4bf9-bd7c-c88a831ca096",
+      "name": "Questionneur d'Etudes",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        2680,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "84ef531e-b145-4797-be6f-af01e0f58a88",
+              "leftValue": "={{ $json.text.toLowercase() }}",
+              "rightValue": "=true",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "152f37c3-561a-446d-b621-418b4f0dd0e8",
+      "name": "If relevant",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        4560,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "28d9661e-df40-4d5b-bc27-4e29464e08e6",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3620,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "84ef531e-b145-4797-be6f-af01e0f58a88",
+              "leftValue": "={{ Object.keys($json.resource).length > 0 }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "88097c9d-527d-4abd-a069-2b6760e5ed64",
+      "name": "If resource1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        3920,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "prompt": "=# Instructions du générateur de Query de recherche\n\n## Ontologie de la Création de Query pour Google Scholar\n\n### Graphe\n\ngraph TD\n\nRequêteDeRecherche -->|élaborée via| StratégieDeRecherche\nRequêteDeRecherche -->|soumise à| CritèresDePertinence\nRequêteDeRecherche -->|améliorée par| OptimisationDeQuery\n\nStratégieDeRecherche -->|influe sur| StructureDeLaQuery\nStratégieDeRecherche -->|nécessite| Diversification\n\nCritèresDePertinence -->|guident| Filtrage\nCritèresDePertinence -->|priorisent| PrecisionEtRaffinement\n\nOptimisationDeQuery -->|comprend| ÉvaluationDeLaQuery\n\nStructureDeLaQuery -->|utilise| Filtrage\nStructureDeLaQuery -->|demande| PrecisionEtRaffinement\n\nFiltrage -->|élimine| TermesNonPertinents\nFiltrage -->|applique| CritèresExclusionnaires\n\nPrecisionEtRaffinement -->|choisit| TermesSpécifiques\nPrecisionEtRaffinement -->|exclut| TermesAmbigus\n\nDiversification -->|explore| Synonymes\nDiversification -->|ajuste| LangageScientifique\n\nÉvaluationDeLaQuery -->|compare| DifférentesQueries\nÉvaluationDeLaQuery -->|ajuste| TermesDeLaRequête\n\nclassDef default fill:#d9e9f6,stroke:#333,stroke-width:1px;\nclass TermesNonPertinents,CritèresExclusionnaires,TermsSpécifiques,TermesAmbigus,Synonymes,LangageScientifique,DifférentesQueries default;\n\n### Concepts Principaux\n\n#### Requête de Recherche (Query)\n- Compilation de termes clés sélectionnés pour leur pertinence\n\n#### Structure de recherche (Query)\n- Une fonction (ex : simulation, soudage, etc.)\n- Une forme spécifique de cette fonction (Ex : simulation en éléments finis, soudage laser,  etc.)\n- Un sujet d’application (Ex : échangeur thermique, ou pales de rotors, etc.)\n- Une forme spécifique pour ce sujet d’application ( Ex : échangeur à ailettes, pales d’hélicoptères)\n\n#### Stratégie de Recherche\n- Élaboration d'une approche systématique pour explorer différentes facettes d'un sujet\n- Adaptation des mots-clés et phrases à la logique de recherche académique\n\n#### Critères de Pertinence\n- Détermination des facteurs influençant la pertinence des résultats\n- Pondération des mots-clés selon leur importance dans le contexte de recherche\n\n#### Optimisation de Query\n- Application de techniques pour accroître la pertinence et la spécificité des requêtes\n- Analyse des résultats de recherche pour ajuster les termes de la query\n\n### Sous-éléments Liés\n\n#### Structure de la Query\n- Agencement logique des mots-clés en fonction des conventions de recherche académique\n- Usage de connecteurs logiques pour une recherche structurée\n\n#### Filtrage\n- Application de critères exclusionnaires pour éliminer les résultats non essentiels\n- Paramétrage des filtres de recherche pour restreindre le champ de la requête\n\n#### Precision et Raffinement\n- Choix judicieux des termes pour une query hautement spécifique\n- Exclusion des termes ambigus ou trop larges\n\n#### Diversification\n- Exploration de synonymes et de variantes thématiques pour accroître la couverture des recherches\n- Adaptation de la query au langage scientifique prévalant dans le domaine étudié\n\n#### Évaluation de la Query\n- Comparaison entre requêtes pour évaluer l'efficacité de la recherche\n- Ajustement basé sur les retours et la qualité des résultats obtenus\n\n#### Concaténation de Queries\n- Combinaison de plusieurs requêtes pour une exploration exhaustive\n- Emploi de techniques de recherche booléenne avancées\n\n## Relations Entre Concepts\n\n- Une **Requête de Recherche (Query)** efficace procède d'une bonne **Stratégie de Recherche** et vise à satisfaire les **Critères de Pertinence**.\n- La **Stratégie de Recherche** influence la **Structure de la Query** et détermine la mise en œuvre des techniques d'**Optimisation de Query**.\n- Les **Critères de Pertinence** guident le processus de **Filtrage** et de **Precision et Raffinement** des terms de la requête.\n- L'**Optimisation de Query** bénéficie de la **Diversification** des termes et de l'**Évaluation de la Query** pour l'adaptation en continu.\n- La **Structure de la Query** est affinée par le **Filtrage** et la recherche de **Précision et Raffinement** pour atteindre des résultats spécifiques et pertinents.\n- La **Diversification** des terms est équilibrée avec l'**Évaluation de la Query** pour garantir une couverture large tout en maintenant la précision.\n\n# Rôle\nObjectif : Convertir directement une question en une liste concise de mots-clés pour une recherche efficace sur Google Scholar.\nContenu : L'assistant doit générer des Query pour Google Scholar\n\n# Contexte\nObjectif : Comprendre que l'utilisateur a besoin d'effectuer une recherche ciblée sur Google Scholar et que la pertinence des mots-clés est cruciale à cet effet.\nContenu : L'utilisateur cherche à obtenir une liste de mots-clés qui lui permettront d'accéder directement aux documents académiques répondant à sa question. La sélectivité des mots-clés garantira des résultats de recherche plus précis.\n# Instructions\nObjectif : Produire une liste de queries permettant d'obtenir les études répondant au besoin informationnel.\n\nContenu : \n- Commence par expliquer de façon détaillée ton raisonnement étape par étape pour construire les Queries.\n- On a une CAPACITE et un SUJET : Chaque QUERY conserve le sujet, mais varie sur la formulation de l'objectif.\n- Générer 3 Queries en Anglais.\n\nFormat de la liste de Queries :\n``\n- \"Query 1\",\n- \"Query 2\",\n- \"Query 3\".\n``\n\n# Mission Globale\n\n{{ $json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $json.query }}\n\n# Raisonnement & Queries\n\nRaisonnement & Queries :"
+      },
+      "id": "8f31de23-3ac2-4ba2-b751-4331eef0cda1",
+      "name": "Mots-clés de recherche",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        2040,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "prompt": "=# Instructions du filteur d'Etudes\n\n## Ontologie du filtrage d'Etudes\n\n### Graphe\n\ngraph TD\n  Etude -->|évaluée selon| PertinenceContextuelle\n  Etude -->|contient| InformationSpecifique\n  RelevancyAssessment -->|dépend de| PertinenceContextuelle\n  RelevancyAssessment -->|dépend de| InformationSpecifique\n  RelevancyAssessment -->|impacte| Relevant\n\nclassDef default fill:#d9e9f6,stroke:#333,stroke-width:1px;\nclass PertinenceContextuelle,InformationSpecifique default;\n\n### Concepts Principaux\n\n#### Etude\n- Document scientifique ou académique évalué pour son respect de la spécificité de l'application et de l'objectif\n\n#### Pertinence Contextuelle\n- Evaluation de la spécificité de l'information fournie par l'étude par rapport à l'application et l'objectif\n\n#### Information Spécifique\n- Détails relatifs à la forme spécifique de l'application et de l'objectif présents dans l'étude\n\n#### Relevancy Assessment\n- Analyse de l'adéquation de l'étude avec l'application et l'objectif spécifiques\n- Détermine si l'étude est contextuellement pertinente et contient l'information spécifique requise\n\n#### Relevant\n- Indicateur boolean reflétant la pertinence de l'étude en fonction de la présence des spécificités requises\n- Valeur \"TRUE\" si l'étude est jugée pertinente ; \"FALSE\" sinon\n\n### Sous-éléments Liés\n\n#### Spécificité de l'Application\n- Exigence que l'étude aborde un aspect concret de l'application envisagée\n\n#### Spécificité de l'Objectif\n- Nécessité que l'étude cible explicitement l'objectif particulier attendu\n\n#### Titre et Snippet\n- Extraits de l'étude indiquant sa pertinence vis-à-vis de l'application et de l'objectif\n- Éléments évalués pour la première impression de la pertinence de l'étude\n\n### Relations Entre Concepts\n\n- La **Pertinence Contextuelle** d'une **Etude** est évaluée sur la base de l'**Information Spécifique** qu'elle contient.\n- L'**Etude** passe par une **Relevancy Assessment** pour déterminer sa pertinence.\n- La **Relevancy Assessment** est étroitement liée à la **Pertinence Contextuelle** et à l'**Information Spécifique**, car la pertinence d'une étude dépend de sa capacité à répondre aux particularités de l'application et de l'objectif.\n- L'issue de l'**Relevancy Assessment** est reflétée dans l'indicateur **Relevant**, accordant une valeur \"TRUE\" si les conditions de spécificité sont remplies et \"FALSE\" si elles ne le sont pas.\n\n## Mission Globale\n\n{{ $item(0).$node[\"Execute Workflow Trigger\"].json.mission }}\n\n## Demande Spécifique (Query)\n\n{{ $item(0).$node[\"Execute Workflow Trigger\"].json.query }}\n\n## Résultat\n\n{{ JSON.stringify($('Foreach Result').item.json)  }}\n\n## Instructions\n\n1) \"relevancyAssement\" : A partir des informations disponibles, écris un paragraphe le plus objectif possible en étant critique sur la pertinence de l'étude retournée par Google Scholar dans le cadre de notre contexte.\n- La spécificité de l’application et de sa forme doit être respectée.\n- La spécificité de l’objectif et de sa forme doit être respectée\n\n2) \"relevant\": Pour l'étude retournée, vérifie que l’objectif, la forme de l’objectif, l’application et la forme de l’application sont bien présents dans le titre ou le snippet.\n- La spécificité de l’application et de sa forme doit être respectée.\n- La spécificité de l’objectif et de sa forme doit être respectée\nIndique si relevant est \"TRUE\" ou \"FALSE\"."
+      },
+      "id": "5f6645cb-14f9-426f-b5b2-c37026fbeab0",
+      "name": "Filtrage Initial",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.3,
+      "position": [
+        4180,
+        -200
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "name": "First item",
+          "code": 1
+        }
+      }
+    ],
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "In the field of thermal exchange systems design, we aim to simulate the performances of finned oil heat exchangers. To ensure the SIMULATION reflects real-world experimental results, which are crucial to verify accurate thermal exchange performance, we must understand the latest research. What is the state of the art in simulating the behaviour of finned oil heat exchangers?",
+          "mission": "\"# Objet de l’état de l’art\\n\\nExemple :\\n\\nAPPLICATION : Dans le cadre de notre métier de concepteur fabricant de\\nsystème d’échange de chaleur,\\n\\nMÉTRIQUE :\\n\\nExemple : Maximisation de la performance d’échange thermique de leurs\\nsolutions.\\n\\nOBJECTIF : Nous cherchons à maximiser la conductivité thermique de nos\\nsoudures d’alliages d’aluminium\\n\\nCONTRAINTES : ce qui doit etre respecté impérativement sur les moyens\\n\\nExemple Avec de fortes contraintes de résistance à la corrosion\\n\\nExemple global de demande :\\n\\nDans un contexte de conception de système d’échange thermiques, nous\\ncherchons à simuler les performances d’échangeurs d’huile à ailette. Pour\\nque la SIMULATION soit utile elle doit permettre de se rapprocher des\\nrésultats expérimentaux. Les premiers travaux ont montré de forts écarts\\nentre les simulation et les tests. Quel est l’état de l’art en matière de\\nsimulation de comportement d’échangeur thermique d’huile à ailettes ?\\n\""
+        }
+      }
+    ],
+    "Google Scholar Search": [
+      {
+        "json": {
+          "search_metadata": {
+            "id": "search_1jOZRYa4201HKlmNklD6mVx8",
+            "status": "Success",
+            "created_at": "2024-01-23T11:32:26Z",
+            "request_time_taken": 1.99,
+            "parsing_time_taken": 0.02,
+            "total_time_taken": 2.01,
+            "request_url": "https://scholar.google.com/scholar?q=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_ylo=2019",
+            "html_url": "https://www.searchapi.io/api/v1/searches/search_1jOZRYa4201HKlmNklD6mVx8.html",
+            "json_url": "https://www.searchapi.io/api/v1/searches/search_1jOZRYa4201HKlmNklD6mVx8"
+          },
+          "search_parameters": {
+            "engine": "google_scholar",
+            "q": "Simulation of finned oil heat exchanger performance",
+            "hl": "en",
+            "as_ylo": "2019"
+          },
+          "search_information": {
+            "query_displayed": "Simulation of finned oil heat exchanger performance",
+            "total_results": 17400,
+            "page": 1,
+            "time_taken_displayed": 0.12
+          },
+          "organic_results": [
+            {
+              "position": 1,
+              "title": "Numerical investigation and experimental validation of the thermal performance enhancement of a compact finned-tube heat exchanger for efficient latent heat thermal …",
+              "data_cid": "Z3OO7MHtCpwJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S0959652620342839",
+              "publication": "MEH Amagour, M Bennajah, A Rachek - Journal of Cleaner Production, 2021 - Elsevier",
+              "snippet": "… Due to the complex geometry of the 3D finned-tube model, it is crucial to apply a simulation technique that reduces calculation time. Total coupling of the fluid flow and the …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "11244060836837094247",
+                  "total": 37,
+                  "link": "https://scholar.google.com/scholar?cites=11244060836837094247&as_sdt=2005&sciodt=0,5&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "11244060836837094247",
+                  "total": 3,
+                  "link": "https://scholar.google.com/scholar?cluster=11244060836837094247&hl=en&as_sdt=0,5&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:Z3OO7MHtCpwJ:scholar.google.com/&scioq=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "MEH Amagour",
+                  "id": "oVv9IMwAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=oVv9IMwAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "M Bennajah",
+                  "id": "X3-myf0AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=X3-myf0AAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 2,
+              "title": "Numerical optimization of the fin shape experiments of a heat conjugate problem surface air/oil heat exchanger (SACOC)",
+              "data_cid": "vPFdje20HjwJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S0017931021010760",
+              "publication": "M Chávez-Modena, LM González, E Valero - … of Heat and Mass Transfer, 2022 - Elsevier",
+              "snippet": "… heat exchanger consists of several parallel longitudinal fins that increase the contact area to obtain a higher heat … thermodynamic performance, and to provide data for engine modelling. …",
+              "type": "HTML",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "4332098823948988860",
+                  "total": 15,
+                  "link": "https://scholar.google.com/scholar?cites=4332098823948988860&as_sdt=2005&sciodt=0,5&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "4332098823948988860",
+                  "total": 4,
+                  "link": "https://scholar.google.com/scholar?cluster=4332098823948988860&hl=en&as_sdt=0,5&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:vPFdje20HjwJ:scholar.google.com/&scioq=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019"
+              },
+              "resource": {
+                "name": "sciencedirect.com",
+                "format": "HTML",
+                "link": "https://www.sciencedirect.com/science/article/pii/S0017931021010760"
+              },
+              "authors": [
+                {
+                  "name": "M Chávez-Modena",
+                  "id": "wP77rSQAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=wP77rSQAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "LM González",
+                  "id": "D5k-tv0AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=D5k-tv0AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "E Valero",
+                  "id": "0s9BQrMAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=0s9BQrMAAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 3,
+              "title": "Upgrading the performance of a new shell and helically coiled heat exchanger by using longitudinal fins",
+              "data_cid": "gh9Vc7Q3X0YJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S1359431121003240",
+              "publication": "AD Tuncer, A Sözen, A Khanlari, EY Gürbüz… - Applied Thermal …, 2021 - Elsevier",
+              "snippet": "… coiled tube heat exchanger. In the first step of this study, CFD method was utilized to simulate finned and finless heat exchangers and determining the influence of adding fins. In the …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "5070832953611067266",
+                  "total": 38,
+                  "link": "https://scholar.google.com/scholar?cites=5070832953611067266&as_sdt=2005&sciodt=0,5&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "5070832953611067266",
+                  "total": 5,
+                  "link": "https://scholar.google.com/scholar?cluster=5070832953611067266&hl=en&as_sdt=0,5&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:gh9Vc7Q3X0YJ:scholar.google.com/&scioq=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "A Sözen",
+                  "id": "4a9EiF4AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=4a9EiF4AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "A Khanlari",
+                  "id": "_KWhsOoAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=_KWhsOoAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "EY Gürbüz",
+                  "id": "UD7EZzgAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=UD7EZzgAAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 4,
+              "title": "Hydrodynamic Behavior in Solar Oil Heat Exchanger Ducts Fitted‎ with Staggered Baffles and Fins",
+              "data_cid": "-t_bs2sqquwJ",
+              "link": "https://jacm.scu.ac.ir/article_15502.html",
+              "publication": "Y Menni, AJ Chamkha, H Ameur… - Journal of Applied and …, 2022 - jacm.scu.ac.ir",
+              "snippet": "… simulations are reported in horizontal rectangular form ducts, using three obstacles with oil HTF (heat transfer … analysis of performance on trisection helical baffles heat exchangers with …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "17053489581059203066",
+                  "total": 19,
+                  "link": "https://scholar.google.com/scholar?cites=17053489581059203066&as_sdt=2005&sciodt=0,5&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "17053489581059203066",
+                  "total": 6,
+                  "link": "https://scholar.google.com/scholar?cluster=17053489581059203066&hl=en&as_sdt=0,5&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:-t_bs2sqquwJ:scholar.google.com/&scioq=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019",
+                "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:-t_bs2sqquwJ:scholar.google.com/+Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019"
+              },
+              "resource": {
+                "name": "scu.ac.ir",
+                "format": "PDF",
+                "link": "https://jacm.scu.ac.ir/article_15502_29a5c7819113805ecc6ac87c42d657bf.pdf"
+              },
+              "authors": [
+                {
+                  "name": "Y Menni",
+                  "id": "iM56Wc0AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=iM56Wc0AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "AJ Chamkha",
+                  "id": "EnYLjDUAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=EnYLjDUAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "H Ameur",
+                  "id": "4I0YNT4AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=4I0YNT4AAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 5,
+              "title": "Performance enhancement of finned annulus using surface interruptions in double-pipe heat exchangers",
+              "data_cid": "8QdGTJvH7-EJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S019689042030248X",
+              "publication": "A El Maakoul, K Feddi, S Saadeddine… - Energy Conversion and …, 2020 - Elsevier",
+              "snippet": "… heat exchanger (DPHX) with split longitudinal fins (SLF) on the annulus side. The studied tubes with SLF are a modification of the conventional longitudinal finned … numerical simulations …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "16280450647781148657",
+                  "total": 44,
+                  "link": "https://scholar.google.com/scholar?cites=16280450647781148657&as_sdt=2005&sciodt=0,5&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "16280450647781148657",
+                  "total": 4,
+                  "link": "https://scholar.google.com/scholar?cluster=16280450647781148657&hl=en&as_sdt=0,5&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:8QdGTJvH7-EJ:scholar.google.com/&scioq=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019"
+              },
+              "resource": {
+                "name": "researchgate.net",
+                "format": "PDF",
+                "link": "https://www.researchgate.net/profile/Anas-El-Maakoul/publication/339938205_Performance_enhancement_of_finned_annulus_using_surface_interruptions_in_double-pipe_heat_exchangers/links/5e878e62299bf13079785fa7/Performance-enhancement-of-finned-annulus-using-surface-interruptions-in-double-pipe-heat-exchangers.pdf"
+              },
+              "authors": [
+                {
+                  "name": "A El Maakoul",
+                  "id": "MQfyQg8AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=MQfyQg8AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "S Saadeddine",
+                  "id": "6NkGpbUAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=6NkGpbUAAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 6,
+              "title": "Experimental study on the heat transfer performance of a molten-salt printed circuit heat exchanger with airfoil fins for concentrating solar power",
+              "data_cid": "v8cB1WwyE04J",
+              "link": "https://www.sciencedirect.com/science/article/pii/S0017931018349433",
+              "publication": "WQ Wang, Y Qiu, YL He, HY Shi - … Journal of Heat and Mass Transfer, 2019 - Elsevier",
+              "snippet": "… straight fins, zigzag fins have better heat transfer performance … Therefore, PCHE with zigzag fins were widely studied. For … on the simulations, no experimental study on the heat transfer …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "5625895802527401919",
+                  "total": 70,
+                  "link": "https://scholar.google.com/scholar?cites=5625895802527401919&as_sdt=2005&sciodt=0,5&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "5625895802527401919",
+                  "total": 2,
+                  "link": "https://scholar.google.com/scholar?cluster=5625895802527401919&hl=en&as_sdt=0,5&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:v8cB1WwyE04J:scholar.google.com/&scioq=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "WQ Wang",
+                  "id": "SVd0aTEAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=SVd0aTEAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "Y Qiu",
+                  "id": "fhJci2QAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=fhJci2QAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "YL He",
+                  "id": "lCIq-10AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=lCIq-10AAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 7,
+              "title": "Numerical and experimental study on the influence of top bypass flow on the performance of plate fin heat exchanger",
+              "data_cid": "rQs2CgZDFhQJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S1359431118348749",
+              "publication": "H Cai, L Su, Y Liao, Z Weng - Applied Thermal Engineering, 2019 - Elsevier",
+              "snippet": "… The discrepancy of average heat transfer coefficient in simulation with bypass flow increases with air velocity and the maximum difference reaches 82.76% at the velocity of 10 m/s when …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "1447418023466372013",
+                  "total": 26,
+                  "link": "https://scholar.google.com/scholar?cites=1447418023466372013&as_sdt=2005&sciodt=0,5&hl=en"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:rQs2CgZDFhQJ:scholar.google.com/&scioq=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019"
+              }
+            },
+            {
+              "position": 8,
+              "title": "Optimization of the finned double-pipe heat exchanger using nanofluids as working fluids",
+              "data_cid": "_cvJCR3MCUgJ",
+              "link": "https://link.springer.com/article/10.1007/s10973-020-09290-x",
+              "publication": "AS Dalkılıç, H Mercan, G Özçelik… - Journal of Thermal …, 2021 - Springer",
+              "snippet": "… heat transfer enhancement in parallel with performance, lifetime and cost issues. A detailed analysis is presented for finned and unfinned double-pipe heat exchanger … simulations for …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "5190904470611545085",
+                  "total": 28,
+                  "link": "https://scholar.google.com/scholar?cites=5190904470611545085&as_sdt=2005&sciodt=0,5&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "5190904470611545085",
+                  "total": 7,
+                  "link": "https://scholar.google.com/scholar?cluster=5190904470611545085&hl=en&as_sdt=0,5&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:_cvJCR3MCUgJ:scholar.google.com/&scioq=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "AS Dalkılıç",
+                  "id": "7ma2im4AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=7ma2im4AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "H Mercan",
+                  "id": "xoXcyU0AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=xoXcyU0AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "G Özçelik",
+                  "id": "I54PCo4AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=I54PCo4AAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 9,
+              "title": "Simulation of fin and tube heat exchanger and validation with CFD analysis",
+              "data_cid": "b57KkZtSg3YJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S2214785322038822",
+              "publication": "PSA Banu, DNSR Lohith, MP Kalyan… - Materials Today …, 2022 - Elsevier",
+              "snippet": "… To study the behaviour of heat transfer parameters of fin tube heat exchanger such as; heat transfer coefficient, heat transfer rate, fin efficiency with mass flow rate and geometric …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "8539760146543976047",
+                  "total": 3,
+                  "link": "https://scholar.google.com/scholar?cites=8539760146543976047&as_sdt=2005&sciodt=0,5&hl=en"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:b57KkZtSg3YJ:scholar.google.com/&scioq=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "PSA Banu",
+                  "id": "5j0PM74AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=5j0PM74AAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 10,
+              "title": "Numerical simulation of nanofluid turbulent flow in a double-pipe heat exchanger equipped with circular fins",
+              "data_cid": "01rPTXi2Pt8J",
+              "link": "https://link.springer.com/article/10.1007/s10973-020-09364-w",
+              "publication": "SS Mozafarie, K Javaherdeh, O Ghanbari - Journal of Thermal Analysis …, 2021 - Springer",
+              "snippet": "… can affect the heat transfer performance. Total … circular fins in different arrangement of pitch and height can be a good idea. In this study, a 3D circular finned double-pipe heat exchanger …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "16086495546831755987",
+                  "total": 23,
+                  "link": "https://scholar.google.com/scholar?cites=16086495546831755987&as_sdt=2005&sciodt=0,5&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "16086495546831755987",
+                  "total": 3,
+                  "link": "https://scholar.google.com/scholar?cluster=16086495546831755987&hl=en&as_sdt=0,5&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:01rPTXi2Pt8J:scholar.google.com/&scioq=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "K Javaherdeh",
+                  "id": "DCMY5poAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=DCMY5poAAAAJ&hl=en&oi=sra"
+                }
+              ]
+            }
+          ],
+          "pagination": {
+            "current": 1,
+            "next": "https://scholar.google.com/scholar?start=10&q=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019",
+            "other_pages": {
+              "2": "https://scholar.google.com/scholar?start=10&q=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019",
+              "3": "https://scholar.google.com/scholar?start=20&q=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019",
+              "4": "https://scholar.google.com/scholar?start=30&q=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019",
+              "5": "https://scholar.google.com/scholar?start=40&q=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019",
+              "6": "https://scholar.google.com/scholar?start=50&q=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019",
+              "7": "https://scholar.google.com/scholar?start=60&q=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019",
+              "8": "https://scholar.google.com/scholar?start=70&q=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019",
+              "9": "https://scholar.google.com/scholar?start=80&q=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019",
+              "10": "https://scholar.google.com/scholar?start=90&q=Simulation+of+finned+oil+heat+exchanger+performance&hl=en&as_sdt=0,5&as_ylo=2019"
+            }
+          }
+        }
+      },
+      {
+        "json": {
+          "search_metadata": {
+            "id": "search_MZ18NJlvnOYINazDk3BOm7gz",
+            "status": "Success",
+            "created_at": "2024-01-23T11:32:26Z",
+            "request_time_taken": 1,
+            "parsing_time_taken": 0.02,
+            "total_time_taken": 1.01,
+            "request_url": "https://scholar.google.com/scholar?q=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_ylo=2019",
+            "html_url": "https://www.searchapi.io/api/v1/searches/search_MZ18NJlvnOYINazDk3BOm7gz.html",
+            "json_url": "https://www.searchapi.io/api/v1/searches/search_MZ18NJlvnOYINazDk3BOm7gz"
+          },
+          "search_parameters": {
+            "engine": "google_scholar",
+            "q": "State of the art in thermal simulation of oil finned heat exchangers",
+            "hl": "en",
+            "as_ylo": "2019"
+          },
+          "search_information": {
+            "query_displayed": "State of the art in thermal simulation of oil finned heat exchangers",
+            "total_results": 17400,
+            "page": 1,
+            "time_taken_displayed": 0.17
+          },
+          "organic_results": [
+            {
+              "position": 1,
+              "title": "Heat exchangers and their networks: A state-of-the-art survey",
+              "data_cid": "rMSZsiuTnRQJ",
+              "link": "https://books.google.com/books?hl=en&lr=&id=xRi0DwAAQBAJ&oi=fnd&pg=PA1&dq=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&ots=m2265xrm1z&sig=cTW_xQWnAc6vAMX159N_4M6F7AE",
+              "publication": "W Roetzel, X Luo, D Chen - … and Operation of Heat Exchangers …, 2020 - books.google.com",
+              "snippet": "… plants, chemical industry, petroleum industry, food industry, aero… heat exchangers, including plate heat exchangers, plate-fin … The dynamic analysis of heat exchangers can be performed …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "1485505267991430316",
+                  "total": 3,
+                  "link": "https://scholar.google.com/scholar?cites=1485505267991430316&as_sdt=400005&sciodt=0,14&hl=en"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:rMSZsiuTnRQJ:scholar.google.com/&scioq=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019"
+              }
+            },
+            {
+              "position": 2,
+              "title": "Nanofluids in compact heat exchangers for thermal applications: A State-of-the-art review",
+              "data_cid": "Yx70YYci8NwJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S245190492200083X",
+              "publication": "W Ajeeb, SMS Murshed - Thermal Science and Engineering Progress, 2022 - Elsevier",
+              "snippet": "… ' thermal performance, analysing the results in terms of heat transfer enhancement and suitability in such heat exchangers… thermal energy and better utilization, mainly selecting compact …",
+              "type": "HTML",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "15920262647614021219",
+                  "total": 44,
+                  "link": "https://scholar.google.com/scholar?cites=15920262647614021219&as_sdt=400005&sciodt=0,14&hl=en"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:Yx70YYci8NwJ:scholar.google.com/&scioq=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019"
+              },
+              "resource": {
+                "name": "sciencedirect.com",
+                "format": "HTML",
+                "link": "https://www.sciencedirect.com/science/article/pii/S245190492200083X"
+              },
+              "authors": [
+                {
+                  "name": "W Ajeeb",
+                  "id": "j0dlFE8AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=j0dlFE8AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "SMS Murshed",
+                  "id": "M2xZj-kAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=M2xZj-kAAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 3,
+              "title": "State-of-the-art in heat exchanger additive manufacturing",
+              "data_cid": "ChcH_r_KKxIJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S0017931021007031",
+              "publication": "I Kaur, P Singh - International Journal of Heat and Mass Transfer, 2021 - Elsevier",
+              "snippet": "… focuses on the analysis of individual heat transfer enhancement … The efficiency of plate-fin heat exchangers is enhanced … in heat exchangers, energy absorbers, air/oil separator, filters, …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "1309363042630702858",
+                  "total": 126,
+                  "link": "https://scholar.google.com/scholar?cites=1309363042630702858&as_sdt=400005&sciodt=0,14&hl=en"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:ChcH_r_KKxIJ:scholar.google.com/&scioq=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "I Kaur",
+                  "id": "xg5PKJwAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=xg5PKJwAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "P Singh",
+                  "id": "vR9wTx0AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=vR9wTx0AAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 4,
+              "title": "Applications of heat transfer enhancement techniques: a state-of-the-art review",
+              "data_cid": "x7DOzQ8yF98J",
+              "link": "https://books.google.com/books?hl=en&lr=&id=TpYtEAAAQBAJ&oi=fnd&pg=PA3&dq=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&ots=9xq432Gcu_&sig=x6jQU6X1YFVbO9IjCMYhc0CrMU4",
+              "publication": "S Bhattacharyya, DK Vishwakarma, S Roy… - … Heat Exchangers, 2020 - books.google.com",
+              "snippet": "… for heat transfer enhancement in plate-fin heat exchangers. … water-oil emulsion with stirring, and numerical simulation of … numerical simulation of non-Fourier heat conduction for a fin …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "16075372438381048007",
+                  "total": 17,
+                  "link": "https://scholar.google.com/scholar?cites=16075372438381048007&as_sdt=400005&sciodt=0,14&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "16075372438381048007",
+                  "total": 4,
+                  "link": "https://scholar.google.com/scholar?cluster=16075372438381048007&hl=en&as_sdt=0,14&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:x7DOzQ8yF98J:scholar.google.com/&scioq=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019"
+              },
+              "resource": {
+                "name": "intechopen.com",
+                "format": "HTML",
+                "link": "https://www.intechopen.com/chapters/72544"
+              },
+              "authors": [
+                {
+                  "name": "S Bhattacharyya",
+                  "id": "IaZolwcAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=IaZolwcAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "DK Vishwakarma",
+                  "id": "rZy0G6YAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=rZy0G6YAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "S Roy",
+                  "id": "s6czm7UAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=s6czm7UAAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 5,
+              "title": "Flow boiling of carbon dioxide: Heat transfer for smooth and enhanced geometries and effect of oil. state of the art review",
+              "data_cid": "32TyUMIeuUcJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S0140700719303779",
+              "publication": "R Mastrullo, AW Mauro, L Viscito - International Journal of Refrigeration, 2019 - Elsevier",
+              "snippet": "… This paper presents a state-of-the-art review on flow boiling of carbon dioxide, including … and a deeper analysis of the convective and boiling contributions to the heat transfer are …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "5168195867314906335",
+                  "total": 15,
+                  "link": "https://scholar.google.com/scholar?cites=5168195867314906335&as_sdt=400005&sciodt=0,14&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "5168195867314906335",
+                  "total": 3,
+                  "link": "https://scholar.google.com/scholar?cluster=5168195867314906335&hl=en&as_sdt=0,14&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:32TyUMIeuUcJ:scholar.google.com/&scioq=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019"
+              },
+              "resource": {
+                "name": "academia.edu",
+                "format": "PDF",
+                "link": "https://www.academia.edu/download/94585802/j.ijrefrig.2019.08.02820221121-1-8xue4x.pdf"
+              },
+              "authors": [
+                {
+                  "name": "AW Mauro",
+                  "id": "vVQHkV0AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=vVQHkV0AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "L Viscito",
+                  "id": "xdcbWxsAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=xdcbWxsAAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 6,
+              "title": "A comprehensive review on the current technologies and recent developments in high-temperature heat exchangers",
+              "data_cid": "ObVscaKpTEkJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S1364032123003246",
+              "publication": "S Mahmoudinezhad, M Sadi, H Ghiasirad… - … and Sustainable Energy …, 2023 - Elsevier",
+              "snippet": "… A co-occurrence evaluation is used to specify the competent keywords in the analysis. In this process, … Plate and fin heat exchanger is one of the other significant HTHXs used in many …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "5281782978151494969",
+                  "total": 4,
+                  "link": "https://scholar.google.com/scholar?cites=5281782978151494969&as_sdt=400005&sciodt=0,14&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "5281782978151494969",
+                  "total": 3,
+                  "link": "https://scholar.google.com/scholar?cluster=5281782978151494969&hl=en&as_sdt=0,14&as_ylo=2019"
+                }
+              },
+              "authors": [
+                {
+                  "name": "S Mahmoudinezhad",
+                  "id": "Wop_lw0AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=Wop_lw0AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "M Sadi",
+                  "id": "uYm7LxQAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=uYm7LxQAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "H Ghiasirad",
+                  "id": "FvDvKB8AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=FvDvKB8AAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 7,
+              "title": "Multi-scale CFD modeling of plate heat exchangers including offset-strip fins and dimple-type turbulators for automotive applications",
+              "data_cid": "VPf36j_hTfIJ",
+              "link": "https://www.mdpi.com/1996-1073/12/15/2965",
+              "publication": "A Della Torre, G Montenegro, A Onorati, S Khadilkar… - Energies, 2019 - mdpi.com",
+              "snippet": "… Therefore, to overcome these limitations, a computational framework for the CFD simulation of these compact oil-to-liquid heat exchangers has been developed in this work on the basis …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "17459858995026589524",
+                  "total": 26,
+                  "link": "https://scholar.google.com/scholar?cites=17459858995026589524&as_sdt=400005&sciodt=0,14&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "17459858995026589524",
+                  "total": 8,
+                  "link": "https://scholar.google.com/scholar?cluster=17459858995026589524&hl=en&as_sdt=0,14&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:VPf36j_hTfIJ:scholar.google.com/&scioq=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019",
+                "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:VPf36j_hTfIJ:scholar.google.com/+State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019"
+              },
+              "resource": {
+                "name": "mdpi.com",
+                "format": "PDF",
+                "link": "https://www.mdpi.com/1996-1073/12/15/2965/pdf"
+              },
+              "authors": [
+                {
+                  "name": "A Della Torre",
+                  "id": "_fBpZ20AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=_fBpZ20AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "G Montenegro",
+                  "id": "n5LVALEAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=n5LVALEAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "A Onorati",
+                  "id": "EXO-2LwAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=EXO-2LwAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "S Khadilkar",
+                  "id": "Av1AY_wAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=Av1AY_wAAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 8,
+              "title": "Heat transfer enhancement, intensification and optimisation in heat exchanger network retrofit and operation",
+              "data_cid": "03LV01DSKmoJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S1364032119308512",
+              "publication": "JJ Klemeš, QW Wang, PS Varbanov, M Zeng… - … and Sustainable Energy …, 2020 - Elsevier",
+              "snippet": "… summary and analysis of advanced heat exchanger design. … , particularly in the petroleum and chemical industries. The … fins. Based on chemical etching and diffusion bonding, a new …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "7650158161635406547",
+                  "total": 112,
+                  "link": "https://scholar.google.com/scholar?cites=7650158161635406547&as_sdt=400005&sciodt=0,14&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "7650158161635406547",
+                  "total": 3,
+                  "link": "https://scholar.google.com/scholar?cluster=7650158161635406547&hl=en&as_sdt=0,14&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:03LV01DSKmoJ:scholar.google.com/&scioq=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "JJ Klemeš",
+                  "id": "-q_uRWAAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=-q_uRWAAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "QW Wang",
+                  "id": "wsk3YzEAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=wsk3YzEAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "PS Varbanov",
+                  "id": "5tum7a0AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=5tum7a0AAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 9,
+              "title": "State-of-the-art of research on optimization of shell and tube heat exchangers by methods of evolutionary computation",
+              "data_cid": "AhzQXP13f6kJ",
+              "link": "https://link.springer.com/article/10.1007/s11831-020-09476-4",
+              "publication": "WH Saldanha, FRP Arrieta, GL Soares - Archives of Computational …, 2021 - Springer",
+              "snippet": "… total cost of the heat exchanger were also identified through the analysis of global sensitivity by … [61] is that the STHE tubes in this study were finned. Overall, except for this constructive …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "12213612644519648258",
+                  "total": 7,
+                  "link": "https://scholar.google.com/scholar?cites=12213612644519648258&as_sdt=400005&sciodt=0,14&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "12213612644519648258",
+                  "total": 2,
+                  "link": "https://scholar.google.com/scholar?cluster=12213612644519648258&hl=en&as_sdt=0,14&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:AhzQXP13f6kJ:scholar.google.com/&scioq=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "FRP Arrieta",
+                  "id": "E4Zoht8AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=E4Zoht8AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "GL Soares",
+                  "id": "MXpufxIAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=MXpufxIAAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 10,
+              "title": "Recent advancement in heat transfer and fluid flow characteristics in cross flow heat exchangers",
+              "data_cid": "p2XFPXqKuy4J",
+              "link": "https://www.sciencedirect.com/science/article/pii/S1364032119304204",
+              "publication": "CK Mangrulkar, AS Dhoble, S Chamoli, A Gupta… - … and Sustainable Energy …, 2019 - Elsevier",
+              "snippet": "… of fin-and-tube heat exchanger with various fin patterns as a crimped spiral, plain … dissipation ability relative analysis of the fin surface for thermal performance is necessary. In …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "3367437404016567719",
+                  "total": 88,
+                  "link": "https://scholar.google.com/scholar?cites=3367437404016567719&as_sdt=400005&sciodt=0,14&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "3367437404016567719",
+                  "total": 3,
+                  "link": "https://scholar.google.com/scholar?cluster=3367437404016567719&hl=en&as_sdt=0,14&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:p2XFPXqKuy4J:scholar.google.com/&scioq=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "CK Mangrulkar",
+                  "id": "VgQgwtUAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=VgQgwtUAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "AS Dhoble",
+                  "id": "a8TsAQEAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=a8TsAQEAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "S Chamoli",
+                  "id": "_IwM1ckAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=_IwM1ckAAAAJ&hl=en&oi=sra"
+                }
+              ]
+            }
+          ],
+          "pagination": {
+            "current": 1,
+            "next": "https://scholar.google.com/scholar?start=10&q=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019",
+            "other_pages": {
+              "2": "https://scholar.google.com/scholar?start=10&q=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019",
+              "3": "https://scholar.google.com/scholar?start=20&q=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019",
+              "4": "https://scholar.google.com/scholar?start=30&q=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019",
+              "5": "https://scholar.google.com/scholar?start=40&q=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019",
+              "6": "https://scholar.google.com/scholar?start=50&q=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019",
+              "7": "https://scholar.google.com/scholar?start=60&q=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019",
+              "8": "https://scholar.google.com/scholar?start=70&q=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019",
+              "9": "https://scholar.google.com/scholar?start=80&q=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019",
+              "10": "https://scholar.google.com/scholar?start=90&q=State+of+the+art+in+thermal+simulation+of+oil+finned+heat+exchangers&hl=en&as_sdt=0,14&as_ylo=2019"
+            }
+          }
+        }
+      },
+      {
+        "json": {
+          "search_metadata": {
+            "id": "search_d1XbZBxkZENuXrGGv8JaLNRw",
+            "status": "Success",
+            "created_at": "2024-01-23T11:32:26Z",
+            "request_time_taken": 4.34,
+            "parsing_time_taken": 0.02,
+            "total_time_taken": 4.35,
+            "request_url": "https://scholar.google.com/scholar?q=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_ylo=2019",
+            "html_url": "https://www.searchapi.io/api/v1/searches/search_d1XbZBxkZENuXrGGv8JaLNRw.html",
+            "json_url": "https://www.searchapi.io/api/v1/searches/search_d1XbZBxkZENuXrGGv8JaLNRw"
+          },
+          "search_parameters": {
+            "engine": "google_scholar",
+            "q": "Recent research on simulating heat transfer in finned oil heat exchangers",
+            "hl": "en",
+            "as_ylo": "2019"
+          },
+          "search_information": {
+            "query_displayed": "Recent research on simulating heat transfer in finned oil heat exchangers",
+            "total_results": 17400,
+            "page": 1,
+            "time_taken_displayed": 0.05
+          },
+          "organic_results": [
+            {
+              "position": 1,
+              "title": "Hydrodynamic Behavior in Solar Oil Heat Exchanger Ducts Fitted‎ with Staggered Baffles and Fins",
+              "data_cid": "-t_bs2sqquwJ",
+              "link": "https://jacm.scu.ac.ir/article_15502.html",
+              "publication": "Y Menni, AJ Chamkha, H Ameur… - Journal of Applied and …, 2022 - jacm.scu.ac.ir",
+              "snippet": "… flow field and its effect on the heat transport phenomenon. In This study, dynamic field simulations … It is well known that the energy output of any solar baffled and finned heat exchanger …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "17053489581059203066",
+                  "total": 19,
+                  "link": "https://scholar.google.com/scholar?cites=17053489581059203066&as_sdt=5,33&sciodt=0,33&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "17053489581059203066",
+                  "total": 6,
+                  "link": "https://scholar.google.com/scholar?cluster=17053489581059203066&hl=en&as_sdt=0,33&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:-t_bs2sqquwJ:scholar.google.com/&scioq=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019",
+                "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:-t_bs2sqquwJ:scholar.google.com/+Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019"
+              },
+              "resource": {
+                "name": "scu.ac.ir",
+                "format": "PDF",
+                "link": "https://jacm.scu.ac.ir/article_15502_29a5c7819113805ecc6ac87c42d657bf.pdf"
+              },
+              "authors": [
+                {
+                  "name": "Y Menni",
+                  "id": "iM56Wc0AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=iM56Wc0AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "AJ Chamkha",
+                  "id": "EnYLjDUAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=EnYLjDUAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "H Ameur",
+                  "id": "4I0YNT4AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=4I0YNT4AAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 2,
+              "title": "Numerical optimization of the fin shape experiments of a heat conjugate problem surface air/oil heat exchanger (SACOC)",
+              "data_cid": "vPFdje20HjwJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S0017931021010760",
+              "publication": "M Chávez-Modena, LM González, E Valero - … of Heat and Mass Transfer, 2022 - Elsevier",
+              "snippet": "… of the heat exchanger is … the exchanger without decreasing the heat transfer. The optimization methodology proposed in this work is split in two independent parts: in the first one, the fin …",
+              "type": "HTML",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "4332098823948988860",
+                  "total": 15,
+                  "link": "https://scholar.google.com/scholar?cites=4332098823948988860&as_sdt=5,33&sciodt=0,33&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "4332098823948988860",
+                  "total": 4,
+                  "link": "https://scholar.google.com/scholar?cluster=4332098823948988860&hl=en&as_sdt=0,33&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:vPFdje20HjwJ:scholar.google.com/&scioq=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019"
+              },
+              "resource": {
+                "name": "sciencedirect.com",
+                "format": "HTML",
+                "link": "https://www.sciencedirect.com/science/article/pii/S0017931021010760"
+              },
+              "authors": [
+                {
+                  "name": "M Chávez-Modena",
+                  "id": "wP77rSQAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=wP77rSQAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "LM González",
+                  "id": "D5k-tv0AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=D5k-tv0AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "E Valero",
+                  "id": "0s9BQrMAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=0s9BQrMAAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 3,
+              "title": "A Numerical Simulation Study to Improve Heat Transfer Rate in a Double Pipe Heat Exchanger using Different ways.",
+              "data_cid": "G-yj0BgUsHUJ",
+              "link": "https://iopscience.iop.org/article/10.1088/1742-6596/1973/1/012113/meta",
+              "publication": "ZA Salman, ZK Kadhim, HA Kamil - Journal of Physics …, 2021 - iopscience.iop.org",
+              "snippet": "… fin together and indicating the improvement in heat transfer rate, the result show that the maximum heat transfer … (11 cm) and helical fin with low fin pitch (10 cm) at oil flow rate (0.1 kg/s) …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "8480300195150818331",
+                  "total": 1,
+                  "link": "https://scholar.google.com/scholar?cites=8480300195150818331&as_sdt=5,33&sciodt=0,33&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "8480300195150818331",
+                  "total": 3,
+                  "link": "https://scholar.google.com/scholar?cluster=8480300195150818331&hl=en&as_sdt=0,33&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:G-yj0BgUsHUJ:scholar.google.com/&scioq=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019"
+              },
+              "resource": {
+                "name": "iop.org",
+                "format": "PDF",
+                "link": "https://iopscience.iop.org/article/10.1088/1742-6596/1973/1/012113/pdf"
+              },
+              "authors": [
+                {
+                  "name": "ZK Kadhim",
+                  "id": "HL6RZlQAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=HL6RZlQAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "HA Kamil",
+                  "id": "W_83f88AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=W_83f88AAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 4,
+              "title": "Experimental study on the heat transfer performance of a molten-salt printed circuit heat exchanger with airfoil fins for concentrating solar power",
+              "data_cid": "v8cB1WwyE04J",
+              "link": "https://www.sciencedirect.com/science/article/pii/S0017931018349433",
+              "publication": "WQ Wang, Y Qiu, YL He, HY Shi - … Journal of Heat and Mass Transfer, 2019 - Elsevier",
+              "snippet": "… focused on the simulations, no experimental study on the heat transfer performance of airfoil … Then, the molten salt and the oil exchange heat with each other in the airfoil fin PCHE by …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "5625895802527401919",
+                  "total": 70,
+                  "link": "https://scholar.google.com/scholar?cites=5625895802527401919&as_sdt=5,33&sciodt=0,33&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "5625895802527401919",
+                  "total": 2,
+                  "link": "https://scholar.google.com/scholar?cluster=5625895802527401919&hl=en&as_sdt=0,33&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:v8cB1WwyE04J:scholar.google.com/&scioq=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "WQ Wang",
+                  "id": "SVd0aTEAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=SVd0aTEAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "Y Qiu",
+                  "id": "fhJci2QAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=fhJci2QAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "YL He",
+                  "id": "lCIq-10AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=lCIq-10AAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 5,
+              "title": "Optimization of the finned double-pipe heat exchanger using nanofluids as working fluids",
+              "data_cid": "_cvJCR3MCUgJ",
+              "link": "https://link.springer.com/article/10.1007/s10973-020-09290-x",
+              "publication": "AS Dalkılıç, H Mercan, G Özçelik… - Journal of Thermal …, 2021 - Springer",
+              "snippet": "… of thermophysical properties of water/ethylene glycol-based nanofluids with grapheme nanoplatelets was performed and the material data were used in the numerical simulations for …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "5190904470611545085",
+                  "total": 28,
+                  "link": "https://scholar.google.com/scholar?cites=5190904470611545085&as_sdt=5,33&sciodt=0,33&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "5190904470611545085",
+                  "total": 7,
+                  "link": "https://scholar.google.com/scholar?cluster=5190904470611545085&hl=en&as_sdt=0,33&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:_cvJCR3MCUgJ:scholar.google.com/&scioq=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "AS Dalkılıç",
+                  "id": "7ma2im4AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=7ma2im4AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "H Mercan",
+                  "id": "xoXcyU0AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=xoXcyU0AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "G Özçelik",
+                  "id": "I54PCo4AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=I54PCo4AAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 6,
+              "title": "An approach based on the porous media model for numerical simulation of 3D finned-tubes heat exchanger",
+              "data_cid": "1tfz-LdWsSYJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S001793102100329X",
+              "publication": "Z Li, Y Ding, Q Liao, M Cheng, X Zhu - … Journal of Heat and Mass Transfer, 2021 - Elsevier",
+              "snippet": "… to carry out the full-size numerical simulation, so the method based on porous … simulation of the heat exchanger. In the present study with the discrete 3D finned-tube heat exchanger as …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "2788104992474781654",
+                  "total": 30,
+                  "link": "https://scholar.google.com/scholar?cites=2788104992474781654&as_sdt=5,33&sciodt=0,33&hl=en"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:1tfz-LdWsSYJ:scholar.google.com/&scioq=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019"
+              }
+            },
+            {
+              "position": 7,
+              "title": "Numerical investigation and experimental validation of the thermal performance enhancement of a compact finned-tube heat exchanger for efficient latent heat thermal …",
+              "data_cid": "Z3OO7MHtCpwJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S0959652620342839",
+              "publication": "MEH Amagour, M Bennajah, A Rachek - Journal of Cleaner Production, 2021 - Elsevier",
+              "snippet": "… of heat transfer performance inside a compact finned-tube heat exchanger employed in latent heat … of the 3D finned-tube model, it is crucial to apply a simulation technique that reduces …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "11244060836837094247",
+                  "total": 37,
+                  "link": "https://scholar.google.com/scholar?cites=11244060836837094247&as_sdt=5,33&sciodt=0,33&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "11244060836837094247",
+                  "total": 3,
+                  "link": "https://scholar.google.com/scholar?cluster=11244060836837094247&hl=en&as_sdt=0,33&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:Z3OO7MHtCpwJ:scholar.google.com/&scioq=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "MEH Amagour",
+                  "id": "oVv9IMwAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=oVv9IMwAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "M Bennajah",
+                  "id": "X3-myf0AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=X3-myf0AAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 8,
+              "title": "Upgrading the performance of a new shell and helically coiled heat exchanger by using longitudinal fins",
+              "data_cid": "gh9Vc7Q3X0YJ",
+              "link": "https://www.sciencedirect.com/science/article/pii/S1359431121003240",
+              "publication": "AD Tuncer, A Sözen, A Khanlari, EY Gürbüz… - Applied Thermal …, 2021 - Elsevier",
+              "snippet": "… heat exchanger. In the first step of this study, CFD method was utilized to simulate finned and finless heat exchangers … In the next step, manufactured finless and finned heat exchangers …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "5070832953611067266",
+                  "total": 38,
+                  "link": "https://scholar.google.com/scholar?cites=5070832953611067266&as_sdt=5,33&sciodt=0,33&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "5070832953611067266",
+                  "total": 5,
+                  "link": "https://scholar.google.com/scholar?cluster=5070832953611067266&hl=en&as_sdt=0,33&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:gh9Vc7Q3X0YJ:scholar.google.com/&scioq=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "A Sözen",
+                  "id": "4a9EiF4AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=4a9EiF4AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "A Khanlari",
+                  "id": "_KWhsOoAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=_KWhsOoAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "EY Gürbüz",
+                  "id": "UD7EZzgAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=UD7EZzgAAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 9,
+              "title": "Mesoscopic approach for simulating nanofluid flow and heat transfer in a finned multi-pipe heat exchanger",
+              "data_cid": "EK4RqkNS61AJ",
+              "link": "https://www.emerald.com/insight/content/doi/10.1108/HFF-11-2018-0625/full/html",
+              "publication": "JB Liu, M Bayati, M Abbas, A Rahimi… - … for Heat & Fluid Flow, 2019 - emerald.com",
+              "snippet": "… The main goal of the present investigation is to study the nanofluid flow and heat transfer inside the finned multi-pipe heat exchanger. The Rayleigh number, nanoparticle concentration …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "5830844593130810896",
+                  "total": 10,
+                  "link": "https://scholar.google.com/scholar?cites=5830844593130810896&as_sdt=5,33&sciodt=0,33&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "5830844593130810896",
+                  "total": 3,
+                  "link": "https://scholar.google.com/scholar?cluster=5830844593130810896&hl=en&as_sdt=0,33&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:EK4RqkNS61AJ:scholar.google.com/&scioq=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "JB Liu",
+                  "id": "QCcN1jMAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=QCcN1jMAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "M Bayati",
+                  "id": "uH4pFSMAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=uH4pFSMAAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "M Abbas",
+                  "id": "viA51F0AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=viA51F0AAAAJ&hl=en&oi=sra"
+                },
+                {
+                  "name": "A Rahimi",
+                  "id": "8h6-hG0AAAAJ",
+                  "link": "https://scholar.google.com/citations?user=8h6-hG0AAAAJ&hl=en&oi=sra"
+                }
+              ]
+            },
+            {
+              "position": 10,
+              "title": "Numerical simulation of nanofluid turbulent flow in a double-pipe heat exchanger equipped with circular fins",
+              "data_cid": "01rPTXi2Pt8J",
+              "link": "https://link.springer.com/article/10.1007/s10973-020-09364-w",
+              "publication": "SS Mozafarie, K Javaherdeh, O Ghanbari - Journal of Thermal Analysis …, 2021 - Springer",
+              "snippet": "… thermal and flow characteristics of a nanofluid were evaluated numerically in a circular finned double-pipe heat exchanger… In this study, a 3D circular finned double-pipe heat exchanger …",
+              "inline_links": {
+                "cited_by": {
+                  "cites_id": "16086495546831755987",
+                  "total": 23,
+                  "link": "https://scholar.google.com/scholar?cites=16086495546831755987&as_sdt=5,33&sciodt=0,33&hl=en"
+                },
+                "versions": {
+                  "cluster_id": "16086495546831755987",
+                  "total": 3,
+                  "link": "https://scholar.google.com/scholar?cluster=16086495546831755987&hl=en&as_sdt=0,33&as_ylo=2019"
+                },
+                "related_articles_link": "https://scholar.google.com/scholar?q=related:01rPTXi2Pt8J:scholar.google.com/&scioq=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019"
+              },
+              "authors": [
+                {
+                  "name": "K Javaherdeh",
+                  "id": "DCMY5poAAAAJ",
+                  "link": "https://scholar.google.com/citations?user=DCMY5poAAAAJ&hl=en&oi=sra"
+                }
+              ]
+            }
+          ],
+          "pagination": {
+            "current": 1,
+            "next": "https://scholar.google.com/scholar?start=10&q=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019",
+            "other_pages": {
+              "2": "https://scholar.google.com/scholar?start=10&q=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019",
+              "3": "https://scholar.google.com/scholar?start=20&q=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019",
+              "4": "https://scholar.google.com/scholar?start=30&q=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019",
+              "5": "https://scholar.google.com/scholar?start=40&q=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019",
+              "6": "https://scholar.google.com/scholar?start=50&q=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019",
+              "7": "https://scholar.google.com/scholar?start=60&q=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019",
+              "8": "https://scholar.google.com/scholar?start=70&q=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019",
+              "9": "https://scholar.google.com/scholar?start=80&q=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019",
+              "10": "https://scholar.google.com/scholar?start=90&q=Recent+research+on+simulating+heat+transfer+in+finned+oil+heat+exchangers&hl=en&as_sdt=0,33&as_ylo=2019"
+            }
+          }
+        }
+      }
+    ],
+    "Mots-clés de recherche": [
+      {
+        "json": {
+          "text": "Étape 1 : Identification des concepts clés\n- Domaine : Conception de systèmes d'échange thermique\n- Capacité : Simulation des performances d'échangeurs thermiques à huile à ailettes\n- Métrique : Maximisation de la conductivité thermique des soudures d'alliages d'aluminium\n- Contraintes : Résistance à la corrosion\n\nÉtape 2 : Formulation des Queries\n\n- \"Simulation of finned oil heat exchanger performance\"\n- \"State of the art in thermal simulation of oil finned heat exchangers\"\n- \"Recent research on simulating heat transfer in finned oil heat exchangers\""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    },
+    {
+      "createdAt": "2024-01-21T09:47:18.925Z",
+      "updatedAt": "2024-01-21T09:47:18.925Z",
+      "id": "G7odwuwbJmUt0XX2",
+      "name": "prod"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-23T13:02:11.000Z",
+  "versionId": "c8bdac6b-ff05-4916-96b2-27eb9abdd32a"
+}
