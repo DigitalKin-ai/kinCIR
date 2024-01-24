@@ -34,78 +34,12 @@
         ]
       ]
     },
-    "Pinecone Vector Store": {
-      "ai_vectorStore": [
-        [
-          {
-            "node": "Vector Store Retriever",
-            "type": "ai_vectorStore",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "OpenAI Chat Model": {
       "ai_languageModel": [
         [
           {
             "node": "MultiQuery Retriever",
             "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "MultiQuery Retriever": {
-      "ai_retriever": [
-        [
-          {
-            "node": "Questionneur de document ( version chain)",
-            "type": "ai_retriever",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Execute Workflow Trigger": {
-      "main": [
-        [
-          {
-            "node": "If documentGoogleDriveId",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Questionneur de document",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Recursive Character Text Splitter": {
-      "ai_textSplitter": [
-        [
-          {
-            "node": "Questionneur de document",
-            "type": "ai_textSplitter",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Read PDF": {
-      "main": [
-        [
-          {
-            "node": "Questionneur de document",
-            "type": "main",
             "index": 0
           }
         ]
@@ -130,13 +64,6 @@
             "type": "main",
             "index": 0
           }
-        ],
-        [
-          {
-            "node": "Questionneur de document ( version chain)",
-            "type": "main",
-            "index": 0
-          }
         ]
       ]
     },
@@ -158,17 +85,6 @@
         ]
       ]
     },
-    "Extract From File": {
-      "main": [
-        [
-          {
-            "node": "Questionneur de document",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Get existing document": {
       "main": [
         [
@@ -180,11 +96,77 @@
         ]
       ]
     },
-    "Questionneur de document": {
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Questionneur de document (Refine)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Questionneur de document (map reduce)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read PDF": {
       "main": [
         [
           {
-            "node": "nouveau message",
+            "node": "Questionneur de document (Refine)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract From File": {
+      "main": [
+        [
+          {
+            "node": "Questionneur de document (Refine)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MultiQuery Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Questionneur de document ( version chain)",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Questionneur de document ( version chain)",
             "type": "main",
             "index": 0
           }
@@ -265,8 +247,8 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        2380,
-        80
+        3320,
+        520
       ]
     },
     {
@@ -280,43 +262,8 @@
       "typeVersion": 2,
       "position": [
         3960,
-        80
+        520
       ]
-    },
-    {
-      "parameters": {
-        "pineconeIndex": {
-          "__rl": true,
-          "value": "kins",
-          "mode": "list",
-          "cachedResultName": "kins"
-        },
-        "options": {
-          "pineconeNamespace": "=etudes",
-          "metadata": {
-            "metadataValues": [
-              {
-                "name": "type",
-                "value": "etude"
-              }
-            ]
-          }
-        }
-      },
-      "id": "3cacf9a6-90c3-4e8f-a797-3fabf1499a2b",
-      "name": "Pinecone Vector Store",
-      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
-      "typeVersion": 1,
-      "position": [
-        3640,
-        1180
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -380,7 +327,7 @@
       "typeVersion": 1,
       "position": [
         3540,
-        260
+        -160
       ],
       "credentials": {
         "openAiApi": {
@@ -388,20 +335,6 @@
           "name": "OpenAi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "chunkSize": 20000,
-        "chunkOverlap": 2000
-      },
-      "id": "83c76160-d71e-4014-83a7-38d171408b9b",
-      "name": "Recursive Character Text Splitter",
-      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
-      "typeVersion": 1,
-      "position": [
-        3700,
-        260
-      ]
     },
     {
       "parameters": {
@@ -549,24 +482,127 @@
     },
     {
       "parameters": {
-        "chunkingMode": "advanced",
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "9672d109-ccd0-4e73-923f-032a04a6b21c",
+      "name": "OpenAI Chat Model2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3560,
+        260
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chunkSize": 20000,
+        "chunkOverlap": 2000,
         "options": {
           "summarizationMethodAndPrompts": {
             "values": {
-              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
-              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
+              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\""
             }
           }
         }
       },
-      "id": "1b6ec980-1feb-4936-be62-bb3f45e7bc95",
-      "name": "Questionneur de document",
+      "id": "fa635caf-4d35-4bda-8655-ade052e1c004",
+      "name": "Questionneur de document (map reduce)",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        3520,
+        -300
+      ]
+    },
+    {
+      "parameters": {
+        "chunkSize": 20000,
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "summarizationMethod": "refine",
+              "refinePrompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n{existing_answer}\n\n---\n\n\"{text}\"",
+              "refineQuestionPrompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+            }
+          }
+        }
+      },
+      "id": "d49f800a-4dda-4553-9fcb-92bebb21b421",
+      "name": "Questionneur de document (Refine)",
       "type": "@n8n/n8n-nodes-langchain.chainSummarization",
       "typeVersion": 2,
       "position": [
         3540,
         80
       ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
+        "text": "=INSTRUCTIONS\n======\n\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\n{{ $json.instructions }}",
+        "options": {}
+      },
+      "id": "0a3cad57-628f-49f8-80d4-170b0f8ba264",
+      "name": "kinchercheur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        3900,
+        720
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {
+          "pineconeNamespace": "=etudes",
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "type",
+                "value": "=etude"
+              }
+            ]
+          }
+        }
+      },
+      "id": "3cacf9a6-90c3-4e8f-a797-3fabf1499a2b",
+      "name": "Pinecone Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        3640,
+        1180
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -575,6 +611,15 @@
         "json": {
           "name": "First item",
           "code": 1
+        }
+      }
+    ],
+    "If documentGoogleDriveId": [
+      {
+        "json": {
+          "query": "Please provide the objective of the study from the following article. The information is needed to commence the critical reading of the scientific article titled 'Effects of a New Dietary Intervention on Cardiovascular Health in Overweight Adults: A Randomized Controlled Trial'. The aim is to summarize the declared objective of this study for inclusion in the initial section of a critical analysis document. The summary should be clear and concise in order to present the intention of the researchers accurately.",
+          "mission": "\"lca\\n\"",
+          "documentGoogleDriveId": "10NhaomLS5vFI0PTfFZ3NHyZhtrgUQZls"
         }
       }
     ]
@@ -608,6 +653,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-24T10:29:41.000Z",
-  "versionId": "e0d68e03-a46f-42f0-a198-5de394ed926f"
+  "updatedAt": "2024-01-24T21:54:30.000Z",
+  "versionId": "014aae30-1043-41d2-911b-202b62a40547"
 }
