@@ -982,68 +982,6 @@
           ]
         }
       }
-    ],
-    "Execute Workflow Trigger": [
-      {
-        "json": {
-          "id": "18d3654da8193fc3",
-          "threadId": "18d3654da8193fc3",
-          "labelIds": [
-            "UNREAD",
-            "CATEGORY_PERSONAL",
-            "INBOX"
-          ],
-          "sizeEstimate": 2858674,
-          "headers": {
-            "delivered-to": "Delivered-To: lca@digitalkin.ai",
-            "received": "Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])\r\n        by mx.google.com with SMTPS id r26-20020ac25f9a000000b0050eeac1626fsor2216516lfe.9.2024.01.23.04.39.06\r\n        for <lca@digitalkin.ai>\r\n        (Google Transport Security);\r\n        Tue, 23 Jan 2024 04:39:07 -0800 (PST)",
-            "x-received": "X-Received: by 2002:ac2:5187:0:b0:510:545:d884 with SMTP id\r\n u7-20020ac25187000000b005100545d884mr608181lfi.22.1706013545235; Tue, 23 Jan\r\n 2024 04:39:05 -0800 (PST)",
-            "arc-seal": "ARC-Seal: i=1; a=rsa-sha256; t=1706013547; cv=none;\r\n        d=google.com; s=arc-20160816;\r\n        b=WaNPHqAUL18ZJiKRVmvbMbnfT97muhbfLrDxSr/TjYwM3VbuNmwkhiqH3ZL21plVGA\r\n         TVtkhujI48H3PV5kiqDz2BbWCnzR7ymDdHwYec9btnz5eD47qS2YKfGBItR5uIGxd3UU\r\n         0r7uzHEkAW8JGj93DZrwUdcT0Zp+w+vzGztMf2XKGFXC203RMaHMrf/wmswc37mK6YtT\r\n         SG+vZMawWL/pGzWLGBfTN53OpwPX/QHVXNq4A/K0piiCTMxXPYxbuNeu1AHIuIHDEGIZ\r\n         s6CAKh3+lJzdDLPUaE4Ez5tZLbZuUhMmrA43fa45GAdjIT+1skSHzEaa9fNcaoJjeoNP\r\n         fl0Q==",
-            "arc-message-signature": "ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;\r\n        h=to:subject:message-id:date:from:mime-version:dkim-signature;\r\n        bh=gA4Gf+EyrnNyV6QW6L2G1Ur57SCz7vqQcmt0gXphSNQ=;\r\n        fh=mbboKQyPqoZx0UsA+P0hPVfpHeVoem/tBlyoEGbk4CA=;\r\n        b=IBRzrQRckff7jLcE55ziuWfpOsYrYU1MxAt5nn35ESfHXQys+iVr1UzcwMoQmduleK\r\n         2Ox3WfwqRWeheAJyVQAhI/TjwXihLFkETDvAVx25kLBMefTt5Yrc1c0qL+hQYpALLgFV\r\n         2LFULg5x+V3IsXWZUfFvE8cn8JSCAHn8cezqqrbKGeu4UmKMPmj7fHFVIbYzKWCazZ1T\r\n         B0z1XpKK4+P/EPqakjhYvOH2H+7qTVS/qnIHY5mbYTAgnydvBgnTbYuVSnX/UCiqxaPm\r\n         1x8G0uMQI0Fpz8eAls1/96L7wQbV6mimIYim+fWl2APTnbX+uYzbpteAaysZf+taqZBz\r\n         qmzA==",
-            "arc-authentication-results": "ARC-Authentication-Results: i=1; mx.google.com;\r\n       dkim=pass header.i=@dynergie-fr.20230601.gappssmtp.com header.s=20230601 header.b=x2YzeBu1;\r\n       spf=pass (google.com: domain of lreynolds@dynergie.fr designates 209.85.220.41 as permitted sender) smtp.mailfrom=lreynolds@dynergie.fr;\r\n       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=dynergie.fr",
-            "return-path": "Return-Path: <lreynolds@dynergie.fr>",
-            "received-spf": "Received-SPF: pass (google.com: domain of lreynolds@dynergie.fr designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;",
-            "authentication-results": "Authentication-Results: mx.google.com;\r\n       dkim=pass header.i=@dynergie-fr.20230601.gappssmtp.com header.s=20230601 header.b=x2YzeBu1;\r\n       spf=pass (google.com: domain of lreynolds@dynergie.fr designates 209.85.220.41 as permitted sender) smtp.mailfrom=lreynolds@dynergie.fr;\r\n       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=dynergie.fr",
-            "dkim-signature": "DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;\r\n        d=dynergie-fr.20230601.gappssmtp.com; s=20230601; t=1706013546; x=1706618346; darn=digitalkin.ai;\r\n        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject\r\n         :date:message-id:reply-to;\r\n        bh=gA4Gf+EyrnNyV6QW6L2G1Ur57SCz7vqQcmt0gXphSNQ=;\r\n        b=x2YzeBu15LngwyE1LH+wxTX4RQwzTcpMYx73qxnMCusw2JGWUrtbK4HJUXWfZjAaPV\r\n         ijiun2wmJiqoFbXzEdQURKtxQu5FQiQHBkMnwHPCIExjyfn48CWG8/oLPTD2jHHamstr\r\n         aS09HlfW8e15teFhwgkNLT6ccMWpowWH4nj5Ic9wlUP3mwf3JoophK2SxyeFffs5JkUe\r\n         O974N7225/DkeHQPxBGjVtnxjLU+fUHIru0wm5hA/FIrNCmGvSjpF+V+ebG8PaDTx/iQ\r\n         mWINwoRLIjwM7OzUOtJW49t7oE8Lh1JTRAzE0rluj5CdmPkj53cHxu/mhcq6NukUfJAq\r\n         xjlw==",
-            "x-google-dkim-signature": "X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;\r\n        d=1e100.net; s=20230601; t=1706013546; x=1706618346;\r\n        h=to:subject:message-id:date:from:mime-version:x-gm-message-state\r\n         :from:to:cc:subject:date:message-id:reply-to;\r\n        bh=gA4Gf+EyrnNyV6QW6L2G1Ur57SCz7vqQcmt0gXphSNQ=;\r\n        b=nsGZUjn+hDXFXoDiL2zx+H379xklXBg5PzD62kvrKfoVVZ1voW93clToj8TaHAgjvJ\r\n         Cfag66dZCGDpHIcsfMYVFwonr3oyXUd8bstjiRKMmb5Vix//tnmpneyaRLy4Tg9YNRlk\r\n         +/txFQW1+csOVtgdeo2Le5xtdM/aHKWXW1XiFDbvQAH+H7lOp6vMNj0fratDwOzqlHBJ\r\n         vpVrR2HCLeqvYEmdFnA8kLXA6eeGgmICcKYa0z/IyD+I/rgPh9VC1zIwB3MtNZYBCZH6\r\n         iCyOeBLpW/gNwmOdsx1CqWe3ea7914J12+8gEyoJOEGa64Nm06gbth7gPRyIxCjwVceF\r\n         IVmQ==",
-            "x-gm-message-state": "X-Gm-Message-State: AOJu0YyTiIewOd4w074cGp4Lq8WgtnkRh9QvfosP9U0+m8XQqjPDA/20\r\n\t4VCgE8xeOHVfiM2Ts3wpLNQHiDNZeTKvDY5P3hoYJBHl9DmPTZQfrBafStpBPf338wM3GaUDxrm\r\n\t+NVdmqRb3A1qP4OivW3awYSHegFAPJUXZdZLG0XNxQiTnveY9",
-            "x-google-smtp-source": "X-Google-Smtp-Source: AGHT+IFLazYRAUeBq+IlxAKCEU+/1ebae2m6HWbNkCGPqOpAPMf3INZNSCsmxhSFOI0m4TpoyW0UUU0fpa33AfrE0ac=",
-            "mime-version": "MIME-Version: 1.0",
-            "from": "From: Lester Reynolds <lreynolds@dynergie.fr>",
-            "date": "Date: Tue, 23 Jan 2024 13:38:53 +0100",
-            "message-id": "Message-ID: <CA+eamPN5M_aUN-AqxqSF7mXNWsEg0f+F9sVHojbiqt=dGJ4miw@mail.gmail.com>",
-            "subject": "Subject: lca",
-            "to": "To: lca@digitalkin.ai",
-            "content-type": "Content-Type: multipart/mixed; boundary=\"00000000000058eefb060f9c3b94\""
-          },
-          "html": "<div dir=\"ltr\">lca</div>\n",
-          "text": "lca\n",
-          "textAsHtml": "<p>lca</p>",
-          "subject": "lca",
-          "date": "2024-01-23T12:38:53.000Z",
-          "to": {
-            "value": [
-              {
-                "address": "lca@digitalkin.ai",
-                "name": ""
-              }
-            ],
-            "html": "<span class=\"mp_address_group\"><a href=\"mailto:lca@digitalkin.ai\" class=\"mp_address_email\">lca@digitalkin.ai</a></span>",
-            "text": "lca@digitalkin.ai"
-          },
-          "from": {
-            "value": [
-              {
-                "address": "lreynolds@dynergie.fr",
-                "name": "Lester Reynolds"
-              }
-            ],
-            "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Lester Reynolds</span> &lt;<a href=\"mailto:lreynolds@dynergie.fr\" class=\"mp_address_email\">lreynolds@dynergie.fr</a>&gt;</span>",
-            "text": "Lester Reynolds <lreynolds@dynergie.fr>"
-          },
-          "messageId": "<CA+eamPN5M_aUN-AqxqSF7mXNWsEg0f+F9sVHojbiqt=dGJ4miw@mail.gmail.com>"
-        }
-      }
     ]
   },
   "settings": {
@@ -1067,6 +1005,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-23T17:10:42.000Z",
-  "versionId": "e4152c8c-bf78-4f91-94d5-b7fe5c8e8775"
+  "updatedAt": "2024-01-24T21:39:38.000Z",
+  "versionId": "3ca49043-bfa1-448f-a79c-9d58fc0fcc16"
 }
