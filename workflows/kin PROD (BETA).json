@@ -136,7 +136,7 @@
       "main": [
         [
           {
-            "node": "Get Assisstant",
+            "node": "Get Assistant",
             "type": "main",
             "index": 0
           }
@@ -159,31 +159,6 @@
         [
           {
             "node": "Upsert task",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Switch Commands": {
-      "main": [
-        [
-          {
-            "node": "entree email",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "entree email",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "task",
             "type": "main",
             "index": 0
           }
@@ -260,12 +235,7 @@
       "main": [
         [
           {
-            "node": "Escape Markdown",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Manager",
+            "node": "Producteur",
             "type": "main",
             "index": 0
           }
@@ -298,12 +268,7 @@
       "main": [
         [
           {
-            "node": "Manager",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Escape Markdown",
+            "node": "Producteur",
             "type": "main",
             "index": 0
           }
@@ -314,12 +279,7 @@
       "main": [
         [
           {
-            "node": "Escape Markdown",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Manager",
+            "node": "Producteur",
             "type": "main",
             "index": 0
           }
@@ -330,12 +290,7 @@
       "main": [
         [
           {
-            "node": "Escape Markdown",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Manager",
+            "node": "Producteur",
             "type": "main",
             "index": 0
           }
@@ -346,12 +301,7 @@
       "main": [
         [
           {
-            "node": "Escape Markdown",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Manager",
+            "node": "Producteur",
             "type": "main",
             "index": 0
           }
@@ -362,12 +312,59 @@
       "main": [
         [
           {
-            "node": "Escape Markdown",
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Producteur": {
+      "main": [
+        [
+          {
+            "node": "Manager",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Manager",
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch Commands": {
+      "main": [
+        [
+          {
+            "node": "entree email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "entree email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "task",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Assistant": {
+      "main": [
+        [
+          {
+            "node": "Get Document",
             "type": "main",
             "index": 0
           }
@@ -419,17 +416,6 @@
           }
         ]
       ]
-    },
-    "Get Assisstant": {
-      "main": [
-        [
-          {
-            "node": "Get Document",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "createdAt": "2024-01-17T12:47:07.331Z",
@@ -448,7 +434,7 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "={{ JSON.stringify($node[\"mission\"].json.mission) }}"
+              "stringValue": "={{ JSON.stringify($node[\"Execute Workflow Trigger\"].json.mission) }}"
             }
           ]
         }
@@ -477,8 +463,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.1,
       "position": [
-        5400,
-        -140
+        5760,
+        -200
       ],
       "credentials": {
         "telegramApi": {
@@ -491,15 +477,15 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet originalText = '';\nif ($json.output != null) {\n  originalText = $json.output;\n} else {\n  originalText = $json.text;\n}\n\noriginalText = $node[\"Get existing document\"].json.name + \"\\n\\n\" + originalText\n\nconst escapedText = escapeMarkdownV2(originalText);\n\nreturn {\"json\":{\"escapedText\":escapedText}};\n"
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet originalText = '';\nif ($json.output != null) {\n  originalText = $json.output;\n} else {\n  originalText = $json.text;\n}\n\noriginalText =  $node[\"Get Document\"].binary[Object.keys($node[\"Get Document\"].binary)[0]].fileName + \"\\n\\n\" + originalText\n\nconst escapedText = escapeMarkdownV2(originalText);\n\nreturn {\"json\":{\"escapedText\":escapedText}};\n"
       },
       "id": "977b77e8-b12b-4223-a28c-5a6fdc10e859",
       "name": "Escape Markdown",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        5180,
-        -140
+        5540,
+        -200
       ]
     },
     {
@@ -511,7 +497,8 @@
       "position": [
         2940,
         -280
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -551,7 +538,7 @@
         "operation": "download",
         "fileId": {
           "__rl": true,
-          "value": "={{ $node[\"Execute Workflow Trigger\"].json.googleDocumentId }}",
+          "value": "={{ $node[\"Execute Workflow Trigger\"].json.documentGoogleDriveId }}",
           "mode": "id"
         },
         "binaryPropertyName": "thread",
@@ -581,7 +568,7 @@
     {
       "parameters": {
         "assistantId": "asst_NRJfqzvKf73U2CjrI4bqMSf5",
-        "text": "=MISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT\n======\n\n``\n{{ $node[\"thread\"].json.thread }}\n``\n\nDERNIER CONTENU REDIGÉ\n======\n\nDernières Instructions\n------\n\n``\n{{ $node[\"thread\"].json.instructions }}\n``\n\nRédaction réalisée\n------\n\n``\n{{ $json.output }}\n``",
+        "text": "=MISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nFYI : INSTRUCTIONS DU REDACTEUR\n======\n\nPour t'aider à guider le REDACTEUR, voici son prompt système :\n\n``\n{{ $node[\"Get Assistant\"].json.instructions }}\n``\n\nAVANCEMENT\n======\n\n``\n{{ $node[\"thread\"].json.thread }}\n``\n\nDERNIER CONTENU REDIGÉ\n======\n\nDernières Instructions\n------\n\n``\n{{ $node[\"thread\"].json.instructions }}\n``\n\nRédaction réalisée\n------\n\n``\n{{ $json.output }}\n``",
         "options": {}
       },
       "id": "0b4c1b91-ae71-4843-b103-0277f8f487b4",
@@ -589,8 +576,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        4780,
-        140
+        5160,
+        160
       ],
       "retryOnFail": true,
       "credentials": {
@@ -604,15 +591,15 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let thread = $node[\"thread\"].json.entireThread;\nlet output = $node[\"kincirbeta\"].json.output;\n\n// Enlever toutes les lignes qui contiennent les instructions\nthread += '\\n\\n' + output; \nthread = thread.replace(/.*Prochaine étape.*$/gmi, '');\nthread = thread.replace(/.*Étape suivante.*$/gmi, '');\nthread = thread.replace(/^.*niveau de boucle.*$/gmi, '');\nthread = thread.replace(/```.*```/gmi, '');\nthread = thread.replace(/``.*``/gmi, '');\nthread = thread.replace(/^[\\r\\n]+|[\\r\\n]+$/g, '');\n\nreturn {\"thread\":thread, \"instructions\": $json.output};"
+        "jsCode": "let thread = $node[\"thread\"].json.entireThread;\nlet output = $node[\"Producteur\"].json.output;\n\n// Enlever toutes les lignes qui contiennent les instructions\nthread += '\\n\\n' + output; \nthread = thread.replace(/.*Prochaine étape.*$/gmi, '');\nthread = thread.replace(/.*Étape suivante.*$/gmi, '');\nthread = thread.replace(/^.*niveau de boucle.*$/gmi, '');\nthread = thread.replace(/```.*```/gmi, '');\nthread = thread.replace(/``.*``/gmi, '');\nthread = thread.replace(/^[\\r\\n]+|[\\r\\n]+$/g, '');\n\nreturn {\"thread\":thread, \"instructions\": $json.output};"
       },
       "id": "8037e86a-05b7-42ab-9041-974aec0b6322",
       "name": "sortie",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        5180,
-        220
+        5540,
+        160
       ]
     },
     {
@@ -622,7 +609,7 @@
         "sourceKey": "thread",
         "destinationKey": "thread",
         "options": {
-          "fileName": "kinCIR.md",
+          "fileName": "={{ $node[\"template\"].json.fileName }}",
           "mimeType": "text/markdown",
           "useRawData": true
         }
@@ -632,8 +619,8 @@
       "type": "n8n-nodes-base.moveBinaryData",
       "typeVersion": 1.1,
       "position": [
-        5420,
-        220
+        5780,
+        160
       ]
     },
     {
@@ -652,8 +639,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 2,
       "position": [
-        5640,
-        220
+        6000,
+        160
       ],
       "credentials": {
         "googleDriveOAuth2Api": {
@@ -667,7 +654,11 @@
       "parameters": {
         "binaryData": true,
         "binaryPropertyName": "thread",
-        "name": "={{ $node[\"Get Document\"].json.name }}",
+        "name": "={{ $node[\"Execute Workflow Trigger\"].json.fileName }}",
+        "resolveData": true,
+        "parents": [
+          "1PFOpdripUGox5KdYPQUbw7MxIA5C9a0F"
+        ],
         "options": {}
       },
       "id": "80f99672-50dd-4fb7-80cb-48a157e0f027",
@@ -675,8 +666,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 2,
       "position": [
-        5640,
-        40
+        6000,
+        -20
       ],
       "credentials": {
         "googleDriveOAuth2Api": {
@@ -697,7 +688,8 @@
       "position": [
         3600,
         -280
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -736,7 +728,8 @@
           "id": "LakE1nni5DFtskNv",
           "name": "PineconeApi account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -756,7 +749,8 @@
       "position": [
         3360,
         -280
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {},
@@ -778,22 +772,22 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        6380,
-        200
+        6740,
+        140
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let infosMail = $node[\"Execute Workflow Trigger\"].json.mailId;\nlet createdDocument = $node[\"Get existing document\"].json;\nlet sortie = $node[\"sortie\"].json;\n\n\nreturn {\n  \"infosMail\": infosMail,\n  \"createdDocument\": createdDocument,\n  \"sortie\": sortie\n};"
+        "jsCode": "let infosMail = $node[\"Execute Workflow Trigger\"].json.mailId;\nlet createdDocument = $node[\"Update Document\"].json;\nlet sortie = $node[\"sortie\"].json;\n\n\nreturn {\n  \"infosMail\": infosMail,\n  \"createdDocument\": createdDocument,\n  \"sortie\": sortie\n};"
       },
       "id": "5e3b77b0-efd5-440f-a5a9-e2158d18cf3b",
       "name": "entree email",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        6160,
-        200
+        6520,
+        140
       ]
     },
     {
@@ -825,8 +819,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        6380,
-        380
+        6740,
+        320
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -840,75 +834,15 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "return {\n  \"mission\": $node[\"Execute Workflow Trigger\"].json.mission,\n  \"instructions\" : $node[\"sortie\"].json.instructions,\n  \"mailId\": $node[\"Execute Workflow Trigger\"].json.mailId,\n  \"documentGoogleDriveId\": $node[\"Update Document\"].json.id,\n  \"date\":$now.toString()\n};"
+        "jsCode": "let json =\n  {\n    ...$node[\"Execute Workflow Trigger\"].json,\n    \"instructions\" : $node[\"sortie\"].json.instructions,\n    \"documentGoogleDriveId\": $node[\"Update Document\"].json.id,\n    \"date\":$now.toString()\n  };\n\nreturn {\"json\": json};"
       },
       "id": "54bcf203-16b2-49ad-9e72-31dfcaab18a7",
       "name": "task",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        6160,
-        380
-      ]
-    },
-    {
-      "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{ $node[\"kincirbeta\"].json.output.toLowerCase() }}\n{{ $node[\"Manager\"].json.output.toLowerCase() }}",
-                    "rightValue": "[mission accomplie]",
-                    "operator": {
-                      "type": "string",
-                      "operation": "contains"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "id": "298fc4e9-ee13-4c01-b979-6e859625335a",
-                    "leftValue": "={{ $node[\"kincirbeta\"].json.output.toLowerCase() }}\n{{ $node[\"Manager\"].json.output.toLowerCase() }}",
-                    "rightValue": "[exception]",
-                    "operator": {
-                      "type": "string",
-                      "operation": "contains"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {
-          "fallbackOutput": "extra"
-        }
-      },
-      "id": "f2da19ad-1b38-416a-a8e6-7eb2e3ad9250",
-      "name": "Switch Commands",
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3,
-      "position": [
-        5940,
-        220
+        6520,
+        320
       ]
     },
     {
@@ -920,7 +854,7 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "={{ JSON.stringify($node[\"mission\"].json.mission) }}"
+              "stringValue": "={{ JSON.stringify($node[\"Execute Workflow Trigger\"].json.mission) }}"
             }
           ]
         }
@@ -943,7 +877,7 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "={{ JSON.stringify($node[\"mission\"].json.mission) }}"
+              "stringValue": "={{ JSON.stringify($node[\"Execute Workflow Trigger\"].json.mission) }}"
             }
           ]
         }
@@ -966,11 +900,11 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "={{ JSON.stringify($node[\"mission\"].json.mission) }}"
+              "stringValue": "={{ JSON.stringify($node[\"Execute Workflow Trigger\"].json.mission) }}"
             },
             {
               "name": "documentGoogleDriveId",
-              "stringValue": "={{ $node[\"mission\"].json.documentGoogleDriveId }}"
+              "stringValue": "={{ $node[\"Execute Workflow Trigger\"].json.documentGoogleDriveId }}"
             },
             {
               "name": "thread",
@@ -985,8 +919,9 @@
       "typeVersion": 1,
       "position": [
         4360,
-        -100
-      ]
+        -80
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -997,11 +932,11 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "={{ JSON.stringify($node[\"mission\"].json.mission) }}"
+              "stringValue": "={{ JSON.stringify($node[\"Execute Workflow Trigger\"].json.mission) }}"
             },
             {
               "name": "documentGoogleDriveId",
-              "stringValue": "={{ $node[\"mission\"].json.documentGoogleDriveId }}"
+              "stringValue": "={{ $node[\"Execute Workflow Trigger\"].json.documentGoogleDriveId }}"
             }
           ]
         }
@@ -1012,13 +947,14 @@
       "typeVersion": 1,
       "position": [
         4480,
-        -100
-      ]
+        -80
+      ],
+      "disabled": true
     },
     {
       "parameters": {
         "assistantId": "asst_WKY0lRXB0rrJTFIm3HYv8jlE",
-        "text": "=INSTRUCTIONS\n======\n\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\n{{ $json.instructions }}",
+        "text": "=INSTRUCTIONS\n======\n\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\n{{ $json.instructions }}",
         "options": {}
       },
       "id": "a441e8e3-0802-4dc2-af20-6bd09e04ce0d",
@@ -1027,7 +963,7 @@
       "typeVersion": 1,
       "position": [
         4380,
-        -200
+        -180
       ],
       "retryOnFail": true,
       "credentials": {
@@ -1041,7 +977,7 @@
     {
       "parameters": {
         "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
-        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
+        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
         "options": {}
       },
       "id": "abb1b363-7706-4b86-a21b-83d3e1c9819d",
@@ -1070,7 +1006,7 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "={{ JSON.stringify($node[\"mission\"].json.mission) }}"
+              "stringValue": "={{ JSON.stringify($node[\"Execute Workflow Trigger\"].json.mission) }}"
             }
           ]
         }
@@ -1087,7 +1023,7 @@
     {
       "parameters": {
         "assistantId": "asst_GQvAYhactWsRRY4PwC7bIGpP",
-        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
+        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
         "options": {}
       },
       "id": "705274a2-abf4-4031-a7f1-58fc18d7f395",
@@ -1110,7 +1046,7 @@
     {
       "parameters": {
         "assistantId": "asst_GQvAYhactWsRRY4PwC7bIGpP",
-        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
+        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
         "options": {}
       },
       "id": "a5006fdd-836e-4162-8aba-f641634ffc78",
@@ -1139,11 +1075,11 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "={{ JSON.stringify($node[\"mission\"].json.mission) }}"
+              "stringValue": "={{ JSON.stringify($node[\"Execute Workflow Trigger\"].json.mission) }}"
             },
             {
               "name": "documentGoogleDriveId",
-              "stringValue": "={{ $node[\"mission\"].json.documentGoogleDriveId }}"
+              "stringValue": "={{ $node[\"Execute Workflow Trigger\"].json.sourceGoogleDriveId }}"
             }
           ]
         }
@@ -1153,14 +1089,14 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        4380,
-        -380
+        4360,
+        -400
       ]
     },
     {
       "parameters": {
         "assistantId": "asst_581bbg7Bmja1nCBKeiGg9Rgu",
-        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
+        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
         "nativeTools": [
           "code_interpreter"
         ],
@@ -1171,8 +1107,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        4380,
-        -480
+        4360,
+        -500
       ],
       "retryOnFail": true,
       "credentials": {
@@ -1192,7 +1128,7 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "={{ JSON.stringify($node[\"mission\"].json.mission) }}"
+              "stringValue": "={{ JSON.stringify($node[\"Execute Workflow Trigger\"].json.mission) }}"
             }
           ]
         }
@@ -1209,7 +1145,7 @@
     {
       "parameters": {
         "assistantId": "asst_7abHKvQqtVij29X6ybyEvAbZ",
-        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"mission\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
+        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
         "options": {}
       },
       "id": "a4c0ce08-9cd7-4ded-bdbe-2d682c579eb6",
@@ -1231,6 +1167,20 @@
     },
     {
       "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":$json};"
+      },
+      "id": "56074961-40df-4a44-aec3-3b05e23ee95e",
+      "name": "Producteur",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4900,
+        160
+      ]
+    },
+    {
+      "parameters": {
         "rules": {
           "values": [
             {
@@ -1242,11 +1192,11 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "={{  $node[\"Execute Workflow Trigger\"].json.instructions }}",
-                    "rightValue": "kincir",
+                    "leftValue": "={{ $node[\"Producteur\"].json.output.toLowerCase() }}\n{{ $node[\"Manager\"].json.output.toLowerCase() }}",
+                    "rightValue": "[mission accomplie]",
                     "operator": {
                       "type": "string",
-                      "operation": "equals"
+                      "operation": "contains"
                     }
                   }
                 ],
@@ -1262,101 +1212,12 @@
                 },
                 "conditions": [
                   {
-                    "id": "ee0b2c5b-62fd-4c09-bfca-f844e805e9ad",
-                    "leftValue": "={{  $node[\"Execute Workflow Trigger\"].json.instructions }}",
-                    "rightValue": "kinrsi",
+                    "id": "298fc4e9-ee13-4c01-b979-6e859625335a",
+                    "leftValue": "={{ $node[\"Producteur\"].json.output.toLowerCase() }}\n{{ $node[\"Manager\"].json.output.toLowerCase() }}",
+                    "rightValue": "[exception]",
                     "operator": {
                       "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "id": "2a5fab45-e697-4ba3-96ea-3f1bdc5a7655",
-                    "leftValue": "={{  $node[\"Execute Workflow Trigger\"].json.instructions }}",
-                    "rightValue": "kinlca",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "id": "45e34fba-b7c3-4f5e-84de-4a0822417e62",
-                    "leftValue": "={{  $node[\"Execute Workflow Trigger\"].json.instructions }}",
-                    "rightValue": "kinsota",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "id": "72d86350-5484-42da-86d0-02205e464813",
-                    "leftValue": "={{  $node[\"Execute Workflow Trigger\"].json.instructions }}",
-                    "rightValue": "kincirbeta",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "id": "6485b142-ec38-459a-9d57-c73998d1ec69",
-                    "leftValue": "={{  $node[\"Execute Workflow Trigger\"].json.instructions }}",
-                    "rightValue": "kindev",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
+                      "operation": "contains"
                     }
                   }
                 ],
@@ -1365,15 +1226,17 @@
             }
           ]
         },
-        "options": {}
+        "options": {
+          "fallbackOutput": "extra"
+        }
       },
-      "id": "35511810-4ea6-4cba-81db-2a0d6198b44f",
-      "name": "Switch",
+      "id": "f2da19ad-1b38-416a-a8e6-7eb2e3ad9250",
+      "name": "Switch Commands",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3,
       "position": [
-        3940,
-        0
+        6300,
+        160
       ]
     },
     {
@@ -1397,7 +1260,7 @@
         "options": {}
       },
       "id": "d6c52d37-ac35-474a-8a72-972bf38af4db",
-      "name": "Get Assisstant",
+      "name": "Get Assistant",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
@@ -1410,6 +1273,153 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "ee0b2c5b-62fd-4c09-bfca-f844e805e9ad",
+                    "leftValue": "={{  $node[\"Execute Workflow Trigger\"].json.kin }}",
+                    "rightValue": "kincir",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "ee0b2c5b-62fd-4c09-bfca-f844e805e9ad",
+                    "leftValue": "={{  $node[\"Execute Workflow Trigger\"].json.kin }}",
+                    "rightValue": "kinlca",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "2a5fab45-e697-4ba3-96ea-3f1bdc5a7655",
+                    "leftValue": "={{  $node[\"Execute Workflow Trigger\"].json.kin }}",
+                    "rightValue": "kinrsi",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{  $node[\"Execute Workflow Trigger\"].json.kin }}",
+                    "rightValue": "kinsota",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "72d86350-5484-42da-86d0-02205e464813",
+                    "leftValue": "={{  $node[\"Execute Workflow Trigger\"].json.kin }}",
+                    "rightValue": "kincirbeta",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "6485b142-ec38-459a-9d57-c73998d1ec69",
+                    "leftValue": "={{  $node[\"Execute Workflow Trigger\"].json.kin }}",
+                    "rightValue": "kindev",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "35511810-4ea6-4cba-81db-2a0d6198b44f",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        3940,
+        0
+      ]
     }
   ],
   "pinData": {
@@ -1456,6 +1466,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-23T16:58:59.000Z",
-  "versionId": "37967527-0239-44ba-a189-bb0aadf5ed74"
+  "updatedAt": "2024-01-24T10:58:51.000Z",
+  "versionId": "8023ed9f-5a7e-49d6-a945-aeebd1ba6133"
 }
