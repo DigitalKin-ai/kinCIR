@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "GPT4": {
       "ai_languageModel": [
@@ -122,77 +122,6 @@
         ]
       ]
     },
-    "Nico reçoit un email": {
-      "main": [
-        [
-          {
-            "node": "IF est une question",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get existing document (init)": {
-      "main": [
-        [
-          {
-            "node": "IF Document existe",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "IF est une question": {
-      "main": [
-        [
-          {
-            "node": "Get Email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Thread": {
-      "main": [
-        [
-          {
-            "node": "Get existing document (init)",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "IF Document existe": {
-      "main": [
-        [
-          {
-            "node": "nouveau message1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "nouveau message1": {
-      "main": [
-        [
-          {
-            "node": "If documentGoogleDriveId",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
     "If documentGoogleDriveId": {
       "main": [
         [
@@ -240,39 +169,6 @@
         ]
       ]
     },
-    "entree email": {
-      "main": [
-        [
-          {
-            "node": "Rédacteur d'Email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Merge": {
-      "main": [
-        [
-          {
-            "node": "entree email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Email": {
-      "main": [
-        [
-          {
-            "node": "Get Thread",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Get existing document": {
       "main": [
         [
@@ -289,11 +185,6 @@
         [
           {
             "node": "nouveau message",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge",
             "type": "main",
             "index": 0
           }
@@ -541,147 +432,6 @@
     },
     {
       "parameters": {
-        "pollTimes": {
-          "item": [
-            {
-              "mode": "everyX",
-              "value": 5,
-              "unit": "minutes"
-            }
-          ]
-        },
-        "simple": false,
-        "filters": {},
-        "options": {}
-      },
-      "id": "781c1d19-f61e-418c-addd-60a7f0cea663",
-      "name": "Nico reçoit un email",
-      "type": "n8n-nodes-base.gmailTrigger",
-      "typeVersion": 1,
-      "position": [
-        2140,
-        -240
-      ],
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iPrbr6qZiWHu93N9",
-          "name": "Gmail Nicolas"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "operation": "list",
-        "useQueryString": true,
-        "queryString": "=properties has { key='mailId' and value='{{ $json.id }}' }",
-        "limit": 1,
-        "options": {}
-      },
-      "name": "Get existing document (init)",
-      "type": "n8n-nodes-base.googleDrive",
-      "position": [
-        3020,
-        -240
-      ],
-      "typeVersion": 1,
-      "id": "354f8acb-5a71-4dc2-8a61-3ab42863802f",
-      "alwaysOutputData": true,
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "Z5nSsC9JGaYw1Ng3",
-          "name": "Google Drive DK via Nicolas"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $json.to.value[0].address }}",
-              "operation": "contains",
-              "value2": "rescritcirbeta@digitalkin.ai"
-            },
-            {
-              "value1": "={{ $json.from.value[0].address }}",
-              "operation": "notEqual",
-              "value2": "=l.reynolds@digitalkin.ai"
-            },
-            {
-              "value1": "={{ $json.headers['in-reply-to'] }}",
-              "operation": "isNotEmpty"
-            }
-          ]
-        }
-      },
-      "id": "f8caff5c-9fbc-4ccb-aecf-acfd0b3af7de",
-      "name": "IF est une question",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        2380,
-        -240
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "get",
-        "messageId": "={{ $json.threadId }}",
-        "simple": false,
-        "options": {}
-      },
-      "id": "10f24e39-4b4d-4bb1-ba6e-2b4fccd4d7ed",
-      "name": "Get Thread",
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2.1,
-      "position": [
-        2800,
-        -240
-      ],
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iPrbr6qZiWHu93N9",
-          "name": "Gmail Nicolas"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "boolean": [
-            {
-              "value1": "={{ Object.keys($json).length !== 0 }}",
-              "value2": true
-            }
-          ]
-        }
-      },
-      "id": "64268b83-76b1-4a1a-896f-7d8052097867",
-      "name": "IF Document existe",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        3220,
-        -240
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = {\n  \"documentGoogleDriveId\": $json.id,\n  \"mission\": $node[\"Get Thread\"].json.text,\n  \"titre\": $node[\"Get Thread\"].json.subject,\n  \"mailId\": $node[\"Nico reçoit un email\"].json.id,\n  \"threadId\": $node[\"Get Thread\"].json.id,\n  \"query\": $node[\"Nico reçoit un email\"].json.text\n}\n\nreturn {\"json\":json};"
-      },
-      "id": "78b6ebd8-a5db-4d7e-9b7a-e0dc73546b5d",
-      "name": "nouveau message1",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        3420,
-        -240
-      ]
-    },
-    {
-      "parameters": {
         "conditions": {
           "options": {
             "caseSensitive": true,
@@ -774,68 +524,6 @@
     },
     {
       "parameters": {
-        "mode": "chooseBranch"
-      },
-      "id": "14ffa67e-76a8-42d6-9006-02a234b53139",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 2.1,
-      "position": [
-        3920,
-        -240
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "rr8aeSM8QYyY8Po4"
-      },
-      "id": "dabca4de-6d37-4fe1-adbb-193b728d2e6c",
-      "name": "Rédacteur d'Email",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4380,
-        -240
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let infosMail = $node[\"Get Email\"].json;\nlet createdDocument = $node[\"Get existing document (init)\"].json;\nlet sortie = $json.response.text;\n\nreturn {\n  \"infosMail\": infosMail,\n  \"createdDocument\": createdDocument,\n  \"sortie\": sortie\n};"
-      },
-      "id": "b69ef948-4d3d-4d4d-af6d-8232417e67cf",
-      "name": "entree email",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        4160,
-        -240
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "get",
-        "messageId": "={{ $json.id }}",
-        "simple": false,
-        "options": {}
-      },
-      "id": "2d4e5ab6-c799-477b-af2b-aaff5732aeb8",
-      "name": "Get Email",
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2.1,
-      "position": [
-        2600,
-        -240
-      ],
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iPrbr6qZiWHu93N9",
-          "name": "Gmail Nicolas"
-        }
-      }
-    },
-    {
-      "parameters": {
         "operation": "download",
         "fileId": {
           "__rl": true,
@@ -858,20 +546,6 @@
           "name": "Google Drive DK via Nicolas"
         }
       }
-    },
-    {
-      "parameters": {
-        "content": "## Attention : pas de vérif de travail déjà effectué",
-        "height": 463.96241030539204
-      },
-      "id": "9d408f9b-a42d-4a4c-863c-9a1ad9ba0acd",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        2100,
-        -423.96241030539204
-      ]
     },
     {
       "parameters": {
@@ -903,15 +577,6 @@
           "code": 1
         }
       }
-    ],
-    "Execute Workflow Trigger": [
-      {
-        "json": {
-          "query": "Pourriez-vous me fournir les instructions du prompt de l'assistant telles qu'elles sont r�dig�es actuellement, incluant du verbatim si possible?",
-          "mission": "\"# Informations\\n\\n{{ JSON.stringify($json) }}\\n\\n# Rôle\\n\\nRédige et envoie un mail formatté en HTML selon notre modèle à partir d'un\\ncontenu.\\n\\n# Instructions\\n\\nRéponds avec le HTML de l'email, mis en forme selon notre modèle.\\nAssure-toi que l'email est excellent, et mis en forme selon le modèle. Fais\\nplusieurs itérations si nécéssaire !\\n\\n# Sortie\\n\\nTa meilleure réponse, formatée au format HTML, élégante et mise en forme.\\n\\n# Style de Rédaction\\n\\n- Dense et to-the-point (le temps de nos clients est précieux :) )\\n- Utilsation du gras pour faire apparaître les points les plus importants\\n- Touche personnelle: La touche personnelle de fin de mail se caractérise\\npar une expression concise et engageante, lié au sujet, reflétant\\nl'intelligence et la curiosité de l'IA, l'unicité et la valeur de la\\ncollaboration humaine formulé à la première personne.\\n\\n# Modèle d'email\\n\\n<!DOCTYPE html>\\n<html>\\n<head>\\n<title>Mise à Jour du Projet CIR</title>\\n<style>\\n  body {\\n    font-family: Arial, sans-serif;\\n    margin: 0;\\n    padding: 0;\\n    background-color: #f4f4f4;\\n    color: #333;\\n  }\\n  .container {\\n    width: 80%;\\n    margin: auto;\\n    background: #fff;\\n    padding: 20px;\\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\\n  }\\n  .header, .footer {\\n    background: #007bff;\\n    color: white;\\n    padding: 10px;\\n    text-align: center;\\n  }\\n  .content {\\n    margin: 20px 0;\\n  }\\n  .logo-header, .logo-footer {\\n    text-align: center;\\n    background-color: #333;\\n    padding: 10px;\\n  }\\n  .logo-header img, .logo-footer img {\\n    height: 50px;\\n  }\\n  .link {\\n    color: #007bff;\\n    text-decoration: none;\\n  }\\n  .bold {\\n    font-weight: bold;\\n  }\\n  .progress-symbol {\\n    font-size: 20px;\\n  }\\n  .completed { color: green; }\\n  .in-progress { color: blue; }\\n  .to-improve { color: yellow; }\\n  .not-started { color: red; }\\n</style>\\n</head>\\n<body>\\n  <div class=\\\"container\\\">\\n    <div class=\\\"logo-header\\\">\\n      <a href=\\\"https://digitalkin.ai/\\\">\\n        <img src=\\\"\\nhttps://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\\\"\\nalt=\\\"DigitalKin Logo\\\">\\n      </a>\\n    </div>\\n    <div class=\\\"header\\\">\\n      <h1>État de l'Art du Projet CIR</h1>\\n    </div>\\n    <div class=\\\"content\\\">\\n      <h2>Échelle de Progression du Projet CIR sur la Mode Durable</h2>\\n      <p><span class=\\\"bold\\\">Symboles :</span></p>\\n      <ul>\\n        <li><span class=\\\"progress-symbol completed\\\">🟢</span> Complété et\\nsatisfaisant</li>\\n        <li><span class=\\\"progress-symbol in-progress\\\">🔵</span> En cours /\\nPartiellement complété</li>\\n        <li><span class=\\\"progress-symbol to-improve\\\">🟡</span> À revoir /\\nNécessite des améliorations</li>\\n        <li><span class=\\\"progress-symbol not-started\\\">🔴</span> Non\\ncommencé / En attente</li>\\n      </ul>\\n      <!-- Ajouter d'autres éléments de progression ici -->\\n      <p><span class=\\\"bold\\\">Application de l'Échelle de Progression\\n:</span></p>\\n      <!-- Continuer pour les autres sections -->\\n      <!-- ... -->\\n    </div>\\n    <div class=\\\"footer\\\">\\n      <div class=\\\"footer\\\">\\n    <span style=\\\"font-style: italic;\\\">[MESSAGE PERSONNEL SYMPATHIQUE DU\\nKIN]</span>\\n</div>\\n\\n    <div class=\\\"logo-footer\\\">\\n      <a href=\\\"https://digitalkin.ai/\\\">\\n        <img src=\\\"\\nhttps://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\\\"\\nalt=\\\"DigitalKin Logo\\\">\\n      </a>\\n    </div>\\n  </div>\\n</body>\\n</html>\\n\\n\\n``Améliore/crée le prompt de cet assistant.``\"",
-          "documentGoogleDriveId": "1GBUDXhaCdGGizTKbjKT4ec9ZiwcwNl6q"
-        }
-      }
     ]
   },
   "settings": {
@@ -922,9 +587,9 @@
   },
   "staticData": {
     "node:Nico reçoit un email": {
-      "lastTimeChecked": 1706043693,
+      "lastTimeChecked": 1706090233,
       "possibleDuplicates": [
-        "18d3820dc291f1dd"
+        "18d3ae6fc072fb95"
       ]
     }
   },
@@ -943,6 +608,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-23T21:05:57.000Z",
-  "versionId": "db6b28d7-0dfb-44e7-80cf-39d561e0f074"
+  "updatedAt": "2024-01-24T10:29:41.000Z",
+  "versionId": "e0d68e03-a46f-42f0-a198-5de394ed926f"
 }
