@@ -30,11 +30,6 @@
             "node": "Inserer le document dans Pinecone",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Upsert task",
-            "type": "main",
-            "index": 0
           }
         ],
         [
@@ -144,6 +139,28 @@
           }
         ]
       ]
+    },
+    "Inserer le document dans Pinecone": {
+      "main": [
+        [
+          {
+            "node": "todo + source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "todo + source": {
+      "main": [
+        [
+          {
+            "node": "Upsert task",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-23T15:13:27.247Z",
@@ -203,7 +220,7 @@
         "conditions": {
           "boolean": [
             {
-              "value1": "={{ $input.item.binary != undefined }}",
+              "value1": "={{ Object.keys($binary).length > 0 }}",
               "value2": true
             }
           ]
@@ -247,8 +264,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        2600,
-        760
+        2800,
+        700
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -262,7 +279,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"template\"].json;\n\njson.mission = $node[\"Get Email\"].json.text;\njson.instructions = \"``Accomplis la mission depuis le début.``\";\n\njson.documentGoogleDriveId = $node[\"Create Document\"].json.id;\njson.sourceGoogleDriveId = $json.documentGoogleDriveId;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null) {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Remove null attributes from the json object\nremoveNullAttributes(json);\n\nreturn {\"json\": json, \"binary\": $binary};"
+        "jsCode": "let json = $node[\"template\"].json;\n\njson.mission = $node[\"Get Email\"].json.text;\njson.instructions = \"``Accomplis la mission depuis le début.``\";\n\njson.documentGoogleDriveId = $node[\"Create Document\"].json.id;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null) {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Remove null attributes from the json object\nremoveNullAttributes(json);\n\nreturn {\"json\": json, \"binary\": $binary};"
       },
       "id": "edf19627-a993-482d-b3aa-8c15b49995b4",
       "name": "todo",
@@ -331,14 +348,15 @@
     },
     {
       "parameters": {
-        "workflowId": "eRT6xb82oqCbX4u2"
+        "workflowId": "eRT6xb82oqCbX4u2",
+        "options": {}
       },
       "id": "15f15563-cb06-4b90-9df5-2b65571f3bbb",
       "name": "Inserer le document dans Pinecone",
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        2600,
+        2380,
         580
       ]
     },
@@ -503,7 +521,7 @@
     {
       "parameters": {
         "operation": "get",
-        "messageId": "={{ $json.mailId?$json.mailId:$node[\"Kin Mail\"].json.id }}",
+        "messageId": "={{ $node[\"template\"].json.mailId }}",
         "simple": false,
         "options": {
           "downloadAttachments": true
@@ -523,6 +541,20 @@
           "name": "Gmail Nicolas"
         }
       }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"todo\"].json;\n\njson.sourceGoogleDriveId = $json.documentGoogleDriveId;\n\nreturn {\"json\": json};"
+      },
+      "id": "54140a22-a9f4-4d0c-813d-6102d5e090c5",
+      "name": "todo + source",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2580,
+        580
+      ]
     }
   ],
   "pinData": {},
@@ -540,9 +572,9 @@
       "lastTimeChecked": 1706023258
     },
     "node:Kin Mail": {
-      "lastTimeChecked": 1706092987,
+      "lastTimeChecked": 1706136914,
       "possibleDuplicates": [
-        "18d3b11027df8afe"
+        "18d3daf49549104c"
       ]
     }
   },
@@ -555,6 +587,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-24T10:57:34.000Z",
-  "versionId": "f95d8aa5-2ba1-4a56-a78e-e55dc278fac4"
+  "updatedAt": "2024-01-24T22:56:09.000Z",
+  "versionId": "560b6e09-8688-479b-8e85-0596351cd2d1"
 }
