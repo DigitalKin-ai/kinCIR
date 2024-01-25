@@ -5,11 +5,12 @@
       "main": [
         [
           {
-            "node": "template",
+            "node": "List Template",
             "type": "main",
             "index": 0
           }
-        ]
+        ],
+        []
       ]
     },
     "Get existing document (init)": {
@@ -46,6 +47,11 @@
         [
           {
             "node": "IF Pièce Jointe",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "input mail de démarrage",
             "type": "main",
             "index": 0
           }
@@ -89,7 +95,7 @@
       "main": [
         [
           {
-            "node": "Send Email",
+            "node": "Kins",
             "type": "main",
             "index": 0
           }
@@ -118,22 +124,11 @@
         ]
       ]
     },
-    "Send Email": {
-      "main": [
-        [
-          {
-            "node": "Get Email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Get Email": {
       "main": [
         [
           {
-            "node": "todo",
+            "node": "Cadreur de mission",
             "type": "main",
             "index": 0
           }
@@ -156,6 +151,133 @@
         [
           {
             "node": "Upsert task",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data1": {
+      "main": [
+        [
+          {
+            "node": "template",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Template": {
+      "main": [
+        [
+          {
+            "node": "Get Template",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "template",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Template": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown": {
+      "main": [
+        [
+          {
+            "node": "Envoi de notification Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Assistant": {
+      "main": [
+        [
+          {
+            "node": "Get Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kins": {
+      "main": [
+        [
+          {
+            "node": "Get Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cadreur de mission": {
+      "main": [
+        [
+          {
+            "node": "Manager",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manager": {
+      "main": [
+        [
+          {
+            "node": "todo",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List Template": {
+      "main": [
+        [
+          {
+            "node": "IF Template",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "input mail de démarrage": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur d'Email",
             "type": "main",
             "index": 0
           }
@@ -231,8 +353,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        2160,
-        680
+        1720,
+        1720
       ]
     },
     {
@@ -264,8 +386,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        2800,
-        700
+        2360,
+        1740
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -279,15 +401,15 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"template\"].json;\n\njson.mission = $node[\"Get Email\"].json.text;\njson.instructions = \"``Accomplis la mission depuis le début.``\";\n\njson.documentGoogleDriveId = $node[\"Create Document\"].json.id;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null) {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Remove null attributes from the json object\nremoveNullAttributes(json);\n\nreturn {\"json\": json, \"binary\": $binary};"
+        "jsCode": "let json = $node[\"template\"].json;\n\njson.mission = $node[\"Cadreur de mission\"].json.output;\njson.instructions = $node[\"Manager\"].json.output;\n  \njson.documentGoogleDriveId = $node[\"Create Document\"].json.id;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null) {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Remove null attributes from the json object\nremoveNullAttributes(json);\n\nreturn {\"json\": json, \"binary\": $binary};"
       },
       "id": "edf19627-a993-482d-b3aa-8c15b49995b4",
       "name": "todo",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1940,
-        680
+        1740,
+        1200
       ]
     },
     {
@@ -356,8 +478,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        2380,
-        580
+        1940,
+        1620
       ]
     },
     {
@@ -388,8 +510,8 @@
       "name": "Create Document",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        2120,
-        260
+        2140,
+        500
       ],
       "typeVersion": 1,
       "id": "f5d43d1e-9d00-4547-82c8-cfa53e7ba39c",
@@ -417,8 +539,8 @@
       "type": "n8n-nodes-base.moveBinaryData",
       "typeVersion": 1.1,
       "position": [
-        1920,
-        260
+        1940,
+        500
       ]
     },
     {
@@ -457,7 +579,7 @@
           "values": [
             {
               "name": "template",
-              "stringValue": "=``Document à rédiger depuis le début``"
+              "stringValue": "={{ $json.template?$json.template:\"``Structure du document à définir``\" }}\n\n``Document à rédiger depuis le début``"
             },
             {
               "name": "titre",
@@ -489,34 +611,9 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        1720,
-        260
+        1740,
+        500
       ]
-    },
-    {
-      "parameters": {
-        "operation": "reply",
-        "messageId": "={{ $node[\"Kin Mail\"].json[\"id\"] }}",
-        "emailType": "text",
-        "message": "=Bonjour,\n\nMission {{ $node[\"template\"].json.kin.replace(\"kin\", \"\").toUpperCase() }} bien reçue, je m'y mets immédiatement.\n\nAutomatiquement vôtre,\n\n{{ $node[\"template\"].json.kin.toUpperCase() }}",
-        "options": {
-          "senderName": "={{ $node[\"template\"].json.kin.toUpperCase() }}"
-        }
-      },
-      "id": "41298cf7-bf0d-452f-99a9-460aeb4506f7",
-      "name": "Send Email",
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2.1,
-      "position": [
-        1720,
-        460
-      ],
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iPrbr6qZiWHu93N9",
-          "name": "Gmail Nicolas"
-        }
-      }
     },
     {
       "parameters": {
@@ -532,8 +629,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        1720,
-        680
+        1960,
+        920
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -552,8 +649,297 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2580,
-        580
+        2140,
+        1620
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($json).length > 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "3104647e-1857-4446-b49c-11aecce9634f",
+      "name": "IF Template",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1940,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "sourceKey": "template",
+        "destinationKey": "template",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "id": "2060853c-5809-49eb-bd15-fba0583b744f",
+      "name": "Convert to/from binary data1",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        2360,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $node[\"IF Template\"].json.id }}",
+          "mode": "id"
+        },
+        "binaryPropertyName": "template",
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/rtf"
+            }
+          }
+        }
+      },
+      "name": "Get Template",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        2160,
+        260
+      ],
+      "typeVersion": 1,
+      "id": "fcd9e2b1-b857-446e-9c5f-75e321e1d7aa",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet originalText = '';\nif ($json.output != null) {\n  originalText = $json.output;\n} else {\n  originalText = $json.text;\n}\n\nconst escapedText = escapeMarkdownV2(originalText);\n\nreturn {\"json\":{\"escapedText\":escapedText}};\n"
+      },
+      "id": "a9bdc087-54c6-414a-ae2f-ef5d2f3d98c8",
+      "name": "Escape Markdown",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3040,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "=-1002105587743",
+        "text": "={{ $json.escapedText.substring($json.escapedText.length - 3900) }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "26b0117b-45a2-4033-be52-d167aa433eb6",
+      "name": "Envoi de notification Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3260,
+        500
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "KinCIR Dynergie"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/assistants/{{  $json.kin.find(kin => kin.kin === $node[\"template\"].json.kin).assistantId }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7d3ee057-7075-49a3-bb7d-ca187809fdaf",
+      "name": "Get Assistant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1740,
+        920
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Cadrage de la mission",
+        "height": 412.70155547885133,
+        "width": 1650.9612363175802
+      },
+      "id": "cb3783a6-7fcc-4c2d-830a-d3e27d990e7c",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let kins = [];\n\n// Prod\nkins.push({\"kin\":\"kincir\", \"assistantId\":\"asst_bU27N3NS5XZ0lH4AFOuN8kb7\"});\n\n// Beta\nkins.push({\"kin\":\"kinrsi\", \"assistantId\":\"asst_WKY0lRXB0rrJTFIm3HYv8jlE\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinlca\", \"assistantId\":\"asst_581bbg7Bmja1nCBKeiGg9Rgu\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinsota\", \"assistantId\":\"asst_7abHKvQqtVij29X6ybyEvAbZ\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kindev\", \"assistantId\":\"asst_KEwBhc34Qsh3dcu2Gu8bgFne\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinontologie\", \"assistantId\":\"asst_3pQx4lfP0EN6Jstj8kozdBtC\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinchercheur\", \"assistantId\":\"asst_rYxwavLJhgSLiKO3cHUzsmnt\", \"format\":\"md\"});\n\n// Seb\nkins.push({\"kin\":\"kinsotabeta\", \"assistantId\":\"asst_MHJDvt7FT6gcWBFdJsZqJ52C\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincirbeta\", \"assistantId\":\"asst_TwVBZeoLx80udowj5MIoG6Pq\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinchercheurbeta\", \"assistantId\":\"asst_X2yQl7tb6MH0dypYatOvIjBa\", \"format\":\"pdf\"});\n\nreturn {\"json\": {\"kin\": kins}};"
+      },
+      "id": "5e8bad06-1155-4afb-8065-a75172d61627",
+      "name": "Kins",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Duplicated !",
+        "height": 261.0806221915405,
+        "width": 235.90213693818094
+      },
+      "id": "b6f38504-08a8-4637-831e-5dfe821e41cd",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1420,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_i59drQwQdShF5SmdHgqd3gXG",
+        "text": "=NOUVELLE MISSION\n======\n\n{{ $node[\"Get Email\"].json.text }}\n\nTEMPLATE\n======\n\n{{ $node[\"template\"].json.template}}\n\nFYI : INSTRUCTIONS DU {{  $node[\"template\"].json.kin }} \n======\n\nPour t'aider à cadrer le PRODUCTEUR {{  $node[\"template\"].json.kin }} , voici son prompt système :\n\n``\n{{ $node[\"Get Assistant\"].json.instructions }}\n``\n\nCADRAGE DE LA MISSION\n======\n\nEcris le document de cadrage de mission, afin d'assurer que le PRODUCTEUR soit guidé corectement.\n\nCe document doit contenir :\n- Une reformulation complète et précise de la demande reçue.\n- L'objectif exprimé par le demandeur\n- \n\nCADRAGE DE LA MISSION :",
+        "options": {}
+      },
+      "id": "847baba2-b475-4036-9791-2b28531fb5d3",
+      "name": "Cadreur de mission",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2211,
+        920
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_NRJfqzvKf73U2CjrI4bqMSf5",
+        "text": "=MISSION GLOBALE\n======\n\n{{ $node[\"Cadreur de mission\"].json.output }}\n\nFYI : INSTRUCTIONS DU {{  $node[\"template\"].json.kin }} \n======\n\nPour t'aider à guider le PRODUCTEUR {{  $node[\"template\"].json.kin }} , voici son prompt système :\n\n``\n{{ $node[\"Get Assistant\"].json.instructions }}\n``\n\nAVANCEMENT\n======\n\n``\n{{ $node[\"template\"].json.template}}\n``",
+        "options": {}
+      },
+      "id": "d95ee76c-ca8e-451f-a385-6d6741e7b2e1",
+      "name": "Manager",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2680,
+        920
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "list",
+        "useQueryString": true,
+        "queryString": "=parents = '1Qgjvk84Kqv5o3vrEgz6poYn9wLuyXh9r' and name = 'template-{{ $node[\"Kin Mail\"].json.to.value[0].address.match(/^[^@]+/)[0] }}.md'",
+        "limit": 1,
+        "options": {}
+      },
+      "name": "List Template",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        1740,
+        260
+      ],
+      "typeVersion": 1,
+      "id": "71bfe3d3-f32c-4677-b186-b3f429014c7f",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "=rr8aeSM8QYyY8Po4",
+        "options": {}
+      },
+      "id": "994c1419-632d-458d-a1cf-ec7eee5f4ae5",
+      "name": "Rédacteur d'Email",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        1420
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"todo\"].json;\n\njson.thread = \"Bonjour,\\n\\nMission \" + $node[\"template\"].json.kin.replace(\"kin\", \"\").toUpperCase() + \" bien reçue, je m'y mets immédiatement.\\n\\n \" + $node[\"todo\"].json.mission +\"\\n\\n----\\n\\n\" + $node[\"todo\"].json.instructions +\"\\n\\nAutomatiquement vôtre,\\n\\n\" + $node[\"template\"].json.kin.toUpperCase();\n\ndelete json.documentGoogleDriveId;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null) {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Remove null attributes from the json object\nremoveNullAttributes(json);\n\nreturn {\"json\": json};"
+      },
+      "id": "2238d1d9-acfb-4616-93b5-f3bde7359826",
+      "name": "input mail de démarrage",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1740,
+        1420
       ]
     }
   ],
@@ -572,9 +958,9 @@
       "lastTimeChecked": 1706023258
     },
     "node:Kin Mail": {
-      "lastTimeChecked": 1706136914,
+      "lastTimeChecked": 1706180361,
       "possibleDuplicates": [
-        "18d3daf49549104c"
+        "18d404671e1ac0d3"
       ]
     }
   },
@@ -587,6 +973,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-24T22:56:09.000Z",
-  "versionId": "560b6e09-8688-479b-8e85-0596351cd2d1"
+  "updatedAt": "2024-01-25T11:00:02.000Z",
+  "versionId": "15946396-e52d-40fb-a57c-48ad4babc10d"
 }
