@@ -1,0 +1,139 @@
+{
+  "active": false,
+  "connections": {
+    "Google Scholar Search": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Scholar Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-25T12:48:26.406Z",
+  "id": "syCSVTnhcjp4jtCz",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Recherche Google Scholar",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "911c8dd2-855a-4869-9301-0dd9999b59e8",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        -160
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "08afd784-574c-4a81-8b41-6446ec664d89",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        -360
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.searchapi.io/api/v1/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "specifyQuery": "json",
+        "jsonQuery": "={\n  \"engine\": \"google_scholar\",\n  \"q\": {{ JSON.stringify($json.query) }},\n  \"as_ylo\":2019\n}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "17dc8ca3-aa25-44e3-b808-944a35d9af00",
+      "name": "Google Scholar Search",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2920,
+        -160
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "26fekxMf72FDnCOz",
+          "name": "Search API Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"response\":$json};"
+      },
+      "id": "a14bf7fa-fc45-4dc4-bfdb-e24ede9ded1c",
+      "name": "nouveau message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3160,
+        -160
+      ]
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "name": "First item",
+          "code": 1
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    },
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-25T16:56:30.000Z",
+  "versionId": "0e79c121-ce49-4c21-90f8-fe922e8757e4"
+}
