@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "IF Document n'existe pas": {
       "main": [
@@ -10,7 +10,13 @@
             "index": 0
           }
         ],
-        []
+        [
+          {
+            "node": "List Template",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Get existing document (init)": {
@@ -353,7 +359,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1720,
+        1740,
         1720
       ]
     },
@@ -386,7 +392,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        2360,
+        2380,
         1740
       ],
       "retryOnFail": true,
@@ -478,7 +484,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        1940,
+        1960,
         1620
       ]
     },
@@ -649,7 +655,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2140,
+        2160,
         1620
       ]
     },
@@ -688,7 +694,7 @@
       "typeVersion": 1.1,
       "position": [
         2360,
-        260
+        240
       ]
     },
     {
@@ -713,7 +719,7 @@
       "type": "n8n-nodes-base.googleDrive",
       "position": [
         2160,
-        260
+        240
       ],
       "typeVersion": 1,
       "id": "fcd9e2b1-b857-446e-9c5f-75e321e1d7aa",
@@ -817,7 +823,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let kins = [];\n\n// Prod\nkins.push({\"kin\":\"kincir\", \"assistantId\":\"asst_bU27N3NS5XZ0lH4AFOuN8kb7\"});\n\n// Beta\nkins.push({\"kin\":\"kinrsi\", \"assistantId\":\"asst_WKY0lRXB0rrJTFIm3HYv8jlE\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinlca\", \"assistantId\":\"asst_581bbg7Bmja1nCBKeiGg9Rgu\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinsota\", \"assistantId\":\"asst_7abHKvQqtVij29X6ybyEvAbZ\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kindev\", \"assistantId\":\"asst_KEwBhc34Qsh3dcu2Gu8bgFne\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinontologie\", \"assistantId\":\"asst_3pQx4lfP0EN6Jstj8kozdBtC\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinchercheur\", \"assistantId\":\"asst_rYxwavLJhgSLiKO3cHUzsmnt\", \"format\":\"md\"});\n\n// Seb\nkins.push({\"kin\":\"kinsotabeta\", \"assistantId\":\"asst_MHJDvt7FT6gcWBFdJsZqJ52C\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincirbeta\", \"assistantId\":\"asst_TwVBZeoLx80udowj5MIoG6Pq\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinchercheurbeta\", \"assistantId\":\"asst_X2yQl7tb6MH0dypYatOvIjBa\", \"format\":\"pdf\"});\n\nreturn {\"json\": {\"kin\": kins}};"
+        "jsCode": "let kins = [];\n\n// Prod\nkins.push({\"kin\":\"kincir\", \"assistantId\":\"asst_bU27N3NS5XZ0lH4AFOuN8kb7\"});\n\n// Beta\nkins.push({\"kin\":\"kinrsi\", \"assistantId\":\"asst_WKY0lRXB0rrJTFIm3HYv8jlE\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinlca\", \"assistantId\":\"asst_581bbg7Bmja1nCBKeiGg9Rgu\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinsota\", \"assistantId\":\"asst_7abHKvQqtVij29X6ybyEvAbZ\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kindev\", \"assistantId\":\"asst_KEwBhc34Qsh3dcu2Gu8bgFne\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinontologie\", \"assistantId\":\"asst_3pQx4lfP0EN6Jstj8kozdBtC\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinchercheur\", \"assistantId\":\"asst_rYxwavLJhgSLiKO3cHUzsmnt\", \"format\":\"md\"});\nkins.push({\"kin\":\"kincadreur\", \"assistantId\":\"asst_i59drQwQdShF5SmdHgqd3gXG\", \"format\":\"pdf\"});\n\n// Seb\nkins.push({\"kin\":\"kinsotabeta\", \"assistantId\":\"asst_MHJDvt7FT6gcWBFdJsZqJ52C\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincirbeta\", \"assistantId\":\"asst_TwVBZeoLx80udowj5MIoG6Pq\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinchercheurbeta\", \"assistantId\":\"asst_X2yQl7tb6MH0dypYatOvIjBa\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincadreurbeta\", \"assistantId\":\"asst_EwmKBIJWKqCJECb0nVBVju45\", \"format\":\"pdf\"});\n\nreturn {\"json\": {\"kin\": kins}};"
       },
       "id": "5e8bad06-1155-4afb-8065-a75172d61627",
       "name": "Kins",
@@ -958,9 +964,9 @@
       "lastTimeChecked": 1706023258
     },
     "node:Kin Mail": {
-      "lastTimeChecked": 1706180361,
+      "lastTimeChecked": 1706190117,
       "possibleDuplicates": [
-        "18d404671e1ac0d3"
+        "18d40db0fc0b7747"
       ]
     }
   },
@@ -973,6 +979,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-25T11:00:02.000Z",
-  "versionId": "15946396-e52d-40fb-a57c-48ad4babc10d"
+  "updatedAt": "2024-01-25T14:04:56.000Z",
+  "versionId": "5a073f98-3c38-42fc-8b45-9ca1d4049d37"
 }
