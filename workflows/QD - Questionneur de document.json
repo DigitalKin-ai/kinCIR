@@ -64,6 +64,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Questionneur de document ( version chain)",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -122,7 +129,14 @@
       "main": [
         [
           {
-            "node": "Questionneur de document (Refine)",
+            "node": "Questionneur de document (map reduce)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Questionneur de document ( version chain)",
             "type": "main",
             "index": 0
           }
@@ -133,7 +147,7 @@
       "main": [
         [
           {
-            "node": "Questionneur de document (Refine)",
+            "node": "Questionneur de document (map reduce)",
             "type": "main",
             "index": 0
           }
@@ -166,7 +180,29 @@
       "main": [
         [
           {
-            "node": "Questionneur de document ( version chain)",
+            "node": "If documentGoogleDriveId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de document (Refine)": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de document (map reduce)": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
             "type": "main",
             "index": 0
           }
@@ -247,8 +283,8 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        3320,
-        520
+        2380,
+        80
       ]
     },
     {
@@ -261,8 +297,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3960,
-        520
+        4080,
+        60
       ]
     },
     {
@@ -326,8 +362,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        3540,
-        -160
+        3580,
+        220
       ],
       "credentials": {
         "openAiApi": {
@@ -492,8 +528,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        3560,
-        260
+        3540,
+        -280
       ],
       "credentials": {
         "openAiApi": {
@@ -501,28 +537,6 @@
           "name": "OpenAi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "chunkSize": 20000,
-        "chunkOverlap": 2000,
-        "options": {
-          "summarizationMethodAndPrompts": {
-            "values": {
-              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
-              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\""
-            }
-          }
-        }
-      },
-      "id": "fa635caf-4d35-4bda-8655-ade052e1c004",
-      "name": "Questionneur de document (map reduce)",
-      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
-      "typeVersion": 2,
-      "position": [
-        3520,
-        -300
-      ]
     },
     {
       "parameters": {
@@ -543,31 +557,8 @@
       "typeVersion": 2,
       "position": [
         3540,
-        80
+        -460
       ]
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
-        "text": "=INSTRUCTIONS\n======\n\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\n{{ $json.instructions }}",
-        "options": {}
-      },
-      "id": "0a3cad57-628f-49f8-80d4-170b0f8ba264",
-      "name": "kinchercheur",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        3900,
-        720
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -603,6 +594,28 @@
           "name": "PineconeApi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "chunkSize": 20000,
+        "chunkOverlap": 2000,
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
+              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+            }
+          }
+        }
+      },
+      "id": "fa635caf-4d35-4bda-8655-ade052e1c004",
+      "name": "Questionneur de document (map reduce)",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        3560,
+        60
+      ]
     }
   ],
   "pinData": {
@@ -611,15 +624,6 @@
         "json": {
           "name": "First item",
           "code": 1
-        }
-      }
-    ],
-    "If documentGoogleDriveId": [
-      {
-        "json": {
-          "query": "Please provide the objective of the study from the following article. The information is needed to commence the critical reading of the scientific article titled 'Effects of a New Dietary Intervention on Cardiovascular Health in Overweight Adults: A Randomized Controlled Trial'. The aim is to summarize the declared objective of this study for inclusion in the initial section of a critical analysis document. The summary should be clear and concise in order to present the intention of the researchers accurately.",
-          "mission": "\"lca\\n\"",
-          "documentGoogleDriveId": "10NhaomLS5vFI0PTfFZ3NHyZhtrgUQZls"
         }
       }
     ]
@@ -653,6 +657,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-24T21:54:30.000Z",
-  "versionId": "014aae30-1043-41d2-911b-202b62a40547"
+  "updatedAt": "2024-01-25T11:46:33.000Z",
+  "versionId": "96e928a9-eb57-4656-8b75-6780d203992a"
 }
