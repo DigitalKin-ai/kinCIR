@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "Get Document",
+            "node": "If documentGoogleDriveId",
             "type": "main",
             "index": 0
           }
@@ -204,6 +204,24 @@
           }
         ]
       ]
+    },
+    "If documentGoogleDriveId": {
+      "main": [
+        [
+          {
+            "node": "Get Document",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2023-12-17T22:40:17.010Z",
@@ -220,7 +238,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -2300,
+        -2580,
         300
       ]
     },
@@ -555,8 +573,8 @@
       "type": "n8n-nodes-base.moveBinaryData",
       "typeVersion": 1.1,
       "position": [
-        -1860,
-        300
+        -1880,
+        160
       ]
     },
     {
@@ -580,8 +598,8 @@
       "name": "Get Document",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        -2080,
-        300
+        -2100,
+        160
       ],
       "typeVersion": 1,
       "id": "dd70734d-82ac-4ad7-8057-4ee783479625",
@@ -591,9 +609,111 @@
           "name": "Google Drive DK via Nicolas"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
+              "leftValue": "={{ $json.documentGoogleDriveId }}",
+              "rightValue": "md",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "7161e353-a973-4308-ba52-aeb3564a5ca0",
+      "name": "If documentGoogleDriveId",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -2320,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "id": "c576dbf4-3ded-42c0-9e6a-897be4bc5d23",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        680,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $node[\"Execute Workflow Trigger\"].json.documentGoogleDriveId }}",
+          "mode": "id"
+        },
+        "binaryPropertyName": "thread",
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/rtf"
+            }
+          }
+        }
+      },
+      "name": "Get Document1",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        460,
+        460
+      ],
+      "typeVersion": 1,
+      "id": "357af485-adca-4939-8653-e20d8d2035ff",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
+        }
+      }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "template": "``\r\n# STRUCTURE ATTENDUE DU DOCUMENT\r\n\r\n# Présentation du programme de R&D\r\n## Présentation de l'entreprise\r\n## Contexte scientifique et économique\r\n## Présentation des thématiques de recherche\r\n### Thématique\r\n#### Périmètre des besoins de R&D Thématique\r\n#### Tableau Thématique\r\n#### Etat de l'art de Thématique domaine 1\r\n##### Focus Problématique\r\n#### Bibliographie Thématique\r\n#### Incertitudes et verrous scientifiques et techniques Thématique\r\n#### Travaux de R&D pour lever les verrous et incertitudes Thématique\r\n## Signature du Kin\r\n``\n\n``Document à rédiger depuis le début``",
+          "titre": "POMPES",
+          "fileName": "POMPES_jeudi-25-janvier-2024-à-10-45-08-UTC.md",
+          "kin": "kinsota",
+          "mailId": "18d40372a2efde9e",
+          "client": "dynergie",
+          "mission": "# Résultat de votre requête\n\nLa requête renvoie aucune information additionnelle.\n\n## Votre demande\n\nNous cherchons à être capable de réaliser des soudure par laser de pièces en alliages d’aluminium, avec la meilleure conductivité thermique possible. Pour cela nous travaillons sur le contrôle du faisceau dans la soudure laser. Nous cherchons à assembler des pièces destinées à la réalisation de systèmes d’échange de chaleur. Ces échangeurs sont spécifiquement destinés à un usage maritime.\n\nLester Reynolds <lreynolds@dynergie.fr>\n16:12 (il y a 0 minute)\nÀ kinsota, Sébastien\n\n## Compréhension de votre demande\n\nÀ partir de la demande reçue, voici ma compréhension :\n\n- Objectif exprimé sous la forme d'une capacité : Réaliser des soudures par laser de pièces en alliages d'aluminium.\n- Contrainte sur la façon d'atteindre l'objectif : Utiliser le contrôle du faisceau laser pour optimiser la conductivité thermique des soudures.\n- Application sujet : Systèmes d'échange de chaleur.\n- Contrainte spécifique sur l'application : Ces systèmes sont destinés à un usage maritime.\n\nVous cherchez à développer une capacité à effectuer des soudures laser sur des pièces en alliages d'aluminium afin de confectionner des échangeurs de chaleur avec une conductivité thermique optimale pour une application dans un environnement maritime. Il semble toutefois que des informations supplémentaires seraient nécessaires pour que cette demande soit pleinement acceptable :\n\n- Des précisions sur les dimensions et les spécifications techniques des pièces à souder.\n- Les standards de qualité attendus et les tests de performance pour la conductivité thermique.\n- Les ressources matérielles et humaines disponibles pour le projet.\n- Des détails sur les contraintes environnementales spécifiques au domaine maritime.\n\nSans ces informations supplémentaires, il serait prématuré de confirmer l'acceptation de la demande. Ainsi, dans l'état actuel des informations reçues, je ne peux accepter la demande. Ces informations sont nécessaires pour définir précisément la portée et les objectifs de la mission, pour élaborer un plan de travail pertinent et pour garantir les résultats escomptés.\n\nCADRAGE DE LA MISSION :\n\n# Présentation du programme de R&D\n## Présentation de l'entreprise\n(Détailler ici la présentation de l'entreprise Dynergie, ses activités principales et sa position dans le secteur de l'énergie, avec un accent particulier sur son expertise dans la réalisation de systèmes d’échange de chaleur pour l'usage maritime.)\n\n## Contexte scientifique et économique\n(Exposer ici le contexte scientifique lié aux technologies de soudure laser pour les alliages d'aluminium, particulièrement en ce qui concerne les échangeurs thermiques dans l'industrie maritime, ainsi que les enjeux économiques associés à cette innovation technologique.)\n\n## Présentation des thématiques de recherche\n### Thématique Soudure Laser\n#### Périmètre des besoins de R&D Thématique Soudure Laser\n(Décrire précisément les besoins en R&D pour le contrôle du faisceau laser dans le processus de soudure d'alliages d'aluminium, les défis techniques à surmonter et les opportunités à saisir.)\n\n#### Tableau Thématique Soudure Laser\n(Insérer ici un tableau récapitulant les principales données, hypothèses, et objectifs pour la thématique de la soudure laser.)\n\n#### Etat de l'art de Thématique Soudure Laser\n##### Focus Problématique\n(Détailler l'état des connaissances actuelles et les problèmes non résolus liés à la soudure laser pour la conductivité thermique des échangeurs thermiques maritimes.)\n\n#### Bibliographie Thématique Soudure Laser\n(Compiler une bibliographie des sources et études pertinentes qui documentent les progrès récents et les limites de la soudure laser pour les alliages d'aluminium.)\n\n#### Incertitudes et verrous scientifiques et techniques Thématique Soudure Laser\n(Identifier et détailler les incertitudes et verrous techniques qui empêchent d'atteindre la conductivité thermique maximale dans les soudures laser d'échangeurs de chaleur pour un usage maritime.)\n\n#### Travaux de R&D pour lever les verrous et incertitudes Thématique Soudure Laser\n(Présenter un plan de travaux de R&D conçu pour adresser ces incertitudes et franchir les obstacles techniques, y compris les méthodologies proposées, les tests prévus, et les délais estimés pour chaque phase du projet.)\n\n## Signature du Kinsota\n(Section à compléter avec la signature formelle du document.)",
+          "instructions": "Point sur l'Avancement : \nLe producteur a terminé la rédaction de la présentation globale du programme de R & D ainsi que les instructions fournies par le manager. Cette rédaction comprenait la compréhension de la demande initiale envoyée par Lester Reynolds de Dynergie, un cadre pour l'exécution de la mission, et la structure générale du document de recherche et développement. Cependant, aucune partie spécifique du contenu attendu n'a été rédigée pour les différentes sections telles que la présentation de l'entreprise, le contexte scientifique et économique, les différentes thématiques de recherche, etc.\n\nTODOLIST :\n- **Présentation de l'entreprise** : TODO\n- **Contexte scientifique et économique** : TODO\n- **Présentation des thématiques de recherche** : TODO\n- **Périmètre des besoins de R&D Thématique** : TODO\n- **Tableau Thématique** : TODO\n- **Etat de l'art de Thématique domaine 1** : TODO\n- **Focus Problématique** : TODO\n- **Bibliographie Thématique** : TODO\n- **Incertitudes et verrous scientifiques et techniques Thématique** : TODO\n- **Travaux de R&D pour lever les verrous et incertitudes Thématique** : TODO\n- **Signature du Kin** : TODO\n\nChoix de la prochaine étape :\nLe travail étant à ses débuts, il s'agit maintenant de commencer la rédaction par la première section manquante du document, à savoir la \"Présentation de l'entreprise\". C'est la première étape informative nécessaire pour contextualiser le cadre dans lequel l'entreprise évolue et comment elle s'inscrit dans le projet de R&D spécifique décrit dans la mission. Cette section devra détailler Dynergie, ses activités principales, sa place dans le secteur de l'énergie et son expertise en matière de systèmes d’échange de chaleur à usage maritime.\n\nProchaine étape à réaliser :\n- **1) Présentation de l'entreprise** : TODO",
+          "thread": "Bonjour,\n\nMission SOTA bien reçue, je m'y mets immédiatement.\n\n # Résultat de votre requête\n\nLa requête renvoie aucune information additionnelle.\n\n## Votre demande\n\nNous cherchons à être capable de réaliser des soudure par laser de pièces en alliages d’aluminium, avec la meilleure conductivité thermique possible. Pour cela nous travaillons sur le contrôle du faisceau dans la soudure laser. Nous cherchons à assembler des pièces destinées à la réalisation de systèmes d’échange de chaleur. Ces échangeurs sont spécifiquement destinés à un usage maritime.\n\nLester Reynolds <lreynolds@dynergie.fr>\n16:12 (il y a 0 minute)\nÀ kinsota, Sébastien\n\n## Compréhension de votre demande\n\nÀ partir de la demande reçue, voici ma compréhension :\n\n- Objectif exprimé sous la forme d'une capacité : Réaliser des soudures par laser de pièces en alliages d'aluminium.\n- Contrainte sur la façon d'atteindre l'objectif : Utiliser le contrôle du faisceau laser pour optimiser la conductivité thermique des soudures.\n- Application sujet : Systèmes d'échange de chaleur.\n- Contrainte spécifique sur l'application : Ces systèmes sont destinés à un usage maritime.\n\nVous cherchez à développer une capacité à effectuer des soudures laser sur des pièces en alliages d'aluminium afin de confectionner des échangeurs de chaleur avec une conductivité thermique optimale pour une application dans un environnement maritime. Il semble toutefois que des informations supplémentaires seraient nécessaires pour que cette demande soit pleinement acceptable :\n\n- Des précisions sur les dimensions et les spécifications techniques des pièces à souder.\n- Les standards de qualité attendus et les tests de performance pour la conductivité thermique.\n- Les ressources matérielles et humaines disponibles pour le projet.\n- Des détails sur les contraintes environnementales spécifiques au domaine maritime.\n\nSans ces informations supplémentaires, il serait prématuré de confirmer l'acceptation de la demande. Ainsi, dans l'état actuel des informations reçues, je ne peux accepter la demande. Ces informations sont nécessaires pour définir précisément la portée et les objectifs de la mission, pour élaborer un plan de travail pertinent et pour garantir les résultats escomptés.\n\nCADRAGE DE LA MISSION :\n\n# Présentation du programme de R&D\n## Présentation de l'entreprise\n(Détailler ici la présentation de l'entreprise Dynergie, ses activités principales et sa position dans le secteur de l'énergie, avec un accent particulier sur son expertise dans la réalisation de systèmes d’échange de chaleur pour l'usage maritime.)\n\n## Contexte scientifique et économique\n(Exposer ici le contexte scientifique lié aux technologies de soudure laser pour les alliages d'aluminium, particulièrement en ce qui concerne les échangeurs thermiques dans l'industrie maritime, ainsi que les enjeux économiques associés à cette innovation technologique.)\n\n## Présentation des thématiques de recherche\n### Thématique Soudure Laser\n#### Périmètre des besoins de R&D Thématique Soudure Laser\n(Décrire précisément les besoins en R&D pour le contrôle du faisceau laser dans le processus de soudure d'alliages d'aluminium, les défis techniques à surmonter et les opportunités à saisir.)\n\n#### Tableau Thématique Soudure Laser\n(Insérer ici un tableau récapitulant les principales données, hypothèses, et objectifs pour la thématique de la soudure laser.)\n\n#### Etat de l'art de Thématique Soudure Laser\n##### Focus Problématique\n(Détailler l'état des connaissances actuelles et les problèmes non résolus liés à la soudure laser pour la conductivité thermique des échangeurs thermiques maritimes.)\n\n#### Bibliographie Thématique Soudure Laser\n(Compiler une bibliographie des sources et études pertinentes qui documentent les progrès récents et les limites de la soudure laser pour les alliages d'aluminium.)\n\n#### Incertitudes et verrous scientifiques et techniques Thématique Soudure Laser\n(Identifier et détailler les incertitudes et verrous techniques qui empêchent d'atteindre la conductivité thermique maximale dans les soudures laser d'échangeurs de chaleur pour un usage maritime.)\n\n#### Travaux de R&D pour lever les verrous et incertitudes Thématique Soudure Laser\n(Présenter un plan de travaux de R&D conçu pour adresser ces incertitudes et franchir les obstacles techniques, y compris les méthodologies proposées, les tests prévus, et les délais estimés pour chaque phase du projet.)\n\n## Signature du Kinsota\n(Section à compléter avec la signature formelle du document.)\n\n----\n\nPoint sur l'Avancement : \nLe producteur a terminé la rédaction de la présentation globale du programme de R & D ainsi que les instructions fournies par le manager. Cette rédaction comprenait la compréhension de la demande initiale envoyée par Lester Reynolds de Dynergie, un cadre pour l'exécution de la mission, et la structure générale du document de recherche et développement. Cependant, aucune partie spécifique du contenu attendu n'a été rédigée pour les différentes sections telles que la présentation de l'entreprise, le contexte scientifique et économique, les différentes thématiques de recherche, etc.\n\nTODOLIST :\n- **Présentation de l'entreprise** : TODO\n- **Contexte scientifique et économique** : TODO\n- **Présentation des thématiques de recherche** : TODO\n- **Périmètre des besoins de R&D Thématique** : TODO\n- **Tableau Thématique** : TODO\n- **Etat de l'art de Thématique domaine 1** : TODO\n- **Focus Problématique** : TODO\n- **Bibliographie Thématique** : TODO\n- **Incertitudes et verrous scientifiques et techniques Thématique** : TODO\n- **Travaux de R&D pour lever les verrous et incertitudes Thématique** : TODO\n- **Signature du Kin** : TODO\n\nChoix de la prochaine étape :\nLe travail étant à ses débuts, il s'agit maintenant de commencer la rédaction par la première section manquante du document, à savoir la \"Présentation de l'entreprise\". C'est la première étape informative nécessaire pour contextualiser le cadre dans lequel l'entreprise évolue et comment elle s'inscrit dans le projet de R&D spécifique décrit dans la mission. Cette section devra détailler Dynergie, ses activités principales, sa place dans le secteur de l'énergie et son expertise en matière de systèmes d’échange de chaleur à usage maritime.\n\nProchaine étape à réaliser :\n- **1) Présentation de l'entreprise** : TODO\n\nAutomatiquement vôtre,\n\nKINSOTA"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -615,6 +735,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-24T22:32:29.000Z",
-  "versionId": "8bf442cc-0815-4ff9-8915-b78b3866dbb7"
+  "updatedAt": "2024-01-25T10:54:12.000Z",
+  "versionId": "7bb22bff-e853-40b5-bc78-5b2e0437f972"
 }
