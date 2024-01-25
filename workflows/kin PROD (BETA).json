@@ -45,22 +45,6 @@
         ]
       ]
     },
-    "Manager": {
-      "main": [
-        [
-          {
-            "node": "Escape Markdown",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "sortie",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "When clicking \"Execute Workflow\"": {
       "main": [
         [
@@ -116,33 +100,11 @@
         ]
       ]
     },
-    "Execute Workflow Trigger": {
-      "main": [
-        [
-          {
-            "node": "Get Assistant",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "task": {
       "main": [
         [
           {
             "node": "Switch Commands",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "thread": {
-      "main": [
-        [
-          {
-            "node": "Switch",
             "type": "main",
             "index": 0
           }
@@ -182,78 +144,12 @@
         ]
       ]
     },
-    "kincirbeta": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Questionneur d'Etudes2": {
       "ai_tool": [
         [
           {
             "node": "kinsota",
             "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kinsota": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kinrsi": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kinlca": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kincir": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kindev": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
             "index": 0
           }
         ]
@@ -319,52 +215,12 @@
         ]
       ]
     },
-    "If Async": {
-      "main": [
-        [
-          {
-            "node": "Upsert task",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Kin",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "KinOntologie": {
       "ai_tool": [
         [
           {
             "node": "kinrsi",
             "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kinontologie": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kinchercheur": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
             "index": 0
           }
         ]
@@ -381,69 +237,11 @@
         ]
       ]
     },
-    "kinsotabeta": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kinchercheurbeta": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Kin": {
       "main": [
         [
           {
             "node": "Merge",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Questionneur d'Etudes6": {
-      "ai_tool": [
-        [
-          {
-            "node": "kinlca",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Switch Commands": {
-      "main": [
-        [
-          {
-            "node": "Rédacteur d'Email",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Rédacteur d'Email",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "If Async",
             "type": "main",
             "index": 0
           }
@@ -478,6 +276,296 @@
           {
             "node": "kinsotabeta",
             "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de document": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinlca",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de la base d'études": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinlca",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recherche Google Scholar": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinchercheur",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'Etudes5": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinchercheurbeta",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recherche Google Scholar1": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinchercheurbeta",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'Etudes3": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinchercheur",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kincadreur": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kincadreurbeta": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mail to Kin": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur d'Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rédacteur d'Email": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If sync": {
+      "main": [
+        [
+          {
+            "node": "Kin",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Upsert task",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manager": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "sortie",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Envoi de notification Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kincir": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinlca": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinrsi": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinchercheurbeta": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinsota": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kincirbeta": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kindev": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinontologie": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinchercheur": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinsotabeta": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Envoi de notification Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "thread": {
+      "main": [
+        [
+          {
+            "node": "Prompt Producteur",
+            "type": "main",
             "index": 0
           }
         ]
@@ -554,6 +642,68 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "kincadreur",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kincadreurbeta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompt Producteur": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch Commands": {
+      "main": [
+        [
+          {
+            "node": "Rédacteur d'Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Rédacteur d'Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "mail to Kin",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If sync",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     }
@@ -603,8 +753,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.1,
       "position": [
-        6820,
-        760
+        5780,
+        -80
       ],
       "credentials": {
         "telegramApi": {
@@ -617,7 +767,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet originalText = '';\nif ($json.output != null) {\n  originalText = $json.output;\n} else {\n  originalText = $json.text;\n}\n\noriginalText =  $node[\"Get Document\"].binary[Object.keys($node[\"Get Document\"].binary)[0]].fileName + \"\\n\\n\" + originalText\n\nconst escapedText = escapeMarkdownV2(originalText);\n\nreturn {\"json\":{\"escapedText\":escapedText}};\n"
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet originalText = '';\nif ($json.output != null) {\n  originalText = $json.output;\n} else {\n  originalText = $json.text;\n}\n\noriginalText = $node[\"Execute Workflow Trigger\"].json.kin + \": \" + $node[\"Get Document\"].binary[Object.keys($node[\"Get Document\"].binary)[0]].fileName + \"\\n\\n\" + originalText;\n\nconst escapedText = escapeMarkdownV2(originalText);\n\nreturn {\"json\":{\"escapedText\":escapedText}};\n"
       },
       "id": "977b77e8-b12b-4223-a28c-5a6fdc10e859",
       "name": "Escape Markdown",
@@ -625,7 +775,7 @@
       "typeVersion": 2,
       "position": [
         5540,
-        340
+        -80
       ]
     },
     {
@@ -635,8 +785,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        2940,
-        -280
+        2700,
+        -140
       ],
       "disabled": true
     },
@@ -654,22 +804,8 @@
       "type": "n8n-nodes-base.moveBinaryData",
       "typeVersion": 1.1,
       "position": [
-        3520,
-        60
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let entireThread = $json.thread;\nlet thread = $json.thread;\nlet instructions = $node[\"Execute Workflow Trigger\"].json.query?$node[\"Execute Workflow Trigger\"].json.query:$node[\"Execute Workflow Trigger\"].json.instructions;\nconst MAX_LENGTH = 15000;\n\nthread = thread.replace(/.*Prochaine étape.*$/gmi, '');\nthread = thread.replace(/.*Étape suivante.*$/gmi, '');\nthread = thread.replace(/^.*niveau de boucle.*$/gmi, '');\nthread = thread.replace(/```.*```/gmi, '');\nthread = thread.replace(/``.*``/gmi, '');\nthread = thread.replace(/^[\\r\\n]+|[\\r\\n]+$/g, '');\n\nif (thread.length > MAX_LENGTH) {\n    thread = \"Le début du document est déjà rédigé, voici les denières parties rédigées :\\n[...]\" + thread.substring(thread.length - MAX_LENGTH);\n    remainingThread = entireThread.substring(0, entireThread.length - MAX_LENGTH);\n} else {\n    remainingThread = \"\"; // Aucun contenu restant si la longueur du fil est inférieure à MAX_LENGTH\n}\n\nreturn {\"thread\": thread, \"entireThread\": entireThread, \"remainingThread\": remainingThread, \"instructions\": instructions};"
-      },
-      "id": "f2943232-b99c-4e69-ae50-48dd527aa0a6",
-      "name": "thread",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        3740,
-        60
+        3320,
+        80
       ]
     },
     {
@@ -693,8 +829,8 @@
       "name": "Get Document",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        3300,
-        60
+        3100,
+        80
       ],
       "typeVersion": 1,
       "id": "207873cf-78e7-4277-9a71-412a0bd8f757",
@@ -704,29 +840,6 @@
           "name": "Google Drive DK via Nicolas"
         }
       }
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_NRJfqzvKf73U2CjrI4bqMSf5",
-        "text": "=MISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nFYI : INSTRUCTIONS DU {{  $node[\"Execute Workflow Trigger\"].json.kin }} \n======\n\nPour t'aider à guider le PRODUCTEUR {{  $node[\"Execute Workflow Trigger\"].json.kin }}, voici son prompt système :\n\n``\n{{ $node[\"Get Assistant\"].json.instructions }}\n``\n\nAVANCEMENT\n======\n\n``\n{{ $node[\"thread\"].json.thread }}\n``\n\nDERNIER CONTENU REDIGÉ / DERNIERES ACTIONS EFFECTUÉES\n======\n\nDernières Instructions du MANAGER\n------\n\n``\n{{ $node[\"thread\"].json.instructions }}\n``\n\nRédaction réalisée / Actions effectuées par {{  $node[\"Execute Workflow Trigger\"].json.kin }}\n------\n\n``\n{{ $json.output }}\n``",
-        "options": {}
-      },
-      "id": "0b4c1b91-ae71-4843-b103-0277f8f487b4",
-      "name": "Manager",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        5160,
-        160
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -773,8 +886,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3600,
-        -280
+        3340,
+        -140
       ],
       "disabled": true
     },
@@ -807,8 +920,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        3160,
-        -280
+        2900,
+        -140
       ],
       "credentials": {
         "pineconeApi": {
@@ -834,21 +947,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        3360,
-        -280
+        3100,
+        -140
       ],
       "disabled": true
-    },
-    {
-      "parameters": {},
-      "id": "534b0c5f-71fa-45ed-b68e-0ecc7460b79c",
-      "name": "Execute Workflow Trigger",
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "typeVersion": 1,
-      "position": [
-        2900,
-        60
-      ]
     },
     {
       "parameters": {
@@ -879,8 +981,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        6840,
-        -360
+        6820,
+        -60
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -901,7 +1003,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        6200,
+        6240,
         160
       ]
     },
@@ -953,52 +1055,6 @@
     },
     {
       "parameters": {
-        "assistantId": "asst_WKY0lRXB0rrJTFIm3HYv8jlE",
-        "text": "=INSTRUCTIONS\n======\n\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\n{{ $json.instructions }}",
-        "options": {}
-      },
-      "id": "a441e8e3-0802-4dc2-af20-6bd09e04ce0d",
-      "name": "kinrsi",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4380,
-        -180
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
-        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
-        "options": {}
-      },
-      "id": "abb1b363-7706-4b86-a21b-83d3e1c9819d",
-      "name": "kindev",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4380,
-        740
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
         "name": "questionneur_d_etudes",
         "description": "Le Questionneur d'études retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée en Anglais, contenant :\n- Les informations que tu cherche, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n",
         "workflowId": "yQ79P9nuVKhkwZpD",
@@ -1022,78 +1078,6 @@
     },
     {
       "parameters": {
-        "assistantId": "asst_bU27N3NS5XZ0lH4AFOuN8kb7",
-        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
-        "options": {}
-      },
-      "id": "705274a2-abf4-4031-a7f1-58fc18d7f395",
-      "name": "kincir",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4380,
-        -800
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_TwVBZeoLx80udowj5MIoG6Pq",
-        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
-        "options": {}
-      },
-      "id": "a5006fdd-836e-4162-8aba-f641634ffc78",
-      "name": "kincirbeta",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4380,
-        420
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_581bbg7Bmja1nCBKeiGg9Rgu",
-        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
-        "nativeTools": [
-          "code_interpreter"
-        ],
-        "options": {}
-      },
-      "id": "f9e05a8a-d972-4464-92ed-25b4ec2d142d",
-      "name": "kinlca",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4360,
-        -500
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
         "name": "questionneur_d_etudes",
         "description": "Le Questionneur d'études retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée en Anglais, contenant :\n- Les informations que tu cherche, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n",
         "workflowId": "yQ79P9nuVKhkwZpD",
@@ -1114,29 +1098,6 @@
         4520,
         240
       ]
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_7abHKvQqtVij29X6ybyEvAbZ",
-        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
-        "options": {}
-      },
-      "id": "a4c0ce08-9cd7-4ded-bdbe-2d682c579eb6",
-      "name": "kinsota",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4380,
-        140
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -1177,8 +1138,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        3100,
-        60
+        2900,
+        80
       ],
       "credentials": {
         "openAiApi": {
@@ -1216,42 +1177,7 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose"
-          },
-          "conditions": [
-            {
-              "id": "1a743e65-4e49-4878-bfc1-a41bb6fae343",
-              "leftValue": "={{ $node[\"Execute Workflow Trigger\"].json.async }}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "looseTypeValidation": true
-        }
-      },
-      "id": "d5b1ee8d-8af1-499e-a541-dfb498b9ac7d",
-      "name": "If Async",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        6580,
-        -60
-      ]
-    },
-    {
-      "parameters": {
-        "name": "kin_ontologie",
+        "name": "kinontologie",
         "description": "Objectif: Offrir un support spécialisé et flexible pour la création d'ontologies, en tirant parti des assistant GPT et en fournissant un support continu et personnalisé.\n\n- **Valeur Apportée** : L'assistant fournit une expertise dans l'analyse de données et le groupement conceptuel, facilitant la création d'une ontologie structurée et pertinente.\n- **Quand solliciter le Kin** : Particulièrement utile quand un utilisateur a besoin d'extraire des connaissances de grands ensembles de données ou de textes et de les organiser dans une structure ontologique claire.\n- **Procédure de requête** : Les utilisateurs doivent fournir un contexte spécifique et des objectifs pour leur ontologie, ainsi que l'accès aux données ou documents pertinents si possible.",
         "workflowId": "RCzPi7XT4ijau6eF",
         "fields": {
@@ -1290,52 +1216,6 @@
     },
     {
       "parameters": {
-        "assistantId": "asst_3pQx4lfP0EN6Jstj8kozdBtC",
-        "text": "=INSTRUCTIONS\n======\n\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\n{{ $json.instructions }}",
-        "options": {}
-      },
-      "id": "a353ab78-cdd5-4eaa-ab35-6807844c5773",
-      "name": "kinontologie",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4380,
-        1020
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
-        "text": "=INSTRUCTIONS\n======\n\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\n{{ $json.instructions }}",
-        "options": {}
-      },
-      "id": "3e041b0a-99e2-476c-b22f-d0ac74d6c94c",
-      "name": "kinchercheur",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4380,
-        1280
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
         "name": "questionneur_d_etudes",
         "description": "Le Questionneur d'études retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée en Anglais, contenant :\n- Les informations que tu cherche, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n",
         "workflowId": "yQ79P9nuVKhkwZpD",
@@ -1353,7 +1233,7 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        4420,
+        4500,
         1380
       ]
     },
@@ -1399,55 +1279,9 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        4420,
+        4500,
         1900
       ]
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_MHJDvt7FT6gcWBFdJsZqJ52C",
-        "text": "=INSTRUCTIONS : RÉDACTEUR\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\nEn tant que RÉDACTEUR, tu effectue les étapes demandées par le MANAGER :\n{{ $json.instructions }}\n\nSuite du document :",
-        "options": {}
-      },
-      "id": "d714c7bc-4ca8-4ffd-8e69-ed576ab4e76d",
-      "name": "kinsotabeta",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4380,
-        1540
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
-        "text": "=INSTRUCTIONS\n======\n\n{{ $json.instructions }}\n\nMISSION GLOBALE\n======\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\nAVANCEMENT REALISE\n======\n\n{{ $json.thread }}\n\nTACHE\n======\n\n{{ $json.instructions }}",
-        "options": {}
-      },
-      "id": "5d7bae62-2aaf-4b09-82fb-309e7858ee5a",
-      "name": "kinchercheurbeta",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        4380,
-        1800
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -1459,8 +1293,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        6840,
-        -40
+        6820,
+        -280
       ]
     },
     {
@@ -1473,91 +1307,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        6740,
+        6820,
         140
-      ]
-    },
-    {
-      "parameters": {
-        "name": "questionneur_d_etude",
-        "description": "Le Questionneur d'études retourne une réponse issue de l'étude demandée à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée en Anglais, contenant :\n- La citation de l'étude.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n",
-        "workflowId": "yQ79P9nuVKhkwZpD",
-        "fields": {
-          "values": [
-            {
-              "name": "mission",
-              "stringValue": "={{ JSON.stringify($node[\"Execute Workflow Trigger\"].json.mission) }}"
-            }
-          ]
-        }
-      },
-      "id": "e59f1773-4121-4d5c-9075-6eb98dc735f8",
-      "name": "Questionneur d'Etudes6",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4440,
-        -400
-      ]
-    },
-    {
-      "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{ $node[\"Manager\"].json.output.toLowerCase() }}",
-                    "rightValue": "[mission accomplie]",
-                    "operator": {
-                      "type": "string",
-                      "operation": "contains"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "id": "298fc4e9-ee13-4c01-b979-6e859625335a",
-                    "leftValue": "={{ $node[\"Manager\"].json.output.toLowerCase() }}",
-                    "rightValue": "[exception]",
-                    "operator": {
-                      "type": "string",
-                      "operation": "contains"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {
-          "fallbackOutput": "extra"
-        }
-      },
-      "id": "f2da19ad-1b38-416a-a8e6-7eb2e3ad9250",
-      "name": "Switch Commands",
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3,
-      "position": [
-        6440,
-        160
       ]
     },
     {
@@ -1589,7 +1340,7 @@
     },
     {
       "parameters": {
-        "name": "kin_chercheur",
+        "name": "kinchercheur",
         "description": "\"Un assistant chercheur : prompt + ontologie\n\nSon processus :\n- Générer les requêtes de recherche\n- Utiliser l'outil 'recherche_google_scholar' qui retourne les résultats\n- Pour chaque résultat, effectuer un filtrage initial\n- Ajouter les études utiles dans Pinecone via l'outil 'inserer_document_dans_pinecone'",
         "workflowId": "RCzPi7XT4ijau6eF",
         "fields": {
@@ -1628,7 +1379,7 @@
     },
     {
       "parameters": {
-        "name": "kin_chercheur",
+        "name": "kinchercheur",
         "description": "\"Un assistant chercheur : prompt + ontologie\n\nSon processus :\n- Générer les requêtes de recherche\n- Utiliser l'outil 'recherche_google_scholar' qui retourne les résultats\n- Pour chaque résultat, effectuer un filtrage initial\n- Ajouter les études utiles dans Pinecone via l'outil 'inserer_document_dans_pinecone'",
         "workflowId": "RCzPi7XT4ijau6eF",
         "fields": {
@@ -1668,7 +1419,7 @@
     {
       "parameters": {
         "assistantId": "asst_i59drQwQdShF5SmdHgqd3gXG",
-        "text": "=NOUVELLE MISSION\n======\n\n{{ $node[\"Get Email\"].json.text }}\n\nTEMPLATE\n======\n\n{{ $node[\"template\"].json.template}}\n\nFYI : INSTRUCTIONS DU {{  $node[\"template\"].json.kin }} \n======\n\nPour t'aider à cadrer le PRODUCTEUR {{  $node[\"template\"].json.kin }} , voici son prompt système :\n\n``\n{{ $node[\"Get Assistant\"].json.instructions }}\n``\n\nCADRAGE DE LA MISSION\n======\n\nEcris le document de cadrage de mission, afin d'assurer que le PRODUCTEUR soit guidé corectement.\n\nCe document doit contenir :\n- Une reformulation complète et précise de la demande reçue.\n- L'objectif exprimé par le demandeur\n- \n\nCADRAGE DE LA MISSION :",
+        "text": "={{ $node[\"Prompt Producteur\"].json.prompt }}",
         "options": {}
       },
       "id": "1eb9f059-f81e-471f-891c-6e1501327452",
@@ -1676,8 +1427,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        4380,
-        2060
+        3880,
+        720
       ],
       "retryOnFail": true,
       "credentials": {
@@ -1687,6 +1438,498 @@
         }
       },
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_etude",
+        "description": "Le Questionneur d'étude retourne une réponse issue de l'étude à analyser à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée en Anglais, contenant :\n- La citation de l'étude,\n- Les informations que tu cherches,\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire,\n- Le format de réponse désiré.\n",
+        "workflowId": "anybPoo9G98Nx3qW",
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "={{ JSON.stringify($node[\"Execute Workflow Trigger\"].json.mission) }}"
+            },
+            {
+              "name": "documentGoogleDriveId",
+              "stringValue": "={{ $node[\"Execute Workflow Trigger\"].json.sourceGoogleDriveId }}"
+            }
+          ]
+        }
+      },
+      "id": "0f130d0e-3a84-4baa-9a59-1e35c62f9dce",
+      "name": "Questionneur de document",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4340,
+        -400
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_la_base_d_etudes",
+        "description": "Le Questionneur d'études retourne une réponse issue de notre base d'études à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée en Anglais, contenant :\n- La citation de l'étude si étude spécifique,\n- L'intention d'usage : ce que tu souhaites faire de ces informations.\n- Le format de réponse désiré.\n",
+        "workflowId": "yQ79P9nuVKhkwZpD",
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "={{ JSON.stringify($node[\"Execute Workflow Trigger\"].json.mission) }}"
+            }
+          ]
+        }
+      },
+      "id": "e59f1773-4121-4d5c-9075-6eb98dc735f8",
+      "name": "Questionneur de la base d'études",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4480,
+        -400
+      ]
+    },
+    {
+      "parameters": {
+        "name": "recherche_google_scholar",
+        "description": "La recherche Google Scholar renvoie la premiere page des résultats à partir d'une Query.",
+        "workflowId": "syCSVTnhcjp4jtCz"
+      },
+      "id": "87a6df85-623e-4914-b936-658e8b922dc2",
+      "name": "Recherche Google Scholar",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4380,
+        1380
+      ]
+    },
+    {
+      "parameters": {
+        "name": "recherche_google_scholar",
+        "description": "La recherche Google Scholar renvoie la premiere page des résultats à partir d'une Query.",
+        "workflowId": "syCSVTnhcjp4jtCz"
+      },
+      "id": "e5a85e4c-011f-40fb-ba6e-9d198ea1ff88",
+      "name": "Recherche Google Scholar1",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4380,
+        1900
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_EwmKBIJWKqCJECb0nVBVju45",
+        "text": "={{ $node[\"Prompt Producteur\"].json.prompt }}",
+        "options": {}
+      },
+      "id": "0c203a91-b441-489b-811c-696a03f79c73",
+      "name": "kincadreurbeta",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        3880,
+        1000
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {},
+      "id": "7c02ddc3-ee31-4dae-93c5-0732aef06b62",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        2700,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"task\"].json;\n\nlet entireThread = json.thread + '\\n\\n' + json.instructions;\n\n\nlet matches = entireThread.match(/kin[a-zA-Z]+/gi);\nlet kin = \"exception\";\n\nif (matches && matches.length > 0) {\n    kin = matches[matches.length - 1];\n} else {\n    console.log(\"Aucune occurrence trouvée.\");\n}\n\njson.to = kin + \"@digitalkin.ai\";\n\nreturn {\"json\": json};"
+      },
+      "id": "21c31457-2362-4b30-b14b-a018a90ffe3e",
+      "name": "mail to Kin",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6660,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "1a743e65-4e49-4878-bfc1-a41bb6fae343",
+              "leftValue": "={{ $node[\"Execute Workflow Trigger\"].json.sync }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "d5b1ee8d-8af1-499e-a541-dfb498b9ac7d",
+      "name": "If sync",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        6580,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_NRJfqzvKf73U2CjrI4bqMSf5",
+        "text": "=[PROCESSUS - Mission Globale]\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\n[/PROCESSUS - Mission Globale]\n----\n[INFORMATIF - Prompt Système de {{  $node[\"Execute Workflow Trigger\"].json.kin }}]\n\n{{ $node[\"Get Assistant\"].json.instructions }}\n\n[/INFORMATIF - Prompt Système de {{  $node[\"Execute Workflow Trigger\"].json.kin }}]\n----\n[INFORMATIF - Thread d'Avancement]\n\n{{ $node[\"thread\"].json.thread }}\n\n[/INFORMATIF - Thread d'Avancement]\n----\n[INFORMATIF - Dernières Instructions du KinManager]\n\n{{ $node[\"thread\"].json.instructions }}\n\n[/INFORMATIF - Dernières Instructions du KinManager]\n----\n[INFORMATIF - Rédaction réalisée / Actions effectuées par {{  $node[\"Execute Workflow Trigger\"].json.kin }}]\n\n{{ $json.output }}\n\n[/INFORMATIF - Rédaction réalisée / Actions effectuées par {{  $node[\"Execute Workflow Trigger\"].json.kin }}]",
+        "options": {}
+      },
+      "id": "0b4c1b91-ae71-4843-b103-0277f8f487b4",
+      "name": "Manager",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        5160,
+        160
+      ],
+      "retryOnFail": false,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let entireThread = $json.thread;\nlet thread = $json.thread;\nlet instructions = $node[\"Execute Workflow Trigger\"].json.query?$node[\"Execute Workflow Trigger\"].json.query:$node[\"Execute Workflow Trigger\"].json.instructions;\nconst MAX_LENGTH = 10000;\n\nthread = thread.replace(/.*Prochaine étape.*$/gmi, '');\nthread = thread.replace(/.*Étape suivante.*$/gmi, '');\nthread = thread.replace(/^.*niveau de boucle.*$/gmi, '');\nthread = thread.replace(/```.*```/gmi, '');\nthread = thread.replace(/``.*``/gmi, '');\nthread = thread.replace(/^[\\r\\n]+|[\\r\\n]+$/g, '');\n\nif (thread.length > MAX_LENGTH) {\n    thread = \"Le début du document est déjà rédigé, voici les denières parties rédigées :\\n[...]\" + thread.substring(thread.length - MAX_LENGTH);\n    remainingThread = entireThread.substring(0, entireThread.length - MAX_LENGTH);\n} else {\n    remainingThread = \"\"; // Aucun contenu restant si la longueur du fil est inférieure à MAX_LENGTH\n}\n\nreturn {\"thread\": thread, \"entireThread\": entireThread, \"remainingThread\": remainingThread, \"instructions\": instructions};"
+      },
+      "id": "f2943232-b99c-4e69-ae50-48dd527aa0a6",
+      "name": "thread",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3540,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_bU27N3NS5XZ0lH4AFOuN8kb7",
+        "text": "={{ $node[\"Prompt Producteur\"].json.prompt }}",
+        "options": {}
+      },
+      "id": "705274a2-abf4-4031-a7f1-58fc18d7f395",
+      "name": "kincir",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4380,
+        -800
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_581bbg7Bmja1nCBKeiGg9Rgu",
+        "text": "={{ $node[\"Prompt Producteur\"].json.prompt }}",
+        "nativeTools": [
+          "code_interpreter"
+        ],
+        "options": {}
+      },
+      "id": "f9e05a8a-d972-4464-92ed-25b4ec2d142d",
+      "name": "kinlca",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4360,
+        -500
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_WKY0lRXB0rrJTFIm3HYv8jlE",
+        "text": "={{ $node[\"Prompt Producteur\"].json.prompt }}",
+        "options": {}
+      },
+      "id": "a441e8e3-0802-4dc2-af20-6bd09e04ce0d",
+      "name": "kinrsi",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4380,
+        -180
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
+        "text": "={{ $node[\"Prompt Producteur\"].json.prompt }}",
+        "options": {}
+      },
+      "id": "5d7bae62-2aaf-4b09-82fb-309e7858ee5a",
+      "name": "kinchercheurbeta",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4380,
+        1800
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_7abHKvQqtVij29X6ybyEvAbZ",
+        "text": "={{ $node[\"Prompt Producteur\"].json.prompt }}",
+        "options": {}
+      },
+      "id": "a4c0ce08-9cd7-4ded-bdbe-2d682c579eb6",
+      "name": "kinsota",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4380,
+        140
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_TwVBZeoLx80udowj5MIoG6Pq",
+        "text": "={{ $node[\"Prompt Producteur\"].json.prompt }}",
+        "options": {}
+      },
+      "id": "a5006fdd-836e-4162-8aba-f641634ffc78",
+      "name": "kincirbeta",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4380,
+        420
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
+        "text": "={{ $node[\"Prompt Producteur\"].json.prompt }}",
+        "options": {}
+      },
+      "id": "abb1b363-7706-4b86-a21b-83d3e1c9819d",
+      "name": "kindev",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4380,
+        740
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_3pQx4lfP0EN6Jstj8kozdBtC",
+        "text": "={{ $node[\"Prompt Producteur\"].json.prompt }}",
+        "options": {}
+      },
+      "id": "a353ab78-cdd5-4eaa-ab35-6807844c5773",
+      "name": "kinontologie",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4380,
+        1020
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
+        "text": "={{ $node[\"Prompt Producteur\"].json.prompt }}",
+        "options": {}
+      },
+      "id": "3e041b0a-99e2-476c-b22f-d0ac74d6c94c",
+      "name": "kinchercheur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4380,
+        1280
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_MHJDvt7FT6gcWBFdJsZqJ52C",
+        "text": "={{ $node[\"Prompt Producteur\"].json.prompt }}",
+        "options": {}
+      },
+      "id": "d714c7bc-4ca8-4ffd-8e69-ed576ab4e76d",
+      "name": "kinsotabeta",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4380,
+        1540
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "=-1002105587743",
+        "text": "={{ JSON.stringify($json).substring(JSON.stringify($json).length - 3900) }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": false
+        }
+      },
+      "id": "0e2878db-a49e-4700-b636-2a35a28654c6",
+      "name": "Envoi de notification Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        5540,
+        400
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "KinCIR Dynergie"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "0b9d63ab-2eb1-4470-a063-8ef3bb5fa276",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        6660,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "=prompt",
+              "stringValue": "=[INFORMATIF - Mission Globale]\n\n{{ $node[\"Execute Workflow Trigger\"].json.mission }}\n\n[/INFORMATIF - Mission Globale]\n----\n[INFORMATIF - Thread d'Avancement]\n\n{{ $node[\"thread\"].json.thread }}\n\n[/INFORMATIF - Thread d'Avancement]\n----\n[INSTRUCTIONS - (via KinManager) Rôle : Producteur]\n\n{{ $json.instructions }}\n\n[/INSTRUCTIONS - (via KinManager) Rôle : Producteur]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c8110551-dcae-4a3e-a6eb-2f2b5296f6e6",
+      "name": "Prompt Producteur",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3720,
+        80
+      ]
     },
     {
       "parameters": {
@@ -1909,6 +2152,50 @@
                 ],
                 "combinator": "and"
               }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "d31caef0-4d25-4ed3-9e1d-eea4ca6dbc76",
+                    "leftValue": "={{  $node[\"Execute Workflow Trigger\"].json.kin }}",
+                    "rightValue": "kincadreur",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "e830f692-818a-4c36-a976-38294ef3f1c8",
+                    "leftValue": "={{  $node[\"Execute Workflow Trigger\"].json.kin }}",
+                    "rightValue": "kincadreurbeta",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
             }
           ]
         },
@@ -1921,6 +2208,88 @@
       "position": [
         3940,
         0
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $node[\"Producteur\"].json.output }}\n{{ $node[\"Manager\"].json.output }}",
+                    "rightValue": "mission accomplie]",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "298fc4e9-ee13-4c01-b979-6e859625335a",
+                    "leftValue": "={{ $node[\"Producteur\"].json.output }}\n{{ $node[\"Manager\"].json.output }}",
+                    "rightValue": "[EXCEPTION",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "85cccd38-117b-4670-a34a-bdf1bd6a583a",
+                    "leftValue": "={{ $node[\"Producteur\"].json.output.toLowerCase() }}\n{{ $node[\"Manager\"].json.output.toLowerCase() }}",
+                    "rightValue": "[DEMANDE",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "ignoreCase": true
+        }
+      },
+      "id": "f2da19ad-1b38-416a-a8e6-7eb2e3ad9250",
+      "name": "Switch Commands",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        6440,
+        160
       ]
     }
   ],
@@ -1938,7 +2307,8 @@
     "executionOrder": "v1",
     "saveManualExecutions": true,
     "callerPolicy": "any",
-    "saveExecutionProgress": true
+    "saveExecutionProgress": true,
+    "executionTimeout": 2400
   },
   "staticData": {
     "node:Schedule Trigger": {
@@ -1968,6 +2338,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-25T10:24:07.000Z",
-  "versionId": "270efd69-0fa7-4e1a-b206-3c033085b5d1"
+  "updatedAt": "2024-01-25T22:45:38.000Z",
+  "versionId": "417f18f8-d42b-4ff2-949c-3ba732139251"
 }
