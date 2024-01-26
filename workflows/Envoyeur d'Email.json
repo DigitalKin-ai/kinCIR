@@ -1,0 +1,517 @@
+{
+  "active": false,
+  "connections": {
+    "Convert to PDF": {
+      "main": [
+        [
+          {
+            "node": "Download PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download PDF": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If format md": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If document not empty": {
+      "main": [
+        [
+          {
+            "node": "If format md",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Email without attachment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email without attachment": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Document": {
+      "main": [
+        [
+          {
+            "node": "Convert to JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "document": {
+      "main": [
+        [
+          {
+            "node": "Convert to binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If documentGoogleDriveId": {
+      "main": [
+        [
+          {
+            "node": "Download Document",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Email without attachment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "If documentGoogleDriveId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to JSON": {
+      "main": [
+        [
+          {
+            "node": "document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to binary data": {
+      "main": [
+        [
+          {
+            "node": "If document not empty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-17T22:40:17.010Z",
+  "id": "rr8aeSM8QYyY8Po4",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Envoyeur d'Email",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "ad816c39-fc1b-4e1a-90d9-4254ec9e9b4b",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2060,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://sync.api.cloudconvert.com/v2/jobs",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"tasks\": {\n    \"import-my-file\": {\n      \"operation\": \"import/raw\",\n      \"filename\": {{ JSON.stringify($node[\"If format md\"].binary.document.fileName) }},\n      \"file\": {{ JSON.stringify($node[\"document\"].json.document) }}\n    },\n    \"convert-my-file\": {\n      \"operation\": \"convert\",\n      \"input\": \"import-my-file\",\n      \"output_format\": \"pdf\"\n    },\n    \"export-my-file\": {\n      \"operation\": \"export/url\",\n      \"input\": \"convert-my-file\"\n    }\n  }\n}",
+        "options": {}
+      },
+      "id": "f8ffb428-6415-4bd1-8e53-2332a51ffcbf",
+      "name": "Convert to PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -220,
+        80
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "0dvNBbU8vvKoyenO",
+          "name": "Cloud Convert Header AUTH"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.data.tasks[0].result.files[0].url }}",
+        "options": {}
+      },
+      "id": "da1245b6-0360-4f81-8625-d7eb4cce35aa",
+      "name": "Download PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        0,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
+              "leftValue": "={{ $node[\"Execute Workflow Trigger\"].json.format }}",
+              "rightValue": "md",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "2ea31321-dc0f-4232-9ac7-1dd97d85c149",
+      "name": "If format md",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -440,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $node[\"Execute Workflow Trigger\"].json[\"mailId\"] }}",
+        "message": "={{ $node[\"sortie\"].json.output }}",
+        "options": {
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "={{ Object.keys($binary)[0] }}"
+              }
+            ]
+          },
+          "ccList": "={{ $node[\"Execute Workflow Trigger\"].json[\"to\"] ? $node[\"Execute Workflow Trigger\"].json[\"to\"] + \", \" : \"\"}} team@digitalkin.ai",
+          "senderName": "={{ $node[\"Execute Workflow Trigger\"].json.kin.toUpperCase() }}"
+        }
+      },
+      "id": "7b921306-0454-42ef-9581-adcdd8b991e4",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        220,
+        -40
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail Nicolas"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\": {\"response\": JSON.stringify($json)}};"
+      },
+      "id": "c11a26c2-b7dd-4c45-bf2c-106a4bb97ee8",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
+              "leftValue": "={{ Object.keys( $node[\"Execute Workflow Trigger\"].json.document ).length > 0 }}",
+              "rightValue": "md",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "e9599663-1984-445e-9d09-ffbe17c31ae2",
+      "name": "If document not empty",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -640,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $node[\"Execute Workflow Trigger\"].json[\"mailId\"] }}",
+        "message": "={{ $node[\"Execute Workflow Trigger\"].json.output }}",
+        "options": {
+          "ccList": "={{ $node[\"Execute Workflow Trigger\"].json[\"to\"] ? $node[\"Execute Workflow Trigger\"].json[\"to\"] + \", \" : \"\"}} team@digitalkin.ai",
+          "senderName": "={{ $node[\"Execute Workflow Trigger\"].json.kin.toUpperCase() }}"
+        }
+      },
+      "id": "fb119fef-b38a-4329-86db-1ee27c837b5f",
+      "name": "Send Email without attachment",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -440,
+        260
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail Nicolas"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $node[\"Execute Workflow Trigger\"].json[\"documentGoogleDriveId\"] }}",
+          "mode": "id"
+        },
+        "options": {
+          "binaryPropertyName": "thread",
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/rtf",
+              "sheetsToFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            }
+          }
+        }
+      },
+      "id": "ea25183a-d6f3-4434-927b-c9441ce2ce57",
+      "name": "Download Document",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1600,
+        0
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let thread = $node[\"Convert to JSON\"].json.thread;\n\nfunction extractDynamicContent(thread) {\n    let extractedContent = \"\";\n    const contentPattern = /\\[CONTENU[\\s\\S]*?][\\s\\S]*?\\[\\/CONTENU[\\s\\S]*?\\]/gi;\n\n    let matches;\n    while ((matches = contentPattern.exec(thread)) !== null) {\n        // Ajoute chaque contenu trouvé au texte final\n        extractedContent += matches[0] + \"\\n\\n\";\n    }\n\n    return extractedContent.trim();\n}\n\n// Fonction pour retirer les occurrences\nfunction removeOccurrences(document, pattern) {\n    return document.replace(pattern, '');\n}\n\n// Garder le CONTENU\nlet document = extractDynamicContent(thread);\n\n// Expression régulière pour identifier les occurrences à retirer\nconst pattern = /\\n{0,2}\\[\\/?CONTENU.*?\\]\\n{0,2}/gi;\n\n// Application de la fonction au document\ndocument = removeOccurrences(document, pattern);\n\nreturn {\"json\":{\"document\":document}};"
+      },
+      "id": "40248ab8-62c9-45e1-bdb8-5ae463809b0f",
+      "name": "document",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1120,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "document",
+        "destinationKey": "document",
+        "options": {
+          "fileName": "={{ $node[\"Download Document\"].binary.document.fileName }}",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "899d0621-38d2-4956-a8b4-99c6da5f40aa",
+      "name": "Convert to binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        -880,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
+              "leftValue": "={{ $node[\"Execute Workflow Trigger\"].json.documentGoogleDriveId }}",
+              "rightValue": "md",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "a3ea7d03-4aa4-4fe0-8c78-74d2f8574a33",
+      "name": "If documentGoogleDriveId",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1840,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "sourceKey": "={{ Object.keys($binary)[0] }}",
+        "destinationKey": "thread",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "id": "3883067e-ee27-4520-b4a1-0d32d9d4c6f9",
+      "name": "Convert to JSON",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        -1360,
+        0
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-01-21T09:47:18.925Z",
+      "updatedAt": "2024-01-21T09:47:18.925Z",
+      "id": "G7odwuwbJmUt0XX2",
+      "name": "prod"
+    },
+    {
+      "createdAt": "2023-12-17T10:32:35.457Z",
+      "updatedAt": "2023-12-17T10:32:35.457Z",
+      "id": "y4SS6pvxfLMwCsGn",
+      "name": "service"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-26T07:45:41.000Z",
+  "versionId": "24d30055-2420-4f48-b4bc-9cdba4d975ac"
+}
