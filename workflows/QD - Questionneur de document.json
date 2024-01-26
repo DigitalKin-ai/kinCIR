@@ -129,7 +129,7 @@
       "main": [
         [
           {
-            "node": "Questionneur de document (map reduce)",
+            "node": "text",
             "type": "main",
             "index": 0
           }
@@ -137,17 +137,6 @@
         [
           {
             "node": "Questionneur de document ( version chain)",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Extract From File": {
-      "main": [
-        [
-          {
-            "node": "Questionneur de document (map reduce)",
             "type": "main",
             "index": 0
           }
@@ -198,11 +187,33 @@
         ]
       ]
     },
+    "Extract From File": {
+      "main": [
+        [
+          {
+            "node": "text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Questionneur de document (map reduce)": {
       "main": [
         [
           {
             "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "text": {
+      "main": [
+        [
+          {
+            "node": "Questionneur de document (map reduce)",
             "type": "main",
             "index": 0
           }
@@ -283,8 +294,8 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        2380,
-        80
+        2060,
+        40
       ]
     },
     {
@@ -381,8 +392,8 @@
       "type": "n8n-nodes-base.readPDF",
       "typeVersion": 1,
       "position": [
-        3280,
-        0
+        2960,
+        -40
       ],
       "onError": "continueErrorOutput"
     },
@@ -438,8 +449,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2620,
-        80
+        2300,
+        40
       ]
     },
     {
@@ -471,8 +482,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        3040,
-        80
+        2720,
+        40
       ]
     },
     {
@@ -487,8 +498,8 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        3280,
-        160
+        2960,
+        120
       ]
     },
     {
@@ -506,8 +517,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        2860,
-        80
+        2540,
+        40
       ],
       "credentials": {
         "googleDriveOAuth2Api": {
@@ -616,6 +627,28 @@
         3560,
         60
       ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "text",
+              "stringValue": "={{ $json.text }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "6e9f729c-cd0d-47a5-b91e-bf45932b4098",
+      "name": "text",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3340,
+        60
+      ]
     }
   ],
   "pinData": {
@@ -657,6 +690,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-25T11:46:33.000Z",
-  "versionId": "96e928a9-eb57-4656-8b75-6780d203992a"
+  "updatedAt": "2024-01-26T16:13:15.000Z",
+  "versionId": "474460f1-1295-4abc-b417-9432f9383c93"
 }
