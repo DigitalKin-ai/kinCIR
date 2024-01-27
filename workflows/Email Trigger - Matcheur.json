@@ -76,13 +76,7 @@
     },
     "Get Existing Document": {
       "main": [
-        [
-          {
-            "node": "List Template",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "IF Document existe": {
@@ -465,7 +459,7 @@
           "values": [
             {
               "name": "template",
-              "stringValue": "={{ $json.template?$json.template:\"[INFORMATIF - Pas de Template]\\n\\nPas de template existant, donc la structure du docement est à définir\\n\\n[/INFORMATIF - Pas de Template]\" }}"
+              "stringValue": "={{ $json.template?$json.template:\"[INFORMATIF - Pas de Template]\\n\\nPas de template existant, donc la structure du document est à définir\\n\\n[/INFORMATIF - Pas de Template]\" }}"
             },
             {
               "name": "titre",
@@ -481,7 +475,7 @@
             },
             {
               "name": "mailId",
-              "stringValue": "={{ $('Get Thread').item.json.messages[0].id }}"
+              "stringValue": "={{ $node[\"Get Email\"].json.id }}"
             },
             {
               "name": "client",
@@ -605,8 +599,8 @@
       "name": "List Template",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        1640,
-        60
+        280,
+        480
       ],
       "typeVersion": 1,
       "id": "bb60c5ce-fa14-47b0-801b-4ac3d636ee1a",
@@ -1253,6 +1247,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-26T22:56:08.000Z",
-  "versionId": "61d9c8a2-43b5-4d05-9559-3cc6cb1ca587"
+  "updatedAt": "2024-01-26T23:01:31.000Z",
+  "versionId": "449df143-d371-494f-8815-e41e13f90616"
 }
