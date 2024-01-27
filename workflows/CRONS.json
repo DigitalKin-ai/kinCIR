@@ -1,16 +1,11 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Schedule Trigger": {
       "main": [
         [
           {
             "node": "Get todo",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Delete tasks TODO",
             "type": "main",
             "index": 0
           }
@@ -966,6 +961,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-26T23:08:11.000Z",
-  "versionId": "e0a492b8-888e-4224-a6bf-14e638ea63ae"
+  "updatedAt": "2024-01-27T17:16:32.000Z",
+  "versionId": "1524b75e-5d8b-47cb-a96e-e9be0cd9b5d7"
 }
