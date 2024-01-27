@@ -8,6 +8,11 @@
             "node": "Get todo",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Delete tasks TODO",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -223,7 +228,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.1,
       "position": [
-        340,
+        320,
         380
       ]
     },
@@ -961,6 +966,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-26T21:38:32.000Z",
-  "versionId": "afdfd5b7-708c-4cff-8cac-9cd8db0098c4"
+  "updatedAt": "2024-01-26T23:08:11.000Z",
+  "versionId": "e0a492b8-888e-4224-a6bf-14e638ea63ae"
 }
