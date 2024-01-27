@@ -1,0 +1,184 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown Ouput",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Output": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown1": {
+      "main": [
+        [
+          {
+            "node": "Send Instructions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown Ouput": {
+      "main": [
+        [
+          {
+            "node": "Send Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-27T13:03:44.164Z",
+  "id": "EYWde6gUS9Qq2ok7",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Send notification",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "fa64a015-6ba6-4159-8ff3-e52c0a382b33",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-1002105587743",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "00ff0a66-9b7b-4a0f-b754-de55773d301d",
+      "name": "Send Output",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        320,
+        480
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "KinCIR Dynergie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-1002105587743",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "e4758c47-45ed-4fb6-8468-b14ba38b8aad",
+      "name": "Send Instructions",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        820,
+        480
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "KinCIR Dynergie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"Execute Workflow Trigger\"].json;\n\nlet text = json.kin + \" (Producteur)\" + json.mailSubject + json.instructions;\ntext = text.substring(text.length - 3900); \ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+      },
+      "id": "764524a5-08e4-4df8-b4eb-974591df2a28",
+      "name": "Escape Markdown1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        580,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"Execute Workflow Trigger\"].json;\n\nlet text = json.kin + \" (Producteur)\" + json.mailSubject + json.output;\ntext = text.substring(text.length - 3900); \ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+      },
+      "id": "9994bd61-7c76-4adc-b735-ec7f426bef7d",
+      "name": "Escape Markdown Ouput",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        80,
+        480
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1706088137,
+      "possibleDuplicates": [
+        "18d3ac70312f4667"
+      ]
+    },
+    "node:Seb reçoit un email": {
+      "lastTimeChecked": 1706023258
+    },
+    "node:Kin Mail": {
+      "lastTimeChecked": 1706305011,
+      "possibleDuplicates": [
+        "18d47b488e5cab95"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    },
+    {
+      "createdAt": "2023-12-17T10:32:35.457Z",
+      "updatedAt": "2023-12-17T10:32:35.457Z",
+      "id": "y4SS6pvxfLMwCsGn",
+      "name": "service"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-27T17:46:13.000Z",
+  "versionId": "f9d63905-6404-4d2b-a17a-781fc5d82f5b"
+}
