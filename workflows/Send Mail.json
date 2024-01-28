@@ -1,0 +1,296 @@
+{
+  "active": false,
+  "connections": {
+    "Send Email": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email without attachment": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "document kinMail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If document not empty": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Email without attachment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "document kinMail": {
+      "main": [
+        [
+          {
+            "node": "entree DocumentDemandeur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree DocumentDemandeur": {
+      "main": [
+        [
+          {
+            "node": "documentDemandeur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "documentDemandeur": {
+      "main": [
+        [
+          {
+            "node": "If document not empty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-17T22:40:17.010Z",
+  "id": "rr8aeSM8QYyY8Po4",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Send Mail",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "ad816c39-fc1b-4e1a-90d9-4254ec9e9b4b",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2540,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"] }}",
+        "message": "={{ $node[\"document kinMail\"].json[\"document\"] }}",
+        "options": {
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "={{ Object.keys($binary)[0] }}"
+              }
+            ]
+          },
+          "ccList": "={{ $node[\"entree DocumentDemandeur\"].json[\"to\"] ? $node[\"entree DocumentDemandeur\"].json[\"to\"] + \", \" : \"\"}} team@digitalkin.ai",
+          "senderName": "={{ $node[\"entree DocumentDemandeur\"].json.kin.toUpperCase() }}"
+        }
+      },
+      "id": "7b921306-0454-42ef-9581-adcdd8b991e4",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -1400,
+        -140
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail Nicolas"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\": {\"response\": JSON.stringify($json)}};"
+      },
+      "id": "c11a26c2-b7dd-4c45-bf2c-106a4bb97ee8",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1100,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"] }}",
+        "message": "={{ $node[\"document kinMail\"].json[\"document\"] }}",
+        "options": {
+          "ccList": "={{ $node[\"entree DocumentDemandeur\"].json[\"to\"] ? $node[\"entree DocumentDemandeur\"].json[\"to\"] + \", \" : \"\"}} team@digitalkin.ai",
+          "senderName": "={{ $node[\"entree DocumentDemandeur\"].json.kin.toUpperCase() }}"
+        }
+      },
+      "id": "fb119fef-b38a-4329-86db-1ee27c837b5f",
+      "name": "Send Email without attachment",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -1400,
+        120
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail Nicolas"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
+              "leftValue": "={{ Object.keys( $node[\"documentDemandeur\"].json.document ).length > 0 }}",
+              "rightValue": "md",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "47148ce4-5905-48a7-a583-48467336a185",
+      "name": "If document not empty",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1640,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "H3fxaSnxjZT6EGhc",
+        "options": {}
+      },
+      "id": "c17f7e19-7fd3-4f99-98d4-957589a92d63",
+      "name": "documentDemandeur",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -1860,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "H3fxaSnxjZT6EGhc",
+        "options": {}
+      },
+      "id": "7e1132b2-72d3-4030-ba04-149db26029b8",
+      "name": "document kinMail",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -2320,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\njson.kin = json.kinDemandeur;\njson.mission = json.missionDemandeur;\n\nreturn {\"json\": json};"
+      },
+      "id": "944ba1bf-168f-4da3-ad97-b365252e5d76",
+      "name": "entree DocumentDemandeur",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2080,
+        0
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-01-21T09:47:18.925Z",
+      "updatedAt": "2024-01-21T09:47:18.925Z",
+      "id": "G7odwuwbJmUt0XX2",
+      "name": "prod"
+    },
+    {
+      "createdAt": "2023-12-17T10:32:35.457Z",
+      "updatedAt": "2023-12-17T10:32:35.457Z",
+      "id": "y4SS6pvxfLMwCsGn",
+      "name": "service"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-28T14:23:58.000Z",
+  "versionId": "7096c0de-0c22-42e2-869f-5c2693a7d089"
+}
