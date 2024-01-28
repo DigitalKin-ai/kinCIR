@@ -117,7 +117,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"Execute Workflow Trigger\"].json;\n\nlet text = json.kin + \" (Producteur)\" + json.mailSubject + json.instructions;\ntext = text.substring(text.length - 3900); \ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"Execute Workflow Trigger\"].json;\n\nlet text = json.kin + \" (Manager ) : \" + json.mailSubject + json.instructions;\ntext = text.substring(text.length - 3900); \ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
       },
       "id": "764524a5-08e4-4df8-b4eb-974591df2a28",
       "name": "Escape Markdown1",
@@ -131,7 +131,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"Execute Workflow Trigger\"].json;\n\nlet text = json.kin + \" (Producteur)\" + json.mailSubject + json.output;\ntext = text.substring(text.length - 3900); \ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"Execute Workflow Trigger\"].json;\n\nlet text = json.kin + \" (Producteur) : \" + json.mailSubject + json.output;\ntext = text.substring(text.length - 3900); \ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
       },
       "id": "9994bd61-7c76-4adc-b735-ec7f426bef7d",
       "name": "Escape Markdown Ouput",
@@ -179,6 +179,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-27T17:46:13.000Z",
-  "versionId": "f9d63905-6404-4d2b-a17a-781fc5d82f5b"
+  "updatedAt": "2024-01-28T10:12:29.000Z",
+  "versionId": "1efe766f-d65f-40a6-b5ba-8af49fd33b70"
 }
