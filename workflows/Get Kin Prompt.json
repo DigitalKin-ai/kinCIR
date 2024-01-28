@@ -1,0 +1,208 @@
+{
+  "active": false,
+  "connections": {
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "kins",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kins": {
+      "main": [
+        [
+          {
+            "node": "assistantId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "assistantId": {
+      "main": [
+        [
+          {
+            "node": "Get Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Assistant": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-28T18:48:43.427Z",
+  "id": "xWxr2xnJu3cb8BAh",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Get Kin Prompt",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "e9a9cd73-24eb-4913-b47b-2faf74427f0b",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\n// Trouver le bon Kin\njson.kin = json.query.match(/kin\\w+/i)[0]; \n\nreturn {\"json\": json};"
+      },
+      "id": "fa356105-fca4-4c88-9c08-a9b513e105a0",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = {};\n\njson.response = \"[INFORMATIF - Prompt système de \" + $node[\"entree\"].json.kin + \"]\\n\\n\" + $node[\"Get Assistant\"].json.instructions + \"\\n\\n[/INFORMATIF - Prompt système de \" + $node[\"entree\"].json.kin + \"]\\n\\n\" ;\n\nreturn {\"json\": json};"
+      },
+      "id": "e8f1f229-0296-4628-887e-570d95446d0f",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1140,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/assistants/{{ $node[\"assistantId\"].json.assistantId }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "45118db3-ea1e-439b-a151-d386bb73a515",
+      "name": "Get Assistant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        940,
+        520
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "gdFeXvXoLRHkWsrB",
+        "options": {}
+      },
+      "id": "eedc0202-0e7e-4f72-9a28-560d2f200195",
+      "name": "kins",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        540,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let assistantId;\nconst kinObject = $json.kin.find(kin => kin.kin === $node[\"entree\"].json.kin);\n\nassistantId = kinObject && kinObject.assistantId ? kinObject.assistantId : \"asst_8umriZllMPt14U8qy2T0jCmQ\";\n\nreturn {\"assistantId\": assistantId};"
+      },
+      "id": "46d3dc3c-46cf-495b-b304-ca8752a8aee8",
+      "name": "assistantId",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        740,
+        520
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1706088137,
+      "possibleDuplicates": [
+        "18d3ac70312f4667"
+      ]
+    },
+    "node:Seb reçoit un email": {
+      "lastTimeChecked": 1706023258
+    },
+    "node:Kin Mail": {
+      "lastTimeChecked": 1706305011,
+      "possibleDuplicates": [
+        "18d47b488e5cab95"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    },
+    {
+      "createdAt": "2023-12-17T10:32:35.457Z",
+      "updatedAt": "2023-12-17T10:32:35.457Z",
+      "id": "y4SS6pvxfLMwCsGn",
+      "name": "service"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-28T22:18:06.000Z",
+  "versionId": "5a3f1562-b802-404f-a34c-1114df6fd1d1"
+}
