@@ -1,0 +1,307 @@
+{
+  "active": false,
+  "connections": {
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "document": {
+      "main": [
+        [
+          {
+            "node": "Convert to binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "thread": {
+      "main": [
+        [
+          {
+            "node": "document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If format md": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download PDF": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to PDF": {
+      "main": [
+        [
+          {
+            "node": "Download PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to binary data": {
+      "main": [
+        [
+          {
+            "node": "If format md",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-28T16:38:36.624Z",
+  "id": "Tec4I718giJKxtrg",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Lancer un Kin",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "103bf77e-e673-486e-a4f9-2a2340c2c6cd",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\nreturn {\"json\": json};"
+      },
+      "id": "98b9d4ac-30f5-409a-b874-864c5cbbdd8b",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "YWxRZmBa38HYCjnv",
+        "options": {}
+      },
+      "id": "245bfb48-0c21-4536-8c3e-058065d64211",
+      "name": "thread",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        80,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let thread = $json.thread;\n\nfunction extractDynamicContent(thread) {\n    let extractedContent = \"\";\n    const contentPattern = /\\[CONTENU[\\s\\S]*?][\\s\\S]*?\\[\\/CONTENU[\\s\\S]*?\\]/gi;\n\n    let matches;\n    while ((matches = contentPattern.exec(thread)) !== null) {\n        // Ajoute chaque contenu trouvé au texte final\n        extractedContent += matches[0] + \"\\n\\n\";\n    }\n\n    return extractedContent.trim();\n}\n\n// Fonction pour retirer les occurrences\nfunction removeOccurrences(document, pattern) {\n    return document.replace(pattern, '');\n}\n\n// Garder le CONTENU\nlet document = extractDynamicContent(thread);\n\n// Expression régulière pour identifier les occurrences à retirer\nconst pattern = /\\n{0,2}\\[\\/?CONTENU.*?\\]\\n{0,2}/gi;\n\n// Application de la fonction au document\ndocument = removeOccurrences(document, pattern);\n\nif (document == \"\") {\n  document = \"[EXCEPTION - Pas de contenu]\\n\\nPas de baslises DOCUMENT trouvées dans le thread ![/EXCEPTION - Pas de contenu]\"\n}\n\nreturn {\"json\":{\"document\":document}};"
+      },
+      "id": "d88c2542-e1af-4fe0-b249-f31bf179c108",
+      "name": "document",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "document",
+        "destinationKey": "document",
+        "options": {
+          "fileName": "={{ $node[\"thread\"].binary.thread.fileName }}",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "5095197f-1ab6-4397-860a-a95540ca59b1",
+      "name": "Convert to binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        560,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
+              "leftValue": "={{ $node[\"entree\"].json.format }}",
+              "rightValue": "md",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "6880f9c1-cd8c-451d-88d9-0dadbf97a495",
+      "name": "If format md",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        780,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.data.tasks[0].result.files[0].url }}",
+        "options": {}
+      },
+      "id": "a206f6a6-b15f-48a4-ac93-a60a04720d1a",
+      "name": "Download PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1220,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://sync.api.cloudconvert.com/v2/jobs",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"tasks\": {\n    \"import-my-file\": {\n      \"operation\": \"import/raw\",\n      \"filename\": {{ JSON.stringify($node[\"If format md\"].binary.document.fileName) }},\n      \"file\": {{ JSON.stringify($node[\"document\"].json.document) }}\n    },\n    \"convert-my-file\": {\n      \"operation\": \"convert\",\n      \"input\": \"import-my-file\",\n      \"output_format\": \"pdf\"\n    },\n    \"export-my-file\": {\n      \"operation\": \"export/url\",\n      \"input\": \"convert-my-file\"\n    }\n  }\n}",
+        "options": {}
+      },
+      "id": "bc49281b-b048-48df-999a-861bc1584d6a",
+      "name": "Convert to PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1000,
+        580
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "0dvNBbU8vvKoyenO",
+          "name": "Cloud Convert Header AUTH"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = {};\n\njson.document = $node[\"document\"].json.document;\n\nreturn {\"json\": json, \"binary\": $binary};"
+      },
+      "id": "aca4af45-7f1c-4616-966d-d514bfa2ca50",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1460,
+        460
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1706088137,
+      "possibleDuplicates": [
+        "18d3ac70312f4667"
+      ]
+    },
+    "node:Seb reçoit un email": {
+      "lastTimeChecked": 1706023258
+    },
+    "node:Kin Mail": {
+      "lastTimeChecked": 1706305011,
+      "possibleDuplicates": [
+        "18d47b488e5cab95"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    },
+    {
+      "createdAt": "2023-12-17T10:32:35.457Z",
+      "updatedAt": "2023-12-17T10:32:35.457Z",
+      "id": "y4SS6pvxfLMwCsGn",
+      "name": "service"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-28T16:38:36.624Z",
+  "versionId": "dcc5ab04-537c-4e23-a463-0853fd3a59a5"
+}
