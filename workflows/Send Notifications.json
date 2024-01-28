@@ -1,0 +1,252 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown Prompt Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown Prompt Producteur": {
+      "main": [
+        [
+          {
+            "node": "Send Prompt Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Prompt Producteur": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown Ouput",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown Ouput": {
+      "main": [
+        [
+          {
+            "node": "Send Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Output": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown1": {
+      "main": [
+        [
+          {
+            "node": "Send Instructions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-27T13:03:44.164Z",
+  "id": "EYWde6gUS9Qq2ok7",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Send Notifications",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "fa64a015-6ba6-4159-8ff3-e52c0a382b33",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -460,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"Execute Workflow Trigger\"].json;\n\nlet text = json.promptProducteur;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext =  \" Prompt de \" +json.kin + \" (Producteur) : \" + json.mailSubject + \"\\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+      },
+      "id": "5ebb2fe2-cbe0-425a-a203-1ca434ba5dcb",
+      "name": "Escape Markdown Prompt Producteur",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        480
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "-1002105587743",
+        "text": "=*{{ $json.text }}*",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "62a90753-6dad-4f79-a93d-4f4622de32e5",
+      "name": "Send Prompt Producteur",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        -40,
+        480
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "KinCIR Dynergie"
+        }
+      },
+      "disabled": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"Execute Workflow Trigger\"].json;\n\nlet text = json.output;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext = \" Output de \" +json.kin + \" (Producteur) : \" + json.mailSubject + \"\\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+      },
+      "id": "9994bd61-7c76-4adc-b735-ec7f426bef7d",
+      "name": "Escape Markdown Ouput",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        180,
+        480
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "-1002105587743",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "00ff0a66-9b7b-4a0f-b754-de55773d301d",
+      "name": "Send Output",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        380,
+        480
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "KinCIR Dynergie"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"Execute Workflow Trigger\"].json;\n\nlet text = json.instructions;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext =  \"Nouvelles Instructions de \" +json.kin + \" (Manager) : \" + json.mailSubject + \"\\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+      },
+      "id": "764524a5-08e4-4df8-b4eb-974591df2a28",
+      "name": "Escape Markdown1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        580,
+        480
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "-1002105587743",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "e4758c47-45ed-4fb6-8468-b14ba38b8aad",
+      "name": "Send Instructions",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        780,
+        480
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "KinCIR Dynergie"
+        }
+      },
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1706088137,
+      "possibleDuplicates": [
+        "18d3ac70312f4667"
+      ]
+    },
+    "node:Seb reçoit un email": {
+      "lastTimeChecked": 1706023258
+    },
+    "node:Kin Mail": {
+      "lastTimeChecked": 1706305011,
+      "possibleDuplicates": [
+        "18d47b488e5cab95"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    },
+    {
+      "createdAt": "2023-12-17T10:32:35.457Z",
+      "updatedAt": "2023-12-17T10:32:35.457Z",
+      "id": "y4SS6pvxfLMwCsGn",
+      "name": "service"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-28T22:30:16.000Z",
+  "versionId": "299763e3-0e05-4931-8761-71eb261c8f94"
+}
