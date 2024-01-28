@@ -1101,7 +1101,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (json.output == null) {\n  if (json.response != null) {\n    json.output = json.response; // Gestion des services encapsulés dans la boucle de management\n  } else {\n    json.output = \"[EXCEPTION - Error with OpenAI call]\\n\\n\" + $prevNode.name +\" returned an error when calling OpenAI Assistant\\n\\n[/EXCEPTION - Error with OpenAI call]\"; \n  }\n}\n\njson.dernierProducteur = $prevNode.name;\n\njson.thread = $node[\"entree\"].json.entireThread + '\\n\\n---\\n\\n' + json.output;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"entree\"].json;\n\nif ($json.output != null) {\n  json.output = $json.output;\n} else {\n  json.output = \"[EXCEPTION - Error with OpenAI call]\\n\\n\" + $prevNode.name +\" returned an error when calling OpenAI Assistant\\n\\n[/EXCEPTION - Error with OpenAI call]\"; \n}\n\njson.dernierProducteur = $prevNode.name;\njson.promptProducteur = $node[\"Prompt Producteur\"].json.prompt;\n\njson.thread = json.entireThread + '\\n\\n---\\n\\n' + json.output;\ndelete json.entireThread;\ndelete json.remainingThread;\n\nreturn {\"json\": json};"
       },
       "id": "56074961-40df-4a44-aec3-3b05e23ee95e",
       "name": "Producteur",
@@ -1250,8 +1250,8 @@
         "fields": {
           "values": [
             {
-              "name": "=prompt",
-              "stringValue": "=[INFORMATIF - Mission Globale]\n\n{{ $node[\"entree\"].json.mission }}\n\n[/INFORMATIF - Mission Globale]\n----\n[INFORMATIF - Thread d'Avancement]\n\n{{ $node[\"entree\"].json.thread }}\n\n[/INFORMATIF - Thread d'Avancement]\n----\n[INSTRUCTIONS - (via KinManager) Rôle : Producteur]\n\n{{ $node[\"entree\"].json.instructions }}\n\n[/INSTRUCTIONS - (via KinManager) Rôle : Producteur]"
+              "name": "=promptProducteur",
+              "stringValue": "=[INFORMATIF - Mission Globale]\n\n{{ $node[\"entree\"].json.mission }}\n\n[/INFORMATIF - Mission Globale]\n\n---\n\n[INFORMATIF - Thread d'Avancement]\n\n{{ $node[\"entree\"].json.thread }}\n\n[/INFORMATIF - Thread d'Avancement]\n\n---\n\n[INSTRUCTIONS - (via KinManager) Rôle : Producteur]\n\n{{ $node[\"entree\"].json.instructions }}\n\n[/INSTRUCTIONS - (via KinManager) Rôle : Producteur]{{ $('entree').item.json[\"thread\"] }}"
             }
           ]
         },
@@ -1332,7 +1332,7 @@
       "typeVersion": 1,
       "position": [
         1940,
-        1780
+        2040
       ]
     },
     {
@@ -1861,7 +1861,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\njson.entireThread = $json.thread;\njson.thread = $json.thread;\njson.remainingThread = \"\";\njson.instructions = json.query?json.query:json.instructions.substring(0, 10000);\njson.mission = json.mission.substring(0, 10000);\n\nMAX_LENGTH = 15000;\n\nif (json.thread.length > MAX_LENGTH) {\n    json.thread = \"[...]\\n\\n\" + json.thread.substring(json.thread.length - MAX_LENGTH);\n    json.remainingThread = json.entireThread.substring(0, json.entireThread.length - MAX_LENGTH);\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\n// Cleaner les datas utilisées\ndelete json.output;\ndelete json.dernierProducteur;\ndelete json.promptProducteur;\njson.remainingThread = \"\";\n\n// Préparer le nouveau thread\njson.entireThread = $json.thread;\njson.thread = $json.thread;\n\n// Préparer les nouvelles instructions\njson.instructions = json.query?json.query:json.instructions.substring(0, 10000); // Cas fonction GPT\njson.mission = json.mission.substring(0, 10000);\n\nMAX_LENGTH = 15000;\n\nif (json.thread.length > MAX_LENGTH) {\n    json.thread = \"[...]\\n\\n\" + json.thread.substring(json.thread.length - MAX_LENGTH);\n    json.remainingThread = json.entireThread.substring(0, json.entireThread.length - MAX_LENGTH);\n}\n\nreturn {\"json\": json};"
       },
       "id": "f2943232-b99c-4e69-ae50-48dd527aa0a6",
       "name": "entree",
@@ -2221,10 +2221,10 @@
           "client": "dynergie",
           "instructions": "[INSTRUCTIONS - Début de misison]\n\nAccomplis la toute première étape de ton processus\n\n[/INSTRUCTIONS - Début de misison]",
           "kin": "kinmatcheur",
-          "mailId": "18d4bdbee0058b52",
-          "mailSubject": "lca 2",
-          "mission": "[PROCESSUS - Mission : Matching]\n\nTa mission est de trouver le Kin le plus adaté pour répondre au besoin du client, et de lancer le Kin approprié via une demande détaillée. \n\n[/PROCESSUS - Mission : Matching]\n\n---\n\n[INFORMATIF - Thread D'Emails]\n\nSujet: n/a\nDe: n/a\nÀ: n/a\nDate: 1/27/2024, 4:58:27 PM\nExtrait: LCA de Weekly Somapacitan is Effective and Well Tolerated in Children With GH Deficiency: The Randomized Phase 3 REAL4 Trial Bradley S. Miller,1 Joanne C. Blair,2 Michael Højby Rasmussen,3 Aristides\n\n\n\n[INFORMATIF - Thread D'Emails]\n\n---\n\n[INFORMATIF - Dernier email reçu]\n\nLCA de Weekly Somapacitan is Effective and Well Tolerated in Children With\nGH Deficiency: The Randomized Phase 3 REAL4 Trial Bradley S. Miller,1\nJoanne C. Blair,2 Michael Højby Rasmussen,3 Aristides Maniatis,4 Rasmus\nJuul Kildemoes,3 Jun Mori,5 Michel Polak,6 Rikke Beck Bang,7 Volker\nBöttcher,8 Stefano Stagi,9 and Reiko Horikawa10\n\n\n[/INFORMATIF - Dernier email reçu]",
-          "startTimestamp": "2024-01-27T18:16:35.618+01:00",
+          "mailId": "18d4f8fa3e552408",
+          "mailSubject": "lca 4",
+          "mission": "[PROCESSUS - Mission : Matching]\n\nTa mission est de trouver le Kin le plus adaté pour répondre au besoin du client, et de lancer le Kin approprié via une demande détaillée. \n\n[/PROCESSUS - Mission : Matching]\n\n---\n\n[INFORMATIF - Thread D'Emails]\n\nSujet: n/a\nDe: n/a\nÀ: n/a\nDate: 1/28/2024, 10:13:37 AM\nExtrait: LCA de Weekly Somapacitan is Effective and Well Tolerated in Children With GH Deficiency: The Randomized Phase 3 REAL4 Trial Bradley S. Miller,1 Joanne C. Blair,2 Michael Højby Rasmussen,3 Aristides\n\n\n\n[INFORMATIF - Thread D'Emails]\n\n---\n\n[INFORMATIF - Dernier email reçu]\n\nLCA de Weekly Somapacitan is Effective and Well Tolerated in Children With\nGH Deficiency: The Randomized Phase 3 REAL4 Trial Bradley S. Miller,1\nJoanne C. Blair,2 Michael Højby Rasmussen,3 Aristides Maniatis,4 Rasmus\nJuul Kildemoes,3 Jun Mori,5 Michel Polak,6 Rikke Beck Bang,7 Volker\nBöttcher,8 Stefano Stagi,9 and Reiko Horikawa10\n\n\n[/INFORMATIF - Dernier email reçu]",
+          "startTimestamp": "2024-01-28T11:20:49.547+01:00",
           "sync": false
         }
       }
@@ -2265,6 +2265,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-27T17:47:24.000Z",
-  "versionId": "8d512b7c-f5f6-4f54-a469-843e8b45e0f1"
+  "updatedAt": "2024-01-28T10:59:23.000Z",
+  "versionId": "d212d157-2808-4dc9-a4b0-6ca7dc804bd8"
 }
