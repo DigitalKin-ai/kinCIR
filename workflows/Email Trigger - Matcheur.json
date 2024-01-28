@@ -743,9 +743,9 @@
       ]
     },
     "node:Mail Trigger": {
-      "lastTimeChecked": 1706374707,
+      "lastTimeChecked": 1706436817,
       "possibleDuplicates": [
-        "18d4bdbee0058b52"
+        "18d4f8fa3e552408"
       ]
     }
   },
@@ -758,6 +758,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-27T16:59:08.000Z",
+  "updatedAt": "2024-01-28T10:14:08.000Z",
   "versionId": "47f194cf-7d70-4d09-9440-bc2511e02fd0"
 }
