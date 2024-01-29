@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "entree",
+            "node": "If mention",
             "type": "main",
             "index": 0
           }
@@ -16,7 +16,7 @@
       "main": [
         [
           {
-            "node": "entree",
+            "node": "If mention",
             "type": "main",
             "index": 0
           }
@@ -27,7 +27,7 @@
       "main": [
         [
           {
-            "node": "entree",
+            "node": "If mention",
             "type": "main",
             "index": 0
           }
@@ -93,6 +93,99 @@
           }
         ]
       ]
+    },
+    "entree thread": {
+      "main": [
+        [
+          {
+            "node": "thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "thread": {
+      "main": [
+        [
+          {
+            "node": "feedback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to binary data": {
+      "main": [
+        [
+          {
+            "node": "Update Thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "feedback": {
+      "main": [
+        [
+          {
+            "node": "Convert to binary data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown Ouput": {
+      "main": [
+        [
+          {
+            "node": "Send Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Thread": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown Ouput",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Output": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If mention": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-29T09:33:49.512Z",
@@ -114,7 +207,7 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.1,
       "position": [
-        1140,
+        880,
         320
       ],
       "webhookId": "f85a7b14-e4e9-4f17-8898-c2bd2d740f20",
@@ -137,7 +230,7 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.1,
       "position": [
-        1140,
+        880,
         480
       ],
       "webhookId": "db1a6ae8-2dda-4b84-9e1a-088aad542afd",
@@ -160,7 +253,7 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.1,
       "position": [
-        1140,
+        880,
         640
       ],
       "webhookId": "489315ee-a723-4959-8259-257fcc547589",
@@ -308,7 +401,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\njson.mailId = $json.message.text.match(/@kin\\w+/i)[0].substring(1); \n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.mailId = $json.metadata.mailId; \n\nreturn {\"json\": json};"
       },
       "id": "6fc299ef-c6a5-470c-b59c-13074a9604a6",
       "name": "entree thread",
@@ -318,42 +411,159 @@
         2240,
         480
       ]
-    }
-  ],
-  "pinData": {
-    "Telegram Trigger": [
-      {
-        "json": {
-          "update_id": 543561978,
-          "message": {
-            "message_id": 9651,
-            "from": {
-              "id": 1864364329,
-              "is_bot": false,
-              "first_name": "Lester",
-              "last_name": "paints the world",
-              "username": "lesterpaintstheworld",
-              "language_code": "fr"
-            },
-            "chat": {
-              "id": -1002105587743,
-              "title": "KinCIR Dynergie",
-              "type": "supergroup"
-            },
-            "date": 1706523009,
-            "text": "@kinmatcheur yoo",
-            "entities": [
-              {
-                "offset": 0,
-                "length": 7,
-                "type": "mention"
-              }
-            ]
-          }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"thread\"].json;\nlet message = $item(0).$node[\"entree\"].json.message;\nlet from = message.from.username?message.from.username:\"\" + \" \" + message.from.firstName?message.from.firstName:\"\" + \" \" + message.from.lastName?message.from.lastName:\"\";\n\njson.feedback = \"---\\n\\n[FEEDBACK - \" + from + \"]\\n\\n\" + message.text + \"\\n\\n[/FEEDBACK - \" + from + \"]\\n\"; \n\njson.thread += json.feedback ;\n\nreturn {\"json\": json};"
+      },
+      "id": "0193a968-2e6b-4b9f-a64c-955ec44ed88e",
+      "name": "feedback",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2660,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "fileName": "={{ $node[\"thread\"].binary.fileName }}",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "add5438c-3779-4450-8b56-221817428dab",
+      "name": "Convert to binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        2860,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $node[\"thread\"].json[\"documentGoogleDriveId\"] }}",
+          "mode": "id"
+        },
+        "changeFileContent": true,
+        "inputDataFieldName": "thread",
+        "newUpdatedFileName": "={{ $node[\"thread\"].binary.thread[\"fileName\"] }}",
+        "options": {}
+      },
+      "id": "e9402a4c-2176-4b93-8172-98bdc1c58011",
+      "name": "Update Thread",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        3080,
+        700
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
         }
       }
-    ]
-  },
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"feedback\"].json;\n\nlet text = json.feedback;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext = \"Feedback pour \" + $item(0).$node[\"entree\"].json.kin + \" (Producteur) : \" + $item(0).$node[\"entree\"].json.mailSubject + \"\\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+      },
+      "id": "1d3446ba-fc5e-4b7d-abfd-de69bc78457b",
+      "name": "Escape Markdown Ouput",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3280,
+        700
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "-4130957615",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": false,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "149c4191-96b4-489a-8a20-b044b50ef151",
+      "name": "Send Output",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3500,
+        700
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "rUijC7XE7TL12tph",
+          "name": "Lester AGI"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "3cace918-c2f2-47d4-98e8-c6ce0a67d7b2",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        3700,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "59531903-e8b9-4352-9640-3cec9ed78114",
+              "leftValue": "={{ $json.message.text.match(/@kin\\w+/i) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "e5d2def0-5dfa-4d0f-8d58-ab133b132413",
+      "name": "If mention",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        480
+      ]
+    }
+  ],
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
@@ -373,6 +583,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2024-01-29T10:42:19.000Z",
-  "versionId": "f5710a6f-0ab0-4919-a7c6-6e810d130657"
+  "updatedAt": "2024-01-29T14:04:52.000Z",
+  "versionId": "50d29322-f71a-4475-8319-199c0425e9b5"
 }
