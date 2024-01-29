@@ -84,7 +84,7 @@
     },
     {
       "parameters": {
-        "chatId": "1864364329",
+        "chatId": "-4130957615",
         "text": "={{ $json.text }}",
         "additionalFields": {
           "appendAttribution": false,
@@ -144,6 +144,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-29T09:05:25.000Z",
-  "versionId": "bb993658-dd30-410c-a817-45611825eee8"
+  "updatedAt": "2024-01-29T11:48:19.000Z",
+  "versionId": "843bdbb3-0750-45f9-aa42-be593095b5c7"
 }
