@@ -190,7 +190,7 @@
             {
               "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
               "leftValue": "={{ $node[\"entree\"].json.format }}",
-              "rightValue": "md",
+              "rightValue": "mdBAK",
               "operator": {
                 "type": "string",
                 "operation": "equals",
@@ -264,6 +264,20 @@
         1460,
         460
       ]
+    },
+    {
+      "parameters": {
+        "content": "## todo : fix format choice : re-choose format from Get Active Kins",
+        "height": 331.2914642317718
+      },
+      "id": "e2038ad5-7c91-4d36-af3b-eb125a2d80de",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        700,
+        280
+      ]
     }
   ],
   "pinData": {},
@@ -302,6 +316,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-28T15:23:00.000Z",
-  "versionId": "ea339638-8d0a-4732-9236-9af3e4e05c3e"
+  "updatedAt": "2024-01-29T07:58:12.000Z",
+  "versionId": "0538c6f2-1ae0-43d2-8eef-ac16f2c6e4b6"
 }
