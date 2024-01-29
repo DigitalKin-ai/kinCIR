@@ -1,34 +1,78 @@
 {
   "active": false,
   "connections": {
-    "GPT4": {
-      "ai_languageModel": [
+    "Execute Workflow Trigger": {
+      "main": [
         [
           {
-            "node": "Questionneur de code",
-            "type": "ai_languageModel",
+            "node": "entree",
+            "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Vector Store Retriever": {
-      "ai_retriever": [
+    "entree": {
+      "main": [
         [
           {
-            "node": "MultiQuery Retriever",
-            "type": "ai_retriever",
+            "node": "List Workflows",
+            "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Embeddings OpenAI1": {
-      "ai_embedding": [
+    "workflows": {
+      "main": [
         [
           {
-            "node": "Pinecone Vector Store",
-            "type": "ai_embedding",
+            "node": "kindev",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kindev": {
+      "main": [
+        [
+          {
+            "node": "Get Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List Workflows": {
+      "main": [
+        [
+          {
+            "node": "workflows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Workflow": {
+      "main": [
+        [
+          {
+            "node": "code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kindev1": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
             "index": 0
           }
         ]
@@ -38,51 +82,29 @@
       "ai_languageModel": [
         [
           {
-            "node": "MultiQuery Retriever",
+            "node": "Condenseur de code",
             "type": "ai_languageModel",
             "index": 0
           }
         ]
       ]
     },
-    "MultiQuery Retriever": {
-      "ai_retriever": [
-        [
-          {
-            "node": "Questionneur de code",
-            "type": "ai_retriever",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Execute Workflow Trigger": {
+    "code": {
       "main": [
         [
           {
-            "node": "Questionneur de code",
+            "node": "Condenseur de code",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Pinecone Vector Store": {
-      "ai_vectorStore": [
-        [
-          {
-            "node": "Vector Store Retriever",
-            "type": "ai_vectorStore",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Questionneur de code": {
+    "Condenseur de code": {
       "main": [
         [
           {
-            "node": "nouveau message",
+            "node": "kindev1",
             "type": "main",
             "index": 0
           }
@@ -98,201 +120,216 @@
   "name": "QE - Questionneur de code",
   "nodes": [
     {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-4-1106-preview",
-          "mode": "list",
-          "cachedResultName": "gpt-4-1106-preview"
-        },
-        "options": {
-          "timeout": 600000
-        }
-      },
-      "id": "f22ce96f-ee93-4540-ac1d-18648f41be56",
-      "name": "GPT4",
-      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
-      "typeVersion": 1,
-      "position": [
-        2500,
-        360
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {},
-      "id": "319cf958-0d3f-4d71-b040-8ebc70e562e3",
-      "name": "Vector Store Retriever",
-      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
-      "typeVersion": 1,
-      "position": [
-        2700,
-        660
-      ]
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "id": "589b5431-ed98-4dcc-9f00-25aeece3b504",
-      "name": "Embeddings OpenAI1",
-      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
-      "typeVersion": 1,
-      "position": [
-        2640,
-        980
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
       "parameters": {},
       "id": "052f1b77-51a2-43b5-9f1b-e2edd5c7e60e",
       "name": "Execute Workflow Trigger",
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        1760,
+        1800,
         180
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "return {\"response\":$json.response.text};"
+        "jsCode": "return {\"json\":{\"response\": $json.output}};"
       },
       "id": "a812ebb3-7896-4667-94bd-17adeb53636d",
       "name": "nouveau message",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3460,
+        4340,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\nif (!json.query) {\n  json.query = \"Je souhaite une explication générale du Workflow.\"\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "afca539c-72b3-4b55-8f58-34b42e918c6a",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2020,
         180
       ]
     },
     {
       "parameters": {
-        "model": "gpt-4-1106-preview",
+        "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
+        "text": "=# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Workflows n8n disponibles\n\n{{ $node[\"workflows\"].json.workflows }}\n\n# Instruction - Sélection de Workflow\n\nParmi les Workflows disponibles, lequel semble le plus approprié à consulter pour répondre au besoin informationnel ?\n\nRéponds au format \"ID: %WORKFLOWID% - Nom du Workflow\". Attention à respecter le format à la lettre.\n\nWorkflow :",
+        "options": {}
+      },
+      "id": "110edb53-8400-469d-aba6-cfe047fb3508",
+      "name": "kindev",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        180
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "let workflows = \"\";\n\n// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  workflows += item.json.id + \":\" +item.json.name + \"\\n\";\n}\n\nreturn {\"json\": {\"workflows\": workflows}};"
+      },
+      "id": "235c1de3-311b-4917-b531-aded134b1635",
+      "name": "workflows",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2440,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "filters": {}
+      },
+      "id": "0e6f1815-bb2f-48ec-910a-e7e25874e5d0",
+      "name": "List Workflows",
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        2220,
+        180
+      ],
+      "credentials": {
+        "n8nApi": {
+          "id": "fqjkS9ijdeXvE4BY",
+          "name": "n8n account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $node[\"kindev\"].json.output.match(/ID:\\s(\\w+)/)[1] }}",
+          "mode": "id"
+        }
+      },
+      "id": "87967b61-ef6e-4d56-a6f5-e8b12ce345ae",
+      "name": "Get Workflow",
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        3080,
+        180
+      ],
+      "credentials": {
+        "n8nApi": {
+          "id": "fqjkS9ijdeXvE4BY",
+          "name": "n8n account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
+        "text": "=# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\nv\n\n# Code du Workflow n8n {{ $node[\"Get Workflow\"].json.name}} (ID : {{ $node[\"Get Workflow\"].json.name}})\n\n{{ JSON.stringify($node[\"Get Workflow\"].json)}}\n\n# Instruction - Réponse au besoin informationnel\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel.",
+        "options": {}
+      },
+      "id": "3284a7f3-ee1e-4ea9-b863-70561122bbb3",
+      "name": "kindev1",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        3960,
+        180
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-0125-preview",
         "options": {
           "timeout": 600000
         }
       },
-      "id": "e26209f5-d9b0-4f68-8710-d540b5fb3047",
+      "id": "dffe0cfc-a22a-42a2-93f0-549d33eec980",
       "name": "OpenAI Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        2580,
-        660
+        3580,
+        400
       ],
       "credentials": {
         "openAiApi": {
           "id": "WY3bm7GCb9qfewyS",
           "name": "OpenAi account"
         }
-      }
-    },
-    {
-      "parameters": {},
-      "id": "b9fb39ef-b7da-442c-8353-665e8e99cfdc",
-      "name": "When clicking \"Execute Workflow\"",
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        1740,
-        -40
-      ]
-    },
-    {
-      "parameters": {
-        "options": {
-          "queryCount": 2
-        }
       },
-      "id": "68e998e5-357b-4ffa-b36d-f33b0c2bee38",
-      "name": "MultiQuery Retriever",
-      "type": "@n8n/n8n-nodes-langchain.retrieverMultiQuery",
-      "typeVersion": 1,
-      "position": [
-        2580,
-        480
-      ]
+      "disabled": true
     },
     {
       "parameters": {
-        "content": "## Synchronisation du code offline pour le moment (à fix sans doute dans Service 2 - Synchroniser GitHub -> Pinecone)",
-        "height": 314.5280772928634,
-        "width": 839.0133333262688
-      },
-      "id": "65b58415-d842-46a0-ad42-00b49e5eb6ab",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        2041.6245797155518,
-        780
-      ]
-    },
-    {
-      "parameters": {
-        "pineconeIndex": {
-          "__rl": true,
-          "value": "kins",
-          "mode": "list",
-          "cachedResultName": "kins"
+        "fields": {
+          "values": [
+            {
+              "name": "code",
+              "stringValue": "={{ JSON.stringify($node[\"Get Workflow\"].json)}}"
+            }
+          ]
         },
-        "options": {
-          "pineconeNamespace": "=code"
-        }
+        "include": "none",
+        "options": {}
       },
-      "id": "2382f603-5054-4909-851a-150ebfb8e2c9",
-      "name": "Pinecone Vector Store",
-      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
-      "typeVersion": 1,
+      "id": "62f7095e-e49f-49c5-85dd-baf5858c56f0",
+      "name": "code",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
       "position": [
-        2640,
-        840
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "query": "=# Instructions de l'Assistant Questionneur de code\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits de la codebase proposés.\n\n# Misison Globale\n\n{{ $json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $json.query }}"
-      },
-      "id": "bdf2fc59-78a4-43f7-a7a7-bc4142f524b2",
-      "name": "Questionneur de code",
-      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
-      "typeVersion": 1.1,
-      "position": [
-        2500,
+        3360,
         180
       ]
+    },
+    {
+      "parameters": {
+        "chunkSize": 20000,
+        "chunkOverlap": 2000,
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "combineMapPrompt": "=# Instructions du condenseur de code\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des textes proposés issus du code d'un Workflow n8n.io (JSON).\nTa réponse doit être la plus détaillée possible.\n\n# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
+              "prompt": "=# Instructions du condenseur de code\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des textes proposés issus du code d'un Workflow n8n.io (JSON).\nTa réponse doit être la plus détaillée possible.\n\n# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+            }
+          }
+        }
+      },
+      "id": "dc0f2686-9d5a-41d9-9b37-f4caa40ed0f9",
+      "name": "Condenseur de code",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        3580,
+        180
+      ],
+      "disabled": true
     }
   ],
-  "pinData": {
-    "When clicking \"Execute Workflow\"": [
-      {
-        "json": {
-          "name": "First item",
-          "code": 1
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -314,6 +351,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-21T10:06:36.000Z",
-  "versionId": "e5d1f8a6-7872-40d4-94fc-6a75b1020726"
+  "updatedAt": "2024-01-29T10:01:38.000Z",
+  "versionId": "20cb56c6-3729-4d0f-98be-d3d1a37318c7"
 }
