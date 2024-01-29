@@ -143,17 +143,6 @@
         ]
       ]
     },
-    "Pinecone Vector Store": {
-      "ai_vectorStore": [
-        [
-          {
-            "node": "Vector Store Retriever",
-            "type": "ai_vectorStore",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "MultiQuery Retriever": {
       "ai_retriever": [
         [
@@ -215,6 +204,17 @@
           {
             "node": "Questionneur de document (map reduce)",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
             "index": 0
           }
         ]
@@ -363,7 +363,7 @@
     },
     {
       "parameters": {
-        "model": "gpt-4-1106-preview",
+        "model": "gpt-4-0125-preview",
         "options": {
           "timeout": 600000
         }
@@ -529,7 +529,7 @@
     },
     {
       "parameters": {
-        "model": "gpt-4-1106-preview",
+        "model": "gpt-4-0125-preview",
         "options": {
           "timeout": 600000
         }
@@ -570,41 +570,6 @@
         3540,
         -460
       ]
-    },
-    {
-      "parameters": {
-        "pineconeIndex": {
-          "__rl": true,
-          "value": "kins",
-          "mode": "list",
-          "cachedResultName": "kins"
-        },
-        "options": {
-          "pineconeNamespace": "=etudes",
-          "metadata": {
-            "metadataValues": [
-              {
-                "name": "type",
-                "value": "=etude"
-              }
-            ]
-          }
-        }
-      },
-      "id": "3cacf9a6-90c3-4e8f-a797-3fabf1499a2b",
-      "name": "Pinecone Vector Store",
-      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
-      "typeVersion": 1,
-      "position": [
-        3640,
-        1180
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -649,6 +614,41 @@
         3340,
         60
       ]
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {
+          "pineconeNamespace": "=etudes",
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "type",
+                "value": "=etude"
+              }
+            ]
+          }
+        }
+      },
+      "id": "3cacf9a6-90c3-4e8f-a797-3fabf1499a2b",
+      "name": "Pinecone Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        3640,
+        1180
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -690,6 +690,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-26T16:13:15.000Z",
-  "versionId": "474460f1-1295-4abc-b417-9432f9383c93"
+  "updatedAt": "2024-01-29T01:51:20.000Z",
+  "versionId": "8ad0e98c-f889-4686-9104-0b587cc9fc81"
 }
