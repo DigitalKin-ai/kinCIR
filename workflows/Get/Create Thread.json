@@ -364,6 +364,8 @@
       "typeVersion": 1,
       "id": "6f085a5d-f53e-411f-b6c9-11cc60497e6b",
       "alwaysOutputData": true,
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "Z5nSsC9JGaYw1Ng3",
@@ -521,6 +523,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-28T12:35:33.000Z",
-  "versionId": "25394aca-7d77-4571-b5c5-ec05abf91905"
+  "updatedAt": "2024-01-29T09:42:52.000Z",
+  "versionId": "464b491a-ddb6-4354-a809-44020cb2e4c1"
 }
