@@ -1,0 +1,301 @@
+{
+  "active": false,
+  "connections": {
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Questionneur de prompt (map reduce)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "text": {
+      "main": [
+        [
+          {
+            "node": "Questionneur de prompt (map reduce)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "kins",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Assistant": {
+      "main": [
+        [
+          {
+            "node": "text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kins": {
+      "main": [
+        [
+          {
+            "node": "assistantId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "assistantId": {
+      "main": [
+        [
+          {
+            "node": "Get Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de prompt (map reduce)": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-29T01:48:47.927Z",
+  "id": "1gSRJ9a1XiIgSYRx",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "QD - Questionneur de prompt",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "d095836d-873c-47bc-8936-42e808e3eb5b",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        2100,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-0125-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "e38e6ae9-5891-4ac2-8fab-e888ca21b38c",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        480
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "text",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.instructions }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "f8651a8c-abe3-4aaf-9074-ca03cf8195a0",
+      "name": "text",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        2320,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\nif (json.query) {\n  // Trouver le bon Kin\n  if (json.query.match(/kin\\w+/i)) {\n    json.kin = json.query.match(/kin\\w+/i)[0];\n  }\n} else {\n  json.query = \"Je souhaite récupérer le prompt du Kin en entier, verbatim.\"\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "5bc9c999-9559-4da1-a31d-e4b981386e05",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2320,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/assistants/{{ $node[\"assistantId\"].json.assistantId }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a3bd4a8a-db63-40c8-886f-b77f168c9655",
+      "name": "Get Assistant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2940,
+        60
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "gdFeXvXoLRHkWsrB",
+        "options": {}
+      },
+      "id": "4ab63ef4-82c6-4168-bb16-69f8fc46f85f",
+      "name": "kins",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2540,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let assistantId;\nconst kinObject = $json.kin.find(kin => kin.kin === $node[\"entree\"].json.kin);\n\nassistantId = kinObject && kinObject.assistantId ? kinObject.assistantId : \"asst_8umriZllMPt14U8qy2T0jCmQ\";\n\nreturn {\"assistantId\": assistantId};"
+      },
+      "id": "cc65d6b9-27d8-4583-bcba-78bb22c592e9",
+      "name": "assistantId",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2740,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"response\":$json.response.text};"
+      },
+      "id": "258abb7a-2a22-4fb2-8ed7-c8ad946288eb",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2940,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "chunkSize": 20000,
+        "chunkOverlap": 2000,
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de Prompt\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des textes proposés issus du prompt système d'un Kin (Assistant GPT).\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document chaque fois que c'est nécessaire.\n\n# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
+              "prompt": "=# Instructions de l'Assistant Questionneur de Prompt\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des textes proposés issus du prompt système d'un Kin (Assistant GPT).\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document chaque fois que c'est nécessaire.\n\n# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+            }
+          }
+        }
+      },
+      "id": "cff951e6-8eac-43c7-934c-10abe01960a0",
+      "name": "Questionneur de prompt (map reduce)",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        2540,
+        320
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any",
+    "errorWorkflow": "rr8aeSM8QYyY8Po4"
+  },
+  "staticData": {
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1706090233,
+      "possibleDuplicates": [
+        "18d3ae6fc072fb95"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    },
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-29T07:46:31.000Z",
+  "versionId": "91a44675-1e92-4ddb-95f0-906ade268c87"
+}
