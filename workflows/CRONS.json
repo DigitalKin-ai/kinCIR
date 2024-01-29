@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "set kinCredits": {
       "main": [
@@ -72,7 +72,7 @@
         ],
         [
           {
-            "node": "Delete task  DOING1",
+            "node": "mission kindev",
             "type": "main",
             "index": 0
           }
@@ -156,28 +156,6 @@
         ]
       ]
     },
-    "Delete task  DOING1": {
-      "main": [
-        [
-          {
-            "node": "Upsert task TODO",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Upsert task TODO": {
-      "main": [
-        [
-          {
-            "node": "mission kindev",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Delete tasks TODO": {
       "main": [
         [
@@ -243,6 +221,39 @@
           }
         ]
       ]
+    },
+    "Delete task  DOING1": {
+      "main": [
+        [
+          {
+            "node": "Upsert task TODO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lancement de Mission kinDev": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Delete task  DOING1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-23T14:34:33.442Z",
@@ -268,7 +279,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.1,
       "position": [
-        320,
+        300,
         380
       ]
     },
@@ -336,7 +347,7 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        320,
+        300,
         560
       ]
     },
@@ -421,9 +432,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        2180,
+        1720,
         600
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -435,9 +447,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2400,
+        1940,
         600
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -566,88 +579,6 @@
       "position": [
         1260,
         780
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/delete",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"doing\",\n\"ids\": [\"{{ $node[\"IF Task\"].json[\"matches\"][0][\"id\"] }}\"]\n}",
-        "options": {}
-      },
-      "id": "510b786d-acaf-41e7-a6f4-3ec5cbe027e3",
-      "name": "Delete task  DOING1",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        1700,
-        600
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/upsert",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"todo\",\n\"vectors\": {\n\"id\": \"{{ $node[\"IF Task\"].json[\"matches\"][0][\"id\"] }}\",\n\"metadata\": {{ JSON.stringify($node[\"IF Task\"].json[\"matches\"][0][\"metadata\"]) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
-        "options": {}
-      },
-      "id": "494e50d8-90a0-4b93-b57f-c73e08935fa7",
-      "name": "Upsert task TODO",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        1920,
-        600
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -989,9 +920,10 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        2620,
+        2160,
         600
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -1033,6 +965,103 @@
           "name": "PineconeApi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/delete",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"namespace\": \"doing\",\n\"ids\": [\"{{ $node[\"IF Task\"].json[\"matches\"][0][\"id\"] }}\"]\n}",
+        "options": {}
+      },
+      "id": "2d7a1765-bc1c-4464-b37f-5b2fce4fffe4",
+      "name": "Delete task  DOING1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        2560,
+        600
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/upsert",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"namespace\": \"todo\",\n\"vectors\": {\n\"id\": \"{{ $node[\"IF Task\"].json[\"matches\"][0][\"id\"] }}\",\n\"metadata\": {{ JSON.stringify($node[\"IF Task\"].json[\"matches\"][0][\"metadata\"]) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
+        "options": {}
+      },
+      "id": "7006371b-1238-4106-9ec6-4624025b0af3",
+      "name": "Upsert task TODO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        2780,
+        600
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 10,
+        "unit": "minutes"
+      },
+      "id": "0a57ac5d-d275-4a14-b1bb-6645ac090898",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2360,
+        600
+      ],
+      "webhookId": "feba6be3-9918-42b8-a571-b18a19382805"
     }
   ],
   "pinData": {
@@ -1069,6 +1098,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-29T10:58:41.000Z",
-  "versionId": "3a73e185-b9e6-4dda-a482-a60e726b39b3"
+  "updatedAt": "2024-01-29T17:38:19.000Z",
+  "versionId": "5bfb17ba-f927-49ba-a0e0-eed79bde659a"
 }
