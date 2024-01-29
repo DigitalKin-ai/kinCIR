@@ -23,7 +23,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let kins = [];\n\n// Prod\nkins.push({\"kin\":\"kincir\", \"assistantId\":\"asst_bU27N3NS5XZ0lH4AFOuN8kb7\"});\n\n// Beta\nkins.push({\"kin\":\"kinrsi\", \"assistantId\":\"asst_WKY0lRXB0rrJTFIm3HYv8jlE\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinlca\", \"assistantId\":\"asst_581bbg7Bmja1nCBKeiGg9Rgu\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinsota\", \"assistantId\":\"asst_7abHKvQqtVij29X6ybyEvAbZ\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kindev\", \"assistantId\":\"asst_KEwBhc34Qsh3dcu2Gu8bgFne\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinontologie\", \"assistantId\":\"asst_3pQx4lfP0EN6Jstj8kozdBtC\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinchercheur\", \"assistantId\":\"asst_rYxwavLJhgSLiKO3cHUzsmnt\", \"format\":\"md\"});\nkins.push({\"kin\":\"kincadreur\", \"assistantId\":\"asst_i59drQwQdShF5SmdHgqd3gXG\", \"format\":\"pdf\"});\n\n// Seb\nkins.push({\"kin\":\"kinsotabeta\", \"assistantId\":\"asst_MHJDvt7FT6gcWBFdJsZqJ52C\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincirbeta\", \"assistantId\":\"asst_TwVBZeoLx80udowj5MIoG6Pq\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinchercheurbeta\", \"assistantId\":\"asst_X2yQl7tb6MH0dypYatOvIjBa\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincadreurbeta\", \"assistantId\":\"asst_EwmKBIJWKqCJECb0nVBVju45\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincoordinateur\", \"assistantId\":\"asst_8umriZllMPt14U8qy2T0jCmQ\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinmail\", \"assistantId\":\"asst_RKZEJLbWald8azZuvxrnnSxL\"});\n\nreturn {\"json\": {\"kin\": kins}};"
+        "jsCode": "let kins = [];\n\n// Prod\nkins.push({\"kin\":\"kincir\", \"assistantId\":\"asst_bU27N3NS5XZ0lH4AFOuN8kb7\"});\n\n// Beta\nkins.push({\"kin\":\"kinrsi\", \"assistantId\":\"asst_WKY0lRXB0rrJTFIm3HYv8jlE\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinlca\", \"assistantId\":\"asst_581bbg7Bmja1nCBKeiGg9Rgu\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinsota\", \"assistantId\":\"asst_7abHKvQqtVij29X6ybyEvAbZ\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kindev\", \"assistantId\":\"asst_KEwBhc34Qsh3dcu2Gu8bgFne\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinontologie\", \"assistantId\":\"asst_3pQx4lfP0EN6Jstj8kozdBtC\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinmatcheur\", \"assistantId\":\"asst_rYxwavLJhgSLiKO3cHUzsmnt\", \"format\":\"md\"});\nkins.push({\"kin\":\"kincadreur\", \"assistantId\":\"asst_i59drQwQdShF5SmdHgqd3gXG\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinmatcheur\", \"assistantId\":\"asst_8umriZllMPt14U8qy2T0jCmQ\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinmail\", \"assistantId\":\"asst_RKZEJLbWald8azZuvxrnnSxL\"});\n\n// Seb\nkins.push({\"kin\":\"kinsotabeta\", \"assistantId\":\"asst_MHJDvt7FT6gcWBFdJsZqJ52C\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincirbeta\", \"assistantId\":\"asst_TwVBZeoLx80udowj5MIoG6Pq\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinchercheurbeta\", \"assistantId\":\"asst_X2yQl7tb6MH0dypYatOvIjBa\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincadreurbeta\", \"assistantId\":\"asst_EwmKBIJWKqCJECb0nVBVju45\", \"format\":\"pdf\"});\n\nreturn {\"json\": {\"kin\": kins}};"
       },
       "id": "6f130b03-879a-45b3-82ac-208f1d4c2436",
       "name": "Kins",
@@ -66,6 +66,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-26T09:56:15.000Z",
-  "versionId": "2569ab1f-b755-4e27-939f-fdf8973de725"
+  "updatedAt": "2024-01-29T06:11:45.000Z",
+  "versionId": "632d7682-24c9-41ef-94f2-22cc08b25708"
 }
