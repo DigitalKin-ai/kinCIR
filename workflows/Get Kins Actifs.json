@@ -1,0 +1,71 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Kins",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-26T03:44:29.788Z",
+  "id": "gdFeXvXoLRHkWsrB",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Get Kins Actifs",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let kins = [];\n\n// Prod\nkins.push({\"kin\":\"kincir\", \"assistantId\":\"asst_bU27N3NS5XZ0lH4AFOuN8kb7\"});\n\n// Beta\nkins.push({\"kin\":\"kinrsi\", \"assistantId\":\"asst_WKY0lRXB0rrJTFIm3HYv8jlE\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinlca\", \"assistantId\":\"asst_581bbg7Bmja1nCBKeiGg9Rgu\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinsota\", \"assistantId\":\"asst_7abHKvQqtVij29X6ybyEvAbZ\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kindev\", \"assistantId\":\"asst_KEwBhc34Qsh3dcu2Gu8bgFne\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinontologie\", \"assistantId\":\"asst_3pQx4lfP0EN6Jstj8kozdBtC\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinmatcheur\", \"assistantId\":\"asst_rYxwavLJhgSLiKO3cHUzsmnt\", \"format\":\"md\"});\nkins.push({\"kin\":\"kincadreur\", \"assistantId\":\"asst_i59drQwQdShF5SmdHgqd3gXG\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinmatcheur\", \"assistantId\":\"asst_8umriZllMPt14U8qy2T0jCmQ\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinmail\", \"assistantId\":\"asst_RKZEJLbWald8azZuvxrnnSxL\"});\nkins.push({\"kin\":\"kinarchitecte\", \"assistantId\":\"asst_L1WY5sdn3wnugM8RoJZBHETh\"});\nkins.push({\"kin\":\"kinpo\", \"assistantId\":\"asst_7KsKT6OBtOdCcpXaM86qnR69\"});\n//kins.push({\"kin\":\"kinevaluateur\", \"assistantId\":\"\"});\n//kins.push({\"kin\":\"kintesteur\", \"assistantId\":\"\"});\n//kins.push({\"kin\":\"kinfacturation\", \"assistantId\":\"\"});\n\n// Seb\nkins.push({\"kin\":\"kinsotabeta\", \"assistantId\":\"asst_MHJDvt7FT6gcWBFdJsZqJ52C\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincirbeta\", \"assistantId\":\"asst_TwVBZeoLx80udowj5MIoG6Pq\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinchercheurbeta\", \"assistantId\":\"asst_X2yQl7tb6MH0dypYatOvIjBa\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincadreurbeta\", \"assistantId\":\"asst_EwmKBIJWKqCJECb0nVBVju45\", \"format\":\"pdf\"});\n\nreturn {\"json\": {\"kin\": kins}};"
+      },
+      "id": "6f130b03-879a-45b3-82ac-208f1d4c2436",
+      "name": "Kins",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "72ce14fb-da3b-4383-b100-fa7fd00f20b5",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        920,
+        400
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-01-23T15:32:23.987Z",
+      "updatedAt": "2024-01-23T15:32:23.987Z",
+      "id": "wt7Cl4Mt8mR1bDh4",
+      "name": "admin"
+    },
+    {
+      "createdAt": "2023-12-17T10:32:35.457Z",
+      "updatedAt": "2023-12-17T10:32:35.457Z",
+      "id": "y4SS6pvxfLMwCsGn",
+      "name": "service"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-29T16:32:51.000Z",
+  "versionId": "16b1e30f-c8b9-4954-b7f5-e40c230b264c"
+}
