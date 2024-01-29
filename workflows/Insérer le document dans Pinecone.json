@@ -304,12 +304,12 @@
       "main": [
         [
           {
-            "node": "Découper en chunks",
+            "node": "Merge",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Merge",
+            "node": "defaultEmbedding",
             "type": "main",
             "index": 0
           }
@@ -321,6 +321,17 @@
         [
           {
             "node": "Upload Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "defaultEmbedding": {
+      "main": [
+        [
+          {
+            "node": "Découper en chunks",
             "type": "main",
             "index": 0
           }
@@ -613,7 +624,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kins-71e4f70.svc.us-east1-gcp.pinecone.io/vectors/upsert",
+        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/upsert",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -671,11 +682,11 @@
           "parameters": [
             {
               "name": "input",
-              "value": "={{ $json.text }}"
+              "value": "=DigitalKin.ai"
             },
             {
               "name": "model",
-              "value": "text-embedding-ada-002"
+              "value": "text-embedding-3-large"
             }
           ]
         },
@@ -942,6 +953,20 @@
         100,
         1020
       ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=IJeSapyzv0Y9koZ9",
+        "options": {}
+      },
+      "id": "2c8795e2-6c8e-4c29-836f-0bcd69253d72",
+      "name": "defaultEmbedding",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        1520
+      ]
     }
   ],
   "pinData": {
@@ -1005,6 +1030,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-24T21:39:38.000Z",
-  "versionId": "3ca49043-bfa1-448f-a79c-9d58fc0fcc16"
+  "updatedAt": "2024-01-28T23:40:12.000Z",
+  "versionId": "2ca4497e-7395-4a18-98f9-795656a409cb"
 }
