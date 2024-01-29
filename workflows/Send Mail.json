@@ -257,7 +257,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\njson.kin = json.kinDemandeur;\njson.mission = json.missionDemandeur;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\nif (json.kinDemandeur) {\n  json.kin = json.kinDemandeur;\n}\n\nif (json.missionDemandeur) {\n  json.mission = json.missionDemandeur;\n}\n\nreturn {\"json\": json};"
       },
       "id": "944ba1bf-168f-4da3-ad97-b365252e5d76",
       "name": "entree DocumentDemandeur",
@@ -291,6 +291,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-28T14:23:58.000Z",
-  "versionId": "7096c0de-0c22-42e2-869f-5c2693a7d089"
+  "updatedAt": "2024-01-28T23:51:05.000Z",
+  "versionId": "5af827c7-c2a0-4d34-9958-d509e5a87bf2"
 }
