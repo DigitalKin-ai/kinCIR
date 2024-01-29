@@ -381,115 +381,6 @@
         ]
       ]
     },
-    "Switch": {
-      "main": [
-        [
-          {
-            "node": "kincir",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "kinlca",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "kinrsi",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "kinsota",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "kincirbeta",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "kindev",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "kinontologie",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "kinchercheur",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "kinsotabeta",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "kinchercheurbeta",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "kincadreur",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "kincadreurbeta",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "kinmail",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "kinmatcheur",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "EXCEPTION - Kin Non-Actif",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "EXCEPTION": {
       "main": [
         [
@@ -858,7 +749,51 @@
         ]
       ]
     },
-    "message_au_CTO": {
+    "kinarchitecte": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinpo": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinevaluateur": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kintesteur": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message au CTO": {
       "ai_tool": [
         [
           {
@@ -869,6 +804,192 @@
           {
             "node": "kindev",
             "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinarchitecte",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message au Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinpo",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "Manager",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kincadreur",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kincadreurbeta",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "kincir",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinlca",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinrsi",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinsota",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kincirbeta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kindev",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinontologie",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinchercheur",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinsotabeta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinchercheurbeta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kincadreur",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kincadreurbeta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinmail",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinmatcheur",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinarchitecte",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinpo",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinevaluateur",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kintesteur",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinfacturation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "EXCEPTION - Kin Non-Actif",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinfacturation": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
             "index": 0
           }
         ]
@@ -940,7 +1061,7 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2220,
+        2200,
         240
       ],
       "disabled": true
@@ -1422,6 +1543,14 @@
             {
               "name": "mailId",
               "stringValue": "={{ $node[\"entree\"].json.mailId }}"
+            },
+            {
+              "name": "kinDemandeur",
+              "stringValue": "={{ $node[\"entree\"].json.kinDemandeur }}"
+            },
+            {
+              "name": "missionDemandeur",
+              "stringValue": "={{ $node[\"entree\"].json.missionDemandeur }}"
             }
           ]
         }
@@ -1431,8 +1560,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        1940,
-        2040
+        1700,
+        2080
       ]
     },
     {
@@ -1755,333 +1884,6 @@
       "position": [
         -60,
         860
-      ]
-    },
-    {
-      "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "ee0b2c5b-62fd-4c09-bfca-f844e805e9ad",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
-                    "rightValue": "kincir",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "ee0b2c5b-62fd-4c09-bfca-f844e805e9ad",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
-                    "rightValue": "kinlca",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "2a5fab45-e697-4ba3-96ea-3f1bdc5a7655",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
-                    "rightValue": "kinrsi",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
-                    "rightValue": "kinsota",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "72d86350-5484-42da-86d0-02205e464813",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
-                    "rightValue": "kincirbeta",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "6485b142-ec38-459a-9d57-c73998d1ec69",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
-                    "rightValue": "kindev",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "6f847cf9-95ef-46d0-a2fc-dd71c81e9e7f",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
-                    "rightValue": "kinontologie",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "0b1b17da-cb6e-45e2-94b0-6489cc899831",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
-                    "rightValue": "kinchercheur",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "74f492b7-3bec-4816-ae99-a1a88314f9ff",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
-                    "rightValue": "kinsotabeta",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "0b7fbcf3-4e28-4b4a-9c08-ce4e3b263604",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
-                    "rightValue": "kinchercheurbeta",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "d31caef0-4d25-4ed3-9e1d-eea4ca6dbc76",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
-                    "rightValue": "kincadreur",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "e830f692-818a-4c36-a976-38294ef3f1c8",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
-                    "rightValue": "kincadreurbeta",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "2caba844-9c03-4c51-8262-9be51e095df7",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
-                    "rightValue": "kinmail",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "bd30facf-18e2-45ab-9c15-61b1a5aa0661",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
-                    "rightValue": "kinmatcheur",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {
-          "fallbackOutput": "extra",
-          "ignoreCase": true,
-          "looseTypeValidation": true
-        }
-      },
-      "id": "35511810-4ea6-4cba-81db-2a0d6198b44f",
-      "name": "Switch",
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3,
-      "position": [
-        760,
-        740
       ]
     },
     {
@@ -2680,6 +2482,100 @@
     },
     {
       "parameters": {
+        "assistantId": "asst_L1WY5sdn3wnugM8RoJZBHETh",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "86f62d0c-47f6-4112-a167-fd48ebe111c7",
+      "name": "kinarchitecte",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        2340
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_8umriZllMPt14U8qy2T0jCmQ",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "84b0acda-ca8d-46da-bc63-39e8a65b44a3",
+      "name": "kinpo",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        2560
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_8umriZllMPt14U8qy2T0jCmQ",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "47796ca9-bfe1-4b87-9655-ee84850f6fca",
+      "name": "kinevaluateur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        2780
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_8umriZllMPt14U8qy2T0jCmQ",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "74f07f2e-5f09-4003-9fec-0542d4e02973",
+      "name": "kintesteur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        3000
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
         "name": "message_au_cto",
         "description": "La fonction message_au_cto envoie le message passé dans \"query\" au CTO de DigitalKin, Nicolas Lester Reynolds.\n\nIl peut être utilisé pour signaler un problème, demander de l'aide ou une modification, demander un déblocage, ou suggérer une amélioration.",
         "workflowId": "NjRYPuz1EgoPxWfP",
@@ -2701,16 +2597,525 @@
         }
       },
       "id": "525488b7-c5f1-4d1e-a503-4a936b97afd9",
-      "name": "message_au_CTO",
+      "name": "Message au CTO",
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2320,
-        1600
+        2500,
+        1860
+      ]
+    },
+    {
+      "parameters": {
+        "name": "message_au_client",
+        "description": "La fonction message_au_client envoie le message passé dans \"query\" au commenditaire de la mission.\n\nIl peut être utilisé pour demander des précisions, demander des validations, signaler un problème, ou tout autre chose.",
+        "workflowId": "NjRYPuz1EgoPxWfP",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "=kin",
+              "stringValue": "={{ $node[\"entree\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "2858802a-37b7-47c6-893c-4840b205ee1e",
+      "name": "Message au Client",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        2180
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_8umriZllMPt14U8qy2T0jCmQ",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "37286259-2d70-43fc-92ff-8a21fa3546aa",
+      "name": "kinfacturation",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        3200
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "ee0b2c5b-62fd-4c09-bfca-f844e805e9ad",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kincir",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "ee0b2c5b-62fd-4c09-bfca-f844e805e9ad",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinlca",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "2a5fab45-e697-4ba3-96ea-3f1bdc5a7655",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinrsi",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinsota",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "72d86350-5484-42da-86d0-02205e464813",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kincirbeta",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "6485b142-ec38-459a-9d57-c73998d1ec69",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kindev",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "6f847cf9-95ef-46d0-a2fc-dd71c81e9e7f",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinontologie",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "0b1b17da-cb6e-45e2-94b0-6489cc899831",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinchercheur",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "74f492b7-3bec-4816-ae99-a1a88314f9ff",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinsotabeta",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "0b7fbcf3-4e28-4b4a-9c08-ce4e3b263604",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinchercheurbeta",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "d31caef0-4d25-4ed3-9e1d-eea4ca6dbc76",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kincadreur",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "e830f692-818a-4c36-a976-38294ef3f1c8",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kincadreurbeta",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "2caba844-9c03-4c51-8262-9be51e095df7",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinmail",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "bd30facf-18e2-45ab-9c15-61b1a5aa0661",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinmatcheur",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "dec09ac9-dbf2-48a1-88c1-274f1d1309ee",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinarchitecte",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "58985013-b664-435a-8964-e97aaa0935b6",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinpo",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "873de981-5c16-4165-8467-009d17277dfa",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinevaluateur",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "b2a3e685-74d6-46b7-9e2d-03a95d595ea0",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kintesteur",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "cd4effcc-9084-463b-ae02-db173847297e",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinfacturation",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "ignoreCase": true,
+          "looseTypeValidation": true
+        }
+      },
+      "id": "35511810-4ea6-4cba-81db-2a0d6198b44f",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        760,
+        740
       ]
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "client": "dynergie",
+          "date": "2024-01-29T13:58:38.946+01:00",
+          "dernierProducteur": "kinmatcheur",
+          "format": "pdf",
+          "instructions": "[PROCESSUS - Avancement de la mission]\n\nTODOLIST :\n- **Analyse du Contexte Opérationnel KinPO** : DONE\n- **Réflexion sur les Fonctionnalités Clés KinPO** : DONE\n- **Élaboration des Prompts pour KinPO** : TODO\n- **Intégration de KinPO avec les autres Kins** : TODO\n- **Finalisation du développement de KinPO** : TODO\n\n[PROCESSUS - Avancement de la mission]\n\n---\n\n[INSTRUCTION - Début de l'Élaboration des Prompts pour KinPO]\n\nKinRSI, ta prochaine action dans le cadre de cette mission est de commencer l'élaboration des prompts spécifiques pour le KinPO. Utilise les fonctionnalités clés identifiées précédemment comme base pour cette tâche. Chaque prompt doit soutenir le KinPO dans ses missions de communication, collaboration, analyse de données, planification stratégique, et prise de décision agile. Assure-toi que les prompts soient précis, actionnables, et adaptés aux différentes situations que le KinPO pourrait rencontrer.\n\n[INSTRUCTION - Début de l'Élaboration des Prompts pour KinPO]",
+          "kin": "KinRSI",
+          "mailId": "18d552ee5f97f865",
+          "mission": "KinRSI[PROCESSUS - Nouvelle Mission KinRSI : Création du KinPO pour Product Owner]\n\nCette mission exige de KinRSI de conceptualiser et de développer un nouveau Kin, désigné comme KinPO (Product Owner). La principale responsabilité de ce nouveau Kin sera de prendre en main le leadership du produit, en axant particulièrement sur son amélioration continue et l'orientation vers les besoins des utilisateurs. KinRSI devra réfléchir à la structure, aux fonctionnalités, et aux prompts spécifiques qui permettront au KinPO d'efficacement guider et améliorer le produit. De plus, cette démarche devra s'accompagner d'une réflexion sur les processus d'intégration du KinPO au sein de l'équipe existante, ainsi que son interaction avec les autres Kins pour une coopération optimale.\n\n[/PROCESSUS - Nouvelle Mission KinRSI : Création du KinPO pour Product Owner]",
+          "startTimestamp": "2024-01-29T14:00:55.612+01:00",
+          "sync": false
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -2746,6 +3151,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-29T10:42:53.000Z",
-  "versionId": "aed04d93-4f51-4ae8-bffd-5785cc6937cd"
+  "updatedAt": "2024-01-29T16:34:51.000Z",
+  "versionId": "e907a36e-8ab8-4a58-9049-4ba942bfada7"
 }
