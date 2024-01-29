@@ -1,0 +1,149 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown1": {
+      "main": [
+        [
+          {
+            "node": "Send Instructions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Instructions": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-29T08:59:08.183Z",
+  "id": "NjRYPuz1EgoPxWfP",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Message au CTO",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "46f2dcad-c805-43b2-bb27-be362d6f4b1b",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\": {\"response\": \"Le message a bien été transféré au CTO.\"}};"
+      },
+      "id": "89cb5221-6f2c-4253-8082-273d6a32d753",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"Execute Workflow Trigger\"].json;\n\nlet text = json.query;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext =  \"Message de \" + json.kin + \" : \" + json.mailSubject + \"\\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+      },
+      "id": "686c4a66-fb56-48ee-9e6c-f7d94daab812",
+      "name": "Escape Markdown1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1520,
+        960
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "1864364329",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "d2517d93-139c-4f6d-83ce-22609ef32c39",
+      "name": "Send Instructions",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        1720,
+        960
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "rUijC7XE7TL12tph",
+          "name": "Lester AGI"
+        }
+      },
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1706088137,
+      "possibleDuplicates": [
+        "18d3ac70312f4667"
+      ]
+    },
+    "node:Seb reçoit un email": {
+      "lastTimeChecked": 1706023258
+    },
+    "node:Kin Mail": {
+      "lastTimeChecked": 1706305011,
+      "possibleDuplicates": [
+        "18d47b488e5cab95"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    },
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-29T09:05:25.000Z",
+  "versionId": "bb993658-dd30-410c-a817-45611825eee8"
+}
