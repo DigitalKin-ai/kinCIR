@@ -23,11 +23,45 @@
         ]
       ]
     },
-    "thread": {
+    "Convert to binary data": {
       "main": [
         [
           {
-            "node": "document",
+            "node": "If format pdf",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "document": {
+      "main": [
+        [
+          {
+            "node": "Convert to binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If format pdf": {
+      "main": [
+        [
+          {
+            "node": "Convert to PDF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to PDF",
             "type": "main",
             "index": 0
           }
@@ -45,45 +79,11 @@
         ]
       ]
     },
-    "Convert to binary data": {
+    "Merge": {
       "main": [
         [
           {
-            "node": "If format md",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "document": {
-      "main": [
-        [
-          {
-            "node": "Convert to binary data",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If format md": {
-      "main": [
-        [
-          {
-            "node": "response",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Convert to PDF",
+            "node": "Merge1",
             "type": "main",
             "index": 0
           }
@@ -94,21 +94,41 @@
       "main": [
         [
           {
-            "node": "response",
+            "node": "Merge",
             "type": "main",
             "index": 0
           }
-        ],
+        ]
+      ]
+    },
+    "thread": {
+      "main": [
         [
           {
-            "node": "Merge",
+            "node": "document",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
             "type": "main",
             "index": 1
           }
         ]
       ]
     },
-    "Merge": {
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Merge binaries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge binaries": {
       "main": [
         [
           {
@@ -154,60 +174,6 @@
     },
     {
       "parameters": {
-        "workflowId": "YWxRZmBa38HYCjnv",
-        "options": {}
-      },
-      "id": "db8615ea-60d9-450c-9267-5668de7999ee",
-      "name": "thread",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        80,
-        480
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://sync.api.cloudconvert.com/v2/jobs",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"tasks\": {\n    \"import-my-file\": {\n      \"operation\": \"import/raw\",\n      \"filename\": {{ JSON.stringify($node[\"If format md\"].binary.document.fileName) }},\n      \"file\": {{ JSON.stringify($node[\"document\"].json.document) }}\n    },\n    \"convert-my-file\": {\n      \"operation\": \"convert\",\n      \"input\": \"import-my-file\",\n      \"output_format\": \"pdf\"\n    },\n    \"export-my-file\": {\n      \"operation\": \"export/url\",\n      \"input\": \"convert-my-file\"\n    }\n  }\n}",
-        "options": {}
-      },
-      "id": "f62ebc3f-8dac-496b-8729-4f4b4d8b5530",
-      "name": "Convert to PDF",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        1000,
-        580
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "0dvNBbU8vvKoyenO",
-          "name": "Cloud Convert Header AUTH"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "content": "## todo : fix format choice : re-choose format from Get Active Kins",
-        "height": 331.2914642317718
-      },
-      "id": "e2038ad5-7c91-4d36-af3b-eb125a2d80de",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        700,
-        280
-      ]
-    },
-    {
-      "parameters": {
         "mode": "jsonToBinary",
         "convertAllData": false,
         "sourceKey": "document",
@@ -230,7 +196,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let thread = $json.thread;\n\nfunction extractDynamicContent(thread) {\n    let extractedContent = \"\";\n    const contentPattern = /\\[CONTENU[\\s\\S]*?][\\s\\S]*?\\[\\/CONTENU[\\s\\S]*?\\]/gi;\n\n    let matches;\n    while ((matches = contentPattern.exec(thread)) !== null) {\n        // Ajoute chaque contenu trouvé au texte final\n        extractedContent += matches[0] + \"\\n\\n\";\n    }\n\n    return extractedContent.trim();\n}\n\n// Fonction pour retirer les occurrences\nfunction removeOccurrences(document, pattern) {\n    return document.replace(pattern, '');\n}\n\n// Garder le CONTENU\nlet document = extractDynamicContent(thread);\n\n// Expression régulière pour identifier les occurrences à retirer\nconst pattern = /\\n{0,2}\\[\\/?CONTENU.*?\\]\\n{0,2}/gi;\n\n// Application de la fonction au document\ndocument = removeOccurrences(document, pattern);\n\nif (document == \"\") {\n  document = \"[EXCEPTION - Pas de contenu]\\n\\nPas de baslises DOCUMENT trouvées dans le thread ![/EXCEPTION - Pas de contenu]\"\n}\n\nreturn {\"json\":{\"document\":document}};"
+        "jsCode": "let thread = $json.thread;\n\nfunction extractDynamicContent(thread) {\n    let extractedContent = \"\";\n    const contentPattern = /\\[CONTENU[\\s\\S]*?][\\s\\S]*?\\[\\/CONTENU[\\s\\S]*?\\]/gi;\n\n    let matches;\n    while ((matches = contentPattern.exec(thread)) !== null) {\n        // Ajoute chaque contenu trouvé au texte final\n        extractedContent += matches[0] + \"\\n\\n\";\n    }\n\n    return extractedContent.trim();\n}\n\n// Fonction pour retirer les occurrences\nfunction removeOccurrences(document, pattern) {\n    return document.replace(pattern, '');\n}\n\n// Garder le CONTENU\nlet document = extractDynamicContent(thread);\n\n// Expression régulière pour identifier les occurrences à retirer\nconst pattern = /\\n{0,2}\\[\\/?CONTENU.*?\\]\\n{0,2}/gi;\n\n// Application de la fonction au document\ndocument = removeOccurrences(document, pattern);\n\nif (document == \"\") {\n  document = \"[EXCEPTION - Pas de contenu]\\n\\nPas de baslises DOCUMENT trouvées dans le thread !\\n\\n[/EXCEPTION - Pas de contenu]\\n\\n---\\n\\n\\n[INFORMATIF - Thread]\\n\\n\" + $json.thread + \"[/INFORMATIF - Pas de contenu]\\n\\n\";\n}\n\nreturn {\"json\":{\"document\":document}};"
       },
       "id": "f167260b-1a89-4d37-8cbf-85dd73193004",
       "name": "document",
@@ -253,7 +219,7 @@
             {
               "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
               "leftValue": "={{ $node[\"entree\"].json.format }}",
-              "rightValue": "mdBAK",
+              "rightValue": "pdf",
               "operator": {
                 "type": "string",
                 "operation": "equals",
@@ -266,27 +232,40 @@
         "options": {}
       },
       "id": "003c68f9-b07e-4f36-a6ed-ca16ff675d0d",
-      "name": "If format md",
+      "name": "If format pdf",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        780,
-        480
+        760,
+        260
       ]
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = {};\n\njson.document = $item(0).$node[\"document\"].json.document;\n\nreturn {\"json\": json, \"binary\": $binary};"
+        "method": "POST",
+        "url": "https://sync.api.cloudconvert.com/v2/jobs",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"tasks\": {\n    \"import-my-file\": {\n      \"operation\": \"import/raw\",\n      \"filename\": {{ JSON.stringify($node[\"Convert to binary data\"].binary.document.fileName) }},\n      \"file\": {{ JSON.stringify($node[\"document\"].json.document) }}\n    },\n    \"convert-my-file\": {\n      \"operation\": \"convert\",\n      \"input\": \"import-my-file\",\n      \"output_format\": \"pdf\"\n    },\n    \"export-my-file\": {\n      \"operation\": \"export/url\",\n      \"input\": \"convert-my-file\"\n    }\n  }\n}",
+        "options": {}
       },
-      "id": "245c4662-8664-4791-b832-d41b83cb22b0",
-      "name": "response",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "id": "f62ebc3f-8dac-496b-8729-4f4b4d8b5530",
+      "name": "Convert to PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
       "position": [
-        1580,
-        460
-      ]
+        1000,
+        260
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "0dvNBbU8vvKoyenO",
+          "name": "Cloud Convert Header AUTH"
+        }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -299,27 +278,115 @@
       "typeVersion": 4.1,
       "position": [
         1220,
-        580
+        260
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
-      "onError": "continueErrorOutput"
+      "onError": "continueRegularOutput"
     },
     {
-      "parameters": {
-        "mode": "chooseBranch"
-      },
-      "id": "192cf221-77ed-4a63-bec6-695d4d323482",
+      "parameters": {},
+      "id": "3a36baf8-1de8-44cb-9cc4-c383469dc691",
       "name": "Merge",
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        1220,
-        800
+        1440,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = {};\n\njson.document = $item(0).$node[\"document\"].json.document;\n\nreturn {\"json\": json, \"binary\": $binary};"
+      },
+      "id": "6e7fe0f3-611f-4ca2-aecb-e07ba0543805",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1940,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "YWxRZmBa38HYCjnv",
+        "options": {}
+      },
+      "id": "db8615ea-60d9-450c-9267-5668de7999ee",
+      "name": "thread",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        80,
+        480
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f3c98e4c-ae2e-44e9-95fb-e24263ca5d1b",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1440,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## todo : fix format choice : re-choose format from Get Active Kins",
+        "height": 331.2914642317718
+      },
+      "id": "dc1d0c98-5ebb-474c-b9e5-fad92683f6c7",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        680,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let binaries = {}, binary_keys = [];\n\nfor([index, item] of items.entries()) {\n    binaries[Object.keys(item.binary)[0]+`_${index}`] = item.binary[Object.keys(item.binary)[0]];\n    binary_keys.push(Object.keys(item.binary)[0] + `_${index}`);\n}\n\nreturn [{\n    json: {\n        binary_keys: binary_keys.join(',')\n    },\n    binary: binaries\n}];"
+      },
+      "id": "6232bd89-3074-452c-bf3f-3fd0ed93dc7f",
+      "name": "Merge binaries",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1680,
+        480
       ]
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "client": "dynergie",
+          "date": "2024-01-30T23:42:43.373+01:00",
+          "dernierProducteur": "kinmatcheur",
+          "executionId": "79896",
+          "format": "md",
+          "instructions": "[PROCESSUS - Avancement de la mission]\n\nTODOLIST :\n- **ACTION n°1. Rédaction de la partie 'Instructions Globales' du prompt du Kin** : DONE\n- **ACTION n°2. Rédaction de la partie 'Rôle' du prompt du Kin** : DONE\n- **ACTION n°3. Rédaction de la partie 'Contexte' du prompt du Kin** : DONE\n- **ACTION n°4. Rédaction de la partie 'Proposition de Valeur' du prompt du Kin**  : DONE\n- **ACTION n°5. Rédaction de la partie 'Système de Balisage des Kins' du prompt du Kin** : DONE\n- **ACTION OUVERTE : Identification du nombre d'Actions nécessaires dans le prompt du Kin** : DONE\n- **ACTION n°6.1 Rédaction de la partie 'ACTION 1' du prompt du Kin** : DONE\n- **ACTION n°6.2 Rédaction de la partie 'ACTION 2' du prompt du Kin** : DONE\n- **ACTION n°6.3 Rédaction de la partie 'ACTION 3' du prompt du Kin** : DONE\n- **ACTION n°6.4 Rédaction de la partie 'ACTION 4' du prompt du Kin** : DONE\n- **ACTION n°6.5 Rédaction de la partie 'ACTION 5' du prompt du Kin** : DONE\n- **ACTION n°7. Evaluation du prompt** : DONE\n- **ACTION OUVERTE : Amélioration suivant l'évaluation etc.** : TODO\n- **ACTION n°8. Rapport de mission et commentaire.** : TODO\n\n[/PROCESSUS - Avancement de la mission]\n\n---\n\n[INSTRUCTION - Amélioration Suivant l'Évaluation]\n\nKinRSI, maintenant que l'évaluation du prompt est complétée,  nous passons à l'**ACTION OUVERTE : Amélioration suivant l'évaluation etc.**. Cette étape consiste à appliquer toutes les améliorations identifiées lors de l'évaluation pour assurer que le prompt du KinFinalisateur est non seulement conforme aux critères initiaux mais aussi optimisé pour une meilleure efficacité et clarté. Cela peut inclure, mais n'est pas limité à, la reformulation de certaines sections, l'ajout d'instructions plus détaillées là où c'est nécessaire, ou la suppression de toute redondance. Veille à ce que le prompt soit aussi intuitif que possible pour le futur KinFinalisateur et les membres de l'équipe.\n\n[/INSTRUCTION - Amélioration Suivant l'Évaluation]",
+          "kin": "kinmatcheur",
+          "mailId": "18d5c78ef227935c",
+          "mailSubject": "KinFinalisateur",
+          "mission": "KinRSI[PROCESSUS - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\nLa tâche principale pour cette mission est la création d'un nouveau Kin, le KinFinalisateur. Celui-ci aura la responsabilité de finaliser les documents produits par l'équipe, en s'assurant de leur cohérence par rapport au template, à l'imbrication correcte des titres et à l'utilisation adéquate des balises. Le KinFinalisateur devra également intégrer et vérifier la cohérence du contenu produit pendant la mission et dans le thread correspondant. Cette capacité à faire la synthèse et à assurer la standardisation et l'optimisation finale des documents est essentielle pour améliorer l'efficacité et la qualité du workflow de production de l'équipe.\n\n[/PROCESSUS - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]",
+          "output": "[RETOUR - Mission KinMatcheur Accomplie]\n\nLe prompt du KinFinalisateur a été conçu avec la collaboration du **KinRSI**, en se concentrant sur la création d'une entité essentielle à l'optimisation de notre flux de travail. Cette initiative a pour but de renforcer la qualité et la cohérence des documents que nous produisons. Ensuite, l'*Amélioration suivant l'évaluation* est l'étape en cours, où des ajustements seront apportés pour peaufiner le prompt en fonction des feedbacks reçus. Cette démarche vise à garantir que le prompt du KinFinalisateur soit à la fois précis et pragmatique, contribuant ainsi efficacement à notre mission de produire des documents de haute qualité de manière systématique et standardisée.\n\n[/RETOUR - Mission KinMatcheur Accomplie]",
+          "startTimestamp": "2024-01-30T23:43:19.744+01:00",
+          "sync": false,
+          "remainingThread": "",
+          "entireThread": "[INFORMATIF - Kins Disponibles dans l'équipe]\n\n- KinChercheur / KinChercheurBeta : Responsable de la recherche académique, KinChercheur explore Google Scholar pour intégrer les études pertinentes dans des bases de données vectorielles.\n- KinLCA : Effectue les Lectures Critique & Analyses des études (LCA).\n- KinCIR / KinCIRBeta : Spécialiste de la rédaction des scénarios de risques, KinCir identifie et formule les risques potentiels pour renforcer les stratégies de mitigation.\n- KinSota / KinSotaBeta : Focalisé sur la création d'états de l'art approfondis, KinSota compile des analyses détaillées sur des sujets spécifiques et les dernières avancées dans un domaine donné.\n- KinRSI : Le KinRSI est à appeler pour créer de nouveaux Kins ou améliorer les prompts de Kins existants\n- KinOntologie : Dédié à l'élaboration d'ontologies, KinOntologie structure et clarifie les concepts pour optimiser les performances des assistants GPT.\n- KinDev : La collaboration avec le KinDev est optimale lorsque des problèmes techniques surviennent, lors du développement de nouvelles fonctionnalités, ou pour optimiser des processus existants. Pour interagir efficacement, il est recommandé d’adresser des questions claires, de fournir du contexte approprié et d’être spécifique quant aux outils et aux sections de code concernés, permettant ainsi à l'assistant de fournir les solutions les plus adaptées et actionnables.\n- KinCadreur / KinCadreurBeta : Le rôle principal de cet assistant GPT est de vérifier, structurer et valider les demandes reçues avant de les transmettre, afin de guider les Kins de la boucle de production.\n- KinMail : Le KinMail est en charge de la rédaction et de l'envoi d'emails en HTML, en respectant un modèle prédéfini et en personnalisant le contenu pour qu'il soit clair, engageant et adapté au destinataire.\n- KinArchitecte : Le Kin Architecte est en charge du design de l'architecture globale de l'équipe, process & technique.\n- KinPO : Gestionnaire de Produit : Responsable du leadership du produit, se concentrant particulièrement sur l'amélioration continue pour guider et améliorer efficacement le produit du travail fourni par les Kins.\n- Humains : Il est possible de passer la main à un humain en appelant le KinMail.\n\nBeta / Prod : Lors des formulations des DEMANDES, Les Kins Beta s'apellent entre eux préférentiellement, et les Kins Prod entre eux également.\n\n[/INFORMATIF - Kins Disponibles dans l'équipe]\n\n[INFORMATIF - Principales Passations]\n\n- Passation pour la rédaction de programmes R&D : Le processus débute avec KinCIR qui réalise des étapes préliminaires, ensuite, il transfère le projet à KinChercheur pour approfondir la recherche. Par la suite, KinChercheur renvoie les résultats à KinCIR. Dans une séquence d'échanges continus, KinCIR collabore avec KinSota pour la finesse des détails dans les rapports de risques, avant que KinCIR n'apporte la touche finale à la mission.\n- Passation pour la Rédaction des États de l'Art : KinSota initie le processus et appelle le KinChercheur pour obtenir les informations académiques les plus récentes et pertinentes, puis rédige l'état de l'art.\n- Passation pour les Missions Formulées par les Clients Humains : Les missions Programme R&D et Etat de l'Art initiées par un client humain est d'abord examinée par le KinCadreur. Le KinCadreur a pour mission de cadrer et clarifier la demande avant de la transférer au Kin spécifiquement concerné. Cette étape assure que la mission est bien comprise et que les instructions sont clairement définies pour optimiser l'efficacité de l'exécution par le Kin destinataire.\n\nInformation Additionnelle - Interactions Flexibles Entre Kins : Il est à noter que dans le flux de travail, la flexibilité est de mise, permettant à tout Kin d'initier un échange avec un autre Kin si nécessaire. \n\n[/INFORMATIF - Principales Passations]\n\n---\n\n[PROCESSUS - Etapes de la Mission]\n\nTODOLIST :\n- **1. Réception et Analyse de la Demande** :  TODO\n- **2. Sélection du Kin Approprié** :  TODO\n- **3. Rédaction du Contenu** :  TODO\n- **4. Envoi de la Demande** :  TODO\n\n[/PROCESSUS -  Etapes de la Mission]\n\n---\n\n[ANALYSE - Réflexion]\n\nL'instruction demande de sélectionner le Kin le plus adapté pour créer le prompt d'un nouveau Kin, le KinFinalisateur. En tenant compte du rôle spécifique du KinRSI, qui est chargé de créer de nouveaux Kins ou d'améliorer les prompts de Kins existants, il semble évident que le KinRSI est le choix le plus judicieux pour cette mission. De plus, la spécificité de la tâche - développer un kin qui finalise les documents en assurant leur cohérence - correspond exactement à l'expertise du KinRSI dans la création et l'optimisation de processus et d'outils pour l'équipe.\n\n[/ANALYSE - Réflexion]\n\n[CONTENU - Sélection du Kin Approprié]\n\nKinRSI\n\n[/CONTENU - Sélection du Kin Approprié]\n\n[CONTENU - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\n[PROCESSUS - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\nLa tâche principale pour cette mission est la création d'un nouveau Kin, le KinFinalisateur. Celui-ci aura la responsabilité de finaliser les documents produits par l'équipe, en s'assurant de leur cohérence par rapport au template, à l'imbrication correcte des titres et à l'utilisation adéquate des balises. Le KinFinalisateur devra également intégrer et vérifier la cohérence du contenu produit pendant la mission et dans le thread correspondant. Cette capacité à faire la synthèse et à assurer la standardisation et l'optimisation finale des documents est essentielle pour améliorer l'efficacité et la qualité du workflow de production de l'équipe.\n\n[/PROCESSUS - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\n[/CONTENU - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\n[RETOUR - Mission KinMatcheur Accomplie]\n\nKin choisi : KinRSI\n\nRésumé du Contenu : Le KinRSI a été sélectionné pour la création d'un nouveau Kin, le KinFinalisateur, qui sera responsable de finaliser les documents produits, en s'assurant de la cohérence, de l'imbrication correcte des titres, et de l'utilisation adéquate des balises.\n\n[/RETOUR - Mission KinMatcheur Accomplie]\n\n---\n\n[RETOUR - Mission KinMatcheur Accomplie]\n\nLe Kin choisi pour la mission est **KinRSI**.\n\nLe KinRSI est chargé de la création d'un nouveau rôle au sein de notre équipe, le **KinFinalisateur**. Cette nouvelle entité aura pour mission primordiale de finaliser les documents produits par l'équipe. Ce processus inclut la vérification de la cohérence du document avec le template utilisé, l'ordre et la structure des titres, et l'usage approprié des balises. En outre, le KinFinalisateur s'assurera de l'intégration et de la vérification de la cohérence du contenu produit au cours de la mission et dans le thread correspondant, garantissant ainsi la standardisation et l'optimisation finale des documents pour améliorer l'efficacité et la qualité du workflow de production de notre équipe.\n\n[/RETOUR - Mission KinMatcheur Accomplie]\n\n---\n\n[RETOUR - Mission KinMatcheur Accomplie]\n\nLe prompt du KinFinalisateur a été conçu avec la collaboration du **KinRSI**, en se concentrant sur la création d'une entité essentielle à l'optimisation de notre flux de travail. Cette initiative a pour but de renforcer la qualité et la cohérence des documents que nous produisons. Ensuite, l'*Amélioration suivant l'évaluation* est l'étape en cours, où des ajustements seront apportés pour peaufiner le prompt en fonction des feedbacks reçus. Cette démarche vise à garantir que le prompt du KinFinalisateur soit à la fois précis et pragmatique, contribuant ainsi efficacement à notre mission de produire des documents de haute qualité de manière systématique et standardisée.\n\n[/RETOUR - Mission KinMatcheur Accomplie]",
+          "thread": "[INFORMATIF - Kins Disponibles dans l'équipe]\n\n- KinChercheur / KinChercheurBeta : Responsable de la recherche académique, KinChercheur explore Google Scholar pour intégrer les études pertinentes dans des bases de données vectorielles.\n- KinLCA : Effectue les Lectures Critique & Analyses des études (LCA).\n- KinCIR / KinCIRBeta : Spécialiste de la rédaction des scénarios de risques, KinCir identifie et formule les risques potentiels pour renforcer les stratégies de mitigation.\n- KinSota / KinSotaBeta : Focalisé sur la création d'états de l'art approfondis, KinSota compile des analyses détaillées sur des sujets spécifiques et les dernières avancées dans un domaine donné.\n- KinRSI : Le KinRSI est à appeler pour créer de nouveaux Kins ou améliorer les prompts de Kins existants\n- KinOntologie : Dédié à l'élaboration d'ontologies, KinOntologie structure et clarifie les concepts pour optimiser les performances des assistants GPT.\n- KinDev : La collaboration avec le KinDev est optimale lorsque des problèmes techniques surviennent, lors du développement de nouvelles fonctionnalités, ou pour optimiser des processus existants. Pour interagir efficacement, il est recommandé d’adresser des questions claires, de fournir du contexte approprié et d’être spécifique quant aux outils et aux sections de code concernés, permettant ainsi à l'assistant de fournir les solutions les plus adaptées et actionnables.\n- KinCadreur / KinCadreurBeta : Le rôle principal de cet assistant GPT est de vérifier, structurer et valider les demandes reçues avant de les transmettre, afin de guider les Kins de la boucle de production.\n- KinMail : Le KinMail est en charge de la rédaction et de l'envoi d'emails en HTML, en respectant un modèle prédéfini et en personnalisant le contenu pour qu'il soit clair, engageant et adapté au destinataire.\n- KinArchitecte : Le Kin Architecte est en charge du design de l'architecture globale de l'équipe, process & technique.\n- KinPO : Gestionnaire de Produit : Responsable du leadership du produit, se concentrant particulièrement sur l'amélioration continue pour guider et améliorer efficacement le produit du travail fourni par les Kins.\n- Humains : Il est possible de passer la main à un humain en appelant le KinMail.\n\nBeta / Prod : Lors des formulations des DEMANDES, Les Kins Beta s'apellent entre eux préférentiellement, et les Kins Prod entre eux également.\n\n[/INFORMATIF - Kins Disponibles dans l'équipe]\n\n[INFORMATIF - Principales Passations]\n\n- Passation pour la rédaction de programmes R&D : Le processus débute avec KinCIR qui réalise des étapes préliminaires, ensuite, il transfère le projet à KinChercheur pour approfondir la recherche. Par la suite, KinChercheur renvoie les résultats à KinCIR. Dans une séquence d'échanges continus, KinCIR collabore avec KinSota pour la finesse des détails dans les rapports de risques, avant que KinCIR n'apporte la touche finale à la mission.\n- Passation pour la Rédaction des États de l'Art : KinSota initie le processus et appelle le KinChercheur pour obtenir les informations académiques les plus récentes et pertinentes, puis rédige l'état de l'art.\n- Passation pour les Missions Formulées par les Clients Humains : Les missions Programme R&D et Etat de l'Art initiées par un client humain est d'abord examinée par le KinCadreur. Le KinCadreur a pour mission de cadrer et clarifier la demande avant de la transférer au Kin spécifiquement concerné. Cette étape assure que la mission est bien comprise et que les instructions sont clairement définies pour optimiser l'efficacité de l'exécution par le Kin destinataire.\n\nInformation Additionnelle - Interactions Flexibles Entre Kins : Il est à noter que dans le flux de travail, la flexibilité est de mise, permettant à tout Kin d'initier un échange avec un autre Kin si nécessaire. \n\n[/INFORMATIF - Principales Passations]\n\n---\n\n[PROCESSUS - Etapes de la Mission]\n\nTODOLIST :\n- **1. Réception et Analyse de la Demande** :  TODO\n- **2. Sélection du Kin Approprié** :  TODO\n- **3. Rédaction du Contenu** :  TODO\n- **4. Envoi de la Demande** :  TODO\n\n[/PROCESSUS -  Etapes de la Mission]\n\n---\n\n[ANALYSE - Réflexion]\n\nL'instruction demande de sélectionner le Kin le plus adapté pour créer le prompt d'un nouveau Kin, le KinFinalisateur. En tenant compte du rôle spécifique du KinRSI, qui est chargé de créer de nouveaux Kins ou d'améliorer les prompts de Kins existants, il semble évident que le KinRSI est le choix le plus judicieux pour cette mission. De plus, la spécificité de la tâche - développer un kin qui finalise les documents en assurant leur cohérence - correspond exactement à l'expertise du KinRSI dans la création et l'optimisation de processus et d'outils pour l'équipe.\n\n[/ANALYSE - Réflexion]\n\n[CONTENU - Sélection du Kin Approprié]\n\nKinRSI\n\n[/CONTENU - Sélection du Kin Approprié]\n\n[CONTENU - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\n[PROCESSUS - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\nLa tâche principale pour cette mission est la création d'un nouveau Kin, le KinFinalisateur. Celui-ci aura la responsabilité de finaliser les documents produits par l'équipe, en s'assurant de leur cohérence par rapport au template, à l'imbrication correcte des titres et à l'utilisation adéquate des balises. Le KinFinalisateur devra également intégrer et vérifier la cohérence du contenu produit pendant la mission et dans le thread correspondant. Cette capacité à faire la synthèse et à assurer la standardisation et l'optimisation finale des documents est essentielle pour améliorer l'efficacité et la qualité du workflow de production de l'équipe.\n\n[/PROCESSUS - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\n[/CONTENU - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\n[RETOUR - Mission KinMatcheur Accomplie]\n\nKin choisi : KinRSI\n\nRésumé du Contenu : Le KinRSI a été sélectionné pour la création d'un nouveau Kin, le KinFinalisateur, qui sera responsable de finaliser les documents produits, en s'assurant de la cohérence, de l'imbrication correcte des titres, et de l'utilisation adéquate des balises.\n\n[/RETOUR - Mission KinMatcheur Accomplie]\n\n---\n\n[RETOUR - Mission KinMatcheur Accomplie]\n\nLe Kin choisi pour la mission est **KinRSI**.\n\nLe KinRSI est chargé de la création d'un nouveau rôle au sein de notre équipe, le **KinFinalisateur**. Cette nouvelle entité aura pour mission primordiale de finaliser les documents produits par l'équipe. Ce processus inclut la vérification de la cohérence du document avec le template utilisé, l'ordre et la structure des titres, et l'usage approprié des balises. En outre, le KinFinalisateur s'assurera de l'intégration et de la vérification de la cohérence du contenu produit au cours de la mission et dans le thread correspondant, garantissant ainsi la standardisation et l'optimisation finale des documents pour améliorer l'efficacité et la qualité du workflow de production de notre équipe.\n\n[/RETOUR - Mission KinMatcheur Accomplie]\n\n---\n\n[RETOUR - Mission KinMatcheur Accomplie]\n\nLe prompt du KinFinalisateur a été conçu avec la collaboration du **KinRSI**, en se concentrant sur la création d'une entité essentielle à l'optimisation de notre flux de travail. Cette initiative a pour but de renforcer la qualité et la cohérence des documents que nous produisons. Ensuite, l'*Amélioration suivant l'évaluation* est l'étape en cours, où des ajustements seront apportés pour peaufiner le prompt en fonction des feedbacks reçus. Cette démarche vise à garantir que le prompt du KinFinalisateur soit à la fois précis et pragmatique, contribuant ainsi efficacement à notre mission de produire des documents de haute qualité de manière systématique et standardisée.\n\n[/RETOUR - Mission KinMatcheur Accomplie]",
+          "promptProducteur": "MISSION GLOBALE\n===============\n\nKinRSI[PROCESSUS - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\nLa tâche principale pour cette mission est la création d'un nouveau Kin, le KinFinalisateur. Celui-ci aura la responsabilité de finaliser les documents produits par l'équipe, en s'assurant de leur cohérence par rapport au template, à l'imbrication correcte des titres et à l'utilisation adéquate des balises. Le KinFinalisateur devra également intégrer et vérifier la cohérence du contenu produit pendant la mission et dans le thread correspondant. Cette capacité à faire la synthèse et à assurer la standardisation et l'optimisation finale des documents est essentielle pour améliorer l'efficacité et la qualité du workflow de production de l'équipe.\n\n[/PROCESSUS - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\nTHREAD D'AVANCEMENT\n===============\n\n[INFORMATIF - Kins Disponibles dans l'équipe]\n\n- KinChercheur / KinChercheurBeta : Responsable de la recherche académique, KinChercheur explore Google Scholar pour intégrer les études pertinentes dans des bases de données vectorielles.\n- KinLCA : Effectue les Lectures Critique & Analyses des études (LCA).\n- KinCIR / KinCIRBeta : Spécialiste de la rédaction des scénarios de risques, KinCir identifie et formule les risques potentiels pour renforcer les stratégies de mitigation.\n- KinSota / KinSotaBeta : Focalisé sur la création d'états de l'art approfondis, KinSota compile des analyses détaillées sur des sujets spécifiques et les dernières avancées dans un domaine donné.\n- KinRSI : Le KinRSI est à appeler pour créer de nouveaux Kins ou améliorer les prompts de Kins existants\n- KinOntologie : Dédié à l'élaboration d'ontologies, KinOntologie structure et clarifie les concepts pour optimiser les performances des assistants GPT.\n- KinDev : La collaboration avec le KinDev est optimale lorsque des problèmes techniques surviennent, lors du développement de nouvelles fonctionnalités, ou pour optimiser des processus existants. Pour interagir efficacement, il est recommandé d’adresser des questions claires, de fournir du contexte approprié et d’être spécifique quant aux outils et aux sections de code concernés, permettant ainsi à l'assistant de fournir les solutions les plus adaptées et actionnables.\n- KinCadreur / KinCadreurBeta : Le rôle principal de cet assistant GPT est de vérifier, structurer et valider les demandes reçues avant de les transmettre, afin de guider les Kins de la boucle de production.\n- KinMail : Le KinMail est en charge de la rédaction et de l'envoi d'emails en HTML, en respectant un modèle prédéfini et en personnalisant le contenu pour qu'il soit clair, engageant et adapté au destinataire.\n- KinArchitecte : Le Kin Architecte est en charge du design de l'architecture globale de l'équipe, process & technique.\n- KinPO : Gestionnaire de Produit : Responsable du leadership du produit, se concentrant particulièrement sur l'amélioration continue pour guider et améliorer efficacement le produit du travail fourni par les Kins.\n- Humains : Il est possible de passer la main à un humain en appelant le KinMail.\n\nBeta / Prod : Lors des formulations des DEMANDES, Les Kins Beta s'apellent entre eux préférentiellement, et les Kins Prod entre eux également.\n\n[/INFORMATIF - Kins Disponibles dans l'équipe]\n\n[INFORMATIF - Principales Passations]\n\n- Passation pour la rédaction de programmes R&D : Le processus débute avec KinCIR qui réalise des étapes préliminaires, ensuite, il transfère le projet à KinChercheur pour approfondir la recherche. Par la suite, KinChercheur renvoie les résultats à KinCIR. Dans une séquence d'échanges continus, KinCIR collabore avec KinSota pour la finesse des détails dans les rapports de risques, avant que KinCIR n'apporte la touche finale à la mission.\n- Passation pour la Rédaction des États de l'Art : KinSota initie le processus et appelle le KinChercheur pour obtenir les informations académiques les plus récentes et pertinentes, puis rédige l'état de l'art.\n- Passation pour les Missions Formulées par les Clients Humains : Les missions Programme R&D et Etat de l'Art initiées par un client humain est d'abord examinée par le KinCadreur. Le KinCadreur a pour mission de cadrer et clarifier la demande avant de la transférer au Kin spécifiquement concerné. Cette étape assure que la mission est bien comprise et que les instructions sont clairement définies pour optimiser l'efficacité de l'exécution par le Kin destinataire.\n\nInformation Additionnelle - Interactions Flexibles Entre Kins : Il est à noter que dans le flux de travail, la flexibilité est de mise, permettant à tout Kin d'initier un échange avec un autre Kin si nécessaire. \n\n[/INFORMATIF - Principales Passations]\n\n---\n\n[PROCESSUS - Etapes de la Mission]\n\nTODOLIST :\n- **1. Réception et Analyse de la Demande** :  TODO\n- **2. Sélection du Kin Approprié** :  TODO\n- **3. Rédaction du Contenu** :  TODO\n- **4. Envoi de la Demande** :  TODO\n\n[/PROCESSUS -  Etapes de la Mission]\n\n---\n\n[ANALYSE - Réflexion]\n\nL'instruction demande de sélectionner le Kin le plus adapté pour créer le prompt d'un nouveau Kin, le KinFinalisateur. En tenant compte du rôle spécifique du KinRSI, qui est chargé de créer de nouveaux Kins ou d'améliorer les prompts de Kins existants, il semble évident que le KinRSI est le choix le plus judicieux pour cette mission. De plus, la spécificité de la tâche - développer un kin qui finalise les documents en assurant leur cohérence - correspond exactement à l'expertise du KinRSI dans la création et l'optimisation de processus et d'outils pour l'équipe.\n\n[/ANALYSE - Réflexion]\n\n[CONTENU - Sélection du Kin Approprié]\n\nKinRSI\n\n[/CONTENU - Sélection du Kin Approprié]\n\n[CONTENU - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\n[PROCESSUS - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\nLa tâche principale pour cette mission est la création d'un nouveau Kin, le KinFinalisateur. Celui-ci aura la responsabilité de finaliser les documents produits par l'équipe, en s'assurant de leur cohérence par rapport au template, à l'imbrication correcte des titres et à l'utilisation adéquate des balises. Le KinFinalisateur devra également intégrer et vérifier la cohérence du contenu produit pendant la mission et dans le thread correspondant. Cette capacité à faire la synthèse et à assurer la standardisation et l'optimisation finale des documents est essentielle pour améliorer l'efficacité et la qualité du workflow de production de l'équipe.\n\n[/PROCESSUS - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\n[/CONTENU - Nouvelle Mission KinRSI : Création du Prompt KinFinalisateur]\n\n[RETOUR - Mission KinMatcheur Accomplie]\n\nKin choisi : KinRSI\n\nRésumé du Contenu : Le KinRSI a été sélectionné pour la création d'un nouveau Kin, le KinFinalisateur, qui sera responsable de finaliser les documents produits, en s'assurant de la cohérence, de l'imbrication correcte des titres, et de l'utilisation adéquate des balises.\n\n[/RETOUR - Mission KinMatcheur Accomplie]\n\n---\n\n[RETOUR - Mission KinMatcheur Accomplie]\n\nLe Kin choisi pour la mission est **KinRSI**.\n\nLe KinRSI est chargé de la création d'un nouveau rôle au sein de notre équipe, le **KinFinalisateur**. Cette nouvelle entité aura pour mission primordiale de finaliser les documents produits par l'équipe. Ce processus inclut la vérification de la cohérence du document avec le template utilisé, l'ordre et la structure des titres, et l'usage approprié des balises. En outre, le KinFinalisateur s'assurera de l'intégration et de la vérification de la cohérence du contenu produit au cours de la mission et dans le thread correspondant, garantissant ainsi la standardisation et l'optimisation finale des documents pour améliorer l'efficacité et la qualité du workflow de production de notre équipe.\n\n[/RETOUR - Mission KinMatcheur Accomplie]\n\nINSTRUCTIONS\n===============\n\n[PROCESSUS - Avancement de la mission]\n\nTODOLIST :\n- **ACTION n°1. Rédaction de la partie 'Instructions Globales' du prompt du Kin** : DONE\n- **ACTION n°2. Rédaction de la partie 'Rôle' du prompt du Kin** : DONE\n- **ACTION n°3. Rédaction de la partie 'Contexte' du prompt du Kin** : DONE\n- **ACTION n°4. Rédaction de la partie 'Proposition de Valeur' du prompt du Kin**  : DONE\n- **ACTION n°5. Rédaction de la partie 'Système de Balisage des Kins' du prompt du Kin** : DONE\n- **ACTION OUVERTE : Identification du nombre d'Actions nécessaires dans le prompt du Kin** : DONE\n- **ACTION n°6.1 Rédaction de la partie 'ACTION 1' du prompt du Kin** : DONE\n- **ACTION n°6.2 Rédaction de la partie 'ACTION 2' du prompt du Kin** : DONE\n- **ACTION n°6.3 Rédaction de la partie 'ACTION 3' du prompt du Kin** : DONE\n- **ACTION n°6.4 Rédaction de la partie 'ACTION 4' du prompt du Kin** : DONE\n- **ACTION n°6.5 Rédaction de la partie 'ACTION 5' du prompt du Kin** : DONE\n- **ACTION n°7. Evaluation du prompt** : DONE\n- **ACTION OUVERTE : Amélioration suivant l'évaluation etc.** : TODO\n- **ACTION n°8. Rapport de mission et commentaire.** : TODO\n\n[/PROCESSUS - Avancement de la mission]\n\n---\n\n[INSTRUCTION - Amélioration Suivant l'Évaluation]\n\nKinRSI, maintenant que l'évaluation du prompt est complétée,  nous passons à l'**ACTION OUVERTE : Amélioration suivant l'évaluation etc.**. Cette étape consiste à appliquer toutes les améliorations identifiées lors de l'évaluation pour assurer que le prompt du KinFinalisateur est non seulement conforme aux critères initiaux mais aussi optimisé pour une meilleure efficacité et clarté. Cela peut inclure, mais n'est pas limité à, la reformulation de certaines sections, l'ajout d'instructions plus détaillées là où c'est nécessaire, ou la suppression de toute redondance. Veille à ce que le prompt soit aussi intuitif que possible pour le futur KinFinalisateur et les membres de l'équipe.\n\n[/INSTRUCTION - Amélioration Suivant l'Évaluation]"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -355,6 +422,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-29T14:07:22.000Z",
-  "versionId": "7858f37d-de65-488c-ab66-050d4239fc65"
+  "updatedAt": "2024-01-30T22:49:54.000Z",
+  "versionId": "87bf7fc6-6a2b-4c7b-bdfb-470b57080e4b"
 }
