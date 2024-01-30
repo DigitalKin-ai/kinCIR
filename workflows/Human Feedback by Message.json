@@ -1,0 +1,643 @@
+{
+  "active": true,
+  "connections": {
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "defaultEmbedding",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "defaultEmbedding": {
+      "main": [
+        [
+          {
+            "node": "Get Kin DOING Tasks",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Kin TODO Tasks",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Kin WAITING Tasks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Kin DOING Tasks": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Kin TODO Tasks": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "entree thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree thread": {
+      "main": [
+        [
+          {
+            "node": "thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "thread": {
+      "main": [
+        [
+          {
+            "node": "feedback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to binary data": {
+      "main": [
+        [
+          {
+            "node": "Update Thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "feedback": {
+      "main": [
+        [
+          {
+            "node": "Convert to binary data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escape Markdown Ouput": {
+      "main": [
+        [
+          {
+            "node": "Send Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Thread": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown Ouput",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Output": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If mention": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger KinCIR": {
+      "main": [
+        [
+          {
+            "node": "If mention",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger LesterAGI": {
+      "main": [
+        [
+          {
+            "node": "If mention",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger Boiron": {
+      "main": [
+        [
+          {
+            "node": "If mention",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Kin WAITING Tasks": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-29T09:33:49.512Z",
+  "id": "xMV42ELBz1pvvDDt",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Human Feedback by Message",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\njson.kin = $json.message.text.match(/@kin\\w+/i)[0].substring(1); \n\nreturn {\"json\": json};"
+      },
+      "id": "c489b22a-8cfb-4a33-8d39-1297e2522860",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1400,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "YWxRZmBa38HYCjnv",
+        "options": {}
+      },
+      "id": "f11a242e-2031-4056-a7e1-741b3d30f07d",
+      "name": "thread",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2440,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"doing\",\n  \"filter\": {\"kin\": \"{{ $node[\"entree\"].json.kin }}\"},\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "eb3e78ae-8234-46c8-84df-ab05046bebc7",
+      "name": "Get Kin DOING Tasks",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1800,
+        480
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "=IJeSapyzv0Y9koZ9",
+        "options": {}
+      },
+      "id": "7437ead3-9db5-4e13-8043-4bbfc4324613",
+      "name": "defaultEmbedding",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "matches",
+        "options": {}
+      },
+      "id": "53146d59-1dc4-4baf-bccf-e9e1a0b5ddd5",
+      "name": "Split Out1",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2020,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"todo\",\n  \"filter\": {\"kin\": \"{{ $node[\"entree\"].json.kin }}\"},\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "6c87f9eb-49b7-4f0b-9e80-da6d7e0ea94e",
+      "name": "Get Kin TODO Tasks",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1800,
+        240
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $item(0).$node[\"entree\"].json;\n\njson.mailId = $json.metadata.mailId; \n\nreturn {\"json\": json};"
+      },
+      "id": "6fc299ef-c6a5-470c-b59c-13074a9604a6",
+      "name": "entree thread",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2240,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"thread\"].json;\nlet message = $item(0).$node[\"entree\"].json.message;\nlet from = message.from.username?message.from.username:\"\" + \" \" + message.from.first_name?message.from.first_name:\"\" + \" \" + message.from.last_name?message.from.last_name:\"\";\n\njson.feedback = \"---\\n\\n[FEEDBACK - \" + from + \"]\\n\\n\" + message.text + \"\\n\\n[/FEEDBACK - \" + from + \"]\\n\"; \n\njson.thread += json.feedback ;\n\nreturn {\"json\": json};"
+      },
+      "id": "0193a968-2e6b-4b9f-a64c-955ec44ed88e",
+      "name": "feedback",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2660,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "thread",
+        "destinationKey": "thread",
+        "options": {
+          "fileName": "={{ $node[\"thread\"].binary.fileName }}",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "add5438c-3779-4450-8b56-221817428dab",
+      "name": "Convert to binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        2860,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $node[\"thread\"].json[\"documentGoogleDriveId\"] }}",
+          "mode": "id"
+        },
+        "changeFileContent": true,
+        "inputDataFieldName": "thread",
+        "newUpdatedFileName": "={{ $node[\"thread\"].binary.thread[\"fileName\"] }}",
+        "options": {}
+      },
+      "id": "e9402a4c-2176-4b93-8172-98bdc1c58011",
+      "name": "Update Thread",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        3080,
+        700
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"feedback\"].json;\n\nlet text = json.feedback;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext = \"Feedback pour \" + $item(0).$node[\"entree\"].json.kin + \" (Producteur) : \" + $item(0).$node[\"entree\"].json.mailSubject + \"\\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+      },
+      "id": "1d3446ba-fc5e-4b7d-abfd-de69bc78457b",
+      "name": "Escape Markdown Ouput",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3280,
+        700
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "-4130957615",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": false,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "149c4191-96b4-489a-8a20-b044b50ef151",
+      "name": "Send Output",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3500,
+        700
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "rUijC7XE7TL12tph",
+          "name": "Lester AGI"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "3cace918-c2f2-47d4-98e8-c6ce0a67d7b2",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        3700,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "59531903-e8b9-4352-9640-3cec9ed78114",
+              "leftValue": "={{ $json.message.text.match(/@kin\\w+/i) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "e5d2def0-5dfa-4d0f-8d58-ab133b132413",
+      "name": "If mention",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "65bdc093-7bfd-4786-a88c-a23b70407e72",
+      "name": "Telegram Trigger KinCIR",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        880,
+        300
+      ],
+      "webhookId": "f85a7b14-e4e9-4f17-8898-c2bd2d740f20",
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "KinCIR Dynergie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "1780a8e6-ed86-4849-b2ad-ceab69b3de8e",
+      "name": "Telegram Trigger LesterAGI",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        880,
+        480
+      ],
+      "webhookId": "db1a6ae8-2dda-4b84-9e1a-088aad542afd",
+      "credentials": {
+        "telegramApi": {
+          "id": "rUijC7XE7TL12tph",
+          "name": "Lester AGI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "916e5eda-0313-4032-97d6-ef6a3f6f5985",
+      "name": "Telegram Trigger Boiron",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        880,
+        660
+      ],
+      "webhookId": "489315ee-a723-4959-8259-257fcc547589",
+      "credentials": {
+        "telegramApi": {
+          "id": "C7R9VmqdsXqL4lOZ",
+          "name": "Boiron RSI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"waiting\",\n  \"filter\": {\"kin\": \"{{ $node[\"entree\"].json.kin }}\"},\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "211462b2-f058-47c2-b2eb-d073a8df099e",
+      "name": "Get Kin WAITING Tasks",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1800,
+        700
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-01-07T11:05:17.438Z",
+      "updatedAt": "2024-01-07T11:05:17.438Z",
+      "id": "g3tbWolPRHSWqvlU",
+      "name": "QoL"
+    },
+    {
+      "createdAt": "2024-01-23T15:32:23.987Z",
+      "updatedAt": "2024-01-23T15:32:23.987Z",
+      "id": "wt7Cl4Mt8mR1bDh4",
+      "name": "admin"
+    }
+  ],
+  "triggerCount": 3,
+  "updatedAt": "2024-01-30T22:11:06.000Z",
+  "versionId": "b5fa964e-b58d-43f2-9f32-efd8f52547c7"
+}
