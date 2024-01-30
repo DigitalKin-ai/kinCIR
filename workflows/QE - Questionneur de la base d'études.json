@@ -233,8 +233,9 @@
       "parameters": {
         "pineconeIndex": {
           "__rl": true,
+          "value": "kins",
           "mode": "list",
-          "value": ""
+          "cachedResultName": "kins"
         },
         "options": {
           "pineconeNamespace": "=etudes",
@@ -286,6 +287,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-29T07:10:32.000Z",
-  "versionId": "f5f1ba5d-5861-4a3a-bff1-c4957950a57a"
+  "updatedAt": "2024-01-30T18:03:07.000Z",
+  "versionId": "3f35bfd6-02ac-4bd5-bce5-9bfa26b5f56c"
 }
