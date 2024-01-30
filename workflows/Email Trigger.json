@@ -409,7 +409,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const messages = $node[\"Get Thread\"].json.messages;\nlet emailThread = \"\";\nlet remainingEmailThread = \"\";\nconst MAX_LENGTH = 8000;\n\nmessages.forEach(message => {\n    let subject = 'n/a';\n    let from = 'n/a';\n    let to = 'n/a';\n\n    if (message.payload && message.payload.headers) {\n        const subjectHeader = message.payload.headers.find(header => header.name === 'Subject');\n        const fromHeader = message.payload.headers.find(header => header.name === 'From');\n        const toHeader = message.payload.headers.find(header => header.name === 'To');\n\n        if (subjectHeader) subject = subjectHeader.value;\n        if (fromHeader) from = fromHeader.value;\n        if (toHeader) to = toHeader.value;\n    }\n\n    const date = new Date(parseInt(message.internalDate));\n    const snippet = message.snippet;\n    emailThread += `Sujet: ${subject}\\nDe: ${from}\\nÀ: ${to}\\nDate: ${date.toLocaleString()}\\nExtrait: ${snippet}\\n\\n`;\n});\n\n\nif (emailThread.length > MAX_LENGTH) {\n    emailThread = \"Voici la fin du thread d'email :\\n[...]\" + emailThread.substring(emailThread.length - MAX_LENGTH);\n    remainingEmailThread = emailThread.substring(0, emailThread.length - MAX_LENGTH);\n} else {\n    remainingEmailThread = \"\";\n}\n\n\nreturn {\"json\" : {\"emailThread\": emailThread, \"remainingEmailThread\": remainingEmailThread}};"
+        "jsCode": "const messages = $node[\"Get Thread\"].json.messages;\nlet emailThread = \"\";\nlet remainingEmailThread = \"\";\nconst MAX_LENGTH = 10000;\n\nmessages.forEach(message => {\n    let subject = 'n/a';\n    let from = 'n/a';\n    let to = 'n/a';\n\n    if (message.payload && message.payload.headers) {\n        const subjectHeader = message.payload.headers.find(header => header.name === 'Subject');\n        const fromHeader = message.payload.headers.find(header => header.name === 'From');\n        const toHeader = message.payload.headers.find(header => header.name === 'To');\n\n        if (subjectHeader) subject = subjectHeader.value;\n        if (fromHeader) from = fromHeader.value;\n        if (toHeader) to = toHeader.value;\n    }\n\n    const date = new Date(parseInt(message.internalDate));\n    const snippet = message.snippet;\n    emailThread += `Sujet: ${subject}\\nDe: ${from}\\nÀ: ${to}\\nDate: ${date.toLocaleString()}\\nExtrait: ${snippet}\\n\\n`;\n});\n\n\nif (emailThread.length > MAX_LENGTH) {\n    emailThread = \"Voici la fin du thread d'email :\\n[...]\" + emailThread.substring(emailThread.length - MAX_LENGTH);\n    remainingEmailThread = emailThread.substring(0, emailThread.length - MAX_LENGTH);\n} else {\n    remainingEmailThread = \"\";\n}\n\n\nreturn {\"json\" : {\"emailThread\": emailThread, \"remainingEmailThread\": remainingEmailThread}};"
       },
       "id": "65cf34cb-c40a-4a0e-a0f3-2c989845d33e",
       "name": "emailThread",
@@ -543,7 +543,7 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "=[PROCESSUS - Mission : Matching]\n\nTa mission est de trouver le Kin le plus adapté pour répondre au besoin du client, et de lancer le Kin approprié via une demande détaillée. \n\n[/PROCESSUS - Mission : Matching]\n\n---\n\n[INFORMATIF - Thread D'Emails]\n\n{{ $node[\"emailThread\"].json.emailThread }}\n\n[INFORMATIF - Thread D'Emails]"
+              "stringValue": "=[PROCESSUS - Mission : Matching]\n\nTa mission est de trouver le Kin le plus adapté pour répondre au besoin du client, et de lancer le Kin approprié via une demande détaillée. \n\n[/PROCESSUS - Mission : Matching]\n\n---\n\n[INFORMATIF - Thread D'Emails]\n\n{{ $node[\"emailThread\"].json.emailThread.length > 10000 ? \"[...]\" : \"\" }}{{ $node[\"emailThread\"].json.emailThread.substring($node[\"emailThread\"].json.emailThread.length - 10000)}}\n\n[INFORMATIF - Thread D'Emails]\n\n---\n\n[INFORMATIF - Dernier email reçu]\n\n{{ $node[\"Get Email\"].json.text.substring(0, 10000)}}{{ $node[\"Get Email\"].json.text.length > 10000 ? \"[...]\" : \"\" }}\n\n[/INFORMATIF - Dernier email reçu]"
             }
           ]
         },
@@ -776,9 +776,9 @@
       ]
     },
     "node:Mail Trigger": {
-      "lastTimeChecked": 1706611743,
+      "lastTimeChecked": 1706655508,
       "possibleDuplicates": [
-        "18d59fc9d99f4f22"
+        "18d5c989959f986a"
       ]
     }
   },
@@ -791,6 +791,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-30T10:50:03.000Z",
-  "versionId": "d3603673-c3a3-44f8-abbd-cf3df8e21021"
+  "updatedAt": "2024-01-30T22:58:57.000Z",
+  "versionId": "07c47c7d-1b50-47d2-b51c-5134cf073d40"
 }
