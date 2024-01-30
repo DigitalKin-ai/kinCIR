@@ -1,0 +1,91 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Test workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "Google Cloud Realtime Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-30T15:29:49.496Z",
+  "id": "pJPiOSio0nwCPuZv",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Test Firebase",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "0a70f06f-4c79-4b64-9027-7f45b6a107b9",
+      "name": "When clicking \"Test workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        380,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "projectId": "kincir-9369f",
+        "path": "conversations/",
+        "attributes": "={{ $json.newDate }}"
+      },
+      "id": "4ad7d1bc-9675-4427-9300-929078fb445a",
+      "name": "Google Cloud Realtime Database",
+      "type": "n8n-nodes-base.googleFirebaseRealtimeDatabase",
+      "typeVersion": 1,
+      "position": [
+        900,
+        240
+      ],
+      "credentials": {
+        "googleFirebaseRealtimeDatabaseOAuth2Api": {
+          "id": "OVSbgNbwKqSqujMP",
+          "name": "Google Firebase Realtime Database account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addToDate",
+        "magnitude": "1/01/2024",
+        "options": {}
+      },
+      "id": "bd0de947-8d06-44c7-9944-86559a5e056a",
+      "name": "Date & Time",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        600,
+        140
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-30T16:56:25.000Z",
+  "versionId": "f6a9ae17-6fcf-4583-a601-ceded48fbb86"
+}
