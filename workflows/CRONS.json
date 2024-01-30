@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "set kinCredits": {
       "main": [
@@ -307,8 +307,8 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        1503,
-        5
+        1523,
+        -55
       ]
     },
     {
@@ -322,8 +322,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        500,
-        -160
+        520,
+        -220
       ]
     },
     {
@@ -336,8 +336,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        1103,
-        5
+        1123,
+        -55
       ]
     },
     {
@@ -362,8 +362,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        500,
-        -620
+        520,
+        -680
       ]
     },
     {
@@ -495,8 +495,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1100,
-        -480
+        1120,
+        -540
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -618,8 +618,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        880,
-        -480
+        900,
+        -540
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -698,8 +698,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        860,
-        0
+        880,
+        -60
       ],
       "credentials": {
         "pineconeApi": {
@@ -737,8 +737,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1723,
-        5
+        1743,
+        -55
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -954,8 +954,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1300,
-        0
+        1320,
+        -60
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -1062,6 +1062,34 @@
         600
       ],
       "webhookId": "feba6be3-9918-42b8-a571-b18a19382805"
+    },
+    {
+      "parameters": {
+        "content": "## TODO : AJouter verif Kinactf"
+      },
+      "id": "29d04526-55ea-4146-97a3-7e8242cb10b8",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        900,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## TODO : à gérer par le Kin manageur de production",
+        "height": 270.2863893253402,
+        "width": 654.6768238632794
+      },
+      "id": "90e1ebb5-9535-470e-ac2b-0dda39a75aae",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2320,
+        520
+      ]
     }
   ],
   "pinData": {
@@ -1098,6 +1126,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-29T17:38:19.000Z",
-  "versionId": "5bfb17ba-f927-49ba-a0e0-eed79bde659a"
+  "updatedAt": "2024-01-30T10:40:04.000Z",
+  "versionId": "57cbcb26-e7a7-4bcc-b5f1-a78b06ded1fd"
 }
