@@ -92,6 +92,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "response1",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -381,6 +388,20 @@
         5140,
         -180
       ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let response = \"Pas de résulats pour la Query : \" + $json.query;\n\n\nreturn {\"json\": {\"response\": response}};"
+      },
+      "id": "d8313c92-0281-4c3c-a0a5-a223d4a5f6d9",
+      "name": "response1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3400,
+        40
+      ]
     }
   ],
   "pinData": {},
@@ -405,6 +426,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-29T07:25:21.000Z",
-  "versionId": "ec1c1655-09cf-46fa-9893-9e9750b2586a"
+  "updatedAt": "2024-01-30T11:49:19.000Z",
+  "versionId": "497c35b7-ae09-4603-add1-169e4413d223"
 }
