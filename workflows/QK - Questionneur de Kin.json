@@ -1,0 +1,2010 @@
+{
+  "active": true,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Prompt Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de logs": {
+      "ai_tool": [
+        [
+          {
+            "node": "kindev",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de document": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinlca",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EXCEPTION - Kin Non-Actif": {
+      "main": [
+        [
+          {
+            "node": "kinmatcheur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recherche Google Scholar": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinchercheur",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinchercheurbeta",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de la base d'études": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinsotabeta",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kincir",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kincirbeta",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinsota",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinchercheurbeta",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send  Notifications": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Producteur": {
+      "main": [
+        [
+          {
+            "node": "Send  Notifications",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompt Producteur": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de Prompt": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinrsi",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kindev",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kincadreur",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message au CTO": {
+      "ai_tool": [
+        [
+          {
+            "node": "kindev",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinarchitecte",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message au Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinpo",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kincadreur",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kincadreurbeta",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur d'executions": {
+      "ai_tool": [
+        [
+          {
+            "node": "kindev",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de production": {
+      "ai_tool": [
+        [
+          {
+            "node": "kindev",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinevaluateur",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinfacturation",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de Code": {
+      "ai_tool": [
+        [
+          {
+            "node": "kindev",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kincir": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinlca": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinrsi": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinsota": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kincirbeta": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kindev": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinontologie": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinchercheur": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinsotabeta": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinchercheurbeta": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kincadreur": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kincadreurbeta": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinmail": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinmatcheur": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinarchitecte": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinpo": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinevaluateur": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kintesteur": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinfacturation": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "kincir",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinlca",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinrsi",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinsota",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kincirbeta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kindev",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinontologie",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinchercheur",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinsotabeta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinchercheurbeta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kincadreur",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kincadreurbeta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinmail",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinmatcheur",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinarchitecte",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinpo",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinevaluateur",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kintesteur",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinfacturation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "EXCEPTION - Kin Non-Actif",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-30T23:28:15.425Z",
+  "id": "m3wfYxyTxFXqib9D",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "QK - Questionneur de Kin",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "2be2f18c-55f0-47df-980c-067081582430",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        1580
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (!json.missionDemandeur) {\n  json.missionDemandeur = \"Compréhension générale & amélioration\";\n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n} else {\n  json.kinDemandeur = json.kin;\n}\n\nif (json.query) {\n  // Trouver le bon Kin\n  if (json.query.match(/kin\\w+/i)) {\n    json.kin = json.query.match(/kin\\w+/i)[0];\n  }\n} else {\n  json.query = \"Bonjour ! Peux-tu te présenter ?\";\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "71312e61-2b67-4aed-96c4-e431cb96fce8",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        1580
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_logs",
+        "description": "Le Questionneur de logs retourne une réponse issue des logs de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
+        "workflowId": "kLKx8F1dt8gfkjry",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"entree1\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree1\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "06e41c99-a7e1-43f0-a4b5-350792b19544",
+      "name": "Questionneur de logs",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4120,
+        880
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_document",
+        "description": "Le Questionneur d'étude retourne une réponse issue d'un document spécifique à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée en Anglais, contenant :\n- La citation de l'étude,\n- Les informations que tu cherches,\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire,\n- Le format de réponse désiré.\n",
+        "workflowId": "anybPoo9G98Nx3qW",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"entree1\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree1\"].json.mission }}"
+            },
+            {
+              "name": "documentGoogleDriveId",
+              "stringValue": "={{ $node[\"entree1\"].json.sourceGoogleDriveId }}"
+            }
+          ]
+        }
+      },
+      "id": "97a7ec5f-fb96-48e8-9a80-2e41a5c037e6",
+      "name": "Questionneur de document",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3480,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let output = \"[EXCEPTION - Kin Non-Actif]\\n\\nLe Kin \" + $node[\"entree\"].json.kin + \" n'est pas actif ou n'existe pas.\\n\\n[EXCEPTION - Kin Non-Actif]\";\n\nreturn {\"json\": {\"promptProducteur\": output}};"
+      },
+      "id": "a88cdee7-a9d4-496c-991a-046afeeee141",
+      "name": "EXCEPTION - Kin Non-Actif",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2140,
+        2800
+      ]
+    },
+    {
+      "parameters": {
+        "name": "send_email",
+        "description": "La fonction \"send_email\" envoie l'email à partir d'une query contenant le contenu de l'email formatté au format HTML, et permet donc au Kin d'envoyer des emails en autonomie.\n\nPour l'utiliser, passe le contenu du mail désiré dans \"query\", au format HTML.",
+        "workflowId": "rr8aeSM8QYyY8Po4",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "=kin",
+              "stringValue": "={{ $node[\"entree1\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree1\"].json.mission }}"
+            },
+            {
+              "name": "mailId",
+              "stringValue": "={{ $node[\"entree1\"].json.mailId }}"
+            },
+            {
+              "name": "kinDemandeur",
+              "stringValue": "={{ $node[\"entree1\"].json.kinDemandeur }}"
+            },
+            {
+              "name": "missionDemandeur",
+              "stringValue": "={{ $node[\"entree1\"].json.missionDemandeur }}"
+            }
+          ]
+        }
+      },
+      "id": "120d4947-fabe-4d12-a78c-d24cbdf8d1e2",
+      "name": "Send Email",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2440,
+        2700
+      ]
+    },
+    {
+      "parameters": {
+        "name": "recherche_google_scholar",
+        "description": "La recherche Google Scholar renvoie la premiere page des résultats à partir d'une Query.",
+        "workflowId": "syCSVTnhcjp4jtCz",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"entree1\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree1\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "4d636f21-a6f2-4fd9-8068-4c9e23282b14",
+      "name": "Recherche Google Scholar",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3100,
+        2240
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_etudes",
+        "description": "Le Questionneur d'études retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée en Anglais, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
+        "workflowId": "yQ79P9nuVKhkwZpD",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"entree1\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree1\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "188e5ed2-b818-4a1b-9e80-ba8541f31f59",
+      "name": "Questionneur de la base d'études",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3460,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=EYWde6gUS9Qq2ok7",
+        "options": {}
+      },
+      "id": "e39c973d-172c-400e-8c2c-2b50d86bb401",
+      "name": "Send  Notifications",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        1600
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\nif ($json.output != null) {\n  json.output = $json.output;\n} else {\n  json.output = \"[EXCEPTION - Error with OpenAI call]\\n\\n\" + $prevNode.name +\" returned an error when calling OpenAI Assistant\\n\\n[/EXCEPTION - Error with OpenAI call]\"; \n}\n\nreturn {\"json\": json};"
+      },
+      "id": "f3afc4d3-8eae-4198-8294-239630342782",
+      "name": "Producteur",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3320,
+        1600
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "=promptProducteur",
+              "stringValue": "=MISSION DU DEMANDEUR\n===============\n\n{{ $node[\"entree\"].json.mission.length > 10000 ? \"[...]\" : \"\" }}{{ $node[\"entree\"].json.mission.substring($node[\"entree\"].json.mission.length - 10000) }}\n\nQUESTION POSEE PAR {{ $node[\"entree\"].json.kinDemandeur }}\n===============\n\n{{ $node[\"entree\"].json.kinDemandeur }} te pose la question suivante :\n\n\"{{ $node[\"entree\"].json.query }}\"\n\nINSTRUCTIONS\n===============\n\nRépondre à la question :)"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "4b3300ba-e587-40ac-ae34-9202cadc6d52",
+      "name": "Prompt Producteur",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1720,
+        1580
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_prompt",
+        "description": "Le questionneur_de_prompt retourne un extrait du prompt système du Kin demandé ou une répondes à une question sur le prompt à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée contenant :\n- Le nom du Kin dont tu souhaites récupérer le prompt,\n- Les sections demandées (Prompt en entier, Processus, Actions, etc.)\n- Verbatim : Si les extraits du prompt doivent être retranscrit verbatim",
+        "workflowId": "1gSRJ9a1XiIgSYRx",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"entree1\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree1\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "8d75a429-9423-4e45-ae64-3229cdf6f891",
+      "name": "Questionneur de Prompt",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3480,
+        1260
+      ]
+    },
+    {
+      "parameters": {
+        "name": "message_au_cto",
+        "description": "La fonction message_au_cto envoie le message passé dans \"query\" au CTO de DigitalKin, Nicolas Lester Reynolds.\n\nIl peut être utilisé pour signaler un problème, demander de l'aide ou une modification, demander un déblocage, ou suggérer une amélioration.",
+        "workflowId": "NjRYPuz1EgoPxWfP",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "=kin",
+              "stringValue": "={{ $node[\"entree1\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree1\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "f0b417e1-6e25-48d7-a04b-dd0ea349e9d5",
+      "name": "Message au CTO",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3660,
+        2540
+      ]
+    },
+    {
+      "parameters": {
+        "name": "message_au_client",
+        "description": "La fonction message_au_client envoie le message passé dans \"query\" au commenditaire de la mission.\n\nIl peut être utilisé pour demander des précisions, demander des validations, signaler un problème, ou tout autre chose.",
+        "workflowId": "NjRYPuz1EgoPxWfP",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "=kin",
+              "stringValue": "={{ $node[\"entree1\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree1\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "06b2a20d-0b4d-4cb7-82c5-c8ab37d62c1a",
+      "name": "Message au Client",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3320,
+        2860
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_d_executions",
+        "description": "Le questionneur_d_executions retourne une réponse issue de les executions n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (filtre optionnel) Le status des executions \"status: error\" (default), \"status: waiting\", \"status: success\"\n- (filtre optionnel) Le workflowId des executions désiré \"workflowId: %ID%\"\n- Les informations que tu cherches, avec les  éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
+        "workflowId": "ZTyYwHXmIk6UTURZ",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"entree1\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree1\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "7158fe9f-e09a-49d1-970a-dbb79eaaf90d",
+      "name": "Questionneur d'executions",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3940,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_production",
+        "description": "Le questionneur_de_production retourne une réponse issue de la base de données des tâches des Kins\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Le statut des tâches désirées (TODO/DOING/DONE)\n- (filtre optionnel) Le Kin désiré\n- Les informations que tu cherches, avec les  éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
+        "workflowId": "ZTyYwHXmIk6UTURZ",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"entree1\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree1\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "0e411989-476a-4b70-b384-8d76463c9213",
+      "name": "Questionneur de production",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3360,
+        2300
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_code",
+        "description": "Le Questionneur de code retourne une réponse issue de la codebase n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
+        "workflowId": "kLKx8F1dt8gfkjry",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"entree1\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree1\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "ea8aca73-a50b-4fe4-bec6-2a707d75907d",
+      "name": "Questionneur de Code",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3740,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_bU27N3NS5XZ0lH4AFOuN8kb7",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "41098238-c39b-4164-84c7-a31ac913d860",
+      "name": "kincir",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2780,
+        540
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_581bbg7Bmja1nCBKeiGg9Rgu",
+        "text": "={{ $json.promptProducteur }}",
+        "nativeTools": [
+          "code_interpreter"
+        ],
+        "options": {}
+      },
+      "id": "9e1bba8d-3817-4083-87c7-978c718bb519",
+      "name": "kinlca",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2780,
+        780
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_WKY0lRXB0rrJTFIm3HYv8jlE",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "2e75ab49-5fd8-4cf3-82c5-4df6d4acc4be",
+      "name": "kinrsi",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2780,
+        1020
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_7abHKvQqtVij29X6ybyEvAbZ",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "ec46d8ba-54b4-4025-af6a-2574593959a3",
+      "name": "kinsota",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2780,
+        1260
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_TwVBZeoLx80udowj5MIoG6Pq",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "81244315-ef24-4666-bbcc-96189f84b4a1",
+      "name": "kincirbeta",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        600
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "82d3e407-ac04-4ffb-b93c-380790d67299",
+      "name": "kindev",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        840
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_3pQx4lfP0EN6Jstj8kozdBtC",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "30629635-c8ed-428a-af69-6f3138c34561",
+      "name": "kinontologie",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        1080
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "bedc822e-fbe1-4140-86dd-33a0f30f584d",
+      "name": "kinchercheur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        1320
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_MHJDvt7FT6gcWBFdJsZqJ52C",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "c1e2b348-c641-4dd4-99fc-2f16eaead313",
+      "name": "kinsotabeta",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        1600
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "b35216a7-9a5e-4310-a9d8-6a79db673354",
+      "name": "kinchercheurbeta",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        1860
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_i59drQwQdShF5SmdHgqd3gXG",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "cbda218a-1722-477c-ab51-c51069a5adc9",
+      "name": "kincadreur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        2120
+      ],
+      "retryOnFail": false,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_EwmKBIJWKqCJECb0nVBVju45",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "69a1050d-b556-45a5-a997-985fc263cbc2",
+      "name": "kincadreurbeta",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        2320
+      ],
+      "retryOnFail": false,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_RKZEJLbWald8azZuvxrnnSxL",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "88b66ba5-d137-4c12-a931-50275cf82291",
+      "name": "kinmail",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        2540
+      ],
+      "retryOnFail": false,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_8umriZllMPt14U8qy2T0jCmQ",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "d84efd93-ab54-4471-a3b2-cce861b37dbd",
+      "name": "kinmatcheur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        2800
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_L1WY5sdn3wnugM8RoJZBHETh",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "b61b989c-1003-40f7-9722-7cea85c4b739",
+      "name": "kinarchitecte",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        2040
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_8umriZllMPt14U8qy2T0jCmQ",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "dc3f7ede-9859-4bf5-b73d-3288e3701d38",
+      "name": "kinpo",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        2260
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_8umriZllMPt14U8qy2T0jCmQ",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "96162e93-64ca-4816-b2c4-80cbf7111067",
+      "name": "kinevaluateur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        2480
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_8umriZllMPt14U8qy2T0jCmQ",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "c64b7389-cb91-44a1-806f-2e155cb20959",
+      "name": "kintesteur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        2700
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_8umriZllMPt14U8qy2T0jCmQ",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "342dfa69-8e79-427a-b4a3-2b8f31505181",
+      "name": "kinfacturation",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        2900
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "if ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": $node[\"Producteur\"].json.output};\n}\n\nreturn {\"response\": $node[\"Producteur\"].json.output};"
+      },
+      "id": "e18575ca-dad6-4128-a013-b71fe17754b9",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3700,
+        1600
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "ee0b2c5b-62fd-4c09-bfca-f844e805e9ad",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kincir",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "ee0b2c5b-62fd-4c09-bfca-f844e805e9ad",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinlca",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "2a5fab45-e697-4ba3-96ea-3f1bdc5a7655",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinrsi",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinsota",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "72d86350-5484-42da-86d0-02205e464813",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kincirbeta",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "6485b142-ec38-459a-9d57-c73998d1ec69",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kindev",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "6f847cf9-95ef-46d0-a2fc-dd71c81e9e7f",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinontologie",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "0b1b17da-cb6e-45e2-94b0-6489cc899831",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinchercheur",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "74f492b7-3bec-4816-ae99-a1a88314f9ff",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinsotabeta",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "0b7fbcf3-4e28-4b4a-9c08-ce4e3b263604",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinchercheurbeta",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "d31caef0-4d25-4ed3-9e1d-eea4ca6dbc76",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kincadreur",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "e830f692-818a-4c36-a976-38294ef3f1c8",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kincadreurbeta",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "2caba844-9c03-4c51-8262-9be51e095df7",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinmail",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "bd30facf-18e2-45ab-9c15-61b1a5aa0661",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinmatcheur",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "dec09ac9-dbf2-48a1-88c1-274f1d1309ee",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinarchitecte",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "58985013-b664-435a-8964-e97aaa0935b6",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinpo",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "873de981-5c16-4165-8467-009d17277dfa",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinevaluateur",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "b2a3e685-74d6-46b7-9e2d-03a95d595ea0",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kintesteur",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "cd4effcc-9084-463b-ae02-db173847297e",
+                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinfacturation",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "ignoreCase": true,
+          "looseTypeValidation": true
+        }
+      },
+      "id": "798cc085-4d9f-4000-b08d-d06fccaaf80f",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        1920,
+        1420
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide  qui n'est pas en rapport avec une mission spécifique.\n\nPour bien l'utiliser :\n- Mentionne le nom du @Kin,\n- Explique ton contexte et ton intention d'usage,\n- ta question.\n\nEx : KinDev, peux-tu me lister les outils auxquels tu as accès ?",
+        "options": {
+          "inputPlaceholder": "KinDev, peux-tu me lister les outils auxquels tu as accès ?",
+          "responseMode": "lastNode",
+          "subtitle": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide  qui n'est pas en rapport avec une mission spécifique.Pour bien l'utiliser : - Mentionne le nom du @Kin, - Explique ton contexte et ton intention d'usage, - ta question.",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "1c8f47f9-b72e-4c16-8790-9a1da4bf1068",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        1400
+      ],
+      "webhookId": "6dc41956-8b26-402d-83ce-c4b4225df822"
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "@Kin Matcheur, pourrais-tu me partager tes impressions actuelles sur l'utilisation de ton prompt lors des sélections de missions? As-tu remarqué des domaines spécifiques qui selon toi nécessiteraient une amélioration pour optimiser ta précision et efficacité lors du processus de matchmaking? Ton retour sera essentiel pour guider les ajustements à apporter.",
+          "sync": true,
+          "kin": "KinRSI",
+          "mission": "[PROCESSUS - Nouvelle Mission KinRSI : Amélioration du Prompt du Kin Matcheur]\n\n**Cadrage de la Mission :**\n\n- **Objectif :** Améliorer le prompt et le processus du Kin Matcheur pour optimiser la précision et l'efficacité du matchmaking entre les demandes des clients et les Kins les mieux adaptés pour ces missions.\n- **Contexte :** Suite aux retours reçus, il apparaît nécessaire d'actualiser et de perfectionner le prompt du Kin Matcheur afin d'assurer une meilleure compréhension des missions et une sélection plus adéquate des Kins.\n- **Actions Requises :** \n  - Analyser le prompt actuel et identifier les domaines nécessitant des améliorations.\n  - Développer un nouveau format pour le prompt qui renforce la clarté et l'efficacité du processus de matchmaking.\n  - Mettre en place un processus optimisé permettant une réponse rapide et précise aux besoins des clients.\n  - Tester le nouveau prompt avec quelques missions pour s'assurer de son bon fonctionnement.\n  - Fournir un rapport sur les modifications apportées, y compris les justifications des choix effectués.\n  \n**Deliverables :**\n- Nouveau prompt et processus pour le Kin Matcheur.\n- Un rapport d'implémentation détaillant les améliorations réalisées.\n\n**Deadline :** 2 semaines à partir de la réception de cette mission.\n\nTa mission vise à améliorer l'efficacité globale du Kin Matcheur en rendant le processus de matchmaking plus intuitif, rapide, et précis. Nous comptons sur ton expertise pour optimiser ce processus essentiel à notre opération.\n\n[/PROCESSUS - Nouvelle Mission KinRSI : Amélioration du Prompt du Kin Matcheur]"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any",
+    "errorWorkflow": "rr8aeSM8QYyY8Po4"
+  },
+  "staticData": {
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1706090233,
+      "possibleDuplicates": [
+        "18d3ae6fc072fb95"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    },
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-01-31T06:20:38.000Z",
+  "versionId": "869b86de-e6c1-4483-ae3c-c8de1dbeca46"
+}
