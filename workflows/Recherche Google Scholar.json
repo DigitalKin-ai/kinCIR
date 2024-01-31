@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Google Scholar Search": {
       "main": [
@@ -7,28 +7,6 @@
           {
             "node": "IF Results",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Execute Workflow Trigger": {
-      "main": [
-        [
-          {
-            "node": "Google Scholar Search",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model2": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Filtrage Initial",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -49,7 +27,7 @@
       "main": [
         [
           {
-            "node": "Filtrage Initial",
+            "node": "kinchercheur",
             "type": "main",
             "index": 0
           }
@@ -135,11 +113,44 @@
         ]
       ]
     },
-    "Filtrage Initial": {
+    "kinchercheur": {
       "main": [
         [
           {
             "node": "If relevant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Google Scholar Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
             "type": "main",
             "index": 0
           }
@@ -161,7 +172,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        2660,
+        2480,
         -160
       ]
     },
@@ -172,7 +183,7 @@
         "genericAuthType": "httpHeaderAuth",
         "sendQuery": true,
         "specifyQuery": "json",
-        "jsonQuery": "={\n  \"engine\": \"google_scholar\",\n  \"q\": {{ JSON.stringify($json.query) }},\n  \"as_ylo\":2019\n}",
+        "jsonQuery": "={\n  \"engine\": \"google_scholar\",\n  \"q\": {{ JSON.stringify($json.query) }},\n  \"as_ylo\": {{ $json.date }}\n}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -189,7 +200,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        2920,
+        2940,
         -160
       ],
       "credentials": {
@@ -209,45 +220,23 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        4740,
-        20
+        4140,
+        220
       ],
       "onError": "continueRegularOutput"
     },
     {
       "parameters": {
-        "model": "gpt-4-0125-preview",
-        "options": {
-          "timeout": 600000
-        }
-      },
-      "id": "56704b6f-f472-452b-a67e-84fa6f28001a",
-      "name": "OpenAI Chat Model2",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1,
-      "position": [
-        3880,
-        0
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"Foreach Result\"].json;\n\njson.relevancyAssessment = $json.text;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"Foreach Result\"].json;\n\njson.relevancyAssessment = $json.output;\n\nreturn {\"json\": json};"
       },
       "id": "bb94795a-6a4c-4f37-8ac7-3d9abfb9d42e",
       "name": "entree pinecone",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4520,
-        20
+        3920,
+        220
       ]
     },
     {
@@ -294,7 +283,7 @@
           "conditions": [
             {
               "id": "84ef531e-b145-4797-be6f-af01e0f58a88",
-              "leftValue": "={{ $json.text.toLowercase() }}",
+              "leftValue": "={{ $output.toLowercase() }}",
               "rightValue": "=true",
               "operator": {
                 "type": "string",
@@ -311,8 +300,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        4240,
-        -180
+        3640,
+        20
       ]
     },
     {
@@ -358,41 +347,15 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        4940,
-        -180
+        4340,
+        20
       ],
       "alwaysOutputData": true
     },
     {
       "parameters": {
-        "prompt": "=# Instructions du filteur d'Etudes\n\n## Ontologie du filtrage d'Etudes\n\n### Graphe\n\ngraph TD\n  Etude -->|évaluée selon| PertinenceContextuelle\n  Etude -->|contient| InformationSpecifique\n  RelevancyAssessment -->|dépend de| PertinenceContextuelle\n  RelevancyAssessment -->|dépend de| InformationSpecifique\n  RelevancyAssessment -->|impacte| Relevant\n\nclassDef default fill:#d9e9f6,stroke:#333,stroke-width:1px;\nclass PertinenceContextuelle,InformationSpecifique default;\n\n### Concepts Principaux\n\n#### Etude\n- Document scientifique ou académique évalué pour son respect de la spécificité de l'application et de l'objectif\n\n#### Pertinence Contextuelle\n- Evaluation de la spécificité de l'information fournie par l'étude par rapport à l'application et l'objectif\n\n#### Information Spécifique\n- Détails relatifs à la forme spécifique de l'application et de l'objectif présents dans l'étude\n\n#### Relevancy Assessment\n- Analyse de l'adéquation de l'étude avec l'application et l'objectif spécifiques\n- Détermine si l'étude est contextuellement pertinente et contient l'information spécifique requise\n\n#### Relevant\n- Indicateur boolean reflétant la pertinence de l'étude en fonction de la présence des spécificités requises\n- Valeur \"TRUE\" si l'étude est jugée pertinente ; \"FALSE\" sinon\n\n### Sous-éléments Liés\n\n#### Spécificité de l'Application\n- Exigence que l'étude aborde un aspect concret de l'application envisagée\n\n#### Spécificité de l'Objectif\n- Nécessité que l'étude cible explicitement l'objectif particulier attendu\n\n#### Titre et Snippet\n- Extraits de l'étude indiquant sa pertinence vis-à-vis de l'application et de l'objectif\n- Éléments évalués pour la première impression de la pertinence de l'étude\n\n### Relations Entre Concepts\n\n- La **Pertinence Contextuelle** d'une **Etude** est évaluée sur la base de l'**Information Spécifique** qu'elle contient.\n- L'**Etude** passe par une **Relevancy Assessment** pour déterminer sa pertinence.\n- La **Relevancy Assessment** est étroitement liée à la **Pertinence Contextuelle** et à l'**Information Spécifique**, car la pertinence d'une étude dépend de sa capacité à répondre aux particularités de l'application et de l'objectif.\n- L'issue de l'**Relevancy Assessment** est reflétée dans l'indicateur **Relevant**, accordant une valeur \"TRUE\" si les conditions de spécificité sont remplies et \"FALSE\" si elles ne le sont pas.\n\n## Mission Globale\n\n{{ $item(0).$node[\"Execute Workflow Trigger\"].json.mission }}\n\n## Demande Spécifique (Query)\n\n{{ $item(0).$node[\"Execute Workflow Trigger\"].json.query }}\n\n## Résultat\n\n{{ JSON.stringify($('Foreach Result').item.json)  }}\n\n## Instructions\n\n1) \"relevancyAssement\" : A partir des informations disponibles, écris un paragraphe le plus objectif possible en étant critique sur la pertinence de l'étude retournée par Google Scholar dans le cadre de notre contexte. Inclus la citation détaillée de l'étude.\n- La spécificité de l’application et de sa forme doit être respectée.\n- La spécificité de l’objectif et de sa forme doit être respectée\n\n2) \"relevant\": Pour l'étude retournée, vérifie que l’objectif, la forme de l’objectif, l’application et la forme de l’application sont bien présents dans le titre ou le snippet.\n- La spécificité de l’application et de sa forme doit être respectée.\n- La spécificité de l’objectif et de sa forme doit être respectée\nIndique si relevant est \"TRUE\" ou \"FALSE\"."
-      },
-      "id": "9ee4f7e4-a920-4361-a42d-c73fe4cbe033",
-      "name": "Filtrage Initial",
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.3,
-      "position": [
-        3860,
-        -180
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "let response = \"[CONTENU - Etudes trouvées]\\n\\n\"\n\n// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  response += item.json.text + \"\\n\\n\";\n}\n\nresponse += \"[C/ONTENU - Etudes trouvées]\\n\\n---\\n\"\n\nreturn {\"json\": {\"response\": response}};"
-      },
-      "id": "52798fcd-0ed8-493a-a0e5-7df0fbb4f10a",
-      "name": "response",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        5140,
-        -180
-      ]
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let response = \"Pas de résulats pour la Query : \" + $json.query;\n\n\nreturn {\"json\": {\"response\": response}};"
+        "jsCode": "let response = \"[RETOUR - Etudes trouvées]\\n\\nPas de résulats Google Scholar pour la Query : \" + $node[\"entree\"].json.query + \"\\n\\n[/RETOUR - Etudes trouvées]\\n\\n---\\n\\n\";\n\nif ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": response};\n}\n\n\nreturn {\"json\": {\"response\": response}};"
       },
       "id": "d8313c92-0281-4c3c-a0a5-a223d4a5f6d9",
       "name": "response1",
@@ -400,8 +363,78 @@
       "typeVersion": 2,
       "position": [
         3400,
-        40
+        20
       ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
+        "text": "=# Instructions du filtrage d'Etudes\n\n## Ontologie du filtrage d'Etudes\n\n### Graphe\n\ngraph TD\n  Etude -->|évaluée selon| PertinenceContextuelle\n  Etude -->|contient| InformationSpecifique\n  RelevancyAssessment -->|dépend de| PertinenceContextuelle\n  RelevancyAssessment -->|dépend de| InformationSpecifique\n  RelevancyAssessment -->|impacte| Relevant\n\nclassDef default fill:#d9e9f6,stroke:#333,stroke-width:1px;\nclass PertinenceContextuelle,InformationSpecifique default;\n\n### Concepts Principaux\n\n#### Etude\n- Document scientifique ou académique évalué pour son respect de la spécificité de l'application et de l'objectif\n\n#### Pertinence Contextuelle\n- Evaluation de la spécificité de l'information fournie par l'étude par rapport à l'application et l'objectif\n\n#### Information Spécifique\n- Détails relatifs à la forme spécifique de l'application et de l'objectif présents dans l'étude\n\n#### Relevancy Assessment\n- Analyse de l'adéquation de l'étude avec l'application et l'objectif spécifiques\n- Détermine si l'étude est contextuellement pertinente et contient l'information spécifique requise\n\n#### Relevant\n- Indicateur boolean reflétant la pertinence de l'étude en fonction de la présence des spécificités requises\n- Valeur \"TRUE\" si l'étude est jugée pertinente ; \"FALSE\" sinon\n\n### Sous-éléments Liés\n\n#### Spécificité de l'Application\n- Exigence que l'étude aborde un aspect concret de l'application envisagée\n\n#### Spécificité de l'Objectif\n- Nécessité que l'étude cible explicitement l'objectif particulier attendu\n\n#### Titre et Snippet\n- Extraits de l'étude indiquant sa pertinence vis-à-vis de l'application et de l'objectif\n- Éléments évalués pour la première impression de la pertinence de l'étude\n\n### Relations Entre Concepts\n\n- La **Pertinence Contextuelle** d'une **Etude** est évaluée sur la base de l'**Information Spécifique** qu'elle contient.\n- L'**Etude** passe par une **Relevancy Assessment** pour déterminer sa pertinence.\n- La **Relevancy Assessment** est étroitement liée à la **Pertinence Contextuelle** et à l'**Information Spécifique**, car la pertinence d'une étude dépend de sa capacité à répondre aux particularités de l'application et de l'objectif.\n- L'issue de l'**Relevancy Assessment** est reflétée dans l'indicateur **Relevant**, accordant une valeur \"TRUE\" si les conditions de spécificité sont remplies et \"FALSE\" si elles ne le sont pas.\n\n## Mission Globale\n\n{{ $item(0).$node[\"entree\"].json.mission }}\n\n## Demande Spécifique (Query)\n\n{{ $item(0).$node[\"entree\"].json.query }}\n\n## Résultat\n\n{{ JSON.stringify($node[\"Foreach Result\"].json)  }}\n\n## Instructions\n\n1) A partir des informations disponibles, écris un paragraphe le plus objectif possible en étant critique sur la pertinence de l'étude retournée par Google Scholar dans le cadre de notre contexte. Inclus la citation détaillée de l'étude.\n- La spécificité de l’application et de sa forme doit être respectée.\n- La spécificité de l’objectif et de sa forme doit être respectée\n\n2) \"relevant\": Pour l'étude retournée, vérifie que l’objectif, la forme de l’objectif, l’application et la forme de l’application sont bien présents dans le titre ou le snippet.\n- La spécificité de l’application et de sa forme doit être respectée.\n- La spécificité de l’objectif et de sa forme doit être respectée\nIndique si relevant est \"TRUE\" ou \"FALSE\".",
+        "options": {}
+      },
+      "id": "a29949cc-1686-48cc-8a0c-a1d5b5484bab",
+      "name": "kinchercheur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        3960,
+        -180
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (!json.missionDemandeur) {\n  json.missionDemandeur = \"Exploration générale & découverte\";\n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n} else {\n  json.kinDemandeur = json.kin;\n}\n\nif (json.query) {\n  \n} else {\n  json.query =  \"Je souhaite faire des recherches pour améliorer l'équipe de Kin\";\n}\n\nlet regex = /\\s\\b\\d{4}\\b/; // C'est votre expression régulière\n\nif (regex.test(json.query)) {\n    json.date = json.query.match(regex)[0].substring(1);\n    json.query = json.query.replace(regex, '');\n} else {\n  json.date = \"2019\";\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "934cd554-d79d-43d5-8d8b-ad816f8551c3",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2720,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let response = \"[RETOUR - Etudes trouvées]\\n\\n\"\n\n// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  response += item.json.output + \"\\n\\n\";\n}\n\nresponse += \"[/RETOUR - Etudes trouvées]\\n\\n---\\n\\n\";\n\nif ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": response};\n}\n\n\nreturn {\"json\": {\"response\": response}};"
+      },
+      "id": "287c39dc-66b1-4d07-8871-5a9f1639d640",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4540,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "La fonction recherche_google_scholar renvoie la première page des résultats de Google Scholar à partir d'une query, filtrés et avec une évaluation de leur pertinence.\n\nIl est possible de passer la date limite des études sans format après la chaîne.\n\nQuery exemple : LLM multi-agent  systems 2023",
+        "options": {
+          "inputPlaceholder": "LLM multi-agent systems 2023",
+          "responseMode": "lastNode",
+          "subtitle": "La fonction recherche_google_scholar renvoie la première page des résultats de Google Scholar à partir d'une query, filtrés et avec une évaluation de leur pertinence.  Il est possible de passer la date limite des études sans format après la chaîne.  Query exemple : LLM multi-agent  systems 2023",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "f4cca4f0-ba56-4e65-aa4e-5758099278e7",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        2480,
+        -360
+      ],
+      "webhookId": "3247566d-0dd3-4351-971e-2c73a179e187"
     }
   ],
   "pinData": {},
@@ -425,7 +458,7 @@
       "name": "beta"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2024-01-30T11:49:19.000Z",
-  "versionId": "497c35b7-ae09-4603-add1-169e4413d223"
+  "triggerCount": 2,
+  "updatedAt": "2024-01-31T07:52:38.000Z",
+  "versionId": "3cecc6f4-b28b-46d0-9e56-269afe94e817"
 }
