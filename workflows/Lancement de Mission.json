@@ -131,7 +131,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"entree\"].json));\n\ndelete json.query;\ndelete json.output;\ndelete json.instructions;\n\njson.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\nif (json.missionDuDemandeur) {\n  json.missionDuDemandeur = json.missionDuDemandeur.length > 10000 ? \"[...]\" : \"\" + json.missionDuDemandeur.substring(json.missionDuDemandeur.length - 10000);\n}\n\njson.instructions = $node[\"Manager\"].json.output;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads & prompts\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread') || key.toLowerCase().includes('prompt')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
+        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"entree\"].json));\n\ndelete json.query;\ndelete json.output;\ndelete json.instructions;\n\njson.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\nif (json.missionDuDemandeur) {\n  json.missionDuDemandeur = json.missionDuDemandeur.length > 10000 ? \"[...]\" : \"\" + json.missionDuDemandeur.substring(json.missionDuDemandeur.length - 10000);\n}\n\njson.instructions = $node[\"Manager\"].json.output;\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads & prompts\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread') || key.toLowerCase().includes('prompt')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
       },
       "id": "69dc4fea-191a-4348-9f2e-77e758fcca87",
       "name": "todo",
@@ -159,7 +159,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/upsert",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}upsert",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -262,6 +262,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-29T03:08:52.000Z",
-  "versionId": "2bee4df1-a59e-4242-8f48-18925512d61f"
+  "updatedAt": "2024-01-31T07:01:44.000Z",
+  "versionId": "e62d5d61-31da-4af0-a43b-97194f805844"
 }
