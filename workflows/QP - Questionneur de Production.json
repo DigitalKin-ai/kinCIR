@@ -161,7 +161,7 @@
     {
       "parameters": {
         "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
-        "text": "=# Mission Globale\n\nAnalyser l'état de la production de l'équipe des Kins.\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Tâches actuellement dans TODO\n\n{{  JSON.stringify($node[\"tasks\"].json.todo).substring(0, 10000) }}{{  JSON.stringify($node[\"tasks\"].json.todo).length > 10000 ? \"[...]\" : \"\" }}\n\n# Tâches actuellement dans DOING\n\n{{  JSON.stringify($node[\"tasks\"].json.doing).substring(0, 10000) }}{{  JSON.stringify($node[\"tasks\"].json.doing).length > 10000 ? \"[...]\" : \"\" }}\n\n# Tâches actuellement dans WAITING\n\n{{  JSON.stringify($node[\"tasks\"].json.waiting).substring(0, 10000) }}{{  JSON.stringify($node[\"tasks\"].json.waiting).length > 10000 ? \"[...]\" : \"\" }}\n\n# Dernières Tâches dans DONE\n\n{{  JSON.stringify($node[\"tasks\"].json.done).substring(0, 10000) }}{{  JSON.stringify($node[\"tasks\"].json.done).length > 10000 ? \"[...]\" : \"\" }}\n\n# Instruction - Réponse au besoin informationnel\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel. Utilise des listes.",
+        "text": "=# Mission Globale\n\nAnalyser l'état de la production de l'équipe des Kins.\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Tâches actuellement dans TODO\n\n{{  JSON.stringify($node[\"tasks\"].json.todo).substring(0, 10000) }}{{  JSON.stringify($node[\"tasks\"].json.todo).length > 10000 ? \"[...]\" : \"\" }}\n\n# Tâches actuellement dans DOING\n\n{{  JSON.stringify($node[\"tasks\"].json.doing).substring(0, 10000) }}{{  JSON.stringify($node[\"tasks\"].json.doing).length > 10000 ? \"[...]\" : \"\" }}\n\n# Tâches actuellement dans WAITING\n\n{{  JSON.stringify($node[\"tasks\"].json.waiting).substring(0, 10000) }}{{  JSON.stringify($node[\"tasks\"].json.waiting).length > 10000 ? \"[...]\" : \"\" }}\n\n# Dernières Tâches dans DONE\n\n{{  JSON.stringify($node[\"tasks\"].json.done).substring(0, 10000) }}{{  JSON.stringify($node[\"tasks\"].json.done).length > 10000 ? \"[...]\" : \"\" }}\n\n# Processus\n\n- Utilise des listes.\n- Inclus si possible client, kinDemandeur, kin, mailId, mailSubject, et un résumé de la mission \n\n# Instruction - Réponse au besoin informationnel\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel. ",
         "options": {}
       },
       "id": "36e9e9c9-03de-44d3-bb55-427ee546b383",
@@ -184,7 +184,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -251,7 +251,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -290,7 +290,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -329,7 +329,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -409,6 +409,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-30T21:07:36.000Z",
-  "versionId": "f8c9037a-b94e-427c-b122-37f935ba536d"
+  "updatedAt": "2024-01-31T07:02:11.000Z",
+  "versionId": "a40942e8-5066-47a0-a093-c28e3a45adb2"
 }
