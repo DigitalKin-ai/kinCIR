@@ -300,22 +300,6 @@
         ]
       ]
     },
-    "Extracteur de citation détaillée": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "defaultEmbedding",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "If binary": {
       "main": [
         [
@@ -332,6 +316,22 @@
         [
           {
             "node": "Découper en chunks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extracteur de citation détaillée": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "defaultEmbedding",
             "type": "main",
             "index": 0
           }
@@ -903,26 +903,6 @@
     },
     {
       "parameters": {
-        "prompt": "=# Informations\n\n{{ $json[\"text\"].substring(0,5000) }}\n[...]",
-        "messages": {
-          "messageValues": [
-            {
-              "message": "=# Tâche\n\nA partir des informations données, fais de ton mieux pour donner la citation détaillée de l'étude.\n\nRéponds uniquement avec la citation détaillée."
-            }
-          ]
-        }
-      },
-      "id": "9ea1dfaa-04fd-47ac-86ca-e4744a07a533",
-      "name": "Extracteur de citation détaillée",
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.2,
-      "position": [
-        1780,
-        1160
-      ]
-    },
-    {
-      "parameters": {
         "conditions": {
           "options": {
             "caseSensitive": true,
@@ -966,6 +946,26 @@
       "position": [
         2120,
         1520
+      ]
+    },
+    {
+      "parameters": {
+        "prompt": "=# Informations\n\n{{ $json[\"text\"].substring(0,5000) }}\n[...]",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Tâche\n\nA partir des informations données, fais de ton mieux pour donner la citation détaillée de l'étude.\n\nRéponds uniquement avec la citation détaillée."
+            }
+          ]
+        }
+      },
+      "id": "9ea1dfaa-04fd-47ac-86ca-e4744a07a533",
+      "name": "Extracteur de citation détaillée",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        1780,
+        1160
       ]
     }
   ],
@@ -1035,6 +1035,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-31T07:17:06.000Z",
-  "versionId": "59525000-08d3-4c40-81e5-4e3c11116562"
+  "updatedAt": "2024-01-31T09:34:02.000Z",
+  "versionId": "0d3567ff-9858-48ee-9abe-6e2107f4ccd1"
 }
