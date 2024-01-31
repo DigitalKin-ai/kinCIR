@@ -16,39 +16,7 @@
       "main": [
         [
           {
-            "node": "Get Kin DOING Tasks",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Get Kin TODO Tasks",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Get Kin WAITING Tasks",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Kin DOING Tasks": {
-      "main": [
-        [
-          {
-            "node": "Split Out1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Kin TODO Tasks": {
-      "main": [
-        [
-          {
-            "node": "Split Out1",
+            "node": "Get Kin missions",
             "type": "main",
             "index": 0
           }
@@ -163,7 +131,7 @@
       "main": [
         [
           {
-            "node": "If mention",
+            "node": "If command",
             "type": "main",
             "index": 0
           }
@@ -174,7 +142,7 @@
       "main": [
         [
           {
-            "node": "If mention",
+            "node": "If command",
             "type": "main",
             "index": 0
           }
@@ -185,6 +153,24 @@
       "main": [
         [
           {
+            "node": "If command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If command": {
+      "main": [
+        [
+          {
+            "node": "input command",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
             "node": "If mention",
             "type": "main",
             "index": 0
@@ -192,7 +178,29 @@
         ]
       ]
     },
-    "Get Kin WAITING Tasks": {
+    "input command": {
+      "main": [
+        [
+          {
+            "node": "Actionneur de Production",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actionneur de Production": {
+      "main": [
+        [
+          {
+            "node": "Send Output1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Kin missions": {
       "main": [
         [
           {
@@ -241,45 +249,6 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"doing\",\n  \"filter\": {\"kin\": \"{{ $node[\"entree\"].json.kin }}\"},\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
-        "options": {}
-      },
-      "id": "eb3e78ae-8234-46c8-84df-ab05046bebc7",
-      "name": "Get Kin DOING Tasks",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        1800,
-        480
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "workflowId": "=IJeSapyzv0Y9koZ9",
         "options": {}
       },
@@ -305,45 +274,6 @@
         2020,
         480
       ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"todo\",\n  \"filter\": {\"kin\": \"{{ $node[\"entree\"].json.kin }}\"},\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
-        "options": {}
-      },
-      "id": "6c87f9eb-49b7-4f0b-9e80-da6d7e0ea94e",
-      "name": "Get Kin TODO Tasks",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        1800,
-        240
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -521,7 +451,7 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.1,
       "position": [
-        880,
+        600,
         300
       ],
       "webhookId": "f85a7b14-e4e9-4f17-8898-c2bd2d740f20",
@@ -544,7 +474,7 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.1,
       "position": [
-        880,
+        600,
         480
       ],
       "webhookId": "db1a6ae8-2dda-4b84-9e1a-088aad542afd",
@@ -567,7 +497,7 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.1,
       "position": [
-        880,
+        600,
         660
       ],
       "webhookId": "489315ee-a723-4959-8259-257fcc547589",
@@ -577,6 +507,107 @@
           "name": "Boiron RSI"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "59531903-e8b9-4352-9640-3cec9ed78114",
+              "leftValue": "={{ /^\\/[a-zA-Z]+/i.test($json[\"message\"][\"text\"]) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "2f9641a5-87ba-467e-957d-525dd4b6e09a",
+      "name": "If command",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        920,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let query = $json.message.text;\n\nreturn {\"json\": {\"query\": query}};"
+      },
+      "id": "7c7d8b5c-8cd2-4309-824a-b1d17ac6b04b",
+      "name": "input command",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "MGND8ynCD26RRnsW",
+        "options": {}
+      },
+      "id": "de44fcb1-ed69-4708-b425-cbd0fc25d12c",
+      "name": "Actionneur de Production",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## /commandes accessibles via Telegram",
+        "height": 305.8754761244447,
+        "width": 745.7016505647414
+      },
+      "id": "f7edf80d-d710-4fc5-910a-35364c06a1d4",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1085,
+        108
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-4130957615",
+        "text": "={{ $json.response }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true
+        }
+      },
+      "id": "1a7f1964-a738-4f03-8ab4-046e0f95d1d3",
+      "name": "Send Output1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        1600,
+        200
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "rUijC7XE7TL12tph",
+          "name": "Lester AGI"
+        }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -599,16 +630,16 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"waiting\",\n  \"filter\": {\"kin\": \"{{ $node[\"entree\"].json.kin }}\"},\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"filter\": {\"kin\": \"{{ $node[\"entree\"].json.kin }}\", {\"status\": { \"$in\": [\"todo\", \"doing\", \"waiting\"] }},\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
         "options": {}
       },
-      "id": "211462b2-f058-47c2-b2eb-d073a8df099e",
-      "name": "Get Kin WAITING Tasks",
+      "id": "6c87f9eb-49b7-4f0b-9e80-da6d7e0ea94e",
+      "name": "Get Kin missions",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1800,
-        700
+        1820,
+        480
       ],
       "credentials": {
         "pineconeApi": {
@@ -618,40 +649,7 @@
       }
     }
   ],
-  "pinData": {
-    "Telegram Trigger KinCIR": [
-      {
-        "json": {
-          "update_id": 543561987,
-          "message": {
-            "message_id": 13383,
-            "from": {
-              "id": 1864364329,
-              "is_bot": false,
-              "first_name": "Nicolas Lester",
-              "last_name": "Reynolds - CTO @ DigitalKin",
-              "username": "lesterpaintstheworld",
-              "language_code": "fr"
-            },
-            "chat": {
-              "id": -1002105587743,
-              "title": "KinCIR Dynergie",
-              "type": "supergroup"
-            },
-            "date": 1706680407,
-            "text": "@kinmatcheur info sur les commandes de rapport de recherche : utilise \"kinchercheur\" uniquement",
-            "entities": [
-              {
-                "offset": 0,
-                "length": 12,
-                "type": "mention"
-              }
-            ]
-          }
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
@@ -671,6 +669,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2024-01-31T07:00:41.000Z",
-  "versionId": "7a81d83e-7fe4-4896-968a-a1e6f844910b"
+  "updatedAt": "2024-01-31T22:12:29.000Z",
+  "versionId": "84877010-21f6-4cad-8cbd-218c9dd8ae93"
 }
