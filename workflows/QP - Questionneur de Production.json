@@ -23,17 +23,6 @@
         ]
       ]
     },
-    "kindev": {
-      "main": [
-        [
-          {
-            "node": "nouveau message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "defaultEmbedding": {
       "main": [
         [
@@ -78,6 +67,44 @@
         ]
       ]
     },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kindev": {
+      "main": [
+        [
+          {
+            "node": "Send  Notifications",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send  Notifications": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
     "Chat Trigger": {
       "main": [
         [
@@ -111,21 +138,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "if ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": $json.output};\n}\n\nreturn {\"json\":{\"response\": $json.output}};"
-      },
-      "id": "655a65fd-b92c-4895-a351-893206641906",
-      "name": "nouveau message",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        120,
-        800
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n json.query = json.chatInput;\n}\n\nif (!json.query) {\n  json.query = \"Je souhaite un point général sur la situation de la production.\";\n}\n\n// Execution Status\nif (json.query.match(/kin\\w+/i)) {\n  json.kin = json.query.match(/kin\\w+/i)[0];\n} else {\n  json.kin = null;\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nif (json.json) {\n json = {\n   ...json,\n   ...JSON.parse(json.json)\n }; \n}\n\nif (json.chatInput) {\n json.query = json.chatInput;\n}\n\nif (!json.query) {\n  json.query = \"Je souhaite un point général sur la situation de la production.\";\n}\n\n// Execution Status\nif (json.query.match(/kin\\w+/i)) {\n  json.kin = json.query.match(/kin\\w+/i)[0];\n} else {\n  json.kin = null;\n}\n\nreturn {\"json\": json};"
       },
       "id": "a0abd500-d427-46a7-a412-4e06908ea337",
       "name": "entree",
@@ -135,29 +148,6 @@
         -960,
         600
       ]
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
-        "text": "=# Mission Globale\n\nAnalyser l'état de la production de l'équipe des Kins.\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Tâches actuellement dans dans la pipeline\n\n{{  JSON.stringify($node[\"missions\"].json.missionsInPipeline).substring(0, 10000) }}{{  JSON.stringify($node[\"missions\"].json.missionsInPipeline).length > 10000 ? \"[...]\" : \"\" }}\n\n# Dernières Tâches dans DONE\n\n{{  JSON.stringify($node[\"missions\"].json.missionsDone).substring(0, 10000) }}{{  JSON.stringify($node[\"missions\"].json.missionsDone).length > 10000 ? \"[...]\" : \"\" }}\n\n# Processus\n\n- Utilise des listes.\n- Inclus si possible client, kinDemandeur, kin, mailId, mailSubject, et un résumé de la mission \n\n# Instruction - Réponse au besoin informationnel\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel. ",
-        "options": {}
-      },
-      "id": "fd9b74a7-b014-4004-b146-49f03cdc3138",
-      "name": "kindev",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        -260,
-        800
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -267,12 +257,76 @@
     },
     {
       "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "71957820-985e-4f84-a1e9-562e8cd9ba48",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        260,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
+        "text": "=# Mission Globale\n\nAnalyser l'état de la production de l'équipe des Kins.\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Tâches actuellement dans dans la pipeline\n\n{{  JSON.stringify($node[\"missions\"].json.missionsInPipeline).substring(0, 10000) }}{{  JSON.stringify($node[\"missions\"].json.missionsInPipeline).length > 10000 ? \"[...]\" : \"\" }}\n\n# Dernières Tâches dans DONE\n\n{{  JSON.stringify($node[\"missions\"].json.missionsDone).substring(0, 10000) }}{{  JSON.stringify($node[\"missions\"].json.missionsDone).length > 10000 ? \"[...]\" : \"\" }}\n\n# Processus\n\n- Utilise des listes.\n- Inclus si possible client, kinDemandeur, kin, mailId, mailSubject, et un résumé de la mission \n\n# Instruction - Réponse au besoin informationnel\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel. ",
+        "options": {}
+      },
+      "id": "fd9b74a7-b014-4004-b146-49f03cdc3138",
+      "name": "kindev",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        800
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "=EYWde6gUS9Qq2ok7",
+        "options": {}
+      },
+      "id": "b0a54486-b00c-4257-8808-e40273db690e",
+      "name": "Send  Notifications",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        100,
+        940
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "if ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": $json.output};\n}\n\nreturn {\"json\":{\"response\": $json.output}};"
+      },
+      "id": "655a65fd-b92c-4895-a351-893206641906",
+      "name": "nouveau message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        800
+      ]
+    },
+    {
+      "parameters": {
         "public": true,
-        "initialMessages": "Bonjour ! Je suis KinDev. Que souhaitez-vous savoir sur la Production actuelle ?",
+        "initialMessages": "Le questionneur_de_production retourne une réponse issue de la base de données des tâches des Kins\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Le statut des tâches désirées (TODO/DOING/DONE)\n- (filtre optionnel) Le Kin désiré\n- Les informations que tu cherches, avec les  éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
         "options": {
           "inputPlaceholder": "Je souhaite un point général sur la situation de la production.",
           "responseMode": "lastNode",
-          "subtitle": "Le questionneur_de_production retourne une réponse issue de la base de données des tâches des Kins  Pour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant : - (optionnel) Le statut des tâches désirées (TODO/DOING/DONE) - (filtre optionnel) Le Kin désiré - Les informations que tu cherches, avec les  éléments de contexte. - L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire. - Le format de réponse désiré.",
+          "subtitle": "=Le questionneur_de_production retourne une réponse issue de la base de données des tâches des Kins\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Le statut des tâches désirées (TODO/DOING/DONE)\n- (filtre optionnel) Le Kin désiré\n- Les informations que tu cherches, avec les  éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
           "title": "Questionneur de  Production"
         }
       },
@@ -309,6 +363,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-31T10:46:10.000Z",
-  "versionId": "7db33a2c-0c2c-474a-b48b-8063403918cd"
+  "updatedAt": "2024-01-31T14:41:58.000Z",
+  "versionId": "f28a69f2-b3f4-4571-be74-4e6c35ce986d"
 }
