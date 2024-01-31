@@ -171,7 +171,7 @@
         "authentication": "oAuth2",
         "binaryData": true,
         "binaryPropertyName": "template",
-        "name": "={{ $node[\"entree\"].json.client }}-{{ $node[\"entree\"].json.mailSubject }}-{{ $node[\"entree\"].json.kin }}.md",
+        "name": "={{ $node[\"entree\"].json.client }}-{{ $node[\"entree\"].json.threadSubject }}-{{ $node[\"entree\"].json.kin }}.md",
         "resolveData": true,
         "parents": [
           "1PFOpdripUGox5KdYPQUbw7MxIA5C9a0F"
@@ -180,8 +180,8 @@
           "propertiesUi": {
             "propertyValues": [
               {
-                "key": "mailId",
-                "value": "={{ $node[\"entree\"].json.mailId }}"
+                "key": "threadId",
+                "value": "={{ $node[\"entree\"].json.threadId }}"
               },
               {
                 "key": "kin",
@@ -436,7 +436,7 @@
         "authentication": "oAuth2",
         "operation": "list",
         "useQueryString": true,
-        "queryString": "=properties has { key='mailId' and value='{{ $node[\"entree\"].json.mailId}}' } and properties has { key='kin' and value='{{ $node[\"entree\"].json.kin}}' }",
+        "queryString": "=properties has { key='threadId' and value='{{ $node[\"entree\"].json.threadId}}' } and properties has { key='kin' and value='{{ $node[\"entree\"].json.kin}}' }",
         "limit": 1,
         "options": {}
       },
@@ -523,6 +523,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-29T09:42:52.000Z",
-  "versionId": "464b491a-ddb6-4354-a809-44020cb2e4c1"
+  "updatedAt": "2024-01-31T14:52:45.000Z",
+  "versionId": "ebf19fe4-3f34-406e-a528-b00341f4e6bb"
 }
