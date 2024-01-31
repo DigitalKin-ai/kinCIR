@@ -60,7 +60,7 @@
       "main": [
         [
           {
-            "node": "Questionneur d'Etudes",
+            "node": "entree",
             "type": "main",
             "index": 0
           }
@@ -84,6 +84,28 @@
           {
             "node": "Vector Store Retriever",
             "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Questionneur d'Etudes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
             "index": 0
           }
         ]
@@ -114,7 +136,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
       "typeVersion": 1,
       "position": [
-        2700,
+        2680,
         360
       ],
       "credentials": {
@@ -131,8 +153,8 @@
       "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
       "typeVersion": 1,
       "position": [
-        3100,
-        600
+        2820,
+        660
       ]
     },
     {
@@ -144,8 +166,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1,
       "position": [
-        3040,
-        920
+        2760,
+        980
       ],
       "credentials": {
         "openAiApi": {
@@ -161,14 +183,14 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        2480,
+        2160,
         180
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "return {\"response\":$json.response.text};"
+        "jsCode": "if ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": $json.response.text};\n}\n\n\nreturn {\"response\":$json.response.text};"
       },
       "id": "05470c52-33c5-4484-a7dc-1e700b8f1d78",
       "name": "nouveau message",
@@ -191,8 +213,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        2980,
-        600
+        2700,
+        660
       ],
       "credentials": {
         "openAiApi": {
@@ -212,8 +234,8 @@
       "type": "@n8n/n8n-nodes-langchain.retrieverMultiQuery",
       "typeVersion": 1,
       "position": [
-        2980,
-        420
+        2700,
+        480
       ]
     },
     {
@@ -254,8 +276,8 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "typeVersion": 1,
       "position": [
-        3040,
-        780
+        2760,
+        840
       ],
       "credentials": {
         "pineconeApi": {
@@ -263,6 +285,35 @@
           "name": "PineconeApi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.json) {\n json = {\n   ...json,\n   ...JSON.parse(json.json)\n }; \n}\n\nif (json.chatInput) {\n json.query = json.chatInput;\n}\n\nif (!json.query) {\n  json.query = \"Je souhaite un point général sur la situation de la production.\";\n}\n\n// Execution Status\nif (json.query.match(/kin\\w+/i)) {\n  json.kin = json.query.match(/kin\\w+/i)[0];\n} else {\n  json.kin = null;\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "bba22dbe-fc17-4184-8d44-86867e9c0628",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2400,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "id": "15a18857-c374-4110-a881-e96b734b15a7",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        -20
+      ],
+      "webhookId": "e7f6613b-97d8-43c1-bd79-e7d950a29cfe"
     }
   ],
   "pinData": {},
@@ -287,6 +338,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-31T07:53:06.000Z",
-  "versionId": "fe142569-ebd2-4950-bcbd-15e2b768fa6c"
+  "updatedAt": "2024-01-31T15:13:28.000Z",
+  "versionId": "2956b1fc-c003-4b26-a7d0-9f98232fac86"
 }
