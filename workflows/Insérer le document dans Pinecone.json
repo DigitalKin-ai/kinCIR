@@ -624,7 +624,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/upsert",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -1007,6 +1007,11 @@
           ]
         }
       }
+    ],
+    "Execute Workflow Trigger": [
+      {
+        "json": {}
+      }
     ]
   },
   "settings": {
@@ -1030,6 +1035,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-28T23:40:12.000Z",
-  "versionId": "2ca4497e-7395-4a18-98f9-795656a409cb"
+  "updatedAt": "2024-01-31T07:17:06.000Z",
+  "versionId": "59525000-08d3-4c40-81e5-4e3c11116562"
 }
