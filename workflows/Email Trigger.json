@@ -34,42 +34,6 @@
         ]
       ]
     },
-    "IF Task": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Get doing",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "IF Task1": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Get done",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "IF Task2": {
-      "main": [
-        [],
-        [
-          {
-            "node": "IF Pièce Jointe",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "emailThread": {
       "main": [
         [
@@ -177,44 +141,11 @@
         ]
       ]
     },
-    "Get done": {
-      "main": [
-        [
-          {
-            "node": "IF Task2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get doing": {
-      "main": [
-        [
-          {
-            "node": "IF Task1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get todo": {
-      "main": [
-        [
-          {
-            "node": "IF Task",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "defaultEmbedding": {
       "main": [
         [
           {
-            "node": "Get todo",
+            "node": "Get kin mission",
             "type": "main",
             "index": 0
           }
@@ -226,6 +157,29 @@
         [
           {
             "node": "Get Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get kin mission": {
+      "main": [
+        [
+          {
+            "node": "IF mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF mission": {
+      "main": [
+        [],
+        [
+          {
+            "node": "IF Pièce Jointe",
             "type": "main",
             "index": 0
           }
@@ -333,68 +287,8 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "boolean": [
-            {
-              "value1": "={{ Object.keys($json.matches).length > 0 }}",
-              "value2": true
-            }
-          ]
-        }
-      },
-      "id": "f4b4cad8-e0b7-4cbd-b37e-02fe0a6e08f1",
-      "name": "IF Task",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        -600,
-        380
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "boolean": [
-            {
-              "value1": "={{ Object.keys($json.matches).length > 0 }}",
-              "value2": true
-            }
-          ]
-        }
-      },
-      "id": "52f355b0-3b6d-42b5-a5c4-b3253d18a698",
-      "name": "IF Task1",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        -600,
-        600
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "boolean": [
-            {
-              "value1": "={{ Object.keys($json.matches).length > 0 }}",
-              "value2": true
-            }
-          ]
-        }
-      },
-      "id": "2bce15aa-8d64-49e2-b61e-58883b9bc13a",
-      "name": "IF Task2",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        -600,
-        820
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## Ne pas effectuer les tâches en double",
-        "height": 748.8304051824048,
+        "content": "## Ne pas effectuer les missions en double",
+        "height": 311.36370457711615,
         "width": 543.4868194777655
       },
       "id": "92df523c-1f78-4084-9f76-6aa075fd7486",
@@ -402,8 +296,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -920,
-        280
+        -900,
+        300
       ]
     },
     {
@@ -561,7 +455,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = {};\n\njson.client = $node[\"Mail Trigger\"].json.from.value[0].address.match(/(?<=@)[^\\.]+/)[0];\njson.kin = \"kinmatcheur\";\njson.mission = $node[\"mission\"].json.mission;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\njson.mailId = $node[\"Get Thread\"].json.id;\njson.mailSubject = $node[\"Get Thread\"].json.messages[0].Subject;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = {};\n\njson.client = $node[\"Mail Trigger\"].json.from.value[0].address.match(/(?<=@)[^\\.]+/)[0];\njson.kin = \"kinmatcheur\";\njson.mission = $node[\"mission\"].json.mission;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\njson.threadId = $node[\"Get Thread\"].json.id;\njson.mailId = $node[\"Get Mail\"].json.id;\njson.threadSubject = $node[\"Get Thread\"].json.messages[0].Subject;\n\nreturn {\"json\": json};"
       },
       "id": "deead856-cb5a-4138-9a0d-65319c3911d8",
       "name": "nouvelleMission",
@@ -604,123 +498,6 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"done\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"mailId\" : \"{{ $node[\"Get Email\"].json.id }}\", \"kin\": \"kinmatcheur\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
-        "options": {}
-      },
-      "id": "454df1f9-f376-414d-bfc5-da11ad767611",
-      "name": "Get done",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        -820,
-        820
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"doing\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"mailId\" : \"{{ $node[\"Get Email\"].json.id }}\", \"kin\": \"kinmatcheur\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
-        "options": {}
-      },
-      "id": "ed5b8c41-ff71-4d98-be68-115a2b5356ea",
-      "name": "Get doing",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        -820,
-        600
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"todo\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"mailId\" : \"{{ $node[\"Get Email\"].json.id }}\", \"kin\": \"kinmatcheur\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
-        "options": {}
-      },
-      "id": "91dd0823-2367-463e-9d56-7c5bb0310126",
-      "name": "Get todo",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        -820,
-        380
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "workflowId": "=IJeSapyzv0Y9koZ9",
         "options": {}
       },
@@ -753,6 +530,65 @@
         -900,
         60
       ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"mailId\" : \"{{ $node[\"Get Email\"].json.id }}\", \"kin\": \"kinmatcheur\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "91dd0823-2367-463e-9d56-7c5bb0310126",
+      "name": "Get kin mission",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -820,
+        380
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($json.matches).length > 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "f4b4cad8-e0b7-4cbd-b37e-02fe0a6e08f1",
+      "name": "IF mission",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        380
+      ]
     }
   ],
   "pinData": {},
@@ -776,9 +612,9 @@
       ]
     },
     "node:Mail Trigger": {
-      "lastTimeChecked": 1706690794,
+      "lastTimeChecked": 1706698023,
       "possibleDuplicates": [
-        "18d5eb2f294ce443"
+        "18d5f212879ecdc7"
       ]
     }
   },
@@ -791,6 +627,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T08:46:58.000Z",
-  "versionId": "07c47c7d-1b50-47d2-b51c-5134cf073d40"
+  "updatedAt": "2024-01-31T10:52:30.000Z",
+  "versionId": "6b49f4bb-e65e-425b-8d5b-00c446efa638"
 }
