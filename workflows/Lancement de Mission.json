@@ -16,7 +16,7 @@
       "main": [
         [
           {
-            "node": "todo",
+            "node": "mission todo",
             "type": "main",
             "index": 0
           }
@@ -28,22 +28,6 @@
         [
           {
             "node": "defaultEmbedding",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "todo": {
-      "main": [
-        [
-          {
-            "node": "Upsert todo",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Send  Notifications",
             "type": "main",
             "index": 0
           }
@@ -66,6 +50,22 @@
         [
           {
             "node": "Manager",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission todo": {
+      "main": [
+        [
+          {
+            "node": "Upsert mission",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send  Notifications",
             "type": "main",
             "index": 0
           }
@@ -131,20 +131,6 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"entree\"].json));\n\ndelete json.query;\ndelete json.output;\ndelete json.instructions;\n\njson.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\nif (json.missionDuDemandeur) {\n  json.missionDuDemandeur = json.missionDuDemandeur.length > 10000 ? \"[...]\" : \"\" + json.missionDuDemandeur.substring(json.missionDuDemandeur.length - 10000);\n}\n\njson.instructions = $node[\"Manager\"].json.output;\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads & prompts\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread') || key.toLowerCase().includes('prompt')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
-      },
-      "id": "69dc4fea-191a-4348-9f2e-77e758fcca87",
-      "name": "todo",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        440,
-        480
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
         "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\nreturn {\"json\": json};"
       },
       "id": "18a39d88-1256-43f1-a315-ddb45bcd58bf",
@@ -155,47 +141,6 @@
         -640,
         480
       ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}upsert",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"todo\",\n\"vectors\": {\n\"id\": \"{{ $node[\"entree\"].json.kin }}-{{ $json.mailId }}\",\n\"metadata\": {{ JSON.stringify($json) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
-        "options": {}
-      },
-      "id": "c7d25f59-cec2-4dc5-9cfa-6c6c4d7b4019",
-      "name": "Upsert todo",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        680,
-        480
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -222,6 +167,61 @@
       "typeVersion": 1,
       "position": [
         -180,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}upsert",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"namespace\": \"missions\",\n\"vectors\": {\n\"id\": \"{{ $node[\"entree\"].json.kin }}-{{ $json.threadId }}\",\n\"metadata\": {{ JSON.stringify($json) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
+        "options": {}
+      },
+      "id": "c7d25f59-cec2-4dc5-9cfa-6c6c4d7b4019",
+      "name": "Upsert mission",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        680,
+        480
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"entree\"].json));\n\ndelete json.query;\ndelete json.output;\ndelete json.instructions;\n\njson.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\nif (json.missionDuDemandeur) {\n  json.missionDuDemandeur = json.missionDuDemandeur.length > 10000 ? \"[...]\" : \"\" + json.missionDuDemandeur.substring(json.missionDuDemandeur.length - 10000);\n}\n\njson.instructions = $node[\"Manager\"].json.output;\n\njson.date = $now.toString();\njson.executionId = $execution.id;\njson.status = \"todo\";\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads & prompts\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread') || key.toLowerCase().includes('prompt')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
+      },
+      "id": "69dc4fea-191a-4348-9f2e-77e758fcca87",
+      "name": "mission todo",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
         480
       ]
     }
@@ -262,6 +262,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T07:01:44.000Z",
-  "versionId": "e62d5d61-31da-4af0-a43b-97194f805844"
+  "updatedAt": "2024-01-31T10:42:02.000Z",
+  "versionId": "7851af12-ccda-4d73-aba0-5cd847711fab"
 }
