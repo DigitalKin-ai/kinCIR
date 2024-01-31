@@ -67,7 +67,29 @@
         ]
       ]
     },
-    "kinrsi": {
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send  Notifications": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
       "main": [
         [
           {
@@ -78,11 +100,16 @@
         ]
       ]
     },
-    "Chat Trigger": {
+    "kinrsi": {
       "main": [
         [
           {
-            "node": "entree",
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send  Notifications",
             "type": "main",
             "index": 0
           }
@@ -195,7 +222,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2940,
+        3260,
         320
       ]
     },
@@ -223,29 +250,6 @@
     },
     {
       "parameters": {
-        "assistantId": "asst_NRJfqzvKf73U2CjrI4bqMSf5",
-        "text": "=# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query) de {{ $node[\"entree\"].json.kinDemandeur }}\n\n{{ $node[\"entree\"].json.query }}\n\n# Prompt système du Kin {{ $node[\"entree\"].json.kin }}\n{{ $node[\"prompt\"].json.prompt.substring(0, 20000) }}{{  $node[\"prompt\"].json.prompt.length > 20000 ? \"[...]\" : \"\" }}\n\n# INSTRUCTION - ACTION OUVERTE : Réponse au besoin informationnel\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel.",
-        "options": {}
-      },
-      "id": "9e358d62-ed6b-4c2b-8288-c5e767898e45",
-      "name": "kinrsi",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        2540,
-        320
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
         "public": true,
         "initialMessages": "Le questionneur_de_prompt retourne un extrait du prompt système du Kin demandé ou une répondes à une question sur le prompt à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée contenant :\n- Le nom du Kin dont tu souhaites récupérer le prompt,\n- Les sections demandées (Prompt en entier, Processus, Actions, etc.)\n- Verbatim : Si les extraits du prompt doivent être retranscrit verbatim\n\nex: Donne-moi les instructions du KinChercheur",
         "options": {
@@ -264,6 +268,56 @@
         -120
       ],
       "webhookId": "8e2462a7-0dc4-47e0-981e-d56ebd857124"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "4e22a84f-2527-48d9-9e60-8f121aa6bccf",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        3040,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=EYWde6gUS9Qq2ok7",
+        "options": {}
+      },
+      "id": "06abe3a0-039e-49c5-aebd-170c87bdb61b",
+      "name": "Send  Notifications",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        460
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_NRJfqzvKf73U2CjrI4bqMSf5",
+        "text": "=# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query) de {{ $node[\"entree\"].json.kinDemandeur }}\n\n{{ $node[\"entree\"].json.query }}\n\n# Prompt système du Kin {{ $node[\"entree\"].json.kin }}\n{{ $node[\"prompt\"].json.prompt.substring(0, 20000) }}{{  $node[\"prompt\"].json.prompt.length > 20000 ? \"[...]\" : \"\" }}\n\n# INSTRUCTION - ACTION OUVERTE : Réponse au besoin informationnel\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel.",
+        "options": {}
+      },
+      "id": "9e358d62-ed6b-4c2b-8288-c5e767898e45",
+      "name": "kinrsi",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2540,
+        320
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -296,6 +350,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-31T09:32:40.000Z",
-  "versionId": "0884005b-6eab-4132-ac53-313f7bff4629"
+  "updatedAt": "2024-01-31T14:36:17.000Z",
+  "versionId": "cb650003-7e68-4cd8-a312-8a4c01167956"
 }
