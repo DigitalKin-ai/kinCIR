@@ -1,0 +1,76 @@
+{
+  "active": false,
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send Instructions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-31T00:05:32.428Z",
+  "id": "PYJaVWpuygsfVZry",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Catch Error",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "6034d3a6-7880-4cac-bfd2-9d684b7a03a8",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        680,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-4130957615",
+        "text": "={{ JSON.stringify($json).substring(0, 3990) }}{{ JSON.stringify($json). > 3990 ? \"[...]\" : \"\" }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "a34a1caf-77e7-42bf-9ce6-9041fac8e2d1",
+      "name": "Send Instructions",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        920,
+        320
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "rUijC7XE7TL12tph",
+          "name": "Lester AGI"
+        }
+      },
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-01-23T15:32:23.987Z",
+      "updatedAt": "2024-01-23T15:32:23.987Z",
+      "id": "wt7Cl4Mt8mR1bDh4",
+      "name": "admin"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-31T00:08:25.000Z",
+  "versionId": "fce1f641-2897-4357-aeac-0c98f5f47e80"
+}
