@@ -12,17 +12,6 @@
         ]
       ]
     },
-    "kindev": {
-      "main": [
-        [
-          {
-            "node": "nouveau message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "entree": {
       "main": [
         [
@@ -34,66 +23,55 @@
         ]
       ]
     },
+    "kindev": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "defaultEmbedding": {
       "main": [
         [
           {
-            "node": "Get ALL TODO",
+            "node": "Get Last todo/doing/waiting missions",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Get ALL TODO": {
+    "Get Last todo/doing/waiting missions": {
       "main": [
         [
           {
-            "node": "Get ALL DOING",
+            "node": "Get Last done missions",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "tasks": {
+    "Get Last done missions": {
+      "main": [
+        [
+          {
+            "node": "missions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "missions": {
       "main": [
         [
           {
             "node": "kindev",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get LAST DONE": {
-      "main": [
-        [
-          {
-            "node": "tasks",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get ALL DOING": {
-      "main": [
-        [
-          {
-            "node": "Get LAST WAITING",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get LAST WAITING": {
-      "main": [
-        [
-          {
-            "node": "Get LAST DONE",
             "type": "main",
             "index": 0
           }
@@ -121,13 +99,13 @@
   "nodes": [
     {
       "parameters": {},
-      "id": "84e5c2a5-5596-4757-8205-3b700282699f",
+      "id": "ff74a607-da30-49e8-91dd-2638f725e0b0",
       "name": "Execute Workflow Trigger",
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
         -1180,
-        620
+        600
       ]
     },
     {
@@ -135,13 +113,13 @@
         "mode": "runOnceForEachItem",
         "jsCode": "if ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": $json.output};\n}\n\nreturn {\"json\":{\"response\": $json.output}};"
       },
-      "id": "3a6f0103-04c0-4672-aa7d-5428e73568c2",
+      "id": "655a65fd-b92c-4895-a351-893206641906",
       "name": "nouveau message",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
         120,
-        820
+        800
       ]
     },
     {
@@ -149,28 +127,28 @@
         "mode": "runOnceForEachItem",
         "jsCode": "let json = $json;\n\nif (json.chatInput) {\n json.query = json.chatInput;\n}\n\nif (!json.query) {\n  json.query = \"Je souhaite un point général sur la situation de la production.\";\n}\n\n// Execution Status\nif (json.query.match(/kin\\w+/i)) {\n  json.kin = json.query.match(/kin\\w+/i)[0];\n} else {\n  json.kin = null;\n}\n\nreturn {\"json\": json};"
       },
-      "id": "09dbf3a4-7258-49aa-a2d4-fd4f711e4a53",
+      "id": "a0abd500-d427-46a7-a412-4e06908ea337",
       "name": "entree",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
         -960,
-        620
+        600
       ]
     },
     {
       "parameters": {
         "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
-        "text": "=# Mission Globale\n\nAnalyser l'état de la production de l'équipe des Kins.\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Tâches actuellement dans TODO\n\n{{  JSON.stringify($node[\"tasks\"].json.todo).substring(0, 10000) }}{{  JSON.stringify($node[\"tasks\"].json.todo).length > 10000 ? \"[...]\" : \"\" }}\n\n# Tâches actuellement dans DOING\n\n{{  JSON.stringify($node[\"tasks\"].json.doing).substring(0, 10000) }}{{  JSON.stringify($node[\"tasks\"].json.doing).length > 10000 ? \"[...]\" : \"\" }}\n\n# Tâches actuellement dans WAITING\n\n{{  JSON.stringify($node[\"tasks\"].json.waiting).substring(0, 10000) }}{{  JSON.stringify($node[\"tasks\"].json.waiting).length > 10000 ? \"[...]\" : \"\" }}\n\n# Dernières Tâches dans DONE\n\n{{  JSON.stringify($node[\"tasks\"].json.done).substring(0, 10000) }}{{  JSON.stringify($node[\"tasks\"].json.done).length > 10000 ? \"[...]\" : \"\" }}\n\n# Processus\n\n- Utilise des listes.\n- Inclus si possible client, kinDemandeur, kin, mailId, mailSubject, et un résumé de la mission \n\n# Instruction - Réponse au besoin informationnel\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel. ",
+        "text": "=# Mission Globale\n\nAnalyser l'état de la production de l'équipe des Kins.\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Tâches actuellement dans dans la pipeline\n\n{{  JSON.stringify($node[\"missions\"].json.missionsInPipeline).substring(0, 10000) }}{{  JSON.stringify($node[\"missions\"].json.missionsInPipeline).length > 10000 ? \"[...]\" : \"\" }}\n\n# Dernières Tâches dans DONE\n\n{{  JSON.stringify($node[\"missions\"].json.missionsDone).substring(0, 10000) }}{{  JSON.stringify($node[\"missions\"].json.missionsDone).length > 10000 ? \"[...]\" : \"\" }}\n\n# Processus\n\n- Utilise des listes.\n- Inclus si possible client, kinDemandeur, kin, mailId, mailSubject, et un résumé de la mission \n\n# Instruction - Réponse au besoin informationnel\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel. ",
         "options": {}
       },
-      "id": "36e9e9c9-03de-44d3-bb55-427ee546b383",
+      "id": "fd9b74a7-b014-4004-b146-49f03cdc3138",
       "name": "kindev",
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
         -260,
-        820
+        800
       ],
       "retryOnFail": true,
       "credentials": {
@@ -183,187 +161,109 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"todo\",\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }},\n  \"includeMetadata\": true,\n  \"topK\": 100\n}",
-        "options": {}
-      },
-      "id": "0d30ee64-721d-4f74-9ab8-8973bce31a6c",
-      "name": "Get ALL TODO",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        -520,
-        620
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "workflowId": "=IJeSapyzv0Y9koZ9",
         "options": {}
       },
-      "id": "4a2fee36-a8e6-4e07-b692-2e2c5f1999b4",
+      "id": "e083f654-0c5e-45ef-b524-1567a367dd32",
       "name": "defaultEmbedding",
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
         -740,
-        620
+        600
       ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"filter\" : {\"status\": { \"$in\": [\"todo\", \"doing\", \"waiting\"] }},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }},\n  \"includeMetadata\": true,\n  \"topK\": 25\n}",
+        "options": {}
+      },
+      "id": "88ae03aa-9193-4291-8bf7-58fc2edd8efd",
+      "name": "Get Last todo/doing/waiting missions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -520,
+        600
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 10,\n  \"filter\" : {\"status\": \"done\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "68284cfb-17a4-4a4f-92ef-94bad8050043",
+      "name": "Get Last done missions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -280,
+        600
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string') {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 500) {\n                obj[key] = obj[key].substring(0, 500) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\nlet todo = $node[\"Get ALL TODO\"].json.matches;\nlet doing = $node[\"Get ALL DOING\"].json.matches;\nlet waiting = $node[\"Get LAST WAITING\"].json.matches;\nlet done = $node[\"Get LAST DONE\"].json.matches;\n\ntodo = truncateStringsInJson(todo);\ndoing = truncateStringsInJson(doing);\nwaiting = truncateStringsInJson(waiting);\ndone = truncateStringsInJson(done);\n\nreturn {\"json\": {\"todo\": todo, \"doing\": doing, \"waiting\": waiting, \"done\": done}};"
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string') {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 500) {\n                obj[key] = obj[key].substring(0, 500) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\nlet missionsInPipeline = $node[\"Get Last todo/doing/waiting missions\"].json.matches;\nlet missionsDone = $node[\"Get Last done missions\"].json.matches;\n\nmissionsInPipeline = truncateStringsInJson(missionsInPipeline);\nmissionsDone = truncateStringsInJson(missionsDone);\n\nreturn {\"json\": {\"missionsInPipeline\": missionsInPipeline, \"missionsDone\": missionsDone}};"
       },
-      "id": "0047454d-d851-4b26-9708-4799ba705da0",
-      "name": "tasks",
+      "id": "1473c9ed-0d28-476c-b7b0-d5adb943a375",
+      "name": "missions",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
         -520,
-        820
+        800
       ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"done\",\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }},\n  \"includeMetadata\": true,\n  \"topK\": 10\n}",
-        "options": {}
-      },
-      "id": "9d4b33ac-1396-4d4c-964f-8cb5704fc299",
-      "name": "Get LAST DONE",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        120,
-        620
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"doing\",\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }},\n  \"includeMetadata\": true,\n  \"topK\": 100\n}",
-        "options": {}
-      },
-      "id": "54116b5a-00fb-44ba-9a2f-0df31eed9631",
-      "name": "Get ALL DOING",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        -320,
-        620
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"waiting\",\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }},\n  \"includeMetadata\": true,\n  \"topK\": 10\n}",
-        "options": {}
-      },
-      "id": "a906f44a-8172-4060-ae56-adb612c90dc8",
-      "name": "Get LAST WAITING",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        -100,
-        620
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -376,7 +276,7 @@
           "title": "Questionneur de  Production"
         }
       },
-      "id": "66bd4d21-4146-405b-87e9-ad380fe8100f",
+      "id": "6f42c407-6b06-417e-8727-9e5379028c03",
       "name": "Chat Trigger",
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1,
@@ -409,6 +309,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-31T07:02:11.000Z",
-  "versionId": "a40942e8-5066-47a0-a093-c28e3a45adb2"
+  "updatedAt": "2024-01-31T10:46:10.000Z",
+  "versionId": "7db33a2c-0c2c-474a-b48b-8063403918cd"
 }
