@@ -12,28 +12,6 @@
         ]
       ]
     },
-    "Escape Markdown Prompt Producteur": {
-      "main": [
-        [
-          {
-            "node": "Send Prompt Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Send Prompt Producteur": {
-      "main": [
-        [
-          {
-            "node": "Escape Markdown Ouput",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Escape Markdown Ouput": {
       "main": [
         [
@@ -49,20 +27,9 @@
       "main": [
         [
           {
-            "node": "Escape Markdown1",
+            "node": "Merge",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Escape Markdown1": {
-      "main": [
-        [
-          {
-            "node": "Send Instructions",
-            "type": "main",
-            "index": 0
+            "index": 1
           }
         ]
       ]
@@ -71,7 +38,22 @@
       "main": [
         [
           {
-            "node": "Escape Markdown Prompt Producteur",
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If output",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If insructions",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "chunks",
             "type": "main",
             "index": 0
           }
@@ -82,9 +64,9 @@
       "main": [
         [
           {
-            "node": "chunks",
+            "node": "Merge",
             "type": "main",
-            "index": 0
+            "index": 1
           }
         ]
       ]
@@ -121,6 +103,75 @@
           }
         ]
       ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Escape Markdown": {
+      "main": [
+        [
+          {
+            "node": "Send Instructions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If output": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown Ouput",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If insructions": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-27T13:03:44.164Z",
@@ -137,65 +188,22 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -640,
+        -520,
         480
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"Execute Workflow Trigger\"].json;\n\nlet text = json.promptProducteur;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext = json.kin + \" (Input Producteur) (Execution #\" + json.executionId + \") - \" + json.mailSubject + \": \\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
-      },
-      "id": "5ebb2fe2-cbe0-425a-a203-1ca434ba5dcb",
-      "name": "Escape Markdown Prompt Producteur",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -240,
-        480
-      ],
-      "disabled": true,
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "chatId": "-1002105587743",
-        "text": "=*{{ $json.text }}*",
-        "additionalFields": {
-          "appendAttribution": false,
-          "disable_notification": true,
-          "parse_mode": "MarkdownV2"
-        }
-      },
-      "id": "62a90753-6dad-4f79-a93d-4f4622de32e5",
-      "name": "Send Prompt Producteur",
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.1,
-      "position": [
-        -40,
-        480
-      ],
-      "credentials": {
-        "telegramApi": {
-          "id": "lCt7ijUIUZl2RYIR",
-          "name": "KinCIR Dynergie"
-        }
-      },
-      "disabled": true,
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"Execute Workflow Trigger\"].json;\n\nlet text = json.output;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext = json.kin + \" (Output Producteur) (Execution #\" + json.executionId + \") - \" + json.mailSubject + \": \\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"entree\"].json;\n\nlet text = json.output;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext = json.kin + \" (Output Producteur) (Execution #\" + json.executionId + \") - \" + json.mailSubject + \": \\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
       },
       "id": "9994bd61-7c76-4adc-b735-ec7f426bef7d",
       "name": "Escape Markdown Ouput",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        180,
-        480
+        660,
+        700
       ],
       "onError": "continueRegularOutput"
     },
@@ -214,8 +222,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.1,
       "position": [
-        380,
-        480
+        860,
+        700
       ],
       "credentials": {
         "telegramApi": {
@@ -223,21 +231,6 @@
           "name": "KinCIR Dynergie"
         }
       },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"Execute Workflow Trigger\"].json;\n\nlet text = json.instructions;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext = json.kin + \" (Nouvelles Instructions) (Execution #\" + json.executionId + \") - \" + json.mailSubject + \": \\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
-      },
-      "id": "764524a5-08e4-4df8-b4eb-974591df2a28",
-      "name": "Escape Markdown1",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        580,
-        480
-      ],
       "onError": "continueRegularOutput"
     },
     {
@@ -255,8 +248,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.1,
       "position": [
-        780,
-        480
+        860,
+        900
       ],
       "credentials": {
         "telegramApi": {
@@ -269,14 +262,14 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
       },
       "id": "3518adda-1f63-4ad1-9310-7cda4fdb3931",
       "name": "entree",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -440,
+        -300,
         480
       ]
     },
@@ -290,8 +283,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        1200,
-        480
+        420,
+        1100
       ],
       "alwaysOutputData": true
     },
@@ -305,8 +298,8 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        1640,
-        480
+        860,
+        1100
       ],
       "alwaysOutputData": true
     },
@@ -320,8 +313,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1000,
-        480
+        -40,
+        1100
       ]
     },
     {
@@ -337,8 +330,8 @@
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        1420,
-        480
+        640,
+        1100
       ],
       "credentials": {
         "discordWebhookApi": {
@@ -346,34 +339,117 @@
           "name": "Discord Webhook account"
         }
       }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"response\" : \"Notifications envoyées !\"};"
+      },
+      "id": "63f8f6d7-39dc-46e2-b683-13571f00f9c5",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"entree\"].json;\n\nlet text = json.instructions;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext = json.kin + \" (Nouvelles Instructions) (Execution #\" + json.executionId + \") - \" + json.mailSubject + \": \\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+      },
+      "id": "764524a5-08e4-4df8-b4eb-974591df2a28",
+      "name": "Escape Markdown",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        900
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "6e8e70f7-a82a-4849-a25a-e64048b77e05",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1140,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "9ce4b36c-1794-45b7-9546-eec250840359",
+              "leftValue": "={{ $node[\"entree\"].json.output }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "3cdd3485-f550-48e3-8b86-2acfda94e5f2",
+      "name": "If output",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -40,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "9ce4b36c-1794-45b7-9546-eec250840359",
+              "leftValue": "={{ $node[\"entree\"].json.instructions }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "1e87692d-b6e9-47bd-86fe-2147e441113a",
+      "name": "If insructions",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -40,
+        900
+      ]
     }
   ],
-  "pinData": {
-    "Execute Workflow Trigger": [
-      {
-        "json": {
-          "client": "dynergie",
-          "date": "2024-01-30T15:22:15.469+01:00",
-          "dernierProducteur": "kinmail",
-          "format": "md",
-          "instructions": "[ACTION - 1. Suivi de l'Avancement de la Mission]\n\n[PROCESSUS - Avancement de la mission]\n\nTODOLIST :\n- **1. Détermination de l'Intention Communicationnelle** : DONE\n- **2. Élaboration du Contenu et Ajout de la Touche Personnelle** : DONE\n- **3. Mise en Forme HTML et Envoi** : DONE\n\n[PROCESSUS - Avancement de la mission]\n\n[/ACTION - 1. Suivi de l'Avancement de la Mission]\n\n---\n\n[ACTION - 2. Détermination de la Prochaine Action]\n\nSur la base du travail réalisé et de l'avancement de la mission, il est constaté que toutes les étapes ont été achevées. Par conséquent, la mission est considérée comme complétée.\n\n[/ACTION - 2. Détermination de la Prochaine Action]\n\n---\n\n[ACTION - 3d. Déclenchement de fin de mission]\n\n[RETOUR - Mission KinMail Accomplie]\n\nKinMail a achevé avec succès la mission de rédaction et d'envoi d'un email à Dynergie, pour informer de la complétion réussie du projet KinFacturation. Le document final HTML, soigneusement élaboré, transmet efficacement les avantages du système KinFacturation et réitère notre engagement envers le succès de Dynergie. \n\nCet accomplissement renforce notre relation client et démontre notre capacité à livrer des solutions précieuses adaptées aux besoins des entreprises.\n\n[RETOUR - Mission KinMail Accomplie]\n\n[/ACTION - 3d. Déclenchement de fin de mission]",
-          "kin": "kinmail",
-          "kinDemandeur": "KinRSI",
-          "mailId": "18d5aa0d411557f6",
-          "mailSubject": "KinFacturation",
-          "mission": "[...]",
-          "missionDuDemandeur": "KinRSI[PROCESSUS - Nouvelle Mission KinRSI : Création du Prompt \"kinfacturation\"]\n\nLa mission consiste à élaborer le prompt pour un nouveau Kin, nommé \"kinfacturation\". Ce Kin sera dédié à la gestion et au traitement des questions de facturation. Il devra être capable d'accéder aux informations de facturation et de fournir des éclaircissements ou des réponses concernant ces informations, à la demande des clients ou des membres de l'équipe. La création de ce Kin nécessite une compréhension approfondie des systèmes de facturation, ainsi que des compétences en développement et en affinement de prompt pour intégrer ces fonctionnalités de manière efficace et intuitive.\n\n[/PROCESSUS - Nouvelle Mission KinRSI : Création du Prompt \"kinfacturation\"]",
-          "output": "[CONTENU - Description Finale]\n\n<!DOCTYPE html>\n<html>\n<head>\n<title>Mise à Jour du Projet CIR</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>Complétion Réussie : KinFacturation pour Dynergie</h1>\n    </div>\n    <div class=\"content\">\n      <p>Chère équipe de Dynergie,</p>\n\n      <p>Nous sommes ravis de vous informer que nous avons récemment finalisé avec succès la mission concernant la mise en place de notre système \"KinFacturation\" au sein de votre entreprise. Ce projet, axé sur l'amélioration de l'efficacité opérationnelle, marque un jalon important dans notre collaboration.</p>\n\n      <h2>Les Avantages de KinFacturation</h2>\n      <p>Grâce à \"KinFacturation\", vous bénéficiez maintenant d'un processus de facturation optimisé, assurant :</p>\n      <ul>\n        <li>Une réduction significative du temps dédié aux tâches administratives.</li>\n        <li>Une amélioration notable de la précision dans la gestion de vos finances.</li>\n        <li>Une facilité accrue dans le suivi et l'analyse des performances financières.</li>\n      </ul>\n\n      <p>Notre équipe reste entièrement à votre disposition pour toute question relative à l'utilisation de \"KinFacturation\", ou pour discuter des prochaines étapes que vous envisagez pour continuer à optimiser vos opérations.</p>\n\n      <p>Nous sommes impatients de poursuivre notre partenariat fructueux et sommes convaincus que \"KinFacturation\" constituera un atout considérable pour Dynergie.</p>\n\n    </div>\n    <div class=\"footer\">\n      <span style=\"font-style: italic;\">Merci pour votre confiance. Ensemble, innovons pour demain !</span>\n    </div>\n\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>\n\n[/CONTENU - Description Finale]",
-          "startTimestamp": "2024-01-30T15:20:13.399+01:00",
-          "sync": false,
-          "remainingThread": "",
-          "entireThread": "[INFORMATIF - Modèle d'Email]\r\n\r\n<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<title>Mise à Jour du Projet CIR</title>\r\n<style>\r\n  body {\r\n    font-family: Arial, sans-serif;\r\n    margin: 0;\r\n    padding: 0;\r\n    background-color: #f4f4f4;\r\n    color: #333;\r\n  }\r\n  .container {\r\n    width: 80%;\r\n    margin: auto;\r\n    background: #fff;\r\n    padding: 20px;\r\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\r\n  }\r\n  .header, .footer {\r\n    background: #007bff;\r\n    color: white;\r\n    padding: 10px;\r\n    text-align: center;\r\n  }\r\n  .content {\r\n    margin: 20px 0;\r\n  }\r\n  .logo-header, .logo-footer {\r\n    text-align: center;\r\n    background-color: #333;\r\n    padding: 10px;\r\n  }\r\n  .logo-header img, .logo-footer img {\r\n    height: 50px;\r\n  }\r\n  .link {\r\n    color: #007bff;\r\n    text-decoration: none;\r\n  }\r\n  .bold {\r\n    font-weight: bold;\r\n  }\r\n  .progress-symbol {\r\n    font-size: 20px;\r\n  }\r\n  .completed { color: green; }\r\n  .in-progress { color: blue; }\r\n  .to-improve { color: yellow; }\r\n  .not-started { color: red; }\r\n</style>\r\n</head>\r\n<body>\r\n  <div class=\"container\">\r\n    <div class=\"logo-header\">\r\n      <a href=\"https://digitalkin.ai/\">\r\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\r\n      </a>\r\n    </div>\r\n    <div class=\"header\">\r\n      <h1>INFORMATION LA PLUS IMPORTANTE</h1>\r\n    </div>\r\n    <div class=\"content\">\r\n      <h2>Échelle de Progression du Projet</h2>\r\n      <p><span class=\"bold\">Symboles :</span></p>\r\n      <ul>\r\n        <li><span class=\"progress-symbol completed\">🟢</span> Complété et satisfaisant</li>\r\n        <li><span class=\"progress-symbol in-progress\">🔵</span> En cours / Partiellement complété</li>\r\n        <li><span class=\"progress-symbol to-improve\">🟡</span> À revoir / Nécessite des améliorations</li>\r\n        <li><span class=\"progress-symbol not-started\">🔴</span> Non commencé / En attente</li>\r\n      </ul>\r\n      <!-- Ajouter d'autres éléments de progression ici -->\r\n      <p><span class=\"bold\">Application de l'Échelle de Progression :</span></p>\r\n      <!-- Continuer pour les autres sections -->\r\n      <!-- ... -->\r\n    </div>\r\n    <div class=\"footer\">\r\n      <div class=\"footer\">\r\n    <span style=\"font-style: italic;\">[MESSAGE PERSONNEL SYMPATHIQUE DU KIN]</span>\r\n</div>\r\n\r\n    <div class=\"logo-footer\">\r\n      <a href=\"https://digitalkin.ai/\">\r\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\r\n      </a>\r\n    </div>\r\n  </div>\r\n</body>\r\n</html>\r\n\r\n[/INFORMATIF - Modèle d'Email]\r\n\r\n---\r\n\r\n[PROCESSUS - Etapes Rédaction & Envoi de Mail]\r\n\r\nTODOLIST :\r\n- 1. Détermination de l'Intention Communicationnelle : TODO\r\n- 2. Élaboration du Contenu et Ajout de la Touche Personnelle : TODO\r\n- 3. Mise en Forme HTML et Envoi : TODO\r\n\r\n[/PROCESSUS - Etapes Rédaction & Envoi de Mail]\n\n---\n\n[ANALYSE - Définir l’Objectif Communicationnel]\n\nAprès une analyse du contexte fourni, l'intention communicationnelle principale de l'e-mail à envoyer à la société Dynergie est d'informer de la complétion réussie de la mission précédente concernant la création du prompt pour \"KinFacturation\". En mettant l'accent sur cette réalisation, l'objectif est de mettre en lumière les avantages et la valeur ajoutée que \"KinFacturation\" apporte à l'entreprise, notamment en termes d'efficacité opérationnelle, de réduction du temps alloué aux processus de facturation, et de l'amélioration de la précision dans la gestion financière.\n\nCet e-mail doit non seulement servir comme une mise à jour informative mais aussi comme un outil de renforcement de la relation client, en affirmant l'engagement de l'équipe envers la réussite et la satisfaction du client. Il devra aussi offrir une occasion de dialoguer pour toutes questions ou besoins supplémentaires concernant l'implémentation ou l'utilisation de \"KinFacturation\".\n\nConclusion : L'e-mail visera à informer, persuader quant à la valeur de \"KinFacturation\", et inviter à la collaboration continue.\n\n[/ANALYSE - Définir l’Objectif Communicationnel]\n\n[REFLEXION - Structure et Personnalisation]\n\nPour structurer le contenu de l'e-mail, il est essentiel d'inclure :\n- Un bref rappel du projet et son objectif.\n- Les bénéfices spécifiques de l'utilisation de \"KinFacturation\" pour Dynergie.\n- Une invitation à discuter de toute question ou de prochaines étapes éventuelles.\n\nLa touche personnelle se fera par l'expression d'un engagement sincère à soutenir Dynergie dans l'amélioration continue de ses processus internes, reflétée par une formulation chaleureuse et un message personnalisé de fin.\n\n[/REFLEXION - Structure et Personnalisation]\n\n---\n\n[CONTENU - Description Finale]\n\n<!DOCTYPE html>\n<html>\n<head>\n<title>Mise à Jour du Projet CIR</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>Complétion Réussie : KinFacturation pour Dynergie</h1>\n    </div>\n    <div class=\"content\">\n      <p>Chère équipe de Dynergie,</p>\n\n      <p>Nous sommes ravis de vous informer que nous avons récemment finalisé avec succès la mission concernant la mise en place de notre système \"KinFacturation\" au sein de votre entreprise. Ce projet, axé sur l'amélioration de l'efficacité opérationnelle, marque un jalon important dans notre collaboration.</p>\n\n      <h2>Les Avantages de KinFacturation</h2>\n      <p>Grâce à \"KinFacturation\", vous bénéficiez maintenant d'un processus de facturation optimisé, assurant :</p>\n      <ul>\n        <li>Une réduction significative du temps dédié aux tâches administratives.</li>\n        <li>Une amélioration notable de la précision dans la gestion de vos finances.</li>\n        <li>Une facilité accrue dans le suivi et l'analyse des performances financières.</li>\n      </ul>\n\n      <p>Notre équipe reste entièrement à votre disposition pour toute question relative à l'utilisation de \"KinFacturation\", ou pour discuter des prochaines étapes que vous envisagez pour continuer à optimiser vos opérations.</p>\n\n      <p>Nous sommes impatients de poursuivre notre partenariat fructueux et sommes convaincus que \"KinFacturation\" constituera un atout considérable pour Dynergie.</p>\n\n    </div>\n    <div class=\"footer\">\n      <span style=\"font-style: italic;\">Merci pour votre confiance. Ensemble, innovons pour demain !</span>\n    </div>\n\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>\n\n[/CONTENU - Description Finale]",
-          "thread": "[INFORMATIF - Modèle d'Email]\r\n\r\n<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<title>Mise à Jour du Projet CIR</title>\r\n<style>\r\n  body {\r\n    font-family: Arial, sans-serif;\r\n    margin: 0;\r\n    padding: 0;\r\n    background-color: #f4f4f4;\r\n    color: #333;\r\n  }\r\n  .container {\r\n    width: 80%;\r\n    margin: auto;\r\n    background: #fff;\r\n    padding: 20px;\r\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\r\n  }\r\n  .header, .footer {\r\n    background: #007bff;\r\n    color: white;\r\n    padding: 10px;\r\n    text-align: center;\r\n  }\r\n  .content {\r\n    margin: 20px 0;\r\n  }\r\n  .logo-header, .logo-footer {\r\n    text-align: center;\r\n    background-color: #333;\r\n    padding: 10px;\r\n  }\r\n  .logo-header img, .logo-footer img {\r\n    height: 50px;\r\n  }\r\n  .link {\r\n    color: #007bff;\r\n    text-decoration: none;\r\n  }\r\n  .bold {\r\n    font-weight: bold;\r\n  }\r\n  .progress-symbol {\r\n    font-size: 20px;\r\n  }\r\n  .completed { color: green; }\r\n  .in-progress { color: blue; }\r\n  .to-improve { color: yellow; }\r\n  .not-started { color: red; }\r\n</style>\r\n</head>\r\n<body>\r\n  <div class=\"container\">\r\n    <div class=\"logo-header\">\r\n      <a href=\"https://digitalkin.ai/\">\r\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\r\n      </a>\r\n    </div>\r\n    <div class=\"header\">\r\n      <h1>INFORMATION LA PLUS IMPORTANTE</h1>\r\n    </div>\r\n    <div class=\"content\">\r\n      <h2>Échelle de Progression du Projet</h2>\r\n      <p><span class=\"bold\">Symboles :</span></p>\r\n      <ul>\r\n        <li><span class=\"progress-symbol completed\">🟢</span> Complété et satisfaisant</li>\r\n        <li><span class=\"progress-symbol in-progress\">🔵</span> En cours / Partiellement complété</li>\r\n        <li><span class=\"progress-symbol to-improve\">🟡</span> À revoir / Nécessite des améliorations</li>\r\n        <li><span class=\"progress-symbol not-started\">🔴</span> Non commencé / En attente</li>\r\n      </ul>\r\n      <!-- Ajouter d'autres éléments de progression ici -->\r\n      <p><span class=\"bold\">Application de l'Échelle de Progression :</span></p>\r\n      <!-- Continuer pour les autres sections -->\r\n      <!-- ... -->\r\n    </div>\r\n    <div class=\"footer\">\r\n      <div class=\"footer\">\r\n    <span style=\"font-style: italic;\">[MESSAGE PERSONNEL SYMPATHIQUE DU KIN]</span>\r\n</div>\r\n\r\n    <div class=\"logo-footer\">\r\n      <a href=\"https://digitalkin.ai/\">\r\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\r\n      </a>\r\n    </div>\r\n  </div>\r\n</body>\r\n</html>\r\n\r\n[/INFORMATIF - Modèle d'Email]\r\n\r\n---\r\n\r\n[PROCESSUS - Etapes Rédaction & Envoi de Mail]\r\n\r\nTODOLIST :\r\n- 1. Détermination de l'Intention Communicationnelle : TODO\r\n- 2. Élaboration du Contenu et Ajout de la Touche Personnelle : TODO\r\n- 3. Mise en Forme HTML et Envoi : TODO\r\n\r\n[/PROCESSUS - Etapes Rédaction & Envoi de Mail]\n\n---\n\n[ANALYSE - Définir l’Objectif Communicationnel]\n\nAprès une analyse du contexte fourni, l'intention communicationnelle principale de l'e-mail à envoyer à la société Dynergie est d'informer de la complétion réussie de la mission précédente concernant la création du prompt pour \"KinFacturation\". En mettant l'accent sur cette réalisation, l'objectif est de mettre en lumière les avantages et la valeur ajoutée que \"KinFacturation\" apporte à l'entreprise, notamment en termes d'efficacité opérationnelle, de réduction du temps alloué aux processus de facturation, et de l'amélioration de la précision dans la gestion financière.\n\nCet e-mail doit non seulement servir comme une mise à jour informative mais aussi comme un outil de renforcement de la relation client, en affirmant l'engagement de l'équipe envers la réussite et la satisfaction du client. Il devra aussi offrir une occasion de dialoguer pour toutes questions ou besoins supplémentaires concernant l'implémentation ou l'utilisation de \"KinFacturation\".\n\nConclusion : L'e-mail visera à informer, persuader quant à la valeur de \"KinFacturation\", et inviter à la collaboration continue.\n\n[/ANALYSE - Définir l’Objectif Communicationnel]\n\n[REFLEXION - Structure et Personnalisation]\n\nPour structurer le contenu de l'e-mail, il est essentiel d'inclure :\n- Un bref rappel du projet et son objectif.\n- Les bénéfices spécifiques de l'utilisation de \"KinFacturation\" pour Dynergie.\n- Une invitation à discuter de toute question ou de prochaines étapes éventuelles.\n\nLa touche personnelle se fera par l'expression d'un engagement sincère à soutenir Dynergie dans l'amélioration continue de ses processus internes, reflétée par une formulation chaleureuse et un message personnalisé de fin.\n\n[/REFLEXION - Structure et Personnalisation]\n\n---\n\n[CONTENU - Description Finale]\n\n<!DOCTYPE html>\n<html>\n<head>\n<title>Mise à Jour du Projet CIR</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>Complétion Réussie : KinFacturation pour Dynergie</h1>\n    </div>\n    <div class=\"content\">\n      <p>Chère équipe de Dynergie,</p>\n\n      <p>Nous sommes ravis de vous informer que nous avons récemment finalisé avec succès la mission concernant la mise en place de notre système \"KinFacturation\" au sein de votre entreprise. Ce projet, axé sur l'amélioration de l'efficacité opérationnelle, marque un jalon important dans notre collaboration.</p>\n\n      <h2>Les Avantages de KinFacturation</h2>\n      <p>Grâce à \"KinFacturation\", vous bénéficiez maintenant d'un processus de facturation optimisé, assurant :</p>\n      <ul>\n        <li>Une réduction significative du temps dédié aux tâches administratives.</li>\n        <li>Une amélioration notable de la précision dans la gestion de vos finances.</li>\n        <li>Une facilité accrue dans le suivi et l'analyse des performances financières.</li>\n      </ul>\n\n      <p>Notre équipe reste entièrement à votre disposition pour toute question relative à l'utilisation de \"KinFacturation\", ou pour discuter des prochaines étapes que vous envisagez pour continuer à optimiser vos opérations.</p>\n\n      <p>Nous sommes impatients de poursuivre notre partenariat fructueux et sommes convaincus que \"KinFacturation\" constituera un atout considérable pour Dynergie.</p>\n\n    </div>\n    <div class=\"footer\">\n      <span style=\"font-style: italic;\">Merci pour votre confiance. Ensemble, innovons pour demain !</span>\n    </div>\n\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>\n\n[/CONTENU - Description Finale]",
-          "promptProducteur": "[...]\n\n---\n\n[INFORMATIF - Modèle d'Email]\r\n\r\n<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<title>Mise à Jour du Projet CIR</title>\r\n<style>\r\n  body {\r\n    font-family: Arial, sans-serif;\r\n    margin: 0;\r\n    padding: 0;\r\n    background-color: #f4f4f4;\r\n    color: #333;\r\n  }\r\n  .container {\r\n    width: 80%;\r\n    margin: auto;\r\n    background: #fff;\r\n    padding: 20px;\r\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\r\n  }\r\n  .header, .footer {\r\n    background: #007bff;\r\n    color: white;\r\n    padding: 10px;\r\n    text-align: center;\r\n  }\r\n  .content {\r\n    margin: 20px 0;\r\n  }\r\n  .logo-header, .logo-footer {\r\n    text-align: center;\r\n    background-color: #333;\r\n    padding: 10px;\r\n  }\r\n  .logo-header img, .logo-footer img {\r\n    height: 50px;\r\n  }\r\n  .link {\r\n    color: #007bff;\r\n    text-decoration: none;\r\n  }\r\n  .bold {\r\n    font-weight: bold;\r\n  }\r\n  .progress-symbol {\r\n    font-size: 20px;\r\n  }\r\n  .completed { color: green; }\r\n  .in-progress { color: blue; }\r\n  .to-improve { color: yellow; }\r\n  .not-started { color: red; }\r\n</style>\r\n</head>\r\n<body>\r\n  <div class=\"container\">\r\n    <div class=\"logo-header\">\r\n      <a href=\"https://digitalkin.ai/\">\r\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\r\n      </a>\r\n    </div>\r\n    <div class=\"header\">\r\n      <h1>INFORMATION LA PLUS IMPORTANTE</h1>\r\n    </div>\r\n    <div class=\"content\">\r\n      <h2>Échelle de Progression du Projet</h2>\r\n      <p><span class=\"bold\">Symboles :</span></p>\r\n      <ul>\r\n        <li><span class=\"progress-symbol completed\">🟢</span> Complété et satisfaisant</li>\r\n        <li><span class=\"progress-symbol in-progress\">🔵</span> En cours / Partiellement complété</li>\r\n        <li><span class=\"progress-symbol to-improve\">🟡</span> À revoir / Nécessite des améliorations</li>\r\n        <li><span class=\"progress-symbol not-started\">🔴</span> Non commencé / En attente</li>\r\n      </ul>\r\n      <!-- Ajouter d'autres éléments de progression ici -->\r\n      <p><span class=\"bold\">Application de l'Échelle de Progression :</span></p>\r\n      <!-- Continuer pour les autres sections -->\r\n      <!-- ... -->\r\n    </div>\r\n    <div class=\"footer\">\r\n      <div class=\"footer\">\r\n    <span style=\"font-style: italic;\">[MESSAGE PERSONNEL SYMPATHIQUE DU KIN]</span>\r\n</div>\r\n\r\n    <div class=\"logo-footer\">\r\n      <a href=\"https://digitalkin.ai/\">\r\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\r\n      </a>\r\n    </div>\r\n  </div>\r\n</body>\r\n</html>\r\n\r\n[/INFORMATIF - Modèle d'Email]\r\n\r\n---\r\n\r\n[PROCESSUS - Etapes Rédaction & Envoi de Mail]\r\n\r\nTODOLIST :\r\n- 1. Détermination de l'Intention Communicationnelle : TODO\r\n- 2. Élaboration du Contenu et Ajout de la Touche Personnelle : TODO\r\n- 3. Mise en Forme HTML et Envoi : TODO\r\n\r\n[/PROCESSUS - Etapes Rédaction & Envoi de Mail]\n\n---\n\n[ANALYSE - Définir l’Objectif Communicationnel]\n\nAprès une analyse du contexte fourni, l'intention communicationnelle principale de l'e-mail à envoyer à la société Dynergie est d'informer de la complétion réussie de la mission précédente concernant la création du prompt pour \"KinFacturation\". En mettant l'accent sur cette réalisation, l'objectif est de mettre en lumière les avantages et la valeur ajoutée que \"KinFacturation\" apporte à l'entreprise, notamment en termes d'efficacité opérationnelle, de réduction du temps alloué aux processus de facturation, et de l'amélioration de la précision dans la gestion financière.\n\nCet e-mail doit non seulement servir comme une mise à jour informative mais aussi comme un outil de renforcement de la relation client, en affirmant l'engagement de l'équipe envers la réussite et la satisfaction du client. Il devra aussi offrir une occasion de dialoguer pour toutes questions ou besoins supplémentaires concernant l'implémentation ou l'utilisation de \"KinFacturation\".\n\nConclusion : L'e-mail visera à informer, persuader quant à la valeur de \"KinFacturation\", et inviter à la collaboration continue.\n\n[/ANALYSE - Définir l’Objectif Communicationnel]\n\n[REFLEXION - Structure et Personnalisation]\n\nPour structurer le contenu de l'e-mail, il est essentiel d'inclure :\n- Un bref rappel du projet et son objectif.\n- Les bénéfices spécifiques de l'utilisation de \"KinFacturation\" pour Dynergie.\n- Une invitation à discuter de toute question ou de prochaines étapes éventuelles.\n\nLa touche personnelle se fera par l'expression d'un engagement sincère à soutenir Dynergie dans l'amélioration continue de ses processus internes, reflétée par une formulation chaleureuse et un message personnalisé de fin.\n\n[/REFLEXION - Structure et Personnalisation]\n\n---\n\n[ACTION - 1. Suivi de l'Avancement de la Mission]\n\n[PROCESSUS - Avancement de la mission]\n\nTODOLIST :\n- **1. Détermination de l'Intention Communicationnelle** : DONE\n- **2. Élaboration du Contenu et Ajout de la Touche Personnelle** : TODO\n- **3. Mise en Forme HTML et Envoi** : TODO\n\n[PROCESSUS - Avancement de la mission]\n\n[/ACTION - 1. Suivi de l'Avancement de la Mission]\n\n---\n\n[ACTION - 2. Détermination de la Prochaine Action]\n\nSur la base de l'avancement de la mission et du travail réalisé par kinmail, il a été déterminé que la prochaine étape essentielle est l'Élaboration du Contenu et l'Ajout de la Touche Personnelle de l'email à envoyer à la société Dynergie. Ceci est une continuation logique après la Détermination de l'Intention Communicationnelle.\n\n[/ACTION - 2. Détermination de la Prochaine Action]\n\n---\n\n[ACTION - 3.  (cas nominal) Déclenchement de la continuation de la Boucle de Production]\n\n[INSTRUCTION - Prochaine Action par kinmail]\n\nKinmail, maintenant que l'intention communicationnelle est établie, procède à l'élaboration du contenu de l'email. Utilise les points de réflexion définis précédemment pour structurer l'email. Assure-toi d'inclure :\n- Un rappel succinct du projet \"KinFacturation\" et de son objectif.\n- Les avantages spécifiques que \"KinFacturation\" apporte à Dynergie.\n- Une invitation cordiale à entrer en contact pour toute question ou pour discuter des prochaines étapes.\n\nAjoute une touche personnelle à l'email, montrant l'engagement de l'équipe à soutenir Dynergie dans l'amélioration de ses processus. Cette étape vise à renforcer la relation avec le client tout en informant sur la complétion réussie de la mission précédente.\n\n[/INSTRUCTION - Prochaine Action par kinmail]\n\n[/ACTION - 3.  (cas nominal) Déclenchement de la continuation de la Boucle de Production]\n"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
@@ -409,6 +485,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-30T15:42:54.000Z",
-  "versionId": "58626e49-fccd-4b2e-a3eb-0ba517d7326a"
+  "updatedAt": "2024-01-31T22:36:56.000Z",
+  "versionId": "6cbe3d28-e980-42d1-81a5-4af1f5600ba0"
 }
