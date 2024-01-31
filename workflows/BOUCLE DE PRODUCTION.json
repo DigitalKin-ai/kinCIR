@@ -1,35 +1,6 @@
 {
   "active": false,
   "connections": {
-    "Questionneur de logs": {
-      "ai_tool": [
-        [
-          {
-            "node": "kindev",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If sync": {
-      "main": [
-        [
-          {
-            "node": "Kin",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Upsert todo",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "EXCEPTION - Kin Non-Actif": {
       "main": [
         [
@@ -110,64 +81,13 @@
         ]
       ]
     },
-    "Continuer boucle": {
-      "main": [
-        [
-          {
-            "node": "todo",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "todo": {
-      "main": [
-        [
-          {
-            "node": "If sync",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "MISSION ACCOMPLIE": {
-      "main": [
-        [
-          {
-            "node": "If kinmail",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If sync3": {
-      "main": [
-        [
-          {
-            "node": "response",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "mission kinmail",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Update Thread": {
       "main": [
         [
           {
-            "node": "entree document",
+            "node": "Merge",
             "type": "main",
-            "index": 0
+            "index": 1
           }
         ]
       ]
@@ -177,28 +97,6 @@
         [
           {
             "node": "entree",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "EXCEPTION": {
-      "main": [
-        [
-          {
-            "node": "waiting",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Merge": {
-      "main": [
-        [
-          {
-            "node": "Switch Commands",
             "type": "main",
             "index": 0
           }
@@ -216,125 +114,16 @@
         ]
       ]
     },
-    "If kinmatcheur": {
-      "main": [
-        [
-          {
-            "node": "document nouvelleMission",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "If sync3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If kinmail": {
-      "main": [
-        [
-          {
-            "node": "entreeSendMail",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "If kinmatcheur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "entreeSendMail": {
-      "main": [
-        [
-          {
-            "node": "Send Mail",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "mission kinmail": {
-      "main": [
-        [
-          {
-            "node": "nouvelleMission kinmail",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "DEMANDE": {
-      "main": [
-        [
-          {
-            "node": "waiting1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If kinmatcheur1": {
-      "main": [
-        [
-          {
-            "node": "document nouvelleMission",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "todo kinmatcheur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "todo kinmatcheur": {
-      "main": [
-        [
-          {
-            "node": "Lancement de Mission kinMatcheur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "sortie": {
-      "main": [
-        [
-          {
-            "node": "Send  Notifications",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Producteur": {
       "main": [
         [
           {
             "node": "Convert to binary data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "clean mission",
             "type": "main",
             "index": 0
           }
@@ -346,24 +135,6 @@
         [
           {
             "node": "document",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "todo nouvelleMission": {
-      "main": [
-        [
-          {
-            "node": "Lancement de Mission Kin",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "todo kinmatcheur",
             "type": "main",
             "index": 0
           }
@@ -407,7 +178,7 @@
       "main": [
         [
           {
-            "node": "defaultEmbedding",
+            "node": "Fetch onoff",
             "type": "main",
             "index": 0
           }
@@ -419,46 +190,6 @@
         [
           {
             "node": "Switch",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "nouvelleMission kinmail": {
-      "main": [
-        [
-          {
-            "node": "Lancement de Mission kinMail",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "document nouvelleMission": {
-      "main": [
-        [
-          {
-            "node": "If exception in document",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If exception in document": {
-      "main": [
-        [
-          {
-            "node": "todo kinmatcheur",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "todo nouvelleMission",
             "type": "main",
             "index": 0
           }
@@ -510,11 +241,6 @@
     "Message au CTO": {
       "ai_tool": [
         [
-          {
-            "node": "Manager",
-            "type": "ai_tool",
-            "index": 0
-          },
           {
             "node": "kindev",
             "type": "ai_tool",
@@ -723,32 +449,6 @@
         [
           {
             "node": "kindev",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Questionneur de production": {
-      "ai_tool": [
-        [
-          {
-            "node": "kindev",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinevaluateur",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinfacturation",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinmatcheur",
             "type": "ai_tool",
             "index": 0
           }
@@ -979,141 +679,7 @@
       "main": [
         [
           {
-            "node": "sortie",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If kinmail1": {
-      "main": [
-        [
-          {
-            "node": "Send Instructions",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "mission kinmail",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "waiting": {
-      "main": [
-        [
-          {
-            "node": "Upsert waiting",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Upsert waiting": {
-      "main": [
-        [
-          {
-            "node": "If kinmail1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "waiting1": {
-      "main": [
-        [
-          {
-            "node": "Upsert waiting1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Upsert waiting1": {
-      "main": [
-        [
-          {
-            "node": "If kinmatcheur1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Switch Commands": {
-      "main": [
-        [
-          {
-            "node": "EXCEPTION",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "DEMANDE",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "MISSION ACCOMPLIE",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "AMELIORATION",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Continuer boucle",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "AMELIORATION": {
-      "main": [
-        [
-          {
-            "node": "mission kinPO",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "mission kinPO": {
-      "main": [
-        [
-          {
-            "node": "todo kinpo",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "todo kinpo": {
-      "main": [
-        [
-          {
-            "node": "Lancement de Mission kinPO",
+            "node": "response1",
             "type": "main",
             "index": 0
           }
@@ -1232,6 +798,155 @@
           }
         ]
       ]
+    },
+    "Actionneur de production": {
+      "ai_tool": [
+        [
+          {
+            "node": "Manager",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "response1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send  Notifications",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Listeur de missions": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinevaluateur",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinfacturation",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Get kin mission doing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get kin mission doing": {
+      "main": [
+        [
+          {
+            "node": "IF mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF mission": {
+      "main": [
+        [
+          {
+            "node": "Send Instructions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Instructions": {
+      "main": [
+        [
+          {
+            "node": "Manager",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch onoff": {
+      "main": [
+        [
+          {
+            "node": "If on",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission set waiting": {
+      "main": [
+        [
+          {
+            "node": "Actionneur de Production1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actionneur de production (match)": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinmatcheur",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If on": {
+      "main": [
+        [
+          {
+            "node": "defaultEmbedding",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "mission set waiting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clean mission": {
+      "main": [
+        [
+          {
+            "node": "entree document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-17T12:47:07.331Z",
@@ -1241,128 +956,6 @@
   },
   "name": "BOUCLE DE PRODUCTION",
   "nodes": [
-    {
-      "parameters": {
-        "name": "questionneur_de_logs",
-        "description": "Le Questionneur de logs retourne une réponse issue des logs de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
-        "workflowId": "kLKx8F1dt8gfkjry",
-        "fields": {
-          "values": [
-            {
-              "name": "sync",
-              "type": "booleanValue"
-            },
-            {
-              "name": "kin",
-              "stringValue": "={{ $node[\"entree\"].json.kin }}"
-            },
-            {
-              "name": "mission",
-              "stringValue": "={{ $node[\"entree\"].json.mission }}"
-            }
-          ]
-        }
-      },
-      "id": "d367db46-eddf-49ce-bc6a-0a4d4a0b10f5",
-      "name": "Questionneur de logs",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        2980,
-        200
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "return {\"json\": {\"response\": $node[\"sortie\"].json.output}};"
-      },
-      "id": "79b4efcf-2843-4458-a5a3-f8e5687a2666",
-      "name": "response",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        5100,
-        1320
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose"
-          },
-          "conditions": [
-            {
-              "id": "1a743e65-4e49-4878-bfc1-a41bb6fae343",
-              "leftValue": "={{ $node[\"entree\"].json.sync }}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "looseTypeValidation": true
-        }
-      },
-      "id": "d5b1ee8d-8af1-499e-a541-dfb498b9ac7d",
-      "name": "If sync",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        4380,
-        2140
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"todo\",\n\"vectors\": {\n\"id\": \"{{ $node[\"todo\"].json.kin }}-{{ $node[\"todo\"].json.mailId }}\",\n\"metadata\": {{ JSON.stringify($node[\"todo\"].json) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
-        "options": {}
-      },
-      "id": "c09a2a5a-f14f-44bf-9e22-7e34569ede65",
-      "name": "Upsert todo",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        4600,
-        2260
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
@@ -1397,8 +990,8 @@
               "stringValue": "={{ $node[\"entree\"].json.mission }}"
             },
             {
-              "name": "mailId",
-              "stringValue": "={{ $node[\"entree\"].json.mailId }}"
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
             },
             {
               "name": "kinDemandeur",
@@ -1423,7 +1016,7 @@
     {
       "parameters": {
         "name": "recherche_google_scholar",
-        "description": "La fonction recherche_google_scholar renvoie la première page des résultats de Google Scholar à partir d'une query, filtrés et avec une évaluation de leur pertinence.\n\nIl est possible de passer la date limite des études sans format après la chaîne.\n\nQuery exemple : LLM multi-agent systems 2023",
+        "description": "La fonction recherche_google_scholar renvoie la première page des résultats de Google Scholar à partir d'une query, filtrés et avec une évaluation de leur pertinence.\n\nPour bien l'utiliser, la query doit être en Anglais, sans guillemets. Il est possible de passer la date limite des études sans format après la chaîne.\n\nQuery exemple : LLM multi-agent systems 2023",
         "workflowId": "syCSVTnhcjp4jtCz",
         "fields": {
           "values": [
@@ -1438,6 +1031,10 @@
             {
               "name": "mission",
               "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
             }
           ]
         }
@@ -1447,8 +1044,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2020,
-        1320
+        2040,
+        1380
       ]
     },
     {
@@ -1469,6 +1066,10 @@
             {
               "name": "mission",
               "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
             }
           ]
         }
@@ -1499,8 +1100,8 @@
       "type": "n8n-nodes-base.moveBinaryData",
       "typeVersion": 1.1,
       "position": [
-        2000,
-        900
+        2460,
+        700
       ]
     },
     {
@@ -1521,8 +1122,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        2240,
-        900
+        2700,
+        700
       ],
       "credentials": {
         "googleDriveOAuth2Api": {
@@ -1530,99 +1131,6 @@
           "name": "Google Drive DK via Nicolas"
         }
       }
-    },
-    {
-      "parameters": {},
-      "id": "1c0f0ef2-8a06-4f97-8129-8b0e2d6a4566",
-      "name": "MISSION ACCOMPLIE",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        3700,
-        1340
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "98dae00e-2717-4cbe-bddd-ffdf4a9b76be",
-      "name": "EXCEPTION",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        3720,
-        180
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "858a26e9-0281-46c3-8eed-f254cdde32ef",
-      "name": "DEMANDE",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        3720,
-        480
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "4368371e-361d-45ce-b687-e6dfb0459b42",
-      "name": "Continuer boucle",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        3700,
-        2140
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"sortie\"].json));\n\ndelete json.query;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads & prompts\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread') || key.toLowerCase().includes('prompt')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
-      },
-      "id": "e0921adc-64b8-431c-a822-5e988473d73b",
-      "name": "todo",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        4140,
-        2140
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose"
-          },
-          "conditions": [
-            {
-              "id": "1a743e65-4e49-4878-bfc1-a41bb6fae343",
-              "leftValue": "={{ $node[\"entree\"].json.sync }}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "looseTypeValidation": true
-        }
-      },
-      "id": "89ff2005-e4a4-4d1e-be27-c14275003791",
-      "name": "If sync3",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        4400,
-        1340
-      ]
     },
     {
       "parameters": {
@@ -1634,7 +1142,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -40,
+        -460,
         900
       ]
     },
@@ -1648,8 +1156,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        3080,
-        1500
+        3940,
+        1080
       ]
     },
     {
@@ -1661,205 +1169,21 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        3200,
-        1320
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": false,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "1a743e65-4e49-4878-bfc1-a41bb6fae343",
-              "leftValue": "={{ $node[\"entree\"].json.kin.toLowerCase() == \"kinmatcheur\"}}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "ignoreCase": true
-        }
-      },
-      "id": "427d1d91-aab8-4561-926a-31a2ad40a2ce",
-      "name": "If kinmatcheur",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        4400,
-        1100
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": false,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "1a743e65-4e49-4878-bfc1-a41bb6fae343",
-              "leftValue": "={{ $node[\"entree\"].json.kin.toLowerCase() == \"kinmail\"}}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "ignoreCase": true
-        }
-      },
-      "id": "3b389c20-5d6d-4124-9f4f-fcc66155fb9d",
-      "name": "If kinmail",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        4400,
-        880
+        4080,
+        900
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"sortie\"].json;\n\nreturn {\"json\": json};"
-      },
-      "id": "1e73a5de-d75e-40ac-ad7e-069f49e92471",
-      "name": "entreeSendMail",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        4640,
-        860
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "mission",
-              "stringValue": "=[PROCESSUS - Mission : Rédaction & Envoi D'Email]\n\nTa mission est de rédiger et d'envoyer le mail approprié au client à partir des informations dont tu disposes.\n\n[/PROCESSUS - Mission : Rédaction & Envoi D'Email]\n\n---\n\n[INFORMATIF - Contexte]\n\nDate :{{ $node[\"sortie\"].json.date }}\nClient : {{ $node[\"sortie\"].json.client }}\nMail Subject : {{ $node[\"sortie\"].json.mailSubject }}\n\n[/INFORMATIF - Contexte]\n\n---\n\n[INFORMATIF - Mission]\n\n{{ $node[\"sortie\"].json.mission.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"sortie\"].json.mission.substring($node[\"sortie\"].json.mission.length - 5000)}}\n\n[/INFORMATIF - Mission]\n\n\n---\n\n[INFORMATIF - Dernier Kin Producteur ]\n\n{{ $node[\"sortie\"].json.dernierProducteur }}\n\n[/INFORMATIF - Dernier Kin Producteur ]\n\n\n---\n\n[INFORMATIF - Dernière production du Kin Producteur]\n\n{{ $node[\"sortie\"].json.output.length > 8000 ? \"[...]\" : \"\" }}{{ $node[\"sortie\"].json.output.substring($node[\"sortie\"].json.output.length - 8000)}}\n\n[/INFORMATIF - Dernière production du Kin Producteur]\n\n\n---\n\n[INFORMATIF - Dernier Message du KinManager]\n\n{{ $node[\"sortie\"].json.instructions }}\n\n[/INFORMATIF - Dernier Message du KinManager]"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "7c4fe6e5-5385-4b38-b27e-f053fc78aeb3",
-      "name": "mission kinmail",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        5660,
-        680
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "rr8aeSM8QYyY8Po4",
-        "options": {}
-      },
-      "id": "cb77d95d-902b-471c-9589-9f0f1bbc5fa4",
-      "name": "Send Mail",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4880,
-        860
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": false,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "1a743e65-4e49-4878-bfc1-a41bb6fae343",
-              "leftValue": "={{ $node[\"entree\"].json.kin.toLowerCase() == \"kinmatcheur\"}}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "ignoreCase": true
-        }
-      },
-      "id": "be8562af-ee9c-4e60-8efe-41ceeb692622",
-      "name": "If kinmatcheur1",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        4400,
-        480
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"sortie\"].json;\n\ndelete json.query;\n\njson.kin = \"kinmatcheur\";\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads & prompts\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread') || key.toLowerCase().includes('prompt')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
-      },
-      "id": "4b3ebf1c-3b3a-48f4-a9f7-ec3cc8b4b3de",
-      "name": "todo kinmatcheur",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        5100,
-        480
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"Producteur\"].json;\n\njson.instructions = $node[\"Manager\"].json.output;\nif (json.instructions == null) {\n json.instructions = \"[EXCEPTION - Error with OpenAI call]\\n\\n\" + $prevNode.name + \" returned an error when calling OpenAI Assistant)\\n\\n[/EXCEPTION - Error with OpenAI call]\\n\\n\"; \n}\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\" : json};"
-      },
-      "id": "8037e86a-05b7-42ab-9041-974aec0b6322",
-      "name": "sortie",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2940,
-        1320
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"entree\"].json;\n\nif ($json.output != null) {\n  json.output = $json.output;\n} else {\n  json.output = \"[EXCEPTION - Error with OpenAI call]\\n\\n\" + $prevNode.name +\" returned an error when calling OpenAI Assistant\\n\\n[/EXCEPTION - Error with OpenAI call]\"; \n}\n\njson.dernierProducteur = $prevNode.name;\njson.promptProducteur = $node[\"Prompt Producteur\"].json.promptProducteur;\n\njson.entireThread += '\\n\\n---\\n\\n' + json.output;\njson.thread += '\\n\\n---\\n\\n' + json.output;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"entree\"].json;\n\nif ($json.output != null) {\n  json.output = $json.output;\n} else {\n  json.output = \"[EXCEPTION - Error with OpenAI call]\\n\\n\" + $prevNode.name +\" returned an error when calling OpenAI Assistant\\n\\n[/EXCEPTION - Error with OpenAI call]\"; \n}\n\njson.dernierProducteur = $prevNode.name;\njson.promptProducteur = $node[\"Prompt Producteur\"].json.promptProducteur;\n\njson.entireThread += '\\n\\n---\\n\\n' + json.output;\njson.thread += '\\n\\n---\\n\\n' + json.output;\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
       },
       "id": "56074961-40df-4a44-aec3-3b05e23ee95e",
       "name": "Producteur",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1780,
+        2240,
         900
       ]
     },
@@ -1873,24 +1197,9 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2540,
+        2700,
         900
       ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"sortie\"].json));\n\ndelete json.query;\ndelete json.kin;\ndelete json.mission;\ndelete json.output;\ndelete json.instructions;\n\n// Nouvelle mission\njson.mission = $node[\"document nouvelleMission\"].json.document;\njson.format = \"pdf\";\n\n// Trouver le bon Kin\njson.kin = $node[\"document nouvelleMission\"].json.document.match(/kin\\w+/i)[0]; \n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
-      },
-      "id": "c9017461-31ec-43f0-8cf1-07d53ac4a2e0",
-      "name": "todo nouvelleMission",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        5100,
-        1120
-      ],
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -1902,7 +1211,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        2740,
+        2920,
         900
       ]
     },
@@ -1913,7 +1222,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -500,
+        -920,
         900
       ]
     },
@@ -1927,21 +1236,21 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -260,
+        -680,
         900
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"input\"].json;\n\n// Cleaner les datas utilisées\ndelete json.output;\ndelete json.dernierProducteur;\ndelete json.promptProducteur;\njson.remainingThread = \"\";\n\n// Préparer le nouveau thread\njson.entireThread = $node[\"thread\"].json.thread;\njson.thread = $node[\"thread\"].json.thread;\n\n// Préparer les nouvelles instructions\njson.instructions = json.query?json.query:json.instructions; // Cas fonction GPT\n\nMAX_LENGTH = 10000;\nif (json.thread.length > MAX_LENGTH) {\n    json.thread = \"Le début du document est déjà rédigé, voici le thread[...]\\n\\n\" + json.thread.substring(json.thread.length - MAX_LENGTH);\n    json.remainingThread = json.entireThread.substring(0, json.entireThread.length - MAX_LENGTH);\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"input\"].json;\n\n// Cleaner les datas utilisées\ndelete json.output;\ndelete json.dernierProducteur;\ndelete json.promptProducteur;\njson.remainingThread = \"\";\n\n// Préparer le nouveau thread\njson.entireThread = $node[\"thread\"].json.thread;\njson.thread = $node[\"thread\"].json.thread;\n\n// Préparer les nouvelles instructions\njson.instructions = json.query?json.query:json.instructions; // Cas fonction GPT\n\nMAX_LENGTH = 10000;\nif (json.thread.length > MAX_LENGTH) {\n    json.thread = \"Le début du document est déjà rédigé, voici le thread[...]\\n\\n\" + json.thread.substring(json.thread.length - MAX_LENGTH);\n    json.remainingThread = json.entireThread.substring(0, json.entireThread.length - MAX_LENGTH);\n}\n\nif (!json.documentGoogleDriveId) {\n  json.documentGoogleDriveId = $node[\"thread\"].json.documentGoogleDriveId;\n}\n\nreturn {\"json\": json};"
       },
       "id": "f2943232-b99c-4e69-ae50-48dd527aa0a6",
       "name": "entree",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        160,
+        -260,
         900
       ]
     },
@@ -1965,82 +1274,6 @@
       "position": [
         580,
         900
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"sortie\"].json));\n\ndelete json.query;\n\n// Mettre à jour le Kin\njson.kinDemandeur = json.kin;\njson.kin = \"kinmail\";\njson.format = \"pdf\";\n\n// Mettre à jour la mission\njson.missionDuDemandeur = json.mission;\njson.mission = $node[\"mission kinmail\"].json.mission;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
-      },
-      "id": "5092f248-7ac6-4b52-a750-43720586dd50",
-      "name": "nouvelleMission kinmail",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        5900,
-        680
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "DXYPhavwlYlTKPqu",
-        "options": {}
-      },
-      "id": "4081776a-3399-47c6-a2b9-f95a332eb78d",
-      "name": "Lancement de Mission kinMail",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        6100,
-        680
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "H3fxaSnxjZT6EGhc",
-        "options": {}
-      },
-      "id": "8329124a-c6e6-46cc-be69-3ae2ec8c2aa0",
-      "name": "document nouvelleMission",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4640,
-        1100
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": false,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "1a743e65-4e49-4878-bfc1-a41bb6fae343",
-              "leftValue": "={{ $node[\"document nouvelleMission\"].json.document }}",
-              "rightValue": "=[EXCEPTION",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "ignoreCase": true
-        }
-      },
-      "id": "ee0cc7ef-a7fb-4ed1-a3a2-af1a9a2faf1f",
-      "name": "If exception in document",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        4860,
-        1100
       ]
     },
     {
@@ -2075,6 +1308,10 @@
             {
               "name": "mission",
               "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
             }
           ]
         }
@@ -2106,6 +1343,10 @@
             {
               "name": "mission",
               "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
             }
           ]
         }
@@ -2116,7 +1357,7 @@
       "typeVersion": 1,
       "position": [
         2520,
-        1860
+        1620
       ]
     },
     {
@@ -2137,6 +1378,10 @@
             {
               "name": "mission",
               "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
             }
           ]
         }
@@ -2147,8 +1392,9 @@
       "typeVersion": 1,
       "position": [
         2180,
-        2180
-      ]
+        1940
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -2605,6 +1851,10 @@
             {
               "name": "mission",
               "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
             }
           ]
         }
@@ -2616,37 +1866,6 @@
       "position": [
         2800,
         200
-      ]
-    },
-    {
-      "parameters": {
-        "name": "questionneur_de_production",
-        "description": "Le questionneur_de_production retourne une réponse issue de la base de données des tâches des Kins\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Le statut des tâches désirées (TODO/DOING/DONE)\n- (filtre optionnel) Le Kin désiré\n- Les informations que tu cherches, avec les  éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
-        "workflowId": "ZTyYwHXmIk6UTURZ",
-        "fields": {
-          "values": [
-            {
-              "name": "sync",
-              "type": "booleanValue"
-            },
-            {
-              "name": "kin",
-              "stringValue": "={{ $node[\"entree\"].json.kin }}"
-            },
-            {
-              "name": "mission",
-              "stringValue": "={{ $node[\"entree\"].json.mission }}"
-            }
-          ]
-        }
-      },
-      "id": "587f90b0-7308-4b02-8623-3284b0c6c4b0",
-      "name": "Questionneur de production",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        2220,
-        1620
       ]
     },
     {
@@ -2667,6 +1886,10 @@
             {
               "name": "mission",
               "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
             }
           ]
         }
@@ -3107,7 +2330,7 @@
     {
       "parameters": {
         "assistantId": "asst_NRJfqzvKf73U2CjrI4bqMSf5",
-        "text": "=[INFORMATIF - Mission du Producteur]\n\n{{ $node[\"entree\"].json.mission.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"entree\"].json.mission.substring($node[\"entree\"].json.mission.length - 5000)}}\n\n[/INFORMATIF - Mission du Producteur]\n\n---\n\n[INFORMATIF - Document Final déjà rédigé à ce stade]\n\n{{ $node[\"document\"].json.document.length > 5000 ? \"[...]\\n\\n\" : \"\" }}{{ $node[\"document\"].json.document.substring($node[\"document\"].json.document.length - 5000)}}\n\n[/INFORMATIF - Document Final déjà rédigé à ce stade]\n\n---\n\n[INFORMATIF - Dernières Instructions que tu as données au {{  $node[\"Producteur\"].json.dernierProducteur }}]\n\n{{ $node[\"entree\"].json.instructions }}\n\n[/INFORMATIF - Dernières Instructions données au {{  $node[\"Producteur\"].json.dernierProducteur }}]\n\n---\n[INFORMATIF - Rédaction réalisée / Actions effectuées par {{  $node[\"Producteur\"].json.dernierProducteur }}]\n\n{{ $node[\"Producteur\"].json.output.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"Producteur\"].json.output.substring($node[\"Producteur\"].json.output.length - 5000)}}\n\n[/INFORMATIF - Rédaction réalisée / Actions effectuées par {{  $node[\"Producteur\"].json.dernierProducteur }}]\n\n---\n\n[INSTRUCTIONS : Manage la Boucle de Production]\n\nEffectue les Actions  1, 2 et 3 de ton processus en une seule fois, de manière à :\n- Faire le Suivi de l'Avancement de la Mission,\n- Déterminer la Prochaine Action,\n- Déclencher la prochaine Action.\n\n[/INSTRUCTIONS : Determination de la prochaine étape]",
+        "text": "=[INFORMATIF - Mission du Producteur]\n\n{{ $node[\"entree\"].json.mission.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"entree\"].json.mission.substring($node[\"entree\"].json.mission.length - 5000)}}\n\n[/INFORMATIF - Mission du Producteur]\n\n===\n\n[INFORMATIF - Document Final déjà rédigé à ce stade]\n\n{{ $node[\"document\"].json.document.length > 5000 ? \"[...]\\n\\n\" : \"\" }}{{ $node[\"document\"].json.document.substring($node[\"document\"].json.document.length - 5000)}}\n\n[/INFORMATIF - Document Final déjà rédigé à ce stade]\n\n===\n\n[INFORMATIF - Dernières Instructions que tu as données au {{  $node[\"Producteur\"].json.dernierProducteur }}]\n\n{{ $node[\"entree\"].json.instructions }}\n\n[/INFORMATIF - Dernières Instructions données au {{  $node[\"Producteur\"].json.dernierProducteur }}]\n\n---\n[INFORMATIF - Rédaction réalisée / Actions effectuées par {{  $node[\"Producteur\"].json.dernierProducteur }}]\n\n{{ $node[\"Producteur\"].json.output.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"Producteur\"].json.output.substring($node[\"Producteur\"].json.output.length - 5000)}}\n\n[/INFORMATIF - Rédaction réalisée / Actions effectuées par {{  $node[\"Producteur\"].json.dernierProducteur }}]\n\n===\n\n[INSTRUCTIONS : Manage la Boucle de Production]\n\nEffectue les Actions  1, 2, 3 et 4 de ton processus en une seule fois, de manière à :\n- Faire le Suivi de l'Avancement de la Mission,\n- Déterminer la Prochaine Action,\n- Déclencher la prochaine Action,\n- Déclencher l'email de suivi si besoin.\n\n[/INSTRUCTIONS : Determination de la prochaine étape]",
         "options": {}
       },
       "id": "0b4c1b91-ae71-4843-b103-0277f8f487b4",
@@ -3115,8 +2338,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        2540,
-        1320
+        3380,
+        900
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -3126,384 +2349,6 @@
           "name": "OpenAi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": false,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "1a743e65-4e49-4878-bfc1-a41bb6fae343",
-              "leftValue": "={{ $node[\"entree\"].json.kin.toLowerCase() == \"kinmail\"}}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "ignoreCase": true
-        }
-      },
-      "id": "efe1a0f8-869c-4d77-ad1d-47cdf8d41dba",
-      "name": "If kinmail1",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        4400,
-        180
-      ]
-    },
-    {
-      "parameters": {
-        "chatId": "-4130957615",
-        "text": "=cas non géré {{ $execution.id }}",
-        "additionalFields": {
-          "appendAttribution": false,
-          "parse_mode": "MarkdownV2"
-        }
-      },
-      "id": "81eb7e04-6cfc-460b-bf8b-c65fde6542b3",
-      "name": "Send Instructions",
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.1,
-      "position": [
-        5100,
-        160
-      ],
-      "credentials": {
-        "telegramApi": {
-          "id": "rUijC7XE7TL12tph",
-          "name": "Lester AGI"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "workflowId": "DXYPhavwlYlTKPqu",
-        "options": {}
-      },
-      "id": "66f1f461-645a-474d-a30f-4168f763d25f",
-      "name": "Lancement de Mission Kin",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        5340,
-        1100
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"sortie\"].json));\n\ndelete json.query;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads & prompts\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread') || key.toLowerCase().includes('prompt')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
-      },
-      "id": "d4985d1b-cb08-474e-a53c-f1c5ccebe3da",
-      "name": "waiting",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        3960,
-        180
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"waiting\",\n\"vectors\": {\n\"id\": \"{{ $node[\"waiting\"].json.kin }}-{{ $node[\"waiting\"].json.mailId }}\",\n\"metadata\": {{ JSON.stringify($node[\"waiting\"].json) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
-        "options": {}
-      },
-      "id": "57476d1b-aa3b-488c-821d-720971896261",
-      "name": "Upsert waiting",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        4180,
-        180
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"sortie\"].json));\n\ndelete json.query;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads & prompts\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread') || key.toLowerCase().includes('prompt')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
-      },
-      "id": "1b3b0b17-f00b-423c-a5a2-6d8610d9bb22",
-      "name": "waiting1",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        3960,
-        480
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"waiting\",\n\"vectors\": {\n\"id\": \"{{ $node[\"waiting1\"].json.kin }}-{{ $node[\"waiting1\"].json.mailId }}\",\n\"metadata\": {{ JSON.stringify($node[\"waiting1\"].json) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
-        "options": {}
-      },
-      "id": "6d5e759b-2e58-4f2a-942b-8a1ba13cd041",
-      "name": "Upsert waiting1",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        4180,
-        480
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{ $node[\"sortie\"].json.output.toLowerCase() }}\n{{ $node[\"sortie\"].json.instructions.toLowerCase() }}",
-                    "rightValue": "=[exception",
-                    "operator": {
-                      "type": "string",
-                      "operation": "contains"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "298fc4e9-ee13-4c01-b979-6e859625335a",
-                    "leftValue": "={{\n(\n$node[\"sortie\"].json.output.toLowerCase().includes(\"[demande\")\n||\n$node[\"sortie\"].json.instructions.toLowerCase().includes(\"[demande\")\n)\n}}",
-                    "rightValue": "",
-                    "operator": {
-                      "type": "boolean",
-                      "operation": "true",
-                      "singleValue": true
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "85cccd38-117b-4670-a34a-bdf1bd6a583a",
-                    "leftValue": "={{\n(\n$node[\"sortie\"].json.output.toLowerCase().includes(\"accomplie]\")\n||\n$node[\"sortie\"].json.instructions.toLowerCase().includes(\"accomplie]\")\n)\n}}",
-                    "rightValue": "Accomplie]",
-                    "operator": {
-                      "type": "boolean",
-                      "operation": "true",
-                      "singleValue": true
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "3110a314-579a-4509-9797-414538c7d77a",
-                    "leftValue": "={{\n(\n$node[\"sortie\"].json.output.toLowerCase().includes(\"[amelioration\")\n||\n$node[\"sortie\"].json.instructions.toLowerCase().includes(\"[amelioration\")\n)\n}}",
-                    "rightValue": "",
-                    "operator": {
-                      "type": "boolean",
-                      "operation": "true",
-                      "singleValue": true
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {
-          "fallbackOutput": "extra",
-          "looseTypeValidation": true
-        }
-      },
-      "id": "f2da19ad-1b38-416a-a8e6-7eb2e3ad9250",
-      "name": "Switch Commands",
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3,
-      "position": [
-        3360,
-        1320
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "a110a0a1-7592-46f9-b32a-ffb63b03d458",
-      "name": "AMELIORATION",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        3700,
-        1780
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "DXYPhavwlYlTKPqu",
-        "options": {}
-      },
-      "id": "2041d185-7022-4f51-bb57-a113c800fae3",
-      "name": "Lancement de Mission kinPO",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4360,
-        1780
-      ]
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "mission",
-              "stringValue": "=[PROCESSUS - Mission : Amélioration continue - Discovery et proposition d'une solution d'amélioration]\n\nUn Kin a proposé une amélioration. Ta mission est de comprendre le besoin sous-jacent, d'évaluer si nous pourrions améliorer notre manière de procéder, et de concevoir une proposition détaillée pour implémenter cette amélioration.\n\n[/PROCESSUS - Mission : Amélioration continue - Discovery et proposition d'une solution d'amélioration]\n\n---\n\n[INFORMATIF - Mission Initiale du Kin]\n\n{{ $node[\"sortie\"].json.mission.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"sortie\"].json.mission.substring($node[\"sortie\"].json.mission.length - 5000)}}\n\n[INFORMATIF - Mission Initiale du Kin]\n\n---\n\n[INFORMATIF - Dernière production du Producteur {{ $node[\"sortie\"].json.dernierProducteur }}]\n\n{{ $node[\"sortie\"].json.output.length > 8000 ? \"[...]\" : \"\" }}{{ $node[\"sortie\"].json.output.substring($node[\"sortie\"].json.output.length - 8000)}}\n\n[/INFORMATIF - Dernière production du Producteur {{ $node[\"sortie\"].json.dernierProducteur }}]\n\n\n---\n\n[INFORMATIF - Dernier Message du KinManager]\n\n{{ $node[\"sortie\"].json.instructions }}\n\n[/INFORMATIF - Dernier Message du KinManager]"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "8a03c195-4ab2-4406-9cac-767c0c3c8d36",
-      "name": "mission kinPO",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        3920,
-        1780
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"sortie\"].json;\n\ndelete json.query;\n\njson.kin = \"kinpo\";\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads & prompts\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread') || key.toLowerCase().includes('prompt')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
-      },
-      "id": "03a9255c-e1e3-47f6-84a0-4b0fd0443a33",
-      "name": "todo kinpo",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        4140,
-        1780
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "DXYPhavwlYlTKPqu",
-        "options": {}
-      },
-      "id": "38fa3f44-382b-4470-9dfd-5d62d3e81295",
-      "name": "Lancement de Mission kinMatcheur",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        5320,
-        480
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "=RCzPi7XT4ijau6eF",
-        "options": {}
-      },
-      "id": "2f1054a2-4353-4a46-86a1-89bf2e457e32",
-      "name": "Kin",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4600,
-        2020
-      ]
     },
     {
       "parameters": {
@@ -3523,6 +2368,10 @@
             {
               "name": "mission",
               "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.mission }}"
             }
           ]
         }
@@ -3532,8 +2381,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        1960,
-        2780
+        2380,
+        2140
       ]
     },
     {
@@ -3558,6 +2407,10 @@
             {
               "name": "documentGoogleDriveId",
               "stringValue": "={{ $node[\"entree\"].json.sourceGoogleDriveId }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
             }
           ]
         }
@@ -3567,8 +2420,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2340,
-        -580
+        2380,
+        180
       ]
     },
     {
@@ -3597,6 +2450,10 @@
             {
               "name": "format",
               "stringValue": "md"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
             }
           ]
         }
@@ -3606,8 +2463,322 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
+        2200,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "name": "actionneur_de_production",
+        "description": "La fonction \"actionneur_de_production\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou compléter la mission en cours d'execution.\n\nquery :\n/status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nExemples :\n- Continuer la boucle de production: \"/status todo kinname\\n\\n%TODOLIST% et %Prochaine action à réaliser%\"\n- Gérer une exception : \"/status waiting kinname\\n\\n%Explication de l'exception% \"\n- Compléter une mission : \"/status done kinname\\n\\n%Travail acocmpli%\"\n- Eaner une nouvelle mission : \"/nouvellemission kinname\\n\\n%Description détailée% \"",
+        "workflowId": "MGND8ynCD26RRnsW",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "json",
+              "stringValue": "={{ JSON.stringify($node[\"clean mission\"].json) }}"
+            },
+            {
+              "name": "kinDemandeur",
+              "stringValue": "={{ $node[\"clean mission\"].json.kin }}"
+            }
+          ]
+        }
+      },
+      "id": "85cafd5a-dd48-4b2e-8eec-2a612785ee30",
+      "name": "Actionneur de production",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3580,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"Producteur\"].json;\n\njson.instructions = $node[\"Manager\"].json.output;\njson.executionId = $execution.id;\n\nreturn {\"json\" : json};"
+      },
+      "id": "8037e86a-05b7-42ab-9041-974aec0b6322",
+      "name": "response1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3780,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "name": "listeur_de_missions",
+        "description": "Le listeur_de_missions permet de récupérer la liste des missions en cours, terminées, et en attente.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Le statut des tâches désirées (toto/doing/done/waiting)\n- (filtre optionnel) Le Kin désiré\n- Si tu cherches des informations particulières,\n- Le format de réponse désiré.",
+        "workflowId": "7gSW7ZaAHc61PVPS",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"entree\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
+            }
+          ]
+        }
+      },
+      "id": "587f90b0-7308-4b02-8623-3284b0c6c4b0",
+      "name": "Listeur de missions",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2500,
+        1920
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"threadId\" : \"{{ $node[\"clean mission\"].json.threadId }}\", \"kin\": \"{{ $node[\"clean mission\"].json.kin }}\", \"status\": \"doing\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "a51f1487-97fe-4bfa-b8d1-3fc65f69129c",
+      "name": "Get kin mission doing",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        4300,
+        900
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($json.matches).length > 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "2bd12cf2-0ebc-4dd9-8536-9c6239cd738f",
+      "name": "IF mission",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4520,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-4130957615",
+        "text": "=PAS PASSE DANS ACTIONNEUR DE PRODUCTION #{{ $execution.id }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "fd7398db-12bf-4f7c-927e-0865cb0aaec1",
+      "name": "Send Instructions",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4720,
+        880
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "rUijC7XE7TL12tph",
+          "name": "Lester AGI"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/fetch",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"onoff\",\n  \"ids\": [\"onoff\"]\n}",
+        "options": {}
+      },
+      "id": "c7c6356a-39b4-4879-9df0-e8b315e52340",
+      "name": "Fetch onoff",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -60,
+        900
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "MGND8ynCD26RRnsW",
+        "options": {}
+      },
+      "id": "75686575-0544-43e3-8365-dd4978e5425e",
+      "name": "Actionneur de Production1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        380,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/status waiting\";\n\nreturn {\"json\": json};"
+      },
+      "id": "ade87496-681d-4df5-881a-7f9fb6665942",
+      "name": "mission set waiting",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        160,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "name": "actionneur_de_production",
+        "description": "La fonction \"actionneur_de_production\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou compléter la mission en cours d'execution.\n\nquery :\n/status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nExemples :\n- Continuer la boucle de production: \"/status todo kinname\\n\\n%TODOLIST% et %Prochaine action à réaliser%\"\n- Gérer une exception : \"/status waiting kinname\\n\\n%Explication de l'exception% \"\n- Compléter une mission : \"/status done kinname\\n\\n%Travail acocmpli%\"\n- Eaner une nouvelle mission : \"/nouvellemission kinname\\n\\n%Description détailée% \"",
+        "workflowId": "MGND8ynCD26RRnsW",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "json",
+              "stringValue": "={{ JSON.stringify($node[\"input\"].json) }}"
+            },
+            {
+              "name": "kinDemandeur",
+              "stringValue": "={{ $node[\"input\"].json.kinDemandeur }}"
+            },
+            {
+              "name": "missionDemandeur",
+              "stringValue": "={{ $node[\"input\"].json.missionDemandeur }}"
+            }
+          ]
+        }
+      },
+      "id": "2660a464-bc13-46d6-8124-1971b7f8fc23",
+      "name": "Actionneur de production (match)",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        2340
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "026b34bb-7dfa-4fa4-af16-d78a4e166711",
+              "leftValue": "={{ $json.vectors.onoff.metadata.value }}",
+              "rightValue": "on",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "31242434-5483-4b4c-90ac-006ddf022057",
+      "name": "If on",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        160,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\njson.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n\nreturn {\"json\": json};"
+      },
+      "id": "8fe697df-fe1e-4424-8bfb-618f5cd4f0d5",
+      "name": "clean mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
         2480,
-        540
+        900
       ]
     }
   ],
@@ -3616,19 +2787,20 @@
       {
         "json": {
           "client": "dynergie",
-          "date": "2024-01-31T02:13:15.653+01:00",
-          "dernierProducteur": "kinmail",
-          "executionId": "84937",
-          "format": "md",
-          "instructions": "[PROCESSUS - Avancement de la mission]\n\nTODOLIST :\n- **ACTION n°1. Rédaction de la partie 'Instructions Globales' du prompt du Kin** : DONE\n- **ACTION n°2. Rédaction de la partie 'Rôle' du prompt du Kin** : DONE\n- **ACTION n°3. Rédaction de la partie 'Contexte' du prompt du Kin** : DONE\n- **ACTION n°4. Rédaction de la partie 'Proposition de Valeur' du prompt du Kin** : DONE\n- **ACTION n°5. Rédaction de la partie 'Système de Balisage des Kins' du prompt du Kin** : DONE\n- **Identification du nombre d'Actions nécessaire dans le prompt du Kin** : DONE\n- **ACTION n°6.1 Rédaction de la partie 'ACTION 1' du prompt du Kin** : DONE\n- **ACTION n°6.2 Rédaction de la partie 'ACTION 2' du prompt du Kin** : DONE\n- **ACTION n°6.3 Rédaction de la partie 'ACTION 3' du prompt du Kin** : DONE\n- **ACTION n°7. Evaluation du prompt** : DONE\n- **Amélioration suivant l'évaluation, etc.** : TODO\n- **ACTION n°8. Rapport de mission et commentaire.** : TODO\n\n[PROCESSUS - Avancement de la mission]\n\n---\n\n[INSTRUCTION - Prochaine Action]\n\nPasse à l'**Amélioration suivant l'évaluation, etc.**. Utilise les suggestions et observations obtenues lors de la phase d'évaluation pour améliorer le prompt. Intègre les modifications nécessaires pour augmenter la clarté et l'efficacité du système. Assure-toi de prendre en compte chaque retour pour une mise à jour approfondie et précise.\n\n[/INSTRUCTION - Prochaine Action]",
-          "kin": "kinmail",
-          "kinDemandeur": "KinRSI",
-          "mailId": "18d5c9548c8541f7",
-          "mailSubject": "Amélioration KinRSI",
-          "mission": "[PROCESSUS - Mission : Rédaction & Envoi D'Email]\n\nTa mission est de rédiger et d'envoyer le mail approprié au client à partir des informations dont tu disposes.\n\n[/PROCESSUS - Mission : Rédaction & Envoi D'Email]\n\n---\n\n[INFORMATIF - Date]\n\n2024-01-31T01:26:35.093+01:00\n\n[/INFORMATIF - Date]\n\n---\n\n[INFORMATIF - Client]\n\ndynergie\n\n[/INFORMATIF - Client]\n\n\n---\n\n[INFORMATIF - Mission]\n\nKinRSI[PROCESSUS - Nouvelle Mission KinRSI : Amélioration du Prompt]\n\nL'objectif de cette mission est d'améliorer le prompt du Kin RSI, en particulier en ce qui concerne la section dédiée à l'\"écriture des actions du kin\". Il est nécessaire de modifier le template actuel pour s'assurer que les résultats des actions entreprises par le Kin RSI soient systématiquement inclus entre balises de contenu. Cette modification assurera une plus grande clarté et une meilleure structuration des sorties, facilitant ainsi leur intégration et leur utilisation dans le workflow global de l'équipe.\n\nPoints clés à adresser :\n- Revoir la section \"écriture des actions du kin\" dans le prompt du Kin RSI.\n- Implanter une directive claire assurant que tous les résultats d'actions soient encadrés par les balises de contenu.\n- Tester le prompt modifié pour confirmer son efficacité et ajuster si nécessaire.\n\nL'aboutissement de cette mission contribuera à optimiser les processus de documentation et de communication des actions réalisées par le Kin RSI, renforçant ainsi la qualité globale des outputs fournis.\n\n[/PROCESSUS - Nouvelle Mission KinRSI : Amélioration du Prompt]\n\n[/INFORMATIF - Mission]\n\n\n---\n\n[INFORMATIF - Dernier Kin Producteur ]\n\nkinrsi\n\n[/INFORMATIF - Dernier Kin Producteur ]\n\n\n---\n\n[INFORMATIF - Dernière production du Kin Producteur]\n\n[ANALYSE - Réflexion pour l'Évaluation du Prompt]\nL'évaluation du prompt du Kin RSI nécessite une attention particulière aux modifications récemment apportées, en particulier la directive assurant que tous les résultats des actions entreprises par le Kin RSI soient systématiquement inclus entre balises de contenu. La concentration sur cette amélioration apportée à la section \"écriture des actions du kin\" demande d'évaluer non seulement la clarté et l'efficacité de cette nouvelle directive mais aussi son intégration dans le workflow global du prompt et son impact sur l'efficience des processus de documentation et de communication.\n\nIl est essentiel d'apprécier si l'inclusion systématique des résultats d'actions entre balises de contenu contribue réellement à une meilleure structuration des sorties et facilite leur intégration et leur utilisation. De plus, il convient de considérer si cette amélioration respecte l'objectif d'optimiser les processus de documentation et de renforcer la qualité globale des outputs fournis par le Kin RSI.\n\nEn outre, il faut aussi examiner la manière dont cette directive a été formulée et intégrée dans le prompt. Est-ce que les instructions sont suffisamment claires et directes pour être facilement comprises et suivies par le Kin RSI ? Y a-t-il des risques de confusion ou d'interprétation erronée qui pourraient diminuer l'efficacité de cette amélioration ? Toutes ces questions sont cruciales pour l'évaluation globale du prompt amélioré.\n\nFinalement, cette évaluation doit également se concentrer sur l'impact potentiel de ces modifications sur l'expérience globale de l'utilisateur du Kin RSI. Cela implique d'apprécier si les changements facilitent une interaction plus fluide et efficace entre le Kin RSI et les autres membres de l'équipe, contribuant ainsi au bon fonctionnement global du processus de production.\n\n[/ANALYSE - Réflexion pour l'Évaluation du Prompt]\n\n[AMELIORATION - Suggestion pour le Prompt du Kin RSI]\nSuite à l'évaluation rigoureuse du prompt amélioré du Kin RSI, plusieurs constatations et suggestions d'améliorations ont été identifiées :\n\n1. **Clarté des Instructions** : Les directives pour inclure systématiquement les résultats des actions entre balises de contenu sont claires et précises. Cependant, il pourrait être utile d'inclure un exemple concret illustrant correctement cette action pour renforcer la compréhension des moins familiers avec le système de balisage.\n\n2. **Intégration dans le Workflow** : L'intégration de cette nouvelle directive semble logique et ne devrait pas perturber le workflow existant. Il serait cependant bénéfique d'ajouter une note soulignant l'importance de cette pratique pour la documentation et la communication au sein de l'équipe, afin d'encourager son adoption systématique.\n\n3. **Impact sur l'Effience** : L'inclusion systématique des résultats d'actions entre balises de contenu a le potentiel d'améliorer significativement la structuration des sorties et leur utilisation ultérieure. Pour maximiser cet impact, il serait cependant judicieux de fournir des lignes directrices plus détaillées sur la sélection des balises à utiliser selon le contexte de l'action.\n\nEn résumé, le prompt amélioré du Kin RSI montre une evolution positive vers une meilleure structuration des sorties et une documentation plus efficace. Cependant, l'ajout d'exemples concrets, de notes d'encouragement et de lignes directrices détaillées pourrait améliorer encore davantage l'efficacité et la clarté du prompt.\n\n[/AMELIORATION - Suggestion pour le Prompt du Kin RSI]\n\n[RETOUR - Mission KinRSI Accomplie]\n- **Synthèse du travail réalisé** : La mission consistait à évaluer le prompt amélioré du Kin RSI, avec un focus spécifique sur la nouvelle directive concernant l'inclusion systématique des résultats des actions entre balises de contenu. Cette évaluation a permis de confirmer la clarté et la pertinence de cette amélioration, tout en identifiant des pistes pour optimiser davantage l'efficacité et la compréhension du prompt.\n\n- **Commentaire personnel** : L'expérience a été enrichissante et a mis en évidence l'importance de la structuration précise dans les processus de documentation. La clarté du prompt facilite grandement l'efficacité du Kin RSI et contribue à une meilleure gestion des tâches. J'ai particulièrement apprécié l'opportunité de proposer des améliorations concrètes qui pourraient renforcer l'efficience du prompt.\n\n- **Propositions d'amélioration** : Basée sur mon expérience, je suggère d'intégrer des exemples concrets dans le prompt pour illustrer les directives clés. Cela pourrait grandement aider les utilisateurs moins familiers avec le système de balisage. De plus, développer des lignes directrices sur la sélection des balises en fonction du contexte pourrait simplifier l'adoption de ces meilleures pratiques par l'ensemble de l'équipe.\n\n[/RETOUR - Mission KinRSI Accomplie]\n\n[/INFORMATIF - Dernière production du Kin Producteur]\n\n\n---\n\n[INFORMATIF - Dernier Message du KinManager]\n\n[PROCESSUS - Avancement de la mission]\n\nTODOLIST :\n- **ACTION n°1. Rédaction de la partie 'Instructions Globales' du prompt du Kin** : DONE\n- **ACTION n°2. Rédaction de la partie 'Rôle' du prompt du Kin** : DONE\n- **ACTION n°3. Rédaction de la partie 'Contexte' du prompt du Kin** : DONE\n- **ACTION n°4. Rédaction de la partie 'Proposition de Valeur' du prompt du Kin** : DONE\n- **ACTION n°5. Rédaction de la partie 'Système de Balisage des Kins' du prompt du Kin** : DONE\n- **Identification du nombre d'Actions nécessaire dans le prompt du Kin** : DONE\n- **ACTION n°6.1 Rédaction de la partie 'ACTION 1' du prompt du Kin** : DONE\n- **ACTION n°6.2 Rédaction de la partie 'ACTION 2' du prompt du Kin** : DONE\n- **ACTION n°6.3 Rédaction de la partie 'ACTION 3' du prompt du Kin** : DONE\n- **ACTION n°7. Evaluation du prompt** : TODO\n- **Amélioration suivant l'évaluation, etc.** : TODO\n- **ACTION n°8. Rapport de mission et commentaire.** : TODO\n\n[PROCESSUS - Avancement de la mission]\n\n---\n\n[INSTRUCTION - Prochaine Action]\n\nKin RSI, maintenant que tu as complété les actions concernant la rédaction des différentes parties du prompt et leur évaluation, il est temps de passer à l'**ACTION n°7. Evaluation du prompt**. Cette tâche est essentielle pour s'assurer que les ajustements et les modifications apportées au prompt sont effectivement pertinents et améliorent l'interaction avec le système. Prends en compte tous les feedbacks et observations accumulés jusqu'à ce point pour évaluer la performance et l'utilisation du prompt modifié.\n\n[INSTRUCTION - Prochaine Action]\n\n[/INFORMATIF - Dernier Message du KinManager]",
-          "missionDuDemandeur": "KinRSI[PROCESSUS - Nouvelle Mission KinRSI : Amélioration du Prompt]\n\nL'objectif de cette mission est d'améliorer le prompt du Kin RSI, en particulier en ce qui concerne la section dédiée à l'\"écriture des actions du kin\". Il est nécessaire de modifier le template actuel pour s'assurer que les résultats des actions entreprises par le Kin RSI soient systématiquement inclus entre balises de contenu. Cette modification assurera une plus grande clarté et une meilleure structuration des sorties, facilitant ainsi leur intégration et leur utilisation dans le workflow global de l'équipe.\n\nPoints clés à adresser :\n- Revoir la section \"écriture des actions du kin\" dans le prompt du Kin RSI.\n- Implanter une directive claire assurant que tous les résultats d'actions soient encadrés par les balises de contenu.\n- Tester le prompt modifié pour confirmer son efficacité et ajuster si nécessaire.\n\nL'aboutissement de cette mission contribuera à optimiser les processus de documentation et de communication des actions réalisées par le Kin RSI, renforçant ainsi la qualité globale des outputs fournis.\n\n[/PROCESSUS - Nouvelle Mission KinRSI : Amélioration du Prompt]",
-          "output": "[EXCEPTION - Erreur d'Envoi d'Email]\n\nUne erreur s'est produite lors de la tentative d'envoi de l'email via la fonction `send_email` : \"Cannot read properties of undefined (reading 'split')\". Il semblerait qu'il y ait un problème technique avec la fonction d'envoi d'email. \n\n[/EXCEPTION - Erreur d'Envoi d'Email]\n\n---",
-          "startTimestamp": "2024-01-31T02:29:41.088+01:00",
+          "documentGoogleDriveId": "1ZHPueJoWzS8RFHPmCzbNsRWpignNfDpb",
+          "executionId": "104112",
+          "instructions": "[PROCESSUS - Avancement de la Mission]\n\nTODOLIST :\n\n- **Évaluer l'Objectif de l'Étude** : TODO\n- **Analyser la Méthodologie** : TODO\n- **Analyser les Résultats** : TODO\n- **Critiquer la Discussion et les Conclusions** : TODO\n- **Conduire une Analyse Critique** : TODO\n- **Synthèse Scientifique et Vulgarisée** : TODO\n- **Examiner les Annexes** : TODO\n- **Signature Finale** : TODO\n\n[/PROCESSUS - Avancement de la Mission]\n\n---\n\n[INSTRUCTION - Détermination de la Prochaine Action]\n\nÀ la lumière de l'information reçue et du framework de la mission, la première étape à entreprendre est d'**Évaluer l'Objectif de l'Étude**. Cela nécessite de lire et de comprendre en profondeur le document ou l'étude en question, afin d'identifier clairement l'objectif déclaré par les auteurs. Ce sera une étape critique pour guider l'ensemble du processus d'analyse et de critique qui suivra.\n\nL'action immédiate sera donc de démarrer par une lecture approfondie de l'étude, en mettant une attention particulière à ses objectifs annoncés, qui serviront de base pour une évaluation critique ultérieure.\n\n[/INSTRUCTION - Détermination de la Prochaine Action]\n\n--- \n\nactionneur_de_production",
+          "kin": "kinlca",
+          "mailFrom": "From: Lester Reynolds <lreynolds@dynergie.fr>",
+          "mailId": "18d6173c12b12107",
+          "mailSubject": "KinLCA DIRECT",
+          "mission": "[INFORMATIF - Thread D'Emails]\n\nSujet: n/a\nDe: n/a\nÀ: n/a\nDate: 1/31/2024, 9:36:18 PM\nExtrait: Fais un LCA de Efcacy of homoeopathic treatment: Systematic review of meta-analyses of randomised placebo-controlled homoeopathy trials for any indication HJ Hamre1,2* , A. Glockmann1 , K. von Ammon2 ,\n\n\n\n[INFORMATIF - Thread D'Emails]\n\n---\n\n[FEEDBACK - Dernier email reçu]\n\nFais un LCA de  Efcacy of homoeopathic treatment: Systematic review\nof meta-analyses of randomised placebo-controlled homoeopathy trials\nfor any indication H. J. Hamre1,2* , A. Glockmann1 , K. von Ammon2 , D. S.\nRiley3,4 and H. Kiene1,2\n\n\n[/FEEDBACK - Dernier email reçu]\n\n---",
+          "sourceGoogleDriveId": "133Y79LwjWJL5EMU9_OQjSkxpar6WhwZc",
+          "status": "todo",
+          "threadFrom": "Lester Reynolds <lreynolds@dynergie.fr>",
+          "threadId": "18d6173c12b12107",
+          "threadSubject": "KinLCA DIRECT",
+          "startTimestamp": "2024-01-31T23:13:36.917+01:00",
           "sync": false
         }
       }
@@ -3670,6 +2842,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T10:54:08.000Z",
-  "versionId": "812bf584-d1eb-4c42-84e6-8613100a8970"
+  "updatedAt": "2024-01-31T22:43:10.000Z",
+  "versionId": "a036a2da-43c3-40b7-9a26-78d2994fc132"
 }
