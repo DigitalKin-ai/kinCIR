@@ -49,7 +49,14 @@
       "main": [
         [
           {
-            "node": "nouveau message",
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send  Notifications",
             "type": "main",
             "index": 0
           }
@@ -89,28 +96,6 @@
         ]
       ]
     },
-    "Questionneur de Code": {
-      "ai_tool": [
-        [
-          {
-            "node": "kindev",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Questionneur de production": {
-      "ai_tool": [
-        [
-          {
-            "node": "kindev",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Message au CTO": {
       "ai_tool": [
         [
@@ -122,12 +107,23 @@
         ]
       ]
     },
-    "Questionneur de Kin": {
-      "ai_tool": [
+    "Send  Notifications": {
+      "main": [
         [
           {
-            "node": "kindev",
-            "type": "ai_tool",
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
             "index": 0
           }
         ]
@@ -162,8 +158,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        480,
-        580
+        780,
+        600
       ]
     },
     {
@@ -349,37 +345,6 @@
     },
     {
       "parameters": {
-        "name": "questionneur_de_code",
-        "description": "Le Questionneur de code retourne une réponse issue de la codebase n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
-        "workflowId": "kLKx8F1dt8gfkjry",
-        "fields": {
-          "values": [
-            {
-              "name": "sync",
-              "type": "booleanValue"
-            },
-            {
-              "name": "kin",
-              "stringValue": "={{ $node[\"entree\"].json.kin }}"
-            },
-            {
-              "name": "mission",
-              "stringValue": "={{ $node[\"entree\"].json.mission }}"
-            }
-          ]
-        }
-      },
-      "id": "f0eb4b15-0b70-4310-8752-15b38087a841",
-      "name": "Questionneur de Code",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        260,
-        840
-      ]
-    },
-    {
-      "parameters": {
         "name": "message_au_cto",
         "description": "La fonction message_au_cto envoie le message passé dans \"query\" au CTO de DigitalKin, Nicolas Lester Reynolds.\n\nIl peut être utilisé pour signaler un problème, demander de l'aide ou une modification, demander un déblocage, ou suggérer une amélioration.",
         "workflowId": "NjRYPuz1EgoPxWfP",
@@ -411,65 +376,31 @@
     },
     {
       "parameters": {
-        "name": "questionneur_de_production",
-        "description": "Le questionneur_de_production retourne une réponse issue de la base de données des tâches des Kins\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Le statut des tâches désirées (TODO/DOING/DONE)\n- (filtre optionnel) Le Kin désiré\n- Les informations que tu cherches, avec les  éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
-        "workflowId": "ZTyYwHXmIk6UTURZ",
-        "fields": {
-          "values": [
-            {
-              "name": "sync",
-              "type": "booleanValue"
-            },
-            {
-              "name": "kin",
-              "stringValue": "={{ $node[\"entree\"].json.kin }}"
-            },
-            {
-              "name": "mission",
-              "stringValue": "={{ $node[\"entree\"].json.mission }}"
-            }
-          ]
-        }
+        "mode": "chooseBranch"
       },
-      "id": "9f78f389-fd62-4467-9e2e-3ff68e30d94f",
-      "name": "Questionneur de production",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
+      "id": "98c81f29-228f-4ac7-83e7-5060dcbc2f96",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
       "position": [
-        120,
-        840
+        560,
+        600
       ]
     },
     {
       "parameters": {
-        "name": "questionneur_de_kin",
-        "description": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide  qui n'est pas en rapport avec une mission spécifique.\n\nPour bien l'utiliser :\n- Mentionne le nom du @Kin,\n- Explique ton contexte et ton intention d'usage,\n- ta question.",
-        "workflowId": "m3wfYxyTxFXqib9D",
-        "fields": {
-          "values": [
-            {
-              "name": "sync",
-              "type": "booleanValue"
-            },
-            {
-              "name": "=kin",
-              "stringValue": "={{ $node[\"entree\"].json.kin }}"
-            },
-            {
-              "name": "mission",
-              "stringValue": "={{ $node[\"entree\"].json.mission }}"
-            }
-          ]
-        }
+        "workflowId": "=EYWde6gUS9Qq2ok7",
+        "options": {}
       },
-      "id": "dd601638-2966-4e1b-9d13-9ef652744acd",
-      "name": "Questionneur de Kin",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "id": "a9c4c2e4-a7dd-4c6b-8afa-bb7b2bc80e23",
+      "name": "Send  Notifications",
+      "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
         400,
-        840
-      ]
+        740
+      ],
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {},
@@ -494,6 +425,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-31T07:12:39.000Z",
-  "versionId": "a598f0e2-8956-4677-bd92-70b82392b5cf"
+  "updatedAt": "2024-01-31T14:37:27.000Z",
+  "versionId": "76f6af2e-db64-4509-ab8e-48dd03b287aa"
 }
