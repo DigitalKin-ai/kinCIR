@@ -161,44 +161,11 @@
         ]
       ]
     },
-    "kins": {
-      "main": [
-        [
-          {
-            "node": "assistantId",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "assistantId": {
-      "main": [
-        [
-          {
-            "node": "Get Assistant",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Update Thread": {
       "main": [
         [
           {
             "node": "entree document",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Assistant": {
-      "main": [
-        [
-          {
-            "node": "Manager",
             "type": "main",
             "index": 0
           }
@@ -407,7 +374,7 @@
       "main": [
         [
           {
-            "node": "kins",
+            "node": "Manager",
             "type": "main",
             "index": 0
           }
@@ -1655,69 +1622,6 @@
       "position": [
         4400,
         1340
-      ]
-    },
-    {
-      "parameters": {
-        "url": "=https://api.openai.com/v1/assistants/{{ $node[\"assistantId\"].json.assistantId }}",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "openAiApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "OpenAI-Beta",
-              "value": "assistants=v1"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "cbfb723f-baef-4435-ba72-7f44f3cd5264",
-      "name": "Get Assistant",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        2940,
-        1120
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "workflowId": "gdFeXvXoLRHkWsrB",
-        "options": {}
-      },
-      "id": "5bb49370-34e9-4315-92c9-b49782d27674",
-      "name": "kins",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        2540,
-        1120
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let assistantId;\nconst kinObject = $json.kin.find(kin => kin.kin === $node[\"Producteur\"].json.dernierProducteur);\n\nassistantId = kinObject && kinObject.assistantId ? kinObject.assistantId : \"asst_8umriZllMPt14U8qy2T0jCmQ\";\n\nreturn {\"assistantId\": assistantId};"
-      },
-      "id": "7a8a457d-5d5d-4802-8526-7758721b6f65",
-      "name": "assistantId",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2740,
-        1120
       ]
     },
     {
@@ -3766,6 +3670,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T07:49:31.000Z",
-  "versionId": "e8069ca9-25c6-415e-aa9e-b5b01f6c203f"
+  "updatedAt": "2024-01-31T10:54:08.000Z",
+  "versionId": "812bf584-d1eb-4c42-84e6-8613100a8970"
 }
