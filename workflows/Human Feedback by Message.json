@@ -242,7 +242,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -309,7 +309,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -362,7 +362,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"thread\"].json;\nlet message = $item(0).$node[\"entree\"].json.message;\nlet from = message.from.username?message.from.username:\"\" + \" \" + message.from.first_name?message.from.first_name:\"\" + \" \" + message.from.last_name?message.from.last_name:\"\";\n\njson.feedback = \"---\\n\\n[FEEDBACK - \" + from + \"]\\n\\n\" + message.text + \"\\n\\n[/FEEDBACK - \" + from + \"]\\n\"; \n\njson.thread += json.feedback ;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"thread\"].json;\nlet message = $item(0).$node[\"entree\"].json.message;\n\n\nlet from = (message.from.username != null ? message.from.username  : \"\") + \" \" + (message.from.first_name != null ? message.from.first_name  : \"\" ) + \" \" + (message.from.last_name != null ? message.from.last_name  : \"\");\n\njson.feedback = \"---\\n\\n[FEEDBACK - \" + from + \"]\\n\\n\" + message.text + \"\\n\\n[/FEEDBACK - \" + from + \"]\\n\"; \n\njson.thread += json.feedback ;\n\nreturn {\"json\": json};"
       },
       "id": "0193a968-2e6b-4b9f-a64c-955ec44ed88e",
       "name": "feedback",
@@ -581,7 +581,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -618,7 +618,40 @@
       }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Telegram Trigger KinCIR": [
+      {
+        "json": {
+          "update_id": 543561987,
+          "message": {
+            "message_id": 13383,
+            "from": {
+              "id": 1864364329,
+              "is_bot": false,
+              "first_name": "Nicolas Lester",
+              "last_name": "Reynolds - CTO @ DigitalKin",
+              "username": "lesterpaintstheworld",
+              "language_code": "fr"
+            },
+            "chat": {
+              "id": -1002105587743,
+              "title": "KinCIR Dynergie",
+              "type": "supergroup"
+            },
+            "date": 1706680407,
+            "text": "@kinmatcheur info sur les commandes de rapport de recherche : utilise \"kinchercheur\" uniquement",
+            "entities": [
+              {
+                "offset": 0,
+                "length": 12,
+                "type": "mention"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -638,6 +671,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2024-01-30T22:11:06.000Z",
-  "versionId": "b5fa964e-b58d-43f2-9f32-efd8f52547c7"
+  "updatedAt": "2024-01-31T07:00:41.000Z",
+  "versionId": "7a81d83e-7fe4-4896-968a-a1e6f844910b"
 }
