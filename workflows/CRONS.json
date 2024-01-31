@@ -130,11 +130,6 @@
             "node": "Get todo",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Get ALL WAITING",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -264,6 +259,11 @@
       "main": [
         [
           {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          },
+          {
             "node": "Get ALL DOING Tasks",
             "type": "main",
             "index": 0
@@ -330,7 +330,7 @@
     {
       "parameters": {
         "content": "# RESET : Transfer DOING back to TASKS",
-        "height": 443.53507014028037,
+        "height": 432.76293831043847,
         "width": 1412.905235821716
       },
       "id": "93c55d1c-38b2-4661-ac0f-5eefe4201bd4",
@@ -339,7 +339,7 @@
       "typeVersion": 1,
       "position": [
         520,
-        -220
+        -209.2278681701581
       ]
     },
     {
@@ -483,7 +483,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/delete",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -524,7 +524,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/upsert",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -565,7 +565,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/delete",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -606,7 +606,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/delete",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -647,7 +647,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -686,7 +686,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -712,21 +712,20 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        900,
-        -60
+        860,
+        20
       ],
       "credentials": {
         "pineconeApi": {
           "id": "LakE1nni5DFtskNv",
           "name": "PineconeApi account"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/delete",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -752,8 +751,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1743,
-        -55
+        1740,
+        -60
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -767,7 +766,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/delete",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -807,7 +806,7 @@
     },
     {
       "parameters": {
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/fetch",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/fetch",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -846,7 +845,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/upsert",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -887,7 +886,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/upsert",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -942,7 +941,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/upsert",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -983,7 +982,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/delete",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -1037,7 +1036,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/delete",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -1078,7 +1077,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/vectors/upsert",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -1190,6 +1189,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-30T21:04:14.000Z",
-  "versionId": "eaa49f46-6088-47a2-96b8-09398a5796ec"
+  "updatedAt": "2024-01-31T08:18:15.000Z",
+  "versionId": "ced39f3f-4acd-4c26-b9dd-0304ae0ced8f"
 }
