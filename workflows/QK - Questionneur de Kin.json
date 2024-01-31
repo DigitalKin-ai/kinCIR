@@ -114,17 +114,6 @@
         ]
       ]
     },
-    "Send  Notifications": {
-      "main": [
-        [
-          {
-            "node": "response",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Producteur": {
       "main": [
         [
@@ -611,6 +600,17 @@
           }
         ]
       ]
+    },
+    "Send  Notifications": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-30T23:28:15.425Z",
@@ -833,22 +833,8 @@
     },
     {
       "parameters": {
-        "workflowId": "=EYWde6gUS9Qq2ok7",
-        "options": {}
-      },
-      "id": "e39c973d-172c-400e-8c2c-2b50d86bb401",
-      "name": "Send  Notifications",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        3500,
-        1600
-      ]
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"entree\"].json;\n\nif ($json.output != null) {\n  json.output = $json.output;\n} else {\n  json.output = \"[EXCEPTION - Error with OpenAI call]\\n\\n\" + $prevNode.name +\" returned an error when calling OpenAI Assistant\\n\\n[/EXCEPTION - Error with OpenAI call]\"; \n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"entree\"].json;\n\nif ($json.output != null) {\n  json.output = $json.output;\n} else {\n  json.output = \"[EXCEPTION - Error with OpenAI call]\\n\\n\" + $prevNode.name +\" returned an error when calling OpenAI Assistant\\n\\n[/EXCEPTION - Error with OpenAI call]\"; \n}\n\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
       },
       "id": "f3afc4d3-8eae-4198-8294-239630342782",
       "name": "Producteur",
@@ -1962,6 +1948,21 @@
         1400
       ],
       "webhookId": "6dc41956-8b26-402d-83ce-c4b4225df822"
+    },
+    {
+      "parameters": {
+        "workflowId": "=EYWde6gUS9Qq2ok7",
+        "options": {}
+      },
+      "id": "e39c973d-172c-400e-8c2c-2b50d86bb401",
+      "name": "Send  Notifications",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        1600
+      ],
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {
@@ -2005,6 +2006,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-31T06:20:38.000Z",
-  "versionId": "869b86de-e6c1-4483-ae3c-c8de1dbeca46"
+  "updatedAt": "2024-01-31T15:13:00.000Z",
+  "versionId": "9ef8bd25-82fe-464b-8957-4e5cb3f71b25"
 }
