@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "set kinCredits": {
       "main": [
@@ -27,7 +27,7 @@
       "main": [
         [
           {
-            "node": "Delete todo",
+            "node": "mission set doing",
             "type": "main",
             "index": 0
           }
@@ -38,12 +38,12 @@
       "main": [
         [
           {
-            "node": "Delete task  DOING",
+            "node": "Get kinCredits",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Get kinCredits",
+            "node": "mission set done",
             "type": "main",
             "index": 0
           }
@@ -105,51 +105,7 @@
       "main": [
         [
           {
-            "node": "Get todo",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Upsert task DOING": {
-      "main": [
-        [
-          {
-            "node": "get body",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Delete task  DOING": {
-      "main": [
-        [
-          {
-            "node": "Upsert task DONE",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get todo": {
-      "main": [
-        [
-          {
-            "node": "IF Task",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Delete todo": {
-      "main": [
-        [
-          {
-            "node": "Upsert task DOING",
+            "node": "Get missions",
             "type": "main",
             "index": 0
           }
@@ -167,22 +123,66 @@
         ]
       ]
     },
-    "Delete task  DOING1": {
+    "Lancement de Mission kinDev": {
       "main": [
         [
           {
-            "node": "Upsert WAITING",
+            "node": "mission set waiting",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Lancement de Mission kinDev": {
+    "Get missions": {
       "main": [
         [
           {
-            "node": "Delete task  DOING1",
+            "node": "IF Task",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission set doing": {
+      "main": [
+        [
+          {
+            "node": "Actionneur de Production",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actionneur de Production": {
+      "main": [
+        [
+          {
+            "node": "get body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission set waiting": {
+      "main": [
+        [
+          {
+            "node": "Actionneur de Production1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission set done": {
+      "main": [
+        [
+          {
+            "node": "Actionneur de Production2",
             "type": "main",
             "index": 0
           }
@@ -280,7 +280,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "$execution.customData.set(\"DOING\", \"true\")\n\nlet json = {\n  ...$node[\"IF Task\"].json.matches[0].metadata,\n  \"startTimestamp\" : $now,\n  \"sync\" : false\n};\n\nreturn {\"json\": json};"
+        "jsCode": "$execution.customData.set(\"DOING\", \"true\");\n\nlet json = {\n  ...$node[\"IF Task\"].json.matches[0].metadata,\n  \"startTimestamp\" : $now,\n  \"sync\" : false\n};\n\nreturn {\"json\": json};"
       },
       "id": "c517ddfa-df34-4eee-a2fc-e7f778f7153d",
       "name": "get body",
@@ -342,168 +342,6 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"doing\",\n\"vectors\": {\n\"id\": \"{{ $node[\"IF Task\"].json[\"matches\"][0][\"id\"] }}\",\n\"metadata\": {{ JSON.stringify($node[\"IF Task\"].json[\"matches\"][0][\"metadata\"]) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
-        "options": {}
-      },
-      "id": "0a869892-830a-401b-a5e9-79cb1b1f5dc3",
-      "name": "Upsert task DOING",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        1480,
-        380
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"doing\",\n\"ids\": [\"{{ $node[\"IF Task\"].json[\"matches\"][0][\"id\"] }}\"]\n}",
-        "options": {}
-      },
-      "id": "0935ad9b-7180-4335-94b7-32c68b8d4bfd",
-      "name": "Delete task  DOING",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        1260,
-        780
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"todo\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
-        "options": {}
-      },
-      "id": "75a3339b-0ebc-419f-8245-cd6767ce62c5",
-      "name": "Get todo",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        740,
-        380
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"todo\",\n\"ids\": [\"{{ $node[\"IF Task\"].json[\"matches\"][0][\"id\"] }}\"]\n}",
-        "options": {}
-      },
-      "id": "551611ca-e050-4fce-8c0e-aa99cde17cc7",
-      "name": "Delete todo",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        1260,
-        380
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/fetch",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
@@ -533,47 +371,6 @@
         1260,
         980
       ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"done\",\n\"vectors\": {\n\"id\": \"{{ $node[\"IF Task\"].json[\"matches\"][0][\"id\"] }}\",\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }},\n\"metadata\": {{ JSON.stringify($node[\"IF Task\"].json[\"matches\"][0][\"metadata\"]) }}\n}\n}",
-        "options": {}
-      },
-      "id": "3efa3846-8913-43e1-9093-f3e519eb80a8",
-      "name": "Upsert task DONE",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        1480,
-        780
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
       "credentials": {
         "pineconeApi": {
           "id": "LakE1nni5DFtskNv",
@@ -638,48 +435,7 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"doing\",\n\"ids\": [\"{{ $node[\"IF Task\"].json[\"matches\"][0][\"id\"] }}\"]\n}",
-        "options": {}
-      },
-      "id": "2d7a1765-bc1c-4464-b37f-5b2fce4fffe4",
-      "name": "Delete task  DOING1",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        2380,
-        600
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "content": "## TODO : AJouter verif Kinactf"
+        "content": "## TODO : AJouter verif Kinactif"
       },
       "id": "29d04526-55ea-4146-97a3-7e8242cb10b8",
       "name": "Sticky Note2",
@@ -693,7 +449,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -711,25 +467,107 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"waiting\",\n\"vectors\": {\n\"id\": \"{{ $node[\"IF Task\"].json[\"matches\"][0][\"id\"] }}\",\n\"metadata\": {{ JSON.stringify($node[\"IF Task\"].json[\"matches\"][0][\"metadata\"]) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\" : {\"status\": \"todo\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
         "options": {}
       },
-      "id": "7006371b-1238-4106-9ec6-4624025b0af3",
-      "name": "Upsert WAITING",
+      "id": "75a3339b-0ebc-419f-8245-cd6767ce62c5",
+      "name": "Get missions",
       "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
+      "typeVersion": 4.1,
       "position": [
-        2600,
-        600
+        740,
+        380
       ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
       "credentials": {
         "pineconeApi": {
           "id": "LakE1nni5DFtskNv",
           "name": "PineconeApi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "workflowId": "MGND8ynCD26RRnsW",
+        "options": {}
+      },
+      "id": "25e082ce-2030-47a0-8ec0-3652d6ce416d",
+      "name": "Actionneur de Production",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"IF Task\"].json.matches[0].metadata;\n\njson.query = \"/status doing\";\n\nreturn {\"json\": json};"
+      },
+      "id": "021fb58a-dd9e-4b16-b9b2-82bc75c2e668",
+      "name": "mission set doing",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "MGND8ynCD26RRnsW",
+        "options": {}
+      },
+      "id": "7d411433-0ad3-40c9-bfa9-602348de4545",
+      "name": "Actionneur de Production1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2600,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"IF Task\"].json.matches[0].metadata;\n\njson.query = \"/status waiting\";\n\nreturn {\"json\": json};"
+      },
+      "id": "b431785a-0f2c-4c3c-9dab-ec3371246dc9",
+      "name": "mission set waiting",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2380,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "MGND8ynCD26RRnsW",
+        "options": {}
+      },
+      "id": "4a2569ad-7353-4dd4-bfd5-18c89b0c7da5",
+      "name": "Actionneur de Production2",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"IF Task\"].json.matches[0].metadata;\n\njson.query = \"/status done\";\n\nreturn {\"json\": json};"
+      },
+      "id": "72750ad0-b25a-4df4-a69e-38edae6f0848",
+      "name": "mission set done",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        780
+      ]
     }
   ],
   "pinData": {
@@ -766,6 +604,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T10:31:23.000Z",
-  "versionId": "87b5d3c2-82b3-4c38-87ac-308e2c137787"
+  "updatedAt": "2024-01-31T22:37:42.000Z",
+  "versionId": "9b90001e-ee94-49da-bcd7-d9e912ce6046"
 }
