@@ -34,7 +34,7 @@
     {
       "parameters": {
         "chatId": "-4130957615",
-        "text": "={{ JSON.stringify($json).substring(0, 3990) }}{{ JSON.stringify($json). > 3990 ? \"[...]\" : \"\" }}",
+        "text": "={{ JSON.stringify($json).substring(0, 3990) }}{{ JSON.stringify($json).length > 3990 ? \"[...]\" : \"\" }}",
         "additionalFields": {
           "appendAttribution": false,
           "parse_mode": "MarkdownV2"
@@ -71,6 +71,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-31T00:08:25.000Z",
-  "versionId": "fce1f641-2897-4357-aeac-0c98f5f47e80"
+  "updatedAt": "2024-01-31T22:49:08.000Z",
+  "versionId": "9401076d-d444-4829-ba60-4d37787c9342"
 }
