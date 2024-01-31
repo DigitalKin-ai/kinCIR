@@ -1,33 +1,11 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "set kinCredits": {
       "main": [
         [
           {
             "node": "Upsert kinCredits",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Aggregate": {
-      "main": [
-        [
-          {
-            "node": "Delete tasks DOING1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split Out1": {
-      "main": [
-        [
-          {
-            "node": "Upsert todo",
             "type": "main",
             "index": 0
           }
@@ -156,33 +134,11 @@
         ]
       ]
     },
-    "Delete tasks TODO": {
-      "main": [
-        [
-          {
-            "node": "Delete tasks DOING",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Get todo": {
       "main": [
         [
           {
             "node": "IF Task",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get ALL DOING Tasks": {
-      "main": [
-        [
-          {
-            "node": "Split Out1",
             "type": "main",
             "index": 0
           }
@@ -211,17 +167,6 @@
         ]
       ]
     },
-    "Upsert todo": {
-      "main": [
-        [
-          {
-            "node": "Aggregate",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Delete task  DOING1": {
       "main": [
         [
@@ -238,33 +183,6 @@
         [
           {
             "node": "Delete task  DOING1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Delete tasks DOING": {
-      "main": [
-        [
-          {
-            "node": "Delete tasks WAITING",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get ALL WAITING": {
-      "main": [
-        [
-          {
-            "node": "Split Out1",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Get ALL DOING Tasks",
             "type": "main",
             "index": 0
           }
@@ -314,49 +232,6 @@
       ]
     },
     {
-      "parameters": {
-        "aggregate": "aggregateAllItemData",
-        "options": {}
-      },
-      "id": "5227506a-ff45-4697-9c3c-3de27a298b78",
-      "name": "Aggregate",
-      "type": "n8n-nodes-base.aggregate",
-      "typeVersion": 1,
-      "position": [
-        1523,
-        -55
-      ]
-    },
-    {
-      "parameters": {
-        "content": "# RESET : Transfer DOING back to TASKS",
-        "height": 432.76293831043847,
-        "width": 1412.905235821716
-      },
-      "id": "93c55d1c-38b2-4661-ac0f-5eefe4201bd4",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        520,
-        -209.2278681701581
-      ]
-    },
-    {
-      "parameters": {
-        "fieldToSplitOut": "matches",
-        "options": {}
-      },
-      "id": "eee4c5e4-63af-4afd-9d7f-234c1e1691c3",
-      "name": "Split Out1",
-      "type": "n8n-nodes-base.splitOut",
-      "typeVersion": 1,
-      "position": [
-        1123,
-        -55
-      ]
-    },
-    {
       "parameters": {},
       "id": "3ba76c39-33a7-4a79-a4cd-96158a00bc40",
       "name": "When clicking \"Execute Workflow\"",
@@ -365,21 +240,6 @@
       "position": [
         300,
         560
-      ]
-    },
-    {
-      "parameters": {
-        "content": "# REINITIALIZE : DELETE ALL",
-        "height": 443.53507014028037,
-        "width": 907.7799256016638
-      },
-      "id": "61881c23-305c-4f2d-9599-45fdf18cf2da",
-      "name": "Sticky Note1",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        520,
-        -680
       ]
     },
     {
@@ -483,47 +343,6 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"doing\",\n\"deleteAll\": true\n}",
-        "options": {}
-      },
-      "id": "1981b7a9-56b7-4c0d-a4a7-35a5c5b504a3",
-      "name": "Delete tasks DOING",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        900,
-        -540
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
         "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
@@ -606,47 +425,6 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"todo\",\n\"deleteAll\": true\n}",
-        "options": {}
-      },
-      "id": "ce70a6e1-2d43-4d73-b69c-86e6dcb62e60",
-      "name": "Delete tasks TODO",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        640,
-        -540
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
         "url": "={{ $vars.vectorDatabaseEndpoint }}query",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
@@ -676,86 +454,6 @@
         740,
         380
       ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"doing\",\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }},\n  \"includeMetadata\": true,\n  \"topK\": 100\n}",
-        "options": {}
-      },
-      "id": "6eae8f5d-5c56-4a3b-b653-179fb227d372",
-      "name": "Get ALL DOING Tasks",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        860,
-        20
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"doing\",\n\"deleteAll\": true\n}",
-        "options": {}
-      },
-      "id": "04a1e172-4ab6-44ef-86a0-59c60e0adbf6",
-      "name": "Delete tasks DOING1",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        1740,
-        -60
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
       "credentials": {
         "pineconeApi": {
           "id": "LakE1nni5DFtskNv",
@@ -941,47 +639,6 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"todo\",\n\"vectors\": {\n\"id\": \"{{ $json[\"id\"] }}\",\n\"metadata\": {{ JSON.stringify($json[\"metadata\"]) }},\n\"values\": {{ JSON.stringify($item(0).$node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
-        "options": {}
-      },
-      "id": "2df517ab-766e-4efe-a703-ac420fadcaa6",
-      "name": "Upsert todo",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        1320,
-        -60
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
         "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
@@ -1036,47 +693,6 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"waiting\",\n\"deleteAll\": true\n}",
-        "options": {}
-      },
-      "id": "f46bbf6d-e343-48b8-b5b8-d8417031bf67",
-      "name": "Delete tasks WAITING",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        1140,
-        -540
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
         "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
@@ -1108,45 +724,6 @@
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"waiting\",\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }},\n  \"includeMetadata\": true,\n  \"topK\": 100\n}",
-        "options": {}
-      },
-      "id": "841bbf2b-1d0c-4b9c-8581-af70fe599a67",
-      "name": "Get ALL WAITING",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        660,
-        -60
-      ],
       "credentials": {
         "pineconeApi": {
           "id": "LakE1nni5DFtskNv",
@@ -1189,6 +766,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T08:18:15.000Z",
-  "versionId": "ced39f3f-4acd-4c26-b9dd-0304ae0ced8f"
+  "updatedAt": "2024-01-31T10:31:23.000Z",
+  "versionId": "87b5d3c2-82b3-4c38-87ac-308e2c137787"
 }
