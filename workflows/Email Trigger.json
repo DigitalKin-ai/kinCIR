@@ -16,7 +16,7 @@
       "main": [
         [
           {
-            "node": "kin",
+            "node": "kinDemandeur",
             "type": "main",
             "index": 0
           }
@@ -38,7 +38,7 @@
       "main": [
         [
           {
-            "node": "mission",
+            "node": "missionDemandeur",
             "type": "main",
             "index": 0
           }
@@ -75,17 +75,6 @@
         ]
       ]
     },
-    "Inserer le document dans Pinecone": {
-      "main": [
-        [
-          {
-            "node": "sourceGoogleDriveId",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "entree pinecone": {
       "main": [
         [
@@ -112,18 +101,7 @@
       "main": [
         [
           {
-            "node": "nouvelleMission",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "nouvelleMission": {
-      "main": [
-        [
-          {
-            "node": "Lancement de Mission",
+            "node": "nouvelleMission matching",
             "type": "main",
             "index": 0
           }
@@ -145,29 +123,7 @@
       "main": [
         [
           {
-            "node": "Get kin mission",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kin": {
-      "main": [
-        [
-          {
-            "node": "Get Email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get kin mission": {
-      "main": [
-        [
-          {
-            "node": "IF mission",
+            "node": "Get kinmatcheur mission",
             "type": "main",
             "index": 0
           }
@@ -180,6 +136,90 @@
         [
           {
             "node": "IF Pièce Jointe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inserer le document dans Pinecone": {
+      "main": [
+        [
+          {
+            "node": "sourceGoogleDriveId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get kinmatcheur mission": {
+      "main": [
+        [
+          {
+            "node": "IF mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinDemandeur": {
+      "main": [
+        [
+          {
+            "node": "Get Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "missionDemandeur": {
+      "main": [
+        [
+          {
+            "node": "If Kin Accès via Matcheur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouvelleMission1": {
+      "main": [
+        [
+          {
+            "node": "Lancement Mission Standard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouvelleMission matching": {
+      "main": [
+        [
+          {
+            "node": "Lancement Mission Matching",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Kin Accès via Matcheur": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "nouvelleMission1",
             "type": "main",
             "index": 0
           }
@@ -206,8 +246,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        700,
-        80
+        -1040,
+        620
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -288,8 +328,8 @@
     {
       "parameters": {
         "content": "## Ne pas effectuer les missions en double",
-        "height": 311.36370457711615,
-        "width": 543.4868194777655
+        "height": 242.7443604667863,
+        "width": 494.87172388888246
       },
       "id": "92df523c-1f78-4084-9f76-6aa075fd7486",
       "name": "Sticky Note1",
@@ -297,7 +337,7 @@
       "typeVersion": 1,
       "position": [
         -900,
-        300
+        321.8248751369445
       ]
     },
     {
@@ -310,8 +350,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        920,
-        80
+        -820,
+        620
       ]
     },
     {
@@ -325,7 +365,7 @@
           "conditions": [
             {
               "id": "a135e888-bcf9-47ab-acce-799a3d379a9c",
-              "leftValue": "={{ $('Get Email').item.json.headers.from }}",
+              "leftValue": "={{ $node[\"Get Email\"].json.headers.from }}",
               "rightValue": "=/kin\\w+/i",
               "operator": {
                 "type": "string",
@@ -350,20 +390,6 @@
     },
     {
       "parameters": {
-        "workflowId": "eRT6xb82oqCbX4u2",
-        "options": {}
-      },
-      "id": "be2cc9b3-7f27-42f8-9a20-a302c40dbcfd",
-      "name": "Inserer le document dans Pinecone",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        280,
-        -120
-      ]
-    },
-    {
-      "parameters": {
         "conditions": {
           "boolean": [
             {
@@ -378,8 +404,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        -200,
-        60
+        -280,
+        400
       ]
     },
     {
@@ -392,8 +418,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        40,
-        -120
+        -40,
+        220
       ]
     },
     {
@@ -413,22 +439,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        480,
-        80
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "DXYPhavwlYlTKPqu",
-        "options": {}
-      },
-      "id": "d61512a1-4f2c-44fe-8020-7b141574bd5b",
-      "name": "Lancement de Mission",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        920,
-        280
+        400,
+        420
       ]
     },
     {
@@ -437,7 +449,7 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "=[PROCESSUS - Mission : Matching]\n\nTa mission est de trouver le Kin le plus adapté pour répondre au besoin du client, et de lancer le Kin approprié via une demande détaillée. \n\n[/PROCESSUS - Mission : Matching]\n\n---\n\n[INFORMATIF - Thread D'Emails]\n\n{{ $node[\"emailThread\"].json.emailThread.length > 10000 ? \"[...]\" : \"\" }}{{ $node[\"emailThread\"].json.emailThread.substring($node[\"emailThread\"].json.emailThread.length - 10000)}}\n\n[INFORMATIF - Thread D'Emails]\n\n---\n\n[INFORMATIF - Dernier email reçu]\n\n{{ $node[\"Get Email\"].json.text.substring(0, 10000)}}{{ $node[\"Get Email\"].json.text.length > 10000 ? \"[...]\" : \"\" }}\n\n[/INFORMATIF - Dernier email reçu]"
+              "stringValue": "={{ $json.missionDemandeur }}\n[PROCESSUS - Mission : Matching]\n\nTa mission est de trouver le Kin le plus adapté pour répondre au besoin du client, et de lancer le Kin approprié via la fonction GPT actionneur_de_production. \n\n[/PROCESSUS - Mission : Matching]\n\n---"
             }
           ]
         },
@@ -448,22 +460,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        480,
-        280
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = {};\n\njson.client = $node[\"Mail Trigger\"].json.from.value[0].address.match(/(?<=@)[^\\.]+/)[0];\njson.kin = \"kinmatcheur\";\njson.mission = $node[\"mission\"].json.mission;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\njson.threadId = $node[\"Get Thread\"].json.id;\njson.mailId = $node[\"Get Mail\"].json.id;\njson.threadSubject = $node[\"Get Thread\"].json.messages[0].Subject;\n\nreturn {\"json\": json};"
-      },
-      "id": "deead856-cb5a-4138-9a0d-65319c3911d8",
-      "name": "nouvelleMission",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        700,
-        280
+        0,
+        620
       ]
     },
     {
@@ -512,23 +510,36 @@
     },
     {
       "parameters": {
-        "fields": {
-          "values": [
+        "conditions": {
+          "boolean": [
             {
-              "name": "kin",
-              "stringValue": "=kinmatcheur"
+              "value1": "={{ Object.keys($json.matches).length > 0 }}",
+              "value2": true
             }
           ]
-        },
+        }
+      },
+      "id": "f4b4cad8-e0b7-4cbd-b37e-02fe0a6e08f1",
+      "name": "IF mission",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "eRT6xb82oqCbX4u2",
         "options": {}
       },
-      "id": "54c3ef2c-77d5-46a5-8337-84dcf38573d8",
-      "name": "kin",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
+      "id": "dfb6dfd8-4bf7-4f55-9608-abb0903b3f02",
+      "name": "Inserer le document dans Pinecone",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
       "position": [
-        -900,
-        60
+        200,
+        220
       ]
     },
     {
@@ -556,7 +567,7 @@
         "options": {}
       },
       "id": "91dd0823-2367-463e-9d56-7c5bb0310126",
-      "name": "Get kin mission",
+      "name": "Get kinmatcheur mission",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
@@ -572,26 +583,148 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "boolean": [
+        "fields": {
+          "values": [
             {
-              "value1": "={{ Object.keys($json.matches).length > 0 }}",
-              "value2": true
+              "name": "kinDemandeur",
+              "stringValue": "={{ $node[\"Mail Trigger\"].json.headers.to.match(/kin[a-zA-Z]+@/i)[0].slice(0, -1) }}"
             }
           ]
-        }
+        },
+        "options": {}
       },
-      "id": "f4b4cad8-e0b7-4cbd-b37e-02fe0a6e08f1",
-      "name": "IF mission",
-      "type": "n8n-nodes-base.if",
+      "id": "54c3ef2c-77d5-46a5-8337-84dcf38573d8",
+      "name": "kinDemandeur",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        -900,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "missionDemandeur",
+              "stringValue": "=[INFORMATIF - Thread D'Emails]\n\n{{ $node[\"emailThread\"].json.emailThread.length > 10000 ? \"[...]\" : \"\" }}{{ $node[\"emailThread\"].json.emailThread.substring($node[\"emailThread\"].json.emailThread.length - 10000)}}\n\n[INFORMATIF - Thread D'Emails]\n\n---\n\n[FEEDBACK - Dernier email reçu]\n\n{{ $node[\"Get Email\"].json.text.substring(0, 10000)}}{{ $node[\"Get Email\"].json.text.length > 10000 ? \"[...]\" : \"\" }}\n\n[/FEEDBACK - Dernier email reçu]\n\n---"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a56441c6-f01b-4157-ad0b-990f297eb2d6",
+      "name": "missionDemandeur",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        -580,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "DXYPhavwlYlTKPqu",
+        "options": {}
+      },
+      "id": "d61512a1-4f2c-44fe-8020-7b141574bd5b",
+      "name": "Lancement Mission Matching",
+      "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -600,
-        380
+        440,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = {};\n\njson.client = $node[\"Mail Trigger\"].json.from.value[0].address.match(/(?<=@)[^\\.]+/)[0];\n\njson.kin = $node[\"kinDemandeur\"].json.kinDemandeur;\njson.mission = $node[\"missionDemandeur\"].json.missionDemandeur;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\n\njson.threadId = $node[\"Get Thread\"].json.id;\njson.threadSubject = $node[\"Get Thread\"].json.messages[0].Subject;\njson.threadFrom = $node[\"Get Thread\"].json.messages[0].From;\n\njson.mailId = $node[\"Get Email\"].json.id;\njson.mailSubject = $node[\"Get Email\"].json.subject;\njson.mailFrom = $node[\"Get Email\"].json.headers.from;\n\nreturn {\"json\": json};"
+      },
+      "id": "ed5cd136-91d2-46e3-b5ca-1f34228d30ba",
+      "name": "nouvelleMission1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "DXYPhavwlYlTKPqu",
+        "options": {}
+      },
+      "id": "6cf75122-b4ca-4dba-80ed-156e3ec0d4ef",
+      "name": "Lancement Mission Standard",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        220,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = {};\n\njson.client = $node[\"Mail Trigger\"].json.from.value[0].address.match(/(?<=@)[^\\.]+/)[0];\n\njson.kin = \"kinmatcheur\";\njson.kinDemandeur = $node[\"kinDemandeur\"].json.kinDemandeur;\njson.mission = $node[\"mission\"].json.mission;\njson.missionDemandeur = $node[\"missionDemandeur\"].json.missionDemandeur;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\n\njson.threadId = $node[\"Get Thread\"].json.id;\njson.threadSubject = $node[\"Get Thread\"].json.messages[0].Subject;\njson.threadFrom = $node[\"Get Thread\"].json.messages[0].From;\n\njson.mailId = $node[\"Get Email\"].json.id;\njson.mailSubject = $node[\"Get Email\"].json.subject;\njson.mailFrom = $node[\"Get Email\"].json.headers.from;\n\nreturn {\"json\": json};"
+      },
+      "id": "deead856-cb5a-4138-9a0d-65319c3911d8",
+      "name": "nouvelleMission matching",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "a135e888-bcf9-47ab-acce-799a3d379a9c",
+              "leftValue": "={{ [/*\"kinlca\", \"kinchercheur\", \"kinchercheurbeta\",*/ \"kinsota\", \"kinsotabeta\", \"kincir\", \"kincirbeta\"] }}",
+              "rightValue": "={{ $node[\"kinDemandeur\"].json.kinDemandeur in ['kin'] }}",
+              "operator": {
+                "type": "array",
+                "operation": "contains",
+                "rightType": "any"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "f9b48cf7-5cd6-43c5-b3dc-0c20a00449fb",
+      "name": "If Kin Accès via Matcheur",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -280,
+        620
       ]
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Inserer le document dans Pinecone": [
+      {
+        "json": {
+          "citation": "Hamre, H.J., Glockmann, A., von Ammon, K., Riley, D.S., & Kiene, H. (2023). Efficacy of homoeopathic treatment: Systematic review of meta-analyses of randomised placebo-controlled homoeopathy trials for any indication. Systematic Reviews, 12, Article 191. https://doi.org/10.1186/s13643-023-02313-2",
+          "documentGoogleDriveId": "133Y79LwjWJL5EMU9_OQjSkxpar6WhwZc"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -612,9 +745,9 @@
       ]
     },
     "node:Mail Trigger": {
-      "lastTimeChecked": 1706698023,
+      "lastTimeChecked": 1706741261,
       "possibleDuplicates": [
-        "18d5f212879ecdc7"
+        "18d61b5153b2b2bf"
       ]
     }
   },
@@ -627,6 +760,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T10:52:30.000Z",
-  "versionId": "6b49f4bb-e65e-425b-8d5b-00c446efa638"
+  "updatedAt": "2024-01-31T22:48:39.000Z",
+  "versionId": "76e74010-013c-4efc-a962-461aa745c85b"
 }
