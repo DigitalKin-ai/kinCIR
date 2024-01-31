@@ -110,7 +110,9 @@
     },
     {
       "parameters": {
-        "options": {}
+        "options": {
+          "baseURL": "https://api.openai.com/v1"
+        }
       },
       "id": "b9174e8a-3cad-400d-a760-fca8a27498d0",
       "name": "Embeddings OpenAI1",
@@ -125,8 +127,7 @@
           "id": "WY3bm7GCb9qfewyS",
           "name": "OpenAi account"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
@@ -148,8 +149,7 @@
           "id": "Q3KiSughyw3eRp87",
           "name": "GitHub account"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
@@ -163,8 +163,7 @@
       "position": [
         4780,
         3000
-      ],
-      "disabled": true
+      ]
     },
     {
       "parameters": {},
@@ -193,6 +192,20 @@
     },
     {
       "parameters": {
+        "content": "## potentiellement :\n\nDécouper manuellement pour avoir les metadatas\n"
+      },
+      "id": "3cb9a70e-0794-4391-a52d-d70afe9e9e82",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4620,
+        2940
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
         "mode": "insert",
         "pineconeIndex": {
           "__rl": true,
@@ -218,21 +231,7 @@
           "id": "LakE1nni5DFtskNv",
           "name": "PineconeApi account"
         }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "content": "## potentiellement :\n\nDécouper manuellement pour avoir les metadatas\n"
-      },
-      "id": "3cb9a70e-0794-4391-a52d-d70afe9e9e82",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        4620,
-        2940
-      ]
+      }
     }
   ],
   "pinData": {
@@ -273,6 +272,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-23T16:58:49.000Z",
-  "versionId": "ab4f3fac-8729-4673-94f7-6b52014b7699"
+  "updatedAt": "2024-01-31T09:14:16.000Z",
+  "versionId": "90347515-9e39-4af3-a6e5-9d169c689a63"
 }
