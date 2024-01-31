@@ -32,14 +32,14 @@
       "main": [
         [
           {
-            "node": "If format pdf",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "Merge",
             "type": "main",
             "index": 1
+          },
+          {
+            "node": "If format pdf",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -62,6 +62,13 @@
             "node": "Convert to PDF",
             "type": "main",
             "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
           }
         ]
       ]
@@ -192,8 +199,8 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -380,
-        480
+        -620,
+        500
       ]
     },
     {
@@ -206,8 +213,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -160,
-        480
+        -400,
+        500
       ]
     },
     {
@@ -227,8 +234,8 @@
       "type": "n8n-nodes-base.moveBinaryData",
       "typeVersion": 1.1,
       "position": [
-        560,
-        480
+        320,
+        500
       ]
     },
     {
@@ -241,8 +248,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        320,
-        480
+        80,
+        500
       ]
     },
     {
@@ -357,8 +364,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        80,
-        480
+        -160,
+        500
       ]
     },
     {
@@ -541,6 +548,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T05:39:05.000Z",
-  "versionId": "3aa8e1cd-cb99-48d0-90fe-1408a393c3f1"
+  "updatedAt": "2024-01-31T15:27:22.000Z",
+  "versionId": "3517e61a-2ce2-4a66-af19-f7fda765ffd0"
 }
