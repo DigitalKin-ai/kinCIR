@@ -56,24 +56,6 @@
         ]
       ]
     },
-    "If documentGoogleDriveId": {
-      "main": [
-        [
-          {
-            "node": "Get existing document",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Questionneur de document ( version chain)",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "If PDF": {
       "main": [
         [
@@ -87,28 +69,6 @@
           {
             "node": "Extract From File",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get existing document": {
-      "main": [
-        [
-          {
-            "node": "If PDF",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model2": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Questionneur de document (Refine)",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -158,18 +118,7 @@
       "main": [
         [
           {
-            "node": "If documentGoogleDriveId",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Questionneur de document (Refine)": {
-      "main": [
-        [
-          {
-            "node": "nouveau message",
+            "node": "entree",
             "type": "main",
             "index": 0
           }
@@ -181,17 +130,6 @@
         [
           {
             "node": "text",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Questionneur de document (map reduce)": {
-      "main": [
-        [
-          {
-            "node": "nouveau message",
             "type": "main",
             "index": 0
           }
@@ -215,6 +153,39 @@
           {
             "node": "Vector Store Retriever",
             "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "document": {
+      "main": [
+        [
+          {
+            "node": "If PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de document (map reduce)": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
             "index": 0
           }
         ]
@@ -246,7 +217,7 @@
       "typeVersion": 1,
       "position": [
         3580,
-        700
+        280
       ],
       "credentials": {
         "openAiApi": {
@@ -265,7 +236,7 @@
       "typeVersion": 1,
       "position": [
         3700,
-        1000
+        580
       ]
     },
     {
@@ -278,7 +249,7 @@
       "typeVersion": 1,
       "position": [
         3640,
-        1320
+        900
       ],
       "credentials": {
         "openAiApi": {
@@ -294,8 +265,8 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        2020,
-        40
+        2160,
+        -140
       ]
     },
     {
@@ -309,7 +280,7 @@
       "typeVersion": 2,
       "position": [
         4080,
-        60
+        100
       ]
     },
     {
@@ -325,7 +296,7 @@
       "typeVersion": 1,
       "position": [
         3560,
-        960
+        540
       ],
       "credentials": {
         "openAiApi": {
@@ -333,18 +304,6 @@
           "name": "OpenAi account"
         }
       }
-    },
-    {
-      "parameters": {},
-      "id": "1632550a-0bf7-4b4c-9a07-b7fea8ca5d98",
-      "name": "When clicking \"Execute Workflow\"",
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        2320,
-        680
-      ],
-      "disabled": true
     },
     {
       "parameters": {
@@ -358,7 +317,7 @@
       "typeVersion": 1,
       "position": [
         3560,
-        820
+        400
       ]
     },
     {
@@ -373,8 +332,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        3580,
-        220
+        3540,
+        -80
       ],
       "credentials": {
         "openAiApi": {
@@ -385,15 +344,15 @@
     },
     {
       "parameters": {
-        "binaryPropertyName": "={{ Object.keys($binary)[0] }}"
+        "binaryPropertyName": "={{ $binary.document_0 }}"
       },
       "id": "e1cba2c1-36c6-4b31-bc7b-1af5b7123ff5",
       "name": "Read PDF",
       "type": "n8n-nodes-base.readPDF",
       "typeVersion": 1,
       "position": [
-        2960,
-        -40
+        3040,
+        -220
       ],
       "onError": "continueErrorOutput"
     },
@@ -407,50 +366,7 @@
       "typeVersion": 1.1,
       "position": [
         3560,
-        520
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "3b9d3f3b-af89-4188-ba23-093f7eccb8a8",
-              "leftValue": "={{ $json.documentGoogleDriveId != null }}",
-              "rightValue": "=null",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            },
-            {
-              "id": "de9bb8f4-3ce7-49c6-9018-d9d5aabba8ee",
-              "leftValue": "={{ $json.documentGoogleDriveId != \"null\"  }}",
-              "rightValue": "true",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "b3efc916-deda-4175-bd2d-90c2e10589a1",
-      "name": "If documentGoogleDriveId",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        2260,
-        40
+        100
       ]
     },
     {
@@ -464,7 +380,7 @@
           "conditions": [
             {
               "id": "a7ae3df5-163f-4bb8-b6b6-c191e229ef6f",
-              "leftValue": "={{ $binary.data.fileExtension }}",
+              "leftValue": "={{ $binary.document_0.fileExtension }}",
               "rightValue": "pdf",
               "operator": {
                 "type": "string",
@@ -482,14 +398,14 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2720,
-        40
+        2800,
+        -140
       ]
     },
     {
       "parameters": {
         "operation": "text",
-        "binaryPropertyName": "={{ Object.keys($binary)[0] }}",
+        "binaryPropertyName": "={{ $binary.document_0 }}",
         "destinationKey": "text",
         "options": {}
       },
@@ -498,100 +414,10 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        2960,
-        120
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "download",
-        "fileId": {
-          "__rl": true,
-          "value": "={{ $json.documentGoogleDriveId }}",
-          "mode": "id"
-        },
-        "options": {}
-      },
-      "id": "8ea4d452-2f18-48b0-8384-b8a44c8223e1",
-      "name": "Get existing document",
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        2500,
-        40
+        3040,
+        -60
       ],
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "Z5nSsC9JGaYw1Ng3",
-          "name": "Google Drive DK via Nicolas"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "model": "gpt-4-0125-preview",
-        "options": {
-          "timeout": 600000
-        }
-      },
-      "id": "9672d109-ccd0-4e73-923f-032a04a6b21c",
-      "name": "OpenAI Chat Model2",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1,
-      "position": [
-        3540,
-        -280
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "chunkSize": 20000,
-        "options": {
-          "summarizationMethodAndPrompts": {
-            "values": {
-              "summarizationMethod": "refine",
-              "refinePrompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n{existing_answer}\n\n---\n\n\"{text}\"",
-              "refineQuestionPrompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\""
-            }
-          }
-        }
-      },
-      "id": "d49f800a-4dda-4553-9fcb-92bebb21b421",
-      "name": "Questionneur de document (Refine)",
-      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
-      "typeVersion": 2,
-      "position": [
-        3540,
-        -460
-      ]
-    },
-    {
-      "parameters": {
-        "chunkSize": 20000,
-        "chunkOverlap": 2000,
-        "options": {
-          "summarizationMethodAndPrompts": {
-            "values": {
-              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
-              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\""
-            }
-          }
-        }
-      },
-      "id": "fa635caf-4d35-4bda-8655-ade052e1c004",
-      "name": "Questionneur de document (map reduce)",
-      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
-      "typeVersion": 2,
-      "position": [
-        3560,
-        60
-      ]
+      "alwaysOutputData": true
     },
     {
       "parameters": {
@@ -599,7 +425,7 @@
           "values": [
             {
               "name": "text",
-              "stringValue": "={{ $json.text }}"
+              "stringValue": "={{ $json.text?$json.text:\"[RETOUR -  Pas de contenu]\\n\\nPas de contenu final n'a été rédigé dans ce document pour le moment.\\n\\n[/RETOUR -  Pas de contenu]\\n\\n---\\n\\n\" }}"
             }
           ]
         },
@@ -611,8 +437,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        3340,
-        60
+        3300,
+        -240
       ]
     },
     {
@@ -641,7 +467,7 @@
       "typeVersion": 1,
       "position": [
         3640,
-        1180
+        760
       ],
       "credentials": {
         "pineconeApi": {
@@ -649,18 +475,59 @@
           "name": "PineconeApi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "workflowId": "H3fxaSnxjZT6EGhc",
+        "options": {}
+      },
+      "id": "1ecd1653-c75c-4d0a-8947-a72516b40a6e",
+      "name": "document",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2600,
+        -140
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n json.query = json.chatInput;\n}\n\nif (!json.query) {\n  json.query = \"Je souhaite un résumé de ce qui ce trouve pour le moment dans le document de sortie.\";\n}\n\n// Execution Status\nif (json.query.match(/kin\\w+/i)) {\n  json.kin = json.query.match(/kin\\w+/i)[0];\n} else {\n  json.kin = null;\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "1fd812af-1585-4fc5-9fc7-5170da91e224",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2380,
+        -140
+      ]
+    },
+    {
+      "parameters": {
+        "chunkSize": 20000,
+        "chunkOverlap": 2000,
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
+              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+            }
+          }
+        }
+      },
+      "id": "fa635caf-4d35-4bda-8655-ade052e1c004",
+      "name": "Questionneur de document (map reduce)",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        3520,
+        -240
+      ]
     }
   ],
-  "pinData": {
-    "When clicking \"Execute Workflow\"": [
-      {
-        "json": {
-          "name": "First item",
-          "code": 1
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -690,6 +557,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T07:01:31.000Z",
-  "versionId": "18d9f05b-df3a-4bb9-8a76-65e2f0d25044"
+  "updatedAt": "2024-01-31T22:29:02.000Z",
+  "versionId": "7913e4df-b0aa-46e2-b32a-09add083ea9f"
 }
