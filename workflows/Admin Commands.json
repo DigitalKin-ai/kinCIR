@@ -1,0 +1,1130 @@
+{
+  "active": true,
+  "connections": {
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "defaultEmbedding",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Delete all doing/waiting missions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "set status TODO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set status TODO": {
+      "main": [
+        [
+          {
+            "node": "Upsert mission todo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get ALL doing/waiting missions": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert mission todo": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clean mission": {
+      "main": [
+        [
+          {
+            "node": "Upsert mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "status": {
+      "main": [
+        [
+          {
+            "node": "clean mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "defaultEmbedding": {
+      "main": [
+        [
+          {
+            "node": "Switch Commands",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert mission": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete all doing/waiting missions": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete all todo/doing/waiting missions": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "response1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set on": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set off": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Fetch onoff",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "reset": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Test workflow\"": {
+      "main": [
+        [
+          {
+            "node": "reset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch onoff": {
+      "main": [
+        [
+          {
+            "node": "If on",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If on": {
+      "main": [
+        [
+          {
+            "node": "reset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch Commands": {
+      "main": [
+        [
+          {
+            "node": "status",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get ALL doing/waiting missions",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Delete all todo/doing/waiting missions",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set on",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set off",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "response1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-31T10:02:38.129Z",
+  "id": "MGND8ynCD26RRnsW",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Admin Commands",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "905fa1ec-8ef7-4217-afe7-3d063c507048",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1900,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.json) {\n json = {\n   ...JSON.parse(json.json),\n   ...json\n }; \n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\n// Cas fonction GPT : Trouver le bon Kin\nif (json.query) {\n  \n  // Détecter la commande\n  let regexCommand = /^\\/[a-zA-Z]+/i;\n  json.command = json.query;\n  if (regexCommand.test(json.query)) {\n      json.command = json.query.match(regexCommand)[0];\n  }\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "252ffeaa-852f-422c-b5c9-a284d6ec4c85",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1720,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=IJeSapyzv0Y9koZ9",
+        "options": {}
+      },
+      "id": "e040d41f-b64a-43ed-9f8b-a5365a34e750",
+      "name": "defaultEmbedding",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -1480,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# /reset Transfer missions in pipeline to todo",
+        "height": 298.13044544905085,
+        "width": 1320.5858121453357
+      },
+      "id": "baa57bfc-a4de-473e-8fdc-386e6990f9a8",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# /reinitialize Delete all missions",
+        "height": 287.746042686389,
+        "width": 619.2817266129762
+      },
+      "id": "20a87a72-c72d-4b70-bbf1-04769bdd191e",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "id": "e2ebb500-c7db-4d51-8663-c1b0002b65c1",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        640,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "matches",
+        "options": {}
+      },
+      "id": "8320339d-cd4d-4082-b1ff-d0d99684ad5c",
+      "name": "Split Out1",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        160
+      ],
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let matches = $json;\n\nmatches.metadata.status = \"todo\";\n\nreturn {\"json\": {\"matches\": matches}};"
+      },
+      "id": "b9851f09-80c8-43f5-b855-9f0179037b2e",
+      "name": "set status TODO",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        200,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"filter\" : {\"status\": { \"$in\": [\"todo\", \"doing\", \"waiting\"] }}\n}",
+        "options": {}
+      },
+      "id": "dd68468e-9b5d-462e-ab2a-bcc2e73e6905",
+      "name": "Delete all todo/doing/waiting missions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -240,
+        540
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"filter\" : {\"status\": { \"$in\": [\"doing\", \"waiting\"] }},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "dfb81d90-80ae-4dac-8fbd-610f6cb4fd62",
+      "name": "Get ALL doing/waiting missions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -240,
+        160
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"vectors\": {\n  \"id\": \"{{ $json.matches[\"id\"] }}\",\n  \"metadata\": {{ JSON.stringify($json.matches.metadata) }},\n  \"values\": {{ JSON.stringify($item(0).$node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n  }\n}",
+        "options": {}
+      },
+      "id": "ec40ddcd-fea8-4f90-a0ce-c0af5e12cf8e",
+      "name": "Upsert mission todo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        420,
+        160
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"filter\" : {\"status\": { \"$in\": [\"doing\", \"waiting\"] }}\n}",
+        "options": {}
+      },
+      "id": "5b9d7d98-c21d-4e85-b3a4-5e775be84037",
+      "name": "Delete all doing/waiting missions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        860,
+        160
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"namespace\": \"missions\",\n\"vectors\": {\n\"id\": \"{{ $json.kin }}-{{ $json.threadId }}\",\n\"metadata\": {{ JSON.stringify($json) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
+        "options": {}
+      },
+      "id": "da38eb6f-ac05-40d4-bf09-d1aba286e14c",
+      "name": "Upsert mission",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        120,
+        -180
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "9efff81b-5ad0-453e-b47e-53b26d02210d",
+      "name": "clean mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\nlet regex = /\\/status (\\w+)/;\nlet match = json.query.match(regex);\n\nif (match) {\n  json.status = match[1];\n} else {\n  json.status = \"waiting\";\n  $execution.customData.set(\"find\", \"me\"); // aide le debug\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "6ebb2d35-fc02-454c-9efe-168d69afd94e",
+      "name": "status",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# /status Update status",
+        "height": 298.13044544905085,
+        "width": 687.8130956968146
+      },
+      "id": "1058e7c3-6aba-449f-a462-13cd65c0386e",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        -300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let entree = $item(0).$node[\"entree\"].json;\n\nlet result = \"command \" + entree.command + \", \" + (entree.kin?entree.kin:\"\") + \" : effectuée avec succès !\";\n\nif (entree.chatInput != null) {\n  return {\"output\": result};\n}\n\nreturn {\"json\":{\"response\": result}};"
+      },
+      "id": "effbeed5-10d4-44f9-afa0-e0700ac1ca1f",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1640,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let result = \"no command \\\"\" + $node[\"entree\"].json.command + \"\\\" available.\";\n\nif ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": result};\n}\n\nreturn {\"json\":{\"response\": result}};"
+      },
+      "id": "e83e9e59-6196-45e7-9215-0b40e539cbde",
+      "name": "response1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        20,
+        1360
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "La fonction \"actionneur_de_production\" effectue des commandes sur les missions. Permet de lancer, arrêter, ou compléter des missions.\n\nCommande disponible :\n- /status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nFormat d'appel \"query\" : \"[INSTRUCTION - /status todo kinname]\\n\\nTODOLIST et Prochaine action à réaliser\\n\\n[/INSTRUCTION - /status todo kinname]\\n\\n---\\n\\n\"",
+        "options": {
+          "inputPlaceholder": "/reset",
+          "responseMode": "lastNode",
+          "subtitle": "=La fonction \"actionneur_de_production\" effectue des commandes sur les missions. Permet de lancer, arrêter, ou compléter des missions.\n\nCommande disponible :\n- /status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nFormat d'appel \"query\" : \"[INSTRUCTION - /status todo kinname]\\n\\nTODOLIST et Prochaine action à réaliser\\n\\n[/INSTRUCTION - /status todo kinname]\\n\\n---\\n\\n\"",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "f618e165-6b72-4433-9331-563d77bb718e",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1900,
+        140
+      ],
+      "webhookId": "23e3d6d0-ed2f-4e19-a091-faed1d8ddf14",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "09102e6b-66f0-4cf2-9b4f-f116c15166aa",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1200,
+        760
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "14f24a1e-a687-45fd-a357-2232e2d704af",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1420,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"onoff\",\n  \"vectors\": {\n  \"id\": \"onoff\",\n  \"metadata\": {\"value\": \"off\"},\n  \"values\": {{ JSON.stringify($json.defaultEmbedding) }}\n  }\n}",
+        "options": {}
+      },
+      "id": "d81eb2dd-3dd3-4a34-a257-38b2dbe89ee7",
+      "name": "Set off",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        8,
+        1048
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"onoff\",\n  \"vectors\": {\n  \"id\": \"onoff\",\n  \"metadata\": {\"value\": \"on\"},\n  \"values\": {{ JSON.stringify($json.defaultEmbedding) }}\n  }\n}",
+        "options": {}
+      },
+      "id": "d7a2756e-9ebf-4a70-9c67-c39585cab6ff",
+      "name": "Set on",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        8,
+        848
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## INTERRUPTEUR GENERAL",
+        "height": 450.6106722474352,
+        "width": 503.86735885043214
+      },
+      "id": "20f5b273-a2c4-4726-aeb0-afaa5e87b1f4",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "id": "a311c6d4-c148-471b-a838-0e208fb982f7",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -2660,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\njson.query = \"/reset\";\njson.command = \"/reset\";\n\nreturn {\"json\": json};"
+      },
+      "id": "109e119c-879f-4864-947c-a8ae7041b133",
+      "name": "reset",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1900,
+        500
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "22b1085a-747a-4638-813d-9d6eb6df55e3",
+      "name": "When clicking \"Test workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2080,
+        660
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/fetch",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"onoff\",\n  \"ids\": [\"onoff\"]\n}",
+        "options": {}
+      },
+      "id": "cab555c4-504b-4b68-a56d-593f428d24ca",
+      "name": "Fetch onoff",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -2420,
+        500
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "026b34bb-7dfa-4fa4-af16-d78a4e166711",
+              "leftValue": "={{ $json.vectors.onoff.metadata.value }}",
+              "rightValue": "on",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "6e7f2900-c9f1-4b2b-98f6-7edecfcbc3e8",
+      "name": "If on",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -2200,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $node[\"entree\"].json.command }}",
+                    "rightValue": "=/status",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "5545edd7-2310-4f6e-b1ea-fe581a9f33dc",
+                    "leftValue": "={{ $node[\"entree\"].json.command }}",
+                    "rightValue": "/reset",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "12f3aded-2002-4d38-b61e-59ed3f9c53bb",
+                    "leftValue": "={{ $node[\"entree\"].json.command }}",
+                    "rightValue": "/reinitialize",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "0fde2de7-994c-45df-b036-aec80e1f4d7d",
+                    "leftValue": "={{ $node[\"entree\"].json.command == \"/on\" || $node[\"entree\"].json.command == \"/start\" }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "bc0ed4d6-d8e8-4981-8282-4c34824bb30b",
+                    "leftValue": "={{ $node[\"entree\"].json.command == \"/off\" || $node[\"entree\"].json.command == \"/stop\" }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "looseTypeValidation": true
+        }
+      },
+      "id": "023842a3-4c2f-48e4-a42c-9cc989e7a0e5",
+      "name": "Switch Commands",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        -1220,
+        640
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    },
+    {
+      "createdAt": "2024-01-07T11:05:17.438Z",
+      "updatedAt": "2024-01-07T11:05:17.438Z",
+      "id": "g3tbWolPRHSWqvlU",
+      "name": "QoL"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-02-01T11:53:20.000Z",
+  "versionId": "198f8859-5b77-46fd-9da5-da19f2bec507"
+}
