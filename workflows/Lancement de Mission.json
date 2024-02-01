@@ -63,11 +63,6 @@
             "node": "mission set todo",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Send  Notifications",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -77,6 +72,11 @@
         [
           {
             "node": "Get thread missions",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send  Notifications",
             "type": "main",
             "index": 0
           }
@@ -206,8 +206,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        400,
-        660
+        -680,
+        1120
       ]
     },
     {
@@ -227,7 +227,7 @@
     {
       "parameters": {
         "assistantId": "asst_NRJfqzvKf73U2CjrI4bqMSf5",
-        "text": "=[INFORMATIF - Mission du Producteur ({{ $node[\"entree\"].json.kin }})]\n\n{{ $node[\"entree\"].json.mission.length > 15000 ? \"[...]\" : \"\" }}{{ $node[\"entree\"].json.mission.substring($node[\"entree\"].json.mission.length - 15000)}}\n\n[/INFORMATIF - Mission du Producteur ({{ $node[\"entree\"].json.kin }})]\n\n===\n\n[INFORMATIF - Information de lancement du Producteur (Template)]\n\n{{ $node[\"thread\"].json.thread.length > 10000 ? \"[...]\\n\\n\" : \"\" }}{{ $node[\"thread\"].json.thread.substring($node[\"thread\"].json.thread.length - 10000)}}\n\n[/INFORMATIF - Information de lancement du Producteur (Template)]\n\n===\n\nINSTRUCTIONS :\n\nC'est le tout début de la mission !\n\nEffectue les Actions  1. et 2. de ton processus en une fois, de manière à :\n- Lancer le Suivi de l'Avancement de la Mission via la TODOLIST,\n- Déterminer la première Action à réaliser par {{ $node[\"entree\"].json.kin }}.",
+        "text": "=[INFORMATIF - Mission du Producteur ({{ $node[\"entree\"].json.kin }})]\n\n{{ $node[\"entree\"].json.mission.length > 15000 ? \"[...]\" : \"\" }}{{ $node[\"entree\"].json.mission.substring($node[\"entree\"].json.mission.length - 15000)}}\n\n[/INFORMATIF - Mission du Producteur ({{ $node[\"entree\"].json.kin }})]\n\n===\n\n[INFORMATIF - Information de lancement du Producteur (Template)]\n\n{{ $node[\"thread\"].json.thread.length > 10000 ? \"[...]\\n\\n\" : \"\" }}{{ $node[\"thread\"].json.thread.substring($node[\"thread\"].json.thread.length - 10000)}}\n\n[/INFORMATIF - Information de lancement du Producteur (Template)]\n\n===\n\nINSTRUCTIONS :\n\nC'est le tout début de la mission !\n\nEffectue les Actions  1. et 2. de ton processus en une fois, de manière à :\n- Lancer le Suivi de l'Avancement de la Mission via la TODOLIST,\n- Déterminer la première Action à réaliser par {{ $node[\"entree\"].json.kin }}.\n\nLa Mission sera ensuite automatiquement lancée par le Workflow \"Lancement de Mission\".",
         "options": {}
       },
       "id": "2a7970db-f051-460d-a93c-c54907c0e294",
@@ -249,7 +249,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"entree\"].json;\n\ndelete json.output;\ndelete json.instructions;\n\njson.instructions = $node[\"Manager\"].json.output;\njson.status = \"todo\";\njson.executionId = $execution.id;\njson.documentGoogleDriveId = $node[\"thread\"].json.documentGoogleDriveId;\n\njson.mis\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"entree\"].json;\n\ndelete json.output;\ndelete json.instructions;\n\njson.instructions = $node[\"Manager\"].json.output;\njson.status = \"todo\";\njson.executionId = $execution.id;\njson.documentGoogleDriveId = $node[\"thread\"].json.documentGoogleDriveId;\n\nreturn {\"json\": json};"
       },
       "id": "69dc4fea-191a-4348-9f2e-77e758fcca87",
       "name": "mission set todo",
@@ -270,8 +270,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        820,
-        940
+        620,
+        1100
       ]
     },
     {
@@ -283,8 +283,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        600,
-        940
+        400,
+        1100
       ]
     },
     {
@@ -398,7 +398,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\njson.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n\nreturn {\"json\": json};"
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
       },
       "id": "48fd48f1-28fb-4486-8267-32a7211e5d3e",
       "name": "clean mission",
@@ -446,6 +446,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T22:45:51.000Z",
-  "versionId": "5544062a-b674-414d-8cce-428ff462950e"
+  "updatedAt": "2024-02-01T01:20:29.000Z",
+  "versionId": "7d6e5e89-2118-4ff2-9b1e-cea0c5e7145e"
 }
