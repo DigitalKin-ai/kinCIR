@@ -1,27 +1,11 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
-    "When clicking \"Execute Workflow\"": {
-      "main": [
-        [
-          {
-            "node": "IF Results1",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "IF Pièce Jointe",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "OpenAI Chat Model": {
       "ai_languageModel": [
         [
           {
-            "node": "Extracteur de citation détaillée",
+            "node": "Extracteur de référence pour citation détaillée",
             "type": "ai_languageModel",
             "index": 0
           }
@@ -39,94 +23,12 @@
         ]
       ]
     },
-    "Embeddings OpenAI2": {
-      "ai_embedding": [
-        [
-          {
-            "node": "Document Inserter Dynergie1",
-            "type": "ai_embedding",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Default Data Loader2": {
-      "ai_document": [
-        [
-          {
-            "node": "Document Inserter Dynergie1",
-            "type": "ai_document",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Token Splitter": {
-      "ai_textSplitter": [
-        [
-          {
-            "node": "Default Data Loader2",
-            "type": "ai_textSplitter",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "IF Results1": {
-      "main": [
-        [
-          {
-            "node": "nouveau message1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "nouveau message1": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Execute Workflow Trigger": {
       "main": [
         [
           {
-            "node": "IF Results1",
+            "node": "entree",
             "type": "main",
-            "index": 0
-          },
-          {
-            "node": "IF Pièce Jointe",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "HTTP Request": {
-      "main": [
-        [
-          {
-            "node": "If binary",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Summarize Document",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -137,17 +39,6 @@
         [
           {
             "node": "text",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "IF Pièce Jointe": {
-      "main": [
-        [
-          {
-            "node": "Split Out",
             "type": "main",
             "index": 0
           }
@@ -282,7 +173,7 @@
       "main": [
         [
           {
-            "node": "Extracteur de citation détaillée",
+            "node": "Extracteur de référence pour citation détaillée",
             "type": "main",
             "index": 0
           }
@@ -300,18 +191,129 @@
         ]
       ]
     },
-    "If binary": {
+    "Webhook": {
       "main": [
         [
           {
-            "node": "Upload Document",
+            "node": "get body",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "defaultEmbedding": {
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "IF resource",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IF Binary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get body": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Binary": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF resource": {
+      "main": [
+        [
+          {
+            "node": "Switch format",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Document via url": {
+      "main": [
+        [
+          {
+            "node": "IF Binary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch format": {
+      "main": [
+        [
+          {
+            "node": "Get Document via url",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to txt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to txt": {
+      "main": [
+        [
+          {
+            "node": "Download PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree questionneur": {
+      "main": [
+        [
+          {
+            "node": "Questionneur de la base d'études",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de la base d'études": {
+      "main": [
+        [
+          {
+            "node": "If INDISPONIBLE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If INDISPONIBLE": {
       "main": [
         [
           {
@@ -319,10 +321,17 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
         ]
       ]
     },
-    "Extracteur de citation détaillée": {
+    "Extracteur de référence pour citation détaillée": {
       "main": [
         [
           {
@@ -331,7 +340,7 @@
             "index": 0
           },
           {
-            "node": "defaultEmbedding",
+            "node": "entree questionneur",
             "type": "main",
             "index": 0
           }
@@ -347,20 +356,8 @@
   "name": "Insérer le document dans Pinecone",
   "nodes": [
     {
-      "parameters": {},
-      "id": "ab7c9c5f-4b35-4269-835f-b9a3f8dd8e61",
-      "name": "When clicking \"Execute Workflow\"",
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -760,
-        920
-      ],
-      "disabled": true
-    },
-    {
       "parameters": {
-        "model": "gpt-4-1106-preview",
+        "model": "gpt-4-0125-preview",
         "options": {
           "timeout": 600000
         }
@@ -370,8 +367,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        1800,
-        1360
+        2180,
+        1560
       ],
       "credentials": {
         "openAiApi": {
@@ -383,103 +380,15 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function decouperEnSegments(texte) {\n    const TAILLE_SEGMENT = 1000;\n    let segments = [];\n    let data = \"\"\n    let citation = $node[\"Extracteur de citation détaillée\"].json.text;\n    let documentGoogleDriveId = $node[\"Upload Document\"].json.id;\n\n    for (let i = 0; i < texte.length; i += TAILLE_SEGMENT) {\n        let extrait =  texte.substring(i, i + TAILLE_SEGMENT);\n        let extraitElargi = texte.substring(Math.max(i-1000, 0), Math.min(i + TAILLE_SEGMENT+1000, texte.length));\n        let text = \"# Citation Détaillée\\n\\n\" + citation + \"\\n\\n# Extrait de l'étude\\n\\n\" + extrait;\n\n        segments.push({\"text\": text, \"extrait\": extrait, \"extraitElargi\": extraitElargi, \"citation\": citation, \"documentGoogleDriveId\": documentGoogleDriveId});\n    }\n\n    return segments;\n}\n\nlet texteLong = $node[\"text\"].json.text;\nlet tableauSegments = decouperEnSegments(texteLong);\n\nreturn {\"json\":{\"segments\":tableauSegments}};\n"
+        "jsCode": "function decouperEnSegments(texte) {\n    const TAILLE_SEGMENT = 1500;\n    let segments = [];\n    let data = \"\"\n    let citation = $node[\"Extracteur de référence pour citation détaillée\"].json.text;\n    let documentGoogleDriveId = $node[\"Upload Document\"].json.id;\n\n    for (let i = 0; i < texte.length; i += TAILLE_SEGMENT) {\n        let extrait =  texte.substring(i, i + TAILLE_SEGMENT);\n        let extraitElargi = texte.substring(Math.max(i-TAILLE_SEGMENT, 0), Math.min(i + TAILLE_SEGMENT+TAILLE_SEGMENT, texte.length));\n        let text = \"# Citation Détaillée\\n\\n\" + citation + \"\\n\\n# Extrait de l'étude\\n\\n\" + extrait;\n\n        segments.push({\"text\": text, \"extrait\": extrait, \"extraitElargi\": extraitElargi, \"citation\": citation, \"documentGoogleDriveId\": documentGoogleDriveId});\n    }\n\n    return segments;\n}\n\nlet texteLong = $node[\"text\"].json.text;\nlet tableauSegments = decouperEnSegments(texteLong);\n\nreturn {\"json\":{\"segments\":tableauSegments}};\n"
       },
       "id": "d74f5836-43a8-424c-9c0d-2f9affc9cb21",
       "name": "Découper en chunks",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2320,
-        1520
-      ]
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "id": "41fcaa66-b52a-4aeb-9466-198f2b015a33",
-      "name": "Embeddings OpenAI2",
-      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
-      "typeVersion": 1,
-      "position": [
-        920,
-        2240
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "options": {
-          "metadata": {
-            "metadataValues": [
-              {
-                "name": "type",
-                "value": "etude"
-              }
-            ]
-          }
-        }
-      },
-      "id": "013de322-444a-4767-ad33-0c544a294dbd",
-      "name": "Default Data Loader2",
-      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
-      "typeVersion": 1,
-      "position": [
-        1000,
-        2380
-      ]
-    },
-    {
-      "parameters": {
-        "chunkSize": 5000
-      },
-      "id": "e3e944d8-559f-4c53-b5f5-0d30ae5000ba",
-      "name": "Token Splitter",
-      "type": "@n8n/n8n-nodes-langchain.textSplitterTokenSplitter",
-      "typeVersion": 1,
-      "position": [
-        1000,
-        2600
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "return {\"url\":$json.resource.link};"
-      },
-      "id": "f800835f-c678-45c0-960d-633d74515731",
-      "name": "nouveau message1",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -340,
-        1060
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $json.resource }}",
-              "operation": "isNotEmpty"
-            }
-          ]
-        }
-      },
-      "id": "ff5c279b-5aec-4612-9e37-666714cf2a33",
-      "name": "IF Results1",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        -540,
-        1060
+        3180,
+        780
       ]
     },
     {
@@ -489,82 +398,10 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -760,
-        1160
-      ]
-    },
-    {
-      "parameters": {
-        "url": "={{ $json.url }}",
-        "options": {}
-      },
-      "id": "15bbcc73-223f-47ba-a746-37063aa22aab",
-      "name": "HTTP Request",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        -140,
-        1060
-      ],
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "model": "gpt-4-1106-preview",
-        "options": {
-          "timeout": 600000
-        }
-      },
-      "id": "fd8c13c2-4ddc-42d7-aeef-3a46115c6fc2",
-      "name": "OpenAI Chat Model1",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1,
-      "position": [
-        1460,
-        2240
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operationMode": "nodeInputBinary",
-        "chunkSize": 10000,
-        "chunkOverlap": 1000,
-        "options": {}
-      },
-      "id": "5f9020e5-3456-4a38-87fa-c6d6614e9456",
-      "name": "Summarize Document",
-      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
-      "typeVersion": 2,
-      "position": [
-        1460,
-        2020
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "boolean": [
-            {
-              "value1": "={{ $input.item.binary != undefined }}",
-              "value2": true
-            }
-          ]
-        }
-      },
-      "id": "ae34d98d-c3e8-48b8-8eed-f5f2c28f52ec",
-      "name": "IF Pièce Jointe",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
         -540,
-        1240
-      ]
+        1080
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -575,8 +412,8 @@
       "type": "n8n-nodes-base.readPDF",
       "typeVersion": 1,
       "position": [
-        1160,
-        1000
+        1640,
+        1080
       ],
       "onError": "continueErrorOutput"
     },
@@ -590,22 +427,22 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -340,
-        1240
+        740,
+        1080
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "return {\"json\":{\"citation\":$node[\"Extracteur de citation détaillée\"].json.text, \"documentGoogleDriveId\": $node[\"Upload Document\"].json.id}};\n"
+        "jsCode": "return {\"json\":{\"citation\":$node[\"Extracteur de référence pour citation détaillée\"].json.text, \"documentGoogleDriveId\": $node[\"Upload Document\"].json.id}};\n"
       },
       "id": "ed9e37a4-5174-4e70-8902-4171d9787734",
       "name": "return citation",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3740,
-        1160
+        4120,
+        1360
       ]
     },
     {
@@ -617,14 +454,14 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        3540,
-        1160
+        3920,
+        1360
       ]
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
+        "url": "=https://kinspython-71e4f70.svc.eu-west4-gcp.pinecone.io/vectors/upsert",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -642,7 +479,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"{{ $node[\"Execute Workflow Trigger\"].json.namespace?$node[\"Execute Workflow Trigger\"].json.namespace:\"etudes\" }}\",\n\"vectors\": {\n\"id\": \"{{ $node[\"Generate UUID\"].json.id }}\",\n\"metadata\": {{ JSON.stringify($node[\"Split Out1\"].json) }},\n\"values\": [{{ $json.data[0].embedding }}]\n}\n}",
+        "jsonBody": "={\n\"namespace\": \"{{ $node[\"entree\"].json.namespace?$node[\"entree\"].json.namespace:\"etudes\" }}\",\n\"vectors\": {\n\"id\": \"{{ $node[\"Generate UUID\"].json.id }}\",\n\"metadata\": {{ JSON.stringify($node[\"Split Out1\"].json) }},\n\"values\": [{{ $json.data[0].embedding }}]\n}\n}",
         "options": {}
       },
       "id": "4a8268c7-f898-44a8-af5e-87b577e309c0",
@@ -650,8 +487,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        3400,
-        1520
+        4280,
+        780
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -682,11 +519,11 @@
           "parameters": [
             {
               "name": "input",
-              "value": "=DigitalKin.ai"
+              "value": "={{ $json.text }}"
             },
             {
               "name": "model",
-              "value": "text-embedding-3-large"
+              "value": "text-embedding-ada-002"
             }
           ]
         },
@@ -697,8 +534,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        2980,
-        1520
+        3860,
+        780
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -719,8 +556,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        2520,
-        1520
+        3400,
+        780
       ]
     },
     {
@@ -733,37 +570,9 @@
       "type": "n8n-nodes-base.crypto",
       "typeVersion": 1,
       "position": [
-        3180,
-        1520
+        4060,
+        780
       ]
-    },
-    {
-      "parameters": {
-        "mode": "insert",
-        "pineconeIndex": {
-          "__rl": true,
-          "value": "kins",
-          "mode": "list",
-          "cachedResultName": "kins"
-        },
-        "options": {
-          "pineconeNamespace": "=etudes"
-        }
-      },
-      "id": "62d91b73-6bdd-43f8-8559-12caac9f699f",
-      "name": "Document Inserter Dynergie1",
-      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
-      "typeVersion": 1,
-      "position": [
-        920,
-        2020
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -774,8 +583,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        2740,
-        1520
+        3620,
+        780
       ]
     },
     {
@@ -801,8 +610,8 @@
       "name": "Upload Document",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        360,
-        1100
+        940,
+        1080
       ],
       "typeVersion": 1,
       "id": "bd3caffb-0117-4bf2-8c68-8d1f01e9b4e0",
@@ -842,8 +651,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        840,
-        1100
+        1420,
+        1080
       ]
     },
     {
@@ -858,8 +667,8 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        1180,
-        1220
+        1640,
+        1260
       ]
     },
     {
@@ -872,8 +681,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1540,
-        1160
+        1980,
+        1360
       ]
     },
     {
@@ -891,8 +700,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        600,
-        1100
+        1180,
+        1080
       ],
       "credentials": {
         "googleDriveOAuth2Api": {
@@ -903,49 +712,285 @@
     },
     {
       "parameters": {
+        "httpMethod": "POST",
+        "path": "inserer-le-document-dans-pinecone",
+        "options": {}
+      },
+      "id": "5e968505-081f-4e52-aefd-40b57e1c7e65",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        -780,
+        880
+      ],
+      "webhookId": "cf90f826-df54-4ebe-957b-24866d0dd189"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let body = $json.body;\n\nreturn {\"json\": body};"
+      },
+      "id": "ec411a26-5c17-4916-881f-79523c3095dd",
+      "name": "get body",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
+      },
+      "id": "972495a8-4455-4e09-a3f8-b981d4b1f8e7",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -320,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.resource.link }}",
+        "options": {}
+      },
+      "id": "15bbcc73-223f-47ba-a746-37063aa22aab",
+      "name": "Get Document via url",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        280,
+        1220
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.resource }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "ff5c279b-5aec-4612-9e37-666714cf2a33",
+      "name": "IF resource",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        1300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $input.item.binary != undefined }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "ae34d98d-c3e8-48b8-8eed-f5f2c28f52ec",
+      "name": "IF Binary",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        540,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $node[\"entree\"].json.resource.format.toLowerCase() }}",
+                    "rightValue": "pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "16c8666c-83b2-415f-b40d-bd657174a1b6",
+                    "leftValue": "={{ $node[\"entree\"].json.resource.format.toLowerCase() }}",
+                    "rightValue": "html",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "5eb5bf08-3546-4d59-921f-4eef4f3c5abb",
+      "name": "Switch format",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        60,
+        1300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.data.tasks[0].result.files[0].url }}",
+        "options": {}
+      },
+      "id": "a2d9b2fe-7ea7-4d5d-b135-19b350e8337e",
+      "name": "Download PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        760,
+        1460
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "disabled": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://sync.api.cloudconvert.com/v2/jobs",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"tasks\": {\n    \"import-my-file\": {\n      \"operation\": \"import/url\",\n      \"url\": \"{{ $node[\"entree\"].json.resource.link }}\",\n      \"filename\": \"htmlContent.txt\"\n    },\n\n    \"convert-my-file\": {\n      \"operation\": \"convert\",\n      \"input\": \"import-my-file\",\n      \"output_format\": \"pdf\"\n    },\n    \"export-my-file\": {\n      \"operation\": \"export/url\",\n      \"input\": \"convert-my-file\"\n    }\n  }\n}",
+        "options": {}
+      },
+      "id": "a79af97c-784c-4b5d-8284-7224fc9c49a5",
+      "name": "Convert to txt",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        560,
+        1460
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "0dvNBbU8vvKoyenO",
+          "name": "Cloud Convert Header AUTH"
+        }
+      },
+      "disabled": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "workflowId": "=yQ79P9nuVKhkwZpD",
+        "options": {}
+      },
+      "id": "7ea4c075-aa11-4d4b-8a56-8070ccdbb07a",
+      "name": "Questionneur de la base d'études",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2760,
+        1200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let query = \"Disposons-nous dans notre base d'étude du contenu de l'étude suivante :\\n\\n\" + $node[\"Extracteur de référence pour citation détaillée\"].json.text + \"\\n\\nRéponds par une courte phrase explicative, puis \\\"DISPONIBLE\\\" ou \\\"INDISPONIBLE\\\"\";\n\nreturn {\"json\":{\"query\": query}};\n"
+      },
+      "id": "d87bb2f9-685c-41de-868b-0903ce4c4e63",
+      "name": "entree questionneur",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2560,
+        1200
+      ]
+    },
+    {
+      "parameters": {
         "conditions": {
           "options": {
-            "caseSensitive": true,
+            "caseSensitive": false,
             "leftValue": "",
             "typeValidation": "strict"
           },
           "conditions": [
             {
-              "id": "a7ae3df5-163f-4bb8-b6b6-c191e229ef6f",
-              "leftValue": "={{ Object.keys($binary).length > 0 }}",
-              "rightValue": "pdf",
+              "id": "3b0e4a72-29c5-4820-96b4-81e154f46cc4",
+              "leftValue": "={{ $json.response }}",
+              "rightValue": "=INDISPONIBLE",
               "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
+                "type": "string",
+                "operation": "contains"
               }
             }
           ],
           "combinator": "and"
         },
-        "options": {}
+        "options": {
+          "ignoreCase": true
+        }
       },
-      "id": "9a8029f9-74fa-4d09-bfae-9e1cf255b334",
-      "name": "If binary",
+      "id": "36f6d08b-ca0e-45e4-9c50-d8e71cf72b06",
+      "name": "If INDISPONIBLE",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        100,
-        1020
+        2960,
+        1200
       ]
     },
     {
       "parameters": {
-        "workflowId": "=IJeSapyzv0Y9koZ9",
-        "options": {}
+        "content": "## AJOUTER DANS PINECONE",
+        "height": 370.7025236958296,
+        "width": 1403.077930800981
       },
-      "id": "2c8795e2-6c8e-4c29-836f-0bcd69253d72",
-      "name": "defaultEmbedding",
-      "type": "n8n-nodes-base.executeWorkflow",
+      "id": "a1193f77-e6e3-4d36-b289-6532498ba48d",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        2120,
-        1520
+        3100,
+        660
       ]
     },
     {
@@ -954,63 +999,50 @@
         "messages": {
           "messageValues": [
             {
-              "message": "=# Tâche\n\nA partir des informations données, fais de ton mieux pour donner la citation détaillée de l'étude.\n\nRéponds uniquement avec la citation détaillée."
+              "message": "=# Tâche\n\nA partir des informations données, fais de ton mieux pour donner la référence pour citation détaillée de l'étude.\n\nRéponds uniquement avec la référence pour citation détaillée."
             }
           ]
         }
       },
       "id": "9ea1dfaa-04fd-47ac-86ca-e4744a07a533",
-      "name": "Extracteur de citation détaillée",
+      "name": "Extracteur de référence pour citation détaillée",
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.2,
       "position": [
-        1780,
-        1160
+        2160,
+        1360
       ]
     }
   ],
   "pinData": {
-    "When clicking \"Execute Workflow\"": [
+    "Webhook": [
       {
         "json": {
-          "position": 8,
-          "title": "Effectiveness of Homeopathic Treatment for Abnormal Uterine Bleeding: A Double-Blind Randomized Clinical Trial",
-          "data_cid": "UerSW1Oi-xcJ",
-          "link": "https://www.jhpr.ir/article_115484.html",
-          "publication": "Z Naderi, Z Dadkhah, A Karimi, R Hashemi… - Hospital Practices and …, 2020 - jhpr.ir",
-          "snippet": "… Methods: This double blind randomized clinical trial study … this study, patients were assigned to first group: 25 patients … , and depression score in the homeopathic treatment group, this …",
-          "inline_links": {
-            "cited_by": {
-              "cites_id": "1728153360933251665",
-              "total": 3,
-              "link": "https://scholar.google.com/scholar?cites=1728153360933251665&as_sdt=5,44&sciodt=0,44&hl=en"
-            },
-            "versions": {
-              "cluster_id": "1728153360933251665",
-              "total": 4,
-              "link": "https://scholar.google.com/scholar?cluster=1728153360933251665&hl=en&as_sdt=0,44&as_ylo=2019"
-            },
-            "related_articles_link": "https://scholar.google.com/scholar?q=related:UerSW1Oi-xcJ:scholar.google.com/&scioq=Depressed+patients+homeopaths+randomised+controlled+trial&hl=en&as_sdt=0,44&as_ylo=2019",
-            "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:UerSW1Oi-xcJ:scholar.google.com/+Depressed+patients+homeopaths+randomised+controlled+trial&hl=en&as_sdt=0,44&as_ylo=2019"
+          "headers": {
+            "host": "kins.app.n8n.cloud",
+            "x-request-id": "d4952a4aa5605dd3976bd5678faa8bce",
+            "x-real-ip": "10.40.96.106",
+            "x-forwarded-for": "10.40.96.106",
+            "x-forwarded-host": "kins.app.n8n.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-scheme": "https",
+            "x-scheme": "https",
+            "content-length": "101",
+            "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
+            "content-type": "application/json",
+            "user-agent": "axios/1.6.5"
           },
-          "resource": {
-            "name": "jhpr.ir",
-            "format": "PDF",
-            "link": "https://www.jhpr.ir/article_115484_5e649717d78aa12d3eb3415dce96469f.pdf"
-          },
-          "authors": [
-            {
-              "name": "A Karimi",
-              "id": "lzonyj0AAAAJ",
-              "link": "https://scholar.google.com/citations?user=lzonyj0AAAAJ&hl=en&oi=sra"
+          "params": {},
+          "query": {},
+          "body": {
+            "resource": {
+              "name": "mdpi.com",
+              "format": "PDF",
+              "link": "https://www.mdpi.com/2075-4701/11/8/1150/pdf"
             }
-          ]
+          }
         }
-      }
-    ],
-    "Execute Workflow Trigger": [
-      {
-        "json": {}
       }
     ]
   },
@@ -1034,7 +1066,7 @@
       "name": "service"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2024-01-31T09:34:02.000Z",
-  "versionId": "0d3567ff-9858-48ee-9abe-6e2107f4ccd1"
+  "triggerCount": 1,
+  "updatedAt": "2024-02-01T16:49:04.000Z",
+  "versionId": "86b492e7-50bb-4e50-b7f2-3f5b92664418"
 }
