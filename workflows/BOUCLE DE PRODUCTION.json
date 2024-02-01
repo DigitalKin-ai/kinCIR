@@ -103,17 +103,6 @@
         ]
       ]
     },
-    "Send  Notifications": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
     "Producteur": {
       "main": [
         [
@@ -872,6 +861,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Get kin mission done",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -944,6 +940,79 @@
             "node": "entree document",
             "type": "main",
             "index": 0
+          }
+        ]
+      ]
+    },
+    "Get kin mission done": {
+      "main": [
+        [
+          {
+            "node": "IF mission1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF mission1": {
+      "main": [
+        [
+          {
+            "node": "mission kinmail",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "mission set todo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission set todo": {
+      "main": [
+        [
+          {
+            "node": "Actionneur de Production",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission kinmail": {
+      "main": [
+        [
+          {
+            "node": "nouvelleMission kinmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouvelleMission kinmail": {
+      "main": [
+        [
+          {
+            "node": "Lancement de Mission kinMail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send  Notifications": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
           }
         ]
       ]
@@ -1100,8 +1169,8 @@
       "type": "n8n-nodes-base.moveBinaryData",
       "typeVersion": 1.1,
       "position": [
-        2460,
-        700
+        3260,
+        780
       ]
     },
     {
@@ -1122,8 +1191,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        2700,
-        700
+        3500,
+        780
       ],
       "credentials": {
         "googleDriveOAuth2Api": {
@@ -1148,20 +1217,6 @@
     },
     {
       "parameters": {
-        "workflowId": "=EYWde6gUS9Qq2ok7",
-        "options": {}
-      },
-      "id": "d748b04c-f27c-4140-a626-9d4392c540d3",
-      "name": "Send  Notifications",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        3940,
-        1080
-      ]
-    },
-    {
-      "parameters": {
         "mode": "chooseBranch"
       },
       "id": "95bfe471-c0e9-4c84-85aa-0e2bf5554ab3",
@@ -1169,8 +1224,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        4080,
-        900
+        4680,
+        980
       ]
     },
     {
@@ -1183,8 +1238,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2240,
-        900
+        3040,
+        980
       ]
     },
     {
@@ -1197,8 +1252,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2700,
-        900
+        3500,
+        980
       ]
     },
     {
@@ -1211,8 +1266,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        2920,
-        900
+        3720,
+        980
       ]
     },
     {
@@ -1293,7 +1348,7 @@
     {
       "parameters": {
         "name": "questionneur_de_prompt",
-        "description": "Le questionneur_de_prompt retourne un extrait du prompt système du Kin demandé ou une répondes à une question sur le prompt à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée contenant :\n- Le nom du Kin dont tu souhaites récupérer le prompt,\n- Les sections demandées (Prompt en entier, Processus, Actions, etc.)\n- Verbatim : Si les extraits du prompt doivent être retranscrit verbatim",
+        "description": "Le questionneur_de_prompt retourne un extrait du prompt système du Kin demandé ou une répond à une question sur le prompt à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée contenant :\n- Le nom du Kin dont tu souhaites récupérer le prompt,\n- La sections demandée (Proposition de Valeur, Action n°1, etc.)\n- Verbatim : Si les extraits du prompt doivent être retranscrit verbatim",
         "workflowId": "1gSRJ9a1XiIgSYRx",
         "fields": {
           "values": [
@@ -1321,8 +1376,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2180,
-        660
+        2400,
+        540
       ]
     },
     {
@@ -2338,8 +2393,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        3380,
-        900
+        3980,
+        980
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -2420,8 +2475,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2380,
-        180
+        2160,
+        140
       ]
     },
     {
@@ -2494,8 +2549,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        3580,
-        1160
+        4180,
+        1240
       ]
     },
     {
@@ -2508,8 +2563,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3780,
-        900
+        4380,
+        980
       ]
     },
     {
@@ -2576,8 +2631,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        4300,
-        900
+        4900,
+        980
       ],
       "credentials": {
         "pineconeApi": {
@@ -2602,8 +2657,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        4520,
-        900
+        5120,
+        980
       ]
     },
     {
@@ -2620,8 +2675,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.1,
       "position": [
-        4720,
-        880
+        5320,
+        960
       ],
       "credentials": {
         "telegramApi": {
@@ -2770,16 +2825,167 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\njson.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n\nreturn {\"json\": json};"
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
       },
       "id": "8fe697df-fe1e-4424-8bfb-618f5cd4f0d5",
       "name": "clean mission",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2480,
-        900
+        3280,
+        980
       ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"threadId\" : \"{{ $node[\"clean mission\"].json.threadId }}\", \"kin\": \"{{ $node[\"clean mission\"].json.kin }}\", \"status\": \"done\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "3faf1142-fde6-4f3b-9569-9b8819cc5ea0",
+      "name": "Get kin mission done",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        5320,
+        1160
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($json.matches).length > 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "91dfafac-274c-473b-9372-03e88b0c8011",
+      "name": "IF mission1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        5500,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "MGND8ynCD26RRnsW",
+        "options": {}
+      },
+      "id": "7d7d0edb-865b-46dd-b2ca-0d4b42b7a765",
+      "name": "Actionneur de Production",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5980,
+        1180
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"clean mission\"].json;\n\njson.query = \"/status todo\";\n\nreturn {\"json\": json};"
+      },
+      "id": "0cd1862c-abd8-4614-8b25-600f008aaaeb",
+      "name": "mission set todo",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5760,
+        1180
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=[INFORMATIF - Date]\n\n{{ $node[\"entree\"].json.date }}\n\n[/INFORMATIF - Date]\n\n===\n\n[INFORMATIF - Client]\n\n{{ $node[\"entree\"].json.client }}\n\n[/INFORMATIF - Client]\n\n\n===\n\n[INFORMATIF - Mission]\n\n{{ $node[\"entree\"].json.mission.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"entree\"].json.mission.substring($node[\"sortie\"].json.mission.length - 5000)}}\n\n[/INFORMATIF - Mission]\n\n\n===\n\n[INFORMATIF - Dernier Kin Producteur ]\n\n{{ $node[\"entreer\"].json.kin }}\n\n[/INFORMATIF - Dernier Kin Producteur ]\n\n\n===\n\n[INFORMATIF - Dernière production du Kin Producteur]\n\n{{ $node[\"Producteur\"].json.output.length > 8000 ? \"[...]\" : \"\" }}{{ $node[\"Producteur\"].json.output.substring($node[\"Producteur\"].json.output.length - 8000)}}\n\n[/INFORMATIF - Dernière production du Kin Producteur]\n\n\n===\n\n[INFORMATIF - Dernier Message du KinManager]\n\n{{ $node[\"Manager\"].json.output }}\n\n[/INFORMATIF - Dernier Message du KinManager]\n\n===\n\n[PROCESSUS - Mission : Rédaction & Envoi D'Email]\n\nTa mission est de rédiger et d'envoyer le mail approprié au client à partir des informations dont tu disposes.\n\n[/PROCESSUS - Mission : Rédaction & Envoi D'Email]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0f9237ab-0467-4856-8a76-c42644268636",
+      "name": "mission kinmail",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        5760,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"sortie\"].json));\n\ndelete json.query;\n\n// Mettre à jour le Kin\njson.kinDemandeur = json.kin;\njson.kin = \"kinmail\";\njson.format = \"pdf\";\n\n// Mettre à jour la mission\njson.missionDuDemandeur = json.mission;\njson.mission = $node[\"mission kinmail\"].json.mission;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
+      },
+      "id": "4710bd82-3e05-41e2-9ddd-54e8dc00963d",
+      "name": "nouvelleMission kinmail",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6000,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "DXYPhavwlYlTKPqu",
+        "options": {}
+      },
+      "id": "30f44149-398a-49df-819d-e345aaa0f329",
+      "name": "Lancement de Mission kinMail",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        6200,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=EYWde6gUS9Qq2ok7",
+        "options": {}
+      },
+      "id": "d748b04c-f27c-4140-a626-9d4392c540d3",
+      "name": "Send  Notifications",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4540,
+        1160
+      ],
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {
@@ -2842,6 +3048,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T22:43:10.000Z",
-  "versionId": "a036a2da-43c3-40b7-9a26-78d2994fc132"
+  "updatedAt": "2024-02-01T01:29:24.000Z",
+  "versionId": "8b726126-ea80-40c3-a708-c750ea43f129"
 }
