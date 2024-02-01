@@ -35,6 +35,11 @@
             "node": "kinchercheurbeta",
             "type": "ai_tool",
             "index": 0
+          },
+          {
+            "node": "kinsotabeta",
+            "type": "ai_tool",
+            "index": 0
           }
         ]
       ]
@@ -788,17 +793,6 @@
         ]
       ]
     },
-    "Actionneur de production": {
-      "ai_tool": [
-        [
-          {
-            "node": "Manager",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "response1": {
       "main": [
         [
@@ -1016,6 +1010,17 @@
           }
         ]
       ]
+    },
+    "CRUD Mission": {
+      "ai_tool": [
+        [
+          {
+            "node": "Manager",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-17T12:47:07.331Z",
@@ -1085,7 +1090,7 @@
     {
       "parameters": {
         "name": "recherche_google_scholar",
-        "description": "La fonction recherche_google_scholar renvoie la première page des résultats de Google Scholar à partir d'une query, filtrés et avec une évaluation de leur pertinence.\n\nPour bien l'utiliser, la query doit être en Anglais, sans guillemets. Il est possible de passer la date limite des études sans format après la chaîne.\n\nQuery exemple : LLM multi-agent systems 2023",
+        "description": "La fonction \"recherche_google_scholar\" renvoie la première page des résultats de Google Scholar à partir d'une liste de queries en Anglais, filtrés et avec une évaluation de leur pertinence. Il est possible de passer la date limite des études.\n\nQuery exemple :\n``\nJe souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020 :\n- \"Multi-Agent Systems LLM\",\n- \"multi_agent collaboration GPT\",\n- \"Complex systems agents LLM\".\n``",
         "workflowId": "syCSVTnhcjp4jtCz",
         "fields": {
           "values": [
@@ -1113,14 +1118,14 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2040,
-        1380
+        2660,
+        -120
       ]
     },
     {
       "parameters": {
-        "name": "questionneur_d_etudes",
-        "description": "Le Questionneur d'études retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée en Anglais, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
+        "name": "questionneur_de_la_base_d_etudes",
+        "description": "Le \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
         "workflowId": "yQ79P9nuVKhkwZpD",
         "fields": {
           "values": [
@@ -1148,8 +1153,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2320,
-        -100
+        3080,
+        -120
       ]
     },
     {
@@ -2148,8 +2153,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1200,
-        920
+        2700,
+        -400
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2520,37 +2525,6 @@
       "position": [
         2200,
         400
-      ]
-    },
-    {
-      "parameters": {
-        "name": "actionneur_de_production",
-        "description": "La fonction \"actionneur_de_production\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou compléter la mission en cours d'execution.\n\nquery :\n/status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nExemples :\n- Continuer la boucle de production: \"/status todo kinname\\n\\n%TODOLIST% et %Prochaine action à réaliser%\"\n- Gérer une exception : \"/status waiting kinname\\n\\n%Explication de l'exception% \"\n- Compléter une mission : \"/status done kinname\\n\\n%Travail acocmpli%\"\n- Eaner une nouvelle mission : \"/nouvellemission kinname\\n\\n%Description détailée% \"",
-        "workflowId": "MGND8ynCD26RRnsW",
-        "fields": {
-          "values": [
-            {
-              "name": "sync",
-              "type": "booleanValue"
-            },
-            {
-              "name": "json",
-              "stringValue": "={{ JSON.stringify($node[\"clean mission\"].json) }}"
-            },
-            {
-              "name": "kinDemandeur",
-              "stringValue": "={{ $node[\"clean mission\"].json.kin }}"
-            }
-          ]
-        }
-      },
-      "id": "85cafd5a-dd48-4b2e-8eec-2a612785ee30",
-      "name": "Actionneur de production",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        4180,
-        1240
       ]
     },
     {
@@ -2986,6 +2960,33 @@
         1160
       ],
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "name": "crud_mission",
+        "description": "La fonction \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'execution.\n\nquery :\n/status todo/doing/waiting/done : Modifie le statut de la mission en cours (ex : '/status done')\n\nExemples :\n- Continuer la boucle de production: \"/status todo kinname\\n\\n%TODOLIST% et %Prochaine action à réaliser%\"\n- Gérer une exception : \"/status waiting kinname\\n\\n%Explication de l'exception% \"\n- Compléter une mission : \"/status done kinname\\n\\n%Travail acocmpli%\"\n- Eaner une nouvelle mission : \"/nouvellemission kinname\\n\\n%Description détailée% \"",
+        "workflowId": "MGND8ynCD26RRnsW",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "json",
+              "stringValue": "={{ JSON.stringify($node[\"clean mission\"].json) }}"
+            }
+          ]
+        }
+      },
+      "id": "85cafd5a-dd48-4b2e-8eec-2a612785ee30",
+      "name": "CRUD Mission",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        4180,
+        1240
+      ]
     }
   ],
   "pinData": {
@@ -2993,20 +2994,19 @@
       {
         "json": {
           "client": "dynergie",
-          "documentGoogleDriveId": "1ZHPueJoWzS8RFHPmCzbNsRWpignNfDpb",
-          "executionId": "104112",
-          "instructions": "[PROCESSUS - Avancement de la Mission]\n\nTODOLIST :\n\n- **Évaluer l'Objectif de l'Étude** : TODO\n- **Analyser la Méthodologie** : TODO\n- **Analyser les Résultats** : TODO\n- **Critiquer la Discussion et les Conclusions** : TODO\n- **Conduire une Analyse Critique** : TODO\n- **Synthèse Scientifique et Vulgarisée** : TODO\n- **Examiner les Annexes** : TODO\n- **Signature Finale** : TODO\n\n[/PROCESSUS - Avancement de la Mission]\n\n---\n\n[INSTRUCTION - Détermination de la Prochaine Action]\n\nÀ la lumière de l'information reçue et du framework de la mission, la première étape à entreprendre est d'**Évaluer l'Objectif de l'Étude**. Cela nécessite de lire et de comprendre en profondeur le document ou l'étude en question, afin d'identifier clairement l'objectif déclaré par les auteurs. Ce sera une étape critique pour guider l'ensemble du processus d'analyse et de critique qui suivra.\n\nL'action immédiate sera donc de démarrer par une lecture approfondie de l'étude, en mettant une attention particulière à ses objectifs annoncés, qui serviront de base pour une évaluation critique ultérieure.\n\n[/INSTRUCTION - Détermination de la Prochaine Action]\n\n--- \n\nactionneur_de_production",
-          "kin": "kinlca",
+          "documentGoogleDriveId": "1IRdsFCVDx76on6roj5XoJg9oy1UVPGvW",
+          "executionId": "113335",
+          "instructions": "[PROCESSUS - Avancement de la Mission]\n\nTODOLIST :\n- **Récupération des études via la fonction \"recherche_google_scholar\"** : TODO\n- **Validation du corpus d'études** : TODO\n\n[/PROCESSUS - Avancement de la Mission]\n\n---\n\n[INSTRUCTION - Suivi et Activation]\n\nkinsotabeta, la première étape de ta mission est de lancer une recherche approfondie sur \"Soudure hybride laser arc de pièces en alliages d'aluminium\" avec une attention particulière aux études publiées après 2015. Utilise la fonction \"recherche_google_scholar\" pour rassembler un corpus d'études pertinentes. Ce corpus constituera la base de l'état de l'art demandé par TOMA pour améliorer la qualité des soudures en alliages d'aluminium, dans le contexte très spécifique des systèmes d'échangeurs de chaleur, avec un accent sur la durabilité et la conductivité thermique.\n\n[/INSTRUCTION - Suivi et Activation]\n\n---\n\n[actionneur_de_production]",
+          "kin": "kinsotabeta",
           "mailFrom": "From: Lester Reynolds <lreynolds@dynergie.fr>",
-          "mailId": "18d6173c12b12107",
-          "mailSubject": "KinLCA DIRECT",
-          "mission": "[INFORMATIF - Thread D'Emails]\n\nSujet: n/a\nDe: n/a\nÀ: n/a\nDate: 1/31/2024, 9:36:18 PM\nExtrait: Fais un LCA de Efcacy of homoeopathic treatment: Systematic review of meta-analyses of randomised placebo-controlled homoeopathy trials for any indication HJ Hamre1,2* , A. Glockmann1 , K. von Ammon2 ,\n\n\n\n[INFORMATIF - Thread D'Emails]\n\n---\n\n[FEEDBACK - Dernier email reçu]\n\nFais un LCA de  Efcacy of homoeopathic treatment: Systematic review\nof meta-analyses of randomised placebo-controlled homoeopathy trials\nfor any indication H. J. Hamre1,2* , A. Glockmann1 , K. von Ammon2 , D. S.\nRiley3,4 and H. Kiene1,2\n\n\n[/FEEDBACK - Dernier email reçu]\n\n---",
-          "sourceGoogleDriveId": "133Y79LwjWJL5EMU9_OQjSkxpar6WhwZc",
+          "mailId": "18d65c0a0f3a5c9b",
+          "mailSubject": "état de l'art. * Soudure hybrique laser arc de piéces en alliages d'aluminium",
+          "mission": "[PROCESSUS - MISSION]\n\nCONSIGNE DE LA MISSION:\n* Je voudrais un état de l'art.\n* Soudure hybrique laser arc de piéces en alliages d'aluminium\n* Les références devront etre postérieures à : 2015\n\nCONTEXTE DU PORTEUR\nNom de l'entité qui porte les travaux de recherche* : TOMA\nProposition de valeur de l'entité* : Conception, prototypage et fabrication\nde systèmes d'échange de chaleur\nDescription succincte des principales activités* : Conception, prototypage\net fabrication\n\nCONTEXTE APPLICATIF\nApplication qui utilisera le résultat des travaux de recherche* : Systèmes\nd'échangeur de chaleur\nBut applicatif (proposition de valeur de l'application)* : Transférer la\nchaleur d'un endroit à un autre\nContexte d'usage de l'application* : tout domaine d'application, mais en\npriorité, la mobilité, les application industrielles, le secteur maritime,\net la cogénération énergétique\nIdéal applicatif (le meilleur effet possible de votre application)* :\nTransfert parfait et immédiat de toute la chaleur non désirée.\nContraintes sur les moyens disponibles (optionnel) : Les solution doivent\npouvoir etre produites industriellement et rester compétitives\nExigences sur les résultats attendus (optionnel) : Les solution doivent\nprésenter une excellente efficacité et durabilité\n\nPROJET DE RECHERCHE\nQuestion principale de recherche (celle à laquelle contribuent ultimement\ntous les travaux)* : Comment améliorer la qualité des soudure des piéces\nmétalliques en alliage d'aluminium\n\nTravaux de recherche envisagés dans le cadre de ce projet (Vous pouvez\nindiquer plusieurs travaux de recherche, en précisant pour chacun) :\nDésignation des travaux* : Modulation des paramètres de la soudure LASER arc\nDescription succincte des travaux* : Etude de l'influence des paramètres de\nmodulation du faisceau laser dans le cadre de la soudure hybride laser-arc\nde piéces en alliage d'aluminium\nObjectif de recherche associé aux travaux* :  Mieux comprendre l'influence\ndes paramètres sur la qualité des soudures obtenues\nApport applicatif attendu des travaux* : Amélioration de la durabilité et\nde la conductivité thermique des soudures\nFocus de l'état de l'art sur certains sous objectifs de recherche\n(optionnel) :\nFocus sur certains domaines scientifiques (optionnel) :\n\nDésignation des travaux* : formulation de barres d'apport\nDescription succincte des travaux* :  Nous étudions l'influence de la\nformulation des barres sur la qualité des soudures obtenues dans le cadre\nde soudure hybrique laser-ard de pièces en alliage d'aluminium.\nObjectif de recherche associé aux travaux* : Nous cherchons à trouver de\nmeilleures formulation des barres d'apport dans le cadre de la soudure\nlaser arc de piéces d'alliages d'aluminium\nApport applicatif attendu des travaux* : Amélioration de la durabilité et\nde la conductivité thermique des soudures\nFocus de l'état de l'art sur certains sous objectifs de recherche\n(optionnel) :\nFocus sur certains domaines scientifiques (optionnel) :\n\n\n[/PROCESSUS - MISSION]\n\n---\n",
           "status": "todo",
           "threadFrom": "Lester Reynolds <lreynolds@dynergie.fr>",
-          "threadId": "18d6173c12b12107",
-          "threadSubject": "KinLCA DIRECT",
-          "startTimestamp": "2024-01-31T23:13:36.917+01:00",
+          "threadId": "18d65c0a0f3a5c9b",
+          "threadSubject": "état de l'art. * Soudure hybrique laser arc de piéces en alliages d'aluminium",
+          "startTimestamp": "2024-02-01T18:54:20.453+01:00",
           "sync": false
         }
       }
@@ -3048,6 +3048,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-01T01:29:24.000Z",
-  "versionId": "8b726126-ea80-40c3-a708-c750ea43f129"
+  "updatedAt": "2024-02-01T17:55:35.000Z",
+  "versionId": "2544d2bf-4fa3-42d8-bc3d-dd0562e7b220"
 }
