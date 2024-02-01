@@ -630,7 +630,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"filter\": {\"kin\": \"{{ $node[\"entree\"].json.kin }}\", {\"status\": { \"$in\": [\"todo\", \"doing\", \"waiting\"] }},\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"filter\": {\"kin\": \"{{ $node[\"entree\"].json.kin }}\", \"status\": { \"$in\": [\"todo\", \"doing\", \"waiting\"] }},\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
         "options": {}
       },
       "id": "6c87f9eb-49b7-4f0b-9e80-da6d7e0ea94e",
@@ -669,6 +669,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2024-01-31T22:12:29.000Z",
-  "versionId": "84877010-21f6-4cad-8cbd-218c9dd8ae93"
+  "updatedAt": "2024-01-31T23:25:07.000Z",
+  "versionId": "2cbb61d1-ee12-40b9-b72b-faca6d992439"
 }
