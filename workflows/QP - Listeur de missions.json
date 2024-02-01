@@ -138,7 +138,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (json.json) {\n json = {\n   ...json,\n   ...JSON.parse(json.json)\n }; \n}\n\nif (json.chatInput) {\n json.query = json.chatInput;\n}\n\nif (!json.query) {\n  json.query = \"Je souhaite un point général sur la situation de la production.\";\n}\n\n// Trouver le bon Kin\n  if (json.query.match(/kin{2,16}\\w+/i)) {\n    json.kin = json.query.match(/kin\\w{2,16}/i)[0];\n  } else if (json.query.match(/kin \\w{2,16}/i)) {\n    json.kin = json.query.match(/kin \\w{2,16}/i)[0].replace(\" \", \"\");\n  }\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nif (json.json) {\n json = {\n   ...json,\n   ...JSON.parse(json.json)\n }; \n}\n\nif (json.chatInput) {\n json.query = json.chatInput;\n}\n\nif (!json.query) {\n  json.query = \"Je souhaite un point général sur la situation de la production.\";\n}\n\n// Trouver le bon Kin\nlet regexKin = /kin\\w{2,16}/i;\nlet regexKinWithSpace = /kin \\w{2,16}/i;\n\nif (regexKin.test(json.query)) {\n  json.kin = json.query.match(regexKin)[0];\n} else if (regexKinWithSpace.test(json.query)) {\n  json.kin = json.query.match(regexKinWithSpace)[0].replace(\" \", \"\");\n}\n\nreturn {\"json\": json};"
       },
       "id": "a0abd500-d427-46a7-a412-4e06908ea337",
       "name": "entree",
@@ -363,6 +363,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-01T01:21:44.000Z",
-  "versionId": "1e7d4fea-e94f-49bf-b304-44aa042ae3e1"
+  "updatedAt": "2024-02-01T17:02:35.000Z",
+  "versionId": "6a9d3d0e-0861-48d4-804e-9418435bc88d"
 }
