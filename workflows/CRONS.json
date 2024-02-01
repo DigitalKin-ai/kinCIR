@@ -41,11 +41,6 @@
             "node": "Get kinCredits",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "mission set done",
-            "type": "main",
-            "index": 0
           }
         ],
         [
@@ -94,7 +89,7 @@
       "main": [
         [
           {
-            "node": "defaultEmbedding",
+            "node": "Fetch onoff",
             "type": "main",
             "index": 0
           }
@@ -178,11 +173,22 @@
         ]
       ]
     },
-    "mission set done": {
+    "Fetch onoff": {
       "main": [
         [
           {
-            "node": "Actionneur de Production2",
+            "node": "If on",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If on": {
+      "main": [
+        [
+          {
+            "node": "defaultEmbedding",
             "type": "main",
             "index": 0
           }
@@ -213,7 +219,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.1,
       "position": [
-        300,
+        -300,
         380
       ]
     },
@@ -227,8 +233,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1480,
-        980
+        1940,
+        800
       ]
     },
     {
@@ -310,7 +316,8 @@
       "position": [
         1720,
         600
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -324,7 +331,8 @@
       "position": [
         1940,
         600
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -368,8 +376,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1260,
-        980
+        1720,
+        800
       ],
       "credentials": {
         "pineconeApi": {
@@ -407,8 +415,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1700,
-        980
+        2160,
+        800
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -431,7 +439,8 @@
       "position": [
         2160,
         600
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -543,30 +552,75 @@
     },
     {
       "parameters": {
-        "workflowId": "MGND8ynCD26RRnsW",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/fetch",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"onoff\",\n  \"ids\": [\"onoff\"]\n}",
         "options": {}
       },
-      "id": "4a2569ad-7353-4dd4-bfd5-18c89b0c7da5",
-      "name": "Actionneur de Production2",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
+      "id": "adebbd6f-6c9d-4a64-941c-aa0dda8a0995",
+      "name": "Fetch onoff",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
       "position": [
-        1480,
-        780
-      ]
+        -20,
+        380
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"IF Task\"].json.matches[0].metadata;\n\njson.query = \"/status done\";\n\nreturn {\"json\": json};"
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "026b34bb-7dfa-4fa4-af16-d78a4e166711",
+              "leftValue": "={{ $json.vectors.onoff.metadata.value }}",
+              "rightValue": "on",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
       },
-      "id": "72750ad0-b25a-4df4-a69e-38edae6f0848",
-      "name": "mission set done",
-      "type": "n8n-nodes-base.code",
+      "id": "4a1d3487-a36e-482e-b5d7-668cc8d0cb46",
+      "name": "If on",
+      "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1260,
-        780
+        200,
+        380
       ]
     }
   ],
@@ -604,6 +658,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T22:37:42.000Z",
-  "versionId": "9b90001e-ee94-49da-bcd7-d9e912ce6046"
+  "updatedAt": "2024-02-01T01:32:27.000Z",
+  "versionId": "43f7bd5a-e2de-42f0-84ee-23ac99450656"
 }
