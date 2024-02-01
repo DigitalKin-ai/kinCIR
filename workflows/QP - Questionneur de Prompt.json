@@ -138,7 +138,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (!json.missionDemandeur) {\n  json.missionDemandeur = \"Compréhension générale & amélioration\";\n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n} else {\n  json.kinDemandeur = json.kin;\n}\n\nif (json.kin == null) {\n  json.kin = \"kinmatcheur\";\n}\n\nif (json.query) {\n  // Trouver le bon Kin\n  if (json.query.match(/kin\\w+/i)) {\n    json.kin = json.query.match(/kin\\w+/i)[0];\n  }\n} else {\n  json.query =  \"Je souhaite récupérer le prompt du Kin en entier, verbatim.\";\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nif (!json.missionDemandeur) {\n  json.missionDemandeur = \"Compréhension générale & amélioration\";\n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n} else {\n  json.kinDemandeur = json.kin;\n}\n\nif (json.kin == null) {\n  json.kin = \"kinmatcheur\";\n}\n\nif (json.query) {\n  // Trouver le bon Kin\n  if (json.query.match(/kin{2,16}\\w+/i)) {\n    json.kin = json.query.match(/kin\\w{2,16}/i)[0];\n  } else if (json.query.match(/kin \\w{2,16}/i)) {\n    json.kin = json.query.match(/kin \\w{2,16}/i)[0].replace(\" \", \"\");\n  }\n} else {\n  json.query =  \"Je souhaite une explication du contenu du prompt de ce Kin.\";\n}\n\nreturn {\"json\": json};"
       },
       "id": "5bc9c999-9559-4da1-a31d-e4b981386e05",
       "name": "entree",
@@ -299,8 +299,8 @@
     },
     {
       "parameters": {
-        "assistantId": "asst_NRJfqzvKf73U2CjrI4bqMSf5",
-        "text": "=# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query) de {{ $node[\"entree\"].json.kinDemandeur }}\n\n{{ $node[\"entree\"].json.query }}\n\n# Prompt système du Kin {{ $node[\"entree\"].json.kin }}\n{{ $node[\"prompt\"].json.prompt.substring(0, 20000) }}{{  $node[\"prompt\"].json.prompt.length > 20000 ? \"[...]\" : \"\" }}\n\n# INSTRUCTION - ACTION OUVERTE : Réponse au besoin informationnel\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel.",
+        "assistantId": "asst_WKY0lRXB0rrJTFIm3HYv8jlE",
+        "text": "=[INFORMATIF - Prompt système du Kin {{ $node[\"entree\"].json.kin }}]\n\n{{ $node[\"prompt\"].json.prompt.substring(0, 20000) }}{{  $node[\"prompt\"].json.prompt.length > 20000 ? \"[...]\" : \"\" }}\n\n[/INFORMATIF - Prompt système du Kin {{ $node[\"entree\"].json.kin }}]\n\n===\n\n[MISSION - Besoin informationnel formulé (Query) par {{ $node[\"entree\"].json.kinDemandeur }}]\n\n\"{{ $node[\"entree\"].json.query }}\"\n\n[/MISSION - Besoin informationnel formulé (Query) par {{ $node[\"entree\"].json.kinDemandeur }}]\n\n===\n\n[INSTRUCTION - ACTION OUVERTE : Rédiger une réponse au besoin informationnel]\n\nA partir des informations disponibles, formule la ta réponse au besoin informationnel formulé.\n\nRéponse :",
         "options": {}
       },
       "id": "9e358d62-ed6b-4c2b-8288-c5e767898e45",
@@ -320,7 +320,19 @@
       }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "Je souhaite récupérer les sections 'Instructions Globales', 'Rôle', 'Contexte', 'Proposition de Valeur', et 'Système de Balisage des Kins' du prompt actuel du Kin SOTA pour analyse et amélioration potentielle. Verbatim : Oui",
+          "sync": true,
+          "kin": "kinrsi",
+          "mission": "[INFORMATIF - Thread D'Emails]\n\nSujet: n/a\nDe: n/a\nÀ: n/a\nDate: 1/31/2024, 11:42:24 PM\nExtrait: MISSION : Améliorer le prompt du KinSOTA en le mettant en forme selon nos conventions. Bonjour KinRSI ! Dans un premier temps je souhaiterais que tu ne modifies pas outre mesure le contenu du KinSOTA,\n\n\n\n[INFORMATIF - Thread D'Emails]\n\n---\n\n[FEEDBACK - Dernier email reçu]\n\n*MISSION : Améliorer le prompt du KinSOTA en le mettant en forme selon nos\nconventions.*\n\nBonjour KinRSI ! Dans un premier temps je souhaiterais que tu ne modifies\npas outre mesure le contenu du KinSOTA, pour te focaliser principalement\nsur la mise en forme. Choisis une intensité de modification faible.\n\nLa raison pour cette demande est que le prompt a été réalisé par notre\nexpert en état de l'art @Sébastien Deschaux <s.deschaux@digitalkin.ai>, et\nnous souhaitons donc nous assurer que nous ne perdons pas d'informations.\n\nDans un second temps, lors d'une prochaine mission, nous rentrerons plus\ndans les modifications de fond (processus, instrcutions, outils, étapes,\netc.).\n\nEn attente de ta v1.1 !\n\nNicolas\n\n\n[/FEEDBACK - Dernier email reçu]\n\n---",
+          "threadId": "18d61e728f7ffbae"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -350,6 +362,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-31T14:36:17.000Z",
-  "versionId": "cb650003-7e68-4cd8-a312-8a4c01167956"
+  "updatedAt": "2024-02-01T01:18:38.000Z",
+  "versionId": "9c0e8982-fc91-49a6-bd49-a99b168db4d1"
 }
