@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Execute Workflow Trigger": {
       "main": [
@@ -600,6 +600,72 @@
         ]
       ]
     },
+    "Manager": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree document": {
+      "main": [
+        [
+          {
+            "node": "document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clean mission": {
+      "main": [
+        [
+          {
+            "node": "entree document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "document": {
+      "main": [
+        [
+          {
+            "node": "Prompt Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recherche Google Scholar1": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinsotabeta",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Switch": {
       "main": [
         [
@@ -743,61 +809,6 @@
           }
         ]
       ]
-    },
-    "Manager": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Chat Trigger": {
-      "main": [
-        [
-          {
-            "node": "entree",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "entree document": {
-      "main": [
-        [
-          {
-            "node": "document",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "clean mission": {
-      "main": [
-        [
-          {
-            "node": "entree document",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "document": {
-      "main": [
-        [
-          {
-            "node": "Prompt Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "createdAt": "2024-01-30T23:28:15.425Z",
@@ -821,7 +832,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (!json.missionDemandeur) {\n  json.missionDemandeur = \"Compréhension générale & amélioration\";\n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n} else {\n  json.kinDemandeur = json.kin;\n}\n\nif (json.query) {\n  \n    // Trouver le bon Kin\n  if (json.query.match(/kin{2,16}\\w+/i)) {\n    json.kin = json.query.match(/kin\\w{2,16}/i)[0];\n  } else if (json.query.match(/kin \\w{2,16}/i)) {\n    json.kin = json.query.match(/kin \\w{2,16}/i)[0].replace(\" \", \"\");\n  }\n} else {\n  json.query = \"Bonjour ! Peux-tu te présenter ?\";\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nif (!json.missionDemandeur) {\n  json.missionDemandeur = \"Compréhension générale & amélioration\";\n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n} else {\n  json.kinDemandeur = json.kin;\n}\n\nif (json.query) {\n\n  // Trouver le bon Kin\n  let regexKin = /kin\\w{2,16}/i;\n  let regexKinWithSpace = /kin \\w{2,16}/i;\n  \n  if (regexKin.test(json.query)) {\n    json.kin = json.query.match(regexKin)[0];\n  } else if (regexKinWithSpace.test(json.query)) {\n    json.kin = json.query.match(regexKinWithSpace)[0].replace(\" \", \"\");\n  }\n} else {\n  json.query = \"Bonjour ! Peux-tu te présenter ?\";\n}\n\nreturn {\"json\": json};"
       },
       "id": "71312e61-2b67-4aed-96c4-e431cb96fce8",
       "name": "entree",
@@ -1881,6 +1892,106 @@
     },
     {
       "parameters": {
+        "public": true,
+        "initialMessages": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide  qui n'est pas en rapport avec une mission spécifique.\n\nPour bien l'utiliser :\n- Mentionne le nom du @Kin,\n- Explique ton contexte et ton intention d'usage,\n- ta question.\n\nEx : KinDev, peux-tu me lister les outils auxquels tu as accès ?",
+        "options": {
+          "inputPlaceholder": "KinDev, peux-tu me lister les outils auxquels tu as accès ?",
+          "responseMode": "lastNode",
+          "subtitle": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide  qui n'est pas en rapport avec une mission spécifique.Pour bien l'utiliser : - Mentionne le nom du @Kin, - Explique ton contexte et ton intention d'usage, - ta question.",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "1c8f47f9-b72e-4c16-8790-9a1da4bf1068",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        660,
+        1420
+      ],
+      "webhookId": "6dc41956-8b26-402d-83ce-c4b4225df822"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.format = \"md\";\n\nreturn {\"json\": json};"
+      },
+      "id": "2197ed9b-f125-43e9-863c-32f380b87bfb",
+      "name": "entree document",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1340,
+        1600
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "workflowId": "H3fxaSnxjZT6EGhc",
+        "options": {}
+      },
+      "id": "a05fed57-0783-4ae3-8012-3d8a4578329a",
+      "name": "document",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        1600
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "beae9f1b-12eb-45d0-bec3-df7c83da26e2",
+      "name": "clean mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        1600
+      ]
+    },
+    {
+      "parameters": {
+        "name": "recherche_google_scholar",
+        "description": "La fonction \"recherche_google_scholar\" renvoie la première page des résultats de Google Scholar à partir d'une liste de queries en Anglais, filtrés et avec une évaluation de leur pertinence. Il est possible de passer la date limite des études.\n\nQuery exemple :\n``\nJe souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020 :\n- \"Multi-Agent Systems LLM\",\n- \"multi_agent collaboration GPT\",\n- \"Complex systems agents LLM\".\n``",
+        "workflowId": "syCSVTnhcjp4jtCz",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"entree\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
+            }
+          ]
+        }
+      },
+      "id": "beb9b865-645e-4e1f-a0c5-3fa1bb54d6b2",
+      "name": "Recherche Google Scholar1",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2100,
+        2100
+      ]
+    },
+    {
+      "parameters": {
         "rules": {
           "values": [
             {
@@ -2315,80 +2426,15 @@
         1980,
         1440
       ]
-    },
-    {
-      "parameters": {
-        "public": true,
-        "initialMessages": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide  qui n'est pas en rapport avec une mission spécifique.\n\nPour bien l'utiliser :\n- Mentionne le nom du @Kin,\n- Explique ton contexte et ton intention d'usage,\n- ta question.\n\nEx : KinDev, peux-tu me lister les outils auxquels tu as accès ?",
-        "options": {
-          "inputPlaceholder": "KinDev, peux-tu me lister les outils auxquels tu as accès ?",
-          "responseMode": "lastNode",
-          "subtitle": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide  qui n'est pas en rapport avec une mission spécifique.Pour bien l'utiliser : - Mentionne le nom du @Kin, - Explique ton contexte et ton intention d'usage, - ta question.",
-          "title": "={{ $workflow.name }}"
-        }
-      },
-      "id": "1c8f47f9-b72e-4c16-8790-9a1da4bf1068",
-      "name": "Chat Trigger",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1,
-      "position": [
-        660,
-        1420
-      ],
-      "webhookId": "6dc41956-8b26-402d-83ce-c4b4225df822"
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"entree\"].json;\n\njson.format = \"md\";\n\nreturn {\"json\": json};"
-      },
-      "id": "2197ed9b-f125-43e9-863c-32f380b87bfb",
-      "name": "entree document",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1340,
-        1600
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "H3fxaSnxjZT6EGhc",
-        "options": {}
-      },
-      "id": "a05fed57-0783-4ae3-8012-3d8a4578329a",
-      "name": "document",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        1560,
-        1600
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
-      },
-      "id": "beae9f1b-12eb-45d0-bec3-df7c83da26e2",
-      "name": "clean mission",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1120,
-        1600
-      ]
     }
   ],
   "pinData": {
-    "Execute Workflow Trigger": [
+    "Chat Trigger": [
       {
         "json": {
-          "query": "@KinManager, je sollicite votre expertise et votre connaissance du projet pour une consultation spécifique. Étant donné l’emphase mise sur le respect d'une \"intensité de modification faible\" pour l'amélioration du prompt du KinSOTA et la nécessité de maintenir l'intégralité du contenu d'origine de Sébastien Deschaux, pourriez-vous m'orienter sur les aspects spécifiques du prompt existant qui, selon vous, bénéficieraient le plus d'une mise en forme ou de clarifications mineures ?\n\nCette guidance me sera extrêmement utile pour m'assurer que les actions que je propose et entreprends s'alignent parfaitement avec les objectifs du projet et avec les directives initiales de modification. Un exemple ou deux d'éléments précis qui requièrent une attention selon vous seraient grandement appréciés.\n\nLa compréhension de ces éléments me permettra de finaliser la todolist des actions restantes de manière précise et en adéquation avec nos standards, tout en respectant les attentes énoncées.",
-          "sync": true,
-          "kin": "kinrsi",
-          "mission": "[INFORMATIF - Thread D'Emails]\n\nSujet: n/a\nDe: n/a\nÀ: n/a\nDate: 1/31/2024, 11:42:24 PM\nExtrait: MISSION : Améliorer le prompt du KinSOTA en le mettant en forme selon nos conventions. Bonjour KinRSI ! Dans un premier temps je souhaiterais que tu ne modifies pas outre mesure le contenu du KinSOTA,\n\n\n\n[INFORMATIF - Thread D'Emails]\n\n---\n\n[FEEDBACK - Dernier email reçu]\n\n*MISSION : Améliorer le prompt du KinSOTA en le mettant en forme selon nos\nconventions.*\n\nBonjour KinRSI ! Dans un premier temps je souhaiterais que tu ne modifies\npas outre mesure le contenu du KinSOTA, pour te focaliser principalement\nsur la mise en forme. Choisis une intensité de modification faible.\n\nLa raison pour cette demande est que le prompt a été réalisé par notre\nexpert en état de l'art @Sébastien Deschaux <s.deschaux@digitalkin.ai>, et\nnous souhaitons donc nous assurer que nous ne perdons pas d'informations.\n\nDans un second temps, lors d'une prochaine mission, nous rentrerons plus\ndans les modifications de fond (processus, instrcutions, outils, étapes,\netc.).\n\nEn attente de ta v1.1 !\n\nNicolas\n\n\n[/FEEDBACK - Dernier email reçu]\n\n---",
-          "threadId": "[INFORMATIF - Thread D'Emails]\n\nSujet: n/a\nDe: n/a\nÀ: n/a\nDate: 1/31/2024, 11:42:24 PM\nExtrait: MISSION : Améliorer le prompt du KinSOTA en le mettant en forme selon nos conventions. Bonjour KinRSI ! Dans un premier temps je souhaiterais que tu ne modifies pas outre mesure le contenu du KinSOTA,\n\n\n\n[INFORMATIF - Thread D'Emails]\n\n---\n\n[FEEDBACK - Dernier email reçu]\n\n*MISSION : Améliorer le prompt du KinSOTA en le mettant en forme selon nos\nconventions.*\n\nBonjour KinRSI ! Dans un premier temps je souhaiterais que tu ne modifies\npas outre mesure le contenu du KinSOTA, pour te focaliser principalement\nsur la mise en forme. Choisis une intensité de modification faible.\n\nLa raison pour cette demande est que le prompt a été réalisé par notre\nexpert en état de l'art @Sébastien Deschaux <s.deschaux@digitalkin.ai>, et\nnous souhaitons donc nous assurer que nous ne perdons pas d'informations.\n\nDans un second temps, lors d'une prochaine mission, nous rentrerons plus\ndans les modifications de fond (processus, instrcutions, outils, étapes,\netc.).\n\nEn attente de ta v1.1 !\n\nNicolas\n\n\n[/FEEDBACK - Dernier email reçu]\n\n---"
+          "sessionId": "test-0098565c-44fb-4bf8-92b9-1bf87c100e87",
+          "action": "sendMessage",
+          "chatInput": "kinsotabeta : utilse recherchegooglescholar pour trouver des résultats sur les LLM"
         }
       }
     ]
@@ -2422,6 +2468,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-01T01:26:17.000Z",
-  "versionId": "7d6ae73c-b18c-46b1-be65-a2795c1833ec"
+  "updatedAt": "2024-02-01T16:59:46.000Z",
+  "versionId": "b08e1593-129d-456c-bd24-dff7705bd692"
 }
