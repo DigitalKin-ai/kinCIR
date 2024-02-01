@@ -475,7 +475,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
       },
       "id": "d22f9ee5-3120-4cf4-81df-8fb4daed46b7",
       "name": "entree",
@@ -523,6 +523,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T14:52:45.000Z",
-  "versionId": "ebf19fe4-3f34-406e-a528-b00341f4e6bb"
+  "updatedAt": "2024-01-31T23:58:23.000Z",
+  "versionId": "b432ff29-fba8-406c-bf4e-67e01459eb93"
 }
