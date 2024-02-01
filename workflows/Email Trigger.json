@@ -608,7 +608,7 @@
           "values": [
             {
               "name": "missionDemandeur",
-              "stringValue": "=[INFORMATIF - Thread D'Emails]\n\n{{ $node[\"emailThread\"].json.emailThread.length > 10000 ? \"[...]\" : \"\" }}{{ $node[\"emailThread\"].json.emailThread.substring($node[\"emailThread\"].json.emailThread.length - 10000)}}\n\n[INFORMATIF - Thread D'Emails]\n\n---\n\n[FEEDBACK - Dernier email reçu]\n\n{{ $node[\"Get Email\"].json.text.substring(0, 10000)}}{{ $node[\"Get Email\"].json.text.length > 10000 ? \"[...]\" : \"\" }}\n\n[/FEEDBACK - Dernier email reçu]\n\n---"
+              "stringValue": "=[PROCESSUS - MISSION]\n\n{{ $node[\"Get Email\"].json.text.substring(0, 10000)}}{{ $node[\"Get Email\"].json.text.length > 10000 ? \"[...]\" : \"\" }}\n\n[/PROCESSUS - MISSION]\n\n---\n"
             }
           ]
         },
@@ -690,7 +690,7 @@
           "conditions": [
             {
               "id": "a135e888-bcf9-47ab-acce-799a3d379a9c",
-              "leftValue": "={{ [/*\"kinlca\", \"kinchercheur\", \"kinchercheurbeta\",*/ \"kinsota\", \"kinsotabeta\", \"kincir\", \"kincirbeta\"] }}",
+              "leftValue": "={{ [/*\"kinlca\", \"kinchercheur\", \"kinchercheurbeta\", \"kinsota\", \"kinsotabeta\",*/ \"kincir\", \"kincirbeta\"] }}",
               "rightValue": "={{ $node[\"kinDemandeur\"].json.kinDemandeur in ['kin'] }}",
               "operator": {
                 "type": "array",
@@ -745,9 +745,9 @@
       ]
     },
     "node:Mail Trigger": {
-      "lastTimeChecked": 1706781322,
+      "lastTimeChecked": 1706824699,
       "possibleDuplicates": [
-        "18d641879ab817ba"
+        "18d66ae29993270c"
       ]
     }
   },
@@ -760,6 +760,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-01T09:56:38.000Z",
-  "versionId": "76e74010-013c-4efc-a962-461aa745c85b"
+  "updatedAt": "2024-02-01T21:59:13.000Z",
+  "versionId": "f0d4c52d-09ac-4399-b179-bdc492349c6a"
 }
