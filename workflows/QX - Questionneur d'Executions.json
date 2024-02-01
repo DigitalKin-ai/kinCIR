@@ -23,46 +23,6 @@
         ]
       ]
     },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Condenseur de code",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "code": {
-      "main": [
-        [
-          {
-            "node": "Condenseur de code",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kindev": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Send  Notifications",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "List Executions": {
       "main": [
         [
@@ -79,17 +39,6 @@
         [
           {
             "node": "kindev",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Chat Trigger": {
-      "main": [
-        [
-          {
-            "node": "entree",
             "type": "main",
             "index": 0
           }
@@ -123,6 +72,33 @@
         [
           {
             "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kindev": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send  Notifications",
             "type": "main",
             "index": 0
           }
@@ -165,7 +141,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (!json.missionDemandeur) {\n  json.missionDemandeur = \"Compréhension générale & amélioration\";\n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n} else {\n  json.kinDemandeur = json.kin;\n}\n\nif (json.query) {\n  // Trouver le bon Kin\n  if (json.query.match(/kin\\w+/i)) {\n    json.kin = json.query.match(/kin\\w+/i)[0];\n  }\n} else {\n  json.query = \"Je souhaite un résumé général de l'exécution.\";\n}\n\n// Execution Status\nif (json.query.match(/status: \\w+/i)) {\n  json.status = json.query.match(/status: \\w+/i)[0].substring(8);\n} else {\n  json.status = \"error\";\n}\n\n// Workflow \nif (json.query.match(/workflowId: \\w+/i)) {\n  json.workflowId = json.query.match(/workflowId :\\w+/i)[0].substring(12);\n} else {\n  json.workflowId = null;\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nif (!json.missionDemandeur) {\n  json.missionDemandeur = \"Compréhension générale & amélioration\";\n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n} else {\n  json.kinDemandeur = json.kin;\n}\n\nif (json.query) {\n\n    // Trouver le bon Kin\n  if (json.query.match(/kin{2,16}\\w+/i)) {\n    json.kin = json.query.match(/kin\\w{2,16}/i)[0];\n  } else if (json.query.match(/kin \\w{2,16}/i)) {\n    json.kin = json.query.match(/kin \\w{2,16}/i)[0].replace(\" \", \"\");\n  }\n} else {\n  json.query = \"Je souhaite un résumé général de l'exécution.\";\n}\n\n// Execution Status\nif (json.query.match(/status: \\w+/i)) {\n  json.status = json.query.match(/status: \\w+/i)[0].substring(8);\n} else {\n  json.status = \"error\";\n}\n\n// Workflow \nif (json.query.match(/workflowId: \\w+/i)) {\n  json.workflowId = json.query.match(/workflowId :\\w+/i)[0].substring(12);\n} else {\n  json.workflowId = null;\n}\n\nreturn {\"json\": json};"
       },
       "id": "c48fb0f8-1110-410d-af8e-f75191ed6c9a",
       "name": "entree",
@@ -175,97 +151,6 @@
         -700,
         600
       ]
-    },
-    {
-      "parameters": {
-        "model": "gpt-4-0125-preview",
-        "options": {
-          "timeout": 600000
-        }
-      },
-      "id": "2af4c475-21c5-4c07-8955-20b226755dde",
-      "name": "OpenAI Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1,
-      "position": [
-        -140,
-        180
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "code",
-              "stringValue": "={{ JSON.stringify($node[\"Get Workflow\"].json)}}"
-            }
-          ]
-        },
-        "include": "none",
-        "options": {}
-      },
-      "id": "a476f4eb-fce5-4a5b-bbd9-005b87810622",
-      "name": "code",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        -360,
-        -40
-      ]
-    },
-    {
-      "parameters": {
-        "chunkSize": 20000,
-        "chunkOverlap": 2000,
-        "options": {
-          "summarizationMethodAndPrompts": {
-            "values": {
-              "combineMapPrompt": "=# Instructions du condenseur de code\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des textes proposés issus du code d'un Workflow n8n.io (JSON).\nTa réponse doit être la plus détaillée possible.\n\n# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
-              "prompt": "=# Instructions du condenseur de code\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des textes proposés issus du code d'un Workflow n8n.io (JSON).\nTa réponse doit être la plus détaillée possible.\n\n# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\""
-            }
-          }
-        }
-      },
-      "id": "9afad53a-34fd-406f-9829-e31c0e8660ef",
-      "name": "Condenseur de code",
-      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
-      "typeVersion": 2,
-      "position": [
-        -140,
-        -40
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
-        "text": "=# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Data de l'Execution #{{ $node[\"Get Execution\"].json.id }} du Workflow n8n {{ $node[\"Get Execution\"].json.workflowData.name }} (ID : {{ $node[\"Get Execution\"].json.workflowData.id }})\n\n{{  JSON.stringify($node[\"Get Execution\"].json).substring(0, 20000) }}{{  JSON.stringify($node[\"Get Execution\"].json).length > 20000 ? \"[...]\" : \"\" }}\n\n# Instruction - Réponse au besoin informationnel\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel.",
-        "options": {}
-      },
-      "id": "a08cd89d-3e92-4adc-849c-102f6dbe28d6",
-      "name": "kindev",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        60,
-        600
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -321,27 +206,6 @@
           "name": "n8n account"
         }
       }
-    },
-    {
-      "parameters": {
-        "public": true,
-        "initialMessages": "Le questionneur_d_executions retourne une réponse issue de les executions n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (filtre optionnel) Le status des executions \"status: error\" (default), \"status: waiting\", \"status: success\"\n- (filtre optionnel) Le workflowId des executions désiré \"workflowId: %ID%\"\n- Les informations que tu cherches, avec les  éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\nExemple : \"Quelles sont les dernières executions avec \"status: error\" ?\"",
-        "options": {
-          "inputPlaceholder": "Type your question..Exemple : \"Quelles sont les dernières executions avec \"status: error\" ?\"",
-          "responseMode": "lastNode",
-          "subtitle": "Le questionneur_d_executions retourne une réponse issue de les executions n8n de DigitalKin à partir d'une demande informationnelle détaillée.  Pour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant : - (filtre optionnel) Le status des executions \"status: error\" (default), \"status: waiting\", \"status: success\" - (filtre optionnel) Le workflowId des executions désiré \"workflowId: %ID%\" - Les informations que tu cherches, avec les  éléments de contexte. - L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire. - Le format de réponse désiré.",
-          "title": "={{ $workflow.name }}"
-        }
-      },
-      "id": "dc520450-55ac-472f-b641-405bea8e1347",
-      "name": "Chat Trigger",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1,
-      "position": [
-        -920,
-        420
-      ],
-      "webhookId": "282f610d-9bcf-4957-9409-9354bcd88010"
     },
     {
       "parameters": {
@@ -401,6 +265,49 @@
         740
       ],
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Le questionneur_d_executions retourne une réponse issue de les executions n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (filtre optionnel) Le status des executions \"status: error\" (default), \"status: waiting\", \"status: success\"\n- (filtre optionnel) Le workflowId des executions désiré \"workflowId: %ID%\"\n- Les informations que tu cherches, avec les  éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\nExemple : \"Quelles sont les dernières executions avec \"status: error\" ?\"",
+        "options": {
+          "inputPlaceholder": "Type your question..Exemple : \"Quelles sont les dernières executions avec \"status: error\" ?\"",
+          "responseMode": "lastNode",
+          "subtitle": "Le questionneur_d_executions retourne une réponse issue de les executions n8n de DigitalKin à partir d'une demande informationnelle détaillée.  Pour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant : - (filtre optionnel) Le status des executions \"status: error\" (default), \"status: waiting\", \"status: success\" - (filtre optionnel) Le workflowId des executions désiré \"workflowId: %ID%\" - Les informations que tu cherches, avec les  éléments de contexte. - L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire. - Le format de réponse désiré.",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "dc520450-55ac-472f-b641-405bea8e1347",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        -920,
+        420
+      ],
+      "webhookId": "282f610d-9bcf-4957-9409-9354bcd88010"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
+        "text": "=# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Data de l'Execution #{{ $node[\"Get Execution\"].json.id }} du Workflow n8n {{ $node[\"Get Execution\"].json.workflowData.name }} (ID : {{ $node[\"Get Execution\"].json.workflowData.id }})\n\n{{  JSON.stringify($node[\"Get Execution\"].json).substring(0, 20000) }}{{  JSON.stringify($node[\"Get Execution\"].json).length > 20000 ? \"[...]\" : \"\" }}\n\n# Processus\n\n- Utilise des listes.\n- Inclus si possible client, kinDemandeur, kin, mailId, mailSubject, et un résumé de la mission \n\n# Instruction - Réponse au besoin informationnel\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel. ",
+        "options": {}
+      },
+      "id": "a08cd89d-3e92-4adc-849c-102f6dbe28d6",
+      "name": "kindev",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        60,
+        600
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -425,6 +332,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-31T14:37:27.000Z",
-  "versionId": "76f6af2e-db64-4509-ab8e-48dd03b287aa"
+  "updatedAt": "2024-02-01T01:22:34.000Z",
+  "versionId": "1fefd004-d5ce-4507-9235-7e4fdd54108e"
 }
