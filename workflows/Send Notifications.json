@@ -322,7 +322,7 @@
         "authentication": "webhook",
         "content": "={{ $json.chunks }}",
         "options": {
-          "username": "={{ $item(0).node[\"entree\"].json.kin }}"
+          "username": "={{ $item(0).node[\"entree\"].json.kin?$item(0).node[\"entree\"].json.kin:\"kin\" }}"
         }
       },
       "id": "67637a84-536b-4ce9-a68b-16db66b63581",
@@ -343,7 +343,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "return {\"response\" : \"Notifications envoyées !\"};"
+        "jsCode": "return {\"json\": {\"response\" : \"Notifications envoyées !\"}};"
       },
       "id": "63f8f6d7-39dc-46e2-b683-13571f00f9c5",
       "name": "response",
@@ -485,6 +485,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T22:36:56.000Z",
-  "versionId": "6cbe3d28-e980-42d1-81a5-4af1f5600ba0"
+  "updatedAt": "2024-02-01T01:27:20.000Z",
+  "versionId": "f086ebea-88d1-4b4d-b0cf-2d105ebc1109"
 }
