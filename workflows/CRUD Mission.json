@@ -1,0 +1,465 @@
+{
+  "active": false,
+  "connections": {
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "defaultEmbedding",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "clean mission": {
+      "main": [
+        [
+          {
+            "node": "Upsert mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "status": {
+      "main": [
+        [
+          {
+            "node": "clean mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "defaultEmbedding": {
+      "main": [
+        [
+          {
+            "node": "Switch Commands",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert mission": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch Commands": {
+      "main": [
+        [
+          {
+            "node": "status",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-02-01T11:53:46.976Z",
+  "id": "HLDDZOmG8kuk2zTi",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CRUD Mission",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "29db9fba-637e-4464-b6b8-d37493979777",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1900,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.json) {\n json = {\n   ...JSON.parse(json.json),\n   ...json\n }; \n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\n// Cas fonction GPT : Trouver le bon Kin\nif (json.query) {\n  \n  // Détecter la commande\n  let regexCommand = /^\\/[a-zA-Z]+/i;\n  json.command = json.query;\n  if (regexCommand.test(json.query)) {\n      json.command = json.query.match(regexCommand)[0];\n  }\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "43d4d546-b9e7-481c-b3c0-6475e0931bab",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1720,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=IJeSapyzv0Y9koZ9",
+        "options": {}
+      },
+      "id": "25ca1888-860c-48c6-92cf-b7475afe3d23",
+      "name": "defaultEmbedding",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -1480,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"namespace\": \"missions\",\n\"vectors\": {\n\"id\": \"{{ $json.kin }}-{{ $json.threadId }}\",\n\"metadata\": {{ JSON.stringify($json) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
+        "options": {}
+      },
+      "id": "4f2a5fed-92b2-4e18-8e38-5c23773644fe",
+      "name": "Upsert mission",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -340,
+        260
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "217277b8-3ec3-43ce-94a8-c73348c670d2",
+      "name": "clean mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -460,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\nlet regex = /\\/status (\\w+)/;\nlet match = json.query.match(regex);\n\nif (match) {\n  json.status = match[1];\n} else {\n  json.status = \"waiting\";\n  $execution.customData.set(\"find\", \"me\"); // aide le debug\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "1057faf2-da9c-4f02-9f89-cc8a31fbc3cd",
+      "name": "status",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -700,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# /status Update status",
+        "height": 298.13044544905085,
+        "width": 687.8130956968146
+      },
+      "id": "acd5f7bf-2fc4-4cb6-8c12-41de43a6e8d1",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let entree = $item(0).$node[\"entree\"].json;\n\nlet result = \"command \" + entree.command + \", \" + (entree.kin?entree.kin:\"\") + \" : effectuée avec succès !\";\n\nif (entree.chatInput != null) {\n  return {\"output\": result};\n}\n\nreturn {\"json\":{\"response\": result}};"
+      },
+      "id": "dab2f225-db96-4fa4-b607-e43df6852a42",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "La fonction \"actionneur_de_production\" effectue des commandes sur les missions. Permet de lancer, arrêter, ou compléter des missions.\n\nCommande disponible :\n- /status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nFormat d'appel \"query\" : \"[INSTRUCTION - /status todo kinname]\\n\\nTODOLIST et Prochaine action à réaliser\\n\\n[/INSTRUCTION - /status todo kinname]\\n\\n---\\n\\n\"",
+        "options": {
+          "inputPlaceholder": "/reset",
+          "responseMode": "lastNode",
+          "subtitle": "=La fonction \"actionneur_de_production\" effectue des commandes sur les missions. Permet de lancer, arrêter, ou compléter des missions.\n\nCommande disponible :\n- /status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nFormat d'appel \"query\" : \"[INSTRUCTION - /status todo kinname]\\n\\nTODOLIST et Prochaine action à réaliser\\n\\n[/INSTRUCTION - /status todo kinname]\\n\\n---\\n\\n\"",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "aeeea0f3-f116-404f-b465-97d92d5ae80d",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1900,
+        140
+      ],
+      "webhookId": "b5e5cf9d-1b48-4f67-897c-e1c3389082ca",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "715d7c7e-d307-4e95-b9f1-f6c69bdbf952",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        20,
+        520
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c3ffc3fa-dd97-4935-8007-45a83a471e59",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        240,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $node[\"entree\"].json.command }}",
+                    "rightValue": "=/status",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "5545edd7-2310-4f6e-b1ea-fe581a9f33dc",
+                    "leftValue": "={{ $node[\"entree\"].json.command }}",
+                    "rightValue": "/reset",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "12f3aded-2002-4d38-b61e-59ed3f9c53bb",
+                    "leftValue": "={{ $node[\"entree\"].json.command }}",
+                    "rightValue": "/reinitialize",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "0fde2de7-994c-45df-b036-aec80e1f4d7d",
+                    "leftValue": "={{ $node[\"entree\"].json.command == \"/on\" || $node[\"entree\"].json.command == \"/start\" }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "bc0ed4d6-d8e8-4981-8282-4c34824bb30b",
+                    "leftValue": "={{ $node[\"entree\"].json.command == \"/off\" || $node[\"entree\"].json.command == \"/stop\" }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "looseTypeValidation": true
+        }
+      },
+      "id": "8c18c2ca-a009-4621-9ee3-97463ea6a49d",
+      "name": "Switch Commands",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        -1220,
+        640
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-02-01T12:31:43.000Z",
+  "versionId": "28ef2b98-0cfa-47a7-b4fb-4db1b33c3829"
+}
