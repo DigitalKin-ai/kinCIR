@@ -493,7 +493,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n json.query = json.chatInput;\n}\n\nif (!json.query) {\n  json.query = \"Je souhaite un résumé de ce qui ce trouve pour le moment dans le document de sortie.\";\n}\n\n// Execution Status\nif (json.query.match(/kin\\w+/i)) {\n  json.kin = json.query.match(/kin\\w+/i)[0];\n} else {\n  json.kin = null;\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
       },
       "id": "1fd812af-1585-4fc5-9fc7-5170da91e224",
       "name": "entree",
@@ -502,8 +502,7 @@
       "position": [
         2380,
         -140
-      ],
-      "disabled": true
+      ]
     },
     {
       "parameters": {
@@ -558,6 +557,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-01T01:23:24.000Z",
-  "versionId": "d19d68b4-64bf-4fbc-b904-5315625baed3"
+  "updatedAt": "2024-02-01T15:13:41.000Z",
+  "versionId": "8d54851f-bcea-4191-9e4a-1556ae9037e4"
 }
