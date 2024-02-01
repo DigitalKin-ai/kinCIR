@@ -1,11 +1,11 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "GPT4": {
       "ai_languageModel": [
         [
           {
-            "node": "Questionneur d'Etudes",
+            "node": "Questionneur de la base d'études",
             "type": "ai_languageModel",
             "index": 0
           }
@@ -49,7 +49,7 @@
       "ai_retriever": [
         [
           {
-            "node": "Questionneur d'Etudes",
+            "node": "Questionneur de la base d'études",
             "type": "ai_retriever",
             "index": 0
           }
@@ -67,33 +67,22 @@
         ]
       ]
     },
-    "Questionneur d'Etudes": {
+    "entree": {
       "main": [
         [
           {
-            "node": "nouveau message",
+            "node": "Questionneur de la base d'études",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Pinecone Vector Store": {
-      "ai_vectorStore": [
-        [
-          {
-            "node": "Vector Store Retriever",
-            "type": "ai_vectorStore",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "entree": {
+    "Questionneur de la base d'études": {
       "main": [
         [
           {
-            "node": "Questionneur d'Etudes",
+            "node": "nouveau message",
             "type": "main",
             "index": 0
           }
@@ -106,6 +95,17 @@
           {
             "node": "entree",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
             "index": 0
           }
         ]
@@ -123,9 +123,9 @@
       "parameters": {
         "model": {
           "__rl": true,
-          "value": "gpt-4-1106-preview",
+          "value": "gpt-4-0125-preview",
           "mode": "list",
-          "cachedResultName": "gpt-4-1106-preview"
+          "cachedResultName": "gpt-4-0125-preview"
         },
         "options": {
           "timeout": 600000
@@ -203,7 +203,7 @@
     },
     {
       "parameters": {
-        "model": "gpt-4-1106-preview",
+        "model": "gpt-4-0125-preview",
         "options": {
           "timeout": 600000
         }
@@ -240,10 +240,24 @@
     },
     {
       "parameters": {
-        "query": "=# Instructions de l'Assistant Questionneur d'études scientifiques\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nPour la création de query, injecte des mots-clés.\n\nPour chaque information, précise la provenance de l'information (nom auteur principal, année de publication).\nExemple : (Yan et al., 2020) ou Yan et al., (2020)\n\n\n# Misison Globale\n\n{{ $json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $json.query }}"
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.json) {\n json = {\n   ...JSON.parse(json.json),\n   ...json\n }; \n}\n\nif (json.chatInput) {\n json.query = json.chatInput;\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "bba22dbe-fc17-4184-8d44-86867e9c0628",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2400,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "query": "=# Instructions - Questionneur de la base d'études\n\nTon objectif est de répondre de manière détaillée au besoin informationnel à partir des extraits proposés.\nPour la création de query, injecte des mots-clés.\n\nPour chaque information, précise la provenance de l'information (nom auteur principal, année de publication).\nExemple : (Yan et al., 2020) ou Yan et al., (2020)\n\n\n# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Besoin informationnel forumulé par {{ $node[\"entree\"].json.kin }} (Query)\n\n\"{{ $node[\"entree\"].json.query }}\""
       },
       "id": "f9f5623e-d497-4bf9-bd7c-c88a831ca096",
-      "name": "Questionneur d'Etudes",
+      "name": "Questionneur de la base d'études",
       "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
       "typeVersion": 1.1,
       "position": [
@@ -253,22 +267,35 @@
     },
     {
       "parameters": {
+        "public": true,
+        "initialMessages": "Le \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\nExemple : Que disent les études disponibles sur les systèmes multi-agents ?",
+        "options": {
+          "inputPlaceholder": "Que disent les études disponibles sur les systèmes multi-agents ?",
+          "responseMode": "lastNode",
+          "subtitle": "=Le \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\nExemple : Que disent les études disponibles sur les systèmes multi-agents ?",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "15a18857-c374-4110-a881-e96b734b15a7",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        -20
+      ],
+      "webhookId": "e7f6613b-97d8-43c1-bd79-e7d950a29cfe"
+    },
+    {
+      "parameters": {
         "pineconeIndex": {
           "__rl": true,
-          "value": "kins",
+          "value": "kinspython",
           "mode": "list",
-          "cachedResultName": "kins"
+          "cachedResultName": "kinspython"
         },
         "options": {
-          "pineconeNamespace": "=etudes",
-          "metadata": {
-            "metadataValues": [
-              {
-                "name": "type",
-                "value": "etude"
-              }
-            ]
-          }
+          "pineconeNamespace": "=etudes"
         }
       },
       "id": "c8174531-843c-46d5-ac2c-6039ce7bf4f3",
@@ -285,35 +312,6 @@
           "name": "PineconeApi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (json.json) {\n json = {\n   ...json,\n   ...JSON.parse(json.json)\n }; \n}\n\nif (json.chatInput) {\n json.query = json.chatInput;\n}\n\nif (!json.query) {\n  json.query = \"Je souhaite un point général sur la situation de la production.\";\n}\n\n// Execution Status\nif (json.query.match(/kin\\w+/i)) {\n  json.kin = json.query.match(/kin\\w+/i)[0];\n} else {\n  json.kin = null;\n}\n\nreturn {\"json\": json};"
-      },
-      "id": "bba22dbe-fc17-4184-8d44-86867e9c0628",
-      "name": "entree",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2400,
-        180
-      ]
-    },
-    {
-      "parameters": {
-        "public": true,
-        "options": {}
-      },
-      "id": "15a18857-c374-4110-a881-e96b734b15a7",
-      "name": "Chat Trigger",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1,
-      "position": [
-        2160,
-        -20
-      ],
-      "webhookId": "e7f6613b-97d8-43c1-bd79-e7d950a29cfe"
     }
   ],
   "pinData": {},
@@ -337,7 +335,7 @@
       "name": "prod"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2024-01-31T15:13:28.000Z",
-  "versionId": "2956b1fc-c003-4b26-a7d0-9f98232fac86"
+  "triggerCount": 2,
+  "updatedAt": "2024-02-01T17:57:55.000Z",
+  "versionId": "6062a63b-4cd6-4942-941d-3338f4716ee6"
 }
