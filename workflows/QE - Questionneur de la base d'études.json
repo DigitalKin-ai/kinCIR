@@ -1,61 +1,6 @@
 {
   "active": true,
   "connections": {
-    "GPT4": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Questionneur de la base d'études",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Vector Store Retriever": {
-      "ai_retriever": [
-        [
-          {
-            "node": "MultiQuery Retriever",
-            "type": "ai_retriever",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Embeddings OpenAI1": {
-      "ai_embedding": [
-        [
-          {
-            "node": "Pinecone Vector Store",
-            "type": "ai_embedding",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "MultiQuery Retriever",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "MultiQuery Retriever": {
-      "ai_retriever": [
-        [
-          {
-            "node": "Questionneur de la base d'études",
-            "type": "ai_retriever",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Execute Workflow Trigger": {
       "main": [
         [
@@ -71,18 +16,135 @@
       "main": [
         [
           {
-            "node": "Questionneur de la base d'études",
+            "node": "kinchercheur - Forumation de Queries",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Questionneur de la base d'études": {
+    "temporary thread": {
       "main": [
         [
           {
-            "node": "nouveau message",
+            "node": "Convert thread to document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If queries": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "response1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "queries": {
+      "main": [
+        [
+          {
+            "node": "If queries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree queries": {
+      "main": [
+        [
+          {
+            "node": "queries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Get Embedding",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Embedding": {
+      "main": [
+        [
+          {
+            "node": "Get etudes chunks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert thread to document": {
+      "main": [
+        [
+          {
+            "node": "entree queries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get etudes chunks": {
+      "main": [
+        [
+          {
+            "node": "extraits",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "extraits": {
+      "main": [
+        [
+          {
+            "node": "kinchercheur - Analyse des Extraits",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "outputs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "outputs": {
+      "main": [
+        [
+          {
+            "node": "kinchercheur - Synthèse de l'information",
             "type": "main",
             "index": 0
           }
@@ -100,12 +162,34 @@
         ]
       ]
     },
-    "Pinecone Vector Store": {
-      "ai_vectorStore": [
+    "kinchercheur - Forumation de Queries": {
+      "main": [
         [
           {
-            "node": "Vector Store Retriever",
-            "type": "ai_vectorStore",
+            "node": "temporary thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinchercheur - Analyse des Extraits": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinchercheur - Synthèse de l'information": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
             "index": 0
           }
         ]
@@ -120,102 +204,212 @@
   "name": "QE - Questionneur de la base d'études",
   "nodes": [
     {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-4-0125-preview",
-          "mode": "list",
-          "cachedResultName": "gpt-4-0125-preview"
-        },
-        "options": {
-          "timeout": 600000
-        }
-      },
-      "id": "5ce5f51c-53c2-4626-8a18-cfc04dcc849b",
-      "name": "GPT4",
-      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
-      "typeVersion": 1,
-      "position": [
-        2680,
-        360
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {},
-      "id": "724e1b70-2ecf-4efb-952d-d5724b3e3eca",
-      "name": "Vector Store Retriever",
-      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
-      "typeVersion": 1,
-      "position": [
-        2820,
-        660
-      ]
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "id": "3ee12152-1499-45b4-8b60-c820472fe443",
-      "name": "Embeddings OpenAI1",
-      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
-      "typeVersion": 1,
-      "position": [
-        2760,
-        980
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
       "parameters": {},
       "id": "3e236bff-7cb0-4fea-999e-c8e6b61c368f",
       "name": "Execute Workflow Trigger",
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        2160,
-        180
+        2180,
+        -100
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "if ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": $json.response.text};\n}\n\n\nreturn {\"response\":$json.response.text};"
+        "jsCode": "let json = $json;\n\nif (json.json) {\n json = {\n   ...JSON.parse(json.json),\n   ...json\n }; \n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kin = \"Un humain\";\n}\n\nreturn {\"json\": json};"
       },
-      "id": "05470c52-33c5-4484-a7dc-1e700b8f1d78",
-      "name": "nouveau message",
+      "id": "bba22dbe-fc17-4184-8d44-86867e9c0628",
+      "name": "entree",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3060,
-        180
+        2420,
+        -100
       ]
     },
     {
       "parameters": {
-        "model": "gpt-4-0125-preview",
-        "options": {
-          "timeout": 600000
-        }
+        "jsCode": "let response = \"\";\n\n// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  response += item.json.output + \"\\n\\n\";\n}\n\nif ($item(0).$node[\"entree\"].json.chatInput != null) {\n  return {\"output\": response};\n}\n\n\nreturn {\"json\": {\"response\": response}};"
       },
-      "id": "0c536d71-761b-46c4-a17b-4a82bf1c283d",
-      "name": "OpenAI Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "id": "44ba6799-b609-4524-87f8-2127cad0d0b1",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4640,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":{\"thread\": $json.output}};"
+      },
+      "id": "c4be20f3-8d8f-429d-8094-b80719a11e3e",
+      "name": "temporary thread",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3080,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "queries",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "id": "efbd02c8-7173-4162-8f3d-062d07dcd60a",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        2700,
-        660
+        2660,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "a84d1012-5b07-4af0-ae7e-2d4db42be9e1",
+              "leftValue": "={{ $json.queries }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "9aa16022-ea1e-4e79-becc-ed912008c7a4",
+      "name": "If queries",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2420,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n} else {\n  json.kinDemandeur = json.kin;\n}\n\nif (json.query) {\n  \n} else {\n  json.query =  \"Je souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020. Mes requêtes :\\n\\n\\\"Multi-Agent Systems LLM\\\",\\n\\\"multi_agent collaboration GPT\\\",\\n\\\"Complex systems agents LLM\\\".\";\n}\n\njson.date = \"2019\";\nlet regexDate = /\\s\\b\\d{4}\\b/; // C'est votre expression régulière\nif (regexDate.test(json.query)) {\n    json.date = json.query.match(regexDate)[0].substring(1);\n    json.query = json.query.replace(regexDate, '');\n}\n\njson.queries = [];\nlet regexQueries = /\"([^\"]*)\"/g;\n// Récupérer toutes les correspondances\nwhile ((matches = regexQueries.exec(json.query)) !== null) {\n    json.queries.push(matches[1]);\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "429441ac-cfd8-4e87-9c39-07d44d33af5a",
+      "name": "queries",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3700,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\n\nif (json.document) {\n  json.query = json.document;\n} else {\n  json.query = json.thread;\n}\n\njson.document = $node[\"entree\"].json.document;\njson.thread = $node[\"entree\"].json.thread;\n\nreturn {\"json\": json};"
+      },
+      "id": "cb05a919-b866-4e6a-a2a9-f48889bb5f65",
+      "name": "entree queries",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3500,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"etudes\",\n  \"includeMetadata\": true,\n  \"topK\": 5,\n  \"vector\": {{ JSON.stringify($node[\"Get Embedding\"].json.data[0].embedding) }}\n}",
+        "options": {}
+      },
+      "id": "801b8b04-6018-469b-8a45-099cb422d6b1",
+      "name": "Get etudes chunks",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3080,
+        100
       ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.openai.com/v1/embeddings ",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "input",
+              "value": "={{ $json.queries }}"
+            },
+            {
+              "name": "model",
+              "value": "text-embedding-3-large"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "39bc7f9a-beb6-4769-b8df-88410c2b194f",
+      "name": "Get Embedding",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2880,
+        100
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
       "credentials": {
         "openAiApi": {
           "id": "WY3bm7GCb9qfewyS",
@@ -225,44 +419,66 @@
     },
     {
       "parameters": {
-        "options": {
-          "queryCount": 2
-        }
+        "workflowId": "xyhDvFnHl8aCE9hV",
+        "options": {}
       },
-      "id": "dcd474b4-422a-4a55-b50b-55012b72ecb8",
-      "name": "MultiQuery Retriever",
-      "type": "@n8n/n8n-nodes-langchain.retrieverMultiQuery",
+      "id": "ab710038-e9f9-4bcc-a326-bff338daad60",
+      "name": "Convert thread to document",
+      "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        2700,
-        480
+        3300,
+        -100
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (json.json) {\n json = {\n   ...JSON.parse(json.json),\n   ...json\n }; \n}\n\nif (json.chatInput) {\n json.query = json.chatInput;\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nlet extraits = \"\";\n\njson.matches.forEach(match => {\n    let citation = match.metadata.citation;\n    let extraitElargi = match.metadata.extraitElargi;\n    extraits += \"## Etude : \" + citation + \"\\n\\n#Extrait\\n\\n[...]\" + extraitElargi + \"[...]\\n\\n\";\n});\n\nreturn {\"json\": {\"extraits\": extraits}};"
       },
-      "id": "bba22dbe-fc17-4184-8d44-86867e9c0628",
-      "name": "entree",
+      "id": "4165672d-615b-4af7-b9a4-699d9ba4a730",
+      "name": "extraits",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2400,
-        180
+        3300,
+        100
       ]
     },
     {
       "parameters": {
-        "query": "=# Instructions - Questionneur de la base d'études\n\nTon objectif est de répondre de manière détaillée au besoin informationnel à partir des extraits proposés.\nPour la création de query, injecte des mots-clés.\n\nPour chaque information, précise la provenance de l'information (nom auteur principal, année de publication).\nExemple : (Yan et al., 2020) ou Yan et al., (2020)\n\n\n# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Besoin informationnel forumulé par {{ $node[\"entree\"].json.kin }} (Query)\n\n\"{{ $node[\"entree\"].json.query }}\""
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "output"
+            }
+          ]
+        },
+        "options": {
+          "mergeLists": false
+        }
       },
-      "id": "f9f5623e-d497-4bf9-bd7c-c88a831ca096",
-      "name": "Questionneur de la base d'études",
-      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
-      "typeVersion": 1.1,
+      "id": "597ec3f3-ad11-4280-8666-475afe988598",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
       "position": [
-        2680,
-        180
+        3860,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nlet outputs = \"\";\n\njson.output.forEach(match => {\n    outputs += match + \"\\n\\n\";\n});\n\nreturn {\"json\": {\"outputs\": outputs}};"
+      },
+      "id": "f0e26ac0-5801-4723-957f-84642f391960",
+      "name": "outputs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4060,
+        100
       ]
     },
     {
@@ -281,40 +497,102 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1,
       "position": [
-        2160,
-        -20
+        2180,
+        -300
       ],
       "webhookId": "e7f6613b-97d8-43c1-bd79-e7d950a29cfe"
     },
     {
       "parameters": {
-        "pineconeIndex": {
-          "__rl": true,
-          "value": "kinspython",
-          "mode": "list",
-          "cachedResultName": "kinspython"
-        },
-        "options": {
-          "pineconeNamespace": "=etudes"
-        }
+        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
+        "text": "=# Informatif - Fonction Questionneur de la base d'études\n\nLe \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\n# Contexte \n\nTu es dans le workflow de la fonction GPT \"questionneur_de_la_base_d_etudes\". Tu aides le Kin à forumler les texte de requêtes à faire à la base de donnée vectorielle contenant les extraits d'études.\n\n[PROCESSUS - Formulation de requêtes]\n\n- Clarté : Formuler des requêtes précises et directes, évitant toute ambigüité.\n- Pertinence des Mots-Clés : Utiliser des termes spécifiques et pertinents au sujet de recherche.\n- Contextualisation : Inclure le contexte spécifique pour affiner la recherche (domaine, application, etc.).\n- Exactitude : S'assurer que les termes utilisés sont exacts et appropriés pour le sujet en question.\n- Structure : Formuler des requêtes bien structurées et grammaticalement correctes.\n\n[/PROCESSUS - Formulation de requêtes]\n\n## Mission Globale\n\n{{ $node[\"entree\"].json.mission?$node[\"queries\"].json.mission:\"Découverte & exploration générale\" }}\n\n# Besoin informationnel forumulé par {{ $node[\"entree\"].json.kin }} (Query)\n\n\"{{ $node[\"entree\"].json.query }}\"\n\n# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Besoin informationnel forumulé par {{ $node[\"entree\"].json.kin }} (Query)\n\n\"{{ $node[\"entree\"].json.query }}\"\n\n# Instructions - Questionneur de la base d'études - Formulation des Requêtes\n\n- REFLEXION - Besoin Informationnel: Réformule le besoin informationnel et le contexte, et la référence de l'étude si pertinent.\n- REFLEXION Stratégie de requêtage - : Réfléchis à 3 stratégies de requêtage pour trouver ces infos dans une base de dconnées d'Embedding LLM contenant les extraits d'études.\n- CONTENU : Formule  les 3 textes de requête, en Anglais, entre guillemets dans des balises CONTENU.",
+        "options": {}
       },
-      "id": "c8174531-843c-46d5-ac2c-6039ce7bf4f3",
-      "name": "Pinecone Vector Store",
-      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "id": "cf235237-b97b-4478-b9d1-8aea92a83c72",
+      "name": "kinchercheur - Forumation de Queries",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        2760,
-        840
+        2680,
+        -100
       ],
+      "retryOnFail": true,
       "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
+        "text": "=# Informatif - Fonction Questionneur de la base d'études\n\nLe \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\n# Contexte \n\nTu es dans le workflow de la fonction GPT \"questionneur_de_la_base_d_etudes\". Tu aides le Kin à répondre au besoin informationnel à partir des extraits d'études.\n\n# Mission Globale\n\n{{ $item(0).$node[\"entree\"].json.mission }}\n\n# Extraits d'études\n\n{{ $node[\"extraits\"].json.extraits }}\n\n# Besoin informationnel forumulé par {{ $item(0).$node[\"entree\"].json.kin }} (Query)\n\n\"{{ $item(0).$node[\"entree\"].json.query }}\"\n\n# Instructions - Questionneur de la base d'études\n\nTon objectif est de répondre de manière détaillée au besoin informationnel à partir des extraits proposés.\n\nPour chaque information, précise la provenance de l'information (nom auteur principal, année de publication).\nExemple : (Yan et al., 2020) ou Yan et al., (2020)",
+        "options": {}
+      },
+      "id": "f1f24506-beef-4308-a919-20b196bd28d3",
+      "name": "kinchercheur - Analyse des Extraits",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        100
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
+        "text": "=# Informatif - Fonction Questionneur de la base d'études\n\nLe \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\n# Contexte \n\nTu es dans le workflow de la fonction GPT \"questionneur_de_la_base_d_etudes\". Tu aides le Kin à répondre au besoin informationnel à partir des extraits  proposés.\n\n# Mission Globale\n\n{{ $item(0).$node[\"entree\"].json.mission }}\n\n# Extraits proposés\n\n{{ $node[\"outputs\"].json.outputs }}\n\n# Besoin informationnel forumulé par {{ $item(0).$node[\"entree\"].json.kin }} (Query)\n\n\"{{ $item(0).$node[\"entree\"].json.query }}\"\n\n# Instructions - Questionneur de la base d'études\n\nTon objectif est de répondre de manière détaillée au besoin informationnel à partir des extraits proposés.\n\nPour chaque information, précise la provenance de l'information (nom auteur principal, année de publication -Exemple : (Yan et al., 2020) ou Yan et al., (2020)). Donne ta réponse entre balises RETOUR.",
+        "options": {}
+      },
+      "id": "692f9f2d-6167-4783-a6c6-b705cbfa5d36",
+      "name": "kinchercheur - Synthèse de l'information",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        4280,
+        100
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let response = \"RETOUR :Format des queries incorrect : à formuler entre balises contenu et entre guillemets.\";\n\nif ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": response};\n}\n\nreturn {\"json\": {\"response\": response}};"
+      },
+      "id": "e01caaac-9d14-4b30-9ce6-1760e5e13562",
+      "name": "response1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2640,
+        280
+      ]
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Chat Trigger": [
+      {
+        "json": {
+          "sessionId": "test-0098565c-44fb-4bf8-92b9-1bf87c100e87",
+          "action": "sendMessage",
+          "chatInput": "What are the main challenges associated with hybrid laser arc welding of aluminium alloys ?"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -336,6 +614,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-01T17:57:55.000Z",
-  "versionId": "6062a63b-4cd6-4942-941d-3338f4716ee6"
+  "updatedAt": "2024-02-02T10:57:02.000Z",
+  "versionId": "22cb0e63-c38f-41e9-adf9-6f001d8b6bd0"
 }
