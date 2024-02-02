@@ -78,18 +78,7 @@
       "main": [
         [
           {
-            "node": "Get Embedding",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Embedding": {
-      "main": [
-        [
-          {
-            "node": "Get etudes chunks",
+            "node": "entree requeteur",
             "type": "main",
             "index": 0
           }
@@ -101,28 +90,6 @@
         [
           {
             "node": "entree queries",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get etudes chunks": {
-      "main": [
-        [
-          {
-            "node": "extraits",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "extraits": {
-      "main": [
-        [
-          {
-            "node": "kinchercheur - Analyse des Extraits",
             "type": "main",
             "index": 0
           }
@@ -151,17 +118,6 @@
         ]
       ]
     },
-    "Chat Trigger": {
-      "main": [
-        [
-          {
-            "node": "entree",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "kinchercheur - Forumation de Queries": {
       "main": [
         [
@@ -173,7 +129,29 @@
         ]
       ]
     },
-    "kinchercheur - Analyse des Extraits": {
+    "kinchercheur - Synthèse de l'information": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Requêteur direct de la base d'étude": {
       "main": [
         [
           {
@@ -184,11 +162,11 @@
         ]
       ]
     },
-    "kinchercheur - Synthèse de l'information": {
+    "entree requeteur": {
       "main": [
         [
           {
-            "node": "response",
+            "node": "Requêteur direct de la base d'étude",
             "type": "main",
             "index": 0
           }
@@ -237,7 +215,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4640,
+        4480,
         100
       ]
     },
@@ -333,92 +311,6 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"etudes\",\n  \"includeMetadata\": true,\n  \"topK\": 5,\n  \"vector\": {{ JSON.stringify($node[\"Get Embedding\"].json.data[0].embedding) }}\n}",
-        "options": {}
-      },
-      "id": "801b8b04-6018-469b-8a45-099cb422d6b1",
-      "name": "Get etudes chunks",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        3080,
-        100
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://api.openai.com/v1/embeddings ",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "openAiApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "input",
-              "value": "={{ $json.queries }}"
-            },
-            {
-              "name": "model",
-              "value": "text-embedding-3-large"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "39bc7f9a-beb6-4769-b8df-88410c2b194f",
-      "name": "Get Embedding",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        2880,
-        100
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "workflowId": "xyhDvFnHl8aCE9hV",
         "options": {}
       },
@@ -433,24 +325,12 @@
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nlet extraits = \"\";\n\njson.matches.forEach(match => {\n    let citation = match.metadata.citation;\n    let extraitElargi = match.metadata.extraitElargi;\n    extraits += \"## Etude : \" + citation + \"\\n\\n#Extrait\\n\\n[...]\" + extraitElargi + \"[...]\\n\\n\";\n});\n\nreturn {\"json\": {\"extraits\": extraits}};"
-      },
-      "id": "4165672d-615b-4af7-b9a4-699d9ba4a730",
-      "name": "extraits",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        3300,
-        100
-      ]
-    },
-    {
-      "parameters": {
         "fieldsToAggregate": {
           "fieldToAggregate": [
             {
-              "fieldToAggregate": "output"
+              "fieldToAggregate": "response",
+              "renameField": true,
+              "outputFieldName": "output"
             }
           ]
         },
@@ -463,7 +343,7 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        3860,
+        3700,
         100
       ]
     },
@@ -477,35 +357,14 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4060,
+        3900,
         100
       ]
     },
     {
       "parameters": {
-        "public": true,
-        "initialMessages": "Le \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\nExemple : Que disent les études disponibles sur les systèmes multi-agents ?",
-        "options": {
-          "inputPlaceholder": "Que disent les études disponibles sur les systèmes multi-agents ?",
-          "responseMode": "lastNode",
-          "subtitle": "=Le \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\nExemple : Que disent les études disponibles sur les systèmes multi-agents ?",
-          "title": "={{ $workflow.name }}"
-        }
-      },
-      "id": "15a18857-c374-4110-a881-e96b734b15a7",
-      "name": "Chat Trigger",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1,
-      "position": [
-        2180,
-        -300
-      ],
-      "webhookId": "e7f6613b-97d8-43c1-bd79-e7d950a29cfe"
-    },
-    {
-      "parameters": {
         "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
-        "text": "=# Informatif - Fonction Questionneur de la base d'études\n\nLe \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\n# Contexte \n\nTu es dans le workflow de la fonction GPT \"questionneur_de_la_base_d_etudes\". Tu aides le Kin à forumler les texte de requêtes à faire à la base de donnée vectorielle contenant les extraits d'études.\n\n[PROCESSUS - Formulation de requêtes]\n\n- Clarté : Formuler des requêtes précises et directes, évitant toute ambigüité.\n- Pertinence des Mots-Clés : Utiliser des termes spécifiques et pertinents au sujet de recherche.\n- Contextualisation : Inclure le contexte spécifique pour affiner la recherche (domaine, application, etc.).\n- Exactitude : S'assurer que les termes utilisés sont exacts et appropriés pour le sujet en question.\n- Structure : Formuler des requêtes bien structurées et grammaticalement correctes.\n\n[/PROCESSUS - Formulation de requêtes]\n\n## Mission Globale\n\n{{ $node[\"entree\"].json.mission?$node[\"queries\"].json.mission:\"Découverte & exploration générale\" }}\n\n# Besoin informationnel forumulé par {{ $node[\"entree\"].json.kin }} (Query)\n\n\"{{ $node[\"entree\"].json.query }}\"\n\n# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Besoin informationnel forumulé par {{ $node[\"entree\"].json.kin }} (Query)\n\n\"{{ $node[\"entree\"].json.query }}\"\n\n# Instructions - Questionneur de la base d'études - Formulation des Requêtes\n\n- REFLEXION - Besoin Informationnel: Réformule le besoin informationnel et le contexte, et la référence de l'étude si pertinent.\n- REFLEXION Stratégie de requêtage - : Réfléchis à 3 stratégies de requêtage pour trouver ces infos dans une base de dconnées d'Embedding LLM contenant les extraits d'études.\n- CONTENU : Formule  les 3 textes de requête, en Anglais, entre guillemets dans des balises CONTENU.",
+        "text": "=# Informatif - Fonction Questionneur de la base d'études\n\nLe \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\n===\n\n# Contexte - Intérieur de la fonction \"questionneur_de_la_base_d_etudes\"\n\nTu es dans le workflow de la fonction GPT \"questionneur_de_la_base_d_etudes\". Tu aides le Kin à forumler les texte de requêtes à faire à la base de donnée vectorielle contenant les extraits d'études. Il est normal que tu n'aies pas à accès à \"questionneur_de_la_base_d_etudes\", car tu es dans la fonction en elle-même.\n\n===\n\n[PROCESSUS - Formulation de requêtes]\n\n- Clarté : Formuler des requêtes précises et directes, évitant toute ambigüité.\n- Pertinence des Mots-Clés : Utiliser des termes spécifiques et pertinents au sujet de recherche.\n- Contextualisation : Inclure le contexte spécifique pour affiner la recherche (domaine, application, etc.).\n- Exactitude : S'assurer que les termes utilisés sont exacts et appropriés pour le sujet en question.\n- Structure : Formuler des requêtes bien structurées et grammaticalement correctes.\n\n[/PROCESSUS - Formulation de requêtes]\n\n## Mission Globale\n\n{{ $node[\"entree\"].json.mission?$node[\"queries\"].json.mission:\"Découverte & exploration générale\" }}\n\n===\n\n# Besoin informationnel forumulé par {{ $node[\"entree\"].json.kin }} (Query)\n\n\"{{ $node[\"entree\"].json.query }}\"\n\n===\n\n# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n===\n\n# Besoin informationnel forumulé par {{ $node[\"entree\"].json.kin }} (Query)\n\n\"{{ $node[\"entree\"].json.query }}\"\n\n===\n\n# Instructions - Questionneur de la base d'études - Formulation des Requêtes\n\n- REFLEXION - Besoin Informationnel: Réformule le besoin informationnel et le contexte, et la référence de l'étude si pertinent.\n- REFLEXION Stratégie de requêtage - : Réfléchis à 3 stratégies de requêtage pour trouver ces infos dans une base de dconnées d'Embedding LLM contenant les extraits d'études.\n- CONTENU : Formule  les 3 textes de requête, en Anglais, entre guillemets dans des balises CONTENU.",
         "options": {}
       },
       "id": "cf235237-b97b-4478-b9d1-8aea92a83c72",
@@ -527,29 +386,7 @@
     {
       "parameters": {
         "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
-        "text": "=# Informatif - Fonction Questionneur de la base d'études\n\nLe \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\n# Contexte \n\nTu es dans le workflow de la fonction GPT \"questionneur_de_la_base_d_etudes\". Tu aides le Kin à répondre au besoin informationnel à partir des extraits d'études.\n\n# Mission Globale\n\n{{ $item(0).$node[\"entree\"].json.mission }}\n\n# Extraits d'études\n\n{{ $node[\"extraits\"].json.extraits }}\n\n# Besoin informationnel forumulé par {{ $item(0).$node[\"entree\"].json.kin }} (Query)\n\n\"{{ $item(0).$node[\"entree\"].json.query }}\"\n\n# Instructions - Questionneur de la base d'études\n\nTon objectif est de répondre de manière détaillée au besoin informationnel à partir des extraits proposés.\n\nPour chaque information, précise la provenance de l'information (nom auteur principal, année de publication).\nExemple : (Yan et al., 2020) ou Yan et al., (2020)",
-        "options": {}
-      },
-      "id": "f1f24506-beef-4308-a919-20b196bd28d3",
-      "name": "kinchercheur - Analyse des Extraits",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        3500,
-        100
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
-        "text": "=# Informatif - Fonction Questionneur de la base d'études\n\nLe \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\n# Contexte \n\nTu es dans le workflow de la fonction GPT \"questionneur_de_la_base_d_etudes\". Tu aides le Kin à répondre au besoin informationnel à partir des extraits  proposés.\n\n# Mission Globale\n\n{{ $item(0).$node[\"entree\"].json.mission }}\n\n# Extraits proposés\n\n{{ $node[\"outputs\"].json.outputs }}\n\n# Besoin informationnel forumulé par {{ $item(0).$node[\"entree\"].json.kin }} (Query)\n\n\"{{ $item(0).$node[\"entree\"].json.query }}\"\n\n# Instructions - Questionneur de la base d'études\n\nTon objectif est de répondre de manière détaillée au besoin informationnel à partir des extraits proposés.\n\nPour chaque information, précise la provenance de l'information (nom auteur principal, année de publication -Exemple : (Yan et al., 2020) ou Yan et al., (2020)). Donne ta réponse entre balises RETOUR.",
+        "text": "=# Informatif - Fonction Questionneur de la base d'études\n\nLe \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\n===\n\n# Contexte - Intérieur de la fonction \"questionneur_de_la_base_d_etudes\"\n\nTu es dans le workflow de la fonction GPT \"questionneur_de_la_base_d_etudes\". Tu aides le Kin à répondre au besoin informationnel à partir des extraits  proposés. Il est normal que tu n'aies pas à accès à \"questionneur_de_la_base_d_etudes\", car tu es dans la fonction en elle-même.\n\n===\n\n# Mission Globale\n\n{{ $item(0).$node[\"entree\"].json.mission?$item(0).$node[\"entree\"].json.mission:\"Découverte & exploration générale\" }}\n\n===\n\n# Extraits proposés\n\n{{ $node[\"outputs\"].json.outputs }}\n\n===\n\n# Besoin informationnel forumulé par {{ $item(0).$node[\"entree\"].json.kin }} (Query)\n\n\"{{ $item(0).$node[\"entree\"].json.query }}\"\n\n===\n\n# Instructions - Questionneur de la base d'études\n\nTon objectif est de répondre de manière détaillée au besoin informationnel à partir des extraits proposés. Réponds toujours au mieux.\n\nPour chaque information, précise la provenance de l'information (nom auteur principal, année de publication -Exemple : (Yan et al., 2020) ou Yan et al., (2020)). Donne ta réponse entre balises RETOUR.",
         "options": {}
       },
       "id": "692f9f2d-6167-4783-a6c6-b705cbfa5d36",
@@ -557,7 +394,7 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        4280,
+        4120,
         100
       ],
       "retryOnFail": true,
@@ -577,18 +414,72 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2640,
+        2660,
         280
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Le \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\nExemple : Que disent les études disponibles sur les systèmes multi-agents ?",
+        "options": {
+          "inputPlaceholder": "Que disent les études disponibles sur les systèmes multi-agents ?",
+          "responseMode": "lastNode",
+          "subtitle": "=Le \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\nExemple : Que disent les études disponibles sur les systèmes multi-agents ?",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "15a18857-c374-4110-a881-e96b734b15a7",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        -320
+      ],
+      "webhookId": "e7f6613b-97d8-43c1-bd79-e7d950a29cfe"
+    },
+    {
+      "parameters": {
+        "workflowId": "KIwwJYUhZR9Ve39x",
+        "options": {}
+      },
+      "id": "183bcefd-1072-4829-ba7e-e739eb03019b",
+      "name": "Requêteur direct de la base d'étude",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3300,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $item(0).$node[\"entree\"].json;\n\njson.query = $json.queries;\njson.date = $json.date;\n\nreturn {\"json\": json};"
+      },
+      "id": "a84a67a3-eef2-4a12-b572-a87c0958dc84",
+      "name": "entree requeteur",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3080,
+        100
       ]
     }
   ],
   "pinData": {
-    "Chat Trigger": [
+    "Execute Workflow Trigger": [
       {
         "json": {
-          "sessionId": "test-0098565c-44fb-4bf8-92b9-1bf87c100e87",
-          "action": "sendMessage",
-          "chatInput": "What are the main challenges associated with hybrid laser arc welding of aluminium alloys ?"
+          "query": "Disposons-nous dans notre base d'étude du contenu de l'étude suivante :\n\nCasalino, G.; Leo, P.; Mortello, M.; Perulli, P.; Varone, A. Effects of Laser Offset and Hybrid Welding on Microstructure and IMC in Fe–Al Dissimilar Welding. Metals 2017, 7, 282; doi:10.3390/met7080282.\n\nRéponds par une courte phrase explicative, puis \"DISPONIBLE\" ou \"INDISPONIBLE\""
+        }
+      }
+    ],
+    "kinchercheur - Forumation de Queries": [
+      {
+        "json": {
+          "output": "[ANALYSE - Besoin Informationnel Initial]\nLe besoin informationnel spécifique est de vérifier la présence d'une étude particulièrement ciblée dans la base de données. L'étude en question est \"Effects of Laser Offset and Hybrid Welding on Microstructure and IMC in Fe–Al Dissimilar Welding\" par Casalino, G.; Leo, P.; Mortello, M.; Perulli, P.; Varone, A., publiée en 2017 dans la revue \"Metals\" avec le DOI 10.3390/met7080282. La précision de la demande, incluant le titre intégral, les auteurs, l'année de publication, et le DOI, suggère un besoin de confirmation sur la disponibilité de cette recherche spécifique dans notre base d'études.\n[/ANALYSE - Besoin Informationnel Initial]\n\n---\n\n[ANALYSE - Reformulation du Besoin]\nPour répondre efficacement à la demande, il est crucial de distinguer clairement la présence du contenu de cette étude particulière dans notre réserve d'informations. Cela implique la reconnaissance du titre complet de l'étude, la contribution des auteurs, et d'autres identifiants uniques comme le DOI.\n[/ANALYSE - Reformulation du Besoin]\n\n---\n\n[ANALYSE - Stratégie de Requêtage]\nTrois stratégies principales peuvent être adoptées pour localiser avec précision cette recherche dans la base de données :\n\n1. **Recherche par Identifiants Exactes** : Utiliser le DOI fourni comme terme de recherche principal, considérant que le DOI représente un identifiant unique pour les publications scientifiques.\n   \n2. **Recherche par Titre et Auteurs** : Combiner le titre complet de l'étude et les noms des auteurs dans la query de recherche pour augmenter la précision des résultats.\n   \n3. **Recherche par Titre et Date de Publication** : Associer le titre de la publication avec son année de publication pour affiner les résultats et éviter toute ambigüité avec d'autres travaux publiés à d'autres moments.\n\nCes stratégies ont été élaborées pour exploiter les informations spécifiques fournies et maximiser les chances de détecter précisément l'étude en question dans la base de données.\n[/ANALYSE - Stratégie de Requêtage]\n\n---\n\n[CONTENU - Formulation des Requêtes]\n\"Effects of Laser Offset and Hybrid Welding on Microstructure and IMC in Fe–Al Dissimilar Welding Casalino, G.; Leo, P.; Mortello, M.; Perulli, P.; Varone, A. 2017 Metals\"\n\"DOI 10.3390/met7080282\"\n\"Effects of Laser Offset and Hybrid Welding on Microstructure and IMC in Fe–Al Dissimilar Welding 2017\"\n[/CONTENU - Formulation des Requêtes]"
         }
       }
     ]
@@ -614,6 +505,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-02T10:57:02.000Z",
-  "versionId": "22cb0e63-c38f-41e9-adf9-6f001d8b6bd0"
+  "updatedAt": "2024-02-02T11:59:10.000Z",
+  "versionId": "f05606d5-05f4-4c01-a412-2f45c236162b"
 }
