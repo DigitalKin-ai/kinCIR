@@ -1097,6 +1097,62 @@
         -1220,
         640
       ]
+    },
+    {
+      "parameters": {
+        "content": "# /deletetudes",
+        "height": 287.746042686389,
+        "width": 619.2817266129762
+      },
+      "id": "2b63752b-6292-4e97-a5d3-16e6842f015f",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        -640
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"etudes\",\n  \"deleteAll\": true\n}",
+        "options": {}
+      },
+      "id": "5798863c-25f1-42d6-ad31-4ab01b953363",
+      "name": "Delete all etudes",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -260,
+        -560
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -1125,6 +1181,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-01T11:53:20.000Z",
-  "versionId": "198f8859-5b77-46fd-9da5-da19f2bec507"
+  "updatedAt": "2024-02-02T10:37:13.000Z",
+  "versionId": "166b9668-d235-4f0d-bfd3-647d6ddcad12"
 }
