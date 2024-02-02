@@ -1125,7 +1125,7 @@
     {
       "parameters": {
         "name": "questionneur_de_la_base_d_etudes",
-        "description": "Le \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
+        "description": "Le \"questionneur_de_la_base_d_etudes\" retourne une réponse issue d'études pertinentes à partir d'un objectif à démontrer ou une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage :où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré (verbatim ou non)",
         "workflowId": "yQ79P9nuVKhkwZpD",
         "fields": {
           "values": [
@@ -3048,6 +3048,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-01T17:55:35.000Z",
-  "versionId": "2544d2bf-4fa3-42d8-bc3d-dd0562e7b220"
+  "updatedAt": "2024-02-02T11:29:51.000Z",
+  "versionId": "fb5c5c1c-8c74-4fc1-82ac-83475efa32bb"
 }
