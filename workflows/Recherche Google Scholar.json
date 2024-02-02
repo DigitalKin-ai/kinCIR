@@ -154,36 +154,6 @@
         ]
       ]
     },
-    "Switch format": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "entree pinecone",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
-          }
-        ],
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
     "Chat Trigger": {
       "main": [
         [
@@ -244,6 +214,48 @@
             "index": 0
           }
         ]
+      ]
+    },
+    "Switch format": {
+      "main": [
+        [
+          {
+            "node": "Get Document via url",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Get Document via url": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "entree pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
       ]
     }
   },
@@ -362,8 +374,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        4520,
-        120
+        5180,
+        320
       ],
       "alwaysOutputData": true
     },
@@ -378,8 +390,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        4980,
-        -200
+        5160,
+        -180
       ],
       "retryOnFail": true,
       "credentials": {
@@ -412,8 +424,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4760,
-        120
+        5700,
+        240
       ]
     },
     {
@@ -456,8 +468,8 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        4780,
-        -200
+        4940,
+        -180
       ]
     },
     {
@@ -470,8 +482,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        4540,
-        -220
+        4720,
+        -200
       ]
     },
     {
@@ -488,8 +500,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        4760,
-        -440
+        4940,
+        -400
       ]
     },
     {
@@ -502,69 +514,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4540,
-        -440
-      ]
-    },
-    {
-      "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{ $json.resource.format.toLowerCase() }}",
-                    "rightValue": "pdf",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "id": "16c8666c-83b2-415f-b40d-bd657174a1b6",
-                    "leftValue": "={{ $json.resource.format.toLowerCase() }}",
-                    "rightValue": "html",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {
-          "fallbackOutput": "extra"
-        }
-      },
-      "id": "2d5f1871-c7b0-4fac-90d9-c4f13e411b04",
-      "name": "Switch format",
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3,
-      "position": [
-        4140,
-        -180
+        4720,
+        -400
       ]
     },
     {
@@ -656,6 +607,85 @@
         3040,
         60
       ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.resource.format.toLowerCase() }}",
+                    "rightValue": "pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "16c8666c-83b2-415f-b40d-bd657174a1b6",
+                    "leftValue": "={{ $json.resource.format.toLowerCase() }}",
+                    "rightValue": "html",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "2d5f1871-c7b0-4fac-90d9-c4f13e411b04",
+      "name": "Switch format",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        4140,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "method": "HEAD",
+        "url": "={{ $json.resource.link }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "e3d5d180-7e19-4b03-a257-3b0377a907b6",
+      "name": "Get Document via url",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        4420,
+        -200
+      ],
+      "onError": "continueErrorOutput"
     }
   ],
   "pinData": {
@@ -667,6 +697,13 @@
           "kin": "kinsotabeta",
           "mission": "[PROCESSUS - MISSION]\n\nCONSIGNE DE LA MISSION:\n* Je voudrais un état de l'art.\n* Soudure hybrique laser arc de piéces en alliages d'aluminium\n* Les références devront etre postérieures à : 2015\n\nCONTEXTE DU PORTEUR\nNom de l'entité qui porte les travaux de recherche* : TOMA\nProposition de valeur de l'entité* : Conception, prototypage et fabrication\nde systèmes d'échange de chaleur\nDescription succincte des principales activités* : Conception, prototypage\net fabrication\n\nCONTEXTE APPLICATIF\nApplication qui utilisera le résultat des travaux de recherche* : Systèmes\nd'échangeur de chaleur\nBut applicatif (proposition de valeur de l'application)* : Transférer la\nchaleur d'un endroit à un autre\nContexte d'usage de l'application* : tout domaine d'application, mais en\npriorité, la mobilité, les application industrielles, le secteur maritime,\net la cogénération énergétique\nIdéal applicatif (le meilleur effet possible de votre application)* :\nTransfert parfait et immédiat de toute la chaleur non désirée.\nContraintes sur les moyens disponibles (optionnel) : Les solution doivent\npouvoir etre produites industriellement et rester compétitives\nExigences sur les résultats attendus (optionnel) : Les solution doivent\nprésenter une excellente efficacité et durabilité\n\nPROJET DE RECHERCHE\nQuestion principale de recherche (celle à laquelle contribuent ultimement\ntous les travaux)* : Comment améliorer la qualité des soudure des piéces\nmétalliques en alliage d'aluminium\n\nTravaux de recherche envisagés dans le cadre de ce projet (Vous pouvez\nindiquer plusieurs travaux de recherche, en précisant pour chacun) :\nDésignation des travaux* : Modulation des paramètres de la soudure LASER arc\nDescription succincte des travaux* : Etude de l'influence des paramètres de\nmodulation du faisceau laser dans le cadre de la soudure hybride laser-arc\nde piéces en alliage d'aluminium\nObjectif de recherche associé aux travaux* :  Mieux comprendre l'influence\ndes paramètres sur la qualité des soudures obtenues\nApport applicatif attendu des travaux* : Amélioration de la durabilité et\nde la conductivité thermique des soudures\nFocus de l'état de l'art sur certains sous objectifs de recherche\n(optionnel) :\nFocus sur certains domaines scientifiques (optionnel) :\n\nDésignation des travaux* : formulation de barres d'apport\nDescription succincte des travaux* :  Nous étudions l'influence de la\nformulation des barres sur la qualité des soudures obtenues dans le cadre\nde soudure hybrique laser-ard de pièces en alliage d'aluminium.\nObjectif de recherche associé aux travaux* : Nous cherchons à trouver de\nmeilleures formulation des barres d'apport dans le cadre de la soudure\nlaser arc de piéces d'alliages d'aluminium\nApport applicatif attendu des travaux* : Amélioration de la durabilité et\nde la conductivité thermique des soudures\nFocus de l'état de l'art sur certains sous objectifs de recherche\n(optionnel) :\nFocus sur certains domaines scientifiques (optionnel) :\n\n\n[/PROCESSUS - MISSION]\n\n---\n",
           "threadId": "18d65c0a0f3a5c9b"
+        }
+      }
+    ],
+    "kinchercheur1": [
+      {
+        "json": {
+          "output": "\"Soudure hybride laser arc alliages aluminium après 2015\""
         }
       }
     ]
@@ -692,6 +729,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-01T18:15:41.000Z",
-  "versionId": "27cd9151-5e65-4b15-b26d-86246788d890"
+  "updatedAt": "2024-02-02T17:12:01.000Z",
+  "versionId": "672e4f88-1bf1-455f-bb22-2d606c71ea0d"
 }
