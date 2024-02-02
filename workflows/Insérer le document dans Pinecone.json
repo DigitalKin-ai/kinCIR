@@ -259,6 +259,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "SciHub",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -295,18 +302,7 @@
       "main": [
         [
           {
-            "node": "Questionneur de la base d'études",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Questionneur de la base d'études": {
-      "main": [
-        [
-          {
-            "node": "If INDISPONIBLE",
+            "node": "Requêteur direct de la base d'étude",
             "type": "main",
             "index": 0
           }
@@ -317,7 +313,7 @@
       "main": [
         [
           {
-            "node": "Découper en chunks",
+            "node": "Extracteur d'abstract",
             "type": "main",
             "index": 0
           }
@@ -327,6 +323,33 @@
             "node": "Merge",
             "type": "main",
             "index": 1
+          },
+          {
+            "node": "Extracteur d'abstract",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Requêteur direct de la base d'étude": {
+      "main": [
+        [
+          {
+            "node": "If INDISPONIBLE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Extracteur d'abstract",
+            "type": "ai_languageModel",
+            "index": 0
           }
         ]
       ]
@@ -341,6 +364,28 @@
           },
           {
             "node": "entree questionneur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extracteur d'abstract": {
+      "main": [
+        [
+          {
+            "node": "Découper en chunks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SciHub": {
+      "main": [
+        [
+          {
+            "node": "IF Binary",
             "type": "main",
             "index": 0
           }
@@ -380,15 +425,15 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function decouperEnSegments(texte) {\n    const TAILLE_SEGMENT = 2000;\n    let segments = [];\n    let data = \"\"\n    let citation = $node[\"Extracteur de référence pour citation détaillée\"].json.text;\n    let documentGoogleDriveId = $node[\"Upload Document\"].json.id;\n\n    for (let i = 0; i < texte.length; i += TAILLE_SEGMENT) {\n        let extrait =  texte.substring(i, i + TAILLE_SEGMENT);\n        let extraitElargi = texte.substring(Math.max(i-TAILLE_SEGMENT, 0), Math.min(i + +TAILLE_SEGMENT*3, texte.length));\n        let text = \"# Citation Détaillée\\n\\n\" + citation + \"\\n\\n# Extrait de l'étude\\n\\n\" + extrait;\n\n        segments.push({\"text\": text, \"extrait\": extrait, \"extraitElargi\": extraitElargi, \"citation\": citation, \"documentGoogleDriveId\": documentGoogleDriveId});\n    }\n\n    return segments;\n}\n\nlet texteLong = $node[\"text\"].json.text;\nlet tableauSegments = decouperEnSegments(texteLong);\n\nreturn {\"json\":{\"segments\":tableauSegments}};\n"
+        "jsCode": "function decouperEnSegments(texte) {\n    const TAILLE_SEGMENT = 2000;\n    let segments = [];\n    let data = \"\"\n    let citation = $node[\"Extracteur de référence pour citation détaillée\"].json.text;\n    let abstract = $node[\"Extracteur d'abstract\"].json.text;\n    let documentGoogleDriveId = $node[\"Upload Document\"].json.id;\n\n    for (let i = 0; i < texte.length; i += TAILLE_SEGMENT) {\n        let extrait =  texte.substring(i, i + TAILLE_SEGMENT);\n        let extraitElargi = texte.substring(Math.max(i-TAILLE_SEGMENT, 0), Math.min(i + +TAILLE_SEGMENT*3, texte.length));\n        let text = \"# Citation Détaillée\\n\\n\" + citation + \"\\n\\n# Extrait de l'étude\\n\\n\" + extrait;\n\n        segments.push({\"text\": text, \"extrait\": extrait, \"extraitElargi\": extraitElargi, \"citation\": citation, \"abstract\": abstract, \"documentGoogleDriveId\": documentGoogleDriveId});\n    }\n\n    return segments;\n}\n\nlet texteLong = $node[\"text\"].json.text;\nlet tableauSegments = decouperEnSegments(texteLong);\n\nreturn {\"json\":{\"segments\":tableauSegments}};\n"
       },
       "id": "d74f5836-43a8-424c-9c0d-2f9affc9cb21",
       "name": "Découper en chunks",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3180,
-        780
+        3540,
+        580
       ]
     },
     {
@@ -400,8 +445,7 @@
       "position": [
         -540,
         1080
-      ],
-      "disabled": true
+      ]
     },
     {
       "parameters": {
@@ -441,8 +485,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4120,
-        1360
+        5100,
+        1700
       ]
     },
     {
@@ -454,8 +498,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        3920,
-        1360
+        4900,
+        1700
       ]
     },
     {
@@ -487,8 +531,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        4280,
-        780
+        4640,
+        600
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -534,8 +578,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        3860,
-        780
+        4220,
+        600
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -556,8 +600,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        3400,
-        780
+        3760,
+        580
       ]
     },
     {
@@ -570,8 +614,8 @@
       "type": "n8n-nodes-base.crypto",
       "typeVersion": 1,
       "position": [
-        4060,
-        780
+        4420,
+        600
       ]
     },
     {
@@ -583,8 +627,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        3620,
-        780
+        3980,
+        580
       ]
     },
     {
@@ -757,6 +801,9 @@
     {
       "parameters": {
         "url": "={{ $json.resource.link }}",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "={\n  \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36\",\n  \"Accept\": \"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7\",\n  \"Accept-Encoding\": \"gzip, deflate, br\",\n  \"Accept-Language\": \"fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7\",\n  \"Cache-Control\": \"max-age=0\",\n  \"Cookie\": \"JSESSIONID=F375C2CE61E7AE0F82EF4F82C39A1D7E; MAID=augPeIqrPyTOjiBZ7C1h+A==; MACHINE_LAST_SEEN=2024-02-02T08%3A03%3A30.059-08%3A00; JSESSIONID=F375C2CE61E7AE0F82EF4F82C39A1D7E; __cf_bm=9xB7V.3YAoOM3aZRtph09vfCDjpTJUl6Uu6j5MJGbkU-1706889810-1-AQrPfxfbNOrqL04ywP/SV16fBCg0ahNLUVyMzEYcfYYeun67tARupvWPSQhiDZcjNLNHbkdjQF2xsaB30dJcHlE=\"\n}",
         "options": {}
       },
       "id": "15bbcc73-223f-47ba-a746-37063aa22aab",
@@ -918,20 +965,6 @@
     },
     {
       "parameters": {
-        "workflowId": "=yQ79P9nuVKhkwZpD",
-        "options": {}
-      },
-      "id": "7ea4c075-aa11-4d4b-8a56-8070ccdbb07a",
-      "name": "Questionneur de la base d'études",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        2760,
-        1200
-      ]
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
         "jsCode": "let query = \"Disposons-nous dans notre base d'étude du contenu de l'étude suivante :\\n\\n\" + $node[\"Extracteur de référence pour citation détaillée\"].json.text + \"\\n\\nRéponds par une courte phrase explicative, puis \\\"DISPONIBLE\\\" ou \\\"INDISPONIBLE\\\"\";\n\nreturn {\"json\":{\"query\": query}};\n"
       },
@@ -989,13 +1022,49 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        3100,
-        660
+        3460,
+        460
       ]
     },
     {
       "parameters": {
-        "prompt": "=# Informations\n\n{{ $json[\"text\"].substring(0,5000) }}\n[...]",
+        "workflowId": "=KIwwJYUhZR9Ve39x",
+        "options": {}
+      },
+      "id": "7ea4c075-aa11-4d4b-8a56-8070ccdbb07a",
+      "name": "Requêteur direct de la base d'étude",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2760,
+        1200
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-0125-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "919b1c96-34f4-4e14-acc5-32e94cf65ba3",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3180,
+        780
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "prompt": "=# Informations\n\n{{ $node[\"text\"].json[\"text\"].substring(0,5000) }}\n[...]",
         "messages": {
           "messageValues": [
             {
@@ -1012,6 +1081,44 @@
         2160,
         1360
       ]
+    },
+    {
+      "parameters": {
+        "prompt": "=# Informations\n\n{{ $node[\"text\"].json[\"text\"].substring(0,10000) }}\n[...]",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Tâche\n\nA partir des informations données, fais de ton mieux pour extraire l'abstract de l'étude.\n\nRéponds uniquement avec l'abstract."
+            }
+          ]
+        }
+      },
+      "id": "40dfa38f-2f85-44d1-a89c-6b4e6dc2639d",
+      "name": "Extracteur d'abstract",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        3160,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "method": "HEAD",
+        "url": "=https://sci-hub.ru/{{ $json.resource.link }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "9fa6e796-c6ef-4549-b48e-28aed6da3c7b",
+      "name": "SciHub",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        540,
+        1240
+      ],
+      "onError": "continueErrorOutput"
     }
   ],
   "pinData": {
@@ -1020,7 +1127,7 @@
         "json": {
           "headers": {
             "host": "kins.app.n8n.cloud",
-            "x-request-id": "d4952a4aa5605dd3976bd5678faa8bce",
+            "x-request-id": "cb828d5dfa5f8ec3242c5afdca29ac20",
             "x-real-ip": "10.40.96.106",
             "x-forwarded-for": "10.40.96.106",
             "x-forwarded-host": "kins.app.n8n.cloud",
@@ -1028,7 +1135,7 @@
             "x-forwarded-proto": "https",
             "x-forwarded-scheme": "https",
             "x-scheme": "https",
-            "content-length": "101",
+            "content-length": "150",
             "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
             "content-type": "application/json",
             "user-agent": "axios/1.6.5"
@@ -1037,9 +1144,9 @@
           "query": {},
           "body": {
             "resource": {
-              "name": "mdpi.com",
+              "name": "univ-ouargla.dz",
               "format": "PDF",
-              "link": "https://www.mdpi.com/2075-4701/11/8/1150/pdf"
+              "link": "https://dspace.univ-ouargla.dz/jspui/bitstream/123456789/26135/1/LEMKEDDEM-soumaya.pdf"
             }
           }
         }
@@ -1067,6 +1174,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-02T10:25:09.000Z",
-  "versionId": "c9764dc6-21c7-422a-90a7-48a6bcccefee"
+  "updatedAt": "2024-02-02T17:13:34.000Z",
+  "versionId": "8a72dde4-ea5c-4960-a596-649beeac3f4e"
 }
