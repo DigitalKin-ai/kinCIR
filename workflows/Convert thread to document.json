@@ -1,0 +1,155 @@
+{
+  "active": true,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "document": {
+      "main": [
+        [
+          {
+            "node": "return json",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-02T09:31:06.550Z",
+  "id": "xyhDvFnHl8aCE9hV",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Convert thread to document",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let thread = $node[\"entree\"].json.thread;\n\nfunction extractDynamicContent(thread) {\n    let extractedContent = \"\";\n    const contentPattern = /\\[CONTENU[\\s\\S]*?][\\s\\S]*?\\[\\/CONTENU[\\s\\S]*?\\]/gi;\n\n    let matches;\n    while ((matches = contentPattern.exec(thread)) !== null) {\n        // Ajoute chaque contenu trouvé au texte final\n        extractedContent += matches[0] + \"\\n\\n\";\n    }\n\n    return extractedContent.trim();\n}\n\n// Fonction pour retirer les occurrences\nfunction removeOccurrences(document, pattern) {\n    return document.replace(pattern, '');\n}\n\n// Garder le CONTENU\nlet document = extractDynamicContent(thread);\n\n// Expression régulière pour identifier les occurrences à retirer\nconst pattern = /\\n{0,2}\\[\\/?CONTENU.*?\\]\\n{0,2}/gi;\n\n// Application de la fonction au document\ndocument = removeOccurrences(document, pattern);\n\nif (document == \"\") {\n    document = \"[INFORMATIF - Pas de contenu]\\n\\nLe document est vide pour le moment (pas de baslises CONTENU trouvées dans le thread).\\n\\n[/NIFORMATIF - Pas de contenu]\\n\\n---\\n\\n\\n\" ;\n}\n\nreturn {\"json\":{\"document\":document}};"
+      },
+      "id": "b955f73d-e030-4db3-a60f-0a37c521fc16",
+      "name": "document",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        500
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "eeb9e3bc-dfd4-48a5-8612-10bf23d5c1a9",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        780,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.thread = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "43f24a5a-e1be-42da-a5ec-e1e8ed0ca8f4",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.document =  $node[\"document\"].json.document;\n\nif ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": json.document};\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "b84f0612-c01c-4ad4-b6e0-27e0459ca576",
+      "name": "return json",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Le fonction \"convert_thread_to_document\" extrait tout ce qu'il y a entre balises \"CONTENU\", aka. le document final.",
+        "options": {
+          "inputPlaceholder": "[CONTENU - Le thread] Lorem Ipsum [/CONTENU - Le thread]",
+          "responseMode": "lastNode",
+          "subtitle": "Le fonction \"convert_thread_to_document\" extrait tout ce qu'il y a entre balises \"CONTENU\", aka. le document final.",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "ef131656-94ca-48c1-ba26-400e378742a7",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        780,
+        300
+      ],
+      "webhookId": "2ed232a3-9f81-4322-bb68-a01a4c11ecea"
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "thread": "[ANALYSE - Sélection des Mots-clés]\nPour la formulation des queries concernant les défis associés au soudage hybride laser-arc des alliages d'aluminium, nous devons nous concentrer sur les mots-clés principaux et secondaires suivants : \"hybrid laser arc welding\", \"aluminium alloys\", \"challenges\", \"main issues\", \"technical difficulties\", et \"aluminium welding problems\". Ces mots-clés reflètent le mieux le besoin informationnel spécifié et orienteront la recherche vers des résultats pertinents.\n[/ANALYSE - Sélection des Mots-clés]\n\n---\n\n[ACTION - Création de Phrases de Recherche]\nEn combinant les mots-clés sélectionnés, il est possible de créer des phrases de recherche efficaces. Voici quelques exemples :\n\n1. Technical challenges in hybrid laser arc welding of aluminium alloys.\n2. Main issues in welding aluminium alloys using hybrid laser arc techniques.\n3. Overview of difficulties faced in hybrid laser arc welding of aluminium.\n4. Problems and solutions in aluminium alloy welding with hybrid laser arc methods.\n\nCes phrases de recherches seront transformées en queries destinées à la base de données vectorielle.\n[/ACTION - Création de Phrases de Recherche]\n\n---\n\n[RETOUR - Vérification des Queries]\nLes queries formulées semblent adéquates pour couvrir l'ensemble des défis associés au soudage hybride laser-arc des alliages d'aluminium. Elles sont précises et englobent à la fois les techniques spécifiques (hybrid laser arc welding) et les matériaux concernés (aluminium alloys), tout en ciblant le coeur du besoin informationnel (challenges, main issues, technical difficulties, problems). Les adjustments ne sont pas nécessaires à ce stade.\n[/RETOUR - Vérification des Queries]\n\n---\n\n[CONTENU - Queries Finis]\n# Recherche sur les défis du soudage hybride laser-arc des alliages d'aluminium\n\nL'objectif de ces queries est d'identifier et de synthétiser les principaux défis techniques associés au soudage hybride laser-arc des alliages d'aluminium, une méthode de soudage avancée qui combine laser et arc électrique pour améliorer l'efficacité et la qualité du soudage. La consolidation de ces connaissances permettra d'élaborer des stratégies d'amélioration de ces processus de soudage.\n\n## Queries à effectuer\n\"Technical challenges in hybrid laser arc welding of aluminium alloys.\"\n\"Main issues in welding aluminium alloys using hybrid laser arc techniques.\"\n\"Overview of difficulties faced in hybrid laser arc welding of aluminium.\"\n\"Problems and solutions in aluminium alloy welding with hybrid laser arc methods.\"\n\nCes queries ciblent la recherche des difficultés principales rencontrées dans le domaine spécifique du soudage hybride laser-arc des alliages d'aluminium et visent à identifier les solutions et recommandations adressées dans la littérature scientifique existante.\n[/CONTENU - Queries Finis]\n\n---"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:32:35.457Z",
+      "updatedAt": "2023-12-17T10:32:35.457Z",
+      "id": "y4SS6pvxfLMwCsGn",
+      "name": "service"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-02-02T10:52:35.000Z",
+  "versionId": "f963b5f1-a41c-4c02-8d97-af999f5ba21c"
+}
