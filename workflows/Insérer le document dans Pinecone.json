@@ -380,7 +380,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function decouperEnSegments(texte) {\n    const TAILLE_SEGMENT = 1500;\n    let segments = [];\n    let data = \"\"\n    let citation = $node[\"Extracteur de référence pour citation détaillée\"].json.text;\n    let documentGoogleDriveId = $node[\"Upload Document\"].json.id;\n\n    for (let i = 0; i < texte.length; i += TAILLE_SEGMENT) {\n        let extrait =  texte.substring(i, i + TAILLE_SEGMENT);\n        let extraitElargi = texte.substring(Math.max(i-TAILLE_SEGMENT, 0), Math.min(i + TAILLE_SEGMENT+TAILLE_SEGMENT, texte.length));\n        let text = \"# Citation Détaillée\\n\\n\" + citation + \"\\n\\n# Extrait de l'étude\\n\\n\" + extrait;\n\n        segments.push({\"text\": text, \"extrait\": extrait, \"extraitElargi\": extraitElargi, \"citation\": citation, \"documentGoogleDriveId\": documentGoogleDriveId});\n    }\n\n    return segments;\n}\n\nlet texteLong = $node[\"text\"].json.text;\nlet tableauSegments = decouperEnSegments(texteLong);\n\nreturn {\"json\":{\"segments\":tableauSegments}};\n"
+        "jsCode": "function decouperEnSegments(texte) {\n    const TAILLE_SEGMENT = 2000;\n    let segments = [];\n    let data = \"\"\n    let citation = $node[\"Extracteur de référence pour citation détaillée\"].json.text;\n    let documentGoogleDriveId = $node[\"Upload Document\"].json.id;\n\n    for (let i = 0; i < texte.length; i += TAILLE_SEGMENT) {\n        let extrait =  texte.substring(i, i + TAILLE_SEGMENT);\n        let extraitElargi = texte.substring(Math.max(i-TAILLE_SEGMENT, 0), Math.min(i + +TAILLE_SEGMENT*3, texte.length));\n        let text = \"# Citation Détaillée\\n\\n\" + citation + \"\\n\\n# Extrait de l'étude\\n\\n\" + extrait;\n\n        segments.push({\"text\": text, \"extrait\": extrait, \"extraitElargi\": extraitElargi, \"citation\": citation, \"documentGoogleDriveId\": documentGoogleDriveId});\n    }\n\n    return segments;\n}\n\nlet texteLong = $node[\"text\"].json.text;\nlet tableauSegments = decouperEnSegments(texteLong);\n\nreturn {\"json\":{\"segments\":tableauSegments}};\n"
       },
       "id": "d74f5836-43a8-424c-9c0d-2f9affc9cb21",
       "name": "Découper en chunks",
@@ -461,7 +461,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinspython-71e4f70.svc.eu-west4-gcp.pinecone.io/vectors/upsert",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -523,7 +523,7 @@
             },
             {
               "name": "model",
-              "value": "text-embedding-ada-002"
+              "value": "text-embedding-3-large"
             }
           ]
         },
@@ -1067,6 +1067,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-01T16:49:04.000Z",
-  "versionId": "86b492e7-50bb-4e50-b7f2-3f5b92664418"
+  "updatedAt": "2024-02-02T10:25:09.000Z",
+  "versionId": "c9764dc6-21c7-422a-90a7-48a6bcccefee"
 }
