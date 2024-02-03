@@ -254,8 +254,7 @@
             "type": "main",
             "index": 0
           }
-        ],
-        []
+        ]
       ]
     }
   },
@@ -699,13 +698,6 @@
           "threadId": "18d65c0a0f3a5c9b"
         }
       }
-    ],
-    "kinchercheur1": [
-      {
-        "json": {
-          "output": "\"Soudure hybride laser arc alliages aluminium après 2015\""
-        }
-      }
     ]
   },
   "settings": {
@@ -729,6 +721,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-02T17:12:01.000Z",
-  "versionId": "672e4f88-1bf1-455f-bb22-2d606c71ea0d"
+  "updatedAt": "2024-02-03T10:02:46.000Z",
+  "versionId": "3561a061-0fe8-40dd-bacd-6415b8b6fcba"
 }
