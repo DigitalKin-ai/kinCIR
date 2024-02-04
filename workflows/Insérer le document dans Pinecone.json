@@ -370,22 +370,22 @@
         ]
       ]
     },
-    "Extracteur d'abstract": {
+    "SciHub": {
       "main": [
         [
           {
-            "node": "Découper en chunks",
+            "node": "IF Binary",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "SciHub": {
+    "Extracteur d'abstract": {
       "main": [
         [
           {
-            "node": "IF Binary",
+            "node": "Découper en chunks",
             "type": "main",
             "index": 0
           }
@@ -1084,6 +1084,24 @@
     },
     {
       "parameters": {
+        "method": "HEAD",
+        "url": "=https://sci-hub.ru/{{ $json.resource.link }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "9fa6e796-c6ef-4549-b48e-28aed6da3c7b",
+      "name": "SciHub",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        540,
+        1240
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
         "prompt": "=# Informations\n\n{{ $node[\"text\"].json[\"text\"].substring(0,10000) }}\n[...]",
         "messages": {
           "messageValues": [
@@ -1101,24 +1119,6 @@
         3160,
         580
       ]
-    },
-    {
-      "parameters": {
-        "method": "HEAD",
-        "url": "=https://sci-hub.ru/{{ $json.resource.link }}",
-        "options": {
-          "timeout": 10000
-        }
-      },
-      "id": "9fa6e796-c6ef-4549-b48e-28aed6da3c7b",
-      "name": "SciHub",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        540,
-        1240
-      ],
-      "onError": "continueErrorOutput"
     }
   ],
   "pinData": {
@@ -1174,6 +1174,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-02T17:13:34.000Z",
-  "versionId": "8a72dde4-ea5c-4960-a596-649beeac3f4e"
+  "updatedAt": "2024-02-04T20:05:14.000Z",
+  "versionId": "00a1db84-c6fa-4448-89d5-aa370df7939b"
 }
