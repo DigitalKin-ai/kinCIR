@@ -148,6 +148,17 @@
           }
         ]
       ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-28T18:29:15.855Z",
@@ -164,7 +175,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -900,
+        -1000,
         660
       ]
     },
@@ -227,7 +238,7 @@
     {
       "parameters": {
         "assistantId": "asst_NRJfqzvKf73U2CjrI4bqMSf5",
-        "text": "=[INFORMATIF - Mission du Producteur ({{ $node[\"entree\"].json.kin }})]\n\n{{ $node[\"entree\"].json.mission.length > 15000 ? \"[...]\" : \"\" }}{{ $node[\"entree\"].json.mission.substring($node[\"entree\"].json.mission.length - 15000)}}\n\n[/INFORMATIF - Mission du Producteur ({{ $node[\"entree\"].json.kin }})]\n\n===\n\n[INFORMATIF - Information de lancement du Producteur (Template)]\n\n{{ $node[\"thread\"].json.thread.length > 10000 ? \"[...]\\n\\n\" : \"\" }}{{ $node[\"thread\"].json.thread.substring($node[\"thread\"].json.thread.length - 10000)}}\n\n[/INFORMATIF - Information de lancement du Producteur (Template)]\n\n===\n\nINSTRUCTIONS :\n\nC'est le tout début de la mission !\n\nEffectue les Actions  1. et 2. de ton processus en une fois, de manière à :\n- Lancer le Suivi de l'Avancement de la Mission via la TODOLIST,\n- Déterminer la première Action à réaliser par {{ $node[\"entree\"].json.kin }}.\n\nLa Mission sera ensuite automatiquement lancée par le Workflow \"Lancement de Mission\".",
+        "text": "=**INFORMATIF - Mission du Producteur ({{ $node[\"entree\"].json.kin }} :**\n\n{{ $node[\"entree\"].json.mission.length > 15000 ? \"[...]\" : \"\" }}{{ $node[\"entree\"].json.mission.substring($node[\"entree\"].json.mission.length - 15000)}}\n\n===\n\n**INFORMATIF - Information de lancement du Producteur (Template) :**\n\n{{ $node[\"thread\"].json.thread.length > 10000 ? \"[...]\\n\\n\" : \"\" }}{{ $node[\"thread\"].json.thread.substring($node[\"thread\"].json.thread.length - 10000)}}\n\n===\n\n**INSTRUCTION - Lancement de la mission :**\n\nC'est le tout début de la mission !\n\nEffectue les Actions  1. et 2. de ton processus en une fois, de manière à :\n- Commencer le Suivi de l'Avancement de la Mission avec la TODOLIST,\n- Déterminer la première Action à réaliser par {{ $node[\"entree\"].json.kin }}.\n\nLa Mission sera ensuite automatiquement lancée par le Workflow \"Lancement de Mission\".",
         "options": {}
       },
       "id": "2a7970db-f051-460d-a93c-c54907c0e294",
@@ -398,7 +409,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\ndelete json.chatInput;\ndelete json.textCommand;\ndelete json.action;\ndelete json.sessionId;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
       },
       "id": "48fd48f1-28fb-4486-8267-32a7211e5d3e",
       "name": "clean mission",
@@ -408,22 +419,53 @@
         100,
         940
       ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "02f80902-ff42-499d-b439-55a030b0fe39",
+        "options": {}
+      },
+      "id": "eb52c9e9-109c-463b-bdf2-10fb610bc5e5",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        -1000,
+        460
+      ],
+      "webhookId": "02f80902-ff42-499d-b439-55a030b0fe39"
+    },
+    {
+      "parameters": {
+        "content": "## Connect me\n",
+        "height": 276.71859368947423,
+        "width": 358.66390358429885
+      },
+      "id": "7b8a3bca-9350-44f6-99e3-4dbf3cd0676d",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1080,
+        360
+      ]
     }
   ],
   "pinData": {
     "Execute Workflow Trigger": [
       {
         "json": {
-          "client": "dynergie",
-          "kin": "kinsotabeta",
-          "mission": "[PROCESSUS - MISSION]\n\nCONSIGNE DE LA MISSION:\n* Je voudrais un état de l'art.\n* Soudure hybrique laser arc de piéces en alliages d'aluminium\n* Les références devront etre postérieures à : 2015\n\nCONTEXTE DU PORTEUR\nNom de l'entité qui porte les travaux de recherche* : TOMA\nProposition de valeur de l'entité* : Conception, prototypage et fabrication\nde systèmes d'échange de chaleur\nDescription succincte des principales activités* : Conception, prototypage\net fabrication\n\nCONTEXTE APPLICATIF\nApplication qui utilisera le résultat des travaux de recherche* : Systèmes\nd'échangeur de chaleur\nBut applicatif (proposition de valeur de l'application)* : Transférer la\nchaleur d'un endroit à un autre\nContexte d'usage de l'application* : tout domaine d'application, mais en\npriorité, la mobilité, les application industrielles, le secteur maritime,\net la cogénération énergétique\nIdéal applicatif (le meilleur effet possible de votre application)* :\nTransfert parfait et immédiat de toute la chaleur non désirée.\nContraintes sur les moyens disponibles (optionnel) : Les solution doivent\npouvoir etre produites industriellement et rester compétitives\nExigences sur les résultats attendus (optionnel) : Les solution doivent\nprésenter une excellente efficacité et durabilité\n\nPROJET DE RECHERCHE\nQuestion principale de recherche (celle à laquelle contribuent ultimement\ntous les travaux)* : Comment améliorer la qualité des soudure des piéces\nmétalliques en alliage d'aluminium\n\nTravaux de recherche envisagés dans le cadre de ce projet (Vous pouvez\nindiquer plusieurs travaux de recherche, en précisant pour chacun) :\nDésignation des travaux* : Modulation des paramètres de la soudure LASER arc\nDescription succincte des travaux* : Etude de l'influence des paramètres de\nmodulation du faisceau laser dans le cadre de la soudure hybride laser-arc\nde piéces en alliage d'aluminium\nObjectif de recherche associé aux travaux* :  Mieux comprendre l'influence\ndes paramètres sur la qualité des soudures obtenues\nApport applicatif attendu des travaux* : Amélioration de la durabilité et\nde la conductivité thermique des soudures\nFocus de l'état de l'art sur certains sous objectifs de recherche\n(optionnel) :\nFocus sur certains domaines scientifiques (optionnel) :\n\nDésignation des travaux* : formulation de barres d'apport\nDescription succincte des travaux* :  Nous étudions l'influence de la\nformulation des barres sur la qualité des soudures obtenues dans le cadre\nde soudure hybrique laser-ard de pièces en alliage d'aluminium.\nObjectif de recherche associé aux travaux* : Nous cherchons à trouver de\nmeilleures formulation des barres d'apport dans le cadre de la soudure\nlaser arc de piéces d'alliages d'aluminium\nApport applicatif attendu des travaux* : Amélioration de la durabilité et\nde la conductivité thermique des soudures\nFocus de l'état de l'art sur certains sous objectifs de recherche\n(optionnel) :\nFocus sur certains domaines scientifiques (optionnel) :\n\n\n[/PROCESSUS - MISSION]\n\n---\n",
+          "client": "digitalkin",
+          "kin": "kinchercheur",
+          "mission": "[PROCESSUS - MISSION]\n\nMission : CREATION D'UN DOSSIER DE RECHERCHE\n\nEntreprise : Meetsys\n\nContexte : Intégration de l’intelligence artificielle dans une offre de\ncapitalisation des connaissances\n\nActivités : Meetsys capitalise la connaissance d’experts en utilisant un\nlogiciel de Knowledge Network nommée I2Kn qui sert à stocker et interroger\ndes bases de raisonnements.\n\nObjectif de l'entreprise : Développer un outil de capitalisation des\nraisonnements, intégrant des Intelligences Artificielles (LLM) pour\nfaciliter la capitalisation et la modélisation des raisonnements\n\nPrincipal objectif de recherche : Capitaliser l’ensemble des savoirs et des\nraisonnements des experts d’une entreprise afin de faciliter la recherche\nde connaissances et aider à la recherche de solutions innovantes. Pour\ncela, la solution I2Kn est développée en intégrant les principales avancées\nen intelligence artificielle : Retrieval Augmented Generation (RAG). Chain\nOf Thought (COT). Communauté d’agents IA. Utilisation de plusieurs modèles\nIA embarqués (LLama) afin de garantir la confidentialité des données\nd’entreprise.\n\nThématiques de recherche :\n- Faciliter la capitalisation des raisonnements sous forme de graphes,\nextrait automatiquement par des LLM des interviews des experts\n- Extraire automatiquement les liens entre les raisonnements pour créer un\nvéritable savoir d’entreprise, toujours à jour, et source d'innovation\n- Améliorer la recherche d’information par RAG, au sein des raisonnements\net des documents d'entreprise\n- Aider l’utilisateur par l’interrogation en langage naturel des\nconnaissances et des raisonnements capitalisés\n- Faciliter la lecture des documents techniques par des résumés automatiques\n- Faciliter l’écriture des documents capitalisant les connaissances par des\nIA aidant à la rédaction\n\nPérimètre de recherche : L’entreprise est spécialisée dans le Knowledge\nmanagement et doit intégrer les dernières recherches en IA pour la mettre à\ndisposition de non spécialistes. Elle n’a pas les moyens de réaliser ses\npropres LLM et doit investir pour pouvoir héberger les modèles existants.\nL’équipe de consultants et les clients ne sont pas des spécialistes en IA,\net la solution développée doit être simple d’usage, tout en intégrant les\ndernières avancées en IA\n\n-- \nNicolas Lester Reynolds\nCTO @ Digitalkin.ai <https://DigitalKin.ai>\n+33621636737\nBookez-moi sur Calendy <https://calendly.com/l-reynolds-digitalkin/call>\n\n\n[/PROCESSUS - MISSION]\n\n---\n",
           "sourceGoogleDriveId": null,
-          "threadId": "18d65c0a0f3a5c9b",
-          "threadSubject": "état de l'art. * Soudure hybrique laser arc de piéces en alliages d'aluminium",
-          "threadFrom": "Lester Reynolds <lreynolds@dynergie.fr>",
-          "mailId": "18d65c0a0f3a5c9b",
-          "mailSubject": "état de l'art. * Soudure hybrique laser arc de piéces en alliages d'aluminium",
-          "mailFrom": "From: Lester Reynolds <lreynolds@dynergie.fr>"
+          "threadId": "18d79cf06c68f178",
+          "threadSubject": "DOSSIER DE RECHERCHE - Meetsys",
+          "threadFrom": "Lester Reynolds <l.reynolds@digitalkin.ai>",
+          "mailId": "18d79cf90fdfc276",
+          "mailSubject": "DOSSIER DE RECHERCHE - Meetsys",
+          "mailFrom": "From: Lester Reynolds <l.reynolds@digitalkin.ai>"
         }
       }
     ]
@@ -463,6 +505,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-01T17:42:16.000Z",
-  "versionId": "68c02aba-0487-42f6-b2ba-377d77835c20"
+  "updatedAt": "2024-02-05T15:12:48.000Z",
+  "versionId": "3e4c7204-8c98-4707-ac58-a31d8baa088e"
 }
