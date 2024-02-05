@@ -1,0 +1,616 @@
+{
+  "active": true,
+  "connections": {
+    "GPT4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Questionneur de document ( version chain)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "MultiQuery Retriever",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "MultiQuery Retriever",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de document ( version chain)": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If PDF": {
+      "main": [
+        [
+          {
+            "node": "Read PDF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract From File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Questionneur de document (map reduce)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read PDF": {
+      "main": [
+        [
+          {
+            "node": "text",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Questionneur de document ( version chain)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MultiQuery Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Questionneur de document ( version chain)",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract From File": {
+      "main": [
+        [
+          {
+            "node": "text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "text": {
+      "main": [
+        [
+          {
+            "node": "Questionneur de document (map reduce)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Get existing document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get existing document": {
+      "main": [
+        [
+          {
+            "node": "If PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de document (map reduce)": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-05T16:59:02.676Z",
+  "id": "aoOczsm5IKBTtydy",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "QS - Questionneur de Source",
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4-1106-preview",
+          "mode": "list",
+          "cachedResultName": "gpt-4-1106-preview"
+        },
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "06f4d3c9-992e-4792-926d-2d61b3ccaa37",
+      "name": "GPT4",
+      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3580,
+        280
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "topK": 6
+      },
+      "id": "e7847674-dcd4-4fc5-82d8-2f08d46ea770",
+      "name": "Vector Store Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "typeVersion": 1,
+      "position": [
+        3700,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "e860d983-b7ae-4010-81f7-280254e0a1e7",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3640,
+        900
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "1a26d434-d2e3-420b-be74-e583c890a371",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        -140
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-1106-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "0d152231-1513-44a4-89c9-9900881fc540",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3560,
+        540
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "queryCount": 2
+        }
+      },
+      "id": "d4b9dd97-c6ad-4cb3-ad5f-fb7d1d4b5a6f",
+      "name": "MultiQuery Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverMultiQuery",
+      "typeVersion": 1,
+      "position": [
+        3560,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-0125-preview",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "abca3711-7d33-44df-bf16-4af5fc0e8f5c",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3580,
+        -80
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "={{ Object.keys($binary)[0] }}"
+      },
+      "id": "1c2d416b-0ea9-4702-85a6-ce24d927be96",
+      "name": "Read PDF",
+      "type": "n8n-nodes-base.readPDF",
+      "typeVersion": 1,
+      "position": [
+        3040,
+        -220
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "query": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécéssaire.\n\n# Misison Globale\n\n{{ $node[\"If documentGoogleDriveId\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"If documentGoogleDriveId\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+      },
+      "id": "47d378f6-177b-4101-9364-efdb82f2abc5",
+      "name": "Questionneur de document ( version chain)",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        3560,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "a7ae3df5-163f-4bb8-b6b6-c191e229ef6f",
+              "leftValue": "={{ $binary[Object.keys($binary)[0]].fileExtension }}",
+              "rightValue": "pdf",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "85d7409a-59be-4f83-8108-5b301a215041",
+      "name": "If PDF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2800,
+        -140
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "binaryPropertyName": "={{ Object.keys($binary)[0] }}",
+        "destinationKey": "text",
+        "options": {}
+      },
+      "id": "f399122d-d11a-493c-959f-cce72be3c742",
+      "name": "Extract From File",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        3040,
+        -60
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "text",
+              "stringValue": "={{ $json.text?$json.text:\"[RETOUR -  Pas de contenu]\\n\\nPas de contenu final n'a été rédigé dans ce document pour le moment.\\n\\n[/RETOUR -  Pas de contenu]\\n\\n---\\n\\n\" }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "4c3f3574-9c2a-467e-b5a6-a41d4db83ea8",
+      "name": "text",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3300,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "kins",
+          "mode": "list",
+          "cachedResultName": "kins"
+        },
+        "options": {
+          "pineconeNamespace": "=etudes",
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "type",
+                "value": "=etude"
+              }
+            ]
+          }
+        }
+      },
+      "id": "b695b0a8-12a3-4169-bee8-01cc5efbd85d",
+      "name": "Pinecone Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        3640,
+        760
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n  \n  let regexDocumentId = /#([a-zA-Z0-9\\-\\_]+)/;\n  let matches = json.query.match(regexDocumentId);\n  if (matches && matches[1]) {\n    json.sourceGoogleDriveId = matches[1];\n  } \n}\n\nreturn {\"json\": json};"
+      },
+      "id": "093ef667-d89b-442b-aeaf-ccb94af28a5d",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2300,
+        -140
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "if ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": $json.response.text};\n}\n\nreturn {\"response\":$json.response.text};"
+      },
+      "id": "9b6ec73d-76e2-4914-a35e-69c6739870da",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4080,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.sourceGoogleDriveId }}",
+          "mode": "id"
+        },
+        "options": {
+          "binaryPropertyName": "source"
+        }
+      },
+      "id": "ba79d558-bbfd-43e5-a989-f5b1b545488f",
+      "name": "Get existing document",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2540,
+        -140
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Le questionneur_de_source retourne une réponse issue d'un document source spécifique à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- La citation de l'étude,\n- Les informations que tu cherches,\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire,\n- Le format de réponse désiré.\n\nEx : #1Cxt05liFpx8KZ9Rb3j4x5moijL8NNbHl Quels sont les résultats trouvés par cette étude ? ",
+        "options": {
+          "responseMode": "lastNode",
+          "subtitle": "=Le questionneur_de_source retourne une réponse issue d'un document source spécifique à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- La citation de l'étude,\n- Les informations que tu cherches,\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire,\n- Le format de réponse désiré.\n\nEx : #1Cxt05liFpx8KZ9Rb3j4x5moijL8NNbHl Quels sont les résultats trouvés par cette étude ? ",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "d0eb3c76-1554-4102-8c99-aaa2a821645b",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        -340
+      ],
+      "webhookId": "e216adc2-5ca8-4efc-9193-00ea3d7d26cf"
+    },
+    {
+      "parameters": {
+        "chunkSize": 20000,
+        "chunkOverlap": 2000,
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de Document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
+              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+            }
+          }
+        }
+      },
+      "id": "a55d09fb-dc50-4290-b1c1-569b6245c0f7",
+      "name": "Questionneur de document (map reduce)",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        3560,
+        -240
+      ]
+    }
+  ],
+  "pinData": {
+    "Chat Trigger": [
+      {
+        "json": {
+          "action": "sendMessage",
+          "sessionId": "813a9472-5412-4721-b5a5-1d94c9eaa6b1",
+          "chatInput": "#1b1mxjtzXf7z3nfJY0i0zrnhr0-_6gv95 what are the remaining limitation of hybrid laser-arc welding of aluminium alloys ?"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any",
+    "errorWorkflow": "rr8aeSM8QYyY8Po4"
+  },
+  "staticData": {
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1706090233,
+      "possibleDuplicates": [
+        "18d3ae6fc072fb95"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    },
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-02-05T17:43:02.000Z",
+  "versionId": "a8a71c3c-1b0a-452c-ada8-55cfd3fb310a"
+}
