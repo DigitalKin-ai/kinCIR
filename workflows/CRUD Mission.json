@@ -5,23 +5,7 @@
       "main": [
         [
           {
-            "node": "defaultEmbedding",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
-    "clean mission": {
-      "main": [
-        [
-          {
-            "node": "Upsert mission",
+            "node": "clean mission",
             "type": "main",
             "index": 0
           }
@@ -33,17 +17,6 @@
         [
           {
             "node": "entree",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "status": {
-      "main": [
-        [
-          {
-            "node": "clean mission",
             "type": "main",
             "index": 0
           }
@@ -72,17 +45,6 @@
         ]
       ]
     },
-    "Chat Trigger": {
-      "main": [
-        [
-          {
-            "node": "entree",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Merge": {
       "main": [
         [
@@ -105,20 +67,125 @@
         ]
       ]
     },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "nouvelleMission matching",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouvelleMission matching": {
+      "main": [
+        [
+          {
+            "node": "Lancement Mission Matching",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lancement Mission Matching": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clean updated mission": {
+      "main": [
+        [
+          {
+            "node": "Upsert mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clean mission": {
+      "main": [
+        [
+          {
+            "node": "defaultEmbedding",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
     "Switch Commands": {
       "main": [
         [
           {
-            "node": "status",
+            "node": "mission",
             "type": "main",
             "index": 0
           }
         ],
-        [],
-        [],
-        [],
-        [],
-        []
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Update Attribute",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Update Attribute": {
+      "main": [
+        [
+          {
+            "node": "clean updated mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -136,22 +203,22 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -1900,
-        320
+        -2180,
+        300
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (json.json) {\n json = {\n   ...JSON.parse(json.json),\n   ...json\n }; \n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\n// Cas fonction GPT : Trouver le bon Kin\nif (json.query) {\n  \n  // Détecter la commande\n  let regexCommand = /^\\/[a-zA-Z]+/i;\n  json.command = json.query;\n  if (regexCommand.test(json.query)) {\n      json.command = json.query.match(regexCommand)[0];\n  }\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nif (json.json) {\n json = {\n   ...JSON.parse(json.json),\n   ...json\n }; \n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\njson.query = json.query.trim();\n\n// Détecter la commande\nlet regexCommand = /^\\/mission\\/([a-zA-Z]+)/i;\njson.command = \"\";\nlet matchCommand = json.query.match(regexCommand);\nif (matchCommand) {\n    json.command = matchCommand[1];\n}\n\nlet regexFirstAttribute = /^\\/mission\\/[a-zA-Z]+\\/(\\w+)/;\nlet matchFirstAttribute = json.query.match(regexFirstAttribute);\nif (matchFirstAttribute) {\n  json.firstAttribute = matchFirstAttribute[1];\n}\n\nlet regexAllCommand = /^\\/\\S+ /;\njson.commandText = \"\";\nlet matchAllCommand = json.query.match(regexAllCommand);\nif (matchAllCommand) {\n  let startIndex = matchAllCommand[0].length;\n  json.commandText = json.query.substring(startIndex);\n}\n\nreturn {\"json\": json};"
       },
       "id": "43d4d546-b9e7-481c-b3c0-6475e0931bab",
       "name": "entree",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1720,
-        320
+        -1960,
+        300
       ]
     },
     {
@@ -198,7 +265,7 @@
       "typeVersion": 3,
       "position": [
         -340,
-        260
+        580
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -211,37 +278,9 @@
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
-      },
-      "id": "217277b8-3ec3-43ce-94a8-c73348c670d2",
-      "name": "clean mission",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -460,
-        260
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"entree\"].json;\n\nlet regex = /\\/status (\\w+)/;\nlet match = json.query.match(regex);\n\nif (match) {\n  json.status = match[1];\n} else {\n  json.status = \"waiting\";\n  $execution.customData.set(\"find\", \"me\"); // aide le debug\n}\n\nreturn {\"json\": json};"
-      },
-      "id": "1057faf2-da9c-4f02-9f89-cc8a31fbc3cd",
-      "name": "status",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -700,
-        260
-      ]
-    },
-    {
-      "parameters": {
-        "content": "# /status Update status",
+        "content": "# /mission/update/attributeName value",
         "height": 298.13044544905085,
-        "width": 687.8130956968146
+        "width": 628.657532734963
       },
       "id": "acd5f7bf-2fc4-4cb6-8c12-41de43a6e8d1",
       "name": "Sticky Note2",
@@ -249,7 +288,7 @@
       "typeVersion": 1,
       "position": [
         -760,
-        140
+        460
       ]
     },
     {
@@ -261,31 +300,9 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        460,
-        520
+        440,
+        920
       ]
-    },
-    {
-      "parameters": {
-        "public": true,
-        "initialMessages": "La fonction \"actionneur_de_production\" effectue des commandes sur les missions. Permet de lancer, arrêter, ou compléter des missions.\n\nCommande disponible :\n- /status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nFormat d'appel \"query\" : \"[INSTRUCTION - /status todo kinname]\\n\\nTODOLIST et Prochaine action à réaliser\\n\\n[/INSTRUCTION - /status todo kinname]\\n\\n---\\n\\n\"",
-        "options": {
-          "inputPlaceholder": "/reset",
-          "responseMode": "lastNode",
-          "subtitle": "=La fonction \"actionneur_de_production\" effectue des commandes sur les missions. Permet de lancer, arrêter, ou compléter des missions.\n\nCommande disponible :\n- /status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nFormat d'appel \"query\" : \"[INSTRUCTION - /status todo kinname]\\n\\nTODOLIST et Prochaine action à réaliser\\n\\n[/INSTRUCTION - /status todo kinname]\\n\\n---\\n\\n\"",
-          "title": "={{ $workflow.name }}"
-        }
-      },
-      "id": "aeeea0f3-f116-404f-b465-97d92d5ae80d",
-      "name": "Chat Trigger",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1,
-      "position": [
-        -1900,
-        140
-      ],
-      "webhookId": "b5e5cf9d-1b48-4f67-897c-e1c3389082ca",
-      "disabled": true
     },
     {
       "parameters": {
@@ -296,8 +313,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        20,
-        520
+        0,
+        920
       ]
     },
     {
@@ -307,8 +324,130 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        240,
-        520
+        220,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# /mission/create %missionDescription%",
+        "height": 351.9082299598244,
+        "width": 628.657532734963
+      },
+      "id": "8338ae6f-47cf-49f4-9d9b-0974b7934fee",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        -253.61111531923342
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# /mission/delete done",
+        "height": 298.13044544905085,
+        "width": 628.657532734963
+      },
+      "id": "97e3224c-0eee-48c3-828a-2af33dc1f232",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# /mission/read %missionIdentifier%",
+        "height": 318.29711464059096,
+        "width": 628.657532734963
+      },
+      "id": "4c02c1ae-690c-4094-8018-80a143805a8d",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=**PROCESSUS - MISSION DU DEMANDEUR :**\n\n{{ $node[\"entree\"].json.textCommand.substring(0, 10000)}}{{ $node[\"entree\"].json.textCommand.length > 10000 ? \"[...]\" : \"\" }}\n\n===\n\n**PROCESSUS - MISSION : Matching :**\n\nEn tant que KinMatcheur, ta mission est de trouver le Kin le plus adapté pour répondre au besoin du client, et de lancer le Kin approprié via la fonction GPT \"lancement_de_mission\". "
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a5cd16d5-bd5e-4f51-b0d9-cfb3df79e4d0",
+      "name": "mission",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        -720,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "DXYPhavwlYlTKPqu",
+        "options": {}
+      },
+      "id": "abda3deb-c714-4e31-9bdc-c69dd5dac1a6",
+      "name": "Lancement Mission Matching",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"clean mission\"].json;\n\njson.kinDemandeur = $node[\"entree\"].json.kin;\njson.kin = \"kinmatcheur\";\n\njson.missionDemandeur = $node[\"entree\"].json.mission;\njson.mission = $node[\"entree\"].json.commandText;\n\ndelete chatInput;\ndelete query;\n\n\nreturn {\"json\": json};"
+      },
+      "id": "20a072a8-8e43-4bcf-9bab-d4304e86f8fc",
+      "name": "nouvelleMission matching",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -500,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\ndelete json.chatInput;\ndelete json.textCommand;\ndelete json.action;\ndelete json.sessionId;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "217277b8-3ec3-43ce-94a8-c73348c670d2",
+      "name": "clean updated mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -460,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\ndelete json.chatInput;\ndelete json.textCommand;\ndelete json.action;\ndelete json.sessionId;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "4ba3cd1b-3b11-475b-b343-547f7ef691d9",
+      "name": "clean mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1740,
+        300
       ]
     },
     {
@@ -325,7 +464,7 @@
                 "conditions": [
                   {
                     "leftValue": "={{ $node[\"entree\"].json.command }}",
-                    "rightValue": "=/status",
+                    "rightValue": "=create",
                     "operator": {
                       "type": "string",
                       "operation": "equals"
@@ -346,7 +485,7 @@
                   {
                     "id": "5545edd7-2310-4f6e-b1ea-fe581a9f33dc",
                     "leftValue": "={{ $node[\"entree\"].json.command }}",
-                    "rightValue": "/reset",
+                    "rightValue": "read",
                     "operator": {
                       "type": "string",
                       "operation": "equals",
@@ -368,7 +507,7 @@
                   {
                     "id": "12f3aded-2002-4d38-b61e-59ed3f9c53bb",
                     "leftValue": "={{ $node[\"entree\"].json.command }}",
-                    "rightValue": "/reinitialize",
+                    "rightValue": "update",
                     "operator": {
                       "type": "string",
                       "operation": "equals",
@@ -388,35 +527,13 @@
                 },
                 "conditions": [
                   {
-                    "id": "0fde2de7-994c-45df-b036-aec80e1f4d7d",
-                    "leftValue": "={{ $node[\"entree\"].json.command == \"/on\" || $node[\"entree\"].json.command == \"/start\" }}",
-                    "rightValue": "",
+                    "id": "e8c4e356-2e09-4d8e-ab5a-f5d8540b1c21",
+                    "leftValue": "={{ $node[\"entree\"].json.command }}",
+                    "rightValue": "delete",
                     "operator": {
-                      "type": "boolean",
-                      "operation": "true",
-                      "singleValue": true
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "bc0ed4d6-d8e8-4981-8282-4c34824bb30b",
-                    "leftValue": "={{ $node[\"entree\"].json.command == \"/off\" || $node[\"entree\"].json.command == \"/stop\" }}",
-                    "rightValue": "",
-                    "operator": {
-                      "type": "boolean",
-                      "operation": "true",
-                      "singleValue": true
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
                     }
                   }
                 ],
@@ -438,9 +555,54 @@
         -1220,
         640
       ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"clean mission\"].json;\n\njson.commandText = $node[\"entree\"].json.commandText;\n\nlet regex = /\"([^\"]*)\"/;\nlet matches = $node[\"entree\"].json.commandText.match(regex);\nif (matches && matches[1]) {\n  json[$node[\"entree\"].json.firstAttribute] = matches[1];\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "1057faf2-da9c-4f02-9f89-cc8a31fbc3cd",
+      "name": "Update Attribute",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -700,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "La fonction \"actionneur_de_production\" effectue des commandes sur les missions. Permet de lancer, arrêter, ou compléter des missions.\n\nCommande disponible :\n- /status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nFormat d'appel \"query\" : \"[INSTRUCTION - /status todo kinname]\\n\\nTODOLIST et Prochaine action à réaliser\\n\\n[/INSTRUCTION - /status todo kinname]\\n\\n---\\n\\n\"",
+        "options": {
+          "inputPlaceholder": "/reset",
+          "responseMode": "lastNode",
+          "subtitle": "=La fonction \"actionneur_de_production\" effectue des commandes sur les missions. Permet de lancer, arrêter, ou compléter des missions.\n\nCommande disponible :\n- /status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nFormat d'appel \"query\" : \"[INSTRUCTION - /status todo kinname]\\n\\nTODOLIST et Prochaine action à réaliser\\n\\n[/INSTRUCTION - /status todo kinname]\\n\\n---\\n\\n\"",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "aeeea0f3-f116-404f-b465-97d92d5ae80d",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2180,
+        120
+      ],
+      "webhookId": "b5e5cf9d-1b48-4f67-897c-e1c3389082ca"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Chat Trigger": [
+      {
+        "json": {
+          "sessionId": "test-0098565c-44fb-4bf8-92b9-1bf87c100e87",
+          "action": "sendMessage",
+          "chatInput": "/mission/update/status \"exception\" : c'est la merde "
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -460,6 +622,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-01T12:31:43.000Z",
-  "versionId": "28ef2b98-0cfa-47a7-b4fb-4db1b33c3829"
+  "updatedAt": "2024-02-05T22:34:07.000Z",
+  "versionId": "d20abfd5-ab20-4e9b-810d-7031bda93cec"
 }
