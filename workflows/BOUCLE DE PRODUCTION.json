@@ -35,11 +35,6 @@
             "node": "kinchercheurbeta",
             "type": "ai_tool",
             "index": 0
-          },
-          {
-            "node": "kinsotabeta",
-            "type": "ai_tool",
-            "index": 0
           }
         ]
       ]
@@ -49,16 +44,6 @@
         [
           {
             "node": "kinsotabeta",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kincir",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kincirbeta",
             "type": "ai_tool",
             "index": 0
           },
@@ -256,11 +241,6 @@
             "index": 0
           },
           {
-            "node": "kinmail",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
             "node": "kinontologie",
             "type": "ai_tool",
             "index": 0
@@ -271,11 +251,6 @@
     "Message au Client": {
       "ai_tool": [
         [
-          {
-            "node": "kinpo",
-            "type": "ai_tool",
-            "index": 0
-          },
           {
             "node": "Manager",
             "type": "ai_tool",
@@ -694,7 +669,7 @@
             "index": 0
           },
           {
-            "node": "kinmatcheur",
+            "node": "kinrsi",
             "type": "ai_tool",
             "index": 0
           },
@@ -709,18 +684,7 @@
             "index": 0
           },
           {
-            "node": "kinrsi",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Questionneur de document source": {
-      "ai_tool": [
-        [
-          {
-            "node": "kinlca",
+            "node": "kinmatcheur",
             "type": "ai_tool",
             "index": 0
           }
@@ -736,32 +700,12 @@
             "index": 0
           },
           {
-            "node": "kincir",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
             "node": "kinlca",
             "type": "ai_tool",
             "index": 0
           },
           {
-            "node": "kinrsi",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
             "node": "kinsota",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kincirbeta",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinontologie",
             "type": "ai_tool",
             "index": 0
           },
@@ -777,16 +721,6 @@
           },
           {
             "node": "kinchercheurbeta",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinmail",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinmatcheur",
             "type": "ai_tool",
             "index": 0
           }
@@ -887,28 +821,6 @@
         ]
       ]
     },
-    "mission set waiting": {
-      "main": [
-        [
-          {
-            "node": "Actionneur de Production1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Actionneur de production (match)": {
-      "ai_tool": [
-        [
-          {
-            "node": "kinmatcheur",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "If on": {
       "main": [
         [
@@ -920,7 +832,7 @@
         ],
         [
           {
-            "node": "mission set waiting",
+            "node": "mission set todo",
             "type": "main",
             "index": 0
           }
@@ -953,25 +865,14 @@
       "main": [
         [
           {
-            "node": "mission kinmail",
+            "node": "If not kinmail",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "mission set todo",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "mission set todo": {
-      "main": [
-        [
-          {
-            "node": "Actionneur de Production",
+            "node": "Send Instructions1",
             "type": "main",
             "index": 0
           }
@@ -1021,6 +922,50 @@
           }
         ]
       ]
+    },
+    "Lancement de mission": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinmatcheur",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission set todo": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Update status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de source": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinlca",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If not kinmail": {
+      "main": [
+        [
+          {
+            "node": "mission kinmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-17T12:47:07.331Z",
@@ -1040,8 +985,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1000,
-        2120
+        2180,
+        1740
       ]
     },
     {
@@ -1083,8 +1028,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        1240,
-        1980
+        1400,
+        1320
       ]
     },
     {
@@ -1118,8 +1063,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2660,
-        -120
+        1400,
+        -200
       ]
     },
     {
@@ -1153,8 +1098,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        3080,
-        -120
+        1540,
+        -200
       ]
     },
     {
@@ -1216,8 +1161,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -460,
-        900
+        -780,
+        960
       ]
     },
     {
@@ -1236,15 +1181,15 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"entree\"].json;\n\nif ($json.output != null) {\n  json.output = $json.output;\n} else {\n  json.output = \"[EXCEPTION - Error with OpenAI call]\\n\\n\" + $prevNode.name +\" returned an error when calling OpenAI Assistant\\n\\n[/EXCEPTION - Error with OpenAI call]\"; \n}\n\njson.dernierProducteur = $prevNode.name;\njson.promptProducteur = $node[\"Prompt Producteur\"].json.promptProducteur;\n\njson.entireThread += '\\n\\n---\\n\\n' + json.output;\njson.thread += '\\n\\n---\\n\\n' + json.output;\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"entree\"].json;\n\nif ($json.output != null) {\n  json.output = $json.output;\n} else {\n  json.output = \"[EXCEPTION - Error with OpenAI call]\\n\\n\" + $prevNode.name +\" returned an error when calling OpenAI Assistant\\n\\n[/EXCEPTION - Error with OpenAI call]\"; \n}\n\njson.dernierProducteur = $prevNode.name;\njson.promptProducteur = $node[\"Prompt Producteur\"].json.promptProducteur;\n\njson.entireThread += '\\n\\n---\\n\\n' + json.output;\njson.thread += '\\n\\n---\\n\\n' + json.output;\n\nreturn {\"json\": json};"
       },
       "id": "56074961-40df-4a44-aec3-3b05e23ee95e",
       "name": "Producteur",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3040,
-        980
+        2960,
+        960
       ]
     },
     {
@@ -1282,8 +1227,8 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -920,
-        900
+        -1240,
+        960
       ]
     },
     {
@@ -1296,22 +1241,22 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -680,
-        900
+        -1000,
+        960
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"input\"].json;\n\n// Cleaner les datas utilisées\ndelete json.output;\ndelete json.dernierProducteur;\ndelete json.promptProducteur;\njson.remainingThread = \"\";\n\n// Préparer le nouveau thread\njson.entireThread = $node[\"thread\"].json.thread;\njson.thread = $node[\"thread\"].json.thread;\n\n// Préparer les nouvelles instructions\njson.instructions = json.query?json.query:json.instructions; // Cas fonction GPT\n\nMAX_LENGTH = 10000;\nif (json.thread.length > MAX_LENGTH) {\n    json.thread = \"Le début du document est déjà rédigé, voici le thread[...]\\n\\n\" + json.thread.substring(json.thread.length - MAX_LENGTH);\n    json.remainingThread = json.entireThread.substring(0, json.entireThread.length - MAX_LENGTH);\n}\n\nif (!json.documentGoogleDriveId) {\n  json.documentGoogleDriveId = $node[\"thread\"].json.documentGoogleDriveId;\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"input\"].json;\n\n// Cleaner les datas utilisées\ndelete json.output;\ndelete json.dernierProducteur;\ndelete json.promptProducteur;\njson.remainingThread = \"\";\n\n// Préparer le nouveau thread\njson.entireThread = $node[\"thread\"].json.thread;\njson.thread = $node[\"thread\"].json.thread;\n\n// Préparer les nouvelles instructions\njson.instructions = json.query?json.query:json.instructions; // Cas fonction GPT\n\nMAX_LENGTH = 10000;\nif (json.thread.length > MAX_LENGTH) {\n    json.thread = \"Le début du document est déjà rédigé, voici le thread[...]\\n\\n\" + json.thread.substring(json.thread.length - MAX_LENGTH);\n    json.remainingThread = json.entireThread.substring(0, json.entireThread.length - MAX_LENGTH);\n}\n\nif (!json.documentGoogleDriveId) {\n  json.documentGoogleDriveId = $node[\"thread\"].json.documentGoogleDriveId;\n}\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
       },
       "id": "f2943232-b99c-4e69-ae50-48dd527aa0a6",
       "name": "entree",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -260,
-        900
+        -580,
+        960
       ]
     },
     {
@@ -1332,8 +1277,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        580,
-        900
+        260,
+        960
       ]
     },
     {
@@ -1346,8 +1291,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        380,
-        900
+        60,
+        960
       ]
     },
     {
@@ -1381,8 +1326,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2400,
-        540
+        2340,
+        960
       ]
     },
     {
@@ -1416,8 +1361,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2520,
-        1620
+        2180,
+        960
       ]
     },
     {
@@ -1451,8 +1396,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2180,
-        1940
+        2100,
+        1520
       ],
       "disabled": true
     },
@@ -1889,8 +1834,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3,
       "position": [
-        780,
-        740
+        460,
+        800
       ]
     },
     {
@@ -1924,8 +1869,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2800,
-        200
+        2440,
+        -20
       ]
     },
     {
@@ -1959,8 +1904,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2600,
-        200
+        2320,
+        -20
       ]
     },
     {
@@ -1974,8 +1919,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1640,
-        -140
+        860,
+        480
       ],
       "retryOnFail": true,
       "credentials": {
@@ -1983,7 +1928,8 @@
           "id": "WY3bm7GCb9qfewyS",
           "name": "OpenAi account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1999,8 +1945,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1640,
-        100
+        840,
+        -20
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2021,8 +1967,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1640,
-        360
+        2580,
+        -380
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2043,8 +1989,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1640,
-        580
+        840,
+        140
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2065,8 +2011,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1200,
-        -80
+        860,
+        640
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2074,7 +2020,8 @@
           "id": "WY3bm7GCb9qfewyS",
           "name": "OpenAi account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -2087,8 +2034,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1200,
-        160
+        2580,
+        -20
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2109,8 +2056,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1200,
-        400
+        2580,
+        -180
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2131,8 +2078,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1200,
-        640
+        840,
+        -400
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2153,8 +2100,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        2700,
-        -400
+        840,
+        320
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2175,8 +2122,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1200,
-        1180
+        840,
+        -200
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2197,8 +2144,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1200,
-        1440
+        2400,
+        1340
       ],
       "retryOnFail": false,
       "credentials": {
@@ -2219,8 +2166,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1200,
-        1640
+        2420,
+        1520
       ],
       "retryOnFail": false,
       "credentials": {
@@ -2241,8 +2188,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1200,
-        1860
+        1080,
+        1300
       ],
       "retryOnFail": false,
       "credentials": {
@@ -2263,8 +2210,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1200,
-        2120
+        2420,
+        1740
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2285,8 +2232,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1600,
-        1360
+        2580,
+        140
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2307,8 +2254,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1600,
-        1580
+        2580,
+        360
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2329,8 +2276,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1600,
-        1800
+        2580,
+        580
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2352,8 +2299,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1600,
-        2020
+        2580,
+        800
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2375,8 +2322,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1600,
-        2220
+        1080,
+        1480
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2390,7 +2337,7 @@
     {
       "parameters": {
         "assistantId": "asst_NRJfqzvKf73U2CjrI4bqMSf5",
-        "text": "=[INFORMATIF - Mission du Producteur]\n\n{{ $node[\"entree\"].json.mission.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"entree\"].json.mission.substring($node[\"entree\"].json.mission.length - 5000)}}\n\n[/INFORMATIF - Mission du Producteur]\n\n===\n\n[INFORMATIF - Document Final déjà rédigé à ce stade]\n\n{{ $node[\"document\"].json.document.length > 5000 ? \"[...]\\n\\n\" : \"\" }}{{ $node[\"document\"].json.document.substring($node[\"document\"].json.document.length - 5000)}}\n\n[/INFORMATIF - Document Final déjà rédigé à ce stade]\n\n===\n\n[INFORMATIF - Dernières Instructions que tu as données au {{  $node[\"Producteur\"].json.dernierProducteur }}]\n\n{{ $node[\"entree\"].json.instructions }}\n\n[/INFORMATIF - Dernières Instructions données au {{  $node[\"Producteur\"].json.dernierProducteur }}]\n\n---\n[INFORMATIF - Rédaction réalisée / Actions effectuées par {{  $node[\"Producteur\"].json.dernierProducteur }}]\n\n{{ $node[\"Producteur\"].json.output.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"Producteur\"].json.output.substring($node[\"Producteur\"].json.output.length - 5000)}}\n\n[/INFORMATIF - Rédaction réalisée / Actions effectuées par {{  $node[\"Producteur\"].json.dernierProducteur }}]\n\n===\n\n[INSTRUCTIONS : Manage la Boucle de Production]\n\nEffectue les Actions  1, 2, 3 et 4 de ton processus en une seule fois, de manière à :\n- Faire le Suivi de l'Avancement de la Mission,\n- Déterminer la Prochaine Action,\n- Déclencher la prochaine Action,\n- Déclencher l'email de suivi si besoin.\n\n[/INSTRUCTIONS : Determination de la prochaine étape]",
+        "text": "=**INFORMATIF - Mission du Producteur :**\n\n{{ $node[\"entree\"].json.mission.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"entree\"].json.mission.substring($node[\"entree\"].json.mission.length - 5000)}}\n\n===\n\n**INFORMATIF - Document Final déjà rédigé à ce stade :**\n\n{{ $node[\"document\"].json.document.length > 5000 ? \"[...]\\n\\n\" : \"\" }}{{ $node[\"document\"].json.document.substring($node[\"document\"].json.document.length - 5000)}}\n\n===\n\n**INFORMATIF - Dernières Instructions que tu as données au {{  $node[\"Producteur\"].json.dernierProducteur }} :**\n\n{{ $node[\"entree\"].json.instructions }}\n\n===\n\n**INFORMATIF - Rédaction réalisée / Actions effectuées par {{  $node[\"Producteur\"].json.dernierProducteur }} :**\n\n{{ $node[\"Producteur\"].json.output.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"Producteur\"].json.output.substring($node[\"Producteur\"].json.output.length - 5000)}}\n\n===\n\n**INSTRUCTIONS : Manage la Boucle de Production :**\n\nEffectue les Actions de ton processus en une seule fois, de manière à :\n- Faire le Suivi de l'Avancement de la Mission,\n- Déterminer la Prochaine Action,\n- Déclencher la prochaine Action.",
         "options": {}
       },
       "id": "0b4c1b91-ae71-4843-b103-0277f8f487b4",
@@ -2441,53 +2388,14 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2380,
-        2140
-      ]
-    },
-    {
-      "parameters": {
-        "name": "questionneur_de_document_source",
-        "description": "Le questionneur_de_document_source retourne une réponse issue d'un document source spécifique à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- La citation de l'étude,\n- Les informations que tu cherches,\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire,\n- Le format de réponse désiré.\n",
-        "workflowId": "anybPoo9G98Nx3qW",
-        "fields": {
-          "values": [
-            {
-              "name": "sync",
-              "type": "booleanValue"
-            },
-            {
-              "name": "kin",
-              "stringValue": "={{ $node[\"entree\"].json.kin }}"
-            },
-            {
-              "name": "mission",
-              "stringValue": "={{ $node[\"entree\"].json.mission }}"
-            },
-            {
-              "name": "documentGoogleDriveId",
-              "stringValue": "={{ $node[\"entree\"].json.sourceGoogleDriveId }}"
-            },
-            {
-              "name": "threadId",
-              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
-            }
-          ]
-        }
-      },
-      "id": "0f130d0e-3a84-4baa-9a59-1e35c62f9dce",
-      "name": "Questionneur de document source",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        2160,
-        140
+        2020,
+        960
       ]
     },
     {
       "parameters": {
         "name": "questionneur_de_document",
-        "description": "=Le questionneur_de_document retourne une réponse issue du contenu du document final sur lequel travaille le Kin Producteur, à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Si tu souhaites du verbatim,\n- Les informations que tu cherches,\n- L'intention d'usage : tu souhaites faire de la réponse,\n- Le format de réponse désiré.\n",
+        "description": "=Le questionneur_de_document retourne une réponse issue du contenu du document final sur lequel travaille le Kin Producteur, à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Si tu souhaites du verbatim,\n- Les informations que tu cherches,\n- L'intention d'usage : tu souhaites faire de la réponse,\n- Le format de réponse désiré.",
         "workflowId": "anybPoo9G98Nx3qW",
         "fields": {
           "values": [
@@ -2523,14 +2431,14 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2200,
-        400
+        1740,
+        960
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"Producteur\"].json;\n\njson.instructions = $node[\"Manager\"].json.output;\njson.executionId = $execution.id;\n\nreturn {\"json\" : json};"
+        "jsCode": "let json = $node[\"Producteur\"].json;\n\njson.instructions = $node[\"Manager\"].json.output;\n\nreturn {\"json\" : json};"
       },
       "id": "8037e86a-05b7-42ab-9041-974aec0b6322",
       "name": "response1",
@@ -2572,14 +2480,14 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2500,
-        1920
+        1460,
+        960
       ]
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -2638,7 +2546,7 @@
     {
       "parameters": {
         "chatId": "-4130957615",
-        "text": "=PAS PASSE DANS ACTIONNEUR DE PRODUCTION #{{ $execution.id }}",
+        "text": "={{ $node[\"Manager\"].json.output }}",
         "additionalFields": {
           "appendAttribution": false,
           "parse_mode": "MarkdownV2"
@@ -2649,8 +2557,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.1,
       "position": [
-        5320,
-        960
+        5340,
+        980
       ],
       "credentials": {
         "telegramApi": {
@@ -2688,8 +2596,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -60,
-        900
+        -380,
+        960
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -2699,69 +2607,6 @@
           "name": "PineconeApi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "workflowId": "MGND8ynCD26RRnsW",
-        "options": {}
-      },
-      "id": "75686575-0544-43e3-8365-dd4978e5425e",
-      "name": "Actionneur de Production1",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        380,
-        1120
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/status waiting\";\n\nreturn {\"json\": json};"
-      },
-      "id": "ade87496-681d-4df5-881a-7f9fb6665942",
-      "name": "mission set waiting",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        160,
-        1120
-      ]
-    },
-    {
-      "parameters": {
-        "name": "actionneur_de_production",
-        "description": "La fonction \"actionneur_de_production\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou compléter la mission en cours d'execution.\n\nquery :\n/status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nExemples :\n- Continuer la boucle de production: \"/status todo kinname\\n\\n%TODOLIST% et %Prochaine action à réaliser%\"\n- Gérer une exception : \"/status waiting kinname\\n\\n%Explication de l'exception% \"\n- Compléter une mission : \"/status done kinname\\n\\n%Travail acocmpli%\"\n- Eaner une nouvelle mission : \"/nouvellemission kinname\\n\\n%Description détailée% \"",
-        "workflowId": "MGND8ynCD26RRnsW",
-        "fields": {
-          "values": [
-            {
-              "name": "sync",
-              "type": "booleanValue"
-            },
-            {
-              "name": "json",
-              "stringValue": "={{ JSON.stringify($node[\"input\"].json) }}"
-            },
-            {
-              "name": "kinDemandeur",
-              "stringValue": "={{ $node[\"input\"].json.kinDemandeur }}"
-            },
-            {
-              "name": "missionDemandeur",
-              "stringValue": "={{ $node[\"input\"].json.missionDemandeur }}"
-            }
-          ]
-        }
-      },
-      "id": "2660a464-bc13-46d6-8124-1971b7f8fc23",
-      "name": "Actionneur de production (match)",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        1180,
-        2340
-      ]
     },
     {
       "parameters": {
@@ -2792,8 +2637,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        160,
-        900
+        -160,
+        960
       ]
     },
     {
@@ -2813,7 +2658,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
         "sendHeaders": true,
@@ -2839,8 +2684,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        5320,
-        1160
+        5360,
+        1380
       ],
       "credentials": {
         "pineconeApi": {
@@ -2865,36 +2710,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        5500,
-        1160
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "MGND8ynCD26RRnsW",
-        "options": {}
-      },
-      "id": "7d7d0edb-865b-46dd-b2ca-0d4b42b7a765",
-      "name": "Actionneur de Production",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        5980,
-        1180
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"clean mission\"].json;\n\njson.query = \"/status todo\";\n\nreturn {\"json\": json};"
-      },
-      "id": "0cd1862c-abd8-4614-8b25-600f008aaaeb",
-      "name": "mission set todo",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        5760,
-        1180
+        5580,
+        1380
       ]
     },
     {
@@ -2903,7 +2720,7 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "=[INFORMATIF - Date]\n\n{{ $node[\"entree\"].json.date }}\n\n[/INFORMATIF - Date]\n\n===\n\n[INFORMATIF - Client]\n\n{{ $node[\"entree\"].json.client }}\n\n[/INFORMATIF - Client]\n\n\n===\n\n[INFORMATIF - Mission]\n\n{{ $node[\"entree\"].json.mission.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"entree\"].json.mission.substring($node[\"sortie\"].json.mission.length - 5000)}}\n\n[/INFORMATIF - Mission]\n\n\n===\n\n[INFORMATIF - Dernier Kin Producteur ]\n\n{{ $node[\"entreer\"].json.kin }}\n\n[/INFORMATIF - Dernier Kin Producteur ]\n\n\n===\n\n[INFORMATIF - Dernière production du Kin Producteur]\n\n{{ $node[\"Producteur\"].json.output.length > 8000 ? \"[...]\" : \"\" }}{{ $node[\"Producteur\"].json.output.substring($node[\"Producteur\"].json.output.length - 8000)}}\n\n[/INFORMATIF - Dernière production du Kin Producteur]\n\n\n===\n\n[INFORMATIF - Dernier Message du KinManager]\n\n{{ $node[\"Manager\"].json.output }}\n\n[/INFORMATIF - Dernier Message du KinManager]\n\n===\n\n[PROCESSUS - Mission : Rédaction & Envoi D'Email]\n\nTa mission est de rédiger et d'envoyer le mail approprié au client à partir des informations dont tu disposes.\n\n[/PROCESSUS - Mission : Rédaction & Envoi D'Email]"
+              "stringValue": "=Date : {{ $node[\"entree\"].json.date }}\nClient : {{ $node[\"entree\"].json.client }}\n\n===\n\n**INFORMATIF - Mission :**\n\n{{ $node[\"entree\"].json.mission.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"entree\"].json.mission.substring($node[\"entree\"].json.mission.length - 5000)}}\n\n===\n\n**INFORMATIF - Dernière production du {{ $node[\"entree\"].json.kin }} :**\n\n{{ $node[\"Producteur\"].json.output.length > 8000 ? \"[...]\" : \"\" }}{{ $node[\"Producteur\"].json.output.substring($node[\"Producteur\"].json.output.length - 8000)}}\n\n===\n\n**INFORMATIF - Dernier Message du KinManager :**\n\n{{ $node[\"Manager\"].json.output }}\n\n===\n\n**PROCESSUS - Mission : Rédaction & Envoi D'Email] :**\n\nTa mission est de rédiger et d'envoyer le mail approprié au client à partir des informations dont tu disposes."
             }
           ]
         },
@@ -2914,22 +2731,22 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        5760,
-        1000
+        6060,
+        1220
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"sortie\"].json));\n\ndelete json.query;\n\n// Mettre à jour le Kin\njson.kinDemandeur = json.kin;\njson.kin = \"kinmail\";\njson.format = \"pdf\";\n\n// Mettre à jour la mission\njson.missionDuDemandeur = json.mission;\njson.mission = $node[\"mission kinmail\"].json.mission;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
+        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"clean mission\"].json));\n\ndelete json.query;\n\n// Mettre à jour le Kin\njson.kinDemandeur = json.kin;\njson.kin = \"kinmail\";\njson.format = \"pdf\";\n\n// Mettre à jour la mission\njson.missionDuDemandeur = json.mission;\njson.mission = $node[\"mission kinmail\"].json.mission;\n\nreturn {\"json\": json};"
       },
       "id": "4710bd82-3e05-41e2-9ddd-54e8dc00963d",
       "name": "nouvelleMission kinmail",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        6000,
-        1000
+        6280,
+        1220
       ]
     },
     {
@@ -2942,8 +2759,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        6200,
-        1000
+        6500,
+        1220
       ]
     },
     {
@@ -2956,8 +2773,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        4540,
-        1160
+        4520,
+        800
       ],
       "onError": "continueRegularOutput"
     },
@@ -2965,7 +2782,7 @@
       "parameters": {
         "name": "crud_mission",
         "description": "La fonction \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'execution.\n\nquery :\n/status todo/doing/waiting/done : Modifie le statut de la mission en cours (ex : '/status done')\n\nExemples :\n- Continuer la boucle de production: \"/status todo kinname\\n\\n%TODOLIST% et %Prochaine action à réaliser%\"\n- Gérer une exception : \"/status waiting kinname\\n\\n%Explication de l'exception% \"\n- Compléter une mission : \"/status done kinname\\n\\n%Travail acocmpli%\"\n- Eaner une nouvelle mission : \"/nouvellemission kinname\\n\\n%Description détailée% \"",
-        "workflowId": "MGND8ynCD26RRnsW",
+        "workflowId": "HLDDZOmG8kuk2zTi",
         "fields": {
           "values": [
             {
@@ -2985,7 +2802,228 @@
       "typeVersion": 1,
       "position": [
         4180,
-        1240
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# UF Amélioration Continue",
+        "height": 1677.1050484998564,
+        "width": 1219.5279693808732
+      },
+      "id": "4dbbe16f-89bc-4919-a46e-4b9fdafec1bd",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        -685.385748179589
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# UF PRODUCTION",
+        "height": 1678.7077168166893,
+        "width": 1137.0587249575672
+      },
+      "id": "4fe9aea2-f9d5-4200-8d44-6b475866a5eb",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        620,
+        -680
+      ]
+    },
+    {
+      "parameters": {
+        "content": "\n\n\n\n# UF MANAGEMENT",
+        "height": 1331.7193003202674,
+        "width": 1191.0347008570102
+      },
+      "id": "3572c142-67c5-4e36-923d-a5f41b06e9c4",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "content": "\n\n\n\n# UF RELATION CLIENT",
+        "height": 1331.7193003202674,
+        "width": 1119.066732991086
+      },
+      "id": "61cf0eb5-05cb-4f74-b9e9-48e4137a24cc",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        640,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "name": "lancement_de_mission",
+        "description": "La fonction \"lancement_de_mission\" permet de poser à un Kin de l'équipe une question rapide  qui n'est pas en rapport avec une mission spécifique.\n\nPour bien l'utiliser :\n- Mentionne le nom du @Kin,\n- Explique ton contexte et ton intention d'usage,\n- ta question.",
+        "workflowId": "DXYPhavwlYlTKPqu",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "=kin",
+              "stringValue": "={{ $node[\"entree\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            }
+          ]
+        }
+      },
+      "id": "ac1cf370-752a-4514-8208-4b19df5bd8a1",
+      "name": "Lancement de mission",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2580,
+        1980
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-4130957615",
+        "text": "={{ $execution.id }} DEBUG : {{ $node[\"Manager\"].json.output }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "bfd5d6fe-3152-414c-99a8-f674ad9e4791",
+      "name": "Send Instructions1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        5840,
+        1480
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "rUijC7XE7TL12tph",
+          "name": "Lester AGI"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "7482cc49-365d-4e7a-a4ef-9f431d001d65",
+      "name": "CRUD Mission : Update status",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        260,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/mission/update/status \\\"todo\\\"\";\n\nreturn {\"json\": json};"
+      },
+      "id": "551ef40c-afef-420a-8777-1a1e69234c03",
+      "name": "mission set todo",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        60,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_source",
+        "description": "Le questionneur_de_source retourne une réponse issue d'un document source spécifique à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- La citation de l'étude,\n- Les informations que tu cherches,\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire,\n- Le format de réponse désiré.",
+        "workflowId": "aoOczsm5IKBTtydy",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"entree\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "sourceGoogleDriveId",
+              "stringValue": "={{ $node[\"entree\"].json.sourceGoogleDriveId }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
+            }
+          ]
+        }
+      },
+      "id": "0f130d0e-3a84-4baa-9a59-1e35c62f9dce",
+      "name": "Questionneur de source",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "c0b309e0-3b5d-4002-8ca5-2b8aae1e0572",
+              "leftValue": "={{ $node[\"entree\"].json.kin }}",
+              "rightValue": "=kinmail",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "fd8a2a91-b151-4ea1-84b5-8f01524fbbec",
+      "name": "If not kinmail",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        5780,
+        1220
       ]
     }
   ],
@@ -2994,20 +3032,27 @@
       {
         "json": {
           "client": "dynergie",
-          "documentGoogleDriveId": "1IRdsFCVDx76on6roj5XoJg9oy1UVPGvW",
-          "executionId": "113335",
-          "instructions": "[PROCESSUS - Avancement de la Mission]\n\nTODOLIST :\n- **Récupération des études via la fonction \"recherche_google_scholar\"** : TODO\n- **Validation du corpus d'études** : TODO\n\n[/PROCESSUS - Avancement de la Mission]\n\n---\n\n[INSTRUCTION - Suivi et Activation]\n\nkinsotabeta, la première étape de ta mission est de lancer une recherche approfondie sur \"Soudure hybride laser arc de pièces en alliages d'aluminium\" avec une attention particulière aux études publiées après 2015. Utilise la fonction \"recherche_google_scholar\" pour rassembler un corpus d'études pertinentes. Ce corpus constituera la base de l'état de l'art demandé par TOMA pour améliorer la qualité des soudures en alliages d'aluminium, dans le contexte très spécifique des systèmes d'échangeurs de chaleur, avec un accent sur la durabilité et la conductivité thermique.\n\n[/INSTRUCTION - Suivi et Activation]\n\n---\n\n[actionneur_de_production]",
-          "kin": "kinsotabeta",
+          "commandText": "\"error\" : Execution #134596 \"sortie\" node doesn't exist",
+          "date": "2024-02-05T20:44:02.219+01:00",
+          "dernierProducteur": "kinlca",
+          "documentGoogleDriveId": "1aVVTUSJgzcIjSptyoyZLIkQhNtgwQpwf",
+          "executionId": "134596",
+          "firstAttribute": "status",
+          "instructions": "[INSTRUCTION - Avancement de la Mission]\n\nTODOLIST :\n\n- **Évaluer l'Objectif de l'Étude** : TODO\n- **Analyser la Méthodologie** : TODO\n- **Analyser les Résultats** : TODO\n- **Critiquer la Discussion et les Conclusions** : TODO\n- **Conduire une Analyse Critique** : TODO\n- **Synthèse Scientifique et Vulgarisée** : TODO\n- **Examiner les Annexes** : TODO\n- **Signature Finale** : TODO\n\n[/INSTRUCTION - Avancement de la Mission]\n\n---\n\n**ACTION - 2. Détermination de la Prochaine Action**\n\nPour déterminer la direction suivante dans le suivi de cette mission spécifique de Lecture Critique & Analyse (LCA) sur l'étude concernant le médicament homéopathique \"Passiflora Compose\" pour le traitement de l'anxiété et des troubles du sommeil, nous allons procéder comme suit :\n\n1. **[ANALYSE - Évaluation de la Suite à Donner]**\n   Étant donné que nous sommes au début de cette mission, la suite logique est d'initier étape par étape le processus d'analyse critique de l'étude conformément à la structure attendue du rapport LCA et à la TODOLIST fournies. Le processus commence par une évaluation de l'objectif de l'étude. Cette analyse initiale posera les fondations nécessaires pour les analyses méthodologiques et critiques subséquentes. \n\n2. **[INSTRUCTION - Activation de l'Étape Initiale]**\n   Compte tenu de l'état actuel de la mission, la première étape concrète consistera à évaluer l'objectif de l'étude mentionnée. Cela implique une compréhension approfondie des motivations, des hypothèses de recherche, et des objectifs poursuivis par les auteurs de l'étude. Cette évaluation est cruciale pour cadrer correctement le contexte dans lequel l'étude a été réalisée et pour préparer le terrain aux analyses critiques suivantes.\n\n   **Activation de l'Étape Suivante avec crud_mission :**\n   Utilise la commande spécifique pour le KinProducteur kinlca :\n```\n/mission/update/status \"todo\" : Évaluer l'Objectif de l'Étude : Comprendre clairement les motivations, hypothèses, et buts de l'étude pour cadrer notre LCA avec précision. Cette première évaluation constituera la base pour les critiques méthodologiques et analytiques suivantes.\n```\n**Ton à Adopter :** Directive et précise, en fournissant un cadre clair pour l'analyse initiale.\n\nCeci marque le début officiel de la mission avec la première étape ciblée sur l'évaluation de l'objectif de l'étude.",
+          "kin": "kinlca",
           "mailFrom": "From: Lester Reynolds <lreynolds@dynergie.fr>",
-          "mailId": "18d65c0a0f3a5c9b",
-          "mailSubject": "état de l'art. * Soudure hybrique laser arc de piéces en alliages d'aluminium",
-          "mission": "[PROCESSUS - MISSION]\n\nCONSIGNE DE LA MISSION:\n* Je voudrais un état de l'art.\n* Soudure hybrique laser arc de piéces en alliages d'aluminium\n* Les références devront etre postérieures à : 2015\n\nCONTEXTE DU PORTEUR\nNom de l'entité qui porte les travaux de recherche* : TOMA\nProposition de valeur de l'entité* : Conception, prototypage et fabrication\nde systèmes d'échange de chaleur\nDescription succincte des principales activités* : Conception, prototypage\net fabrication\n\nCONTEXTE APPLICATIF\nApplication qui utilisera le résultat des travaux de recherche* : Systèmes\nd'échangeur de chaleur\nBut applicatif (proposition de valeur de l'application)* : Transférer la\nchaleur d'un endroit à un autre\nContexte d'usage de l'application* : tout domaine d'application, mais en\npriorité, la mobilité, les application industrielles, le secteur maritime,\net la cogénération énergétique\nIdéal applicatif (le meilleur effet possible de votre application)* :\nTransfert parfait et immédiat de toute la chaleur non désirée.\nContraintes sur les moyens disponibles (optionnel) : Les solution doivent\npouvoir etre produites industriellement et rester compétitives\nExigences sur les résultats attendus (optionnel) : Les solution doivent\nprésenter une excellente efficacité et durabilité\n\nPROJET DE RECHERCHE\nQuestion principale de recherche (celle à laquelle contribuent ultimement\ntous les travaux)* : Comment améliorer la qualité des soudure des piéces\nmétalliques en alliage d'aluminium\n\nTravaux de recherche envisagés dans le cadre de ce projet (Vous pouvez\nindiquer plusieurs travaux de recherche, en précisant pour chacun) :\nDésignation des travaux* : Modulation des paramètres de la soudure LASER arc\nDescription succincte des travaux* : Etude de l'influence des paramètres de\nmodulation du faisceau laser dans le cadre de la soudure hybride laser-arc\nde piéces en alliage d'aluminium\nObjectif de recherche associé aux travaux* :  Mieux comprendre l'influence\ndes paramètres sur la qualité des soudures obtenues\nApport applicatif attendu des travaux* : Amélioration de la durabilité et\nde la conductivité thermique des soudures\nFocus de l'état de l'art sur certains sous objectifs de recherche\n(optionnel) :\nFocus sur certains domaines scientifiques (optionnel) :\n\nDésignation des travaux* : formulation de barres d'apport\nDescription succincte des travaux* :  Nous étudions l'influence de la\nformulation des barres sur la qualité des soudures obtenues dans le cadre\nde soudure hybrique laser-ard de pièces en alliage d'aluminium.\nObjectif de recherche associé aux travaux* : Nous cherchons à trouver de\nmeilleures formulation des barres d'apport dans le cadre de la soudure\nlaser arc de piéces d'alliages d'aluminium\nApport applicatif attendu des travaux* : Amélioration de la durabilité et\nde la conductivité thermique des soudures\nFocus de l'état de l'art sur certains sous objectifs de recherche\n(optionnel) :\nFocus sur certains domaines scientifiques (optionnel) :\n\n\n[/PROCESSUS - MISSION]\n\n---\n",
+          "mailId": "18d7a42418097cf5",
+          "mailSubject": "LCA VILLET",
+          "mission": "[PROCESSUS - MISSION]\n\n MISSION : Faire une LCA sur VILLET :  ORIGINAL PAPER Open-label\nobservational study of the homeopathic medicine Passiflora Compose for\nanxiety and sleep disorders\n\n\nFile attached with email : Villet, homeopathie, 2016.pdf\n\n[/PROCESSUS - MISSION]\n\n---\n",
+          "output": "[CONTENU - Critique de la Discussion et des Conclusions]\n\n## Discussion et Conclusions de l'Étude\n\nLes auteurs de l'étude *Villet et al.* sur le Passiflora Compose (PC) pour les troubles de l'anxiété et du sommeil interprètent leurs résultats en soulignant une amélioration significative des symptômes chez les patients traités. Cette amélioration notable dans les scores d'anxiété et de troubles du sommeil est présentée comme une preuve potentielle de l'efficacité de PC, suggérant ainsi une alternative possible aux psychotropes traditionnels. Cependant, ils admettent la nécessité de confirmer ces résultats préliminaires avec des études futures plus rigoureuses.\n\n### Limitations Admises par les Auteurs\n\nLes principaux points de limitation mis en avant par les auteurs comprennent :\n- **Absence de groupe contrôle placebo**: Ce qui limite fortement la capacité de distinguer les effets réels de PC d'un possible effet placebo.\n- **Nature ouverte de l'étude**: La connaissance du traitement par les patients et les médecins pourrait introduire un biais significatif dans l'appréciation des résultats.\n- **Durée de traitement relativement courte**: Un mois peut ne pas être suffisant pour évaluer pleinement et durablement les effets de PC.\n\n### Mise en Perspective des Résultats\n\nConcernant la contextualisation de leurs découvertes dans le paysage scientifique actuel, les auteurs appellent à des **essais cliniques bien conçus, randomisés, en double aveugle et contrôlés par placebo** pour valider l'efficacité et la tolérance de PC. Ils soulignent l'importance de développer des alternatives aux benzodiazépines et antidépresseurs, tout en visant la conformité avec les recommandations sanitaires visant à limiter leur usage.\n\n## Évaluation Critique\n\nLes résultats de l'étude suggèrent une efficacité potentielle de PC, mais **les conclusions restent prudentes à juste titre en raison des limitations significatives**. L'absence de groupe contrôle laisse une grande part d'incertitude quant à l'origine des améliorations observées (effet de la substance vs effet placebo). De plus, la nature ouverte de l'étude et la durée de traitement limitée appellent à une interprétation avec prudence. Les conditions de l'étude ne permettent pas d'établir une causalité claire entre l'administration de PC et les améliorations rapportées.\n\nLes **recommandations pour de futures recherches** sont en adéquation avec une démarche scientifique rigoureuse, mettant en évidence le besoin crucial d'études supplémentaires. Celles-ci devront surmonter les limitations actuelles pour fournir des preuves solides de l'efficacité et de la tolérance de PC. Dans le contexte actuel, ces premières découvertes ne permettent pas de conclure définitivement sur l'efficacité de PC, mais ouvrent plutôt des pistes de recherche prometteuses à explorer avec plus de rigueur méthodologique.\n\n[/CONTENU - Critique de la Discussion et des Conclusions]\n\n---\n\n[ANALYSE - Détermination de la Prochaine Action]\n\nAvec l'analyse critique de la section \"Discussion et Conclusions\" achevée, la prochaine étape logique consiste à **conduire une analyse critique globale de l'étude**. Cela impliquera d'intégrer les évaluations antérieures - de l'objectif, de la méthodologie, des résultats, et des discussions/conclusions - pour formuler un jugement global sur l'étude. Cette analyse critique finale examinera les points forts et les faiblesses de l'étude, discutera de sa reproductibilité et de l'applicabilité des résultats, et évaluera les implications futures pour la recherche et la pratique clinique.\n\n**La prochaine action :** Rédiger une critique globale qui capture l'essence de l'étude Villet et al., en s'appuyant sur l'ensemble des analyses effectuées précédemment. Cette synthèse finale permettra de fournir une perspective complète sur la valeur scientifique de l'étude, ses contributions potentielles au domaine de l'homéopathie, et les directions nécessaires pour les recherches futures.\n\n[/ANALYSE - Détermination de la Prochaine Action]",
+          "remainingThread": "[INFORMATIF - Structure attendue du Rapport LCA (Lecture Critique & Analyse)]\r\n\r\n# Rapport Lecture Critique & Analyse - Titre de l'Étude\r\n## Objectif de l'Étude - Résumé de l'objectif déclaré de l'étude.\r\n## Méthodologie\r\n### Design de l'Étude - Type de design et références des guides d'évaluation de qualité.\r\n### Méthode d’analyse – Intention to treat ou en Per protocol\r\n### Taille de l'Échantillon - Évaluation de la pertinence de la taille de l'échantillon pour les conclusions de l'étude.\r\n### Méthodes Statistiques - Adéquation des méthodes statistiques utilisées et puissance de l'étude.\r\n### Critères d'Inclusion/Exclusion - Justification et pertinence des critères d'inclusion/exclusion.\r\n## Résultats\r\n### Présentation des Résultats - Commentaires sur la clarté de la communication des résultats.\r\n### Signification Statistique - Présentation des résultats numériques principaux avec leur signification statistique.\r\n### Taille de l'Effet - Discussion sur l'importance clinique de la taille de l'effet.\r\n### Effet indésirables – Mise en avant de la tolérance et la sécurité du traitement et nombre d’effets indésirables\r\n## Discussion et Conclusions\r\n### Interprétation des Résultats - Évaluation de justesse de l'analyse des données par les auteurs.\r\n### Limitations de l'Étude - Identification et discussion des limites indiquées par les auteurs.\r\n### Implications Pratiques - Implications pratiques des résultats et recommandations.\r\n### Reproductibilité - Evaluation de la capacité de réitération des résultats dans différents contextes ou populations.\r\n### Contexte Scientifique - Explication de la portée des résultats dans le cadre scientifique plus large.\r\n## Analyse Critique\r\n### Points Forts - Énumération des atouts et aspects positifs de l'étude.\r\n### Limitations - Discussion des faiblesses, biais potentiels, et applicabilité des résultats.\r\n## Synthèse - Résumé accessible et intégré des informations clés.\r\n## Annexes\r\n### Analyse des Tableaux - Discussion de la contribution des tableaux à la compréhension de l'étude.\r\n### Références et Antécédents - Evaluation de l'appui des conclusions sur des preuves antérieures.\r\n\r\n[/INFORMATIF - Structure attendue du Rapport LCA (Lecture Critique & Analyse)]\r\n\r\n---\r\n\r\n[PROCESSUS - Etapes de Rédaction du Rapport LCA]\r\n\r\nTODOLIST :\r\n\r\n- Évaluer l'Objectif de l'Étude : TODO\r\n- Analyser la Méthodologie : TODO\r\n- Analyser les Résultats : TODO\r\n- Critiquer la Discussion et les Conclusions : TODO\r\n- Conduire une Analyse Critique : TODO\r\n- Synthèse Scientifique et Vulgarisée : TODO\r\n- Examiner les Annexes : TODO\r\n- Signature Finale : TODO\r\n\r\n[/PROCESSUS - Etapes de Rédaction du Rapport LCA]\n\n---\n\n[ANALYSE - Évaluation de la Suite à Donner]\n\nAvant de débuter l'analyse critique de l'étude concernant le médicament homéopathique \"Passiflora Compose\" pour le traitement de l'anxiété et des troubles du sommeil, il est primordial d'entamer le processus par une évaluation rigoureuse et méthodique de l'objectif de l'étude. Cette étape initiale est essentielle, car elle permet d'établir le cadre dans lequel l'ensemble de l'analyse critique sera conduit. En comprenant clairement les objectifs, les motivations, et les hypothèses sous-jacentes de l'étude, nous serons mieux équipés pour juger la pertinence de la méthodologie employée, l'exactitude et la signification des résultats obtenus, ainsi que la validité des conclusions tirées par les auteurs.\n\nCette démarche initiale jouera également un rôle crucial dans l'identification des questions de recherche principales que l'étude a cherché à explorer, aidant ainsi à contextualiser et orienter notre attention vers les aspects les plus critiques et pertinents de l'étude dans les phases d'analyse suivantes.\n\n[/ANALYSE - Évaluation de la Suite à Donner]\n\n---\n\n[INSTRUCTION - Activation de l'Étape Initiale]\n\nÉtant donné l'importance de poser des bases solides pour notre Lecture Critique & Analyse (LCA), la prochaine étape consiste à **évaluer l'objectif de l'étude** sur le médicament homéopathique \"Passiflora Compose\". Cette évaluation comprendra une analyse détaillée des motivations, des hypothèses de recherche, et des buts spécifiques poursuivis par les auteurs de l'étude. Le but est de comprendre clairement le contexte scientifique et clinique dans lequel l'étude a été conçue et menée. Cette première étape établira une fondation critique pour nos analyses méthodologiques et critiques ultérieures du travail.\n\nActivation de l'étape suivante avec crud_mission :\n```\n/mission/update/status \"todo\" : Évaluer l'Objectif de l'Étude : Comprendre clairement les motivations, hypothèses, et buts de l'étude pour cadrer notre LCA avec précision. Cette première évaluation constituera la base pour les critiques méthodologiques et analytiques suivantes.\n```\n\nCeci marque le lancement de notre mission avec une démarche méthodique et rigoureuse, en commençant par une évaluation approfondie de l'objectif de l'étude.\n\n[/INSTRUCTION - Activation de l'Étape Initiale]\n\n---\n\n[[...]",
+          "sourceGoogleDriveId": "1-vgXKfu03mWlQp_sjuA_I723GOhI5D-s",
+          "startTimestamp": "2024-02-05T22:00:21.905+01:00",
           "status": "todo",
+          "sync": false,
           "threadFrom": "Lester Reynolds <lreynolds@dynergie.fr>",
-          "threadId": "18d65c0a0f3a5c9b",
-          "threadSubject": "état de l'art. * Soudure hybrique laser arc de piéces en alliages d'aluminium",
-          "startTimestamp": "2024-02-01T18:54:20.453+01:00",
-          "sync": false
+          "threadId": "18d7a42418097cf5",
+          "threadSubject": "LCA VILLET"
         }
       }
     ]
@@ -3048,6 +3093,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-02T11:29:51.000Z",
-  "versionId": "fb5c5c1c-8c74-4fc1-82ac-83475efa32bb"
+  "updatedAt": "2024-02-05T22:35:42.000Z",
+  "versionId": "8405077d-906a-4b44-978e-b810d6cc9add"
 }
