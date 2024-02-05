@@ -122,7 +122,7 @@
       "main": [
         [
           {
-            "node": "mission set waiting",
+            "node": "mission set error",
             "type": "main",
             "index": 0
           }
@@ -144,29 +144,7 @@
       "main": [
         [
           {
-            "node": "Actionneur de Production",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Actionneur de Production": {
-      "main": [
-        [
-          {
-            "node": "get body",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "mission set waiting": {
-      "main": [
-        [
-          {
-            "node": "Actionneur de Production1",
+            "node": "CRUD Mission : Update status",
             "type": "main",
             "index": 0
           }
@@ -194,6 +172,28 @@
           }
         ]
       ]
+    },
+    "CRUD Mission : Update status": {
+      "main": [
+        [
+          {
+            "node": "get body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission set error": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Update status1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-23T14:34:33.442Z",
@@ -209,7 +209,7 @@
           "interval": [
             {
               "field": "seconds",
-              "secondsInterval": 20
+              "secondsInterval": 60
             }
           ]
         }
@@ -496,22 +496,8 @@
     },
     {
       "parameters": {
-        "workflowId": "MGND8ynCD26RRnsW",
-        "options": {}
-      },
-      "id": "25e082ce-2030-47a0-8ec0-3652d6ce416d",
-      "name": "Actionneur de Production",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        1480,
-        380
-      ]
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"IF Task\"].json.matches[0].metadata;\n\njson.query = \"/status doing\";\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"IF Task\"].json.matches[0].metadata;\n\njson.query = \"/mission/update/status \\\"doing\\\"\";\n\nreturn {\"json\": json};"
       },
       "id": "021fb58a-dd9e-4b16-b9b2-82bc75c2e668",
       "name": "mission set doing",
@@ -520,34 +506,6 @@
       "position": [
         1260,
         380
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "MGND8ynCD26RRnsW",
-        "options": {}
-      },
-      "id": "7d411433-0ad3-40c9-bfa9-602348de4545",
-      "name": "Actionneur de Production1",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        2600,
-        600
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"IF Task\"].json.matches[0].metadata;\n\njson.query = \"/status waiting\";\n\nreturn {\"json\": json};"
-      },
-      "id": "b431785a-0f2c-4c3c-9dab-ec3371246dc9",
-      "name": "mission set waiting",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2380,
-        600
       ]
     },
     {
@@ -622,6 +580,48 @@
         200,
         380
       ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "25e082ce-2030-47a0-8ec0-3652d6ce416d",
+      "name": "CRUD Mission : Update status",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "7d411433-0ad3-40c9-bfa9-602348de4545",
+      "name": "CRUD Mission : Update status1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2600,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"IF Task\"].json.matches[0].metadata;\n\njson.query = \"/mission/update/status \\\"error\\\" : Execution #\" + $node[\"Kin\"].json.executionId + \" \" + $node[\"Kin\"].json.error;\n\nreturn {\"json\": json};"
+      },
+      "id": "b431785a-0f2c-4c3c-9dab-ec3371246dc9",
+      "name": "mission set error",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2380,
+        600
+      ]
     }
   ],
   "pinData": {
@@ -658,6 +658,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-01T01:32:27.000Z",
-  "versionId": "43f7bd5a-e2de-42f0-84ee-23ac99450656"
+  "updatedAt": "2024-02-05T22:19:47.000Z",
+  "versionId": "26d66e07-15bc-45c0-84b1-aa4e015e2d33"
 }
