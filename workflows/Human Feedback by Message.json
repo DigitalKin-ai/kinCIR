@@ -182,18 +182,7 @@
       "main": [
         [
           {
-            "node": "Actionneur de Production",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Actionneur de Production": {
-      "main": [
-        [
-          {
-            "node": "Send Output1",
+            "node": "Admin commands",
             "type": "main",
             "index": 0
           }
@@ -205,6 +194,17 @@
         [
           {
             "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Admin commands": {
+      "main": [
+        [
+          {
+            "node": "Send Output1",
             "type": "main",
             "index": 0
           }
@@ -557,20 +557,6 @@
     },
     {
       "parameters": {
-        "workflowId": "MGND8ynCD26RRnsW",
-        "options": {}
-      },
-      "id": "de44fcb1-ed69-4708-b425-cbd0fc25d12c",
-      "name": "Actionneur de Production",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        1380,
-        200
-      ]
-    },
-    {
-      "parameters": {
         "content": "## /commandes accessibles via Telegram",
         "height": 305.8754761244447,
         "width": 745.7016505647414
@@ -647,6 +633,20 @@
           "name": "PineconeApi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "workflowId": "MGND8ynCD26RRnsW",
+        "options": {}
+      },
+      "id": "de44fcb1-ed69-4708-b425-cbd0fc25d12c",
+      "name": "Admin commands",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        200
+      ]
     }
   ],
   "pinData": {},
@@ -669,6 +669,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2024-01-31T23:25:07.000Z",
-  "versionId": "2cbb61d1-ee12-40b9-b72b-faca6d992439"
+  "updatedAt": "2024-02-05T15:16:59.000Z",
+  "versionId": "ff6aca0e-cdd4-4a19-a578-9eeb22ea0908"
 }
