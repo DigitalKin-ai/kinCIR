@@ -245,7 +245,7 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        -1880,
+        -2260,
         220
       ]
     },
@@ -280,7 +280,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1880,
+        -2260,
         0
       ]
     },
@@ -294,7 +294,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -1660,
+        -2040,
         0
       ]
     },
@@ -308,7 +308,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2100,
+        -2480,
         0
       ]
     },
@@ -319,7 +319,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -2320,
+        -2700,
         0
       ]
     },
@@ -357,7 +357,7 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -2300,
+        -2680,
         -100
       ]
     },
@@ -611,6 +611,19 @@
           "name": "Gmail Nicolas"
         }
       }
+    },
+    {
+      "parameters": {
+        "content": "## BRANCHAGE"
+      },
+      "id": "982b1710-71c1-4330-9f93-973ffc5eaa14",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1780,
+        -40
+      ]
     }
   ],
   "pinData": {},
@@ -635,6 +648,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T14:59:15.000Z",
-  "versionId": "ffdd4636-9f64-4486-9edf-3090e8b0d47a"
+  "updatedAt": "2024-02-05T12:24:21.000Z",
+  "versionId": "96edd7a3-1c5b-4363-9cb6-423be45bc834"
 }
