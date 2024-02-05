@@ -42,6 +42,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
         ]
       ]
     },
@@ -60,7 +67,7 @@
       "main": [
         [
           {
-            "node": "return citation",
+            "node": "Limit",
             "type": "main",
             "index": 0
           }
@@ -237,6 +244,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
         ]
       ]
     },
@@ -247,6 +261,13 @@
             "node": "Switch format",
             "type": "main",
             "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
           }
         ]
       ]
@@ -283,6 +304,13 @@
             "node": "Convert to txt",
             "type": "main",
             "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
           }
         ]
       ]
@@ -358,12 +386,12 @@
       "main": [
         [
           {
-            "node": "Merge",
+            "node": "entree questionneur",
             "type": "main",
             "index": 0
           },
           {
-            "node": "entree questionneur",
+            "node": "Merge",
             "type": "main",
             "index": 0
           }
@@ -378,6 +406,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
         ]
       ]
     },
@@ -388,6 +423,39 @@
             "node": "Découper en chunks",
             "type": "main",
             "index": 0
+          }
+        ]
+      ]
+    },
+    "Récupérer le document1": {
+      "main": [
+        [
+          {
+            "node": "Read PDF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "return citation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download PDF": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
           }
         ]
       ]
@@ -485,8 +553,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        5100,
-        1700
+        4000,
+        2220
       ]
     },
     {
@@ -498,8 +566,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        4900,
-        1700
+        3560,
+        2220
       ]
     },
     {
@@ -659,6 +727,8 @@
       ],
       "typeVersion": 1,
       "id": "bd3caffb-0117-4bf2-8c68-8d1f01e9b4e0",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "Z5nSsC9JGaYw1Ng3",
@@ -747,6 +817,8 @@
         1180,
         1080
       ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "Z5nSsC9JGaYw1Ng3",
@@ -787,7 +859,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json, \"binary\": $binary};"
       },
       "id": "972495a8-4455-4e09-a3f8-b981d4b1f8e7",
       "name": "entree",
@@ -1119,6 +1191,90 @@
         3160,
         580
       ]
+    },
+    {
+      "parameters": {
+        "content": "## TODO : le mettre après l'extracteur de ref pour pouvoir mieux nommer le fichier",
+        "height": 302.41970548764624,
+        "width": 449.7803770020737
+      },
+      "id": "a8658b88-552c-4c33-9c26-fdea10ebb430",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        900,
+        942.7573964320106
+      ]
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "={{ Object.keys($binary)[0] }}"
+      },
+      "id": "8d903ce4-aa6f-487c-8368-da0f3645cec1",
+      "name": "Read PDF1",
+      "type": "n8n-nodes-base.readPDF",
+      "typeVersion": 1,
+      "position": [
+        980,
+        340
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "=1NrZjoIPk9qV3MtfXrlZlPyTRyj79pJSS",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "4522c523-ee7c-4d99-8620-f3a88ac6caea",
+      "name": "Récupérer le document1",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        800,
+        340
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Outil manuel PDF to text",
+        "height": 380.9085876361396,
+        "width": 611.5945778780097
+      },
+      "id": "c7307418-f4aa-4a64-98e6-bdd251226b3b",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        620,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "keep": "lastItems"
+      },
+      "id": "6c2fa0e7-fd19-4a80-850d-6d9b4e55dddc",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        3780,
+        2220
+      ]
     }
   ],
   "pinData": {
@@ -1127,7 +1283,7 @@
         "json": {
           "headers": {
             "host": "kins.app.n8n.cloud",
-            "x-request-id": "cb828d5dfa5f8ec3242c5afdca29ac20",
+            "x-request-id": "66b92d31b52941b4d1a98f818ad2471b",
             "x-real-ip": "10.40.96.106",
             "x-forwarded-for": "10.40.96.106",
             "x-forwarded-host": "kins.app.n8n.cloud",
@@ -1135,7 +1291,7 @@
             "x-forwarded-proto": "https",
             "x-forwarded-scheme": "https",
             "x-scheme": "https",
-            "content-length": "150",
+            "content-length": "153",
             "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
             "content-type": "application/json",
             "user-agent": "axios/1.6.5"
@@ -1144,10 +1300,11 @@
           "query": {},
           "body": {
             "resource": {
-              "name": "univ-ouargla.dz",
+              "name": "revue-isg.com",
               "format": "PDF",
-              "link": "https://dspace.univ-ouargla.dz/jspui/bitstream/123456789/26135/1/LEMKEDDEM-soumaya.pdf"
-            }
+              "link": "https://revue-isg.com/index.php/home/article/download/203/185"
+            },
+            "threadId": "18d79cf06c68f178"
           }
         }
       }
@@ -1174,6 +1331,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-04T20:05:14.000Z",
-  "versionId": "00a1db84-c6fa-4448-89d5-aa370df7939b"
+  "updatedAt": "2024-02-05T17:26:33.000Z",
+  "versionId": "058d32e2-1ee1-4236-8d25-222085866ef6"
 }
