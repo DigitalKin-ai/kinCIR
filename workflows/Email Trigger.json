@@ -1,22 +1,11 @@
 {
   "active": true,
   "connections": {
-    "Get Thread": {
-      "main": [
-        [
-          {
-            "node": "emailThread",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "If Adresse Kin": {
       "main": [
         [
           {
-            "node": "kinDemandeur",
+            "node": "kin",
             "type": "main",
             "index": 0
           }
@@ -27,7 +16,7 @@
       "main": [
         [
           {
-            "node": "If from Kin1",
+            "node": "Get Thread",
             "type": "main",
             "index": 0
           }
@@ -38,7 +27,7 @@
       "main": [
         [
           {
-            "node": "missionDemandeur",
+            "node": "mission",
             "type": "main",
             "index": 0
           }
@@ -61,7 +50,7 @@
       "main": [
         [
           {
-            "node": "entree pinecone",
+            "node": "entree source",
             "type": "main",
             "index": 0
           }
@@ -90,18 +79,7 @@
       "main": [
         [
           {
-            "node": "Get Thread",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "mission": {
-      "main": [
-        [
-          {
-            "node": "nouvelleMission matching",
+            "node": "emailThread",
             "type": "main",
             "index": 0
           }
@@ -123,7 +101,7 @@
       "main": [
         [
           {
-            "node": "Get kinmatcheur mission",
+            "node": "Get kin mission",
             "type": "main",
             "index": 0
           }
@@ -142,55 +120,18 @@
         ]
       ]
     },
-    "Inserer le document dans Pinecone": {
+    "If Kin Accès via Matcheur": {
       "main": [
         [
           {
-            "node": "sourceGoogleDriveId",
+            "node": "nouvelleMission matching",
             "type": "main",
             "index": 0
           }
-        ]
-      ]
-    },
-    "Get kinmatcheur mission": {
-      "main": [
+        ],
         [
           {
-            "node": "IF mission",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kinDemandeur": {
-      "main": [
-        [
-          {
-            "node": "Get Email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "missionDemandeur": {
-      "main": [
-        [
-          {
-            "node": "If Kin Accès via Matcheur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "nouvelleMission1": {
-      "main": [
-        [
-          {
-            "node": "Lancement Mission Standard",
+            "node": "nouvelleMission",
             "type": "main",
             "index": 0
           }
@@ -201,25 +142,95 @@
       "main": [
         [
           {
-            "node": "Lancement Mission Matching",
+            "node": "CRUD Mission : CREATE",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "If Kin Accès via Matcheur": {
+    "mission": {
       "main": [
         [
           {
-            "node": "mission",
+            "node": "If Kin Accès via Matcheur",
             "type": "main",
             "index": 0
           }
-        ],
+        ]
+      ]
+    },
+    "nouvelleMission": {
+      "main": [
         [
           {
-            "node": "nouvelleMission1",
+            "node": "Lancement Mission Standard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kin": {
+      "main": [
+        [
+          {
+            "node": "Get Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Thread": {
+      "main": [
+        [
+          {
+            "node": "If from Kin1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get kin mission": {
+      "main": [
+        [
+          {
+            "node": "IF mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree source": {
+      "main": [
+        [
+          {
+            "node": "Upload Source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Source": {
+      "main": [
+        [
+          {
+            "node": "entree pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inserer le document dans Pinecone": {
+      "main": [
+        [
+          {
+            "node": "sourceGoogleDriveId",
             "type": "main",
             "index": 0
           }
@@ -234,28 +245,6 @@
   },
   "name": "Email Trigger",
   "nodes": [
-    {
-      "parameters": {
-        "resource": "thread",
-        "operation": "get",
-        "threadId": "={{ $node[\"Get Email\"].json.threadId }}",
-        "options": {}
-      },
-      "id": "ff3ebe13-7765-46cd-b043-ec4261d9d164",
-      "name": "Get Thread",
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2.1,
-      "position": [
-        -1040,
-        620
-      ],
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iPrbr6qZiWHu93N9",
-          "name": "Gmail Nicolas"
-        }
-      }
-    },
     {
       "parameters": {
         "operation": "get",
@@ -384,7 +373,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -500,
+        -280,
         60
       ]
     },
@@ -418,9 +407,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -40,
-        220
-      ]
+        400,
+        240
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -428,7 +418,7 @@
           "values": [
             {
               "name": "sourceGoogleDriveId",
-              "stringValue": "={{ $json.documentGoogleDriveId }}"
+              "stringValue": "={{ $json.documentGoogleDriveId?$json.documentGoogleDriveId:$json.id }}"
             }
           ]
         },
@@ -439,29 +429,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        400,
-        420
-      ]
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "mission",
-              "stringValue": "={{ $json.missionDemandeur }}\n[PROCESSUS - Mission : Matching]\n\nTa mission est de trouver le Kin le plus adapté pour répondre au besoin du client, et de lancer le Kin approprié via la fonction GPT actionneur_de_production. \n\n[/PROCESSUS - Mission : Matching]\n\n---"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "bca53e20-6cbc-49c1-9fe3-5d5cf4f972c3",
-      "name": "mission",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        0,
-        620
+        640,
+        440
       ]
     },
     {
@@ -538,118 +507,10 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        200,
-        220
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://kinbase-71e4f70.svc.apw5-4e34-81fa.pinecone.io/query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"mailId\" : \"{{ $node[\"Get Email\"].json.id }}\", \"kin\": \"kinmatcheur\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
-        "options": {}
-      },
-      "id": "91dd0823-2367-463e-9d56-7c5bb0310126",
-      "name": "Get kinmatcheur mission",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        -820,
-        380
+        640,
+        240
       ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "kinDemandeur",
-              "stringValue": "={{ $node[\"Mail Trigger\"].json.headers.to.match(/kin[a-zA-Z]+@/i)[0].slice(0, -1) }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "54c3ef2c-77d5-46a5-8337-84dcf38573d8",
-      "name": "kinDemandeur",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        -900,
-        60
-      ]
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "missionDemandeur",
-              "stringValue": "=[PROCESSUS - MISSION]\n\n{{ $node[\"Get Email\"].json.text.substring(0, 10000)}}{{ $node[\"Get Email\"].json.text.length > 10000 ? \"[...]\" : \"\" }}\n\n[/PROCESSUS - MISSION]\n\n---\n"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "a56441c6-f01b-4157-ad0b-990f297eb2d6",
-      "name": "missionDemandeur",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        -580,
-        620
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "DXYPhavwlYlTKPqu",
-        "options": {}
-      },
-      "id": "d61512a1-4f2c-44fe-8020-7b141574bd5b",
-      "name": "Lancement Mission Matching",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        440,
-        620
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = {};\n\njson.client = $node[\"Mail Trigger\"].json.from.value[0].address.match(/(?<=@)[^\\.]+/)[0];\n\njson.kin = $node[\"kinDemandeur\"].json.kinDemandeur;\njson.mission = $node[\"missionDemandeur\"].json.missionDemandeur;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\n\njson.threadId = $node[\"Get Thread\"].json.id;\njson.threadSubject = $node[\"Get Thread\"].json.messages[0].Subject;\njson.threadFrom = $node[\"Get Thread\"].json.messages[0].From;\n\njson.mailId = $node[\"Get Email\"].json.id;\njson.mailSubject = $node[\"Get Email\"].json.subject;\njson.mailFrom = $node[\"Get Email\"].json.headers.from;\n\nreturn {\"json\": json};"
-      },
-      "id": "ed5cd136-91d2-46e3-b5ca-1f34228d30ba",
-      "name": "nouvelleMission1",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        0,
-        800
-      ]
+      "disabled": true
     },
     {
       "parameters": {
@@ -667,20 +528,6 @@
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = {};\n\njson.client = $node[\"Mail Trigger\"].json.from.value[0].address.match(/(?<=@)[^\\.]+/)[0];\n\njson.kin = \"kinmatcheur\";\njson.kinDemandeur = $node[\"kinDemandeur\"].json.kinDemandeur;\njson.mission = $node[\"mission\"].json.mission;\njson.missionDemandeur = $node[\"missionDemandeur\"].json.missionDemandeur;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\n\njson.threadId = $node[\"Get Thread\"].json.id;\njson.threadSubject = $node[\"Get Thread\"].json.messages[0].Subject;\njson.threadFrom = $node[\"Get Thread\"].json.messages[0].From;\n\njson.mailId = $node[\"Get Email\"].json.id;\njson.mailSubject = $node[\"Get Email\"].json.subject;\njson.mailFrom = $node[\"Get Email\"].json.headers.from;\n\nreturn {\"json\": json};"
-      },
-      "id": "deead856-cb5a-4138-9a0d-65319c3911d8",
-      "name": "nouvelleMission matching",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        220,
-        620
-      ]
-    },
-    {
-      "parameters": {
         "conditions": {
           "options": {
             "caseSensitive": true,
@@ -691,7 +538,7 @@
             {
               "id": "a135e888-bcf9-47ab-acce-799a3d379a9c",
               "leftValue": "={{ [/*\"kinlca\", \"kinchercheur\", \"kinchercheurbeta\", \"kinsota\", \"kinsotabeta\",*/ \"kincir\", \"kincirbeta\"] }}",
-              "rightValue": "={{ $node[\"kinDemandeur\"].json.kinDemandeur in ['kin'] }}",
+              "rightValue": "={{ $node[\"kin\"].json.kinDemandeur in ['kin'] }}",
               "operator": {
                 "type": "array",
                 "operation": "contains",
@@ -713,18 +560,209 @@
         -280,
         620
       ]
-    }
-  ],
-  "pinData": {
-    "Inserer le document dans Pinecone": [
-      {
-        "json": {
-          "citation": "Hamre, H.J., Glockmann, A., von Ammon, K., Riley, D.S., & Kiene, H. (2023). Efficacy of homoeopathic treatment: Systematic review of meta-analyses of randomised placebo-controlled homoeopathy trials for any indication. Systematic Reviews, 12, Article 191. https://doi.org/10.1186/s13643-023-02313-2",
-          "documentGoogleDriveId": "133Y79LwjWJL5EMU9_OQjSkxpar6WhwZc"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = {};\n\njson.client = $node[\"Mail Trigger\"].json.from.value[0].address.match(/(?<=@)[^\\.]+/)[0];\njson.query = \"/create \" + $node[\"mission\"].json.mission;\njson.kin = $node[\"kin\"].json.kin;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\n\njson.threadId = $node[\"Get Thread\"].json.id;\njson.threadSubject = $node[\"Get Thread\"].json.messages[0].Subject;\njson.threadFrom = $node[\"Get Thread\"].json.messages[0].From;\n\njson.mailId = $node[\"Get Email\"].json.id;\njson.mailSubject = $node[\"Get Email\"].json.subject;\njson.mailFrom = $node[\"Get Email\"].json.headers.from;\n\nreturn {\"json\": json};"
+      },
+      "id": "2ba27bea-aeb3-425a-a478-64876d5e3e42",
+      "name": "nouvelleMission matching",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=[PROCESSUS - MISSION]\n\n{{ $node[\"Get Email\"].json.text.substring(0, 10000)}}{{ $node[\"Get Email\"].json.text.length > 10000 ? \"[...]\" : \"\" }}\n{{ $node[\"Get Email\"].binary? (\"\\nFile attached with email : \" + $node[\"Get Email\"].binary[Object.keys($node[\"Get Email\"].binary)].fileName):\"\" }}\n\n[/PROCESSUS - MISSION]\n\n---\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a56441c6-f01b-4157-ad0b-990f297eb2d6",
+      "name": "mission",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        -580,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = {};\n\njson.client = $node[\"Mail Trigger\"].json.from.value[0].address.match(/(?<=@)[^\\.]+/)[0];\n\njson.kin = $node[\"kin\"].json.kin;\njson.mission = $node[\"mission\"].json.mission;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\n\njson.threadId = $node[\"Get Thread\"].json.id;\njson.threadSubject = $node[\"Get Thread\"].json.messages[0].Subject;\njson.threadFrom = $node[\"Get Thread\"].json.messages[0].From;\n\njson.mailId = $node[\"Get Email\"].json.id;\njson.mailSubject = $node[\"Get Email\"].json.subject;\njson.mailFrom = $node[\"Get Email\"].json.headers.from;\n\nreturn {\"json\": json};"
+      },
+      "id": "ed5cd136-91d2-46e3-b5ca-1f34228d30ba",
+      "name": "nouvelleMission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"Mail Trigger\"].json.headers.to.match(/kin[a-zA-Z]+@/i)[0].slice(0, -1) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "54c3ef2c-77d5-46a5-8337-84dcf38573d8",
+      "name": "kin",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        -900,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "a88a8677-b311-48ee-91b5-5688e8f04ac1",
+      "name": "CRUD Mission : CREATE",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        220,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "thread",
+        "operation": "get",
+        "threadId": "={{ $node[\"Get Email\"].json.threadId }}",
+        "options": {}
+      },
+      "id": "08c4ce8d-2238-4e61-a03e-a1f09015c339",
+      "name": "Get Thread",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -500,
+        60
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail Nicolas"
         }
       }
-    ]
-  },
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"threadId\" : \"{{ $node[\"Get Thread\"].json.id }}\", \"kin\": \"{{ $node[\"kin\"].json.kin }}\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "91dd0823-2367-463e-9d56-7c5bb0310126",
+      "name": "Get kin mission",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -820,
+        380
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "binaryData": true,
+        "binaryPropertyName": "={{ Object.keys($binary)[0] }}",
+        "name": "={{ $binary[Object.keys($binary)].fileName }}",
+        "parents": [
+          "1E0oqQwRg93PO3_Ak_0lhcK0yyzTvKqL9"
+        ],
+        "options": {
+          "propertiesUi": {
+            "propertyValues": [
+              {
+                "key": "mailId",
+                "value": "={{ $json.mailId }}"
+              },
+              {
+                "key": "threadId",
+                "value": "={{ $json.threadId }}"
+              }
+            ]
+          }
+        }
+      },
+      "name": "Upload Source",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        160,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "4dc28fcb-2e2e-4e62-b3f8-9f08714ed90f",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"Get Email\"].json;\n  \njson.threadId =  $node[\"Get Thread\"].json.id;\njson.mailId =  $node[\"Get Email\"].json.id;\n\nreturn {\"json\" : json, \"binary\": $node[\"Get Email\"].binary};"
+      },
+      "id": "c2116e06-e69c-42ce-8835-c1f18e248aa0",
+      "name": "entree source",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -40,
+        240
+      ]
+    }
+  ],
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
@@ -745,9 +783,9 @@
       ]
     },
     "node:Mail Trigger": {
-      "lastTimeChecked": 1707129556,
+      "lastTimeChecked": 1707172210,
       "possibleDuplicates": [
-        "18d78da2c0ec52a5"
+        "18d7b64a84e6d02a"
       ]
     }
   },
@@ -760,6 +798,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-05T10:40:37.000Z",
-  "versionId": "f0d4c52d-09ac-4399-b179-bdc492349c6a"
+  "updatedAt": "2024-02-05T22:31:00.000Z",
+  "versionId": "0a23d8ce-8c8a-4555-8d4d-a4577419669e"
 }
