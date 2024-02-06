@@ -12,20 +12,9 @@
         ],
         [
           {
-            "node": "List Template",
+            "node": "Merge",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Convert to binary": {
-      "main": [
-        [
-          {
-            "node": "Create Document",
-            "type": "main",
-            "index": 0
+            "index": 1
           }
         ]
       ]
@@ -35,68 +24,6 @@
         [
           {
             "node": "Convert Document to JSON",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "IF Template": {
-      "main": [
-        [
-          {
-            "node": "Get Template",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "template",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "List Template": {
-      "main": [
-        [
-          {
-            "node": "IF Template",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Template": {
-      "main": [
-        [
-          {
-            "node": "Convert to JSON",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Convert to JSON": {
-      "main": [
-        [
-          {
-            "node": "template",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "template": {
-      "main": [
-        [
-          {
-            "node": "Convert to binary",
             "type": "main",
             "index": 0
           }
@@ -143,6 +70,11 @@
             "node": "Get Existing Document",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -152,6 +84,134 @@
         [
           {
             "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "template": {
+      "main": [
+        [
+          {
+            "node": "entree1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "template",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "template binary": {
+      "main": [
+        [
+          {
+            "node": "Create Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to binary": {
+      "main": [
+        [
+          {
+            "node": "response1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Template": {
+      "main": [
+        [
+          {
+            "node": "Get Template",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "template1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Template": {
+      "main": [
+        [
+          {
+            "node": "Convert to JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List Template": {
+      "main": [
+        [
+          {
+            "node": "IF Template",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to JSON": {
+      "main": [
+        [
+          {
+            "node": "template1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "template1": {
+      "main": [
+        [
+          {
+            "node": "Convert to binary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree1": {
+      "main": [
+        [
+          {
+            "node": "List Template",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "response1": {
+      "main": [
+        [
+          {
+            "node": "template binary",
             "type": "main",
             "index": 0
           }
@@ -170,7 +230,7 @@
       "parameters": {
         "authentication": "oAuth2",
         "binaryData": true,
-        "binaryPropertyName": "template",
+        "binaryPropertyName": "={{ Object.keys($binary)[0] }}",
         "name": "={{ $node[\"entree\"].json.client }}-{{ $node[\"entree\"].json.threadSubject }}-{{ $node[\"entree\"].json.kin }}.md",
         "resolveData": true,
         "parents": [
@@ -193,7 +253,7 @@
               },
               {
                 "key": "documentType",
-                "value": "={{ $node[\"entree\"].json.documentType }}"
+                "value": "thread"
               }
             ]
           }
@@ -202,8 +262,8 @@
       "name": "Create Document",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        1800,
-        780
+        940,
+        800
       ],
       "typeVersion": 1,
       "id": "c1dd5999-ce15-45b8-adee-f54467b6bd81",
@@ -213,27 +273,6 @@
           "name": "Google Drive DK via Nicolas"
         }
       }
-    },
-    {
-      "parameters": {
-        "mode": "jsonToBinary",
-        "convertAllData": false,
-        "sourceKey": "template",
-        "destinationKey": "template",
-        "options": {
-          "fileName": "={{ $node[\"Execute Workflow Trigger\"].json.client }}-{{ $node[\"Execute Workflow Trigger\"].json.mailSubject }}-{{ $node[\"Execute Workflow Trigger\"].json.kin }}.md",
-          "mimeType": "text/markdown",
-          "useRawData": true
-        }
-      },
-      "id": "72494919-f485-4b8b-b702-78dfcc01f326",
-      "name": "Convert to binary",
-      "type": "n8n-nodes-base.moveBinaryData",
-      "typeVersion": 1.1,
-      "position": [
-        1580,
-        780
-      ]
     },
     {
       "parameters": {
@@ -270,8 +309,8 @@
       "name": "Get Document",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        2040,
-        480
+        1180,
+        500
       ],
       "typeVersion": 1,
       "id": "1ae5af91-062d-4a95-b7ec-66c348dbbd11",
@@ -295,126 +334,6 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "boolean": [
-            {
-              "value1": "={{ Object.keys($node[\"List Template\"].json).length > 0 }}",
-              "value2": true
-            }
-          ]
-        }
-      },
-      "id": "86eddf6d-4727-4f19-9733-3131105ce611",
-      "name": "IF Template",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        700,
-        780
-      ]
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "operation": "download",
-        "fileId": {
-          "__rl": true,
-          "value": "={{ $node[\"IF Template\"].json.id }}",
-          "mode": "id"
-        },
-        "binaryPropertyName": "template",
-        "options": {
-          "googleFileConversion": {
-            "conversion": {
-              "docsToFormat": "application/rtf"
-            }
-          }
-        }
-      },
-      "name": "Get Template",
-      "type": "n8n-nodes-base.googleDrive",
-      "position": [
-        920,
-        620
-      ],
-      "typeVersion": 1,
-      "id": "83332a97-72e9-40a9-b923-c6991a292ccf",
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "Z5nSsC9JGaYw1Ng3",
-          "name": "Google Drive DK via Nicolas"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "operation": "list",
-        "useQueryString": true,
-        "queryString": "=parents = '1Qgjvk84Kqv5o3vrEgz6poYn9wLuyXh9r' and name = 'template-{{ $node[\"entree\"].json.kin }}.md' ",
-        "limit": 1,
-        "options": {}
-      },
-      "name": "List Template",
-      "type": "n8n-nodes-base.googleDrive",
-      "position": [
-        500,
-        780
-      ],
-      "typeVersion": 1,
-      "id": "6f085a5d-f53e-411f-b6c9-11cc60497e6b",
-      "alwaysOutputData": true,
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "Z5nSsC9JGaYw1Ng3",
-          "name": "Google Drive DK via Nicolas"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "setAllData": false,
-        "sourceKey": "template",
-        "destinationKey": "template",
-        "options": {
-          "encoding": "utf8"
-        }
-      },
-      "id": "0f36cc40-70bf-483f-b48f-dfc3e56a3d39",
-      "name": "Convert to JSON",
-      "type": "n8n-nodes-base.moveBinaryData",
-      "typeVersion": 1.1,
-      "position": [
-        1140,
-        620
-      ]
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "template",
-              "stringValue": "={{ $json.template?$json.template:\"[INFORMATIF - Pas de Template]\\n\\nPas de template existant,  la structure du document est à définir\\n\\n[/INFORMATIF - Pas de Template]\" }}"
-            }
-          ]
-        },
-        "include": "none",
-        "options": {}
-      },
-      "id": "e9c9d8c0-0502-4fa3-adb0-181a9dc1df87",
-      "name": "template",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        1340,
-        780
-      ]
-    },
-    {
-      "parameters": {
         "setAllData": false,
         "sourceKey": "=thread",
         "destinationKey": "=thread",
@@ -427,8 +346,8 @@
       "type": "n8n-nodes-base.moveBinaryData",
       "typeVersion": 1.1,
       "position": [
-        2240,
-        480
+        1380,
+        500
       ]
     },
     {
@@ -468,8 +387,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2440,
-        480
+        1580,
+        500
       ]
     },
     {
@@ -485,9 +404,258 @@
         -160,
         480
       ]
+    },
+    {
+      "parameters": {
+        "workflowId": "IsaVICGSKTRoCm98",
+        "options": {}
+      },
+      "id": "ddde63aa-7380-42c3-baea-762075553571",
+      "name": "template",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        1340
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "38f42513-e2b3-496b-89d9-ef92be9381db",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        300,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json, \"binary\": $binary};"
+      },
+      "id": "0eaf28eb-6f20-48ba-ae02-ebe626cdb042",
+      "name": "template binary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "template",
+        "destinationKey": "template",
+        "options": {
+          "fileName": "={{ $node[\"entree1\"].json.client }}-{{ $node[\"entree1\"].json.threadSubject }}-{{ $node[\"entree1\"].json.kin }}.md",
+          "mimeType": "text/markdown",
+          "useRawData": true
+        }
+      },
+      "id": "9281dfed-d310-45fd-a053-86839a5645b4",
+      "name": "Convert to binary",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        1420,
+        1340
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($node[\"List Template\"].json).length > 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "cbeede71-ab24-4a3e-a62e-240242947262",
+      "name": "IF Template",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        560,
+        1340
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $node[\"IF Template\"].json.id }}",
+          "mode": "id"
+        },
+        "binaryPropertyName": "template",
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/rtf"
+            }
+          }
+        }
+      },
+      "name": "Get Template",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        780,
+        1180
+      ],
+      "typeVersion": 1,
+      "id": "fb3e28fa-2c95-40e9-9ada-4504c3fd77b9",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "list",
+        "useQueryString": true,
+        "queryString": "=parents = '1Qgjvk84Kqv5o3vrEgz6poYn9wLuyXh9r' and name = 'template-{{ $node[\"entree1\"].json.kin }}.md' ",
+        "limit": 1,
+        "options": {}
+      },
+      "name": "List Template",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        360,
+        1340
+      ],
+      "typeVersion": 1,
+      "id": "eb7b5457-edda-4d6f-9a72-00571b0cc306",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "sourceKey": "template",
+        "destinationKey": "template",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "id": "15b33fcf-1552-4d68-a775-5a8eef0247b4",
+      "name": "Convert to JSON",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        1000,
+        1180
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "template",
+              "stringValue": "={{ $json.template?$json.template:\"[INFORMATIF - Pas de Template]\\n\\nPas de template existant,  la structure du document est à définir\\n\\n[/INFORMATIF - Pas de Template]\" }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "bbe41246-5c4e-499b-85b1-f8aa69edd9b4",
+      "name": "template1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1200,
+        1340
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = {};\n\njson.template = $node[\"template1\"].json.template;\n\nreturn {\"json\": json, \"binary\": $binary};"
+      },
+      "id": "b98d3278-8648-4eba-9e85-77b49a144035",
+      "name": "response1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        1340
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
+      },
+      "id": "8cb38aa2-95b8-4173-9595-cb6e4a0c942c",
+      "name": "entree1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        160,
+        1340
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Copier coller du workflow get template parce que ça marche pas sinon..",
+        "height": 398.4243613761129,
+        "width": 1831.0540716667406
+      },
+      "id": "e2f49221-b7bb-4b6e-862c-c93a8e042b11",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        80,
+        1140
+      ]
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "client": "digitalkin",
+          "kin": "kinlca",
+          "sourceGoogleDriveId": "1y7UliEmuGj8KUehvz0aiV0jzGDa6KtNr",
+          "threadId": "18d7f393dea3aee0",
+          "threadSubject": "LCA Medionni",
+          "threadFrom": "Lester Reynolds <l.reynolds@digitalkin.ai>",
+          "kinDemandeur": "Lester Reynolds <l.reynolds@digitalkin.ai>",
+          "mailId": "18d7f397ae249839",
+          "mailSubject": "LCA Medionni",
+          "mailFrom": "From: Lester Reynolds <l.reynolds@digitalkin.ai>",
+          "firstAttribute": "kinlca",
+          "commandText": "LCA Medionni\n\n-- \nNicolas Lester Reynolds\nCTO @ Digitalkin.ai <https://DigitalKin.ai>\n+33621636737\nBookez-moi sur Calendy <https://calendly.com/l-reynolds-digitalkin/call>\n\n\nFile attached with email : 2 SNDS.pdf",
+          "mission": "LCA Medionni\n\n-- \nNicolas Lester Reynolds\nCTO @ Digitalkin.ai <https://DigitalKin.ai>\n+33621636737\nBookez-moi sur Calendy <https://calendly.com/l-reynolds-digitalkin/call>\n\n\nFile attached with email : 2 SNDS.pdf",
+          "missionId": "kinlca-18d7f393dea3aee0",
+          "status": "todo",
+          "format": "md"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -523,6 +691,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T23:58:23.000Z",
-  "versionId": "b432ff29-fba8-406c-bf4e-67e01459eb93"
+  "updatedAt": "2024-02-06T16:32:50.000Z",
+  "versionId": "1e60814b-b4d9-44b3-a15e-55491bada115"
 }
