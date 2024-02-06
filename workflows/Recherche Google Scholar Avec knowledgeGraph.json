@@ -1,0 +1,725 @@
+{
+  "active": false,
+  "connections": {
+    "Google Scholar Search": {
+      "main": [
+        [
+          {
+            "node": "IF Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If resource": {
+      "main": [
+        [
+          {
+            "node": "Switch format",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "IF Results": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinchercheur": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "If queries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Google Scholar Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "If resource",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "kinchercheur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree pinecone": {
+      "main": [
+        [
+          {
+            "node": "Insérer le document dans Pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insérer le document dans Pinecone": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If queries": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinchercheur1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinchercheur1": {
+      "main": [
+        [
+          {
+            "node": "nouvelleEntree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouvelleEntree": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch format": {
+      "main": [
+        [
+          {
+            "node": "Get Document via url",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Get Document via url": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "entree pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-06T14:44:07.659Z",
+  "id": "xFCpPNqx9osUOztG",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Recherche Google Scholar Avec knowledgeGraph",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "49985463-9103-4f53-99d0-e9978bf6a8d5",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        2260,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.searchapi.io/api/v1/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "specifyQuery": "json",
+        "jsonQuery": "={\n  \"engine\": \"google_scholar\",\n  \"q\": {{ JSON.stringify($json.queries) }},\n  \"as_ylo\": {{ $json.date }},\n  \"num\": 20\n}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "abee254e-b0c7-465e-878a-ef5b2e7a545a",
+      "name": "Google Scholar Search",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3180,
+        -160
+      ],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "84ef531e-b145-4797-be6f-af01e0f58a88",
+              "leftValue": "={{ Object.keys($json.resource).length > 0 }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "7db6853d-80d7-4b51-a8fb-26060e73f20d",
+      "name": "If resource",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        3920,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.error }}",
+              "operation": "isEmpty"
+            }
+          ]
+        }
+      },
+      "id": "af531951-8ce2-411f-9c6c-267bd6ff6717",
+      "name": "IF Results",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3400,
+        -160
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "af8b6e92-260f-41aa-99e8-cca1b317da31",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        5180,
+        320
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_MHJDvt7FT6gcWBFdJsZqJ52C",
+        "text": "=# Instructions du filtrage d'Etudes\n\n## Ontologie du filtrage d'Etudes\n\n### Graphe\n\ngraph TD\n  Etude -->|évaluée selon| PertinenceContextuelle\n  Etude -->|contient| InformationSpecifique\n  RelevancyAssessment -->|dépend de| PertinenceContextuelle\n  RelevancyAssessment -->|dépend de| InformationSpecifique\n  RelevancyAssessment -->|impacte| Relevant\n\n### Concepts Principaux\n\n#### Etude\n- Document scientifique ou académique évalué pour son respect de la spécificité de l'application et de l'objectif\n\n#### Pertinence Contextuelle\n- Evaluation de la spécificité de l'information fournie par l'étude par rapport à l'application et l'objectif\n\n#### Information Spécifique\n- Détails relatifs à la forme spécifique de l'application et de l'objectif présents dans l'étude\n\n#### Relevancy Assessment\n- Analyse de l'adéquation de l'étude avec l'application et l'objectif spécifiques\n- Détermine si l'étude est contextuellement pertinente et contient l'information spécifique requise\n\n#### Relevant\n- Indicateur boolean reflétant la pertinence de l'étude en fonction de la présence des spécificités requises\n- Valeur \"TRUE\" si l'étude est jugée pertinente ; \"FALSE\" sinon\n\n### Sous-éléments Liés\n\n#### Spécificité de l'Application\n- Exigence que l'étude aborde un aspect concret de l'application envisagée\n\n#### Spécificité de l'Objectif\n- Nécessité que l'étude cible explicitement l'objectif particulier attendu\n\n#### Titre et Snippet\n- Extraits de l'étude indiquant sa pertinence vis-à-vis de l'application et de l'objectif\n- Éléments évalués pour la première impression de la pertinence de l'étude\n\n### Relations Entre Concepts\n\n- La **Pertinence Contextuelle** d'une **Etude** est évaluée sur la base de l'**Information Spécifique** qu'elle contient.\n- L'**Etude** passe par une **Relevancy Assessment** pour déterminer sa pertinence.\n- La **Relevancy Assessment** est étroitement liée à la **Pertinence Contextuelle** et à l'**Information Spécifique**, car la pertinence d'une étude dépend de sa capacité à répondre aux particularités de l'application et de l'objectif.\n- L'issue de l'**Relevancy Assessment** est reflétée dans l'indicateur **Relevant**, accordant une valeur \"TRUE\" si les conditions de spécificité sont remplies et \"FALSE\" si elles ne le sont pas.\n\n## Mission Globale\n\n{{ $item(0).$node[\"entree\"].json.mission?$item(0).$node[\"entree\"].json.mission:\"Découverte & exploration générale\" }}\n\n## Demande Spécifique (Query)\n\n{{ $item(0).$node[\"entree\"].json.query }}\n\n## Résultats\n\n{{ JSON.stringify($json.results) }}\n\n## Instructions\n\nPour chaque résultat :\n- Affiche la référence de l'étude en commençant par le titre.\n- Résume les informations du snippet en un court texte.\n- Explicite en une phrase objective et critique la pertinence de l'étude dans le cadre de la Mission.\n- Affiche \"PERTINENT\" ou \"A ECARTER\".",
+        "options": {}
+      },
+      "id": "020b0076-5afc-4c47-8659-3991d1dcba41",
+      "name": "kinchercheur",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        5160,
+        -180
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n} else {\n  json.kinDemandeur = json.kin;\n}\n\nif (json.query) {\n  \n} else {\n  json.query =  \"Je souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020. Mes requêtes :\\n\\n\\\"Multi-Agent Systems LLM\\\",\\n\\\"multi_agent collaboration GPT\\\",\\n\\\"Complex systems agents LLM\\\".\";\n}\n\njson.date = \"2019\";\nlet regexDate = /\\s\\b\\d{4}\\b/; // C'est votre expression régulière\nif (regexDate.test(json.query)) {\n    json.date = json.query.match(regexDate)[0].substring(1);\n    json.query = json.query.replace(regexDate, '');\n}\n\njson.queries = [];\nlet regexQueries = /\"([^\"]*)\"/g;\n// Récupérer toutes les correspondances\nwhile ((matches = regexQueries.exec(json.query)) !== null) {\n    json.queries.push(matches[1]);\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "3857ab15-dbf3-43e9-9876-e6f930a9e2d1",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2500,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let response = \"[RETOUR - Etudes trouvées]\\n\\n\"\n\n// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  response += item.json.output + \"\\n\\n\";\n}\n\nresponse += \"[/RETOUR - Etudes trouvées]\\n\\n---\\n\\n\";\n\nif ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": response};\n}\n\n\nreturn {\"json\": {\"response\": response}};"
+      },
+      "id": "d4a03f27-9d5b-421a-b5bd-263163112d85",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5700,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "queries",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "id": "9f8b3fe0-f59a-42af-8dfe-01a8256ca092",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2940,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "organic_results",
+        "options": {}
+      },
+      "id": "3d25b5d0-2157-47d8-8e09-bdbe375fcc44",
+      "name": "Split Out1",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        3700,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "results",
+        "options": {}
+      },
+      "id": "0bb56a8e-c545-4799-be87-b11a81fb6109",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        4940,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 10,
+        "options": {}
+      },
+      "id": "ef87a2ac-87e3-49cc-8e0d-e2a58c3e90a8",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        4720,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://kins.app.n8n.cloud/webhook/inserer-le-document-dans-pinecone",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "88ad785d-482c-4bab-921d-63b5eac24ad5",
+      "name": "Insérer le document dans Pinecone",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        4940,
+        -400
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = {};\nlet entree = $item(0).$node[\"entree\"].json;\n\njson.resource = $json.resource;\njson.threadId = entree.threadId;\n\nreturn {\"json\": json};"
+      },
+      "id": "d9728129-be7a-4401-a08f-64fe821e3575",
+      "name": "entree pinecone",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4720,
+        -400
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
+        "text": "=# Informatif - Fonction Recherche Google Scholar\n\nLa fonction \"recherche_google_scholar\" renvoie la première page des résultats de Google Scholar à partir d'une liste de queries en Anglais, filtrés et avec une évaluation de leur pertinence. Il est possible de passer la date limite des études.\n\nFormat exemple :\n\n``\nJe souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020 :\n- \"Multi-Agent Systems LLM\",\n- \"multi_agent collaboration GPT\",\n- \"Complex systems agents LLM\".\n``\n\n# Contexte \n\nTu es dans le workflow de la fonction GPT \"recherche_google_scholar\". Tu aides le Kin à reformuler la requête d'entrée de la fonction.\n\n## Mission Globale\n\n{{ $node[\"entree\"].json.mission?$node[\"entree\"].json.mission:\"Découverte & exploration générale\" }}\n\n## Query initiale\n\n{{ $node[\"entree\"].json.query }}\n\n## Instructions\n\nReforumle la query initiale selon le format exemple. Affiche UNIQUEMENT la Query reformulée :\n\nQuery reformulée :",
+        "options": {}
+      },
+      "id": "d432d6d0-78ae-41e0-8837-137898f33a5a",
+      "name": "kinchercheur1",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2680,
+        60
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "a84d1012-5b07-4af0-ae7e-2d4db42be9e1",
+              "leftValue": "={{ $json.queries }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "9f4def75-90f2-436d-8571-39c179156c01",
+      "name": "If queries",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2680,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\n$json.query = $json.output;\n\nreturn {\"json\": json};"
+      },
+      "id": "816c6e30-b4e0-4a07-98e7-e7cae24d308f",
+      "name": "nouvelleEntree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3040,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.resource.format.toLowerCase() }}",
+                    "rightValue": "pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "16c8666c-83b2-415f-b40d-bd657174a1b6",
+                    "leftValue": "={{ $json.resource.format.toLowerCase() }}",
+                    "rightValue": "html",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "a55c3a94-4097-4dae-9f46-e4f685a05ddc",
+      "name": "Switch format",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        4140,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "method": "HEAD",
+        "url": "={{ $json.resource.link }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "94379cd7-f3f2-4b46-969e-63974cfff3d5",
+      "name": "Get Document via url",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        4420,
+        -200
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "content": "## TODO : Le mettre en synchrone pour pouvoir utiliser  l'abstract ?",
+        "height": 290.4382234863885,
+        "width": 411.37868779233577
+      },
+      "id": "0d9f5f6c-0ef8-4172-8551-65e0ccdec0d6",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        5120,
+        -297.1727873245984
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "La fonction \"recherche_google_scholar\" renvoie la première page des résultats de Google Scholar à partir d'une liste de queries, filtrés et avec une évaluation de leur pertinence. Il est possible de passer la date limite des études.\n\nQuery exemple :\n``\nJe souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020 :\n- \"Multi-Agent Systems LLM\",\n- \"multi_agent collaboration GPT\",\n- \"Complex systems agents LLM\".\n``",
+        "options": {
+          "inputPlaceholder": "=Je souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020 : - \"Multi-Agent Systems LLM\", - \"multi_agent collaboration GPT\", - \"Complex systems agents LLM\".",
+          "responseMode": "lastNode",
+          "subtitle": "La fonction recherche_google_scholar renvoie la première page des résultats de Google Scholar à partir d'une query, filtrés et avec une évaluation de leur pertinence.  Il est possible de passer la date limite des études sans format après la chaîne.  Query exemple : Je souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020.  Mes requêtes : - \"Multi-Agent Systems LLM\", - \"multi_agent collaboration GPT\", - \"Complex systems agents LLM\".",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "1158cf21-7d80-4006-8859-0ae5513b3d17",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        2260,
+        -360
+      ],
+      "webhookId": "ecb16e32-59fa-4000-b9ac-c9779d978469"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    },
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-02-06T14:44:07.659Z",
+  "versionId": "271380ce-078a-4f57-8e8f-fb8a8ca89bd1"
+}
