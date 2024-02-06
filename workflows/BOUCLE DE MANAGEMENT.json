@@ -1,0 +1,865 @@
+{
+  "active": false,
+  "connections": {
+    "entree document": {
+      "main": [
+        [
+          {
+            "node": "document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "document": {
+      "main": [
+        [
+          {
+            "node": "Manager",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Fetch onoff",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "defaultEmbedding": {
+      "main": [
+        [
+          {
+            "node": "entree document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manager": {
+      "main": [
+        [
+          {
+            "node": "response1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "response1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send  Notifications",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Get kin mission doing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get kin mission doing": {
+      "main": [
+        [
+          {
+            "node": "IF mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF mission": {
+      "main": [
+        [
+          {
+            "node": "Manager",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get kin mission done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch onoff": {
+      "main": [
+        [
+          {
+            "node": "If on",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If on": {
+      "main": [
+        [
+          {
+            "node": "defaultEmbedding",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get kin mission done": {
+      "main": [
+        [
+          {
+            "node": "IF mission1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF mission1": {
+      "main": [
+        [
+          {
+            "node": "If not kinmail",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Instructions1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission kinmail": {
+      "main": [
+        [
+          {
+            "node": "nouvelleMission kinmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouvelleMission kinmail": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send  Notifications": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If not kinmail": {
+      "main": [
+        [
+          {
+            "node": "mission kinmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de Prompt": {
+      "ai_tool": [
+        [
+          {
+            "node": "Manager",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de document": {
+      "ai_tool": [
+        [
+          {
+            "node": "Manager",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Mission": {
+      "ai_tool": [
+        [
+          {
+            "node": "Manager",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-06T16:08:01.983Z",
+  "id": "0LhMxlt62MaWdiqs",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "BOUCLE DE MANAGEMENT",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "156f992a-6441-4454-a62f-0423c9cbba44",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1940,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.format = \"md\";\n\nreturn {\"json\": json};"
+      },
+      "id": "865afd13-0488-45f3-b997-80f40479f84a",
+      "name": "entree document",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        760,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "H3fxaSnxjZT6EGhc",
+        "options": {}
+      },
+      "id": "1993d9b3-26bc-43dc-b5ce-1f84b12b5645",
+      "name": "document",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        980,
+        960
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4c551096-2d8c-448e-9074-2ca4e6e13bc6",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
+      },
+      "id": "59d20e8c-1475-4d1a-a7ff-41b956116f39",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -120,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=IJeSapyzv0Y9koZ9",
+        "options": {}
+      },
+      "id": "543fbe37-60f8-46f4-a7c0-fd2d349bc8b6",
+      "name": "defaultEmbedding",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        520,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_NRJfqzvKf73U2CjrI4bqMSf5",
+        "text": "=**INFORMATIF - Mission du Producteur :**\n\n{{ $node[\"entree\"].json.mission.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"entree\"].json.mission.substring($node[\"entree\"].json.mission.length - 5000)}}\n\n===\n\n**INFORMATIF - Document Final déjà rédigé à ce stade :**\n\n{{ $node[\"document\"].json.document.length > 5000 ? \"[...]\\n\\n\" : \"\" }}{{ $node[\"document\"].json.document.substring($node[\"document\"].json.document.length - 5000)}}\n\n===\n\n**INFORMATIF - Dernières Instructions que tu as données au {{  $node[\"entree\"].json.dernierProducteur }} :**\n\n{{ $node[\"entree\"].json.instructions }}\n\n===\n\n**INFORMATIF - Rédaction réalisée / Actions effectuées par {{  $node[\"entree\"].json.dernierProducteur }} :**\n\n{{ $node[\"entree\"].json.output.length > 5000 ? \"[...]\" : \"\" }}{{ $node[\"entree\"].json.output.substring($node[\"entree\"].json.output.length - 5000)}}\n\n===\n\n**INSTRUCTION : Manage la Boucle de Production :**\n\nEffectue toutes les Actions de ton processus en une seule fois.",
+        "options": {}
+      },
+      "id": "8101b345-e135-4484-9538-703906b31a84",
+      "name": "Manager",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        960
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.instructions = $node[\"Manager\"].json.output;\n\nreturn {\"json\" : json};"
+      },
+      "id": "bb92ac57-aac4-4cd8-9372-f124e3c4115a",
+      "name": "response1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1640,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"threadId\" : \"{{ $node[\"entree\"].json.threadId }}\", \"kin\": \"{{ $node[\"entree\"].json.kin }}\", \"status\": \"doing\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "75a4775b-4cc3-4032-8618-008c4c1c7640",
+      "name": "Get kin mission doing",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1940,
+        1160
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($json.matches).length > 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "fd4056bc-825c-436d-8d3f-ad37513a1086",
+      "name": "IF mission",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/fetch",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"onoff\",\n  \"ids\": [\"onoff\"]\n}",
+        "options": {}
+      },
+      "id": "ced671dc-c605-48d5-bc8a-9ab5e95b633a",
+      "name": "Fetch onoff",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        80,
+        960
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "026b34bb-7dfa-4fa4-af16-d78a4e166711",
+              "leftValue": "={{ $json.vectors.onoff.metadata.value }}",
+              "rightValue": "on",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c6312eb3-e720-4c14-b5da-87e42e153820",
+      "name": "If on",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        300,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"threadId\" : \"{{ $node[\"entree\"].json.threadId }}\", \"kin\": \"{{ $node[\"entree\"].json.kin }}\", \"status\": \"done\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "2e0e27e6-02f5-4bbf-a15a-8ac6ab92dac3",
+      "name": "Get kin mission done",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2400,
+        1560
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($json.matches).length > 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "84b0a437-d98c-4359-85a0-544af5b0073e",
+      "name": "IF mission1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2620,
+        1560
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=Date : {{ $node[\"entree\"].json.date }}\nClient : {{ $node[\"entree\"].json.client }}\n\n**PROCESSUS - MISSION : Rédaction & Envoi du mail de clôture par KinMail:**\n\nLa mission du  {{  $node[\"entree\"].json.dernierProducteur }} est accomplie. **Ta mission, en tant que KinMail, est de rédiger et d'envoyer au client le mail de clôture présentant le travail accompli.\n\n===\n\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8c9cc222-fe77-4b8d-bcd8-e6b690ccf2a6",
+      "name": "mission kinmail",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        3100,
+        1400
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"entree\"].json));\n\ndelete json.query;\n\n// Mettre à jour le Kin\njson.kinDemandeur = json.kin;\njson.kin = \"kinmail\";\njson.format = \"pdf\";\n\n// Mettre à jour la mission\njson.query = \"/crud_mission/create/\" + json.kin  + \" \" + $node[\"mission kinmail\"].json.mission;\n\nreturn {\"json\": json};"
+      },
+      "id": "ec17df15-f47d-4c80-9b08-4d94541384ae",
+      "name": "nouvelleMission kinmail",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3320,
+        1400
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=EYWde6gUS9Qq2ok7",
+        "options": {}
+      },
+      "id": "3314adf0-61ec-4c1a-90f7-689dd4670f00",
+      "name": "Send  Notifications",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        780
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "-4130957615",
+        "text": "={{ $execution.id }} DEBUG : {{ $node[\"Manager\"].json.output }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "016b9a7b-9ddb-4bf4-abf6-73213d859ad3",
+      "name": "Send Instructions1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        2880,
+        1660
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "rUijC7XE7TL12tph",
+          "name": "Lester AGI"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "c0b309e0-3b5d-4002-8ca5-2b8aae1e0572",
+              "leftValue": "={{ $node[\"entree\"].json.kin }}",
+              "rightValue": "=kinmail",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "153fccba-e978-41ec-9f57-1b8d282728f3",
+      "name": "If not kinmail",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2820,
+        1400
+      ]
+    },
+    {
+      "parameters": {
+        "name": "crud_mission",
+        "description": "La fonction \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'exécution.\n\nAppels disponibles :\n- /crud_mission/create/nomdukindemandé <Description détaillée de la nouvelle mission>\n- /crud_mission/update/instructions  <TODOLIST mise à jour et description détaillée de la prochaine action à réaliser, mentionnant son contexte dans la mission et son importance.\n- /crud_mission/update/status todo",
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "fields": {
+          "values": [
+            {
+              "name": "missionId",
+              "stringValue": "={{ $node[\"entree\"].json.missionId }}"
+            }
+          ]
+        }
+      },
+      "id": "d5fb7511-90ea-43aa-9440-2d93d1c8b070",
+      "name": "CRUD Mission",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        1480
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_prompt",
+        "description": "Le questionneur_de_prompt retourne un extrait du prompt système du Kin demandé ou une répond à une question sur le prompt à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée contenant :\n- Le nom du Kin dont tu souhaites récupérer le prompt,\n- La section demandée (Proposition de Valeur, Action n°1, etc.)\n- Verbatim : Si les extraits du prompt doivent être retranscrit verbatim",
+        "workflowId": "1gSRJ9a1XiIgSYRx",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"entree\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
+            }
+          ]
+        }
+      },
+      "id": "02b6a17c-ad10-4f6c-87aa-dccb5dabf986",
+      "name": "Questionneur de Prompt",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        1480
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_document",
+        "description": "=Le questionneur_de_document retourne une réponse issue du contenu du document final sur lequel travaille le Kin Producteur, à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Si tu souhaites du verbatim,\n- Les informations que tu cherches,\n- L'intention d'usage : tu souhaites faire de la réponse,\n- Le format de réponse désiré.",
+        "workflowId": "anybPoo9G98Nx3qW",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"entree\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "documentGoogleDriveId",
+              "stringValue": "={{ $node[\"entree\"].json.documentGoogleDriveId }}"
+            },
+            {
+              "name": "format",
+              "stringValue": "md"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
+            }
+          ]
+        }
+      },
+      "id": "8d3df1dc-0950-49d7-86ea-b19b826366a1",
+      "name": "Questionneur de document",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        1480
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "c88144fe-0fe1-4f87-9a47-7cc50e5ca997",
+      "name": "CRUD Mission : Create",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3540,
+        1400
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "client": "digitalkin",
+          "commandText": "Date : 2024-02-06T18:02:51.963+01:00\nClient : digitalkin\n\n**PROCESSUS - MISSION : Rédaction & Envoi du mail de clôture par KinMail:**\n\nLa mission du  kinlca est accomplie. **Ta mission, en tant que KinMail, est de rédiger et d'envoyer au client le mail de clôture présentant le travail accompli.\n\n===",
+          "firstAttribute": "kinmail",
+          "instructions": "[RETOUR - Gestion de la Boucle de Production]\n\nLa mise à jour du statut de la mission \"LCA Medionni\" a été effectuée avec succès. La mission est maintenant marquée comme terminée.\n\nCela marque la clôture effective de la boucle de production pour cette mission, et les instructions données précédemment ont été entièrement exécutées.\n\nMerci à tous pour votre travail exceptionnel et votre contribution dédiée.\n\n---\n\n",
+          "kin": "kinmail",
+          "kinDemandeur": "kinlca",
+          "mailFrom": "From: Lester Reynolds <l.reynolds@digitalkin.ai>",
+          "mailId": "18d7f397ae249839",
+          "mailSubject": "LCA Medionni",
+          "mission": "Date : 2024-02-06T18:02:51.963+01:00\nClient : digitalkin\n\n**PROCESSUS - MISSION : Rédaction & Envoi du mail de clôture par KinMail:**\n\nLa mission du  kinlca est accomplie. **Ta mission, en tant que KinMail, est de rédiger et d'envoyer au client le mail de clôture présentant le travail accompli.\n\n===",
+          "missionId": "kinmail-18d7f393dea3aee0",
+          "sourceGoogleDriveId": "1MTImU21jF_BYF6t3WBT8pUPqfpNv42mD",
+          "status": "todo",
+          "threadFrom": "Lester Reynolds <l.reynolds@digitalkin.ai>",
+          "threadId": "18d7f393dea3aee0",
+          "threadSubject": "LCA Medionni",
+          "startTimestamp": "2024-02-06T18:02:50.207+01:00",
+          "documentGoogleDriveId": "16DCiWfg8aNdYlbdKBGecbLUoYBwf4mE6",
+          "date": "2024-02-06T18:02:51.963+01:00",
+          "executionId": "140666",
+          "output": "[CONTENU - Résultats]\n\n### Présentation des Résultats\n\nL'étude dirigée par Jacques Medioni fournit une **analyse quantitative détaillée** sur l'efficacité de l'homéopathie comme traitement complémentaire dans le cadre du cancer du sein non métastatique. Les résultats sont présentés avec une clarté exemplaire, facilitant la compréhension de leurs implications.\n\n### Signification Statistique\n\n**Réduction significative dans l'utilisation des médicaments** pour atténuer les effets secondaires du traitement contre le cancer chez les patients recevant l'homéopathie, avec des Réductions Relatives substantielles allant de **0.79 à 0.90** pour diverses catégories de médications, indiquant une **amélioration potentielle de la qualité de vie** des patients.\n\n### Taille de l'Effet\n\nLa **réduction de l'utilisation d'anxiolytiques** de **36% à 22%** à 5 ans après la chirurgie et celle des hypnotiques de **16% à 9%**, suggèrent des bénéfices tangibles sur la gestion de l'anxiété et des troubles du sommeil. Cependant, l'utilisation d'antidépresseurs est restée stable, indiquant un impact moins clair sur la dépression.\n\n### Effets indésirables\n\nL'étude ne rapporte aucun effet indésirable directement lié à l'utilisation de l'homéopathie. Cependant, une observation notable concerne **l'augmentation de l'utilisation des congés maladie** chez les patients ayant reçu au moins 3 prescriptions d'homéopathie, suggérant peut-être une plus grande attention à la récupération personnelle ou un impact indirect sur la santé globale non mesuré par d'autres indicateurs.\n\n### Conclusion et Implications Pratiques\n\nLes résultats mettent en lumière les bénéfices potentiels de l'homéopathie comme traitement complémentaire pour améliorer la tolérance aux traitements conventionnels contre le cancer du sein et potentiellement améliorer certains aspects de la qualité de vie des patients. Il est recommandé de poursuivre les recherches pour évaluer plus précisément son impact sur des variables psychologiques comme l'anxiété, la dépression, et les troubles du sommeil, ainsi que l'effet sur l'utilisation à long terme des congés maladie.\n\n[/CONTENU - Résultats]\n\n---\n\nJe passerai à présent à la critique de la discussion et des conclusions de l'étude, conformément aux étapes d'action spécifiées.\n[CONTENU - Discussion et Conclusions]\n\n### Interprétation des Résultats\n\nL'étude démontre que l'homéopathie pourrait jouer un rôle important dans la réduction de la nécessité des médicaments visant à gérer les effets secondaires des traitements du cancer chez les patients, facilitant ainsi une meilleure tolérance. Les auteurs considèrent ces résultats comme une invitation à refléchir sur **l'intégration de l'homéopathie dans les protocoles de traitement de soutien en oncologie**.\n\n### Limitations de l'Étude\n\nLes auteurs identifient des limites cruciales, telles que le **caractère rétrospectif** de l'étude qui ne permet pas d'établir une causalité directe, et des défis liés à la **fiabilité des données** issues de bases de données nationales. Ils soulignent également le manque d'informations sur les **traitements homéopathiques spécifiques** et l'**adhésion des patients**.\n\n### Implications Pratiques\n\nLes résultats encouragent l'intégration de **l'homéopathie comme option de traitement complémentaire**, après une **discussion éclairée** entre médecins et patients. L'amélioration potentielle de la **qualité de vie des patients** grâce à la réduction des effets secondaires du cancer constitue l'une des principales recommandations pratiques.\n\n### Reproductibilité\n\nL'étude appelle à la **reproduction des résultats** dans d'autres contextes et populations pour renforcer la compréhension de l'impact de l'homéopathie. Les auteurs mettent en avant le **besoin d'études comparatives supplémentaires** en France et ailleurs pour étayer ces conclusions.\n\n### Contexte Scientifique\n\nLa nécessité de **réaliser d'autres recherches**, notamment des **essais contrôlés randomisés**, est soulignée pour vérifier et approfondir les résultats. Une **collaboration étroite entre oncologues, homéopathes, et patients** est recommandée pour une prise en charge optimale du cancer.\n\n### Conclusion\n\nL'étude offre une perspective encourageante sur le rôle de l'homéopathie dans la diminution des effets secondaires liés au traitement du cancer, suggérant des bénéfices significatifs en termes de tolérance et d'amélioration de la qualité de vie. Toutefois, elle souligne l'importance de **poursuivre les recherches** pour confirmer ces observations et optimiser la prise en charge des patients atteints de cancer.\n\n[/CONTENU - Discussion et Conclusions]\n",
+          "dernierProducteur": "kinlca",
+          "format": "pdf",
+          "missionDemandeur": "LCA Medionni\n\n-- \nNicolas Lester Reynolds\nCTO @ Digitalkin.ai <https://DigitalKin.ai>\n+33621636737\nBookez-moi sur Calendy <https://calendly.com/l-reynolds-digitalkin/call>\n\n\nFile attached with email : 2 SNDS.pdf"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any",
+    "saveExecutionProgress": true,
+    "executionTimeout": 2400,
+    "errorWorkflow": "PYJaVWpuygsfVZry"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": [
+        14
+      ]
+    },
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1706021400,
+      "possibleDuplicates": [
+        "18d36ccb1edf6bcf"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    },
+    {
+      "createdAt": "2023-12-17T21:33:59.044Z",
+      "updatedAt": "2023-12-17T21:33:59.044Z",
+      "id": "cV0ITFyTfPijMrvR",
+      "name": "kin"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-02-06T20:46:21.000Z",
+  "versionId": "21a2551d-92ed-40f8-820d-b260af94c334"
+}
