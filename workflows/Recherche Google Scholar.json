@@ -154,17 +154,6 @@
         ]
       ]
     },
-    "Chat Trigger": {
-      "main": [
-        [
-          {
-            "node": "entree",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Insérer le document dans Pinecone": {
       "main": [
         [
@@ -251,6 +240,17 @@
           },
           {
             "node": "entree pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
             "type": "main",
             "index": 0
           }
@@ -520,27 +520,6 @@
     },
     {
       "parameters": {
-        "public": true,
-        "initialMessages": "La fonction \"recherche_google_scholar\" renvoie la première page des résultats de Google Scholar à partir d'une liste de queries, filtrés et avec une évaluation de leur pertinence. Il est possible de passer la date limite des études.\n\nQuery exemple :\n``\nJe souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020 :\n- \"Multi-Agent Systems LLM\",\n- \"multi_agent collaboration GPT\",\n- \"Complex systems agents LLM\".\n``",
-        "options": {
-          "inputPlaceholder": "=Je souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020 : - \"Multi-Agent Systems LLM\", - \"multi_agent collaboration GPT\", - \"Complex systems agents LLM\".",
-          "responseMode": "lastNode",
-          "subtitle": "La fonction recherche_google_scholar renvoie la première page des résultats de Google Scholar à partir d'une query, filtrés et avec une évaluation de leur pertinence.  Il est possible de passer la date limite des études sans format après la chaîne.  Query exemple : Je souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020.  Mes requêtes : - \"Multi-Agent Systems LLM\", - \"multi_agent collaboration GPT\", - \"Complex systems agents LLM\".",
-          "title": "={{ $workflow.name }}"
-        }
-      },
-      "id": "f4cca4f0-ba56-4e65-aa4e-5758099278e7",
-      "name": "Chat Trigger",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1,
-      "position": [
-        2260,
-        -360
-      ],
-      "webhookId": "3247566d-0dd3-4351-971e-2c73a179e187"
-    },
-    {
-      "parameters": {
         "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
         "text": "=# Informatif - Fonction Recherche Google Scholar\n\nLa fonction \"recherche_google_scholar\" renvoie la première page des résultats de Google Scholar à partir d'une liste de queries en Anglais, filtrés et avec une évaluation de leur pertinence. Il est possible de passer la date limite des études.\n\nFormat exemple :\n\n``\nJe souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020 :\n- \"Multi-Agent Systems LLM\",\n- \"multi_agent collaboration GPT\",\n- \"Complex systems agents LLM\".\n``\n\n# Contexte \n\nTu es dans le workflow de la fonction GPT \"recherche_google_scholar\". Tu aides le Kin à reformuler la requête d'entrée de la fonction.\n\n## Mission Globale\n\n{{ $node[\"entree\"].json.mission?$node[\"entree\"].json.mission:\"Découverte & exploration générale\" }}\n\n## Query initiale\n\n{{ $node[\"entree\"].json.query }}\n\n## Instructions\n\nReforumle la query initiale selon le format exemple. Affiche UNIQUEMENT la Query reformulée :\n\nQuery reformulée :",
         "options": {}
@@ -701,6 +680,27 @@
         5120,
         -297.1727873245984
       ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "La fonction \"recherche_google_scholar\" renvoie la première page des résultats de Google Scholar à partir d'une liste de queries, filtrés et avec une évaluation de leur pertinence. Il est possible de passer la date limite des études.\n\nQuery exemple :\n``\nJe souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020 :\n- \"Multi-Agent Systems LLM\",\n- \"multi_agent collaboration GPT\",\n- \"Complex systems agents LLM\".\n``",
+        "options": {
+          "inputPlaceholder": "=Je souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020 : - \"Multi-Agent Systems LLM\", - \"multi_agent collaboration GPT\", - \"Complex systems agents LLM\".",
+          "responseMode": "lastNode",
+          "subtitle": "La fonction recherche_google_scholar renvoie la première page des résultats de Google Scholar à partir d'une query, filtrés et avec une évaluation de leur pertinence.  Il est possible de passer la date limite des études sans format après la chaîne.  Query exemple : Je souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020.  Mes requêtes : - \"Multi-Agent Systems LLM\", - \"multi_agent collaboration GPT\", - \"Complex systems agents LLM\".",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "f4cca4f0-ba56-4e65-aa4e-5758099278e7",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        2260,
+        -360
+      ],
+      "webhookId": "3247566d-0dd3-4351-971e-2c73a179e187"
     }
   ],
   "pinData": {},
@@ -725,6 +725,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-05T16:57:30.000Z",
-  "versionId": "d6622a19-7593-4c49-b1b0-7dd4e070548d"
+  "updatedAt": "2024-02-06T10:32:48.000Z",
+  "versionId": "efaba04a-3865-4fed-879f-e5dfa1a70bc7"
 }
