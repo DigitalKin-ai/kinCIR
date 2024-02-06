@@ -326,7 +326,7 @@
     {
       "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"threadId\"] }}",
+        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"] }}",
         "message": "={{ $node[\"Execute Workflow Trigger\"].json[\"query\"] }}",
         "options": {
           "ccList": "={{ $node[\"entree DocumentDemandeur\"].json[\"to\"] ? $node[\"entree DocumentDemandeur\"].json[\"to\"] + \", \" : \"\"}} team@digitalkin.ai",
@@ -434,7 +434,7 @@
     {
       "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"threadId\"] }}",
+        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"] }}",
         "message": "={{ $node[\"Execute Workflow Trigger\"].json[\"query\"] }}",
         "options": {
           "attachmentsUi": {
@@ -466,7 +466,7 @@
     {
       "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"threadId\"] }}",
+        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"] }}",
         "message": "={{ $node[\"Execute Workflow Trigger\"].json[\"query\"] }}",
         "options": {
           "attachmentsUi": {
@@ -501,7 +501,7 @@
     {
       "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"threadId\"] }}",
+        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"] }}",
         "message": "={{ $node[\"Execute Workflow Trigger\"].json[\"query\"] }}",
         "options": {
           "attachmentsUi": {
@@ -574,7 +574,7 @@
     {
       "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"threadId\"] }}",
+        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"] }}",
         "message": "={{ $node[\"Execute Workflow Trigger\"].json[\"query\"] }}",
         "options": {
           "attachmentsUi": {
@@ -648,6 +648,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-05T12:24:21.000Z",
-  "versionId": "96edd7a3-1c5b-4363-9cb6-423be45bc834"
+  "updatedAt": "2024-02-06T10:15:52.000Z",
+  "versionId": "02e24e5d-801b-43c5-90e3-e3f3dd511ef1"
 }
