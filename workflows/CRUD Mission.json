@@ -161,7 +161,7 @@
           {
             "node": "Merge",
             "type": "main",
-            "index": 1
+            "index": 0
           }
         ]
       ]
@@ -622,6 +622,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-05T22:34:07.000Z",
-  "versionId": "d20abfd5-ab20-4e9b-810d-7031bda93cec"
+  "updatedAt": "2024-02-06T09:05:23.000Z",
+  "versionId": "a8b00fb0-afbf-471a-8841-6c8038342211"
 }
