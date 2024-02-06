@@ -439,7 +439,6 @@
           "item": [
             {
               "mode": "everyX",
-              "value": 1,
               "unit": "minutes"
             }
           ]
@@ -783,9 +782,9 @@
       ]
     },
     "node:Mail Trigger": {
-      "lastTimeChecked": 1707172210,
+      "lastTimeChecked": 1707217033,
       "possibleDuplicates": [
-        "18d7b64a84e6d02a"
+        "18d7e10a2d43c01b"
       ]
     }
   },
@@ -798,6 +797,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-05T22:31:00.000Z",
-  "versionId": "0a23d8ce-8c8a-4555-8d4d-a4577419669e"
+  "updatedAt": "2024-02-06T10:58:22.000Z",
+  "versionId": "cca6d132-09d8-410a-94b8-65775b4ad854"
 }
