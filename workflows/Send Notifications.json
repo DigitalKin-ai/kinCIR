@@ -16,20 +16,14 @@
       "main": [
         [
           {
-            "node": "Send Output",
+            "node": "Send Log",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Send Output": {
-      "main": [
-        [
+          },
           {
-            "node": "Merge",
+            "node": "If boiron",
             "type": "main",
-            "index": 1
+            "index": 0
           }
         ]
       ]
@@ -56,17 +50,6 @@
             "node": "chunks",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Send Instructions": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
           }
         ]
       ]
@@ -119,7 +102,12 @@
       "main": [
         [
           {
-            "node": "Send Instructions",
+            "node": "Send Log",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If boiron",
             "type": "main",
             "index": 0
           }
@@ -172,6 +160,46 @@
           }
         ]
       ]
+    },
+    "Send Log": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If boiron": {
+      "main": [
+        [
+          {
+            "node": "Send Log Boiron",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Send Log Boiron": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-27T13:03:44.164Z",
@@ -202,61 +230,9 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        660,
+        380,
         700
       ],
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "chatId": "-1002105587743",
-        "text": "={{ $json.text }}",
-        "additionalFields": {
-          "appendAttribution": false,
-          "disable_notification": true,
-          "parse_mode": "MarkdownV2"
-        }
-      },
-      "id": "00ff0a66-9b7b-4a0f-b754-de55773d301d",
-      "name": "Send Output",
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.1,
-      "position": [
-        860,
-        700
-      ],
-      "credentials": {
-        "telegramApi": {
-          "id": "lCt7ijUIUZl2RYIR",
-          "name": "KinCIR Dynergie"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "chatId": "-1002105587743",
-        "text": "={{ $json.text }}",
-        "additionalFields": {
-          "appendAttribution": false,
-          "disable_notification": true,
-          "parse_mode": "MarkdownV2"
-        }
-      },
-      "id": "e4758c47-45ed-4fb6-8468-b14ba38b8aad",
-      "name": "Send Instructions",
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.1,
-      "position": [
-        860,
-        900
-      ],
-      "credentials": {
-        "telegramApi": {
-          "id": "lCt7ijUIUZl2RYIR",
-          "name": "KinCIR Dynergie"
-        }
-      },
       "onError": "continueRegularOutput"
     },
     {
@@ -364,7 +340,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        660,
+        380,
         900
       ],
       "onError": "continueRegularOutput"
@@ -447,6 +423,92 @@
         -40,
         900
       ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "9ce4b36c-1794-45b7-9546-eec250840359",
+              "leftValue": "={{ $node[\"entree\"].json.kin }}",
+              "rightValue": "kinlca",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "1f97f9ee-2699-453a-adef-a2bdb4424f04",
+      "name": "If boiron",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        700,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-1002105587743",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "00ff0a66-9b7b-4a0f-b754-de55773d301d",
+      "name": "Send Log",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        680,
+        700
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "lCt7ijUIUZl2RYIR",
+          "name": "KinCIR Dynergie"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "-4042572972",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "2ac19bfe-b239-4c61-8c76-e9956009c212",
+      "name": "Send Log Boiron",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        920,
+        880
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "C7R9VmqdsXqL4lOZ",
+          "name": "Boiron RSI"
+        }
+      },
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {},
@@ -485,6 +547,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-01T01:27:20.000Z",
-  "versionId": "f086ebea-88d1-4b4d-b0cf-2d105ebc1109"
+  "updatedAt": "2024-02-06T09:03:08.000Z",
+  "versionId": "34df59e9-f056-4c1e-aff2-29318c31ce73"
 }
