@@ -16,11 +16,6 @@
       "main": [
         [
           {
-            "node": "Send Log",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "If boiron",
             "type": "main",
             "index": 0
@@ -102,11 +97,6 @@
       "main": [
         [
           {
-            "node": "Send Log",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "If boiron",
             "type": "main",
             "index": 0
@@ -183,9 +173,9 @@
         ],
         [
           {
-            "node": "Merge",
+            "node": "Send Log",
             "type": "main",
-            "index": 1
+            "index": 0
           }
         ]
       ]
@@ -274,7 +264,7 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        860,
+        920,
         1100
       ],
       "alwaysOutputData": true
@@ -454,8 +444,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        700,
-        880
+        620,
+        820
       ]
     },
     {
@@ -473,8 +463,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.1,
       "position": [
-        680,
-        700
+        920,
+        880
       ],
       "credentials": {
         "telegramApi": {
@@ -500,7 +490,7 @@
       "typeVersion": 1.1,
       "position": [
         920,
-        880
+        680
       ],
       "credentials": {
         "telegramApi": {
@@ -547,6 +537,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-06T09:03:08.000Z",
-  "versionId": "34df59e9-f056-4c1e-aff2-29318c31ce73"
+  "updatedAt": "2024-02-06T13:57:29.000Z",
+  "versionId": "f22139c6-b9ba-4bdb-899a-692b94e24165"
 }
