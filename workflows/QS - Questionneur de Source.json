@@ -147,33 +147,11 @@
         ]
       ]
     },
-    "Pinecone Vector Store": {
-      "ai_vectorStore": [
-        [
-          {
-            "node": "Vector Store Retriever",
-            "type": "ai_vectorStore",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "entree": {
       "main": [
         [
           {
             "node": "Get existing document",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get existing document": {
-      "main": [
-        [
-          {
-            "node": "If PDF",
             "type": "main",
             "index": 0
           }
@@ -196,6 +174,35 @@
         [
           {
             "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get existing document": {
+      "main": [
+        [
+          {
+            "node": "If PDF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Questionneur de document ( version chain)",
             "type": "main",
             "index": 0
           }
@@ -277,7 +284,7 @@
       "typeVersion": 1,
       "position": [
         2080,
-        -140
+        -220
       ]
     },
     {
@@ -395,8 +402,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2800,
-        -140
+        2780,
+        -220
       ]
     },
     {
@@ -440,6 +447,76 @@
     },
     {
       "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n  \n  let regexDocumentId = /#([a-zA-Z0-9\\-\\_]+)/;\n  let matches = json.query.match(regexDocumentId);\n  if (matches && matches[1]) {\n    json.sourceGoogleDriveId = matches[1];\n  } \n}\n\nreturn {\"json\": json};"
+      },
+      "id": "093ef667-d89b-442b-aeaf-ccb94af28a5d",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2300,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "if ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": $json.response.text};\n}\n\nreturn {\"response\":$json.response.text};"
+      },
+      "id": "9b6ec73d-76e2-4914-a35e-69c6739870da",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4080,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Le questionneur_de_source retourne une réponse issue d'un document source spécifique à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- La citation de l'étude,\n- Les informations que tu cherches,\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire,\n- Le format de réponse désiré.\n\nEx : #1Cxt05liFpx8KZ9Rb3j4x5moijL8NNbHl Quels sont les résultats trouvés par cette étude ? ",
+        "options": {
+          "responseMode": "lastNode",
+          "subtitle": "=Le questionneur_de_source retourne une réponse issue d'un document source spécifique à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- La citation de l'étude,\n- Les informations que tu cherches,\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire,\n- Le format de réponse désiré.\n\nEx : #1Cxt05liFpx8KZ9Rb3j4x5moijL8NNbHl Quels sont les résultats trouvés par cette étude ? ",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "d0eb3c76-1554-4102-8c99-aaa2a821645b",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        -420
+      ],
+      "webhookId": "e216adc2-5ca8-4efc-9193-00ea3d7d26cf"
+    },
+    {
+      "parameters": {
+        "chunkSize": 20000,
+        "chunkOverlap": 2000,
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de Document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
+              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+            }
+          }
+        }
+      },
+      "id": "a55d09fb-dc50-4290-b1c1-569b6245c0f7",
+      "name": "Questionneur de document (map reduce)",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        3560,
+        -240
+      ]
+    },
+    {
+      "parameters": {
         "pineconeIndex": {
           "__rl": true,
           "value": "kins",
@@ -475,34 +552,6 @@
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n  \n  let regexDocumentId = /#([a-zA-Z0-9\\-\\_]+)/;\n  let matches = json.query.match(regexDocumentId);\n  if (matches && matches[1]) {\n    json.sourceGoogleDriveId = matches[1];\n  } \n}\n\nreturn {\"json\": json};"
-      },
-      "id": "093ef667-d89b-442b-aeaf-ccb94af28a5d",
-      "name": "entree",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2300,
-        -140
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "if ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": $json.response.text};\n}\n\nreturn {\"response\":$json.response.text};"
-      },
-      "id": "9b6ec73d-76e2-4914-a35e-69c6739870da",
-      "name": "response",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        4080,
-        100
-      ]
-    },
-    {
-      "parameters": {
         "operation": "download",
         "fileId": {
           "__rl": true,
@@ -519,56 +568,15 @@
       "typeVersion": 3,
       "position": [
         2540,
-        -140
+        -220
       ],
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "Z5nSsC9JGaYw1Ng3",
           "name": "Google Drive DK via Nicolas"
         }
-      }
-    },
-    {
-      "parameters": {
-        "public": true,
-        "initialMessages": "Le questionneur_de_source retourne une réponse issue d'un document source spécifique à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- La citation de l'étude,\n- Les informations que tu cherches,\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire,\n- Le format de réponse désiré.\n\nEx : #1Cxt05liFpx8KZ9Rb3j4x5moijL8NNbHl Quels sont les résultats trouvés par cette étude ? ",
-        "options": {
-          "responseMode": "lastNode",
-          "subtitle": "=Le questionneur_de_source retourne une réponse issue d'un document source spécifique à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- La citation de l'étude,\n- Les informations que tu cherches,\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire,\n- Le format de réponse désiré.\n\nEx : #1Cxt05liFpx8KZ9Rb3j4x5moijL8NNbHl Quels sont les résultats trouvés par cette étude ? ",
-          "title": "={{ $workflow.name }}"
-        }
       },
-      "id": "d0eb3c76-1554-4102-8c99-aaa2a821645b",
-      "name": "Chat Trigger",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1,
-      "position": [
-        2080,
-        -340
-      ],
-      "webhookId": "e216adc2-5ca8-4efc-9193-00ea3d7d26cf"
-    },
-    {
-      "parameters": {
-        "chunkSize": 20000,
-        "chunkOverlap": 2000,
-        "options": {
-          "summarizationMethodAndPrompts": {
-            "values": {
-              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de Document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
-              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\""
-            }
-          }
-        }
-      },
-      "id": "a55d09fb-dc50-4290-b1c1-569b6245c0f7",
-      "name": "Questionneur de document (map reduce)",
-      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
-      "typeVersion": 2,
-      "position": [
-        3560,
-        -240
-      ]
+      "onError": "continueErrorOutput"
     }
   ],
   "pinData": {
@@ -611,6 +619,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-05T17:43:02.000Z",
-  "versionId": "a8a71c3c-1b0a-452c-ada8-55cfd3fb310a"
+  "updatedAt": "2024-02-06T08:56:24.000Z",
+  "versionId": "785616c4-180b-4b8a-9d74-2fe394dc4470"
 }
