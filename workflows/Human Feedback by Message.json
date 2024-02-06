@@ -149,17 +149,6 @@
         ]
       ]
     },
-    "Telegram Trigger Boiron": {
-      "main": [
-        [
-          {
-            "node": "If command",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "If command": {
       "main": [
         [
@@ -205,6 +194,17 @@
         [
           {
             "node": "Send Output1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger Boiron": {
+      "main": [
+        [
+          {
+            "node": "If command",
             "type": "main",
             "index": 0
           }
@@ -487,29 +487,6 @@
     },
     {
       "parameters": {
-        "updates": [
-          "message"
-        ],
-        "additionalFields": {}
-      },
-      "id": "916e5eda-0313-4032-97d6-ef6a3f6f5985",
-      "name": "Telegram Trigger Boiron",
-      "type": "n8n-nodes-base.telegramTrigger",
-      "typeVersion": 1.1,
-      "position": [
-        600,
-        660
-      ],
-      "webhookId": "489315ee-a723-4959-8259-257fcc547589",
-      "credentials": {
-        "telegramApi": {
-          "id": "C7R9VmqdsXqL4lOZ",
-          "name": "Boiron RSI"
-        }
-      }
-    },
-    {
-      "parameters": {
         "conditions": {
           "options": {
             "caseSensitive": true,
@@ -647,6 +624,29 @@
         1380,
         200
       ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "1d9af019-006e-43ac-a07a-ee5feb222474",
+      "name": "Telegram Trigger Boiron",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        600,
+        680
+      ],
+      "webhookId": "489315ee-a723-4959-8259-257fcc547589",
+      "credentials": {
+        "telegramApi": {
+          "id": "C7R9VmqdsXqL4lOZ",
+          "name": "Boiron RSI"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -669,6 +669,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2024-02-05T15:16:59.000Z",
-  "versionId": "ff6aca0e-cdd4-4a19-a578-9eeb22ea0908"
+  "updatedAt": "2024-02-06T09:08:02.000Z",
+  "versionId": "d0ef9fec-c8a1-4af1-979c-e3b5dde8ee58"
 }
