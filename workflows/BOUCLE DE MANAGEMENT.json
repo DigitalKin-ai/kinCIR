@@ -87,36 +87,7 @@
       "main": [
         [
           {
-            "node": "Get kin mission doing",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get kin mission doing": {
-      "main": [
-        [
-          {
-            "node": "IF mission",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "IF mission": {
-      "main": [
-        [
-          {
-            "node": "Manager",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Get kin mission done",
+            "node": "Get kin mission execution doing",
             "type": "main",
             "index": 0
           }
@@ -167,7 +138,7 @@
         ],
         [
           {
-            "node": "Send Instructions1",
+            "node": "/mission/update/status todo",
             "type": "main",
             "index": 0
           }
@@ -246,6 +217,46 @@
           {
             "node": "Manager",
             "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get kin mission execution doing": {
+      "main": [
+        [
+          {
+            "node": "IF execution doing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF execution doing": {
+      "main": [
+        [
+          {
+            "node": "Manager",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get kin mission done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "/mission/update/status todo": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Update status todo",
+            "type": "main",
             "index": 0
           }
         ]
@@ -374,65 +385,6 @@
       "position": [
         1640,
         960
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"threadId\" : \"{{ $node[\"entree\"].json.threadId }}\", \"kin\": \"{{ $node[\"entree\"].json.kin }}\", \"status\": \"doing\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
-        "options": {}
-      },
-      "id": "75a4775b-4cc3-4032-8618-008c4c1c7640",
-      "name": "Get kin mission doing",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        1940,
-        1160
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "boolean": [
-            {
-              "value1": "={{ Object.keys($json.matches).length > 0 }}",
-              "value2": true
-            }
-          ]
-        }
-      },
-      "id": "fd4056bc-825c-436d-8d3f-ad37513a1086",
-      "name": "IF mission",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        2160,
-        1160
       ]
     },
     {
@@ -619,31 +571,6 @@
     },
     {
       "parameters": {
-        "chatId": "-4130957615",
-        "text": "={{ $execution.id }} DEBUG : {{ $node[\"Manager\"].json.output }}",
-        "additionalFields": {
-          "appendAttribution": false,
-          "parse_mode": "MarkdownV2"
-        }
-      },
-      "id": "016b9a7b-9ddb-4bf4-abf6-73213d859ad3",
-      "name": "Send Instructions1",
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.1,
-      "position": [
-        2880,
-        1660
-      ],
-      "credentials": {
-        "telegramApi": {
-          "id": "rUijC7XE7TL12tph",
-          "name": "Lester AGI"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
         "conditions": {
           "options": {
             "caseSensitive": false,
@@ -679,7 +606,7 @@
     {
       "parameters": {
         "name": "crud_mission",
-        "description": "La fonction \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'exécution.\n\nAppels disponibles :\n- /crud_mission/create/nomdukindemandé <Description détaillée de la nouvelle mission>\n- /crud_mission/update/instructions  <TODOLIST mise à jour et description détaillée de la prochaine action à réaliser, mentionnant son contexte dans la mission et son importance.\n- /crud_mission/update/status todo",
+        "description": "La fonction \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'exécution.\n\nAppels disponibles :\n   - Pour **continuer la boucle de production**, si l'analyse montre que la mission est sur la bonne voie et qu'il suffit de poursuivre selon le plan établi :\n     ```\n     /crud_mission/update/execution todo\n     ```\n   - Pour **gérer une exception**, si un obstacle imprévu se présente nécessitant une action corrective ou une adaptation :\n     ```\n     /crud_mission/update/status exception\n     ```\n   - Pour **formuler une demande spécifique**, lorsqu'une expertise, une action, ou une ressource spécifique d'un autre Kin est nécessaire pour poursuivre :\n     ```\n     - /crud_mission/create/nomdukindemandé <Description détaillée de la nouvelle mission, y compris le contexte de la mission, l'objectif spécifique de cette demande, et son importance pour l'avancée de la mission du demandeur>.\n     ```\n   - Pour **conclure la mission**, lorsque tous les objectifs sont atteints et que la mission peut être considérée comme terminée :\n     ```\n     /crud_mission/update/status done\n     ```",
         "workflowId": "HLDDZOmG8kuk2zTi",
         "fields": {
           "values": [
@@ -695,7 +622,7 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        1100,
+        1120,
         1480
       ]
     },
@@ -790,6 +717,93 @@
         3540,
         1400
       ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"threadId\" : \"{{ $node[\"entree\"].json.threadId }}\", \"kin\": \"{{ $node[\"entree\"].json.kin }}\", \"execution\": \"doing\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "75a4775b-4cc3-4032-8618-008c4c1c7640",
+      "name": "Get kin mission execution doing",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1940,
+        1160
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($json.matches).length > 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "fd4056bc-825c-436d-8d3f-ad37513a1086",
+      "name": "IF execution doing",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/mission/update/status todo\";\n\nreturn {\"json\": json};"
+      },
+      "id": "bb2f96c6-e5c8-45bc-8436-c6378fdbf9c0",
+      "name": "/mission/update/status todo",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2840,
+        1700
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "1fc1f2bb-a5f8-4f76-81ab-0cd784591e94",
+      "name": "CRUD Mission : Update status todo",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3060,
+        1700
+      ]
     }
   ],
   "pinData": {
@@ -860,6 +874,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-06T20:46:21.000Z",
-  "versionId": "21a2551d-92ed-40f8-820d-b260af94c334"
+  "updatedAt": "2024-02-07T10:54:39.000Z",
+  "versionId": "acb20cab-6789-4ecb-a98a-78287360646e"
 }
