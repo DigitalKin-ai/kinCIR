@@ -23,17 +23,6 @@
         ]
       ]
     },
-    "IF Task": {
-      "main": [
-        [
-          {
-            "node": "mission set doing",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "get body": {
       "main": [
         [
@@ -115,18 +104,7 @@
       "main": [
         [
           {
-            "node": "IF Task",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "mission set doing": {
-      "main": [
-        [
-          {
-            "node": "CRUD Mission : Update status",
+            "node": "IF mission",
             "type": "main",
             "index": 0
           }
@@ -159,7 +137,7 @@
       "main": [
         [
           {
-            "node": "get body",
+            "node": "/mission/update/execution doing",
             "type": "main",
             "index": 0
           }
@@ -194,6 +172,61 @@
           }
         ]
       ]
+    },
+    "CRUD Mission : Update execution doing": {
+      "main": [
+        [
+          {
+            "node": "get body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF mission": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "/mission/update/status doing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "/mission/update/execution doing": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Update execution doing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "/mission/update/status doing": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Update status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-23T14:34:33.442Z",
@@ -219,14 +252,14 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.1,
       "position": [
-        -300,
+        -700,
         380
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let client = $node[\"IF Task\"].json[\"matches\"][0].metadata[\"client\"];\n\nlet kinCredits = $vars.startingKinCredits;\n\nif (Object.keys($json.vectors).length > 0 && $json.vectors[client]) {\n  kinCredits = $json.vectors[client].metadata.kinCredits;\n}\n\nlet startDate = new Date($node[\"get body\"].json[\"startTimestamp\"]);\n\nlet elapsedTime = Date.now() - startDate.getTime(); // Get current time and subtract start time\n\n// Convert milliseconds to minutes and subtract from kinCredits\n// Assuming elapsedTime needs to be in minutes for kinCredits calculation\nkinCredits = Math.floor(kinCredits - (elapsedTime / 60000)); // 60000 ms in a minute\n\nreturn {\"kinCredits\": kinCredits, \"client\": client};"
+        "jsCode": "let client = $node[\"entree\"].json.client;\n\nlet kinCredits = $vars.startingKinCredits;\n\nif (Object.keys($json.vectors).length > 0 && $json.vectors[client]) {\n  kinCredits = $json.vectors[client].metadata.kinCredits;\n}\n\nlet startDate = new Date($node[\"get body\"].json[\"startTimestamp\"]);\n\nlet elapsedTime = Date.now() - startDate.getTime(); // Get current time and subtract start time\n\n// Convert milliseconds to minutes and subtract from kinCredits\n// Assuming elapsedTime needs to be in minutes for kinCredits calculation\nkinCredits = Math.floor(kinCredits - (elapsedTime / 60000)); // 60000 ms in a minute\n\nreturn {\"kinCredits\": kinCredits, \"client\": client};"
       },
       "id": "9d3b246c-d003-4132-8c69-c5e3df3adaf7",
       "name": "set kinCredits",
@@ -244,34 +277,14 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        300,
+        -100,
         560
       ]
     },
     {
       "parameters": {
-        "conditions": {
-          "boolean": [
-            {
-              "value1": "={{ Object.keys($json.matches).length > 0 }}",
-              "value2": true
-            }
-          ]
-        }
-      },
-      "id": "539e0adc-cb2d-45e8-8dd6-6ee4217382cf",
-      "name": "IF Task",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        980,
-        380
-      ]
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "$execution.customData.set(\"DOING\", \"true\");\n\nlet json = {\n  ...$node[\"IF Task\"].json.matches[0].metadata,\n  \"startTimestamp\" : $now,\n  \"sync\" : false\n};\n\nreturn {\"json\": json};"
+        "jsCode": "$execution.customData.set(\"DOING\", \"true\");\n\nlet json = {\n  ...$node[\"entree\"].json,\n  \"startTimestamp\" : $now,\n  \"sync\" : false\n};\n\nreturn {\"json\": json};"
       },
       "id": "c517ddfa-df34-4eee-a2fc-e7f778f7153d",
       "name": "get body",
@@ -329,7 +342,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        520,
+        120,
         380
       ]
     },
@@ -353,7 +366,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"kinCredits\",\n  \"ids\": \"{{ $node[\"IF Task\"].json[\"matches\"][0].metadata[\"client\"] }}\"\n}",
+        "jsonBody": "={\n  \"namespace\": \"kinCredits\",\n  \"ids\": \"{{ $node[\"entree\"].json.client }}\"\n}",
         "options": {}
       },
       "id": "3814c871-e51d-4d1c-a5fc-d7ba3d18a344",
@@ -392,7 +405,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"kinCredits\",\n\"vectors\": {\n\"id\": \"{{ $node[\"IF Task\"].json[\"matches\"][0].metadata[\"client\"] }}\",\n\"metadata\": {{ JSON.stringify($json) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
+        "jsonBody": "={\n\"namespace\": \"kinCredits\",\n\"vectors\": {\n\"id\": \"{{ $node[\"entree\"].json.client }}\",\n\"metadata\": {{ JSON.stringify($json) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
         "options": {}
       },
       "id": "4c6d4107-22b5-445d-b6b2-c4ddd40231a6",
@@ -436,7 +449,7 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        900,
+        500,
         280
       ]
     },
@@ -469,7 +482,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        740,
+        340,
         380
       ],
       "credentials": {
@@ -478,20 +491,6 @@
           "name": "PineconeApi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"IF Task\"].json.matches[0].metadata;\n\njson.query = \"/mission/update/status \\\"doing\\\"\";\n\nreturn {\"json\": json};"
-      },
-      "id": "021fb58a-dd9e-4b16-b9b2-82bc75c2e668",
-      "name": "mission set doing",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1260,
-        380
-      ]
     },
     {
       "parameters": {
@@ -521,7 +520,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -20,
+        -420,
         380
       ],
       "retryOnFail": true,
@@ -562,7 +561,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        200,
+        -200,
         380
       ]
     },
@@ -597,7 +596,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"IF Task\"].json.matches[0].metadata;\n\njson.query = \"/mission/update/status error\";\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/mission/update/status error\";\n\nreturn {\"json\": json};"
       },
       "id": "b431785a-0f2c-4c3c-9dab-ec3371246dc9",
       "name": "/mission/update/status error",
@@ -622,6 +621,82 @@
         580
       ],
       "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "11d38fd1-7512-4126-b8f6-0ef036e102e6",
+      "name": "CRUD Mission : Update execution doing",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1940,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($json.matches).length > 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "539e0adc-cb2d-45e8-8dd6-6ee4217382cf",
+      "name": "IF mission",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        580,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"Get missions\"].json.matches[0].metadata;\n\nreturn {\"json\": json};"
+      },
+      "id": "77a81cf9-d90b-4c15-8401-a461b76d7ee7",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        840,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/mission/update/execution doing\";\n\nreturn {\"json\": json};"
+      },
+      "id": "b168ff6a-23d8-4d2b-9080-d8c769b95f4d",
+      "name": "/mission/update/execution doing",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1720,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/mission/update/status doing\";\n\nreturn {\"json\": json};"
+      },
+      "id": "021fb58a-dd9e-4b16-b9b2-82bc75c2e668",
+      "name": "/mission/update/status doing",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        380
+      ]
     }
   ],
   "pinData": {
@@ -658,6 +733,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-07T10:52:16.000Z",
-  "versionId": "b53fe9ff-fc57-4661-a1bd-2a33a676019e"
+  "updatedAt": "2024-02-07T13:10:45.000Z",
+  "versionId": "9b1c4830-955f-4a1b-af13-ab8a1439bb75"
 }
