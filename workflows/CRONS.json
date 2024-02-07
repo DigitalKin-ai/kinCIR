@@ -34,24 +34,6 @@
         ]
       ]
     },
-    "Kin": {
-      "main": [
-        [
-          {
-            "node": "Get kinCredits",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "mission kindev",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "get body": {
       "main": [
         [
@@ -122,7 +104,7 @@
       "main": [
         [
           {
-            "node": "mission set error",
+            "node": "/mission/update/status error",
             "type": "main",
             "index": 0
           }
@@ -184,11 +166,29 @@
         ]
       ]
     },
-    "mission set error": {
+    "/mission/update/status error": {
       "main": [
         [
           {
-            "node": "CRUD Mission : Update status1",
+            "node": "CRUD Mission : Update status error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kin": {
+      "main": [
+        [
+          {
+            "node": "Get kinCredits",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "mission kindev",
             "type": "main",
             "index": 0
           }
@@ -234,7 +234,7 @@
       "typeVersion": 2,
       "position": [
         1940,
-        800
+        820
       ]
     },
     {
@@ -267,21 +267,6 @@
         980,
         380
       ]
-    },
-    {
-      "parameters": {
-        "workflowId": "=RCzPi7XT4ijau6eF",
-        "options": {}
-      },
-      "id": "2b11eef6-d1fc-46e7-891e-dece1a8d405d",
-      "name": "Kin",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        1480,
-        580
-      ],
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -377,7 +362,7 @@
       "typeVersion": 4.1,
       "position": [
         1720,
-        800
+        820
       ],
       "credentials": {
         "pineconeApi": {
@@ -416,7 +401,7 @@
       "typeVersion": 3,
       "position": [
         2160,
-        800
+        820
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -601,7 +586,7 @@
         "options": {}
       },
       "id": "7d411433-0ad3-40c9-bfa9-602348de4545",
-      "name": "CRUD Mission : Update status1",
+      "name": "CRUD Mission : Update status error",
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
@@ -612,16 +597,31 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"IF Task\"].json.matches[0].metadata;\n\njson.query = \"/mission/update/status \\\"error\\\" : Execution #\" + $node[\"Kin\"].json.executionId + \" \" + $node[\"Kin\"].json.error;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"IF Task\"].json.matches[0].metadata;\n\njson.query = \"/mission/update/status error\";\n\nreturn {\"json\": json};"
       },
       "id": "b431785a-0f2c-4c3c-9dab-ec3371246dc9",
-      "name": "mission set error",
+      "name": "/mission/update/status error",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
         2380,
         600
       ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=RCzPi7XT4ijau6eF",
+        "options": {}
+      },
+      "id": "2b11eef6-d1fc-46e7-891e-dece1a8d405d",
+      "name": "Kin",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        580
+      ],
+      "onError": "continueErrorOutput"
     }
   ],
   "pinData": {
@@ -658,6 +658,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-05T22:19:47.000Z",
-  "versionId": "26d66e07-15bc-45c0-84b1-aa4e015e2d33"
+  "updatedAt": "2024-02-07T10:52:16.000Z",
+  "versionId": "b53fe9ff-fc57-4661-a1bd-2a33a676019e"
 }
