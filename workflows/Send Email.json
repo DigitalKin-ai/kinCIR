@@ -44,6 +44,11 @@
             "node": "If document not empty",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -614,15 +619,31 @@
     },
     {
       "parameters": {
-        "content": "## BRANCHAGE"
+        "content": "## Response",
+        "height": 203.83885360341213,
+        "width": 271.9905147916791
       },
       "id": "982b1710-71c1-4330-9f93-973ffc5eaa14",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1780,
-        -40
+        -1800,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "id": "04331bdd-e497-461f-a1c6-0a297295c233",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        -1720,
+        -180
       ]
     }
   ],
@@ -648,6 +669,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-06T10:15:52.000Z",
-  "versionId": "02e24e5d-801b-43c5-90e3-e3f3dd511ef1"
+  "updatedAt": "2024-02-07T08:57:14.000Z",
+  "versionId": "909cc6b5-83e2-4884-b8a0-9bd683a65200"
 }
