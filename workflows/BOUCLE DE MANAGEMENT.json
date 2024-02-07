@@ -261,6 +261,17 @@
           }
         ]
       ]
+    },
+    "Message au CTO": {
+      "ai_tool": [
+        [
+          {
+            "node": "Manager",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-02-06T16:08:01.983Z",
@@ -804,6 +815,41 @@
         3060,
         1700
       ]
+    },
+    {
+      "parameters": {
+        "name": "message_au_cto",
+        "description": "La fonction message_au_cto envoie le message passé dans \"query\" au CTO de DigitalKin, Nicolas Lester Reynolds.\n\nIl peut être utilisé pour signaler un problème, demander de l'aide ou une modification, demander un déblocage, ou suggérer une amélioration.",
+        "workflowId": "NjRYPuz1EgoPxWfP",
+        "fields": {
+          "values": [
+            {
+              "name": "sync",
+              "type": "booleanValue"
+            },
+            {
+              "name": "=kin",
+              "stringValue": "={{ $node[\"entree\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.threadId }}"
+            }
+          ]
+        }
+      },
+      "id": "7af6bfe5-3dfc-471c-9471-464353d84c26",
+      "name": "Message au CTO",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        1480
+      ]
     }
   ],
   "pinData": {
@@ -874,6 +920,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-07T10:54:39.000Z",
-  "versionId": "acb20cab-6789-4ecb-a98a-78287360646e"
+  "updatedAt": "2024-02-07T16:03:59.000Z",
+  "versionId": "7af3f55d-b418-464a-926f-95a2ef4cfbd5"
 }
