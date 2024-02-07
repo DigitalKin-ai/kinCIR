@@ -445,7 +445,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"clean mission\"].json;\n\njson.kin = $node[\"entree\"].json.firstAttribute;\n\njson.missionDemandeur = $node[\"entree\"].json.mission;\njson.mission = $node[\"entree\"].json.commandText;\n\ndelete chatInput;\ndelete query;\n\njson.missionId = json.kin + \"-\" + json.threadId;\njson.status = \"todo\"; \n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"clean mission\"].json;\n\njson.kin = $node[\"entree\"].json.firstAttribute;\n\njson.missionDemandeur = $node[\"entree\"].json.mission;\njson.mission = $node[\"entree\"].json.commandText;\njson.instructions = \"LANCEMENT :C'est le début de la mission ! Réalise la préparation pour lancer la mission\";\n\ndelete chatInput;\ndelete query;\n\njson.missionId = json.kin + \"-\" + json.threadId;\njson.status = \"doing\";\njson.execution = \"doing\"; \n\nreturn {\"json\": json};"
       },
       "id": "20a072a8-8e43-4bcf-9bab-d4304e86f8fc",
       "name": "nouvelleMission entree",
@@ -827,6 +827,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-07T10:28:00.000Z",
-  "versionId": "aa8dd39c-5c54-4f09-bd41-22874384dd38"
+  "updatedAt": "2024-02-07T19:03:39.000Z",
+  "versionId": "c3fb3309-c399-4dda-a3c5-1c265c8353bb"
 }
