@@ -117,6 +117,64 @@ Un ÉTAT DE L'ART est considéré PERTINENT quand:
 - il démontre que ce que l'on sait n'est pas suffisant pour atteindre l'OBJECTIF DE RECHERCHE, en tenant compte des CONTRAINTES et EXIGENCES
 - Il exprime clairement les manques dans existant pour permettre d'atteindre l'OBJECTIF DE RECHERCHE, sous la forme de VERROUS TECHNOLOGIQUES et d'INCERTITUDES SCIENTIFIQUES.
 
+## FORMAT DE DEMANDE D'UN ÉTAT DE L'ART
+Le formulaire suivant permet de réaliser une demande d'état de l'art.
+
+Formulaire de demande d'état de l'art (Tous les champs sont obligatoires, sauf si précisé autrement): 
+
+** CONSIGNE DE LA MISSION:**
+- Je voudrais un état de l'art.
+- Le titre sera : 
+- Les références devront etre postérieures à :
+
+**CONTEXTE DU PORTEUR :** 
+- Nom de l'entité qui porte les travaux de recherche :
+- Proposition de valeur de l'entité :
+- Description succinte des principales activités :
+
+**CONTEXTE APPLICATIF :**
+- Application qui utilisera le résultat des travaux de recherche :
+- But applicatif (proposition de valeur de l'application) :
+- Contexte d'usage de l'application :
+- Idéal applicatif (le meilleur effet possible de votre application) :
+- Contraintes sur les moyens disponibles (optionnel) :
+-Exigences sur les résultats attendus (optionnel) :
+
+**PROJET DE RECHERCHE :**
+- Question principale de recherche (celle à laquelle contribuent ultimement tous les travaux) :
+
+** TRAVAUX DE RECHERCHE DANS LE PROJET DE RECHERCHE **
+Vous pouvez indiquer plusieurs travaux de recherche, en  précisant pour chacun dans le projet de recherche, du moment qu'ils contribuent tous à répondre à la question de recherche du projet de recherche.
+
+Travaux de recherche envisagés dans le cadre de ce projet :
+    - Numérotation des travaux : N° 
+    - Désignation des travaux :
+    - Objectif de recherche associé aux travaux :
+    - Description succinte des travaux :
+    - Apport applicatif attendu des travaux :
+    - Focus de l'état de l'art sur certains sous objectifs de recherche (optionnel):
+    - Focus sur certains domaines scientifiques (optionnel) :
+
+## STRUCTURE DE REPRÉSENTATION CAUSALE
+Tu dois utiliser la structure d'information suivante pour organiser les connaissances sur une sujet :
+
+### Organisation de l'information
+Un CONSTAT est systématiquement associé :
+- A ses MANIFESTATION, c'est à dire aux faits spécifiques qui attestent du CONSTAT (Ces fait sont eux memes des CONSTATS)
+- Aux CAUSES qui engendrent le CONSTAT (La réponse à la questions "Pourquoi ?")
+- Aux MOYENS D'ACTION qui permettraient d'agir sur le CONSTAT.
+
+### Exemple de représentation causale :
+CONSTAT : Présence de défauts de soudure tels que la porosité et les fissures.
+MANIFESTATIONS : 
+- Analyses métallurgiques montrant des inclusions et des cavités au sein des joints soudés.
+- Observations régulières de fissures de refroidissement dans la zone affectée par la chaleur.
+CAUSES : 
+- La fluidité élevée et la faible tension de surface des alliages d'aluminium à l'état fondu rendent difficile le contrôle des défauts. 
+- De plus, les contractions thermiques inégales durant le refroidissement peuvent créer des tensions internes.
+MOYENS D'ACTION : 
+- Développer des techniques de soudage assisté par gaz inertes pour réduire la porosité. 
+- Expériences sur le contrôle précis du refroidissement post-soudage pour minimiser les risques de fissuration.
 
 # STYLE DE REDACTION
 Tu utilises les bullet points et une forte structure basée sur l'ontologie.
@@ -137,4 +195,35 @@ A partir du document :
 - Représente la PUBLICATION SCIENTIFIQUE selon l'ontologie.
  - Complète les différents éléments décrivant la publication scientifique avec des détails et des extraits verbatim.
 
+
+
+
 [/INSTRUCTIONS - Instructions détaillées]
+
+---
+
+En t'appuyant exclusivement sur le dernier document transmis, et en procédant par étape  :
+- Affiche : # Publication
+- Présente le titres, l'année de publication et les auteurs du document
+- Affiche l'abstract du document
+- Affiche : # Vue logique du document
+- Réflexion : Est-ce que l'objectif est atteint ? Si ce n'est pas le cas,  constate le et affiche le.
+- Fait l'analyse causale de ce constat en utilisant [ACTION - Décomposition causale ]  et affiche le résultat.
+- Fait l'analyse causale [ACTION - Décomposition causale ] de chaque manifestation du résultat précédent.
+- Assemble le tout en un seul document hiérarchique.
+- Pour chaque moyen d'action, insére des éléments issus du document qui représente des résultats et savoir faire déjà connus. Développe ces éléments.
+
+[/ACTION - Traitement d'un document]
+
+---
+
+[ACTION - Décomposition causale ]
+
+Par d'un CONSTAT (Par exemple, un objectif n'est pas atteint)
+- Détermine ses MANIFESTATIONS, c'est à dire les fait qui permettent d'affirmer le CONSTAT. Si le constat est une non atteinte d'objectif, les manifestation doivent montrer en quoi il n'est PAS atteint.  Sépare bien les manifestations et les causes.
+- Détermine les CAUSES qui engendrent le CONSTAT
+- Détermine les MOYENS D'ACTION qui permettraient d'agir favorablement sur le constat 
+
+Retourne le CONSTAT avec ses sous éléments sous la forme d'une list hiérarchisée, en style bullet point
+
+[/ACTION - Décomposition causale ]
