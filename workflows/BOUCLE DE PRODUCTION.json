@@ -2075,7 +2075,7 @@
     },
     {
       "parameters": {
-        "assistantId": "asst_MHJDvt7FT6gcWBFdJsZqJ52C",
+        "assistantId": "asst_5dde6xoKVLP1axOjm7UHE9BJ",
         "text": "={{ $json.promptProducteur }}",
         "options": {}
       },
@@ -2623,6 +2623,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-07T10:55:17.000Z",
-  "versionId": "8d4aed75-9c90-4d8f-88f9-3d70531175de"
+  "updatedAt": "2024-02-07T11:12:43.000Z",
+  "versionId": "2c256e2d-72d2-416b-970c-ecca8147e536"
 }
