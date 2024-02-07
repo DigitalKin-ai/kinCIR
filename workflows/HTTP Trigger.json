@@ -1,0 +1,633 @@
+{
+  "active": true,
+  "connections": {
+    "POST - CREATE": {
+      "main": [
+        [
+          {
+            "node": "IF BODY + CREDENTIAL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET - KIN LIST": {
+      "main": [
+        [
+          {
+            "node": "IF CREDENTIAL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Kins Actifs": {
+      "main": [
+        [
+          {
+            "node": "IF KINS RETURN",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "POST - REPLY": {
+      "main": [
+        [
+          {
+            "node": "IF BODY + CREDENTIAL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get/Create Thread": {
+      "main": [
+        [
+          {
+            "node": "IF RESPONSE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF BODY + CREDENTIAL": {
+      "main": [
+        [
+          {
+            "node": "Get/Create Thread",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF BODY + CREDENTIAL1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF CREDENTIAL": {
+      "main": [
+        [
+          {
+            "node": "Get Kins Actifs",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF RESPONSE": {
+      "main": [
+        [
+          {
+            "node": "RESPONSE KINS LIST",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF RESPONSE 2": {
+      "main": [
+        [
+          {
+            "node": "RESPONSE KINS LIST1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF KINS RETURN": {
+      "main": [
+        [
+          {
+            "node": "RESPONSE KINS LIST2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-30T15:29:49.496Z",
+  "id": "pJPiOSio0nwCPuZv",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "HTTP Trigger",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## [POST] Create Kin Response\ncurl -X 'POST' \\\n  'http://127.0.0.1:3000/api/neightn/createnewkinresponse' \\\n  -H 'accept: application/json'",
+        "height": 322,
+        "width": 269
+      },
+      "id": "5d8bee04-e2b7-4d35-a18e-3b361c4cd76a",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        100,
+        -300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## [POST] Reply Kin Thread\ncurl -X 'POST' \\\n  'http://127.0.0.1:3000/api/neightn/replykinresponse' \\\n  -H 'accept: application/json'",
+        "height": 320,
+        "width": 269
+      },
+      "id": "2f9109b9-3b6e-4aff-a713-0e420a4c50be",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        100,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "httpMethod": "POST",
+        "path": "f95641c4-bed1-40a8-a9e4-9a72bd724471",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "025989e8-66f9-4763-b37c-523108ca8263",
+      "name": "POST - CREATE",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        180,
+        -120
+      ],
+      "webhookId": "f95641c4-bed1-40a8-a9e4-9a72bd724471",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "wXS8IBbuzoeffy3O",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "errorMessage": "JSON invalid"
+      },
+      "id": "3086db36-0d8c-48b9-9aa8-157e46f66a96",
+      "name": "Stop and Error",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        -420
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## [GET] Get kins list\ncurl -X 'GET' \\\n  'http://127.0.0.1:3000/api/neightn/getlistofkins' \\\n  -H 'accept: application/json'",
+        "height": 324,
+        "width": 266
+      },
+      "id": "116c8d87-4841-46c1-9c81-ec4ed0a93f92",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        100,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "path": "1706da1f-d8fd-4d6e-a236-913734d72bbf",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "1985a834-28b0-45aa-aa3c-2d12851d2de8",
+      "name": "GET - KIN LIST",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        180,
+        560
+      ],
+      "webhookId": "f95641c4-bed1-40a8-a9e4-9a72bd724471",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "wXS8IBbuzoeffy3O",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "YWxRZmBa38HYCjnv",
+        "options": {}
+      },
+      "id": "2c93bd31-974b-45aa-ad57-e368e38f4b1f",
+      "name": "Get/Create Thread",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "gdFeXvXoLRHkWsrB",
+        "options": {}
+      },
+      "id": "05752c06-3a65-412f-82c1-429ea7b25653",
+      "name": "Get Kins Actifs",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## RESPONSE KINS LIST",
+        "height": 194.85444743935307,
+        "width": 250.71967654986526
+      },
+      "id": "d46cb92a-95d0-44c7-8a57-b6a26ba99dbe",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## RESPONSE KINS LIST",
+        "height": 194.85444743935307,
+        "width": 250.71967654986526
+      },
+      "id": "d4814ad0-c147-4456-bf48-ffde3f36b176",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## RESPONSE KINS LIST",
+        "height": 194.85444743935307,
+        "width": 250.71967654986526
+      },
+      "id": "cdd96c22-2f88-44d6-89bd-d8d8544393a9",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "httpMethod": "POST",
+        "path": "75a1dc3b-9d65-4c5b-b7d2-cdbef621b316",
+        "options": {}
+      },
+      "id": "1342c964-261d-4850-b49f-8ec27b6548a2",
+      "name": "POST - REPLY",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        180,
+        220
+      ],
+      "webhookId": "75a1dc3b-9d65-4c5b-b7d2-cdbef621b316",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "wXS8IBbuzoeffy3O",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## ERROR BODY RETURN",
+        "height": 222.85444743935307,
+        "width": 250.71967654986526
+      },
+      "id": "07c47496-ed3e-438a-ac2f-469ef2420a54",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        940,
+        -500
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## RUN NEW KIN",
+        "height": 222.85444743935307,
+        "width": 250.71967654986526
+      },
+      "id": "52866c5c-5f33-40fd-963f-94aee9504cf8",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        940,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## REPLY KIN",
+        "height": 222.85444743935307,
+        "width": 250.71967654986526
+      },
+      "id": "f5fa544b-893e-44ca-b46a-da10f4902006",
+      "name": "Sticky Note8",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        940,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## GET KINS",
+        "height": 222.85444743935307,
+        "width": 250.71967654986526
+      },
+      "id": "5eb4db37-5426-4c6a-a894-f16eead4b8cb",
+      "name": "Sticky Note9",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        940,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "1c87ac55-d24e-46d0-9c62-cb1f5f8a7e60",
+      "name": "RESPONSE KINS LIST",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c0b8cc0e-22d0-4468-a695-932ad2468665",
+      "name": "RESPONSE KINS LIST1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "79fbc539-d8a2-4860-9306-a15f1ecfa700",
+      "name": "RESPONSE KINS LIST2",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "ERROR N8N WORKFLOW"
+      },
+      "id": "97038482-a290-4e09-a062-ac4818728c20",
+      "name": "Stop and Error1",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        -420
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## ERROR WORKFLOW",
+        "height": 222.85444743935307,
+        "width": 250.71967654986526
+      },
+      "id": "2c438bdf-224b-431e-b949-4ef99b964298",
+      "name": "Sticky Note10",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        -500
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "73a99b5c-1701-4531-b4d9-08b27ce252cc",
+      "name": "IF BODY + CREDENTIAL",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        540,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "b580ec8f-8af6-452d-a8d3-39c93419ec57",
+      "name": "IF BODY + CREDENTIAL1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        540,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "abcfeb8c-c17d-4c6b-b6ed-74ba4a589f9f",
+              "leftValue": "={{ $json.headers.credential }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "8e956dc7-6ea9-45c7-b1c8-0dce4c791fed",
+      "name": "IF CREDENTIAL",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        540,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "66b8a377-332a-4098-9295-84b9e44d8a76",
+      "name": "IF RESPONSE",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1380,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "22409333-6dfe-40db-aa32-c8f7dcc0c02a",
+      "name": "IF RESPONSE 2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1380,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "43e14e29-8a67-43d3-a596-3466f8e11100",
+              "leftValue": "={{ $json.kin }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "ef1700ab-33a2-43f0-ae96-005dc3ab60ca",
+      "name": "IF KINS RETURN",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1380,
+        560
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "none"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-01-21T09:47:18.925Z",
+      "updatedAt": "2024-01-21T09:47:18.925Z",
+      "id": "G7odwuwbJmUt0XX2",
+      "name": "prod"
+    }
+  ],
+  "triggerCount": 3,
+  "updatedAt": "2024-02-07T22:21:31.000Z",
+  "versionId": "d85c94ab-ec1f-44c8-9396-b2aa48b0ef6f"
+}
