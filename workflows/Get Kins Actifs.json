@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Execute Workflow Trigger": {
       "main": [
@@ -8,44 +8,6 @@
             "node": "Kins",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "Kins",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Kins": {
-      "main": [
-        [
-          {
-            "node": "Respond to Webhook",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Respond to Webhook": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
           }
         ]
       ]
@@ -61,20 +23,20 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let kins = [];\n\n// UF Production\nkins.push({\"kin\":\"kinlca\", \"assistantId\":\"asst_581bbg7Bmja1nCBKeiGg9Rgu\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinchercheur\", \"assistantId\":\"asst_rYxwavLJhgSLiKO3cHUzsmnt\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinchercheurbeta\", \"assistantId\":\"asst_X2yQl7tb6MH0dypYatOvIjBa\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinsota\", \"assistantId\":\"asst_7abHKvQqtVij29X6ybyEvAbZ\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinsotabeta\", \"assistantId\":\"asst_MHJDvt7FT6gcWBFdJsZqJ52C\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincir\", \"assistantId\":\"asst_bU27N3NS5XZ0lH4AFOuN8kb7\"});\nkins.push({\"kin\":\"kincirbeta\", \"assistantId\":\"asst_TwVBZeoLx80udowj5MIoG6Pq\", \"format\":\"pdf\"});\n\n// UF Gestion Client\nkins.push({\"kin\":\"kinmail\", \"assistantId\":\"asst_RKZEJLbWald8azZuvxrnnSxL\"});\n//kins.push({\"kin\":\"kinfacturation\", \"assistantId\":\"\"});\n\n// UF Management\nkins.push({\"kin\":\"kinmanager\", \"assistantId\":\"asst_NRJfqzvKf73U2CjrI4bqMSf5\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinmatcheur\", \"assistantId\":\"asst_8umriZllMPt14U8qy2T0jCmQ\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincadreur\", \"assistantId\":\"asst_i59drQwQdShF5SmdHgqd3gXG\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincadreurbeta\", \"assistantId\":\"asst_EwmKBIJWKqCJECb0nVBVju45\", \"format\":\"pdf\"});\n\n// UF Amélioration Continue\nkins.push({\"kin\":\"kindev\", \"assistantId\":\"asst_KEwBhc34Qsh3dcu2Gu8bgFne\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinrsi\", \"assistantId\":\"asst_WKY0lRXB0rrJTFIm3HYv8jlE\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinontologie\", \"assistantId\":\"asst_3pQx4lfP0EN6Jstj8kozdBtC\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinpo\", \"assistantId\":\"asst_7KsKT6OBtOdCcpXaM86qnR69\"});\nkins.push({\"kin\":\"kinarchitecte\", \"assistantId\":\"asst_L1WY5sdn3wnugM8RoJZBHETh\"});\n//kins.push({\"kin\":\"kintesteur\", \"assistantId\":\"\"});\n//kins.push({\"kin\":\"kinevaluateur\", \"assistantId\":\"\"});\n\nreturn {\"json\": {\"kin\": kins}};"
+        "jsCode": "let kins = [];\n\n// UF Production\nkins.push({\"kin\":\"kinlca\", \"assistantId\":\"asst_581bbg7Bmja1nCBKeiGg9Rgu\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinchercheur\", \"assistantId\":\"asst_rYxwavLJhgSLiKO3cHUzsmnt\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinchercheurbeta\", \"assistantId\":\"asst_X2yQl7tb6MH0dypYatOvIjBa\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinsota\", \"assistantId\":\"asst_7abHKvQqtVij29X6ybyEvAbZ\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinsotabeta\", \"assistantId\":\"asst_MHJDvt7FT6gcWBFdJsZqJ52C\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinontologiedomaine\", \"assistantId\":\"asst_5dde6xoKVLP1axOjm7UHE9BJ\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincir\", \"assistantId\":\"asst_bU27N3NS5XZ0lH4AFOuN8kb7\"});\nkins.push({\"kin\":\"kincirbeta\", \"assistantId\":\"asst_TwVBZeoLx80udowj5MIoG6Pq\", \"format\":\"pdf\"});\n\n// UF Gestion Client\nkins.push({\"kin\":\"kinmail\", \"assistantId\":\"asst_RKZEJLbWald8azZuvxrnnSxL\"});\n//kins.push({\"kin\":\"kinfacturation\", \"assistantId\":\"\"});\n\n// UF Management\nkins.push({\"kin\":\"kinmanager\", \"assistantId\":\"asst_NRJfqzvKf73U2CjrI4bqMSf5\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinmatcheur\", \"assistantId\":\"asst_8umriZllMPt14U8qy2T0jCmQ\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincadreur\", \"assistantId\":\"asst_i59drQwQdShF5SmdHgqd3gXG\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kincadreurbeta\", \"assistantId\":\"asst_EwmKBIJWKqCJECb0nVBVju45\", \"format\":\"pdf\"});\n\n// UF Amélioration Continue\nkins.push({\"kin\":\"kindev\", \"assistantId\":\"asst_KEwBhc34Qsh3dcu2Gu8bgFne\", \"format\":\"pdf\"});\nkins.push({\"kin\":\"kinrsi\", \"assistantId\":\"asst_WKY0lRXB0rrJTFIm3HYv8jlE\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinontologie\", \"assistantId\":\"asst_3pQx4lfP0EN6Jstj8kozdBtC\", \"format\":\"md\"});\nkins.push({\"kin\":\"kinpo\", \"assistantId\":\"asst_7KsKT6OBtOdCcpXaM86qnR69\"});\nkins.push({\"kin\":\"kinarchitecte\", \"assistantId\":\"asst_L1WY5sdn3wnugM8RoJZBHETh\"});\n//kins.push({\"kin\":\"kintesteur\", \"assistantId\":\"\"});\n//kins.push({\"kin\":\"kinevaluateur\", \"assistantId\":\"\"});\n\nreturn {\"json\": {\"kin\": kins}};"
       },
       "id": "6f130b03-879a-45b3-82ac-208f1d4c2436",
       "name": "Kins",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1120,
+        1200,
         400
       ]
     },
     {
       "parameters": {},
-      "id": "72ce14fb-da3b-4383-b100-fa7fd00f20b5",
+      "id": "01f4a383-8269-47a3-96e9-bc481463802f",
       "name": "Execute Workflow Trigger",
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
@@ -82,60 +44,13 @@
         920,
         400
       ]
-    },
-    {
-      "parameters": {
-        "authentication": "headerAuth",
-        "path": "1706da1f-d8fd-4d6e-a236-913734d72bbf",
-        "responseMode": "responseNode",
-        "options": {}
-      },
-      "id": "b2693e00-c01f-4ba7-8227-3d5329d0b28d",
-      "name": "Webhook",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 1.1,
-      "position": [
-        920,
-        220
-      ],
-      "webhookId": "1706da1f-d8fd-4d6e-a236-913734d72bbf",
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "wXS8IBbuzoeffy3O",
-          "name": "Header Auth account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "id": "9c422784-6033-4547-b497-caf423a3248d",
-      "name": "Respond to Webhook",
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1,
-      "position": [
-        1280,
-        540
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "chooseBranch"
-      },
-      "id": "80360ee4-7937-4465-9a0b-cf36a5d28888",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 2.1,
-      "position": [
-        1460,
-        420
-      ]
     }
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
   },
   "staticData": null,
   "tags": [
@@ -153,6 +68,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-07T08:49:30.000Z",
-  "versionId": "69e30c05-51ae-4a6b-a408-b2b1b4bf8320"
+  "updatedAt": "2024-02-07T18:55:26.000Z",
+  "versionId": "84ae0983-2a2b-4afd-8137-86d383052ca3"
 }
