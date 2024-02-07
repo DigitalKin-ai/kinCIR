@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Execute Workflow Trigger": {
       "main": [
@@ -85,6 +85,7 @@
     },
     {
       "parameters": {
+        "authentication": "headerAuth",
         "path": "1706da1f-d8fd-4d6e-a236-913734d72bbf",
         "responseMode": "responseNode",
         "options": {}
@@ -97,7 +98,13 @@
         920,
         220
       ],
-      "webhookId": "1706da1f-d8fd-4d6e-a236-913734d72bbf"
+      "webhookId": "1706da1f-d8fd-4d6e-a236-913734d72bbf",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "wXS8IBbuzoeffy3O",
+          "name": "Header Auth account"
+        }
+      }
     },
     {
       "parameters": {
@@ -145,7 +152,7 @@
       "name": "service"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2024-02-06T16:51:51.000Z",
-  "versionId": "9a3f345e-b500-46bd-8e73-55562a81aecc"
+  "triggerCount": 1,
+  "updatedAt": "2024-02-07T08:49:30.000Z",
+  "versionId": "69e30c05-51ae-4a6b-a408-b2b1b4bf8320"
 }
