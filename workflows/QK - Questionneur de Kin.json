@@ -2422,6 +2422,51 @@
         1460
       ],
       "webhookId": "6dc41956-8b26-402d-83ce-c4b4225df822"
+    },
+    {
+      "parameters": {
+        "content": "## Find Mission\nhttps://kins.app.n8n.cloud/workflow/LJq7WahDAN9n9qRH",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "497d6901-fd78-4dd0-a544-b4600cda0072",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        980,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Get/Create Thread\nhttps://kins.app.n8n.cloud/workflow/YWxRZmBa38HYCjnv",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "707bc499-acdb-483d-a55a-efb955ce0202",
+      "name": "Sticky Note16",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Send Notifications\nhttps://kins.app.n8n.cloud/workflow/EYWde6gUS9Qq2ok7",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "5ea83a52-34db-46e8-853f-cebfd234cb0e",
+      "name": "Sticky Note17",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4600,
+        1500
+      ]
     }
   ],
   "pinData": {
@@ -2464,6 +2509,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-08T09:25:43.000Z",
-  "versionId": "a2095112-e690-4f0d-9632-ea43d13bf039"
+  "updatedAt": "2024-02-08T15:17:24.000Z",
+  "versionId": "08bfe7bc-a27f-4382-8695-362b959dfaa4"
 }
