@@ -41,14 +41,9 @@
       "main": [
         [
           {
-            "node": "Respond to Webhook",
+            "node": "If document not empty",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
           }
         ]
       ]
@@ -184,19 +179,15 @@
         ]
       ]
     },
-    "Respond to Webhook": {
+    "If not mailId": {
       "main": [
         [
           {
-            "node": "Merge",
+            "node": "Respond to Webhook",
             "type": "main",
             "index": 0
           }
-        ]
-      ]
-    },
-    "Merge": {
-      "main": [
+        ],
         [
           {
             "node": "If document not empty",
@@ -259,7 +250,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1380,
+        -1500,
         0
       ]
     },
@@ -272,8 +263,8 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        -2160,
-        -160
+        -2180,
+        -280
       ]
     },
     {
@@ -321,7 +312,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -2160,
+        -2180,
         0
       ]
     },
@@ -645,15 +636,15 @@
       "parameters": {
         "content": "## RESPONSE KIN PROCESS ",
         "height": 215.22847038927853,
-        "width": 273.8887842559902
+        "width": 248.10655981977254
       },
       "id": "982b1710-71c1-4330-9f93-973ffc5eaa14",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1947,
-        -240
+        -1580,
+        -360
       ]
     },
     {
@@ -666,21 +657,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
       "position": [
-        -1860,
-        -160
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "chooseBranch"
-      },
-      "id": "4094cdeb-9653-44d3-a587-115392369a3c",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 2.1,
-      "position": [
-        -1620,
-        0
+        -1500,
+        -280
       ]
     },
     {
@@ -694,8 +672,58 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -2220,
-        -240
+        -2260,
+        -360
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Get Document\nhttps://kins.app.n8n.cloud/workflow/H3fxaSnxjZT6EGhc",
+        "height": 276.1083494686582,
+        "width": 250.71967654986526
+      },
+      "id": "a942e3b6-7561-4238-96d8-4e403cd44c03",
+      "name": "Sticky Note14",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2260,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
+              "leftValue": "={{ $node[\"entree DocumentDemandeur\"].json.mailId !== undefined }}",
+              "rightValue": "md",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "e66caf7c-d041-4ca0-8d1d-5302628bf4ee",
+      "name": "If not mailId",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1940,
+        -80
       ]
     }
   ],
@@ -721,6 +749,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-07T15:42:17.000Z",
-  "versionId": "a38426af-75c0-4036-a6b4-6c600dac17b5"
+  "updatedAt": "2024-02-08T16:01:19.000Z",
+  "versionId": "937c30c8-49fd-47f9-819f-5d7c1b1e3e0f"
 }
