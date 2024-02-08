@@ -1275,6 +1275,36 @@
         3780,
         2220
       ]
+    },
+    {
+      "parameters": {
+        "content": "## QE - Requêteur direct de la base d'étude\nhttps://kins.app.n8n.cloud/workflow/KIwwJYUhZR9Ve39x",
+        "height": 310.31716359509295,
+        "width": 305.44433493722704
+      },
+      "id": "716050a3-4175-418c-9631-f3e7556d84a7",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## TRIGGER BY\nMail : https://kins.app.n8n.cloud/workflow/XJj8pXdTRJp9DrDI",
+        "height": 99.87921084096895,
+        "width": 296.17487470057233
+      },
+      "id": "7c06d4dd-3cbc-41b3-82f1-d7159aa13344",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        1080
+      ]
     }
   ],
   "pinData": {
@@ -1331,6 +1361,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-05T17:26:33.000Z",
-  "versionId": "058d32e2-1ee1-4236-8d25-222085866ef6"
+  "updatedAt": "2024-02-08T14:56:14.000Z",
+  "versionId": "8ea27653-6507-4b86-9e2f-4860041e040d"
 }
