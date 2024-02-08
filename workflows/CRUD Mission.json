@@ -185,7 +185,7 @@
         ],
         [
           {
-            "node": "Merge",
+            "node": "Stop and Error2",
             "type": "main",
             "index": 0
           }
@@ -476,7 +476,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"missions\",\n\"ids\": [\"{{ $node[\"entree\"].json.missionId?$node[\"entree\"].json.missionId:$$node[\"entree\"].json.firstAttribute }}\"]\n}",
+        "jsonBody": "={\n\"namespace\": \"missions\",\n\"ids\": [\"{{ $node[\"entree\"].json.missionId?$node[\"entree\"].json.missionId:$node[\"entree\"].json.firstAttribute }}\"]\n}",
         "options": {}
       },
       "id": "2283fc05-0e83-4bee-9edb-2f27f0c800ad",
@@ -781,29 +781,26 @@
         -1060,
         720
       ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "commande non gérée"
+      },
+      "id": "918fb41f-d401-4667-9005-aed7b91dc9f5",
+      "name": "Stop and Error2",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        1120
+      ]
     }
   ],
   "pinData": {
     "Execute Workflow Trigger": [
       {
         "json": {
-          "client": "dynergie",
-          "commandText": "\"doing\"",
-          "firstAttribute": "kinlca",
-          "kin": "kinlca",
-          "kinDemandeur": "Lester Reynolds <lreynolds@dynergie.fr>",
-          "mailFrom": "From: Lester Reynolds <lreynolds@dynergie.fr>",
-          "mailId": "18d831413455840d",
-          "mailSubject": "LCA Medionni",
-          "mission": "LCA Medionni\n\n\nFile attached with email : 2 SNDS.pdf",
-          "missionId": "kinlca-18d831413455840d",
-          "sourceGoogleDriveId": "1I15k-FUSmm3slcmClTdil55sNpEi5g3_",
-          "status": "todo",
-          "threadFrom": "Lester Reynolds <lreynolds@dynergie.fr>",
-          "threadId": "18d831413455840d",
-          "threadSubject": "LCA Medionni",
-          "query": "/mission/update/status \"doing\"",
-          "command": ""
+          "query": "/crud_mission/read/kinontologiedomaine-18d87cab67911efb"
         }
       }
     ]
@@ -827,6 +824,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-07T19:03:39.000Z",
-  "versionId": "c3fb3309-c399-4dda-a3c5-1c265c8353bb"
+  "updatedAt": "2024-02-08T09:17:01.000Z",
+  "versionId": "9be04d90-83e0-4ed6-93f5-a27833d342e6"
 }
