@@ -283,6 +283,21 @@
         300,
         780
       ]
+    },
+    {
+      "parameters": {
+        "content": "## Trigger by\nGet/Create Thread : https://kins.app.n8n.cloud/workflow/YWxRZmBa38HYCjnv",
+        "height": 117.22196735097269,
+        "width": 250.71967654986526
+      },
+      "id": "c1e33357-fb50-4d72-9cbb-27628d956715",
+      "name": "Sticky Note14",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        760
+      ]
     }
   ],
   "pinData": {
@@ -344,6 +359,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-06T16:30:59.000Z",
-  "versionId": "8a7344ad-1e52-4c6d-93ed-330dc14c7ff3"
+  "updatedAt": "2024-02-08T14:59:14.000Z",
+  "versionId": "aa581926-709b-417f-9459-c31b22130074"
 }
