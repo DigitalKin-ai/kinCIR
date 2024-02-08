@@ -5,19 +5,7 @@
       "main": [
         [
           {
-            "node": "If",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Stop and Error",
+            "node": "IF exist",
             "type": "main",
             "index": 0
           }
@@ -129,6 +117,52 @@
           }
         ]
       ]
+    },
+    "Get kin mission": {
+      "main": [
+        [
+          {
+            "node": "IF mission not running",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF exist": {
+      "main": [
+        [
+          {
+            "node": "defaultEmbedding",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF mission not running": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "defaultEmbedding": {
+      "main": [
+        []
+      ]
     }
   },
   "createdAt": "2024-02-08T09:41:24.870Z",
@@ -166,19 +200,6 @@
     },
     {
       "parameters": {
-        "options": {}
-      },
-      "id": "59292435-8cb9-48e9-9b34-efc7d1f4c6b7",
-      "name": "If",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        840,
-        340
-      ]
-    },
-    {
-      "parameters": {
         "errorMessage": "Trigger error"
       },
       "id": "aac1f930-d221-4945-aad8-d8f1e30104eb",
@@ -186,7 +207,7 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        840,
+        780,
         620
       ]
     },
@@ -200,8 +221,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1300,
-        780
+        2080,
+        380
       ]
     },
     {
@@ -220,8 +241,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1060,
-        540
+        1700,
+        340
       ]
     },
     {
@@ -234,8 +255,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1760,
-        260
+        2260,
+        160
       ],
       "disabled": true
     },
@@ -256,8 +277,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        1980,
-        580
+        1920,
+        380
       ]
     },
     {
@@ -270,8 +291,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        2000,
-        300
+        2480,
+        160
       ],
       "disabled": true
     },
@@ -285,8 +306,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1740,
-        780
+        2400,
+        380
       ]
     },
     {
@@ -316,8 +337,8 @@
       "name": "Upload Source",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        1520,
-        300
+        2100,
+        160
       ],
       "typeVersion": 1,
       "id": "6ae498b7-7170-453f-80e1-9a1bae86c5d0",
@@ -340,8 +361,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1280,
-        320
+        1920,
+        160
       ]
     },
     {
@@ -354,8 +375,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        1980,
-        780
+        2560,
+        380
       ]
     },
     {
@@ -375,14 +396,149 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        1520,
-        780
+        2240,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## STOP IF MISSION ALREADY RUN\nhttps://kins-71e4f70.svc.eu-west4-gcp.pinecone.io/query",
+        "height": 242.7443604667863,
+        "width": 406.24025491686785
+      },
+      "id": "f6ed80ff-a79e-4e21-a3d4-7b029d237cd9",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"threadId\" : \"{{ $node[\"Get Thread\"].json.id }}\", \"kin\": \"{{ $node[\"kin\"].json.kin }}\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "5822e2eb-266e-4e51-84eb-bca6a2cd3362",
+      "name": "Get kin mission",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1300,
+        340
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "59292435-8cb9-48e9-9b34-efc7d1f4c6b7",
+      "name": "IF exist",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        780,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## TRIGGER BY MAIL/HTTP\nMail : https://kins.app.n8n.cloud/workflow/XJj8pXdTRJp9DrDI\nHttp : https://kins.app.n8n.cloud/workflow/pJPiOSio0nwCPuZv",
+        "height": 332.2696157484222,
+        "width": 296.17487470057233
+      },
+      "id": "470cf7e4-b902-410a-a0f3-9eb13e85a509",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2380,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($json.matches).length > 0 }}",
+              "operation": "notEqual",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "95efadb5-d637-4e56-b920-62e614741c47",
+      "name": "IF mission not running",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=IJeSapyzv0Y9koZ9",
+        "options": {}
+      },
+      "id": "999cb400-8bc6-4438-a207-28274db9d633",
+      "name": "defaultEmbedding",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## GET DEFAULT EMBEDDING\nhttps://kins.app.n8n.cloud/workflow/IJeSapyzv0Y9koZ9",
+        "height": 302.1555964477757,
+        "width": 275.09433962264154
+      },
+      "id": "fa5abf94-d4e2-4ea5-8e21-84681052429f",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        940,
+        200
       ]
     }
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromAList",
+    "callerIds": "pJPiOSio0nwCPuZv"
   },
   "staticData": null,
   "tags": [
@@ -394,6 +550,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-02-08T10:16:42.000Z",
-  "versionId": "c1b21494-5945-43db-85a3-cf703a11effb"
+  "updatedAt": "2024-02-08T13:36:17.000Z",
+  "versionId": "7084c297-b4b6-46f5-b84f-6d801bfefb28"
 }
