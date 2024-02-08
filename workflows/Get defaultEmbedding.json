@@ -11,18 +11,6 @@
           }
         ]
       ]
-    },
-    "If": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Stop and Error",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "createdAt": "2024-01-28T23:25:41.348Z",
@@ -61,14 +49,14 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        1440,
-        240
+        900,
+        260
       ]
     },
     {
       "parameters": {
-        "content": "## TRIGGER BY MAIL/HTTP\nMail : https://kins.app.n8n.cloud/workflow/XJj8pXdTRJp9DrDI\nHttp : https://kins.app.n8n.cloud/workflow/pJPiOSio0nwCPuZv",
-        "height": 303.55801312368527,
+        "content": "## TRIGGER BY\nMail : https://kins.app.n8n.cloud/workflow/XJj8pXdTRJp9DrDI\nHttp : https://kins.app.n8n.cloud/workflow/pJPiOSio0nwCPuZv\nBOUCLE DE PRODUCTION : https://kins.app.n8n.cloud/workflow/RCzPi7XT4ijau6eF\nCRUD Mission : https://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi\nBOUCLE DE MANAGEMENT : https://kins.app.n8n.cloud/workflow/0LhMxlt62MaWdiqs\nCRONS : https://kins.app.n8n.cloud/workflow/uryTpGQcTgxTMlVP\nHuman Feedback by Message : https://kins.app.n8n.cloud/workflow/xMV42ELBz1pvvDDt\nAdmin Commands : https://kins.app.n8n.cloud/workflow/MGND8ynCD26RRnsW\nQP - Listeur de missions : https://kins.app.n8n.cloud/workflow/7gSW7ZaAHc61PVPS\nQK - Questionneur de Kin : \nhttps://kins.app.n8n.cloud/workflow/m3wfYxyTxFXqib9D",
+        "height": 569.0266472652188,
         "width": 296.17487470057233
       },
       "id": "08b1b31b-3d71-4e24-b9cc-4ada55feef0a",
@@ -76,69 +64,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        520,
-        120
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "e2c57e9f-85e6-4d3f-9199-11901ff900c2",
-              "leftValue": "=",
-              "rightValue": "",
-              "operator": {
-                "type": "object",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "5c693448-ba0a-45d6-b416-f306957d020f",
-      "name": "If",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        1040,
-        260
-      ]
-    },
-    {
-      "parameters": {
-        "errorMessage": "Vectors missings"
-      },
-      "id": "bca5bd87-635a-4d22-bff9-f0869c2f04b1",
-      "name": "Stop and Error",
-      "type": "n8n-nodes-base.stopAndError",
-      "typeVersion": 1,
-      "position": [
-        1040,
-        540
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## IF - CHECK VECTORS",
-        "height": 227.55801312368527,
-        "width": 219.17487470057233
-      },
-      "id": "9c74ec4a-b0d5-446b-bfc0-7e45f283e417",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        980,
-        180
+        280,
+        40
       ]
     },
     {
@@ -152,8 +79,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1380,
-        180
+        840,
+        200
       ]
     }
   ],
@@ -174,6 +101,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-02-08T10:17:02.000Z",
-  "versionId": "23b51de5-819b-45f2-a823-848efbe75c5b"
+  "updatedAt": "2024-02-08T15:14:16.000Z",
+  "versionId": "9e0b3d64-95d0-4d3a-8907-9f3498a5c6de"
 }
