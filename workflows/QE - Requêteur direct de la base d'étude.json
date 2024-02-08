@@ -266,6 +266,20 @@
         -120
       ],
       "webhookId": "36b59cc5-44bf-4e48-931c-8166340be91d"
+    },
+    {
+      "parameters": {
+        "content": "## Trigger by\nInsérer le document dans Pinecone : https://kins.app.n8n.cloud/workflow/eRT6xb82oqCbX4u2\nQE - Questionneur de la base d'études : https://kins.app.n8n.cloud/workflow/yQ79P9nuVKhkwZpD",
+        "height": 210.6086870781178
+      },
+      "id": "d349ec27-701a-43a7-9afb-7a1a1825c8b8",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        0
+      ]
     }
   ],
   "pinData": {},
@@ -290,6 +304,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-04T20:26:04.000Z",
-  "versionId": "99ec83d4-ea4f-4a97-8e6a-9d18d640e99b"
+  "updatedAt": "2024-02-08T14:27:47.000Z",
+  "versionId": "dd99ffe3-15ce-42c0-949c-b0432dc17610"
 }
