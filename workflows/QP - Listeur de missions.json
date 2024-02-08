@@ -27,18 +27,7 @@
       "main": [
         [
           {
-            "node": "Get Last todo/doing/waiting missions",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Last todo/doing/waiting missions": {
-      "main": [
-        [
-          {
-            "node": "Get Last done missions",
+            "node": "Get Last other missions",
             "type": "main",
             "index": 0
           }
@@ -101,6 +90,17 @@
             "node": "Merge",
             "type": "main",
             "index": 1
+          }
+        ]
+      ]
+    },
+    "Get Last other missions": {
+      "main": [
+        [
+          {
+            "node": "Get Last done missions",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -184,45 +184,6 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"filter\" : {\"status\": { \"$in\": [\"todo\", \"doing\", \"waiting\"] }},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }},\n  \"includeMetadata\": true,\n  \"topK\": 25\n}",
-        "options": {}
-      },
-      "id": "88ae03aa-9193-4291-8bf7-58fc2edd8efd",
-      "name": "Get Last todo/doing/waiting missions",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        -520,
-        600
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
         "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 10,\n  \"filter\" : {\"status\": \"done\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
         "options": {}
       },
@@ -244,7 +205,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string') {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 500) {\n                obj[key] = obj[key].substring(0, 500) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\nlet missionsInPipeline = $node[\"Get Last todo/doing/waiting missions\"].json.matches;\nlet missionsDone = $node[\"Get Last done missions\"].json.matches;\n\nmissionsInPipeline = truncateStringsInJson(missionsInPipeline);\nmissionsDone = truncateStringsInJson(missionsDone);\n\nreturn {\"json\": {\"missionsInPipeline\": missionsInPipeline, \"missionsDone\": missionsDone}};"
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string') {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 500) {\n                obj[key] = obj[key].substring(0, 500) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\nlet missionsInPipeline = $node[\"Get Last other missions\"].json.matches;\nlet missionsDone = $node[\"Get Last done missions\"].json.matches;\n\nmissionsInPipeline = truncateStringsInJson(missionsInPipeline);\nmissionsDone = truncateStringsInJson(missionsDone);\n\nreturn {\"json\": {\"missionsInPipeline\": missionsInPipeline, \"missionsDone\": missionsDone}};"
       },
       "id": "1473c9ed-0d28-476c-b7b0-d5adb943a375",
       "name": "missions",
@@ -321,6 +282,45 @@
     },
     {
       "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"filter\" : {\"status\": { \"$nin\": [\"done\"] }},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }},\n  \"includeMetadata\": true,\n  \"topK\": 10\n}",
+        "options": {}
+      },
+      "id": "88ae03aa-9193-4291-8bf7-58fc2edd8efd",
+      "name": "Get Last other missions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -520,
+        600
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
         "public": true,
         "initialMessages": "Le listeur_de_missions permet de récupérer la liste des missions en cours, terminées, et en attente.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Le statut des tâches désirées (toto/doing/done/waiting)\n- (filtre optionnel) Le Kin désiré\n- Si tu cherches des informations particulières,\n- Le format de réponse désiré.\n\nex : Je souhaite un point général sur la situation de la production.",
         "options": {
@@ -363,6 +363,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-02T11:31:26.000Z",
-  "versionId": "24e83b36-ae35-4fec-a2fe-6b6dadd1565a"
+  "updatedAt": "2024-02-08T09:18:08.000Z",
+  "versionId": "4b6c5cbc-179f-4ccc-89f4-ad37d7634672"
 }
