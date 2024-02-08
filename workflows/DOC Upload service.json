@@ -1,0 +1,399 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "emailThread": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Pièce Jointe": {
+      "main": [
+        [
+          {
+            "node": "entree source",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "sourceGoogleDriveId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree pinecone": {
+      "main": [
+        [
+          {
+            "node": "Inserer le document dans Pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sourceGoogleDriveId": {
+      "main": [
+        [
+          {
+            "node": "emailThread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inserer le document dans Pinecone": {
+      "main": [
+        [
+          {
+            "node": "sourceGoogleDriveId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouvelleMission": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Source": {
+      "main": [
+        [
+          {
+            "node": "entree pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree source": {
+      "main": [
+        [
+          {
+            "node": "Upload Source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "nouvelleMission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-08T09:41:24.870Z",
+  "id": "teBXUHMl5AIi70pR",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "DOC Upload service",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b204fe4f-d958-462d-9ab2-e4af10d3e4c2",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        520,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## TRIGGER BY MAIL/HTTP\nMail : https://kins.app.n8n.cloud/workflow/XJj8pXdTRJp9DrDI\nHttp : https://kins.app.n8n.cloud/workflow/pJPiOSio0nwCPuZv",
+        "height": 303.55801312368527,
+        "width": 296.17487470057233
+      },
+      "id": "d3679812-ac05-41d3-b098-483094143659",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        420,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "59292435-8cb9-48e9-9b34-efc7d1f4c6b7",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        840,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "Trigger error"
+      },
+      "id": "aac1f930-d221-4945-aad8-d8f1e30104eb",
+      "name": "Stop and Error",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        840,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const messages = $node[\"Get Thread\"].json.messages;\nlet emailThread = \"\";\nlet remainingEmailThread = \"\";\nconst MAX_LENGTH = 10000;\n\nmessages.forEach(message => {\n    let subject = 'n/a';\n    let from = 'n/a';\n    let to = 'n/a';\n\n    if (message.payload && message.payload.headers) {\n        const subjectHeader = message.payload.headers.find(header => header.name === 'Subject');\n        const fromHeader = message.payload.headers.find(header => header.name === 'From');\n        const toHeader = message.payload.headers.find(header => header.name === 'To');\n\n        if (subjectHeader) subject = subjectHeader.value;\n        if (fromHeader) from = fromHeader.value;\n        if (toHeader) to = toHeader.value;\n    }\n\n    const date = new Date(parseInt(message.internalDate));\n    const snippet = message.snippet;\n    emailThread += `Sujet: ${subject}\\nDe: ${from}\\nÀ: ${to}\\nDate: ${date.toLocaleString()}\\nExtrait: ${snippet}\\n\\n`;\n});\n\n\nif (emailThread.length > MAX_LENGTH) {\n    emailThread = \"Voici la fin du thread d'email :\\n[...]\" + emailThread.substring(emailThread.length - MAX_LENGTH);\n    remainingEmailThread = emailThread.substring(0, emailThread.length - MAX_LENGTH);\n} else {\n    remainingEmailThread = \"\";\n}\n\n\nreturn {\"json\" : {\"emailThread\": emailThread, \"remainingEmailThread\": remainingEmailThread}};"
+      },
+      "id": "c265d098-97ed-496d-9f8b-33cab8336a2b",
+      "name": "emailThread",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1300,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($node[\"Get Email\"].binary).length > 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "948f29c0-b77b-4368-9f65-16982d5ef167",
+      "name": "IF Pièce Jointe",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"Get Email\"].json;\n  \njson.mailId =  $node[\"Get Email\"].json.id;\n\nreturn {\"json\" : json, \"binary\": $node[\"Get Email\"].binary};"
+      },
+      "id": "fd14b0cb-da12-4908-a773-73b247420568",
+      "name": "entree pinecone",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        260
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "sourceGoogleDriveId",
+              "stringValue": "={{ $json.documentGoogleDriveId?$json.documentGoogleDriveId:$json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d90f9ede-bfca-464d-854c-fb8187833c8b",
+      "name": "sourceGoogleDriveId",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1980,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "eRT6xb82oqCbX4u2",
+        "options": {}
+      },
+      "id": "8b73e51a-84aa-47fc-a92a-22b9ee3684fa",
+      "name": "Inserer le document dans Pinecone",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        300
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = {};\n\njson.client = $node[\"Mail Trigger\"].json.from.value[0].address.match(/(?<=@)[^\\.]+/)[0];\n\njson.kin = $node[\"kin\"].json.kin;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\n\njson.threadId = $node[\"Get Thread\"].json.id;\njson.threadSubject = $node[\"Get Thread\"].json.messages[0].Subject;\njson.threadFrom = $node[\"Get Thread\"].json.messages[0].From;\njson.kinDemandeur = json.threadFrom;\n\njson.mailId = $node[\"Get Email\"].json.id;\njson.mailSubject = $node[\"Get Email\"].json.subject;\njson.mailFrom = $node[\"Get Email\"].json.headers.from;\n\njson.query = \"/crud_mission/create/\" + json.kin  + \" \" + $node[\"mission\"].json.mission;\n\nreturn {\"json\": json};"
+      },
+      "id": "be415738-c5a4-4de9-b6d7-d305f7f6c0ad",
+      "name": "nouvelleMission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1740,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "binaryData": true,
+        "binaryPropertyName": "={{ Object.keys($binary)[0] }}",
+        "name": "={{ $binary[Object.keys($binary)].fileName }}",
+        "parents": [
+          "1E0oqQwRg93PO3_Ak_0lhcK0yyzTvKqL9"
+        ],
+        "options": {
+          "propertiesUi": {
+            "propertyValues": [
+              {
+                "key": "mailId",
+                "value": "={{ $json.mailId }}"
+              },
+              {
+                "key": "threadId",
+                "value": "={{ $json.threadId }}"
+              }
+            ]
+          }
+        }
+      },
+      "name": "Upload Source",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        1520,
+        300
+      ],
+      "typeVersion": 1,
+      "id": "6ae498b7-7170-453f-80e1-9a1bae86c5d0",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"Get Email\"].json;\n  \njson.threadId =  $node[\"Get Thread\"].json.id;\njson.mailId =  $node[\"Get Email\"].json.id;\n\nreturn {\"json\" : json, \"binary\": $node[\"Get Email\"].binary};"
+      },
+      "id": "16b07ee9-777b-43f5-add0-dc33ef7aeb2f",
+      "name": "entree source",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "bad3dbb8-da82-4eb3-bc4c-86559a170fc2",
+      "name": "CRUD Mission : Create",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"Get Email\"].json.text.substring(0, 10000)}}{{ $node[\"Get Email\"].json.text.length > 10000 ? \"[...]\" : \"\" }}\n{{ $node[\"Get Email\"].binary? (\"\\nFile attached with email : \" + $node[\"Get Email\"].binary[Object.keys($node[\"Get Email\"].binary)].fileName):\"\" }}\n\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "af1b6086-017f-4f31-b0c6-d13d1c21fb55",
+      "name": "mission",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1520,
+        780
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:32:35.457Z",
+      "updatedAt": "2023-12-17T10:32:35.457Z",
+      "id": "y4SS6pvxfLMwCsGn",
+      "name": "service"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2024-02-08T10:16:42.000Z",
+  "versionId": "c1b21494-5945-43db-85a3-cf703a11effb"
+}
