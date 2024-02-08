@@ -262,7 +262,7 @@
       "typeVersion": 1,
       "position": [
         400,
-        740
+        840
       ],
       "onError": "continueRegularOutput"
     },
@@ -308,6 +308,21 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "content": "## Not share\nhttps://kins.app.n8n.cloud/workflow/EYWde6gUS9Qq2ok7",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "f3de45c1-334e-48a1-9d12-6c2cac034585",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        320,
+        720
+      ]
     }
   ],
   "pinData": {},
@@ -332,6 +347,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-01T17:02:22.000Z",
-  "versionId": "a20ec603-9ef3-4d03-9167-2cf21e9813e3"
+  "updatedAt": "2024-02-08T15:07:27.000Z",
+  "versionId": "8f7dfa79-cdff-404d-9894-dd1f15590822"
 }
