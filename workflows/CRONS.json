@@ -93,7 +93,7 @@
       "main": [
         [
           {
-            "node": "/mission/update/status error",
+            "node": "/crud_mission/update/status error",
             "type": "main",
             "index": 0
           }
@@ -137,18 +137,7 @@
       "main": [
         [
           {
-            "node": "/mission/update/execution doing",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "/mission/update/status error": {
-      "main": [
-        [
-          {
-            "node": "CRUD Mission : Update status error",
+            "node": "/crud_mission/update/execution doing",
             "type": "main",
             "index": 0
           }
@@ -199,14 +188,25 @@
       "main": [
         [
           {
-            "node": "/mission/update/status doing",
+            "node": "/crud_mission/update/status doing",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "/mission/update/execution doing": {
+    "/crud_mission/update/status doing": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Update status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "/crud_mission/update/execution doing": {
       "main": [
         [
           {
@@ -217,11 +217,11 @@
         ]
       ]
     },
-    "/mission/update/status doing": {
+    "/crud_mission/update/status error": {
       "main": [
         [
           {
-            "node": "CRUD Mission : Update status",
+            "node": "CRUD Mission : Update status error",
             "type": "main",
             "index": 0
           }
@@ -595,20 +595,6 @@
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/mission/update/status error\";\n\nreturn {\"json\": json};"
-      },
-      "id": "b431785a-0f2c-4c3c-9dab-ec3371246dc9",
-      "name": "/mission/update/status error",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2380,
-        600
-      ]
-    },
-    {
-      "parameters": {
         "workflowId": "=RCzPi7XT4ijau6eF",
         "options": {}
       },
@@ -659,7 +645,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"Get missions\"].json.matches[0].metadata;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"Get missions\"].json.matches[0].metadata;\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
       },
       "id": "77a81cf9-d90b-4c15-8401-a461b76d7ee7",
       "name": "entree",
@@ -673,10 +659,24 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/mission/update/execution doing\";\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/crud_mission/update/status doing\";\n\nreturn {\"json\": json};"
+      },
+      "id": "021fb58a-dd9e-4b16-b9b2-82bc75c2e668",
+      "name": "/crud_mission/update/status doing",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/crud_mission/update/execution doing\";\n\nreturn {\"json\": json};"
       },
       "id": "b168ff6a-23d8-4d2b-9080-d8c769b95f4d",
-      "name": "/mission/update/execution doing",
+      "name": "/crud_mission/update/execution doing",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
@@ -687,15 +687,15 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/mission/update/status doing\";\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/crud_mission/update/status error\";\n\nreturn {\"json\": json};"
       },
-      "id": "021fb58a-dd9e-4b16-b9b2-82bc75c2e668",
-      "name": "/mission/update/status doing",
+      "id": "b431785a-0f2c-4c3c-9dab-ec3371246dc9",
+      "name": "/crud_mission/update/status error",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1260,
-        380
+        2380,
+        600
       ]
     }
   ],
@@ -733,6 +733,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-07T13:10:45.000Z",
-  "versionId": "9b1c4830-955f-4a1b-af13-ab8a1439bb75"
+  "updatedAt": "2024-02-08T09:30:07.000Z",
+  "versionId": "29940058-189d-48d6-88c5-4bc09c7fa23a"
 }
