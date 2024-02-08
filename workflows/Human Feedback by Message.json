@@ -258,7 +258,7 @@
       "typeVersion": 1,
       "position": [
         1600,
-        480
+        500
       ]
     },
     {
@@ -278,7 +278,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $item(0).$node[\"entree\"].json;\n\njson.mailId = $json.metadata.mailId; \n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json.metadata;\n\nreturn {\"json\": json};"
       },
       "id": "6fc299ef-c6a5-470c-b59c-13074a9604a6",
       "name": "entree thread",
@@ -372,8 +372,7 @@
         "chatId": "-4130957615",
         "text": "={{ $json.text }}",
         "additionalFields": {
-          "appendAttribution": false,
-          "disable_notification": false,
+          "disable_notification": true,
           "parse_mode": "MarkdownV2"
         }
       },
@@ -593,7 +592,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"filter\": {\"kin\": \"{{ $node[\"entree\"].json.kin }}\", \"status\": { \"$in\": [\"todo\", \"doing\", \"waiting\"] }},\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"filter\": {\"kin\": \"{{ $node[\"entree\"].json.kin }}\", \"status\": { \"$nin\": [\"done\"] }},\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
         "options": {}
       },
       "id": "6c87f9eb-49b7-4f0b-9e80-da6d7e0ea94e",
@@ -622,7 +621,7 @@
       "typeVersion": 1,
       "position": [
         1380,
-        200
+        280
       ]
     },
     {
@@ -647,9 +646,87 @@
           "name": "Boiron RSI"
         }
       }
+    },
+    {
+      "parameters": {
+        "content": "## Admin Commands\nhttps://kins.app.n8n.cloud/workflow/MGND8ynCD26RRnsW",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "27e9500c-395a-4c22-9374-bea0d998f94f",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Get defaultEmbedding\nhttps://kins.app.n8n.cloud/workflow/IJeSapyzv0Y9koZ9",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "bfcdeab7-9e3d-48e0-bf48-10bed8ff5ed9",
+      "name": "Sticky Note16",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Get/Create Thread\nhttps://kins.app.n8n.cloud/workflow/YWxRZmBa38HYCjnv",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "5a3e9123-8bac-4b44-8c93-17c7072f471b",
+      "name": "Sticky Note17",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2360,
+        360
+      ]
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Telegram Trigger KinCIR": [
+      {
+        "json": {
+          "update_id": 543562058,
+          "message": {
+            "message_id": 17065,
+            "from": {
+              "id": 1864364329,
+              "is_bot": false,
+              "first_name": "Nicolas Lester",
+              "last_name": "Reynolds - CTO @ DigitalKin",
+              "username": "lesterpaintstheworld",
+              "language_code": "fr"
+            },
+            "chat": {
+              "id": -1002105587743,
+              "title": "KinCIR Dynergie",
+              "type": "supergroup"
+            },
+            "date": 1707411177,
+            "text": "@kinontologiedomaine test",
+            "entities": [
+              {
+                "offset": 0,
+                "length": 20,
+                "type": "mention"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -669,6 +746,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2024-02-06T09:08:02.000Z",
-  "versionId": "d0ef9fec-c8a1-4af1-979c-e3b5dde8ee58"
+  "updatedAt": "2024-02-08T16:54:43.000Z",
+  "versionId": "79c0c83e-72dc-478c-a38d-6db0070769f1"
 }
