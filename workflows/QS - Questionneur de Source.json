@@ -655,6 +655,21 @@
         -420
       ],
       "webhookId": "e216adc2-5ca8-4efc-9193-00ea3d7d26cf"
+    },
+    {
+      "parameters": {
+        "content": "## Find Mission\nhttps://kins.app.n8n.cloud/workflow/LJq7WahDAN9n9qRH",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "716923ae-f70b-4705-bb17-afd56681dfd2",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2100,
+        -440
+      ]
     }
   ],
   "pinData": {
@@ -697,6 +712,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-08T09:28:33.000Z",
-  "versionId": "d0b689e8-b67e-40ba-9dd7-d8385b23100b"
+  "updatedAt": "2024-02-08T15:19:48.000Z",
+  "versionId": "e9ecd892-856c-417d-a200-9a90f66451de"
 }
