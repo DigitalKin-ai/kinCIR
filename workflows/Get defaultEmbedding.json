@@ -11,6 +11,18 @@
           }
         ]
       ]
+    },
+    "If": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-28T23:25:41.348Z",
@@ -27,8 +39,8 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        740,
-        340
+        620,
+        260
       ]
     },
     {
@@ -49,14 +61,108 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        940,
-        340
+        1440,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## TRIGGER BY MAIL/HTTP\nMail : https://kins.app.n8n.cloud/workflow/XJj8pXdTRJp9DrDI\nHttp : https://kins.app.n8n.cloud/workflow/pJPiOSio0nwCPuZv",
+        "height": 303.55801312368527,
+        "width": 296.17487470057233
+      },
+      "id": "08b1b31b-3d71-4e24-b9cc-4ada55feef0a",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        520,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "e2c57e9f-85e6-4d3f-9199-11901ff900c2",
+              "leftValue": "=",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "5c693448-ba0a-45d6-b416-f306957d020f",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "Vectors missings"
+      },
+      "id": "bca5bd87-635a-4d22-bff9-f0869c2f04b1",
+      "name": "Stop and Error",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## IF - CHECK VECTORS",
+        "height": 227.55801312368527,
+        "width": 219.17487470057233
+      },
+      "id": "9c74ec4a-b0d5-446b-bfc0-7e45f283e417",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        980,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## MAPPING",
+        "height": 224.55801312368527,
+        "width": 219.17487470057233
+      },
+      "id": "d8e07b38-5bbb-4270-90e2-9cc48095ed07",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        180
       ]
     }
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any",
+    "callerIds": "XJj8pXdTRJp9DrDI, pJPiOSio0nwCPuZv"
   },
   "staticData": null,
   "tags": [
@@ -68,6 +174,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-01-31T16:54:34.000Z",
-  "versionId": "57f6d9b8-e7ed-4e0d-b240-84381282cd2a"
+  "updatedAt": "2024-02-08T10:17:02.000Z",
+  "versionId": "23b51de5-819b-45f2-a823-848efbe75c5b"
 }
