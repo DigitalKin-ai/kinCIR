@@ -1,0 +1,722 @@
+{
+  "active": true,
+  "connections": {
+    "If Adresse Kin": {
+      "main": [
+        [
+          {
+            "node": "kin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Email": {
+      "main": [
+        [
+          {
+            "node": "Get Thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "emailThread": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If from Kin1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "defaultEmbedding",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Pièce Jointe": {
+      "main": [
+        [
+          {
+            "node": "entree source",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "sourceGoogleDriveId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree pinecone": {
+      "main": [
+        [
+          {
+            "node": "Inserer le document dans Pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sourceGoogleDriveId": {
+      "main": [
+        [
+          {
+            "node": "emailThread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mail Trigger": {
+      "main": [
+        [
+          {
+            "node": "If Adresse Kin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "defaultEmbedding": {
+      "main": [
+        [
+          {
+            "node": "Get kin mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF mission": {
+      "main": [
+        [],
+        [
+          {
+            "node": "IF Pièce Jointe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouvelleMission": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kin": {
+      "main": [
+        [
+          {
+            "node": "Get Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Thread": {
+      "main": [
+        [
+          {
+            "node": "If from Kin1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get kin mission": {
+      "main": [
+        [
+          {
+            "node": "IF mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree source": {
+      "main": [
+        [
+          {
+            "node": "Upload Source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Source": {
+      "main": [
+        [
+          {
+            "node": "entree pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inserer le document dans Pinecone": {
+      "main": [
+        [
+          {
+            "node": "sourceGoogleDriveId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "nouvelleMission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-25T13:23:49.297Z",
+  "id": "XJj8pXdTRJp9DrDI",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "EMAIL Routing - Triggers",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "={{ $node[\"Mail Trigger\"].json.id }}",
+        "simple": false,
+        "options": {
+          "downloadAttachments": true
+        }
+      },
+      "id": "3d8b3b8d-ce0d-4f2a-b5f1-23ecc35c257c",
+      "name": "Get Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -700,
+        60
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "bc0e8cdf-74fb-4bbd-9a00-4c184620a784",
+              "leftValue": "={{ $node[\"Mail Trigger\"].json.headers.to.match(/kin[a-zA-Z]+@/i) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "9ea15363-c875-4c91-b5d4-7d89e650e935",
+              "leftValue": "={{ $node[\"Mail Trigger\"].json.headers.cc.match(/kin[a-zA-Z]+@/i) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "ee262ee2-8dc7-4c12-9113-fa62b04c17a9",
+      "name": "If Adresse Kin",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1140,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Ne pas effectuer les missions en double",
+        "height": 242.7443604667863,
+        "width": 494.87172388888246
+      },
+      "id": "92df523c-1f78-4084-9f76-6aa075fd7486",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        321.8248751369445
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const messages = $node[\"Get Thread\"].json.messages;\nlet emailThread = \"\";\nlet remainingEmailThread = \"\";\nconst MAX_LENGTH = 10000;\n\nmessages.forEach(message => {\n    let subject = 'n/a';\n    let from = 'n/a';\n    let to = 'n/a';\n\n    if (message.payload && message.payload.headers) {\n        const subjectHeader = message.payload.headers.find(header => header.name === 'Subject');\n        const fromHeader = message.payload.headers.find(header => header.name === 'From');\n        const toHeader = message.payload.headers.find(header => header.name === 'To');\n\n        if (subjectHeader) subject = subjectHeader.value;\n        if (fromHeader) from = fromHeader.value;\n        if (toHeader) to = toHeader.value;\n    }\n\n    const date = new Date(parseInt(message.internalDate));\n    const snippet = message.snippet;\n    emailThread += `Sujet: ${subject}\\nDe: ${from}\\nÀ: ${to}\\nDate: ${date.toLocaleString()}\\nExtrait: ${snippet}\\n\\n`;\n});\n\n\nif (emailThread.length > MAX_LENGTH) {\n    emailThread = \"Voici la fin du thread d'email :\\n[...]\" + emailThread.substring(emailThread.length - MAX_LENGTH);\n    remainingEmailThread = emailThread.substring(0, emailThread.length - MAX_LENGTH);\n} else {\n    remainingEmailThread = \"\";\n}\n\n\nreturn {\"json\" : {\"emailThread\": emailThread, \"remainingEmailThread\": remainingEmailThread}};"
+      },
+      "id": "65cf34cb-c40a-4a0e-a0f3-2c989845d33e",
+      "name": "emailThread",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -40,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "a135e888-bcf9-47ab-acce-799a3d379a9c",
+              "leftValue": "={{ $node[\"Get Email\"].json.headers.from }}",
+              "rightValue": "=/kin\\w+/i",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "56688202-4437-40ea-8422-94e6fbf11510",
+      "name": "If from Kin1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -280,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($node[\"Get Email\"].binary).length > 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "4ea5672b-851c-40a5-810d-8befe72640e7",
+      "name": "IF Pièce Jointe",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"Get Email\"].json;\n  \njson.mailId =  $node[\"Get Email\"].json.id;\n\nreturn {\"json\" : json, \"binary\": $node[\"Get Email\"].binary};"
+      },
+      "id": "c6675bc6-6d06-459e-8032-b07e4630db23",
+      "name": "entree pinecone",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        240
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "sourceGoogleDriveId",
+              "stringValue": "={{ $json.documentGoogleDriveId?$json.documentGoogleDriveId:$json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "40951189-92e8-4014-879e-1753be78e267",
+      "name": "sourceGoogleDriveId",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        640,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "unit": "minutes"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {},
+        "options": {}
+      },
+      "id": "800ce070-50a9-417b-bf6f-89da6a4331f6",
+      "name": "Mail Trigger",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1340,
+        60
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "=IJeSapyzv0Y9koZ9",
+        "options": {}
+      },
+      "id": "71fd663e-b985-4cee-abc6-2f01c4cd3b14",
+      "name": "defaultEmbedding",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -1040,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($json.matches).length > 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "f4b4cad8-e0b7-4cbd-b37e-02fe0a6e08f1",
+      "name": "IF mission",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "eRT6xb82oqCbX4u2",
+        "options": {}
+      },
+      "id": "dfb6dfd8-4bf7-4f55-9608-abb0903b3f02",
+      "name": "Inserer le document dans Pinecone",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        640,
+        240
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = {};\n\njson.client = $node[\"Mail Trigger\"].json.from.value[0].address.match(/(?<=@)[^\\.]+/)[0];\n\njson.kin = $node[\"kin\"].json.kin;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\n\njson.threadId = $node[\"Get Thread\"].json.id;\njson.threadSubject = $node[\"Get Thread\"].json.messages[0].Subject;\njson.threadFrom = $node[\"Get Thread\"].json.messages[0].From;\njson.kinDemandeur = json.threadFrom;\n\njson.mailId = $node[\"Get Email\"].json.id;\njson.mailSubject = $node[\"Get Email\"].json.subject;\njson.mailFrom = $node[\"Get Email\"].json.headers.from;\n\njson.query = \"/crud_mission/create/\" + json.kin  + \" \" + $node[\"mission\"].json.mission;\n\nreturn {\"json\": json};"
+      },
+      "id": "ed5cd136-91d2-46e3-b5ca-1f34228d30ba",
+      "name": "nouvelleMission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "kin",
+              "stringValue": "={{ $node[\"Mail Trigger\"].json.headers.to.match(/kin[a-zA-Z]+@/i)[0].slice(0, -1) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "54c3ef2c-77d5-46a5-8337-84dcf38573d8",
+      "name": "kin",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        -900,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "thread",
+        "operation": "get",
+        "threadId": "={{ $node[\"Get Email\"].json.threadId }}",
+        "options": {}
+      },
+      "id": "08c4ce8d-2238-4e61-a03e-a1f09015c339",
+      "name": "Get Thread",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -500,
+        60
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iPrbr6qZiWHu93N9",
+          "name": "Gmail Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"threadId\" : \"{{ $node[\"Get Thread\"].json.id }}\", \"kin\": \"{{ $node[\"kin\"].json.kin }}\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "91dd0823-2367-463e-9d56-7c5bb0310126",
+      "name": "Get kin mission",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -820,
+        380
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "binaryData": true,
+        "binaryPropertyName": "={{ Object.keys($binary)[0] }}",
+        "name": "={{ $binary[Object.keys($binary)].fileName }}",
+        "parents": [
+          "1E0oqQwRg93PO3_Ak_0lhcK0yyzTvKqL9"
+        ],
+        "options": {
+          "propertiesUi": {
+            "propertyValues": [
+              {
+                "key": "mailId",
+                "value": "={{ $json.mailId }}"
+              },
+              {
+                "key": "threadId",
+                "value": "={{ $json.threadId }}"
+              }
+            ]
+          }
+        }
+      },
+      "name": "Upload Source",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        160,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "4dc28fcb-2e2e-4e62-b3f8-9f08714ed90f",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Z5nSsC9JGaYw1Ng3",
+          "name": "Google Drive DK via Nicolas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"Get Email\"].json;\n  \njson.threadId =  $node[\"Get Thread\"].json.id;\njson.mailId =  $node[\"Get Email\"].json.id;\n\nreturn {\"json\" : json, \"binary\": $node[\"Get Email\"].binary};"
+      },
+      "id": "c2116e06-e69c-42ce-8835-c1f18e248aa0",
+      "name": "entree source",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -40,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "6cf75122-b4ca-4dba-80ed-156e3ec0d4ef",
+      "name": "CRUD Mission : Create",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        640,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"Get Email\"].json.text.substring(0, 10000)}}{{ $node[\"Get Email\"].json.text.length > 10000 ? \"[...]\" : \"\" }}\n{{ $node[\"Get Email\"].binary? (\"\\nFile attached with email : \" + $node[\"Get Email\"].binary[Object.keys($node[\"Get Email\"].binary)].fileName):\"\" }}\n\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b357ef43-1a53-4add-ba24-72b2d0dab917",
+      "name": "mission",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        180,
+        640
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Nico reçoit un email": {
+      "lastTimeChecked": 1706088137,
+      "possibleDuplicates": [
+        "18d3ac70312f4667"
+      ]
+    },
+    "node:Seb reçoit un email": {
+      "lastTimeChecked": 1706023258
+    },
+    "node:Kin Mail": {
+      "lastTimeChecked": 1706305011,
+      "possibleDuplicates": [
+        "18d47b488e5cab95"
+      ]
+    },
+    "node:Mail Trigger": {
+      "lastTimeChecked": 1707387507,
+      "possibleDuplicates": [
+        "18d8839d51c0a038"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2024-02-08T07:55:54.149Z",
+      "updatedAt": "2024-02-08T07:55:54.149Z",
+      "id": "WFmhoRQVlyWNIkPg",
+      "name": "Email"
+    },
+    {
+      "createdAt": "2024-02-08T07:43:14.093Z",
+      "updatedAt": "2024-02-08T07:43:14.093Z",
+      "id": "tktck4E3jQW5h1aX",
+      "name": "Routing"
+    },
+    {
+      "createdAt": "2024-01-23T15:32:23.987Z",
+      "updatedAt": "2024-01-23T15:32:23.987Z",
+      "id": "wt7Cl4Mt8mR1bDh4",
+      "name": "admin"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-02-08T10:18:33.000Z",
+  "versionId": "a1a13894-e3eb-4fa9-9718-60ad08287877"
+}
