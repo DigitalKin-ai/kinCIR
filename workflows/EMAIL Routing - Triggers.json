@@ -443,7 +443,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -1040,
+        -1140,
         380
       ]
     },
@@ -643,8 +643,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        640,
-        640
+        680,
+        740
       ]
     },
     {
@@ -653,7 +653,7 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "={{ $node[\"Get Email\"].json.text.substring(0, 10000)}}{{ $node[\"Get Email\"].json.text.length > 10000 ? \"[...]\" : \"\" }}\n{{ $node[\"Get Email\"].binary? (\"\\nFile attached with email : \" + $node[\"Get Email\"].binary[Object.keys($node[\"Get Email\"].binary)].fileName):\"\" }}\n\n"
+              "stringValue": "={{ $node[\"Get Email\"].json.text.substring(0, 10000)}}{{ $node[\"Get Email\"].json.text.length > 10000 ? \"[...]\" : \"\" }}\n{{ $node[\"Get Email\"].binary? (\"\\nFile attached with email : \\\"\" + $node[\"Get Email\"].binary[Object.keys($node[\"Get Email\"].binary)].fileName)+\"\\\"\":\"\" }}\n\n"
             }
           ]
         },
@@ -666,6 +666,51 @@
       "position": [
         180,
         640
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Get defaultEmbedding\nhttps://kins.app.n8n.cloud/workflow/IJeSapyzv0Y9koZ9",
+        "height": 322.12872454370495,
+        "width": 312.5312715063941
+      },
+      "id": "d8d84441-dc7e-465f-ad4d-21cc21584854",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1260,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Insérer le document dans Pinecone\nhttps://kins.app.n8n.cloud/workflow/eRT6xb82oqCbX4u2",
+        "height": 310.31716359509295,
+        "width": 305.44433493722704
+      },
+      "id": "8f830b9c-d699-4432-ae3b-bcc6eb445e3f",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        540,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## CRUD Mission\nhttps://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi",
+        "height": 310.31716359509295,
+        "width": 305.44433493722704
+      },
+      "id": "0ea826f3-09ac-4dbe-a42a-459c9cd0d81b",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        580,
+        600
       ]
     }
   ],
@@ -690,9 +735,9 @@
       ]
     },
     "node:Mail Trigger": {
-      "lastTimeChecked": 1707387507,
+      "lastTimeChecked": 1707425806,
       "possibleDuplicates": [
-        "18d8839d51c0a038"
+        "18d8a823cc90e2da"
       ]
     }
   },
@@ -717,6 +762,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-08T10:18:33.000Z",
-  "versionId": "a1a13894-e3eb-4fa9-9718-60ad08287877"
+  "updatedAt": "2024-02-08T20:57:00.000Z",
+  "versionId": "1b9f3748-c590-4322-b306-9a490b8b3ed8"
 }
