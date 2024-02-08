@@ -33,17 +33,6 @@
           }
         ]
       ]
-    },
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "Escape Markdown1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "createdAt": "2024-01-29T08:59:08.183Z",
@@ -117,50 +106,13 @@
         }
       },
       "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "content": "## REPLY TO THREAD IN PROCESS",
-        "height": 242.7223719676549,
-        "width": 247.52021563342316
-      },
-      "id": "f41588fe-50ca-4a60-8d1b-ff23a984fdbd",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        500,
-        640
-      ]
-    },
-    {
-      "parameters": {
-        "authentication": "headerAuth",
-        "httpMethod": "POST",
-        "path": "ea0aadbd-6199-4906-89b9-cc8279e6295a",
-        "responseMode": "responseNode",
-        "options": {}
-      },
-      "id": "b0ddf63f-fd13-41c0-acf6-78797bc699ab",
-      "name": "Webhook",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 1.1,
-      "position": [
-        560,
-        740
-      ],
-      "webhookId": "ea0aadbd-6199-4906-89b9-cc8279e6295a",
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "wXS8IBbuzoeffy3O",
-          "name": "Header Auth account"
-        }
-      }
     }
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
   },
   "staticData": {
     "node:Nico reçoit un email": {
@@ -194,6 +146,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-07T16:15:13.000Z",
-  "versionId": "3349567a-7b6e-4e1d-b5a8-c410ed296b67"
+  "updatedAt": "2024-02-08T16:08:41.000Z",
+  "versionId": "c3f53009-3dda-4300-b5b4-264c5aeefd0f"
 }
