@@ -431,7 +431,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"mission\"].json;\n\njson.commandText = $node[\"entree\"].json.commandText;\n\nif ($node[\"entree\"].json.firstAttribute) {\n  json[$node[\"entree\"].json.firstAttribute] = $node[\"entree\"].json.commandText;\n}\n\nreturn {\"json\": json};"
+        "jsCode": "$execution.customData.set(\"command\", \"update\");\n\nlet json = $node[\"mission\"].json;\n\njson.commandText = $node[\"entree\"].json.commandText;\n\nif ($node[\"entree\"].json.firstAttribute) {\n  json[$node[\"entree\"].json.firstAttribute] = $node[\"entree\"].json.commandText;\n}\n\nreturn {\"json\": json};"
       },
       "id": "1057faf2-da9c-4f02-9f89-cc8a31fbc3cd",
       "name": "Update Attribute",
@@ -445,7 +445,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"clean mission\"].json;\n\njson.kin = $node[\"entree\"].json.firstAttribute;\n\njson.missionDemandeur = $node[\"entree\"].json.mission;\njson.mission = $node[\"entree\"].json.commandText;\njson.instructions = \"LANCEMENT :C'est le début de la mission ! Réalise la préparation pour lancer la mission\";\n\ndelete chatInput;\ndelete query;\n\njson.missionId = json.kin + \"-\" + json.threadId;\njson.status = \"doing\";\njson.execution = \"doing\"; \n\nreturn {\"json\": json};"
+        "jsCode": "$execution.customData.set(\"command\", \"create\");\n\nlet json = $node[\"clean mission\"].json;\n\njson.kin = $node[\"entree\"].json.firstAttribute;\njson.dernierProducteur = $node[\"entree\"].json.firstAttribute;\n\njson.missionDemandeur = $node[\"entree\"].json.mission;\njson.mission = $node[\"entree\"].json.commandText;\njson.instructions = \"LANCEMENT :C'est le début de la mission ! Réalise la préparation pour lancer la mission\";\n\ndelete chatInput;\ndelete query;\n\njson.missionId = json.kin + \"-\" + json.threadId;\njson.status = \"doing\";\njson.execution = \"doing\"; \n\nreturn {\"json\": json};"
       },
       "id": "20a072a8-8e43-4bcf-9bab-d4304e86f8fc",
       "name": "nouvelleMission entree",
@@ -520,7 +520,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json.vectors[Object.keys($json.vectors)[0]].metadata;\n\nreturn {\"json\": json};"
+        "jsCode": "$execution.customData.set(\"command\", \"read\");\n\nlet json = $json.vectors[Object.keys($json.vectors)[0]].metadata;\n\nreturn {\"json\": json};"
       },
       "id": "b7bfd86b-d0f6-4450-a530-e1103d1c168f",
       "name": "mission",
@@ -730,8 +730,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -580,
-        60
+        -340,
+        80
       ]
     },
     {
@@ -794,6 +794,65 @@
         -900,
         1120
       ]
+    },
+    {
+      "parameters": {
+        "content": "## Trigger by\nBOUCLE DE PRODUCTION : https://kins.app.n8n.cloud/workflow/RCzPi7XT4ijau6eF\nBOUCLE DE MANAGEMENT : https://kins.app.n8n.cloud/workflow/H3fxaSnxjZT6EGhc\nCRONS : https://kins.app.n8n.cloud/workflow/uryTpGQcTgxTMlVP\nMail : https://kins.app.n8n.cloud/workflow/XJj8pXdTRJp9DrDI\nFind Mission : https://kins.app.n8n.cloud/workflow/LJq7WahDAN9n9qRH",
+        "height": 324.74983944036444,
+        "width": 250.71967654986526
+      },
+      "id": "875fc064-f815-45cc-b348-11bc56274b7e",
+      "name": "Sticky Note14",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2720,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Get defaultEmbedding\nhttps://kins.app.n8n.cloud/workflow/IJeSapyzv0Y9koZ9",
+        "height": 280.34151456624056,
+        "width": 250.71967654986526
+      },
+      "id": "49f4ddc7-3fac-4d10-ad6e-90ca0aefe2c0",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1860,
+        175.76683490241766
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## BOUCLE DE MANAGEMENT\nhttps://kins.app.n8n.cloud/workflow/0LhMxlt62MaWdiqs",
+        "height": 316.5612059988846,
+        "width": 250.71967654986526
+      },
+      "id": "c21f6037-4af4-4f75-bb8b-9c3f6a5898ce",
+      "name": "Sticky Note16",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## TODO :delete a mission. deleter une mission doit également interrompre la production actuelle",
+        "width": 692.4393387748394
+      },
+      "id": "75189bc4-1f8a-43e2-b9f4-b1dc749762f4",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        1400
+      ]
     }
   ],
   "pinData": {
@@ -824,6 +883,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-08T09:17:01.000Z",
-  "versionId": "9be04d90-83e0-4ed6-93f5-a27833d342e6"
+  "updatedAt": "2024-02-08T16:16:39.000Z",
+  "versionId": "7fe58b7d-5c18-4363-9f0e-786498966cdb"
 }
