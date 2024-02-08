@@ -160,22 +160,11 @@
         ]
       ]
     },
-    "reset": {
-      "main": [
-        [
-          {
-            "node": "entree",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "When clicking \"Test workflow\"": {
       "main": [
         [
           {
-            "node": "reset",
+            "node": "restart",
             "type": "main",
             "index": 0
           }
@@ -197,7 +186,62 @@
       "main": [
         [
           {
-            "node": "reset",
+            "node": "restart",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get ALL non done missions": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete all missions": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "set status TODO1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set status TODO1": {
+      "main": [
+        [
+          {
+            "node": "Upsert mission todo1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert mission todo1": {
+      "main": [
+        [
+          {
+            "node": "Send Instructions",
             "type": "main",
             "index": 0
           }
@@ -236,6 +280,13 @@
         ],
         [
           {
+            "node": "Get ALL error/exceptions missions",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
             "node": "response1",
             "type": "main",
             "index": 0
@@ -243,22 +294,44 @@
         ]
       ]
     },
-    "Get ALL non done missions": {
+    "Aggregate1": {
       "main": [
         [
           {
-            "node": "Split Out1",
+            "node": "Merge",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Delete all missions": {
+    "restart": {
       "main": [
         [
           {
-            "node": "Merge",
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get ALL error/exceptions missions": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Instructions": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
             "type": "main",
             "index": 0
           }
@@ -616,20 +689,6 @@
       ]
     },
     {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\njson.query = \"/reset\";\njson.command = \"/reset\";\n\nreturn {\"json\": json};"
-      },
-      "id": "109e119c-879f-4864-947c-a8ae7041b133",
-      "name": "reset",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -1900,
-        500
-      ]
-    },
-    {
       "parameters": {},
       "id": "22b1085a-747a-4638-813d-9d6eb6df55e3",
       "name": "When clicking \"Test workflow\"",
@@ -772,6 +831,185 @@
     },
     {
       "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"filter\" : {\"status\": { \"$nin\": [\"done\"] }},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "dfb81d90-80ae-4dac-8fbd-610f6cb4fd62",
+      "name": "Get ALL non done missions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -240,
+        160
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"deleteAll\" : true\n}",
+        "options": {}
+      },
+      "id": "dd68468e-9b5d-462e-ab2a-bcc2e73e6905",
+      "name": "Delete all missions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -240,
+        540
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# /restart Transfer missions status error/exceptions  to todo",
+        "height": 298.13044544905085,
+        "width": 1320.5858121453357
+      },
+      "id": "79312132-d204-44cd-8846-7f2403eb204a",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        -280
+      ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "id": "5ec84892-5678-47bb-83f0-e1ce95b6abce",
+      "name": "Aggregate1",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        840,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "matches",
+        "options": {}
+      },
+      "id": "a8845b65-94f9-40ad-b64f-98cbbaa4978b",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        -180
+      ],
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let mission = $json.metadata;\n\nmission.status = \"todo\";\nmission.execution = \"todo\";\n\nreturn {\"json\": {\"mission\": mission}};"
+      },
+      "id": "5aa91b1c-691d-4139-9013-81fece0c4389",
+      "name": "set status TODO1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        200,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"vectors\": {\n  \"id\": \"{{ $json.matches[\"id\"] }}\",\n  \"metadata\": {{ JSON.stringify($json.matches.metadata) }},\n  \"values\": {{ JSON.stringify($item(0).$node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n  }\n}",
+        "options": {}
+      },
+      "id": "0d34e1da-d715-4c0f-b162-65b6e660409c",
+      "name": "Upsert mission todo1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        420,
+        -180
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
         "rules": {
           "values": [
             {
@@ -861,6 +1099,28 @@
                 ],
                 "combinator": "and"
               }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "8a1ad161-5d9b-426e-bc57-188daf740892",
+                    "leftValue": "={{ $node[\"entree\"].json.command }}",
+                    "rightValue": "/restart",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
             }
           ]
         },
@@ -876,6 +1136,63 @@
       "position": [
         -1220,
         640
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Trigger by\nHuman Feedback by Message : https://kins.app.n8n.cloud/workflow/xMV42ELBz1pvvDDt",
+        "height": 117.22196735097269,
+        "width": 250.71967654986526
+      },
+      "id": "a5d836ab-7188-4ec4-8f61-df15974ef679",
+      "name": "Sticky Note14",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2180,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Get defaultEmbedding\nhttps://kins.app.n8n.cloud/workflow/IJeSapyzv0Y9koZ9",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "af94a6f6-5422-4892-8488-fcf10191f3d8",
+      "name": "Sticky Note16",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1560,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\njson.query = \"/restart\";\njson.command = \"/restart\";\n\nreturn {\"json\": json};"
+      },
+      "id": "109e119c-879f-4864-947c-a8ae7041b133",
+      "name": "restart",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1900,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## TODO :delete a mission (using find?)"
+      },
+      "id": "350868ac-5384-4e0c-8e74-99417af92acf",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        -900
       ]
     },
     {
@@ -899,16 +1216,16 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"filter\" : {\"status\": { \"$nin\": [\"done\"] }},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"filter\" : {\"status\": { \"$in\": [\"error\", \"exception\"] }},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
         "options": {}
       },
-      "id": "dfb81d90-80ae-4dac-8fbd-610f6cb4fd62",
-      "name": "Get ALL non done missions",
+      "id": "77702974-fdec-4adf-a214-fd555fa5cfde",
+      "name": "Get ALL error/exceptions missions",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
         -240,
-        160
+        -180
       ],
       "credentials": {
         "pineconeApi": {
@@ -919,55 +1236,31 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"deleteAll\" : true\n}",
-        "options": {}
-      },
-      "id": "dd68468e-9b5d-462e-ab2a-bcc2e73e6905",
-      "name": "Delete all missions",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        -240,
-        540
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
+        "chatId": "-4130957615",
+        "text": "=Restarted mission {{ $node[\"set status TODO1\"].json.id }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "MarkdownV2"
         }
-      }
+      },
+      "id": "2549322b-9522-4897-95e0-e7f489b24fe9",
+      "name": "Send Instructions",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        640,
+        -180
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "rUijC7XE7TL12tph",
+          "name": "Lester AGI"
+        }
+      },
+      "onError": "continueRegularOutput"
     }
   ],
-  "pinData": {
-    "Execute Workflow Trigger": [
-      {
-        "json": {
-          "query": "/reset"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -993,6 +1286,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-08T09:42:47.000Z",
-  "versionId": "a64901f7-2234-4365-9ab7-7242e6226290"
+  "updatedAt": "2024-02-08T18:07:04.000Z",
+  "versionId": "9d548363-c42e-42c7-b953-e6d682d6accf"
 }
