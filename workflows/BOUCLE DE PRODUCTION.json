@@ -191,6 +191,11 @@
             "node": "kinpo",
             "type": "ai_tool",
             "index": 0
+          },
+          {
+            "node": "kinmanager",
+            "type": "ai_tool",
+            "index": 0
           }
         ]
       ]
@@ -220,6 +225,11 @@
           },
           {
             "node": "kinontologie",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinmanager",
             "type": "ai_tool",
             "index": 0
           }
@@ -473,42 +483,6 @@
         ]
       ]
     },
-    "Questionneur de Kin": {
-      "ai_tool": [
-        [
-          {
-            "node": "kinpo",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinarchitecte",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinrsi",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kincadreur",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kincadreurbeta",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinmatcheur",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Questionneur de document": {
       "ai_tool": [
         [
@@ -603,6 +577,11 @@
             "node": "kinmatcheur",
             "type": "ai_tool",
             "index": 0
+          },
+          {
+            "node": "kinmanager",
+            "type": "ai_tool",
+            "index": 0
           }
         ]
       ]
@@ -634,6 +613,17 @@
         [
           {
             "node": "BOUCLE DE MANAGEMENT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinontologiedomaine": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
             "type": "main",
             "index": 0
           }
@@ -784,6 +774,13 @@
         ],
         [
           {
+            "node": "kinmanager",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
             "node": "EXCEPTION - Kin Non-Actif",
             "type": "main",
             "index": 0
@@ -791,12 +788,73 @@
         ]
       ]
     },
-    "kinontologiedomaine": {
+    "kinmanager": {
       "main": [
         [
           {
             "node": "Producteur",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de Kin": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinrsi",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinontologie",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kindev",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinarchitecte",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinpo",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kincadreur",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kincadreurbeta",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinmanager",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinmatcheur",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinmail",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinfacturation",
+            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -821,7 +879,7 @@
       "typeVersion": 2,
       "position": [
         2180,
-        1740
+        2000
       ]
     },
     {
@@ -1096,7 +1154,7 @@
     {
       "parameters": {
         "name": "questionneur_de_prompt",
-        "description": "Le questionneur_de_prompt retourne un extrait du prompt système du Kin demandé ou une répond à une question sur le prompt à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée contenant :\n- Le nom du Kin dont tu souhaites récupérer le prompt,\n- La section demandée (Proposition de Valeur, Action n°1, etc.)\n- Verbatim : Si les extraits du prompt doivent être retranscrit verbatim",
+        "description": "Le questionneur_de_prompt retourne un extrait du prompt système du Kin demandé ou une répond à une question sur le prompt à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée contenant :\n- Le nom du Kin dont tu souhaites récupérer le prompt,\n- La section demandée (Proposition de Valeur, Action n°1, etc.)\n- Verbatim/non-verbatim : Si les extraits du prompt doivent être retranscrit verbatim",
         "workflowId": "1gSRJ9a1XiIgSYRx",
         "fields": {
           "values": [
@@ -1105,16 +1163,16 @@
               "type": "booleanValue"
             },
             {
-              "name": "kin",
-              "stringValue": "={{ $node[\"entree\"].json.kin }}"
-            },
-            {
               "name": "mission",
               "stringValue": "={{ $node[\"entree\"].json.mission }}"
             },
             {
               "name": "threadId",
               "stringValue": "={{ $node[\"entree\"].json.threadId }}"
+            },
+            {
+              "name": "kinDemandeur",
+              "stringValue": "={{ $node[\"entree\"].json.kin }}"
             }
           ]
         }
@@ -1571,8 +1629,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        2420,
-        1740
+        2400,
+        2000
       ],
       "retryOnFail": true,
       "credentials": {
@@ -1694,41 +1752,6 @@
         }
       },
       "disabled": true
-    },
-    {
-      "parameters": {
-        "name": "questionneur_de_kin",
-        "description": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide  qui n'est pas en rapport avec une mission spécifique.\n\nPour bien l'utiliser :\n- Mentionne le nom du @Kin,\n- Explique ton contexte et ton intention d'usage,\n- ta question.",
-        "workflowId": "m3wfYxyTxFXqib9D",
-        "fields": {
-          "values": [
-            {
-              "name": "sync",
-              "type": "booleanValue"
-            },
-            {
-              "name": "=kin",
-              "stringValue": "={{ $node[\"entree\"].json.kin }}"
-            },
-            {
-              "name": "mission",
-              "stringValue": "={{ $node[\"entree\"].json.mission }}"
-            },
-            {
-              "name": "threadId",
-              "stringValue": "={{ $node[\"entree\"].json.mission }}"
-            }
-          ]
-        }
-      },
-      "id": "d879938d-ebc2-4c36-85c5-6d96d0fcb272",
-      "name": "Questionneur de Kin",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        2020,
-        960
-      ]
     },
     {
       "parameters": {
@@ -2097,6 +2120,29 @@
     },
     {
       "parameters": {
+        "assistantId": "asst_NRJfqzvKf73U2CjrI4bqMSf5",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "c7eff67f-639d-46de-9aa7-f5204c1ed317",
+      "name": "kinmanager",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2400,
+        1780
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
         "rules": {
           "values": [
             {
@@ -2109,7 +2155,7 @@
                 "conditions": [
                   {
                     "id": "ee0b2c5b-62fd-4c09-bfca-f844e805e9ad",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kincir",
                     "operator": {
                       "type": "string",
@@ -2131,7 +2177,7 @@
                 "conditions": [
                   {
                     "id": "ee0b2c5b-62fd-4c09-bfca-f844e805e9ad",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kinlca",
                     "operator": {
                       "type": "string",
@@ -2153,7 +2199,7 @@
                 "conditions": [
                   {
                     "id": "2a5fab45-e697-4ba3-96ea-3f1bdc5a7655",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kinrsi",
                     "operator": {
                       "type": "string",
@@ -2174,7 +2220,7 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kinsota",
                     "operator": {
                       "type": "string",
@@ -2195,7 +2241,7 @@
                 "conditions": [
                   {
                     "id": "72d86350-5484-42da-86d0-02205e464813",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kincirbeta",
                     "operator": {
                       "type": "string",
@@ -2217,7 +2263,7 @@
                 "conditions": [
                   {
                     "id": "6485b142-ec38-459a-9d57-c73998d1ec69",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kindev",
                     "operator": {
                       "type": "string",
@@ -2239,7 +2285,7 @@
                 "conditions": [
                   {
                     "id": "6f847cf9-95ef-46d0-a2fc-dd71c81e9e7f",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kinontologie",
                     "operator": {
                       "type": "string",
@@ -2261,7 +2307,7 @@
                 "conditions": [
                   {
                     "id": "0b1b17da-cb6e-45e2-94b0-6489cc899831",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kinchercheur",
                     "operator": {
                       "type": "string",
@@ -2283,7 +2329,7 @@
                 "conditions": [
                   {
                     "id": "74f492b7-3bec-4816-ae99-a1a88314f9ff",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kinsotabeta",
                     "operator": {
                       "type": "string",
@@ -2305,7 +2351,7 @@
                 "conditions": [
                   {
                     "id": "0b7fbcf3-4e28-4b4a-9c08-ce4e3b263604",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kinchercheurbeta",
                     "operator": {
                       "type": "string",
@@ -2327,7 +2373,7 @@
                 "conditions": [
                   {
                     "id": "d31caef0-4d25-4ed3-9e1d-eea4ca6dbc76",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kincadreur",
                     "operator": {
                       "type": "string",
@@ -2349,7 +2395,7 @@
                 "conditions": [
                   {
                     "id": "e830f692-818a-4c36-a976-38294ef3f1c8",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kincadreurbeta",
                     "operator": {
                       "type": "string",
@@ -2371,7 +2417,7 @@
                 "conditions": [
                   {
                     "id": "2caba844-9c03-4c51-8262-9be51e095df7",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kinmail",
                     "operator": {
                       "type": "string",
@@ -2393,7 +2439,7 @@
                 "conditions": [
                   {
                     "id": "bd30facf-18e2-45ab-9c15-61b1a5aa0661",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kinmatcheur",
                     "operator": {
                       "type": "string",
@@ -2415,7 +2461,7 @@
                 "conditions": [
                   {
                     "id": "dec09ac9-dbf2-48a1-88c1-274f1d1309ee",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kinarchitecte",
                     "operator": {
                       "type": "string",
@@ -2437,7 +2483,7 @@
                 "conditions": [
                   {
                     "id": "58985013-b664-435a-8964-e97aaa0935b6",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kinpo",
                     "operator": {
                       "type": "string",
@@ -2459,7 +2505,7 @@
                 "conditions": [
                   {
                     "id": "873de981-5c16-4165-8467-009d17277dfa",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kinevaluateur",
                     "operator": {
                       "type": "string",
@@ -2481,7 +2527,7 @@
                 "conditions": [
                   {
                     "id": "b2a3e685-74d6-46b7-9e2d-03a95d595ea0",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kintesteur",
                     "operator": {
                       "type": "string",
@@ -2503,7 +2549,7 @@
                 "conditions": [
                   {
                     "id": "cd4effcc-9084-463b-ae02-db173847297e",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kinfacturation",
                     "operator": {
                       "type": "string",
@@ -2525,8 +2571,30 @@
                 "conditions": [
                   {
                     "id": "c2bd6b6f-a902-4b50-8b1b-8a906880d697",
-                    "leftValue": "={{  $node[\"entree\"].json.kin }}",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
                     "rightValue": "kinontologiedomaine",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "626a9627-dcdd-4395-8bfa-994b964ac296",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinmanager",
                     "operator": {
                       "type": "string",
                       "operation": "equals",
@@ -2552,6 +2620,45 @@
       "position": [
         460,
         800
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_kin",
+        "description": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide.\n\nPour bien l'utiliser :\n- Mentionne le nom du @Kin,\n- Explique ton contexte et ton intention d'usage,\n- ta question.",
+        "workflowId": "m3wfYxyTxFXqib9D",
+        "fields": {
+          "values": [
+            {
+              "name": "=kin",
+              "stringValue": "={{ $node[\"entree\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "missionId",
+              "stringValue": "={{ $node[\"entree\"].json.missionId }}"
+            },
+            {
+              "name": "kinDemandeur",
+              "stringValue": "={{ $node[\"entree\"].json.kin }}"
+            }
+          ]
+        }
+      },
+      "id": "c6510ea1-eb47-463d-8f18-65435c54c00a",
+      "name": "Questionneur de Kin",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2020,
+        960
       ]
     }
   ],
@@ -2623,6 +2730,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-07T11:12:43.000Z",
-  "versionId": "2c256e2d-72d2-416b-970c-ecca8147e536"
+  "updatedAt": "2024-02-08T10:03:32.000Z",
+  "versionId": "b6e6c1df-7c4b-4d66-9345-a468e67d810b"
 }
