@@ -272,7 +272,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        2260,
+        2220,
         -160
       ]
     },
@@ -410,7 +410,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2500,
+        2460,
         -160
       ]
     },
@@ -697,7 +697,7 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1,
       "position": [
-        2260,
+        2220,
         -360
       ],
       "webhookId": "3247566d-0dd3-4351-971e-2c73a179e187"
@@ -725,6 +725,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-06T10:32:48.000Z",
-  "versionId": "efaba04a-3865-4fed-879f-e5dfa1a70bc7"
+  "updatedAt": "2024-02-08T15:41:06.000Z",
+  "versionId": "3a9ad970-d94f-4e44-83e1-d19c41652be6"
 }
