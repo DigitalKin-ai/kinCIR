@@ -1,0 +1,253 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "entree listeur de mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree listeur de mission": {
+      "main": [
+        [
+          {
+            "node": "Listeur de Mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Listeur de Mission": {
+      "main": [
+        [
+          {
+            "node": "/crud_mission/read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Mission : Read": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "/crud_mission/read": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-08T09:07:59.278Z",
+  "id": "LJq7WahDAN9n9qRH",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Find Mission",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "be6eb64d-08ca-4b07-8d15-858719fd2380",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1180,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
+      },
+      "id": "a0d736c4-c58f-45a1-ab0b-8e9582222724",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -960,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=7gSW7ZaAHc61PVPS",
+        "options": {}
+      },
+      "id": "b0943245-b7e5-473f-b9c2-8dd75faaf127",
+      "name": "Listeur de Mission",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nlet query = \"INSTRUCTION : Parmi les missions que tu as, renvoie le missionId de la mission la plus pertinente par rapport à ces informations :\\n\\n\" + JSON.stringify($json) + \"\\n\\nRéponds toujours avec un missionId. Réponds uniquement avec le missionId, et rien d'autre (pas de guillemets, pas de \\\"missionId :\\\").\\n\\n\";\n\n\nreturn {\"json\": {\"query\": query}};"
+      },
+      "id": "c1ef9280-4b14-4565-ab2c-70fbdaf1d6a2",
+      "name": "entree listeur de mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -720,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "28c904d1-7ee5-4bc4-9653-6fa26df232d3",
+      "name": "CRUD Mission : Read",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"json\":JSON.parse($json.response)};"
+      },
+      "id": "766816cc-4ba7-4b09-bd00-34164b4827df",
+      "name": "mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        160,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = {};\n\njson.query = \"/crud_mission/read\";\njson.missionId = $json.response;\n\nreturn {\"json\": json};"
+      },
+      "id": "78add5bc-3f9d-47d8-9f7e-17ceb70975ad",
+      "name": "/crud_mission/read",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -280,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Trigger by\nQK - Questionneur de Kin : https://kins.app.n8n.cloud/workflow/m3wfYxyTxFXqib9D\nQS - Questionneur de Source : https://kins.app.n8n.cloud/workflow/aoOczsm5IKBTtydy",
+        "height": 171.00684541336972,
+        "width": 250.71967654986526
+      },
+      "id": "3ad09be8-7bcd-41ad-aaa5-18ef885f58d5",
+      "name": "Sticky Note14",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1460,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## QP - Listeur de missions\nhttps://kins.app.n8n.cloud/workflow/7gSW7ZaAHc61PVPS",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "9de77e90-dc05-475f-9730-cfedd6965875",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -580,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## CRUD Mission\nhttps://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "97922d9e-e0f1-4835-a24e-668783f0c742",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        480
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "sessionId": "test-0098565c-44fb-4bf8-92b9-1bf87c100e87",
+          "action": "sendMessage",
+          "chatInput": "kinsotabeta : utilse recherchegooglescholar pour trouver des résultats sur les LLM"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    },
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-02-08T15:19:47.000Z",
+  "versionId": "06e10afc-8636-4d0c-ab20-e88cee2c9c76"
+}
