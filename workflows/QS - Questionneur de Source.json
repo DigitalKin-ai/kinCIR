@@ -151,18 +151,7 @@
       "main": [
         [
           {
-            "node": "Get existing document",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Chat Trigger": {
-      "main": [
-        [
-          {
-            "node": "entree",
+            "node": "If no source",
             "type": "main",
             "index": 0
           }
@@ -203,6 +192,46 @@
         [
           {
             "node": "Questionneur de document ( version chain)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If no source": {
+      "main": [
+        [
+          {
+            "node": "Find Mission",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get existing document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Mission": {
+      "main": [
+        [
+          {
+            "node": "Get existing document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
             "type": "main",
             "index": 0
           }
@@ -283,7 +312,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        2080,
+        1440,
         -220
       ]
     },
@@ -455,7 +484,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2300,
+        1660,
         -220
       ]
     },
@@ -472,26 +501,6 @@
         4080,
         100
       ]
-    },
-    {
-      "parameters": {
-        "public": true,
-        "initialMessages": "Le questionneur_de_source retourne une réponse issue d'un document source spécifique à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- La citation de l'étude,\n- Les informations que tu cherches,\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire,\n- Le format de réponse désiré.\n\nEx : #1Cxt05liFpx8KZ9Rb3j4x5moijL8NNbHl Quels sont les résultats trouvés par cette étude ? ",
-        "options": {
-          "responseMode": "lastNode",
-          "subtitle": "=Le questionneur_de_source retourne une réponse issue d'un document source spécifique à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- La citation de l'étude,\n- Les informations que tu cherches,\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire,\n- Le format de réponse désiré.\n\nEx : #1Cxt05liFpx8KZ9Rb3j4x5moijL8NNbHl Quels sont les résultats trouvés par cette étude ? ",
-          "title": "={{ $workflow.name }}"
-        }
-      },
-      "id": "d0eb3c76-1554-4102-8c99-aaa2a821645b",
-      "name": "Chat Trigger",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1,
-      "position": [
-        2080,
-        -420
-      ],
-      "webhookId": "e216adc2-5ca8-4efc-9193-00ea3d7d26cf"
     },
     {
       "parameters": {
@@ -577,6 +586,75 @@
         }
       },
       "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "workflowId": "=LJq7WahDAN9n9qRH",
+        "options": {}
+      },
+      "id": "192e81c4-f74a-45fd-b7f6-47d7cfcc01b6",
+      "name": "Find Mission",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        -320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "16d413cf-c98c-43fc-8541-0076557d87e3",
+              "leftValue": "={{ $json.sourceGoogleDriveId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "baab57cd-b0b3-40d3-b37d-3e0de2c2437d",
+      "name": "If no source",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1880,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Le questionneur_de_source retourne une réponse issue d'un document source spécifique à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- La citation de l'étude,\n- Les informations que tu cherches,\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire,\n- Le format de réponse désiré.\n\nEx : #1Cxt05liFpx8KZ9Rb3j4x5moijL8NNbHl Quels sont les résultats trouvés par cette étude ? ",
+        "options": {
+          "responseMode": "lastNode",
+          "subtitle": "=Le questionneur_de_source retourne une réponse issue d'un document source spécifique à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- La citation de l'étude,\n- Les informations que tu cherches,\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire,\n- Le format de réponse désiré.\n\nEx : #1Cxt05liFpx8KZ9Rb3j4x5moijL8NNbHl Quels sont les résultats trouvés par cette étude ? ",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "d0eb3c76-1554-4102-8c99-aaa2a821645b",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        -420
+      ],
+      "webhookId": "e216adc2-5ca8-4efc-9193-00ea3d7d26cf"
     }
   ],
   "pinData": {
@@ -585,7 +663,7 @@
         "json": {
           "action": "sendMessage",
           "sessionId": "813a9472-5412-4721-b5a5-1d94c9eaa6b1",
-          "chatInput": "#1b1mxjtzXf7z3nfJY0i0zrnhr0-_6gv95 what are the remaining limitation of hybrid laser-arc welding of aluminium alloys ?"
+          "chatInput": "what are the remaining limitation of hybrid laser-arc welding of aluminium alloys ?"
         }
       }
     ]
@@ -619,6 +697,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-06T08:56:24.000Z",
-  "versionId": "785616c4-180b-4b8a-9d74-2fe394dc4470"
+  "updatedAt": "2024-02-08T09:28:33.000Z",
+  "versionId": "d0b689e8-b67e-40ba-9dd7-d8385b23100b"
 }
