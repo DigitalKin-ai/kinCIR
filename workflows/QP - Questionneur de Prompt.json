@@ -293,7 +293,7 @@
       "typeVersion": 1,
       "position": [
         2880,
-        460
+        560
       ],
       "onError": "continueRegularOutput"
     },
@@ -318,6 +318,36 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "content": "## Get Kins Actifs\nhttps://kins.app.n8n.cloud/workflow/gdFeXvXoLRHkWsrB",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "2ac0531d-3ee5-4420-8dc8-010eb99fd61d",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2460,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Not share\nhttps://kins.app.n8n.cloud/workflow/EYWde6gUS9Qq2ok7",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "b21839cc-9e8f-4b6a-bff3-3081ffddf81c",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2800,
+        440
+      ]
     }
   ],
   "pinData": {},
@@ -350,6 +380,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-08T10:02:47.000Z",
-  "versionId": "f462b1fb-769b-4cb3-b5ca-c968e4b06a3a"
+  "updatedAt": "2024-02-08T15:02:09.000Z",
+  "versionId": "2a7b600e-095f-4a07-8fae-bbea104a464f"
 }
