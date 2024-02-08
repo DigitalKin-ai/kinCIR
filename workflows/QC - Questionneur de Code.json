@@ -89,17 +89,6 @@
         ]
       ]
     },
-    "Chat Trigger": {
-      "main": [
-        [
-          {
-            "node": "entree",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Send  Notifications": {
       "main": [
         [
@@ -143,6 +132,17 @@
         [
           {
             "node": "Get Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
             "type": "main",
             "index": 0
           }
@@ -322,27 +322,6 @@
     },
     {
       "parameters": {
-        "public": true,
-        "initialMessages": "Le Questionneur de code retourne une réponse issue de la codebase n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\nEx : Comment fonctionne le Workflow \"Recherche Google Scholar\" ?",
-        "options": {
-          "inputPlaceholder": "Comment fonctionne le Workflow \"Recherche Google Scholar\" ?",
-          "responseMode": "lastNode",
-          "subtitle": "Le Questionneur de code retourne une réponse issue de la codebase n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
-          "title": "={{ $workflow.name }}"
-        }
-      },
-      "id": "87ae172e-3b9e-41d9-b0a6-51346d3f41ea",
-      "name": "Chat Trigger",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1,
-      "position": [
-        1800,
-        -20
-      ],
-      "webhookId": "7c2faa4c-71d7-4509-affc-4c68158b7d9f"
-    },
-    {
-      "parameters": {
         "mode": "chooseBranch"
       },
       "id": "0bfeddf1-b1bf-4ad6-b558-4b2261cc511f",
@@ -365,7 +344,7 @@
       "typeVersion": 1,
       "position": [
         3380,
-        520
+        640
       ],
       "onError": "continueRegularOutput"
     },
@@ -412,6 +391,42 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "content": "## Not share\nhttps://kins.app.n8n.cloud/workflow/EYWde6gUS9Qq2ok7",
+        "height": 276.1083494686582,
+        "width": 250.71967654986526
+      },
+      "id": "d974ef3c-2805-4131-8b76-7d2c272dcfdf",
+      "name": "Sticky Note8",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3300,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Le Questionneur de code retourne une réponse issue de la codebase n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\nEx : Comment fonctionne le Workflow \"Recherche Google Scholar\" ?",
+        "options": {
+          "inputPlaceholder": "Comment fonctionne le Workflow \"Recherche Google Scholar\" ?",
+          "responseMode": "lastNode",
+          "subtitle": "Le Questionneur de code retourne une réponse issue de la codebase n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "87ae172e-3b9e-41d9-b0a6-51346d3f41ea",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        -20
+      ],
+      "webhookId": "7c2faa4c-71d7-4509-affc-4c68158b7d9f"
     }
   ],
   "pinData": {},
@@ -436,6 +451,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-01-31T14:38:45.000Z",
-  "versionId": "0cf0e421-b97f-426c-98f0-73d23332cd8a"
+  "updatedAt": "2024-02-08T16:17:17.000Z",
+  "versionId": "ba5797d0-5c61-49ef-860a-67cd9fb5baec"
 }
