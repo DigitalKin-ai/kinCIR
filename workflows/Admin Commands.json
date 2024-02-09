@@ -988,7 +988,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"vectors\": {\n  \"id\": \"{{ $json.matches[\"id\"] }}\",\n  \"metadata\": {{ JSON.stringify($json.matches.metadata) }},\n  \"values\": {{ JSON.stringify($item(0).$node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n  }\n}",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"vectors\": {\n  \"id\": \"{{ $json.missionId }}\",\n  \"metadata\": {{ JSON.stringify($json) }},\n  \"values\": {{ JSON.stringify($item(0).$node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n  }\n}",
         "options": {}
       },
       "id": "0d34e1da-d715-4c0f-b162-65b6e660409c",
@@ -1260,7 +1260,25 @@
       "onError": "continueRegularOutput"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2024-02-09T20:00:00.005+01:00",
+          "Readable date": "February 9th 2024, 8:00:00 pm",
+          "Readable time": "8:00:00 pm",
+          "Day of week": "Friday",
+          "Year": "2024",
+          "Month": "February",
+          "Day of month": "09",
+          "Hour": "20",
+          "Minute": "00",
+          "Second": "00",
+          "Timezone": "CET +01:00"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -1286,6 +1304,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-08T18:07:04.000Z",
-  "versionId": "9d548363-c42e-42c7-b953-e6d682d6accf"
+  "updatedAt": "2024-02-09T19:56:02.000Z",
+  "versionId": "f7273f06-d858-4529-a516-5392acb50739"
 }
