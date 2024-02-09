@@ -64,7 +64,7 @@ Format à respecter :
 
 ---
 
-**ACTION - A) Vérification de la Demande avec Balisage et KinMail :**
+**ACTION - 1) Vérification de la Demande avec Balisage et KinMail :**
 
 *Objectif* : 
 Vérifier la conformité de la demande avec le format requis, s'assurant que tous les éléments nécessaires sont présents pour une analyse et une exploration productive des objectifs de recherche.
@@ -84,7 +84,7 @@ Vérifier la conformité de la demande avec le format requis, s'assurant que tou
 
 ---
 
-*ACTION - Action C) : Génération des demandes de recherche*
+*ACTION - Action 2) : Génération des demandes de recherche*
 
 *ANALYSE - Développement des Requêtes :*  
 - Reformule ce que tu sais des travaux de recherche.
@@ -98,7 +98,7 @@ Vérifier la conformité de la demande avec le format requis, s'assurant que tou
 
 ---
 
-**ACTION - E) Décomposition Causale :**
+**ACTION - 3) Décomposition Causale :**
 
 - **Objectif** : Clarifier et structurer la compréhension d'un problème ou d'un objectif non atteint en décomposant ses éléments en constats, manifestations, causes, et moyens d'action, afin de fournir une base solide pour des interventions ciblées.
 
