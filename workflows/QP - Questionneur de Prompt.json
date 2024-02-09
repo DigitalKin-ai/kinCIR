@@ -16,18 +16,7 @@
       "main": [
         [
           {
-            "node": "kins",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Assistant": {
-      "main": [
-        [
-          {
-            "node": "prompt",
+            "node": "If kin",
             "type": "main",
             "index": 0
           }
@@ -61,17 +50,6 @@
         [
           {
             "node": "kinrsi",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Chat Trigger": {
-      "main": [
-        [
-          {
-            "node": "entree",
             "type": "main",
             "index": 0
           }
@@ -115,6 +93,53 @@
           }
         ]
       ]
+    },
+    "If kin": {
+      "main": [
+        [
+          {
+            "node": "kins",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "retour",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Assistant": {
+      "main": [
+        [
+          {
+            "node": "prompt",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "retour1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-29T01:48:47.927Z",
@@ -131,7 +156,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        2100,
+        1720,
         60
       ]
     },
@@ -145,7 +170,186 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2320,
+        1940,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "gdFeXvXoLRHkWsrB",
+        "options": {}
+      },
+      "id": "4ab63ef4-82c6-4168-bb16-69f8fc46f85f",
+      "name": "kins",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2540,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let assistantId;\nconst kinObject = $json.kin.find(kin => kin.kin === $node[\"entree\"].json.kin.toLowerCase());\n\nassistantId = kinObject && kinObject.assistantId ? kinObject.assistantId : null;\n\nreturn {\"assistantId\": assistantId};"
+      },
+      "id": "cc65d6b9-27d8-4583-bcba-78bb22c592e9",
+      "name": "assistantId",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2740,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "if ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": $json.output};\n}\n\nreturn {\"response\":$json.output};"
+      },
+      "id": "258abb7a-2a22-4fb2-8ed7-c8ad946288eb",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3880,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "prompt",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.instructions }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "f8651a8c-abe3-4aaf-9074-ca03cf8195a0",
+      "name": "prompt",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        2940,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "4e22a84f-2527-48d9-9e60-8f121aa6bccf",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        3660,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=EYWde6gUS9Qq2ok7",
+        "options": {}
+      },
+      "id": "06abe3a0-039e-49c5-aebd-170c87bdb61b",
+      "name": "Send  Notifications",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        500
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_WKY0lRXB0rrJTFIm3HYv8jlE",
+        "text": "=[INFORMATIF - Prompt système du Kin {{ $node[\"entree\"].json.kin }}]\n\n{{ $node[\"prompt\"].json.prompt.substring(0, 20000) }}{{  $node[\"prompt\"].json.prompt.length > 20000 ? \"[...]\" : \"\" }}\n\n[/INFORMATIF - Prompt système du Kin {{ $node[\"entree\"].json.kin }}]\n\n===\n\n[MISSION - Besoin informationnel formulé (Query) par {{ $node[\"entree\"].json.kinDemandeur }}]\n\n\"{{ $node[\"entree\"].json.query }}\"\n\n[/MISSION - Besoin informationnel formulé (Query) par {{ $node[\"entree\"].json.kinDemandeur }}]\n\n===\n\n[INSTRUCTION - ACTION OUVERTE : Rédiger une réponse au besoin informationnel]\n\nA partir des informations disponibles, formule la ta réponse au besoin informationnel formulé.\n\nRéponse :",
+        "options": {}
+      },
+      "id": "9e358d62-ed6b-4c2b-8288-c5e767898e45",
+      "name": "kinrsi",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        3160,
+        260
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Get Kins Actifs\nhttps://kins.app.n8n.cloud/workflow/gdFeXvXoLRHkWsrB",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "2ac0531d-3ee5-4420-8dc8-010eb99fd61d",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2460,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Not share\nhttps://kins.app.n8n.cloud/workflow/EYWde6gUS9Qq2ok7",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "b21839cc-9e8f-4b6a-bff3-3081ffddf81c",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3420,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "e847c2e8-7906-446d-8ef7-d706ab840ddb",
+              "leftValue": "={{ $node[\"entree\"].json.kin }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "5173951d-7ce1-42f9-89c0-08b056af3012",
+      "name": "If kin",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2140,
         60
       ]
     },
@@ -182,70 +386,21 @@
           "id": "WY3bm7GCb9qfewyS",
           "name": "OpenAi account"
         }
-      }
-    },
-    {
-      "parameters": {
-        "workflowId": "gdFeXvXoLRHkWsrB",
-        "options": {}
       },
-      "id": "4ab63ef4-82c6-4168-bb16-69f8fc46f85f",
-      "name": "kins",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        2540,
-        60
-      ]
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let assistantId;\nconst kinObject = $json.kin.find(kin => kin.kin === $node[\"entree\"].json.kin.toLowerCase());\n\nassistantId = kinObject && kinObject.assistantId ? kinObject.assistantId : \"asst_8umriZllMPt14U8qy2T0jCmQ\";\n\nreturn {\"assistantId\": assistantId};"
+        "jsCode": "return {\"response\":\"RETOUR : Le questionneur de prompt sert à afficher le prompt d'un Kin spécifique. Le nom du Kin doit être passé en entrée.\"};"
       },
-      "id": "cc65d6b9-27d8-4583-bcba-78bb22c592e9",
-      "name": "assistantId",
+      "id": "47f9981e-bb92-4f11-b131-1c739e6f99b0",
+      "name": "retour",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2740,
-        60
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "if ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": $json.output};\n}\n\nreturn {\"response\":$json.output};"
-      },
-      "id": "258abb7a-2a22-4fb2-8ed7-c8ad946288eb",
-      "name": "response",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        3260,
-        320
-      ]
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "prompt",
-              "stringValue": "={{ $node[\"Get Assistant\"].json.instructions }}"
-            }
-          ]
-        },
-        "include": "none",
-        "options": {}
-      },
-      "id": "f8651a8c-abe3-4aaf-9074-ca03cf8195a0",
-      "name": "prompt",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        2320,
-        320
+        2140,
+        260
       ]
     },
     {
@@ -264,89 +419,23 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1,
       "position": [
-        2100,
+        1720,
         -120
       ],
       "webhookId": "8e2462a7-0dc4-47e0-981e-d56ebd857124"
     },
     {
       "parameters": {
-        "mode": "chooseBranch"
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"response\":\"RETOUR : Le Kin \" + $node[\"entree\"].json.kin + \" n'est pas actif ou n'existe pas.\"};"
       },
-      "id": "4e22a84f-2527-48d9-9e60-8f121aa6bccf",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 2.1,
+      "id": "0ec1785f-b8c4-422b-a77b-2c05c994d0dc",
+      "name": "retour1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
-        3040,
-        320
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "=EYWde6gUS9Qq2ok7",
-        "options": {}
-      },
-      "id": "06abe3a0-039e-49c5-aebd-170c87bdb61b",
-      "name": "Send  Notifications",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        2880,
-        560
-      ],
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_WKY0lRXB0rrJTFIm3HYv8jlE",
-        "text": "=[INFORMATIF - Prompt système du Kin {{ $node[\"entree\"].json.kin }}]\n\n{{ $node[\"prompt\"].json.prompt.substring(0, 20000) }}{{  $node[\"prompt\"].json.prompt.length > 20000 ? \"[...]\" : \"\" }}\n\n[/INFORMATIF - Prompt système du Kin {{ $node[\"entree\"].json.kin }}]\n\n===\n\n[MISSION - Besoin informationnel formulé (Query) par {{ $node[\"entree\"].json.kinDemandeur }}]\n\n\"{{ $node[\"entree\"].json.query }}\"\n\n[/MISSION - Besoin informationnel formulé (Query) par {{ $node[\"entree\"].json.kinDemandeur }}]\n\n===\n\n[INSTRUCTION - ACTION OUVERTE : Rédiger une réponse au besoin informationnel]\n\nA partir des informations disponibles, formule la ta réponse au besoin informationnel formulé.\n\nRéponse :",
-        "options": {}
-      },
-      "id": "9e358d62-ed6b-4c2b-8288-c5e767898e45",
-      "name": "kinrsi",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        2540,
-        320
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "content": "## Get Kins Actifs\nhttps://kins.app.n8n.cloud/workflow/gdFeXvXoLRHkWsrB",
-        "height": 274.5517166627047,
-        "width": 250.71967654986526
-      },
-      "id": "2ac0531d-3ee5-4420-8dc8-010eb99fd61d",
-      "name": "Sticky Note15",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        2460,
-        -60
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## Not share\nhttps://kins.app.n8n.cloud/workflow/EYWde6gUS9Qq2ok7",
-        "height": 274.5517166627047,
-        "width": 250.71967654986526
-      },
-      "id": "b21839cc-9e8f-4b6a-bff3-3081ffddf81c",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        2800,
-        440
+        3160,
+        80
       ]
     }
   ],
@@ -380,6 +469,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-08T15:02:09.000Z",
-  "versionId": "2a7b600e-095f-4a07-8fae-bbea104a464f"
+  "updatedAt": "2024-02-09T17:41:06.000Z",
+  "versionId": "229e5cbc-0180-49bf-984c-5e5fee1cc031"
 }
