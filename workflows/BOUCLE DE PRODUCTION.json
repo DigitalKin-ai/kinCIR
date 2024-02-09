@@ -905,6 +905,10 @@
             {
               "name": "format",
               "stringValue": "={{ $node[\"entree\"].json.format }}"
+            },
+            {
+              "name": "missionId",
+              "stringValue": "={{ $node[\"entree\"].json.missionId }}"
             }
           ]
         }
@@ -2764,6 +2768,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-08T15:25:52.000Z",
-  "versionId": "79030074-936a-405c-b66e-d03af91bf75f"
+  "updatedAt": "2024-02-09T17:45:14.000Z",
+  "versionId": "3a0811d5-6d87-4b39-bfcf-3a2525820075"
 }
