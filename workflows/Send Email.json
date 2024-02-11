@@ -319,7 +319,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\nif (json.kinDemandeur && json.kinDemandeur !== \"undefined\") {\n  json.kin = json.kinDemandeur;\n}\n\nif (json.missionDemandeur && json.missionDemandeur !== \"undefined\") {\n  json.mission = json.missionDemandeur;\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\nif (json.kinDemandeur && json.kinDemandeur !== \"undefined\") {\n  json.kin = json.kinDemandeur;\n}\n\nif (json.missionIdDemandeur && json.missionIdDemandeur !== \"undefined\") {\n  json.missionId = json.missionIdDemandeur;\n}\n\n\nif (json.missionDemandeur && json.missionDemandeur !== \"undefined\") {\n  json.mission = json.missionDemandeur;\n}\n\nreturn {\"json\": json};"
       },
       "id": "944ba1bf-168f-4da3-ad97-b365252e5d76",
       "name": "entree DocumentDemandeur",
@@ -727,7 +727,23 @@
       ]
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "<!DOCTYPE html>\n<html>\n<head>\n<title>Mise à Jour du Projet CIR</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>Clôture de mission : Boiron</h1>\n    </div>\n    <div class=\"content\">\n      <p>Cher [Nom du Client],</p>\n      <p>Nous sommes ravis de vous annoncer que la mission que vous nous avez confiée a été menée à bien avec succès. Au cours de cette collaboration, notre équipe a travaillé d'arrache-pied pour [résumé succinct du travail accompli ou des résultats obtenus – à compléter en fonction du projet spécifique].</p>\n      <p>Nous tenons à vous exprimer notre plus profonde gratitude pour votre confiance et votre soutien tout au long de cette mission. Votre engagement et votre clarté dans la communication ont grandement contribu&eacute; à la réalisation de nos objectifs communs.</p>\n      <p>Nous esp&eacute;rons que les r&eacute;sultats obtenus d&eacute;passent vos attentes et que notre travail contribuera de mani&egrave;re significative à [but et objectif du projet – à personnaliser]. Nous restons à votre enti&egrave;re disposition pour toute question ou &eacute;claircissement suppl&eacut",
+          "kin": "kinmail",
+          "mission": "Date : 2024-02-10T23:31:13.044+01:00\nClient : boiron\n\n**PROCESSUS - MISSION : Rédaction & Envoi du mail de clôture par KinMail:**\n\nLa mission du  kinlca est accomplie. **Ta mission, en tant que KinMail, est de rédiger et d'envoyer au client le mail de clôture présentant le travail accompli.\n\n===",
+          "threadId": "18d950455bbbd0e5",
+          "kinDemandeur": "kinlca",
+          "missionDemandeur": "\n\nAurore INCHAUSPE, PhD\nChef de projet Scientifique\nPôle des Affaires Scientifiques et Médicales Groupe\nTél. : 85 56\n\n\n[iMAGE tel]\nLe Service Information Boiron est à votre écoute\n\n\nFile attached with email : \"Gosh_2021_Efficacy of individualized homéopathie medicines in primary dysmenorrhea.pdf\"",
+          "mailId": "18d950455bbbd0e5",
+          "format": "undefined",
+          "missionId": "kinmail-18d950455bbbd0e5"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -749,6 +765,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-08T16:01:19.000Z",
-  "versionId": "937c30c8-49fd-47f9-819f-5d7c1b1e3e0f"
+  "updatedAt": "2024-02-10T23:13:51.000Z",
+  "versionId": "30cbecca-463e-4d96-aec3-5e5f96845ef8"
 }
