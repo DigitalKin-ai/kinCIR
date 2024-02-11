@@ -909,6 +909,10 @@
             {
               "name": "missionId",
               "stringValue": "={{ $node[\"entree\"].json.missionId }}"
+            },
+            {
+              "name": "missionIdDemandeur",
+              "stringValue": "={{ $node[\"entree\"].json.missionIdDemandeur }}"
             }
           ]
         }
@@ -1792,7 +1796,7 @@
     {
       "parameters": {
         "name": "listeur_de_missions",
-        "description": "Le listeur_de_missions permet de récupérer la liste des missions en cours, terminées, et en attente.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Le statut des tâches désirées (toto/doing/done/waiting)\n- (filtre optionnel) Le Kin désiré\n- Si tu cherches des informations particulières,\n- Le format de réponse désiré.",
+        "description": "Le listeur_de_missions permet de récupérer la liste des missions en cours, terminées, et en attente.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Le statut des tâches désirées (todo/doing/done/waiting)\n- (filtre optionnel) Le Kin désiré\n- Si tu cherches des informations particulières,\n- Le format de réponse désiré.",
         "workflowId": "7gSW7ZaAHc61PVPS",
         "fields": {
           "values": [
@@ -2768,6 +2772,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-09T17:45:14.000Z",
-  "versionId": "3a0811d5-6d87-4b39-bfcf-3a2525820075"
+  "updatedAt": "2024-02-10T23:56:43.000Z",
+  "versionId": "54696090-2b26-4b91-a53f-8aa32388ec1e"
 }
