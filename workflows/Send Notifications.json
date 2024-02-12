@@ -469,7 +469,7 @@
     },
     {
       "parameters": {
-        "chatId": "-1002105587743",
+        "chatId": "-4155607972",
         "text": "={{ $json.text }}",
         "additionalFields": {
           "appendAttribution": false,
@@ -487,8 +487,8 @@
       ],
       "credentials": {
         "telegramApi": {
-          "id": "lCt7ijUIUZl2RYIR",
-          "name": "KinCIR Dynergie"
+          "id": "ZycPeiDd8w3TWjiS",
+          "name": "digitalkin_bot Telegram"
         }
       },
       "onError": "continueRegularOutput"
@@ -678,6 +678,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-08T15:36:00.000Z",
-  "versionId": "ef85b05c-0a44-48aa-a4a1-5337a345113e"
+  "updatedAt": "2024-02-12T17:43:38.000Z",
+  "versionId": "ad9620b9-5c26-419b-b457-2a8d6a579354"
 }
