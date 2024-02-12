@@ -386,7 +386,17 @@
       "webhookId": "897ced6f-149f-4da4-8a69-30216d828b78"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Chat Trigger": [
+      {
+        "json": {
+          "sessionId": "test-0098565c-44fb-4bf8-92b9-1bf87c100e87",
+          "action": "sendMessage",
+          "chatInput": "Point général"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -408,6 +418,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-08T16:13:30.000Z",
-  "versionId": "55b1ecd5-139b-4d50-a412-9e2eadb07318"
+  "updatedAt": "2024-02-12T14:55:09.000Z",
+  "versionId": "945969e7-1cb6-4b07-9b52-dbcb01c1a72e"
 }
