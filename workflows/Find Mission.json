@@ -12,17 +12,6 @@
         ]
       ]
     },
-    "entree": {
-      "main": [
-        [
-          {
-            "node": "entree listeur de mission",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "entree listeur de mission": {
       "main": [
         [
@@ -66,6 +55,35 @@
           }
         ]
       ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "If ameliorationContinue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If ameliorationContinue": {
+      "main": [
+        [
+          {
+            "node": "/crud_mission/read",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "entree listeur de mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-02-08T09:07:59.278Z",
@@ -82,7 +100,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -1180,
+        -1380,
         600
       ]
     },
@@ -96,7 +114,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -960,
+        -1160,
         600
       ]
     },
@@ -110,8 +128,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -500,
-        600
+        -540,
+        900
       ]
     },
     {
@@ -124,8 +142,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -720,
-        600
+        -760,
+        900
       ]
     },
     {
@@ -181,7 +199,7 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1460,
+        -1660,
         560
       ]
     },
@@ -196,8 +214,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -580,
-        480
+        -620,
+        780
       ]
     },
     {
@@ -214,6 +232,39 @@
         -140,
         480
       ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "1d0aa4d1-615e-4ffc-ac0b-f029c35259d3",
+              "leftValue": "={{ $node[\"entree\"].json.missionId }}",
+              "rightValue": "ameliorationContinue",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c366904c-e0a5-4658-859d-196d8dcbad48",
+      "name": "If ameliorationContinue",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -960,
+        600
+      ]
     }
   ],
   "pinData": {
@@ -222,7 +273,10 @@
         "json": {
           "sessionId": "test-0098565c-44fb-4bf8-92b9-1bf87c100e87",
           "action": "sendMessage",
-          "chatInput": "kinsotabeta : utilse recherchegooglescholar pour trouver des résultats sur les LLM"
+          "chatInput": "kinsotabeta : utilse recherchegooglescholar pour trouver des résultats sur les LLM",
+          "query": "kinsotabeta : utilse recherchegooglescholar pour trouver des résultats sur les LLM",
+          "kinDemandeur": "Un humain",
+          "kin": "kinsotabeta"
         }
       }
     ]
@@ -248,6 +302,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-08T15:19:47.000Z",
-  "versionId": "06e10afc-8636-4d0c-ab20-e88cee2c9c76"
+  "updatedAt": "2024-02-12T17:30:18.000Z",
+  "versionId": "4b337229-0c65-48a9-865b-f2beb19759e9"
 }
