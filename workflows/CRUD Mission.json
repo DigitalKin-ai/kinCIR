@@ -54,7 +54,7 @@
       "main": [
         [
           {
-            "node": "response",
+            "node": "Fetch return mission",
             "type": "main",
             "index": 0
           }
@@ -138,7 +138,7 @@
         ],
         [
           {
-            "node": "Fetch mission",
+            "node": "If missionId",
             "type": "main",
             "index": 0
           }
@@ -174,7 +174,7 @@
         ],
         [
           {
-            "node": "Stop and Error2",
+            "node": "If delete",
             "type": "main",
             "index": 0
           }
@@ -186,6 +186,11 @@
         [
           {
             "node": "Upsert mission1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
             "type": "main",
             "index": 0
           },
@@ -219,17 +224,6 @@
         ]
       ]
     },
-    "BOUCLE DE MANAGEMENT": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "If mission": {
       "main": [
         [
@@ -241,7 +235,116 @@
         ],
         [
           {
-            "node": "Stop and Error",
+            "node": "If ameliorationContinue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BOUCLE DE MANAGEMENT": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If delete": {
+      "main": [
+        [
+          {
+            "node": "delete mission",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "delete mission": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If ameliorationContinue": {
+      "main": [
+        [
+          {
+            "node": "mission ameliorationContinue",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission ameliorationContinue": {
+      "main": [
+        [
+          {
+            "node": "nouvelleMission ameliorationContinue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouvelleMission ameliorationContinue": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Mission : Create": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch return mission": {
+      "main": [
+        [
+          {
+            "node": "return mission",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "return mission",
             "type": "main",
             "index": 0
           }
@@ -253,6 +356,24 @@
         [
           {
             "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If missionId": {
+      "main": [
+        [
+          {
+            "node": "Fetch mission",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
             "type": "main",
             "index": 0
           }
@@ -281,7 +402,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\njson.query = json.query.trim();\n\n// Détecter la commande\nlet regexCommand = /\\/crud\\_mission\\/([a-zA-Z0-9\\_\\-]+)/i;\njson.command = \"\";\nlet matchCommand = json.query.match(regexCommand);\nif (matchCommand) {\n    json.command = matchCommand[1];\n}\n\nlet regexFirstAttribute = /\\/crud\\_mission\\/[a-zA-Z0-9\\_\\-]+\\/([a-zA-Z0-9\\_\\-]+)/;\nlet matchFirstAttribute = json.query.match(regexFirstAttribute);\nif (matchFirstAttribute) {\n  json.firstAttribute = matchFirstAttribute[1];\n}\n\nlet regexAllCommand = /\\/\\S+ /;\njson.commandText = \"\";\nlet matchAllCommand = json.query.match(regexAllCommand);\nif (matchAllCommand) {\n  let startIndex = matchAllCommand[0].length;\n  json.commandText = json.query.substring(startIndex);\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\njson.query = json.query.trim();\n\n// Détecter la commande\nlet regexCommand = /\\/crud\\_mission\\/([a-zA-Z0-9\\_\\-]+)/i;\njson.command = \"\";\nlet matchCommand = json.query.match(regexCommand);\nif (matchCommand) {\n    json.command = matchCommand[1];\n}\n\nlet regexFirstAttribute = /\\/crud\\_mission\\/[a-zA-Z0-9\\_\\-]+\\/([a-zA-Z0-9\\_\\-]+)/;\nlet matchFirstAttribute = json.query.match(regexFirstAttribute);\nif (matchFirstAttribute) {\n  json.firstAttribute = matchFirstAttribute[1];\n}\n\nlet regexAllCommand = /\\/\\S+ /;\njson.commandText = \"\";\nlet matchAllCommand = json.query.match(regexAllCommand);\nif (matchAllCommand) {\n  let startIndex = matchAllCommand[0].length;\n  json.commandText = json.query.substring(startIndex);\n}\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
       },
       "id": "43d4d546-b9e7-481c-b3c0-6475e0931bab",
       "name": "entree",
@@ -321,8 +442,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -160,
-        880
+        -100,
+        1540
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -344,21 +465,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -900,
-        780
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "let entree = $item(0).$node[\"entree\"].json;\nlet result = \"\";\n\nif (entree.command == \"read\") {\n  result = JSON.stringify($node[\"mission\"].json);\n} else {\n  result = \"command \" + entree.command + \", \" + (entree.kin?entree.kin:\"\") + \" : effectuée avec succès !\";\n}\n\nif (entree.chatInput != null) {\n  return {\"output\": result};\n}\n\nreturn {\"json\":{\"response\": result}};"
-      },
-      "id": "dab2f225-db96-4fa4-b607-e43df6852a42",
-      "name": "response",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        640,
-        580
+        -840,
+        1440
       ]
     },
     {
@@ -388,7 +496,7 @@
     {
       "parameters": {
         "content": "# /crud_mission/create %missionDescription%",
-        "height": 509.732107442524,
+        "height": 670.0298393503322,
         "width": 905.1028940671356
       },
       "id": "8338ae6f-47cf-49f4-9d9b-0974b7934fee",
@@ -403,21 +511,21 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\ndelete json.chatInput;\ndelete json.textCommand;\ndelete json.action;\ndelete json.sessionId;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Pas d'objets possible en metadata\n            obj[key] = JSON.stringify(obj[key]).substring(0, 5000);\n\n            if (obj[key].length >= 5000) {\n              obj[key] += \"[...]\";\n            }\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\ndelete json.chatInput;\ndelete json.textCommand;\ndelete json.action;\ndelete json.sessionId;\ndelete json.responseFormat;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission)  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
       },
       "id": "217277b8-3ec3-43ce-94a8-c73348c670d2",
       "name": "clean updated mission",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -300,
-        880
+        -240,
+        1540
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\ndelete json.chatInput;\ndelete json.textCommand;\ndelete json.action;\ndelete json.sessionId;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Pas d'objets possible en metadata\n            obj[key] = JSON.stringify(obj[key]).substring(0, 5000);\n\n            if (obj[key].length >= 5000) {\n              obj[key] += \"[...]\";\n            }\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\ndelete json.chatInput;\ndelete json.textCommand;\ndelete json.action;\ndelete json.sessionId;\ndelete json.responseFormat;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission)  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
       },
       "id": "4ba3cd1b-3b11-475b-b343-547f7ef691d9",
       "name": "clean mission",
@@ -438,8 +546,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -560,
-        880
+        -500,
+        1540
       ]
     },
     {
@@ -484,8 +592,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -1280,
-        500
+        -1300,
+        620
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -506,8 +614,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -820,
-        500
+        -840,
+        620
       ]
     },
     {
@@ -547,17 +655,17 @@
     },
     {
       "parameters": {
-        "content": "# /crud_mission/read %missionIdentifier%",
-        "height": 318.29711464059096,
-        "width": 950.3622251623062
+        "content": "# /crud_mission/read/%missionId%",
+        "height": 775.134184184043,
+        "width": 1628.9217404532105
       },
       "id": "a8c38d9c-79de-48ec-b0f3-a14684db2cc3",
       "name": "Sticky Note3",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1360,
-        360
+        -1584.9589214320856,
+        440
       ]
     },
     {
@@ -591,8 +699,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -560,
-        500
+        -580,
+        620
       ]
     },
     {
@@ -626,8 +734,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1100,
-        1060
+        -1040,
+        1720
       ]
     },
     {
@@ -659,8 +767,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -580,
-        -140
+        -500,
+        0
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -674,7 +782,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\ndelete json.chatInput;\ndelete json.textCommand;\ndelete json.action;\ndelete json.sessionId;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Pas d'objets possible en metadata\n            obj[key] = JSON.stringify(obj[key]).substring(0, 5000);\n\n            if (obj[key].length >= 5000) {\n              obj[key] += \"[...]\";\n            }\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\ndelete json.chatInput;\ndelete json.textCommand;\ndelete json.action;\ndelete json.sessionId;\ndelete json.responseFormat;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission)  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
       },
       "id": "6c3f0ddc-5054-4fe0-8223-cd9d02c7b1ee",
       "name": "clean updated mission1",
@@ -697,20 +805,6 @@
       "position": [
         -1780,
         300
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "0LhMxlt62MaWdiqs",
-        "options": {}
-      },
-      "id": "55b8dc28-13ad-4fac-a5ee-41caa158013a",
-      "name": "BOUCLE DE MANAGEMENT",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        -340,
-        80
       ]
     },
     {
@@ -744,21 +838,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1060,
-        500
-      ]
-    },
-    {
-      "parameters": {
-        "errorMessage": "mission not found"
-      },
-      "id": "8537a372-7ae2-445c-bb92-d60667fb7220",
-      "name": "Stop and Error",
-      "type": "n8n-nodes-base.stopAndError",
-      "typeVersion": 1,
-      "position": [
-        -1060,
-        720
+        -1080,
+        620
       ]
     },
     {
@@ -770,8 +851,8 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        -900,
-        1120
+        -720,
+        2140
       ]
     },
     {
@@ -815,32 +896,295 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -420,
-        -60
+        -560,
+        140
       ]
     },
     {
       "parameters": {
-        "content": "## TODO :delete a mission. deleter une mission doit également interrompre la production actuelle",
-        "width": 692.4393387748394
+        "content": "## TODO : deleter une mission doit également interrompre la production actuelle",
+        "width": 513.1046861403074
       },
       "id": "75189bc4-1f8a-43e2-b9f4-b1dc749762f4",
       "name": "Sticky Note5",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -800,
-        1400
+        -240,
+        1880
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://kins.app.n8n.cloud/webhook/boucle-de-management",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "cc6b5b1b-3a12-4a55-8da2-4a5857efb9c2",
+      "name": "BOUCLE DE MANAGEMENT",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -500,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "delete",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "2b969d53-f16b-4998-b88c-98e6e914f51e",
+      "name": "If delete",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -780,
+        1880
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# /crud_mission/delete/%missionId%",
+        "height": 298.13044544905085,
+        "width": 891.7265056155782
+      },
+      "id": "9b1f69d7-84a6-49c9-8e45-d1f64dafde55",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -540,
+        1780
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/delete",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"namespace\": \"missions\",\n\"ids\": [\"{{ $json.missionId }}\"]\n}",
+        "options": {}
+      },
+      "id": "6cb12745-7bf1-4df8-b7cd-131706b148a0",
+      "name": "delete mission",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -480,
+        1860
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "1d0aa4d1-615e-4ffc-ac0b-f029c35259d3",
+              "leftValue": "={{ $node[\"entree\"].json.missionId }}",
+              "rightValue": "ameliorationContinue",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true,
+          "looseTypeValidation": true
+        }
+      },
+      "id": "c8c6dcc4-c318-4317-a456-4642545dc2a4",
+      "name": "If ameliorationContinue",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -840,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## CRUD Mission\nhttps://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "37b016b0-810a-416c-8d0b-801733ec4db3",
+      "name": "Sticky Note22",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "807f5b5e-e6b6-4fd5-a7d2-8b35021c7c45",
+      "name": "CRUD Mission : Create",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=**PROCESSUS - MISSION : AMELIORATION CONTNIUE :**\n\nL'amélioration continue est ton objectif quand tu n'es pas assigné à une mission spécifique. Ton rôle est de collaborer avec les autres Kins de l'équipe afin d'améliorer votre travail. \n\n===\n\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4753d5e3-e129-43f4-848f-597ce9a5709c",
+      "name": "mission ameliorationContinue",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        -580,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"clean mission\"].json));\n\ndelete json.query;\n\n// Mettre à jour le Kin\njson.kin = json.kin;\njson.threadId = \"ameliorationContinue\";\njson.type = \"ameliorationContinue\";\n\n// Mettre à jour la mission\njson.query = \"/crud_mission/create/\" + json.kin  + \" \" + $node[\"mission ameliorationContinue\"].json.mission;\njson.responseFormat = \"json\";\n\nreturn {\"json\": json};"
+      },
+      "id": "3c567add-a53e-4549-a370-5dd8a98d7300",
+      "name": "nouvelleMission ameliorationContinue",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -360,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/fetch",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"namespace\": \"missions\",\n\"ids\": [\"{{ $json.missionId }}\"]\n}",
+        "options": {}
+      },
+      "id": "4c36d27b-6f7b-47a3-8f53-99b707ea9199",
+      "name": "Fetch return mission",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        660,
+        580
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 1000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let entree = $item(0).$node[\"entree\"].json;\nlet json = {};\n\nif ($json.vectors && Object.keys($json.vectors).length > 0) {\n  json = $json.vectors[Object.keys($json.vectors)[0]].metadata;\n}\n\ndelete json.query;\n\nif (entree.chatInput != null) {\n  return {\"output\": JSON.stringify(json)};\n}\n\nif (entree.responseFormat === \"json\") {\n  json.response = JSON.stringify(json);\n  return {\"json\": json};\n}\n\nreturn {\"json\":{\"response\": JSON.stringify(json)}};"
+      },
+      "id": "bb766a63-ab36-4ee6-a256-bd15c8369d1e",
+      "name": "return mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        580
       ]
     },
     {
       "parameters": {
         "public": true,
-        "initialMessages": "La fonction \"actionneur_de_production\" effectue des commandes sur les missions. Permet de lancer, arrêter, ou compléter des missions.\n\nCommande disponible :\n- /status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nFormat d'appel \"query\" : \"[INSTRUCTION - /status todo kinname]\\n\\nTODOLIST et Prochaine action à réaliser\\n\\n[/INSTRUCTION - /status todo kinname]\\n\\n---\\n\\n\"",
+        "initialMessages": "La fonction \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'exécution.\n\nAppels disponibles :\n   - Pour **continuer la boucle de production**, si l'analyse montre que la mission est sur la bonne voie et qu'il suffit de poursuivre selon le plan établi :\n     ```\n     /crud_mission/update/execution todo\n     ```\n   - Pour **gérer une exception**, si un obstacle imprévu se présente nécessitant une action corrective ou une adaptation :\n     ```\n     /crud_mission/update/status exception\n     ```\n   - Pour **formuler une demande spécifique**, lorsqu'une expertise, une action, ou une ressource spécifique d'un autre Kin est nécessaire pour poursuivre :\n     ```\n     - /crud_mission/create/nomdukindemandé <Description détaillée de la nouvelle mission, y compris le contexte de la mission, l'objectif spécifique de cette demande, et son importance pour l'avancée de la mission du demandeur>.\n     ```\n   - Pour **conclure la mission**, lorsque tous les objectifs sont atteints et que la mission peut être considérée comme terminée :\n     ```\n     /crud_mission/update/status done\n     ```",
         "options": {
-          "inputPlaceholder": "/reset",
+          "inputPlaceholder": "/crud_mission/read",
           "responseMode": "lastNode",
-          "subtitle": "=La fonction \"actionneur_de_production\" effectue des commandes sur les missions. Permet de lancer, arrêter, ou compléter des missions.\n\nCommande disponible :\n- /status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nFormat d'appel \"query\" : \"[INSTRUCTION - /status todo kinname]\\n\\nTODOLIST et Prochaine action à réaliser\\n\\n[/INSTRUCTION - /status todo kinname]\\n\\n---\\n\\n\"",
+          "subtitle": "=La fonction \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'exécution.\n\nAppels disponibles :\n   - Pour **continuer la boucle de production**, si l'analyse montre que la mission est sur la bonne voie et qu'il suffit de poursuivre selon le plan établi :\n     ```\n     /crud_mission/update/execution todo\n     ```\n   - Pour **gérer une exception**, si un obstacle imprévu se présente nécessitant une action corrective ou une adaptation :\n     ```\n     /crud_mission/update/status exception\n     ```\n   - Pour **formuler une demande spécifique**, lorsqu'une expertise, une action, ou une ressource spécifique d'un autre Kin est nécessaire pour poursuivre :\n     ```\n     - /crud_mission/create/nomdukindemandé <Description détaillée de la nouvelle mission, y compris le contexte de la mission, l'objectif spécifique de cette demande, et son importance pour l'avancée de la mission du demandeur>.\n     ```\n   - Pour **conclure la mission**, lorsque tous les objectifs sont atteints et que la mission peut être considérée comme terminée :\n     ```\n     /crud_mission/update/status done\n     ```",
           "title": "={{ $workflow.name }}"
         }
       },
@@ -853,6 +1197,39 @@
         120
       ],
       "webhookId": "b5e5cf9d-1b48-4f67-897c-e1c3389082ca"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "c218e161-fe3f-442d-94ea-e9095c99823d",
+              "leftValue": "={{  $node[\"entree\"].json.missionId?$node[\"entree\"].json.missionId:$node[\"entree\"].json.firstAttribut }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c8cd54ee-2a06-4f02-91d0-2c343921e92b",
+      "name": "If missionId",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1560,
+        620
+      ]
     }
   ],
   "pinData": {
@@ -883,6 +1260,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-12T08:14:54.000Z",
-  "versionId": "4710c8cd-954a-4015-97bc-df4b9c0e9c9c"
+  "updatedAt": "2024-02-12T22:56:48.000Z",
+  "versionId": "618ad602-5d8f-48ca-85fd-849aa16e0ceb"
 }
