@@ -118,7 +118,7 @@
       "main": [
         [
           {
-            "node": "input",
+            "node": "/crud_mission/read",
             "type": "main",
             "index": 0
           }
@@ -268,6 +268,11 @@
         [
           {
             "node": "kindev",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinarchitecte",
             "type": "ai_tool",
             "index": 0
           }
@@ -691,6 +696,28 @@
         ]
       ]
     },
+    "/crud_mission/read": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Mission : Read": {
+      "main": [
+        [
+          {
+            "node": "input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Switch": {
       "main": [
         [
@@ -842,7 +869,25 @@
         ],
         [
           {
+            "node": "kintranscriptionexcel",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
             "node": "EXCEPTION - Kin Non-Actif",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kintranscriptionexcel": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
             "type": "main",
             "index": 0
           }
@@ -1080,7 +1125,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -1240,
+        -1760,
         960
       ]
     },
@@ -1582,8 +1627,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        2420,
-        1520
+        2400,
+        1540
       ],
       "retryOnFail": false,
       "credentials": {
@@ -1927,7 +1972,7 @@
     {
       "parameters": {
         "content": "# UF Amélioration Continue",
-        "height": 1677.1050484998564,
+        "height": 1873.0096475812716,
         "width": 1219.5279693808732
       },
       "id": "4dbbe16f-89bc-4919-a46e-4b9fdafec1bd",
@@ -1936,13 +1981,13 @@
       "typeVersion": 1,
       "position": [
         1780,
-        -685.385748179589
+        -881.2903472610042
       ]
     },
     {
       "parameters": {
         "content": "# UF PRODUCTION",
-        "height": 1678.7077168166893,
+        "height": 1886.9666599843194,
         "width": 1137.0587249575672
       },
       "id": "4fe9aea2-f9d5-4200-8d44-6b475866a5eb",
@@ -1951,7 +1996,7 @@
       "typeVersion": 1,
       "position": [
         620,
-        -680
+        -888.2589431676302
       ]
     },
     {
@@ -2214,8 +2259,51 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1540,
+        -2060,
         940
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\njson.query = \"/crud_mission/read/\" + $json.missionId;\njson.responseFormat = \"json\";\n\nreturn {\"json\": json};"
+      },
+      "id": "30e04d83-9ee7-48fe-9f7f-1d6eacb2f406",
+      "name": "/crud_mission/read",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1460,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "97a66946-ae2b-440b-b7b5-8a91b290f801",
+      "name": "CRUD Mission : Read",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -1240,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## CRUD Mission\nhttps://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "1ab9beae-2859-48b4-a1a5-764bd7d78cdc",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1320,
+        860
       ]
     },
     {
@@ -2681,6 +2769,28 @@
                 ],
                 "combinator": "and"
               }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "f3180808-71bf-44c5-9f8d-be4c37f22730",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
+                    "rightValue": "kintranscriptionexcel",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
             }
           ]
         },
@@ -2698,6 +2808,28 @@
         460,
         800
       ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_5a3AzNzXpeJCDHoDyb8a4PNG",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "8b3db119-4cc4-4920-880b-2382b63f1ebf",
+      "name": "kintranscriptionexcel",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        840,
+        -800
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -2768,6 +2900,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-12T09:34:13.000Z",
-  "versionId": "a6f89cf5-ee66-4d8a-bcd3-0009a9db9917"
+  "updatedAt": "2024-02-12T17:33:11.000Z",
+  "versionId": "f52771d3-6330-4b15-a858-e28c1dc81085"
 }
