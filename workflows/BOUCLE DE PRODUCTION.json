@@ -608,6 +608,89 @@
         ]
       ]
     },
+    "kinmanager": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de Kin": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinrsi",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinontologie",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kindev",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinarchitecte",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinpo",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kincadreur",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kincadreurbeta",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinmanager",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinmatcheur",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinmail",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinfacturation",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "/crud_mission/update/status todo": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Update status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Switch": {
       "main": [
         [
@@ -760,89 +843,6 @@
         [
           {
             "node": "EXCEPTION - Kin Non-Actif",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kinmanager": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Questionneur de Kin": {
-      "ai_tool": [
-        [
-          {
-            "node": "kinrsi",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinontologie",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kindev",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinarchitecte",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinpo",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kincadreur",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kincadreurbeta",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinmanager",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinmatcheur",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinmail",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
-            "node": "kinfacturation",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "/crud_mission/update/status todo": {
-      "main": [
-        [
-          {
-            "node": "CRUD Mission : Update status",
             "type": "main",
             "index": 0
           }
@@ -2006,10 +2006,6 @@
         "fields": {
           "values": [
             {
-              "name": "sync",
-              "type": "booleanValue"
-            },
-            {
               "name": "kin",
               "stringValue": "={{ $node[\"entree\"].json.kin }}"
             },
@@ -2108,6 +2104,119 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_kin",
+        "description": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide.\n\nPour bien l'utiliser :\n- Mentionne le nom du @Kin,\n- Explique ton contexte et ton intention d'usage,\n- ta question.",
+        "workflowId": "m3wfYxyTxFXqib9D",
+        "fields": {
+          "values": [
+            {
+              "name": "=kin",
+              "stringValue": "={{ $node[\"entree\"].json.kin }}"
+            },
+            {
+              "name": "mission",
+              "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "threadId",
+              "stringValue": "={{ $node[\"entree\"].json.mission }}"
+            },
+            {
+              "name": "missionId",
+              "stringValue": "={{ $node[\"entree\"].json.missionId }}"
+            },
+            {
+              "name": "kinDemandeur",
+              "stringValue": "={{ $node[\"entree\"].json.kin }}"
+            }
+          ]
+        }
+      },
+      "id": "c6510ea1-eb47-463d-8f18-65435c54c00a",
+      "name": "Questionneur de Kin",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2020,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/crud_mission/update/status todo\";\n\nreturn {\"json\": json};"
+      },
+      "id": "551ef40c-afef-420a-8777-1a1e69234c03",
+      "name": "/crud_mission/update/status todo",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        60,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Get/Create Thread\nhttps://kins.app.n8n.cloud/workflow/YWxRZmBa38HYCjnv",
+        "height": 276.1083494686582,
+        "width": 250.71967654986526
+      },
+      "id": "e33a51eb-0b75-4c0c-8688-202ca0537073",
+      "name": "Sticky Note14",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -860,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Get defaultEmbedding\nhttps://kins.app.n8n.cloud/workflow/IJeSapyzv0Y9koZ9",
+        "height": 276.1083494686582,
+        "width": 250.71967654986526
+      },
+      "id": "774fdd63-93a4-45b4-8280-bf5dcd1095ef",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## BOUCLE DE MANAGEMENT \nhttps://kins.app.n8n.cloud/workflow/0LhMxlt62MaWdiqs",
+        "height": 276.1083494686582,
+        "width": 250.71967654986526
+      },
+      "id": "8ab309fb-23ed-4063-a77c-e70422aca121",
+      "name": "Sticky Note18",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3780,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Trigger by\nCRONS : https://kins.app.n8n.cloud/workflow/uryTpGQcTgxTMlVP",
+        "height": 117.22196735097269,
+        "width": 250.71967654986526
+      },
+      "id": "99a4d5cd-9fd9-43dc-a665-e4c9a74a2a58",
+      "name": "Sticky Note16",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1540,
+        940
+      ]
     },
     {
       "parameters": {
@@ -2589,119 +2698,6 @@
         460,
         800
       ]
-    },
-    {
-      "parameters": {
-        "name": "questionneur_de_kin",
-        "description": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide.\n\nPour bien l'utiliser :\n- Mentionne le nom du @Kin,\n- Explique ton contexte et ton intention d'usage,\n- ta question.",
-        "workflowId": "m3wfYxyTxFXqib9D",
-        "fields": {
-          "values": [
-            {
-              "name": "=kin",
-              "stringValue": "={{ $node[\"entree\"].json.kin }}"
-            },
-            {
-              "name": "mission",
-              "stringValue": "={{ $node[\"entree\"].json.mission }}"
-            },
-            {
-              "name": "threadId",
-              "stringValue": "={{ $node[\"entree\"].json.mission }}"
-            },
-            {
-              "name": "missionId",
-              "stringValue": "={{ $node[\"entree\"].json.missionId }}"
-            },
-            {
-              "name": "kinDemandeur",
-              "stringValue": "={{ $node[\"entree\"].json.kin }}"
-            }
-          ]
-        }
-      },
-      "id": "c6510ea1-eb47-463d-8f18-65435c54c00a",
-      "name": "Questionneur de Kin",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        2020,
-        960
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/crud_mission/update/status todo\";\n\nreturn {\"json\": json};"
-      },
-      "id": "551ef40c-afef-420a-8777-1a1e69234c03",
-      "name": "/crud_mission/update/status todo",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        60,
-        1160
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## Get/Create Thread\nhttps://kins.app.n8n.cloud/workflow/YWxRZmBa38HYCjnv",
-        "height": 276.1083494686582,
-        "width": 250.71967654986526
-      },
-      "id": "e33a51eb-0b75-4c0c-8688-202ca0537073",
-      "name": "Sticky Note14",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -860,
-        840
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## Get defaultEmbedding\nhttps://kins.app.n8n.cloud/workflow/IJeSapyzv0Y9koZ9",
-        "height": 276.1083494686582,
-        "width": 250.71967654986526
-      },
-      "id": "774fdd63-93a4-45b4-8280-bf5dcd1095ef",
-      "name": "Sticky Note15",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -20,
-        840
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## BOUCLE DE MANAGEMENT \nhttps://kins.app.n8n.cloud/workflow/0LhMxlt62MaWdiqs",
-        "height": 276.1083494686582,
-        "width": 250.71967654986526
-      },
-      "id": "8ab309fb-23ed-4063-a77c-e70422aca121",
-      "name": "Sticky Note18",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        3780,
-        860
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## Trigger by\nCRONS : https://kins.app.n8n.cloud/workflow/uryTpGQcTgxTMlVP",
-        "height": 117.22196735097269,
-        "width": 250.71967654986526
-      },
-      "id": "99a4d5cd-9fd9-43dc-a665-e4c9a74a2a58",
-      "name": "Sticky Note16",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -1540,
-        940
-      ]
     }
   ],
   "pinData": {
@@ -2772,6 +2768,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-10T23:56:43.000Z",
-  "versionId": "54696090-2b26-4b91-a53f-8aa32388ec1e"
+  "updatedAt": "2024-02-12T09:34:13.000Z",
+  "versionId": "a6f89cf5-ee66-4d8a-bcd3-0009a9db9917"
 }
