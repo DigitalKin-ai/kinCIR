@@ -260,7 +260,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = {};\n\njson.client = $json.client;\n\njson.kin = $json.kin;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\n\njson.threadId = $json.threadId;\njson.threadSubject = $json.query;\njson.threadFrom = $json.client;\n\njson.mailId = $json.threadId;\njson.mailSubject = $json.query;\njson.mailFrom = $json.client;\n\njson.query = \"/crud_mission/create/\" + json.kin  + \" \" + $node[\"mission\"].json.mission;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = {};\n\njson.client = $json.client;\n\njson.kin = $json.kin;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\n\njson.threadId = $json.threadId;\njson.threadSubject = $json.threadSubject;\njson.threadFrom = $json.client;\n\njson.query = \"/crud_mission/create/\" + json.kin  + \" \" + $node[\"mission\"].json.mission;\n\nreturn {\"json\": json};"
       },
       "id": "be415738-c5a4-4de9-b6d7-d305f7f6c0ad",
       "name": "nouvelleMission",
@@ -346,7 +346,7 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "={{ $json.mission.substring(0, 10000)}}{{ $json.mission.length > 10000 ? \"[...]\" : \"\" }}\n{{ $json.doc.binary? (\"\\nFile attached with email : \" + $json.doc.binary[Object.keys($json.doc.binary)].fileName):\"\" }}\n\n"
+              "stringValue": "={{ $json.mission.substring(0, 10000)}}{{ $json.mission.length > 10000 ? \"[...]\" : \"\" }}\n{{ $json.doc.binary? (\"\\nFile attached with request : \" + $json.doc.binary[Object.keys($json.doc.binary)].fileName):\"\" }}\n\n"
             }
           ]
         },
@@ -532,6 +532,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-02-12T10:47:24.000Z",
-  "versionId": "f0d48b56-a810-4bf5-822b-2cc23a8350e3"
+  "updatedAt": "2024-02-12T13:21:35.000Z",
+  "versionId": "a79c50d5-2e5e-4b2c-afb4-fcf54feb880a"
 }
