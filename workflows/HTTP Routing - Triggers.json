@@ -121,7 +121,7 @@
       "main": [
         [
           {
-            "node": "Get Body",
+            "node": "Code",
             "type": "main",
             "index": 0
           }
@@ -153,17 +153,6 @@
         ]
       ]
     },
-    "Get Body": {
-      "main": [
-        [
-          {
-            "node": "DOC Upload service",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Get Body1": {
       "main": [
         [
@@ -180,6 +169,17 @@
         [
           {
             "node": "IF RESPONSE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "DOC Upload service",
             "type": "main",
             "index": 0
           }
@@ -607,7 +607,7 @@
           "conditions": [
             {
               "id": "01eae990-a41c-4cb2-a165-0fe76cd46c05",
-              "leftValue": "={{ $json.body.query }}",
+              "leftValue": "={{ $json.body.threadSubject }}",
               "rightValue": "",
               "operator": {
                 "type": "string",
@@ -683,7 +683,7 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        900,
+        1060,
         100
       ]
     },
@@ -697,7 +697,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        980,
+        1140,
         220
       ]
     },
@@ -712,8 +712,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        900,
-        -240
+        1060,
+        -220
       ]
     },
     {
@@ -749,23 +749,6 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "={{\n$json[\"body\"]\n}}",
-        "include": "selected",
-        "includeFields": "query, kin, mission, threadId, client",
-        "options": {}
-      },
-      "id": "1fe1d11e-8457-4db6-a25c-b835664e831c",
-      "name": "Get Body",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        660,
-        -120
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "raw",
         "jsonOutput": "={{ $json.body }}",
         "include": "selected",
         "includeFields": "kin, client, sourceGoogleDriveId, threadId, threadSubject, firstAttribute, commandText, mission, missionId, status, format",
@@ -783,14 +766,29 @@
     {
       "parameters": {
         "workflowId": "teBXUHMl5AIi70pR",
-        "options": {}
+        "options": {
+          "waitForSubWorkflow": true
+        }
       },
       "id": "24edb41f-f002-4de9-a9e0-7ac136a40518",
       "name": "DOC Upload service",
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        980,
+        1140,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "$execution.customData.set(\"command\", \"httpcreate\");\n\nlet json = $json.body;\n\nreturn {\"json\": json};"
+      },
+      "id": "dd78b52f-72f1-4643-83df-be9eaa5ad73d",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
         -120
       ]
     }
@@ -816,6 +814,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2024-02-12T10:44:07.000Z",
-  "versionId": "33af94db-c2bd-4aad-9e89-2e1f40465bf3"
+  "updatedAt": "2024-02-12T17:13:10.000Z",
+  "versionId": "a4992fdc-4272-4c70-8941-655f8ef77f31"
 }
