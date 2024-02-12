@@ -157,7 +157,7 @@
       "main": [
         [
           {
-            "node": "Execute Workflow",
+            "node": "DOC Upload service",
             "type": "main",
             "index": 0
           }
@@ -169,6 +169,17 @@
         [
           {
             "node": "GET THREAD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DOC Upload service": {
+      "main": [
+        [
+          {
+            "node": "IF RESPONSE",
             "type": "main",
             "index": 0
           }
@@ -453,6 +464,26 @@
     },
     {
       "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "5ccc3707-4087-4f58-a778-2a68a2d97375",
+              "leftValue": "={{ $json.response }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
         "options": {}
       },
       "id": "66b8a377-332a-4098-9295-84b9e44d8a76",
@@ -508,21 +539,6 @@
       "position": [
         1540,
         560
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## Get/Create Thread\nhttps://kins.app.n8n.cloud/workflow/YWxRZmBa38HYCjnv",
-        "height": 276.1083494686582,
-        "width": 253.39598777998123
-      },
-      "id": "e599bf10-c80e-4773-ac05-19b6a5ab8619",
-      "name": "Sticky Note8",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        1200,
-        -240
       ]
     },
     {
@@ -673,20 +689,6 @@
     },
     {
       "parameters": {
-        "workflowId": "YWxRZmBa38HYCjnv",
-        "options": {}
-      },
-      "id": "d4130bdd-ce99-47fd-816d-ecfc31c754ce",
-      "name": "CREATE THREAD",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        1280,
-        -120
-      ]
-    },
-    {
-      "parameters": {
         "workflowId": "NjRYPuz1EgoPxWfP",
         "options": {}
       },
@@ -701,21 +703,7 @@
     },
     {
       "parameters": {
-        "workflowId": "NjRYPuz1EgoPxWfP",
-        "options": {}
-      },
-      "id": "24edb41f-f002-4de9-a9e0-7ac136a40518",
-      "name": "Execute Workflow",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        980,
-        -120
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## Message à Humain\nhttps://kins.app.n8n.cloud/workflow/NjRYPuz1EgoPxWfP",
+        "content": "## Upload service\nhttps://kins.app.n8n.cloud/workflow/teBXUHMl5AIi70pR",
         "height": 276.1083494686582,
         "width": 250.71967654986526
       },
@@ -761,9 +749,9 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "={{ $json.body }}",
+        "jsonOutput": "={{\n$json[\"body\"]\n}}",
         "include": "selected",
-        "includeFields": "sync, kin, mission, query, threadId",
+        "includeFields": "query, kin, mission, threadId, client",
         "options": {}
       },
       "id": "1fe1d11e-8457-4db6-a25c-b835664e831c",
@@ -791,6 +779,20 @@
         660,
         220
       ]
+    },
+    {
+      "parameters": {
+        "workflowId": "teBXUHMl5AIi70pR",
+        "options": {}
+      },
+      "id": "24edb41f-f002-4de9-a9e0-7ac136a40518",
+      "name": "DOC Upload service",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        980,
+        -120
+      ]
     }
   ],
   "pinData": {},
@@ -814,6 +816,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2024-02-09T11:05:47.000Z",
-  "versionId": "02f4f8c8-6b92-4c62-a5a9-2f1d59f53126"
+  "updatedAt": "2024-02-12T10:44:07.000Z",
+  "versionId": "33af94db-c2bd-4aad-9e89-2e1f40465bf3"
 }
