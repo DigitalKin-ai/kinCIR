@@ -54,7 +54,7 @@
       "main": [
         [
           {
-            "node": "Aggregate",
+            "node": "Send Instructions1",
             "type": "main",
             "index": 0
           }
@@ -337,6 +337,28 @@
           }
         ]
       ]
+    },
+    "Send Instructions1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Mission1": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinmanager1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-31T10:02:38.129Z",
@@ -425,7 +447,7 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        640,
+        840,
         160
       ]
     },
@@ -956,7 +978,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let mission = $json.metadata;\n\nmission.status = \"todo\";\nmission.execution = \"todo\";\n\nreturn {\"json\": {\"mission\": mission}};"
+        "jsCode": "let mission = $json.metadata;\n\nmission.status = \"todo\";\nmission.execution = \"todo\";\n\nreturn {\"json\": mission};"
       },
       "id": "5aa91b1c-691d-4139-9013-81fece0c4389",
       "name": "set status TODO1",
@@ -1236,8 +1258,8 @@
     },
     {
       "parameters": {
-        "chatId": "-4130957615",
-        "text": "=Restarted mission {{ $node[\"set status TODO1\"].json.id }}",
+        "chatId": "-4155607972",
+        "text": "=Restarted mission {{ $node[\"set status TODO1\"].json.missionId }} : {{ $node[\"set status TODO1\"].json.threadSubject }} ",
         "additionalFields": {
           "appendAttribution": false,
           "parse_mode": "MarkdownV2"
@@ -1253,11 +1275,86 @@
       ],
       "credentials": {
         "telegramApi": {
-          "id": "rUijC7XE7TL12tph",
-          "name": "Lester AGI"
+          "id": "ZycPeiDd8w3TWjiS",
+          "name": "digitalkin_bot Telegram"
         }
       },
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "-4155607972",
+        "text": "=Restarted mission {{ $node[\"set status TODO\"].json.matches.metadata.missionId }} : {{ $node[\"set status TODO\"].json.matches.metadata.threadSubject }} ",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "MarkdownV2"
+        }
+      },
+      "id": "6dedb13d-30c5-407f-b5c4-d88425f36b58",
+      "name": "Send Instructions1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        640,
+        160
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "ZycPeiDd8w3TWjiS",
+          "name": "digitalkin_bot Telegram"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_NRJfqzvKf73U2CjrI4bqMSf5",
+        "text": "=INSTRUCTION : Appelle crud mission avec la query suivante :\n/crud_mission/update/execution todo",
+        "options": {}
+      },
+      "id": "52801ed4-699c-4569-95bf-6318dbfa11a8",
+      "name": "kinmanager1",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        -700
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "crud_mission",
+        "description": "La fonction \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'exécution.\n\nAppels disponibles :\n   - Pour **continuer la boucle de production**, si l'analyse montre que la mission est sur la bonne voie et qu'il suffit de poursuivre selon le plan établi :\n     ```\n     /crud_mission/update/execution todo\n     ```\n   - Pour **gérer une exception**, si un obstacle imprévu se présente nécessitant une action corrective ou une adaptation :\n     ```\n     /crud_mission/update/status exception\n     ```\n   - Pour **formuler une demande spécifique**, lorsqu'une expertise, une action, ou une ressource spécifique d'un autre Kin est nécessaire pour poursuivre :\n     ```\n     - /crud_mission/create/nomdukindemandé <Description détaillée de la nouvelle mission, y compris le contexte de la mission, l'objectif spécifique de cette demande, et son importance pour l'avancée de la mission du demandeur>.\n     ```\n   - Pour **conclure la mission**, lorsque tous les objectifs sont atteints et que la mission peut être considérée comme terminée :\n     ```\n     /crud_mission/update/status done\n     ```",
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "fields": {
+          "values": [
+            {
+              "name": "missionId",
+              "stringValue": "=kindev-ameliorationContinue"
+            },
+            {
+              "name": "responseFormat",
+              "stringValue": "=response"
+            }
+          ]
+        }
+      },
+      "id": "f20bacff-0825-4c19-a789-d2e285227923",
+      "name": "CRUD Mission1",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        -440
+      ]
     }
   ],
   "pinData": {
@@ -1275,6 +1372,13 @@
           "Minute": "00",
           "Second": "00",
           "Timezone": "CET +01:00"
+        }
+      }
+    ],
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "/reset"
         }
       }
     ]
@@ -1304,6 +1408,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-09T19:56:02.000Z",
-  "versionId": "f7273f06-d858-4529-a516-5392acb50739"
+  "updatedAt": "2024-02-12T19:42:42.000Z",
+  "versionId": "6cbc0daf-efa6-434a-bd4f-9408b7df8740"
 }
