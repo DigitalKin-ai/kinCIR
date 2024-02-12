@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Execute Workflow Trigger": {
       "main": [
@@ -2404,27 +2404,6 @@
     },
     {
       "parameters": {
-        "public": true,
-        "initialMessages": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide  qui n'est pas en rapport avec une mission spécifique.\n\nPour bien l'utiliser :\n- Mentionne le nom du @Kin,\n- Explique ton contexte et ton intention d'usage,\n- ta question.\n\nEx : KinDev, peux-tu me lister les outils auxquels tu as accès ?",
-        "options": {
-          "inputPlaceholder": "KinDev, peux-tu me lister les outils auxquels tu as accès ?",
-          "responseMode": "lastNode",
-          "subtitle": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide  qui n'est pas en rapport avec une mission spécifique.Pour bien l'utiliser : - Mentionne le nom du @Kin, - Explique ton contexte et ton intention d'usage, - ta question.",
-          "title": "={{ $workflow.name }}"
-        }
-      },
-      "id": "1c8f47f9-b72e-4c16-8790-9a1da4bf1068",
-      "name": "Chat Trigger",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1,
-      "position": [
-        540,
-        1460
-      ],
-      "webhookId": "6dc41956-8b26-402d-83ce-c4b4225df822"
-    },
-    {
-      "parameters": {
         "content": "## Find Mission\nhttps://kins.app.n8n.cloud/workflow/LJq7WahDAN9n9qRH",
         "height": 274.5517166627047,
         "width": 250.71967654986526
@@ -2467,6 +2446,27 @@
         4600,
         1500
       ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide  qui n'est pas en rapport avec une mission spécifique.\n\nPour bien l'utiliser :\n- Mentionne le nom du @Kin,\n- Explique ton contexte et ton intention d'usage,\n- ta question.\n\nEx : KinDev, peux-tu me lister les outils auxquels tu as accès ?",
+        "options": {
+          "inputPlaceholder": "KinDev, peux-tu me lister les outils auxquels tu as accès ?",
+          "responseMode": "lastNode",
+          "subtitle": "La fonction questionneur_de_kin permet de poser à un Kin de l'équipe une question rapide  qui n'est pas en rapport avec une mission spécifique.Pour bien l'utiliser : - Mentionne le nom du @Kin, - Explique ton contexte et ton intention d'usage, - ta question.",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "1c8f47f9-b72e-4c16-8790-9a1da4bf1068",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        540,
+        1460
+      ],
+      "webhookId": "6dc41956-8b26-402d-83ce-c4b4225df822"
     }
   ],
   "pinData": {
@@ -2509,6 +2509,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-08T15:17:24.000Z",
-  "versionId": "08bfe7bc-a27f-4382-8695-362b959dfaa4"
+  "updatedAt": "2024-02-12T08:55:42.000Z",
+  "versionId": "669cce1f-f716-4f56-95e1-711a87f69c81"
 }
