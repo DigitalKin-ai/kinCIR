@@ -1148,6 +1148,19 @@
         2140,
         1420
       ]
+    },
+    {
+      "parameters": {
+        "content": "## Todo : gérer status exception : sortir de la boucle"
+      },
+      "id": "d144af61-7075-4a41-a3c6-c28600f6eefa",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2440,
+        1400
+      ]
     }
   ],
   "pinData": {
@@ -1223,6 +1236,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-09T17:48:21.000Z",
-  "versionId": "fb635f2f-8884-43ff-9cfc-8261158911a1"
+  "updatedAt": "2024-02-12T09:23:50.000Z",
+  "versionId": "096f65ae-3488-46a3-98b1-c9ddaccd2d7b"
 }
