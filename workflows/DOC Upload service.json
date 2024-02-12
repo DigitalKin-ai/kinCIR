@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "IF exist",
+            "node": "defaultEmbedding",
             "type": "main",
             "index": 0
           }
@@ -14,31 +14,7 @@
     },
     "emailThread": {
       "main": [
-        [
-          {
-            "node": "mission",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "IF Pièce Jointe": {
-      "main": [
-        [
-          {
-            "node": "entree source",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "sourceGoogleDriveId",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "entree pinecone": {
@@ -56,7 +32,7 @@
       "main": [
         [
           {
-            "node": "emailThread",
+            "node": "mission",
             "type": "main",
             "index": 0
           }
@@ -129,11 +105,11 @@
         ]
       ]
     },
-    "IF exist": {
+    "IF mission not running": {
       "main": [
         [
           {
-            "node": "defaultEmbedding",
+            "node": "sourceGoogleDriveId",
             "type": "main",
             "index": 0
           }
@@ -147,21 +123,26 @@
         ]
       ]
     },
-    "IF mission not running": {
+    "defaultEmbedding": {
       "main": [
-        [],
         [
           {
-            "node": "Stop and Error",
+            "node": "Get kin mission",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "defaultEmbedding": {
+    "IF Pièce Jointe": {
       "main": [
-        []
+        [
+          {
+            "node": "entree source",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -214,35 +195,15 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const messages = $node[\"Get Thread\"].json.messages;\nlet emailThread = \"\";\nlet remainingEmailThread = \"\";\nconst MAX_LENGTH = 10000;\n\nmessages.forEach(message => {\n    let subject = 'n/a';\n    let from = 'n/a';\n    let to = 'n/a';\n\n    if (message.payload && message.payload.headers) {\n        const subjectHeader = message.payload.headers.find(header => header.name === 'Subject');\n        const fromHeader = message.payload.headers.find(header => header.name === 'From');\n        const toHeader = message.payload.headers.find(header => header.name === 'To');\n\n        if (subjectHeader) subject = subjectHeader.value;\n        if (fromHeader) from = fromHeader.value;\n        if (toHeader) to = toHeader.value;\n    }\n\n    const date = new Date(parseInt(message.internalDate));\n    const snippet = message.snippet;\n    emailThread += `Sujet: ${subject}\\nDe: ${from}\\nÀ: ${to}\\nDate: ${date.toLocaleString()}\\nExtrait: ${snippet}\\n\\n`;\n});\n\n\nif (emailThread.length > MAX_LENGTH) {\n    emailThread = \"Voici la fin du thread d'email :\\n[...]\" + emailThread.substring(emailThread.length - MAX_LENGTH);\n    remainingEmailThread = emailThread.substring(0, emailThread.length - MAX_LENGTH);\n} else {\n    remainingEmailThread = \"\";\n}\n\n\nreturn {\"json\" : {\"emailThread\": emailThread, \"remainingEmailThread\": remainingEmailThread}};"
+        "jsCode": "const messages = $json.query;\nlet emailThread = \"\";\nlet remainingEmailThread = \"\";\nconst MAX_LENGTH = 10000;\n\nmessages.forEach(message => {\n    let subject = 'n/a';\n    let from = 'n/a';\n    let to = 'n/a';\n\n    if (message.payload && message.payload.headers) {\n        const subjectHeader = message.payload.headers.find(header => header.name === 'Subject');\n        const fromHeader = message.payload.headers.find(header => header.name === 'From');\n        const toHeader = message.payload.headers.find(header => header.name === 'To');\n\n        if (subjectHeader) subject = subjectHeader.value;\n        if (fromHeader) from = fromHeader.value;\n        if (toHeader) to = toHeader.value;\n    }\n\n    const date = new Date(parseInt(message.internalDate));\n    const snippet = message.snippet;\n    emailThread += `Sujet: ${subject}\\nDe: ${from}\\nÀ: ${to}\\nDate: ${date.toLocaleString()}\\nExtrait: ${snippet}\\n\\n`;\n});\n\n\nif (emailThread.length > MAX_LENGTH) {\n    emailThread = \"Voici la fin du thread d'email :\\n[...]\" + emailThread.substring(emailThread.length - MAX_LENGTH);\n    remainingEmailThread = emailThread.substring(0, emailThread.length - MAX_LENGTH);\n} else {\n    remainingEmailThread = \"\";\n}\n\n\nreturn {\"json\" : {\"emailThread\": emailThread, \"remainingEmailThread\": remainingEmailThread}};"
       },
       "id": "c265d098-97ed-496d-9f8b-33cab8336a2b",
       "name": "emailThread",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2080,
-        380
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "boolean": [
-            {
-              "value1": "={{ Object.keys($node[\"Get Email\"].binary).length > 0 }}",
-              "value2": true
-            }
-          ]
-        }
-      },
-      "id": "948f29c0-b77b-4368-9f65-16982d5ef167",
-      "name": "IF Pièce Jointe",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        1700,
-        340
+        2060,
+        720
       ]
     },
     {
@@ -299,7 +260,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = {};\n\njson.client = $node[\"Mail Trigger\"].json.from.value[0].address.match(/(?<=@)[^\\.]+/)[0];\n\njson.kin = $node[\"kin\"].json.kin;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\n\njson.threadId = $node[\"Get Thread\"].json.id;\njson.threadSubject = $node[\"Get Thread\"].json.messages[0].Subject;\njson.threadFrom = $node[\"Get Thread\"].json.messages[0].From;\njson.kinDemandeur = json.threadFrom;\n\njson.mailId = $node[\"Get Email\"].json.id;\njson.mailSubject = $node[\"Get Email\"].json.subject;\njson.mailFrom = $node[\"Get Email\"].json.headers.from;\n\njson.query = \"/crud_mission/create/\" + json.kin  + \" \" + $node[\"mission\"].json.mission;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = {};\n\njson.client = $json.client;\n\njson.kin = $json.kin;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\n\njson.threadId = $json.threadId;\njson.threadSubject = $json.query;\njson.threadFrom = $json.client;\n\njson.mailId = $json.threadId;\njson.mailSubject = $json.query;\njson.mailFrom = $json.client;\n\njson.query = \"/crud_mission/create/\" + json.kin  + \" \" + $node[\"mission\"].json.mission;\n\nreturn {\"json\": json};"
       },
       "id": "be415738-c5a4-4de9-b6d7-d305f7f6c0ad",
       "name": "nouvelleMission",
@@ -385,7 +346,7 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "={{ $node[\"Get Email\"].json.text.substring(0, 10000)}}{{ $node[\"Get Email\"].json.text.length > 10000 ? \"[...]\" : \"\" }}\n{{ $node[\"Get Email\"].binary? (\"\\nFile attached with email : \" + $node[\"Get Email\"].binary[Object.keys($node[\"Get Email\"].binary)].fileName):\"\" }}\n\n"
+              "stringValue": "={{ $json.mission.substring(0, 10000)}}{{ $json.mission.length > 10000 ? \"[...]\" : \"\" }}\n{{ $json.doc.binary? (\"\\nFile attached with email : \" + $json.doc.binary[Object.keys($json.doc.binary)].fileName):\"\" }}\n\n"
             }
           ]
         },
@@ -436,7 +397,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"threadId\" : \"{{ $node[\"Get Thread\"].json.id }}\", \"kin\": \"{{ $node[\"kin\"].json.kin }}\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"threadId\" : \"{{ $json.threadId }}\", \"kin\": \"{{ $json.kin }}\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
         "options": {}
       },
       "id": "5822e2eb-266e-4e51-84eb-bca6a2cd3362",
@@ -453,19 +414,6 @@
           "name": "PineconeApi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "id": "59292435-8cb9-48e9-9b34-efc7d1f4c6b7",
-      "name": "IF exist",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        780,
-        340
-      ]
     },
     {
       "parameters": {
@@ -531,6 +479,40 @@
         940,
         200
       ]
+    },
+    {
+      "parameters": {
+        "content": "## TODO\nDoc send by API",
+        "height": 220.45581059896162
+      },
+      "id": "d6adea37-9d01-4c54-a818-afcaf03f1990",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($node[\"Get Email\"].binary).length > 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "d7f64490-9422-4c13-a7e5-1af60696adf5",
+      "name": "IF Pièce Jointe",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        220
+      ]
     }
   ],
   "pinData": {},
@@ -550,6 +532,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-02-08T13:36:17.000Z",
-  "versionId": "7084c297-b4b6-46f5-b84f-6d801bfefb28"
+  "updatedAt": "2024-02-12T10:47:24.000Z",
+  "versionId": "f0d48b56-a810-4bf5-822b-2cc23a8350e3"
 }
