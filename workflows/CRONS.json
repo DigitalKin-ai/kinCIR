@@ -34,28 +34,6 @@
         ]
       ]
     },
-    "mission kindev": {
-      "main": [
-        [
-          {
-            "node": "todo kindev",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "todo kindev": {
-      "main": [
-        [
-          {
-            "node": "Lancement de Mission kinDev",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Schedule Trigger": {
       "main": [
         [
@@ -83,17 +61,6 @@
         [
           {
             "node": "set kinCredits",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Lancement de Mission kinDev": {
-      "main": [
-        [
-          {
-            "node": "/crud_mission/update/status error",
             "type": "main",
             "index": 0
           }
@@ -155,7 +122,7 @@
         ],
         [
           {
-            "node": "mission kindev",
+            "node": "If not kinmail1",
             "type": "main",
             "index": 0
           }
@@ -227,6 +194,61 @@
           }
         ]
       ]
+    },
+    "If not kinmail1": {
+      "main": [
+        [
+          {
+            "node": "mission kindev",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission kindev": {
+      "main": [
+        [
+          {
+            "node": "nouvelleMission kindev",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouvelleMission kindev": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Create1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission kindev1": {
+      "main": [
+        [
+          {
+            "node": "todo kindev",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Mission : Create1": {
+      "main": [
+        [
+          {
+            "node": "/crud_mission/update/status error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-23T14:34:33.442Z",
@@ -242,7 +264,7 @@
           "interval": [
             {
               "field": "seconds",
-              "secondsInterval": 60
+              "secondsInterval": 80
             }
           ]
         }
@@ -266,8 +288,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1940,
-        820
+        1920,
+        1120
       ]
     },
     {
@@ -284,53 +306,16 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "$execution.customData.set(\"DOING\", \"true\");\n\nlet json = {\n  ...$node[\"entree\"].json,\n  \"startTimestamp\" : $now,\n  \"sync\" : false\n};\n\nreturn {\"json\": json};"
+        "jsCode": "let json = {\n  ...$node[\"entree\"].json,\n  \"startTimestamp\" : $now,\n  \"sync\" : false\n};\n\nreturn {\"json\": json};"
       },
       "id": "c517ddfa-df34-4eee-a2fc-e7f778f7153d",
       "name": "get body",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1260,
-        580
+        1240,
+        880
       ]
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "mission",
-              "stringValue": "=[PROCESSUS - Mission : Création de Rapport d'erreur]\n\nLa Boucle de Production a renvoyé une erreur.\nTa mission est de rédiger un rapport d'erreur et suggestion de correction à partir des informations dont tu disposes.\n\n[/PROCESSUS - Mission : Création de Rapport d'erreur]\n\n---\n\n[INFORMATIF - Date]\n\n{{ $node[\"Kin\"].json.date }}\n\n[/INFORMATIF - Date]\n\n---\n\n[INFORMATIF - Client]\n\n{{ $node[\"Kin\"].json.client }}\n\n[/INFORMATIF - Client]\n\n---\n\n[INFORMATIF - Mission du {{ $node[\"Kin\"].json.kin }}]\n\n{{ $node[\"Kin\"].json.mission.length > 8000 ? \"[...]\" : \"\" }}{{ $node[\"Kin\"].json.mission.substring($node[\"Kin\"].json.mission.length - 8000)}}\n\n[/INFORMATIF du {{ $node[\"Kin\"].json.kin }}]\n\n\n---\n\n[INFORMATIF - Dernier Kin Producteur ]\n\n{{ $node[\"Kin\"].json.dernierProducteur }}\n\n[/INFORMATIF - Dernier Kin Producteur ]\n\n\n---\n\n[INFORMATIF - Dernière production du Kin Producteur]\n\n{{ $node[\"Kin\"].json.output.length > 8000 ? \"[...]\" : \"\" }}{{ $node[\"Kin\"].json.output.substring($node[\"Kin\"].json.output.length - 8000)}}\n\n[/INFORMATIF - Dernière production du Kin Producteur]\n\n\n---\n\n[INFORMATIF - Dernier Message du KinManager]\n\n{{ $node[\"Kin\"].json.instructions }}\n\n[/INFORMATIF - Dernier Message du KinManager]\n\n---\n\n[INFORMATIF - Message d'erreur]\n\n{{ $node[\"Kin\"].json.error }}\n\n[/INFORMATIF - Message d'erreur]"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "3b669477-4c6d-47b1-9d98-814944c3b185",
-      "name": "mission kindev",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        1720,
-        600
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"Kin\"].json));\n\ndelete json.query;\n\n// Mettre à jour le Kin\njson.kinDemandeur = json.kin;\njson.kin = \"kindev\";\njson.format = \"pdf\";\n\n// Mettre à jour la mission\njson.missionDuDemandeur = json.mission;\njson.mission = $node[\"mission kindev\"].json.mission;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads & prompts\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread') || key.toLowerCase().includes('prompt')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
-      },
-      "id": "91fb0126-ba4d-44d2-aee5-5c4447d0425a",
-      "name": "todo kindev",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1940,
-        600
-      ],
-      "disabled": true
     },
     {
       "parameters": {
@@ -374,8 +359,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1720,
-        820
+        1700,
+        1120
       ],
       "credentials": {
         "pineconeApi": {
@@ -413,8 +398,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        2160,
-        820
+        2140,
+        1120
       ],
       "retryOnFail": true,
       "waitBetweenTries": 5000,
@@ -424,21 +409,6 @@
           "name": "PineconeApi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "workflowId": "DXYPhavwlYlTKPqu",
-        "options": {}
-      },
-      "id": "3f9f23a5-b706-4b41-91a6-0b2155858a25",
-      "name": "Lancement de Mission kinDev",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        2160,
-        600
-      ],
-      "disabled": true
     },
     {
       "parameters": {
@@ -474,7 +444,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\" : {\"status\": \"todo\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\" : {\"status\": \"todo\", \"type\": {\"$ne\": \"ameliorationContinue\"}},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
         "options": {}
       },
       "id": "75a3339b-0ebc-419f-8245-cd6767ce62c5",
@@ -589,8 +559,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        2600,
-        600
+        3220,
+        940
       ]
     },
     {
@@ -603,8 +573,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        1480,
-        680
+        1460,
+        980
       ],
       "onError": "continueErrorOutput"
     },
@@ -645,7 +615,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"Get missions\"].json.matches[0].metadata;\n\njson.status = \"doing\";\njson.execution = \"doing\";\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
+        "jsCode": "$execution.customData.set(\"DOING\", \"true\");\n\nlet json = $node[\"Get missions\"].json.matches[0].metadata;\n\njson.status = \"doing\";\njson.execution = \"doing\";\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
       },
       "id": "77a81cf9-d90b-4c15-8401-a461b76d7ee7",
       "name": "entree",
@@ -694,8 +664,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2380,
-        600
+        3000,
+        940
       ]
     },
     {
@@ -754,23 +724,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1400,
-        560
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## Not share (workflow deleted - refactoré dans crud mission)\nhttps://kins.app.n8n.cloud/workflow/DXYPhavwlYlTKPqu",
-        "height": 337.1180096162573,
-        "width": 250.71967654986526
-      },
-      "id": "67f189a8-619c-4ce2-8bba-1bcf71c969fb",
-      "name": "Sticky Note18",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        2080,
-        457.43370704644735
+        1380,
+        860
       ]
     },
     {
@@ -784,9 +739,159 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        2520,
-        520
+        3140,
+        820
       ]
+    },
+    {
+      "parameters": {
+        "content": "## CRUD Mission\nhttps://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "abfc164d-1355-4b55-99d8-abc388a8ea78",
+      "name": "Sticky Note22",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2460,
+        814
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# Mission de debug",
+        "height": 312.44626912714773,
+        "width": 949.8359845868031
+      },
+      "id": "a306cec3-d264-4b9c-a948-32081f10361f",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "05a81703-e52e-44f9-98f1-6fe1fb153e84",
+      "name": "CRUD Mission : Create1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2540,
+        934
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "c0b309e0-3b5d-4002-8ca5-2b8aae1e0572",
+              "leftValue": "={{ $node[\"mission\"].json.kin }}",
+              "rightValue": "=kindev",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "6d8371da-0541-4a66-b98e-74c45dc36098",
+      "name": "If not kinmail1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1880,
+        834
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=INFORMATIF - Mission du {{ $node[\"Kin\"].json.kin }}]\n\n{{ $node[\"Kin\"].json.mission.length > 8000 ? \"[...]\" : \"\" }}{{ $node[\"Kin\"].json.mission.substring($node[\"Kin\"].json.mission.length - 8000)}}\n\n[/INFORMATIF du {{ $node[\"Kin\"].json.kin }}]\n\n\n---\n\n[INFORMATIF - Dernier Kin Producteur ]\n\n{{ $node[\"Kin\"].json.dernierProducteur }}\n\n[/INFORMATIF - Dernier Kin Producteur ]\n\n\n---\n\n[INFORMATIF - Dernière production du Kin Producteur]\n\n{{ $node[\"Kin\"].json.output.length > 8000 ? \"[...]\" : \"\" }}{{ $node[\"Kin\"].json.output.substring($node[\"Kin\"].json.output.length - 8000)}}\n\n[/INFORMATIF - Dernière production du Kin Producteur]\n\n\n---\n\n[INFORMATIF - Dernier Message du KinManager]\n\n{{ $node[\"Kin\"].json.instructions }}\n\n[/INFORMATIF - Dernier Message du KinManager]\n\n---\n\n[INFORMATIF - Message d'erreur]\n\n{{ $node[\"Kin\"].json.error }}\n\n[/INFORMATIF - Message d'erreur]\n\n===\n\nDate : {{ $node[\"entree\"].json.date }}\nClient : {{ $node[\"entree\"].json.client }}\n\n===\n\n**PROCESSUS - MISSION : Gestion de l'EXCEPTION :**\n\nLa mission du  {{  $node[\"entree\"].json.dernierProducteur }} a donné lieu à une EXCEPTION. **Ta mission, en tant que KinDev, est de comprendre le problème et d'écrire un court rapport d'exception.\n\n===\n\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "eb45592a-8c44-4a61-a584-7462effc6d48",
+      "name": "mission kindev",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        2100,
+        834
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"entree\"].json));\n\ndelete json.query;\n\n// Mettre à jour le Kin\njson.kinDemandeur = json.kin;\njson.kin = \"kindev\";\n\n// Mettre à jour la mission\njson.query = \"/crud_mission/create/\" + json.kin  + \" \" + $node[\"mission kindev\"].json.mission;\n\nreturn {\"json\": json};"
+      },
+      "id": "8e5ad8db-c73b-4a58-966c-5f3c535518b2",
+      "name": "nouvelleMission kindev",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2320,
+        834
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"Kin\"].json));\n\ndelete json.query;\n\n// Mettre à jour le Kin\njson.kinDemandeur = json.kin;\njson.kin = \"kindev\";\njson.format = \"pdf\";\n\n// Mettre à jour la mission\njson.missionDuDemandeur = json.mission;\njson.mission = $node[\"mission kindev1\"].json.mission;\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\n// Function to remove threads & prompts\nfunction removePropertiesWithThread(obj) {\n    for (let key in obj) {\n        if (key.toLowerCase().includes('thread') || key.toLowerCase().includes('prompt')) {\n            // Supprime la propriété si la clé contient 'thread'\n            delete obj[key];\n        } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n            // Appel récursif si la propriété est un objet\n            removePropertiesWithThread(obj[key]);\n        }\n    }\n}\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\n// Remove null attributes from the json object\nremovePropertiesWithThread(json);\n\nreturn {\"json\": json};"
+      },
+      "id": "71790747-40a8-46ef-8328-6d8448c80cb5",
+      "name": "todo kindev",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2420,
+        520
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=[PROCESSUS - Mission : Création de Rapport d'erreur]\n\nLa Boucle de Production a renvoyé une erreur.\nTa mission est de rédiger un rapport d'erreur et suggestion de correction à partir des informations dont tu disposes.\n\n[/PROCESSUS - Mission : Création de Rapport d'erreur]\n\n---\n\n[INFORMATIF - Date]\n\n{{ $node[\"Kin\"].json.date }}\n\n[/INFORMATIF - Date]\n\n---\n\n[INFORMATIF - Client]\n\n{{ $node[\"Kin\"].json.client }}\n\n[/INFORMATIF - Client]\n\n---\n\n[INFORMATIF - Mission du {{ $node[\"Kin\"].json.kin }}]\n\n{{ $node[\"Kin\"].json.mission.length > 8000 ? \"[...]\" : \"\" }}{{ $node[\"Kin\"].json.mission.substring($node[\"Kin\"].json.mission.length - 8000)}}\n\n[/INFORMATIF du {{ $node[\"Kin\"].json.kin }}]\n\n\n---\n\n[INFORMATIF - Dernier Kin Producteur ]\n\n{{ $node[\"Kin\"].json.dernierProducteur }}\n\n[/INFORMATIF - Dernier Kin Producteur ]\n\n\n---\n\n[INFORMATIF - Dernière production du Kin Producteur]\n\n{{ $node[\"Kin\"].json.output.length > 8000 ? \"[...]\" : \"\" }}{{ $node[\"Kin\"].json.output.substring($node[\"Kin\"].json.output.length - 8000)}}\n\n[/INFORMATIF - Dernière production du Kin Producteur]\n\n\n---\n\n[INFORMATIF - Dernier Message du KinManager]\n\n{{ $node[\"Kin\"].json.instructions }}\n\n[/INFORMATIF - Dernier Message du KinManager]\n\n---\n\n[INFORMATIF - Message d'erreur]\n\n{{ $node[\"Kin\"].json.error }}\n\n[/INFORMATIF - Message d'erreur]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "00d81fed-1060-4fc0-9716-addce30b3d8c",
+      "name": "mission kindev1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        2200,
+        520
+      ],
+      "disabled": true
     }
   ],
   "pinData": {
@@ -823,6 +928,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-08T15:09:26.000Z",
-  "versionId": "58ed05be-7804-4fa8-87f0-e167000898fd"
+  "updatedAt": "2024-02-12T22:58:43.000Z",
+  "versionId": "866b2f18-f740-441b-8c50-cf00d6044222"
 }
