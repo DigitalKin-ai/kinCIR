@@ -1307,39 +1307,7 @@
       ]
     }
   ],
-  "pinData": {
-    "Webhook": [
-      {
-        "json": {
-          "headers": {
-            "host": "kins.app.n8n.cloud",
-            "x-request-id": "66b92d31b52941b4d1a98f818ad2471b",
-            "x-real-ip": "10.40.96.106",
-            "x-forwarded-for": "10.40.96.106",
-            "x-forwarded-host": "kins.app.n8n.cloud",
-            "x-forwarded-port": "443",
-            "x-forwarded-proto": "https",
-            "x-forwarded-scheme": "https",
-            "x-scheme": "https",
-            "content-length": "153",
-            "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
-            "content-type": "application/json",
-            "user-agent": "axios/1.6.5"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "resource": {
-              "name": "revue-isg.com",
-              "format": "PDF",
-              "link": "https://revue-isg.com/index.php/home/article/download/203/185"
-            },
-            "threadId": "18d79cf06c68f178"
-          }
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -1361,6 +1329,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-08T14:56:14.000Z",
-  "versionId": "8ea27653-6507-4b86-9e2f-4860041e040d"
+  "updatedAt": "2024-02-12T11:59:57.000Z",
+  "versionId": "e6ee9afb-863e-44bb-9ba7-25009248cb79"
 }
