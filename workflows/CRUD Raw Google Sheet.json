@@ -1,0 +1,333 @@
+{
+  "active": false,
+  "connections": {
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "clean mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clean mission": {
+      "main": [
+        [
+          {
+            "node": "defaultEmbedding",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If create": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "defaultEmbedding": {
+      "main": [
+        [
+          {
+            "node": "If create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-12T14:44:35.216Z",
+  "id": "ZOzyRLZv1Jav33g6",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CRUD Raw Google Sheet",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b6c24451-145f-45d1-a608-da6946613913",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2420,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\njson.query = json.query.trim();\n\n// Détecter la commande\nlet regexCommand = /\\/crud\\_mission\\/([a-zA-Z0-9\\_\\-]+)/i;\njson.command = \"\";\nlet matchCommand = json.query.match(regexCommand);\nif (matchCommand) {\n    json.command = matchCommand[1];\n}\n\nlet regexFirstAttribute = /\\/crud\\_mission\\/[a-zA-Z0-9\\_\\-]+\\/([a-zA-Z0-9\\_\\-]+)/;\nlet matchFirstAttribute = json.query.match(regexFirstAttribute);\nif (matchFirstAttribute) {\n  json.firstAttribute = matchFirstAttribute[1];\n}\n\nlet regexAllCommand = /\\/\\S+ /;\njson.commandText = \"\";\nlet matchAllCommand = json.query.match(regexAllCommand);\nif (matchAllCommand) {\n  let startIndex = matchAllCommand[0].length;\n  json.commandText = json.query.substring(startIndex);\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "fc1bafde-aec6-426a-b986-5941cb3f5603",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let entree = $item(0).$node[\"entree\"].json;\nlet result = \"\";\n\nif (entree.command == \"read\") {\n  result = JSON.stringify($node[\"mission\"].json);\n} else {\n  result = \"command \" + entree.command + \", \" + (entree.kin?entree.kin:\"\") + \" : effectuée avec succès !\";\n}\n\nif (entree.chatInput != null) {\n  return {\"output\": result};\n}\n\nreturn {\"json\":{\"response\": result}};"
+      },
+      "id": "283538ea-e33c-4dd2-86b0-fc7523a463e2",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        640,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "48be6d54-fd3d-4cc8-9f98-e7855486c6ee",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        200,
+        580
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b4d611d1-fe43-4400-b22d-be16bc876f91",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        420,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Appliquer la fonction de manière récursive pour les objets et tableaux\n            truncateStringsInJson(obj[key]);\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\ndelete json.chatInput;\ndelete json.textCommand;\ndelete json.action;\ndelete json.sessionId;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission )  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "410380aa-d40a-4b27-811a-11388d3856b7",
+      "name": "clean mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1980,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "create",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "b29b754c-cf6c-4081-9f62-e326bd67dff0",
+      "name": "If create",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1560,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=IJeSapyzv0Y9koZ9",
+        "options": {}
+      },
+      "id": "4014e9a3-debb-4f95-b731-753e56f9d4ec",
+      "name": "defaultEmbedding",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -1780,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Get defaultEmbedding\nhttps://kins.app.n8n.cloud/workflow/IJeSapyzv0Y9koZ9",
+        "height": 280.34151456624056,
+        "width": 250.71967654986526
+      },
+      "id": "dbc9cb12-6fbe-43ea-acad-7411e0e38163",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1860,
+        175.76683490241766
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "La fonction \"actionneur_de_production\" effectue des commandes sur les missions. Permet de lancer, arrêter, ou compléter des missions.\n\nCommande disponible :\n- /status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nFormat d'appel \"query\" : \"[INSTRUCTION - /status todo kinname]\\n\\nTODOLIST et Prochaine action à réaliser\\n\\n[/INSTRUCTION - /status todo kinname]\\n\\n---\\n\\n\"",
+        "options": {
+          "inputPlaceholder": "/reset",
+          "responseMode": "lastNode",
+          "subtitle": "=La fonction \"actionneur_de_production\" effectue des commandes sur les missions. Permet de lancer, arrêter, ou compléter des missions.\n\nCommande disponible :\n- /status todo/doing/waiting/done : Modifie le statut d'une mission. ex : '/status todo' kinName\n\nFormat d'appel \"query\" : \"[INSTRUCTION - /status todo kinname]\\n\\nTODOLIST et Prochaine action à réaliser\\n\\n[/INSTRUCTION - /status todo kinname]\\n\\n---\\n\\n\"",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "e39c90aa-5bf6-4b9c-95e3-85e7f79849c9",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2420,
+        120
+      ],
+      "webhookId": "48a02245-bfc8-4f5a-8ae0-43ebdd5630ee"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1RUhQVzsDOZyd2-Za-PjjKtq64RmSLYWE3dE8nksrj3I",
+          "mode": "list",
+          "cachedResultName": "kintranscriptionexcel-sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1RUhQVzsDOZyd2-Za-PjjKtq64RmSLYWE3dE8nksrj3I/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Feuille 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1RUhQVzsDOZyd2-Za-PjjKtq64RmSLYWE3dE8nksrj3I/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "074debf4-8dd6-4038-8123-6f47ae363837",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [
+        -1160,
+        280
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "wPFbXaEkxotWeUfw",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "/crud_mission/read"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-02-12T14:50:50.000Z",
+  "versionId": "7ef58a50-baba-4947-ba88-4037b296aa0d"
+}
