@@ -163,7 +163,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (!json.missionDemandeur) {\n  json.missionDemandeur = \"Compréhension générale & amélioration\";\n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\nif (json.query) {\n  \n  // Trouver le bon Kin\n  let regexKin = /kin\\w{2,16}/i;\n  let regexKinWithSpace = /kin \\w{2,16}/i;\n  \n  if (regexKin.test(json.query)) {\n    json.kin = json.query.match(regexKin)[0];\n  } else if (regexKinWithSpace.test(json.query)) {\n    json.kin = json.query.match(regexKinWithSpace)[0].replace(\" \", \"\");\n  }\n} else {\n  json.query =  \"Je souhaite une explication du contenu du prompt de ce Kin.\";\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nif (!json.missionDemandeur) {\n  json.missionDemandeur = \"Compréhension générale & amélioration\";\n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\nif (json.query) {\n  \n  // Trouver le bon Kin\n  let regexKin = /kin\\w{2,25}/i;\n  let regexKinWithSpace = /kin \\w{2,16}/i;\n  \n  if (regexKin.test(json.query)) {\n    json.kin = json.query.match(regexKin)[0];\n  } else if (regexKinWithSpace.test(json.query)) {\n    json.kin = json.query.match(regexKinWithSpace)[0].replace(\" \", \"\");\n  }\n} else {\n  json.query =  \"Je souhaite une explication du contenu du prompt de ce Kin.\";\n}\n\nreturn {\"json\": json};"
       },
       "id": "5bc9c999-9559-4da1-a31d-e4b981386e05",
       "name": "entree",
@@ -469,6 +469,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-09T17:41:06.000Z",
-  "versionId": "229e5cbc-0180-49bf-984c-5e5fee1cc031"
+  "updatedAt": "2024-02-13T00:48:07.000Z",
+  "versionId": "ebb3de6e-5c7b-49ba-9d3a-ad4b1504db92"
 }
