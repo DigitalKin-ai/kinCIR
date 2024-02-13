@@ -78,17 +78,6 @@
         ]
       ]
     },
-    "Chat Trigger": {
-      "main": [
-        [
-          {
-            "node": "entree",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "kindev": {
       "main": [
         [
@@ -99,6 +88,17 @@
           },
           {
             "node": "Send  Notifications",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
             "type": "main",
             "index": 0
           }
@@ -141,7 +141,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (!json.missionDemandeur) {\n  json.missionDemandeur = \"Compréhension générale & amélioration\";\n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n} else {\n  json.kinDemandeur = json.kin;\n}\n\nif (json.query) {\n\n  // Trouver le bon Kin\n  let regexKin = /kin\\w{2,16}/i;\n  let regexKinWithSpace = /kin \\w{2,16}/i;\n  \n  if (regexKin.test(json.query)) {\n    json.kin = json.query.match(regexKin)[0];\n  } else if (regexKinWithSpace.test(json.query)) {\n    json.kin = json.query.match(regexKinWithSpace)[0].replace(\" \", \"\");\n  }\n} else {\n  json.query = \"Je souhaite un résumé général de l'exécution.\";\n}\n\n// Execution Status\nif (json.query.match(/status: \\w+/i)) {\n  json.status = json.query.match(/status: \\w+/i)[0].substring(8);\n} else {\n  json.status = \"error\";\n}\n\n// Workflow \nif (json.query.match(/workflowId: \\w+/i)) {\n  json.workflowId = json.query.match(/workflowId :\\w+/i)[0].substring(12);\n} else {\n  json.workflowId = null;\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nif (!json.missionDemandeur) {\n  json.missionDemandeur = \"Compréhension générale & amélioration\";\n}\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n} else {\n  json.kinDemandeur = json.kin;\n}\n\nif (json.query) {\n\n  // Trouver le bon Kin\n  let regexKin = /kin\\w{2,16}/i;\n  let regexKinWithSpace = /kin \\w{2,16}/i;\n  \n  if (regexKin.test(json.query)) {\n    json.kin = json.query.match(regexKin)[0];\n  } else if (regexKinWithSpace.test(json.query)) {\n    json.kin = json.query.match(regexKinWithSpace)[0].replace(\" \", \"\");\n  }\n} else {\n  json.query = \"Je souhaite un résumé général de l'exécution.\";\n}\n\n// Execution Status\nif (json.query.match(/status: \\w+/i)) {\n  json.status = json.query.match(/status: \\w+/i)[0].substring(8);\n} else {\n  json.status = \"error\";\n}\n\n// Workflow \nif (json.query.match(/workflowId: \\w+/i)) {\n  json.workflowId = json.query.match(/workflowId: \\w+/i)[0].substring(12);\n} else {\n  json.workflowId = null;\n}\n\nreturn {\"json\": json};"
       },
       "id": "c48fb0f8-1110-410d-af8e-f75191ed6c9a",
       "name": "entree",
@@ -268,27 +268,6 @@
     },
     {
       "parameters": {
-        "public": true,
-        "initialMessages": "Le questionneur_d_executions retourne une réponse issue de les executions n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (filtre optionnel) Le status des executions \"status: error\" (default), \"status: waiting\", \"status: success\"\n- (filtre optionnel) Le workflowId des executions désiré \"workflowId: %ID%\"\n- Les informations que tu cherches, avec les  éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\nExemple : \"Quelles sont les dernières executions avec \"status: error\" ?\"",
-        "options": {
-          "inputPlaceholder": "Type your question..Exemple : \"Quelles sont les dernières executions avec \"status: error\" ?\"",
-          "responseMode": "lastNode",
-          "subtitle": "Le questionneur_d_executions retourne une réponse issue de les executions n8n de DigitalKin à partir d'une demande informationnelle détaillée.  Pour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant : - (filtre optionnel) Le status des executions \"status: error\" (default), \"status: waiting\", \"status: success\" - (filtre optionnel) Le workflowId des executions désiré \"workflowId: %ID%\" - Les informations que tu cherches, avec les  éléments de contexte. - L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire. - Le format de réponse désiré.",
-          "title": "={{ $workflow.name }}"
-        }
-      },
-      "id": "dc520450-55ac-472f-b641-405bea8e1347",
-      "name": "Chat Trigger",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1,
-      "position": [
-        -920,
-        420
-      ],
-      "webhookId": "282f610d-9bcf-4957-9409-9354bcd88010"
-    },
-    {
-      "parameters": {
         "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
         "text": "=# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Data de l'Execution #{{ $node[\"Get Execution\"].json.id }} du Workflow n8n {{ $node[\"Get Execution\"].json.workflowData.name }} (ID : {{ $node[\"Get Execution\"].json.workflowData.id }})\n\n{{  JSON.stringify($node[\"Get Execution\"].json).substring(0, 20000) }}{{  JSON.stringify($node[\"Get Execution\"].json).length > 20000 ? \"[...]\" : \"\" }}\n\n# Processus\n\n- Utilise des listes.\n- Inclus si possible client, kinDemandeur, kin, mailId, mailSubject, et un résumé de la mission \n\n# Instruction - Réponse au besoin informationnel\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel. ",
         "options": {}
@@ -323,9 +302,42 @@
         320,
         720
       ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Le questionneur_d_executions retourne une réponse issue de les executions n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (filtre optionnel) Le status des executions \"status: error\" (default), \"status: waiting\", \"status: success\"\n- (filtre optionnel) Le workflowId des executions désiré \"workflowId: %ID%\"\n- Les informations que tu cherches, avec les  éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\nExemple : \"Quelles sont les dernières executions avec \"status: error\" ?\"",
+        "options": {
+          "inputPlaceholder": "Type your question..Exemple : \"Quelles sont les dernières executions avec \"status: error\" ?\"",
+          "responseMode": "lastNode",
+          "subtitle": "Le questionneur_d_executions retourne une réponse issue de les executions n8n de DigitalKin à partir d'une demande informationnelle détaillée.  Pour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant : - (filtre optionnel) Le status des executions \"status: error\" (default), \"status: waiting\", \"status: success\" - (filtre optionnel) Le workflowId des executions désiré \"workflowId: %ID%\" - Les informations que tu cherches, avec les  éléments de contexte. - L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire. - Le format de réponse désiré.",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "dc520450-55ac-472f-b641-405bea8e1347",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        -920,
+        420
+      ],
+      "webhookId": "282f610d-9bcf-4957-9409-9354bcd88010"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "status: cancelled\nworkflowId: run_DhY9IhXDOUrONQ9qIzCGstwc\nJe souhaite comprendre pourquoi cette exécution spécifique a été annulée. Je me focalise sur l'erreur rencontrée lors de la mission de kinlca concernant l'étude 'Dolev, 2021_CAM and cancer'. L'intention est d'identifier toute anomalie ou motif récurrent qui pourrait expliquer l'interruption de l'exécution du processus KinLCA. Quelles informations sont disponibles sur l'erreur rencontrée lors de cette exécution, et quelles pourraient être les causes potentielles?\n\nFormat de réponse désiré: Informations détaillées sur l'erreur ou motif potentiel, incluant toute anomalie dans les logs ou les paramètres d'exécution.",
+          "sync": true,
+          "kin": "kindev",
+          "mission": "INFORMATIF - Mission du kinlca]\n\nSubject: LCA Dolev et al 2021\nBody: \n\nAurore INCHAUSPE, PhD\nChef de projet Scientifique\nPôle des Affaires Scientifiques et Médicales Groupe\nTél. : 85 56\n\n\n[iMAGE tel]\nLe Service Information Boiron est à votre écoute\n\n\nFile attached with email : \"Dolev, 2021_CAM and cancer.pdf\"\n\n[/INFORMATIF du kinlca]\n\n\n---\n\n[INFORMATIF - Dernier Kin Producteur ]\n\nkinlca\n\n[/INFORMATIF - Dernier Kin Producteur ]\n\n\n---\n\n[INFORMATIF - Dernière production du Kin Producteur]\n\n\n\n[/INFORMATIF - Dernière production du Kin Producteur]\n\n\n---\n\n[INFORMATIF - Dernier Message du KinManager]\n\nTODOLIST mise à jour :\n\n- ACTION 1 : Évaluer l'Objectif de l'Étude : TODO\n- ACTION 2 : Analyser la Méthodologie : TODO\n- ACTION 3 : Évaluation des Résultats : TODO\n- ACTION 4 : Critiquer la Discussion et les Conclusions : TODO\n- ACTION 5 : Conduire une Analyse Critique : TODO\n- ACTION 6 : Analyse des figures, tableaux et graphs : TODO\n- ACTION 7 : Signature Finale : TODO\n\nProchaine action à réaliser & instructions :\n\nLe KinLCA doit démarrer la mission par une évaluation approfondie de l'objectif de l'étude mentionnée dans le document fourni (\"Dolev, 2021_CAM and cancer\"), en s'appuyant sur la structure attendue du rapport LCA. Cette évaluation initiale sert de fondement à toute l'analyse à venir. Assurez-vous de porter une attention particulière à l'objectif déclaré de l'étude et à sa pertinence par rapport au domaine concerné. Priorité aux évidences directement issues de l'étude pour un alignement clair avec les critères d'évaluation de qualité énoncés dans le guide.\n\n[/INFORMATIF - Dernier Message du KinManager]\n\n---\n\n[INFORMATIF - Message d'erreur]\n\nUnexpected run status cancelled.\nFull run info:\n\n{\n  \"id\": \"run_DhY9IhXDOUrONQ9qIzCGstwc\",\n  \"object\": \"thread.run\",\n  \"created_at\": 1707821729,\n  \"assistant_id\": \"asst_581bbg7Bmja1nCBKeiGg9Rgu\",\n  \"thread_id\": \"thread_XOSnCFvMocnjfqdNVZEl9tO0\",\n  \"status\": \"cancelled\",\n  \"started_at\": 1707822301,\n  \"expires_at\": null,\n  \"cancelled_at\": 1707822329,\n  \"failed_at\": null,\n  \"completed_at\": null,\n  \"last_error\": null,\n  \"model\": \"gpt-4-0125-preview\",\n  \"instructions\": \"**PROCESSUS - Instructions Globales :**\\n\\n- Tu es un membre d'une KinTeam effectuant des missions en autonomie, et en tant que tel, tu exécutes la prochaine ACTION demandées par le MANAGER.\\n- Tu effectues une seule ACTION par réponse.\\n- Pour chaque réponse, le système de balisage spécifié doit être utilisé pour une communication claire et efficace.\\n- En tant que KinLCA, tu as accès à la fonction GPT \\\"questionneur_de_source\\\", te permettant de consulter directement les études et articles nécessaires à ton analyse. /!\\\\ Ne réponds jamais que tu n'as pas accès au document, car tu y as accès via cet outil !\\n\\n---\\n\\n**PROCESSUS - Rôle :**\\n\\nTu agis en tant qu'expert scientifique, spécialisé dans l'analyse critique des articles scientifiques. Ta mission est de passer en revue les méthodologies de recherche, l'interprétation des résultats, et la validité des conclusions des études. Tes compétences incluent une maîtrise des méthodes statistiques et une capacité à évaluer la fiabilité des données. Tu es également chargé de contextualiser les conclusions dans le domaine scientifique et de discerner leurs implications pratiques.\\n\\n**Personnalité :** INTJ (Architecte). Tu es analytique, méthodique, critique, rigoureux, et capable de voir les implications futures des découvertes actuelles.\\n\\n---\\n\\n**PROCESSUS - Contexte :**\\n\\nDans le cadre de ta mission, tu es appelé à conduire une lecture critique approfondie d'articles scientifiques. Cette tâche implique d'évaluer la méthodologie employée par les chercheurs, l'exactitude dans la présentation et l'interprétation des résultats, ainsi que de mettre en évidence les forces et les faiblesses de l'étude. Ta critique cherche également à comprendre les implications des résultats obtenus pour la recherche future et la pratique clinique, le tout en respectant un cadre de rigueur scientifique.\\n\\n\\n---\\n\\n**PROCESSUS - Proposition de Valeur :**\\n\\nEn tant qu'assistant IA expert en lecture critique des études scientifiques, tu offres une analyse précise et structurée, basée sur des critères évaluatifs rigoureux et des références approfondies. Tu te révèles particulièrement utile pour :\\n- Examiner en détail la cohérence méthodologique des études.\\n- Évaluer la solidité des analyses statistiques et la pertinence des résultats.\\n- Identifier les points forts et les possibles lacunes, biais ou limitations de l'étude.\\n- Assurer que les conclusions tirées sont robustes, pertinentes et soutenues par les données.\\n\\nPour bénéficier de ton expertise, les utilisateurs doivent fournir l'article à analyser, possiblement accompagné de requêtes spécifiques et de tout contexte pertinent pour une évaluation efficace de l'étude.\\n\\n---\\n\\n**PROCESSUS - Système de Balisage des Kins v1.1.7 :**\\n\\nPour une communication claire et une collaboration efficace, tous les Kins doivent suivre ce[...]",
+          "threadId": "18da20415f25e289"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -347,6 +359,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-08T15:07:27.000Z",
-  "versionId": "8f7dfa79-cdff-404d-9894-dd1f15590822"
+  "updatedAt": "2024-02-13T12:22:08.000Z",
+  "versionId": "99e15f78-a521-4629-8c4e-1d4c4d502b7a"
 }
