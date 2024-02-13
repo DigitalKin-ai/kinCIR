@@ -619,9 +619,18 @@
                 "operation": "notExists",
                 "singleValue": true
               }
+            },
+            {
+              "id": "ab4acaad-9c11-4d81-b7f1-9054546f6a5a",
+              "leftValue": "={{ $json.sourceGoogleDriveId }} ",
+              "rightValue": "=/null/",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
             }
           ],
-          "combinator": "and"
+          "combinator": "or"
         },
         "options": {
           "looseTypeValidation": true
@@ -632,7 +641,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1880,
+        1900,
         -220
       ]
     },
@@ -673,12 +682,15 @@
     }
   ],
   "pinData": {
-    "Chat Trigger": [
+    "Execute Workflow Trigger": [
       {
         "json": {
-          "action": "sendMessage",
-          "sessionId": "813a9472-5412-4721-b5a5-1d94c9eaa6b1",
-          "chatInput": "what are the remaining limitation of hybrid laser-arc welding of aluminium alloys ?"
+          "query": "Pourriez-vous me fournir un résumé de l'objectif de l'étude, y compris sa clarté, sa pertinence et son alignement avec les questions de recherche et les hypothèses? Ceci est essentiel pour débuter mon analyse critique de l'étude. Je cherche également des suggestions pour améliorer la formulation de l'objectif si nécessaire.",
+          "kin": "kinlca",
+          "mission": "Test",
+          "sourceGoogleDriveId": "null",
+          "threadId": "563067bf-7dee-413b-b96c-a235f09a5497",
+          "missionId": "kinlca-563067bf-7dee-413b-b96c-a235f09a5497"
         }
       }
     ]
@@ -712,6 +724,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-08T15:19:48.000Z",
-  "versionId": "e9ecd892-856c-417d-a200-9a90f66451de"
+  "updatedAt": "2024-02-13T12:44:42.000Z",
+  "versionId": "a352b032-e53f-459a-89dd-a8ef1668f7af"
 }
