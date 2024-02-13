@@ -587,6 +587,11 @@
             "node": "kinlca",
             "type": "ai_tool",
             "index": 0
+          },
+          {
+            "node": "kintranscriptionexcel",
+            "type": "ai_tool",
+            "index": 0
           }
         ]
       ]
@@ -713,6 +718,28 @@
           {
             "node": "input",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kintranscriptionexcel": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Row Google Sheet": {
+      "ai_tool": [
+        [
+          {
+            "node": "kintranscriptionexcel",
+            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -877,17 +904,6 @@
         [
           {
             "node": "EXCEPTION - Kin Non-Actif",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kintranscriptionexcel": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
             "type": "main",
             "index": 0
           }
@@ -1146,7 +1162,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"input\"].json;\n\n// Cleaner les datas utilisées\ndelete json.output;\ndelete json.dernierProducteur;\ndelete json.promptProducteur;\njson.remainingThread = \"\";\n\n// Préparer le nouveau thread\njson.entireThread = $node[\"thread\"].json.thread;\njson.thread = $node[\"thread\"].json.thread;\n\nMAX_LENGTH = 10000;\nif (json.thread.length > MAX_LENGTH) {\n    json.thread = \"Le début du document est déjà rédigé, voici le thread :\\n\\n[...]\" + json.thread.substring(json.thread.length - MAX_LENGTH);\n    json.remainingThread = json.entireThread.substring(0, json.entireThread.length - MAX_LENGTH);\n}\n\nif (!json.documentGoogleDriveId) {\n  json.documentGoogleDriveId = $node[\"thread\"].json.documentGoogleDriveId;\n}\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"input\"].json;\n$execution.customData.set(\"kin\", json.kin);\n\n// Cleaner les datas utilisées\ndelete json.output;\ndelete json.dernierProducteur;\ndelete json.promptProducteur;\njson.remainingThread = \"\";\n\n// Préparer le nouveau thread\njson.entireThread = $node[\"thread\"].json.thread;\njson.thread = $node[\"thread\"].json.thread;\n\nMAX_LENGTH = 10000;\nif (json.thread.length > MAX_LENGTH) {\n    json.thread = \"Le début du document est déjà rédigé, voici le thread :\\n\\n[...]\" + json.thread.substring(json.thread.length - MAX_LENGTH);\n    json.remainingThread = json.entireThread.substring(0, json.entireThread.length - MAX_LENGTH);\n}\n\nif (!json.documentGoogleDriveId) {\n  json.documentGoogleDriveId = $node[\"thread\"].json.documentGoogleDriveId;\n}\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
       },
       "id": "f2943232-b99c-4e69-ae50-48dd527aa0a6",
       "name": "entree",
@@ -1949,7 +1965,7 @@
     {
       "parameters": {
         "name": "crud_mission",
-        "description": "La fonction \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'exécution.\n\nAppels disponibles :\n   - Pour **continuer la boucle de production**, si l'analyse montre que la mission est sur la bonne voie et qu'il suffit de poursuivre selon le plan établi :\n     ```\n     /crud_mission/update/execution todo\n     ```\n   - Pour **gérer une exception**, si un obstacle imprévu se présente nécessitant une action corrective ou une adaptation :\n     ```\n     /crud_mission/update/status exception\n     ```\n   - Pour **formuler une demande spécifique**, lorsqu'une expertise, une action, ou une ressource spécifique d'un autre Kin est nécessaire pour poursuivre :\n     ```\n     - /crud_mission/create/nomdukindemandé <Description détaillée de la nouvelle mission, y compris le contexte de la mission, l'objectif spécifique de cette demande, et son importance pour l'avancée de la mission du demandeur>.\n     ```\n   - Pour **conclure la mission**, lorsque tous les objectifs sont atteints et que la mission peut être considérée comme terminée :\n     ```\n     /crud_mission/update/status done\n     ```",
+        "description": "La fonction \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'exécution.\n\nAppels disponibles :\n   - Pour **continuer la boucle de production** : /crud_mission/update/execution todo\n   - Pour **gérer une exception** : /crud_mission/update/status exception\n   - Pour **formuler une demande spécifique** : /crud_mission/create/<nomdukindemandé> <Description détaillée de la nouvelle mission>.\n   - Pour **conclure la mission** : /crud_mission/update/status done",
         "workflowId": "HLDDZOmG8kuk2zTi",
         "fields": {
           "values": [
@@ -2065,6 +2081,10 @@
             {
               "name": "threadId",
               "stringValue": "={{ $node[\"entree\"].json.threadId }}"
+            },
+            {
+              "name": "missionId",
+              "stringValue": "={{ $node[\"entree\"].json.missionId }}"
             }
           ]
         }
@@ -2304,6 +2324,51 @@
       "position": [
         -1320,
         860
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_5a3AzNzXpeJCDHoDyb8a4PNG",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "8b3db119-4cc4-4920-880b-2382b63f1ebf",
+      "name": "kintranscriptionexcel",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        840,
+        -800
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "crud_row_google_sheet",
+        "description": "La fonction \"crud_row_google_sheet\" permet au Kin de rentrer une ligne  dans le document Google Sheets de la mission.\n\nLa query est formulé en JSON libre, contenant chacun des champs à insérer.",
+        "workflowId": "ZOzyRLZv1Jav33g6",
+        "fields": {
+          "values": [
+            {
+              "name": "missionId",
+              "stringValue": "={{ $node[\"entree\"].json.missionId }}"
+            }
+          ]
+        }
+      },
+      "id": "422b42cf-473e-4b57-b746-332f974f24ce",
+      "name": "CRUD Row Google Sheet",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        -780
       ]
     },
     {
@@ -2808,28 +2873,6 @@
         460,
         800
       ]
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_5a3AzNzXpeJCDHoDyb8a4PNG",
-        "text": "={{ $json.promptProducteur }}",
-        "options": {}
-      },
-      "id": "8b3db119-4cc4-4920-880b-2382b63f1ebf",
-      "name": "kintranscriptionexcel",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        840,
-        -800
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
     }
   ],
   "pinData": {
@@ -2900,6 +2943,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-12T17:33:11.000Z",
-  "versionId": "f52771d3-6330-4b15-a858-e28c1dc81085"
+  "updatedAt": "2024-02-13T08:37:01.000Z",
+  "versionId": "d5d8326c-63b5-4f64-b63f-c839e5edb7be"
 }
