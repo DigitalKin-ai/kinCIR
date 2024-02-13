@@ -677,6 +677,19 @@
         480
       ],
       "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## TODO : ne doit pas systematiquement etre amelioration continue"
+      },
+      "id": "aead3c22-b414-49e7-b14e-cca7a9c1352f",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        260
+      ]
     }
   ],
   "pinData": {},
@@ -699,6 +712,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-12T19:50:19.000Z",
-  "versionId": "741d557a-0ca2-44bd-a814-aeaa34be1b99"
+  "updatedAt": "2024-02-13T01:32:57.000Z",
+  "versionId": "d6a6716e-244c-4ed3-bdb9-41fb8f6bbaed"
 }
