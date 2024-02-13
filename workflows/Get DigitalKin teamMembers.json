@@ -1,0 +1,73 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "teamMembers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-12T22:12:06.296Z",
+  "id": "kIXUBtffbuCFDjF0",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Get DigitalKin teamMembers",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "bce1c6c1-ad88-4e4f-98e8-b9c95c6de43c",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        920,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let teamMembers = [];\n\nteamMembers.push({\"teamMember\":\"emmanuelthery\", \"prenom\": \"Emmanuel\", \"nom\": \"Théry\", \"email\":\"e.thery@digitalkin.ai\", \"role\":\"CEO\", \"linkedIn\": \"https://www.linkedin.com/in/emmanuelthery/\"});\nteamMembers.push({\"teamMember\":\"nicolasreynolds\", \"prenom\": \"Nicolas Lester\", \"nom\": \"Reynolds\", \"email\":\"n.reynolds@digitalkin.ai\", \"role\":\"CPO\", \"linkedIn\": \"https://www.linkedin.com/in/nicolas-lester-reynolds-836ab828/\"});\nteamMembers.push({\"teamMember\":\"sebastiendeschaux\", \"prenom\": \"Sébastien\", \"nom\": \"Deschaux\", \"email\":\"s.deschaux@digitalkin.ai\", \"role\":\"CSO\", \"linkedIn\": \"https://www.linkedin.com/in/sebastien-deschaux/\"});\nteamMembers.push({\"teamMember\":\"oliviernerot\", \"prenom\": \"Olivier\", \"nom\": \"Nerot\", \"email\":\"o.nerot@digitalkin.ai\", \"role\":\"CTO\", \"linkedIn\": \"https://www.linkedin.com/in/oliviernerot/\"});\nteamMembers.push({\"teamMember\":\"basseltabet\", \"prenom\": \"Bassel\", \"nom\": \"Tabet\", \"email\":\"b.tabet@digitalkin.ai\", \"role\":\"Finance Advisory\", \"linkedIn\": \"https://www.linkedin.com/in/basseltabet/\"});\nteamMembers.push({\"teamMember\":\"thomassilloway\", \"prenom\": \"Thomas\", \"nom\": \"Silloway\", \"email\":\"t.silloway@digitalkin.ai\", \"role\":\"Tech Advisory\", \"linkedIn\": \"https://www.linkedin.com/in/thomas-silloway/\"});\nteamMembers.push({\"teamMember\":\"thibaudperrin\", \"prenom\": \"Thibaud\", \"nom\": \"Perrin\", \"email\":\"t.perrin@digitalkin.ai\", \"role\":\"Machine Learning Operations\", \"linkedIn\": \"https://www.linkedin.com/in/thibaud-perrin/\"});\nteamMembers.push({\"teamMember\":\"celiajorat\", \"prenom\": \"Célia\", \"nom\": \"Jorat\", \"email\":\"c.jorat@digitalkin.ai\", \"role\":\"UX/UI Design\", \"linkedIn\": \"https://www.linkedin.com/in/celia-jorat/\"});\nteamMembers.push({\"teamMember\":\"charliecohen\", \"prenom\": \"Charlie\", \"nom\": \"Cohen\", \"email\":\"c.cohen@digitalkin.ai\", \"role\":\"Développeur·euse Full Stack\", \"linkedIn\": \"https://www.linkedin.com/in/charlie-%F0%9F%A6%8A-cohen-47b241a2/\"});\nteamMembers.push({\"teamMember\":\"victorlevesy\", \"prenom\": \"Victor\", \"nom\": \"Levesy\", \"email\":\"v.levesy@digitalkin.ai\", \"role\":\"Machine Vision\", \"linkedIn\": \"https://www.linkedin.com/in/victor-levesy-b50ba0235/\"});\nteamMembers.push({\"teamMember\":\"attilioborello\", \"prenom\": \"Attilio\", \"nom\": \"Borello\", \"email\":\"a.borello@digitalkin.ai\", \"role\":\"Responsable DevOps\", \"linkedIn\": \"https://www.linkedin.com/in/attilio-b-260b432/\"});\n\n\nreturn {\"json\": {\"teamMember\": teamMembers}};"
+      },
+      "id": "b9f53a6c-a0c7-4e08-b8ff-a7b6d96f9e64",
+      "name": "teamMembers",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        400
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-01-23T15:32:23.987Z",
+      "updatedAt": "2024-01-23T15:32:23.987Z",
+      "id": "wt7Cl4Mt8mR1bDh4",
+      "name": "admin"
+    },
+    {
+      "createdAt": "2023-12-17T10:32:35.457Z",
+      "updatedAt": "2023-12-17T10:32:35.457Z",
+      "id": "y4SS6pvxfLMwCsGn",
+      "name": "service"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-02-13T01:19:34.000Z",
+  "versionId": "be96bdfd-77a2-4c94-8d4d-bd4a3e955329"
+}
