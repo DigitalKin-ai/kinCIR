@@ -41,7 +41,7 @@
       "main": [
         [
           {
-            "node": "If document not empty",
+            "node": "If not mail",
             "type": "main",
             "index": 0
           }
@@ -179,11 +179,11 @@
         ]
       ]
     },
-    "If not mailId": {
+    "If not mail": {
       "main": [
         [
           {
-            "node": "Respond to Webhook",
+            "node": "Response formating",
             "type": "main",
             "index": 0
           }
@@ -191,6 +191,35 @@
         [
           {
             "node": "If document not empty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Response formating": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Store responses",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
             "type": "main",
             "index": 0
           }
@@ -250,21 +279,21 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1500,
+        -1380,
         0
       ]
     },
     {
       "parameters": {
-        "errorMessage": "kinDemandeur ne peut pas être KinMail"
+        "errorMessage": "={{ \"Data mission : \" + JSON.stringify($json) }}"
       },
       "id": "8f85e234-2ec4-4c4f-8a53-9917f4a0d40a",
       "name": "Stop and Error",
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        -2180,
-        -280
+        -1380,
+        -520
       ]
     },
     {
@@ -344,7 +373,7 @@
     {
       "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"] }}",
+        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
         "emailType": "text",
         "message": "={{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n\nDernières instructions :\n\n{{ $node[\"entree DocumentDemandeur\"].json.instructions }}\n\nAutomatiquement vôtre,\n\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}",
         "options": {
@@ -455,7 +484,7 @@
     {
       "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"] }}",
+        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
         "emailType": "text",
         "message": "={{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n\nDernières instructions :\n\n{{ $node[\"entree DocumentDemandeur\"].json.instructions }}\n\nAutomatiquement vôtre,\n\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}",
         "options": {
@@ -488,7 +517,7 @@
     {
       "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"] }}",
+        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
         "emailType": "text",
         "message": "={{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n\nDernières instructions :\n\n{{ $node[\"entree DocumentDemandeur\"].json.instructions }}\n\nAutomatiquement vôtre,\n\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}",
         "options": {
@@ -524,7 +553,7 @@
     {
       "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"] }}",
+        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
         "emailType": "text",
         "message": "={{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n\nDernières instructions :\n\n{{ $node[\"entree DocumentDemandeur\"].json.instructions }}\n\nAutomatiquement vôtre,\n\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}",
         "options": {
@@ -598,7 +627,7 @@
     {
       "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"] }}",
+        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
         "emailType": "text",
         "message": "={{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n\nDernières instructions :\n\n{{ $node[\"entree DocumentDemandeur\"].json.instructions }}\n\nAutomatiquement vôtre,\n\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}",
         "options": {
@@ -640,7 +669,7 @@
     {
       "parameters": {
         "content": "## RESPONSE KIN PROCESS ",
-        "height": 215.22847038927853,
+        "height": 279.2284703892785,
         "width": 248.10655981977254
       },
       "id": "982b1710-71c1-4330-9f93-973ffc5eaa14",
@@ -648,27 +677,13 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1580,
+        -1460,
         -360
       ]
     },
     {
       "parameters": {
-        "respondWith": "allIncomingItems",
-        "options": {}
-      },
-      "id": "04331bdd-e497-461f-a1c6-0a297295c233",
-      "name": "Respond to Webhook",
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1,
-      "position": [
-        -1500,
-        -280
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## FALSE => ERROR ?",
+        "content": "## DATA MISSING",
         "height": 215.22847038927853,
         "width": 246.63760498900422
       },
@@ -677,8 +692,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -2260,
-        -360
+        -1460,
+        -600
       ]
     },
     {
@@ -698,6 +713,20 @@
     },
     {
       "parameters": {
+        "content": "## TODO : mettre en forme le mail\n",
+        "height": 394.9152542372881
+      },
+      "id": "6f03f22b-0695-43ef-9c4f-db657b960085",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2620,
+        -480
+      ]
+    },
+    {
+      "parameters": {
         "conditions": {
           "options": {
             "caseSensitive": true,
@@ -707,11 +736,11 @@
           "conditions": [
             {
               "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
-              "leftValue": "={{ $node[\"entree DocumentDemandeur\"].json.mailId !== undefined }}",
+              "leftValue": "={{ $node[\"Execute Workflow Trigger\"].json.mailId }}",
               "rightValue": "md",
               "operator": {
-                "type": "boolean",
-                "operation": "true",
+                "type": "string",
+                "operation": "notExists",
                 "singleValue": true
               }
             }
@@ -723,26 +752,139 @@
         }
       },
       "id": "e66caf7c-d041-4ca0-8d1d-5302628bf4ee",
-      "name": "If not mailId",
+      "name": "If not mail",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
         -1940,
-        -80
+        0
       ]
     },
     {
       "parameters": {
-        "content": "## TODO : Pouvoir l'appeler en direct depuis la fin de mission de la boucle de mgmt.\n\n--> Mail defaut sans IA avec les infos \n\nnom mission\ndernieres instructions\n",
-        "height": 394.9152542372881
+        "jsCode": "let json = {};\n\njson.role = \"Kin\";\njson.status = $node[\"documentDemandeur\"].json.status;\njson.content = $node[\"documentDemandeur\"].json.instructions;\njson.createdAt = $node[\"documentDemandeur\"].json.date;\njson.id = $node[\"documentDemandeur\"].json.missionId;\njson.originId = $node[\"documentDemandeur\"].json.threadId;\njson.assignment = $node[\"documentDemandeur\"].json.mission;\njson.model = $node[\"documentDemandeur\"].json.kin;\n\nreturn json;"
       },
-      "id": "6f03f22b-0695-43ef-9c4f-db657b960085",
-      "name": "Sticky Note3",
-      "type": "n8n-nodes-base.stickyNote",
+      "id": "469a637e-b221-4a0c-b055-fb6ed79c4e70",
+      "name": "Response formating",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1780,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "projectId": "kincir-9369f-default-rtdb",
+        "path": "={{ \"conversations/\" + $node[\"Response formating\"].json.originId + \"/responses/\" + $node[\"Response formating\"].json.id }}",
+        "attributes": "id, originId, assignment, role, status, model, content, createdAt"
+      },
+      "id": "f14b493a-a2de-4c2c-8b58-a7e0b7d62b82",
+      "name": "Store responses",
+      "type": "n8n-nodes-base.googleFirebaseRealtimeDatabase",
       "typeVersion": 1,
       "position": [
-        -2620,
-        -480
+        -1380,
+        -260
+      ],
+      "credentials": {
+        "googleFirebaseRealtimeDatabaseOAuth2Api": {
+          "id": "OVSbgNbwKqSqujMP",
+          "name": "Google Firebase Realtime Database account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "15106846-6a72-4b99-970e-8c45d0a0be4e",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "adff18e1-3e9f-4bcc-94a3-7a95ee7740c2",
+              "leftValue": "={{ $json.role }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "58b9419b-21ad-44fd-a51a-d3e4ecd5bde3",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "e9d97c33-1497-4fbe-bef2-712a70eab73d",
+              "leftValue": "={{ $json.content }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "bc0a9dc3-eb20-460e-a7dd-46608a0e12bd",
+              "leftValue": "={{ $json.createdAt }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "debab90b-4c13-4c5b-8be8-70339167c110",
+              "leftValue": "={{ $json.assignment }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "2551ab35-e621-4b2c-9154-2795d51fbab4",
+              "leftValue": "={{ $json.model }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "cfc04e96-cabb-424b-a431-d03d65b9c415",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1620,
+        -260
       ]
     }
   ],
@@ -750,24 +892,18 @@
     "Execute Workflow Trigger": [
       {
         "json": {
-          "client": "boiron",
           "commandText": "done",
-          "dernierProducteur": "kinlca",
+          "date": "2024-02-13T03:24:29.484+01:00",
+          "dernierProducteur": "kindemand",
           "execution": "doing",
-          "firstAttribute": "kinlca",
-          "instructions": "TODOLIST mise à jour :\n\n- ACTION 1 : Évaluer l'Objectif de l'Étude : DONE\n- ACTION 2 : Analyser la Méthodologie : DONE\n- ACTION 3 : Évaluation des Résultats : DONE\n- ACTION 4 : Critiquer la Discussion et les Conclusions : DONE\n- ACTION 5 : Conduire une Analyse Critique : DONE\n- ACTION 6 : Analyse des figures, tableaux et graphes : DONE\n- ACTION 7 : Signature Finale : DONE\n\nLa mission de KinLCA concernant l'analyse critique de l'étude \"A Placebo-Controlled Double-Blind Randomized Trial with Individualized Homeopathic Treatment Using a Symptom Cluster Approach in Women with Premenstrual Syndrome\" est désormais terminée. Toutes les étapes listées dans la TODOLIST ont été réalisées avec succès. La prochaine action à réaliser est de conclure officiellement la mission en mettant à jour son statut.",
-          "kin": "kinlca",
-          "kinDemandeur": "INCHAUSPE Aurore <aurore.inchauspe@boiron.fr>",
-          "mailFrom": "From: INCHAUSPE Aurore <aurore.inchauspe@boiron.fr>",
-          "mailId": "18d9582ac5b93e7c",
-          "mailSubject": "LCA Yakir et al 2020",
-          "mission": "\n\nAurore INCHAUSPE, PhD\nChef de projet Scientifique\nPôle des Affaires Scientifiques et Médicales Groupe\nTél. : 85 56\n\n\n[iMAGE tel]\nLe Service Information Boiron est à votre écoute\n\n\nFile attached with email : \"Yakir_A Placebo-Controlled Double-Blind Randomized Trial with Individualized Homeopathic Treatment.pdf\"",
-          "missionId": "kinlca-18d9582ac5b93e7c",
-          "sourceGoogleDriveId": "13buRfx2k_E9XAAGQIQHpgFJ8kv1D-yEt",
-          "status": "done",
-          "threadFrom": "INCHAUSPE Aurore <aurore.inchauspe@boiron.fr>",
-          "threadId": "18d9582ac5b93e7c",
-          "threadSubject": "LCA Yakir et al 2020"
+          "executionId": "193651",
+          "firstAttribute": "kindemand",
+          "instructions": "TODOLIST :\n\n- DONE : Analyser la mission et dÃ©finir les critÃ¨res de recherche.\n- DONE : RÃ©aliser une recherche approfondie sur les technologies d'extraction de donnÃ©es Ã  partir de documents PDF. Les points suivants doivent Ãªtre abordÃ©s :\n  - Identifier les technologies d'extraction de donnÃ©es disponibles sur le marchÃ©.\n  - RÃ©aliser une comparaison dÃ©taillÃ©e en termes de prÃ©cision, de gestion des documents complexes, de coÃ»ts, et de facilitÃ© d'intÃ©gration.\n  - Recueillir des avis d'experts et des cas d'utilisation rÃ©ussis.\n- TODO : PrÃ©parer un rapport comprenant un rÃ©sumÃ© des technologies Ã©tudiÃ©es, une comparaison dÃ©taillÃ©e, et une recommandation finale en fonction des critÃ¨res Ã©tablis.\n\nProchaine action Ã  rÃ©aliser & instructions :\n\nIl est crucial de procÃ©der maintenant Ã  la prÃ©paration du rapport final. Ce rapport doit inclure :\n- Un rÃ©sumÃ© des technologies Ã©tudiÃ©es,\n- Une comparaison dÃ©taillÃ©e selon les critÃ¨res prÃ©dÃ©finis (prÃ©cision, gestion des documents complexes, coÃ»t, facilitÃ© d'intÃ©gration),\n- Une recommandation finale en vue de la sÃ©lection de la technologie la plus adaptÃ©e.\n\nAssurez-vous de structurer le rapport clairement, en dÃ©limitant chaque section selon les points mentionnÃ©s. La prÃ©sentation doit Ãªtre soignÃ©e et professionnelle, mettant en avant les analyses et les recommandations de faÃ§on concise et argumentÃ©e.\n\nCette Ã©tape est cruciale pour conclure la mission efficacement. Le rapport contribuera de maniÃ¨re significative Ã  la prise de dÃ©cision finale et doit donc Ãªtre rÃ©digÃ© avec attention et prÃ©cision.",
+          "kin": "kindemand",
+          "mission": "Demande de Recherche d'Informations sur les Technologies d'Extraction de Données\n\nAfin de sélectionner et d'implémenter la solution la plus efficace pour l'extraction de données depuis le document PDF '2301176_PRODOTTOFINITO_03-02-2023.pdf', il est nécessaire d'obtenir des informations mises à jour sur les technologies d'extraction de données actuelles. Cette demande vise à recueillir des recommandations sur les outils et technologies d'extraction de données les plus avancés et adaptés aux besoins du projet, ainsi que les coûts, les exigences en matière de ressources, et les délais de mise en œuvre associés.\n\nObjectif : \n- Identifier les technologies d'extraction de données les plus performantes disponibles sur le marché.\n- Obtenir une comparaison détaillée en termes de précision, de gestion des documents complexes, de coûts et de facilité d'intégration.\n- Recueillir des avis d'experts et des cas d'utilisation réussis pour éclairer la décision finale.\n\nLa réponse à cette demande aidera à éclairer le processus de sélection de la solution d'extraction de données et à planifier efficacement son implémentatio",
+          "missionId": "kindemand-undefined",
+          "missionIdDemandeur": "KinDev-undefined",
+          "status": "done"
         }
       }
     ]
@@ -793,6 +929,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-12T15:49:51.000Z",
-  "versionId": "6c4fe018-0618-42de-8dcc-e584629ba84b"
+  "updatedAt": "2024-02-13T19:35:07.000Z",
+  "versionId": "e862056a-1b55-408a-b74d-2cacafe023da"
 }
