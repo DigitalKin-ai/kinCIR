@@ -101,8 +101,8 @@
       ],
       "credentials": {
         "telegramApi": {
-          "id": "rUijC7XE7TL12tph",
-          "name": "Lester AGI"
+          "id": "ZycPeiDd8w3TWjiS",
+          "name": "digitalkin_bot Telegram"
         }
       },
       "onError": "continueRegularOutput"
@@ -146,6 +146,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-08T16:08:41.000Z",
-  "versionId": "c3f53009-3dda-4300-b5b4-264c5aeefd0f"
+  "updatedAt": "2024-02-13T13:07:59.000Z",
+  "versionId": "63d61349-1361-4e23-9d74-0b67325e1df9"
 }
