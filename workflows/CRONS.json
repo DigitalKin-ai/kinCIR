@@ -281,7 +281,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let client = $node[\"entree\"].json.client;\n\nlet kinCredits = $vars.startingKinCredits;\n\nif (Object.keys($json.vectors).length > 0 && $json.vectors[client]) {\n  kinCredits = $json.vectors[client].metadata.kinCredits;\n}\n\nlet startDate = new Date($node[\"get body\"].json[\"startTimestamp\"]);\n\nlet elapsedTime = Date.now() - startDate.getTime(); // Get current time and subtract start time\n\n// Convert milliseconds to minutes and subtract from kinCredits\n// Assuming elapsedTime needs to be in minutes for kinCredits calculation\nkinCredits = Math.floor(kinCredits - (elapsedTime / 60000)); // 60000 ms in a minute\n\nreturn {\"kinCredits\": kinCredits, \"client\": client};"
+        "jsCode": "let client = $node[\"entree\"].json.client?$node[\"entree\"].json.client:\"digitalkin\";\n\nlet kinCredits = $vars.startingKinCredits;\n\nif (Object.keys($json.vectors).length > 0 && $json.vectors[client]) {\n  kinCredits = $json.vectors[client].metadata.kinCredits;\n}\n\nlet startDate = new Date($node[\"get body\"].json[\"startTimestamp\"]);\n\nlet elapsedTime = Date.now() - startDate.getTime(); // Get current time and subtract start time\n\n// Convert milliseconds to minutes and subtract from kinCredits\n// Assuming elapsedTime needs to be in minutes for kinCredits calculation\nkinCredits = Math.floor(kinCredits - (elapsedTime / 60000)); // 60000 ms in a minute\n\nreturn {\"kinCredits\": kinCredits, \"client\": client};"
       },
       "id": "9d3b246c-d003-4132-8c69-c5e3df3adaf7",
       "name": "set kinCredits",
@@ -351,7 +351,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"kinCredits\",\n  \"ids\": \"{{ $node[\"entree\"].json.client }}\"\n}",
+        "jsonBody": "={\n  \"namespace\": \"kinCredits\",\n  \"ids\": \"{{ $node[\"entree\"].json.client?$node[\"entree\"].json.client:\"digitalkin\" }}\"\n}",
         "options": {}
       },
       "id": "3814c871-e51d-4d1c-a5fc-d7ba3d18a344",
@@ -390,7 +390,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n\"namespace\": \"kinCredits\",\n\"vectors\": {\n\"id\": \"{{ $node[\"entree\"].json.client }}\",\n\"metadata\": {{ JSON.stringify($json) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
+        "jsonBody": "={\n\"namespace\": \"kinCredits\",\n\"vectors\": {\n\"id\": \"{{ $node[\"entree\"].json.client?$node[\"entree\"].json.client:\"digitalkin\" }}\",\n\"metadata\": {{ JSON.stringify($json) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
         "options": {}
       },
       "id": "4c6d4107-22b5-445d-b6b2-c4ddd40231a6",
@@ -928,6 +928,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-13T01:10:26.000Z",
-  "versionId": "e58e88d4-de11-4548-ba77-2d9be2f28177"
+  "updatedAt": "2024-02-13T12:57:43.000Z",
+  "versionId": "47d5252d-f202-43c7-bbf6-c188a6708ca3"
 }
