@@ -1715,7 +1715,7 @@
     {
       "parameters": {
         "name": "crud_mission",
-        "description": "La fonction \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'exécution.\n\nAppels disponibles :\n   - Pour **continuer la boucle de production**, si l'analyse montre que la mission est sur la bonne voie et qu'il suffit de poursuivre selon le plan établi :\n     ```\n     /crud_mission/update/execution todo\n     ```\n   - Pour **gérer une exception**, si un obstacle imprévu se présente nécessitant une action corrective ou une adaptation :\n     ```\n     /crud_mission/update/status exception\n     ```\n   - Pour **formuler une demande spécifique**, lorsqu'une expertise, une action, ou une ressource spécifique d'un autre Kin est nécessaire pour poursuivre :\n     ```\n     - /crud_mission/create/nomdukindemandé <Description détaillée de la nouvelle mission, y compris le contexte de la mission, l'objectif spécifique de cette demande, et son importance pour l'avancée de la mission du demandeur>.\n     ```\n   - Pour **conclure la mission**, lorsque tous les objectifs sont atteints et que la mission peut être considérée comme terminée :\n     ```\n     /crud_mission/update/status done\n     ```",
+        "description": "La fonction \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'exécution.\n\nAppels disponibles :\n   - Pour **continuer la boucle de production** : /crud_mission/update/execution todo\n   - Pour **gérer une exception** : /crud_mission/update/status exception\n   - Pour **formuler une demande spécifique** : /crud_mission/create/<nomdukindemandé> <Description détaillée de la nouvelle mission>.\n   - Pour **conclure la mission** : /crud_mission/update/status done",
         "workflowId": "HLDDZOmG8kuk2zTi",
         "fields": {
           "values": [
@@ -2509,6 +2509,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-12T08:55:42.000Z",
-  "versionId": "669cce1f-f716-4f56-95e1-711a87f69c81"
+  "updatedAt": "2024-02-13T12:24:24.000Z",
+  "versionId": "f48625c3-4a40-4591-8453-d46fa7f79653"
 }
