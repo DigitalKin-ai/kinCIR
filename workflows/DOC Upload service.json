@@ -12,11 +12,6 @@
         ]
       ]
     },
-    "emailThread": {
-      "main": [
-        []
-      ]
-    },
     "entree pinecone": {
       "main": [
         [
@@ -260,7 +255,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = {};\n\njson.client = $json.client;\n\njson.kin = $json.kin;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\n\njson.threadId = $json.threadId;\njson.threadSubject = $json.threadSubject;\njson.threadFrom = $json.client;\n\njson.query = \"/crud_mission/create/\" + json.kin  + \" \" + $node[\"mission\"].json.mission;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = {};\n\njson.client = $node[\"Execute Workflow Trigger\"].json.client;\n\njson.kin = $node[\"Execute Workflow Trigger\"].json.kin;\n\njson.sourceGoogleDriveId = $node[\"sourceGoogleDriveId\"].json.sourceGoogleDriveId;\n\njson.threadId = $node[\"Execute Workflow Trigger\"].json.threadId;\njson.threadSubject = $node[\"Execute Workflow Trigger\"].json.threadSubject;\njson.threadFrom = $json.client;\n\njson.query = \"/crud_mission/create/\" + json.kin  + \" \" + $node[\"mission\"].json.mission;\n\nreturn {\"json\": json};"
       },
       "id": "be415738-c5a4-4de9-b6d7-d305f7f6c0ad",
       "name": "nouvelleMission",
@@ -346,7 +341,7 @@
           "values": [
             {
               "name": "mission",
-              "stringValue": "={{ $json.mission.substring(0, 10000)}}{{ $json.mission.length > 10000 ? \"[...]\" : \"\" }}\n{{ $json.doc.binary? (\"\\nFile attached with request : \" + $json.doc.binary[Object.keys($json.doc.binary)].fileName):\"\" }}\n\n"
+              "stringValue": "={{ $node[\"Execute Workflow Trigger\"].json.mission.substring(0, 10000)}}{{ $node[\"Execute Workflow Trigger\"].json.mission.length > 10000 ? \"[...]\" : \"\" }}\n{{ $node[\"Execute Workflow Trigger\"].json.doc.binary? (\"\\nFile attached with request : \" + $node[\"Execute Workflow Trigger\"].json.doc.binary[Object.keys($node[\"Execute Workflow Trigger\"].json.doc.binary)].fileName):\"\" }}\n\n"
             }
           ]
         },
@@ -397,7 +392,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"threadId\" : \"{{ $json.threadId }}\", \"kin\": \"{{ $json.kin }}\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\": { \"threadId\" : \"{{ $node[\"Execute Workflow Trigger\"].json.threadId }}\", \"kin\": \"{{ $node[\"Execute Workflow Trigger\"].json.kin }}\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
         "options": {}
       },
       "id": "5822e2eb-266e-4e51-84eb-bca6a2cd3362",
@@ -532,6 +527,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-02-12T13:21:35.000Z",
-  "versionId": "a79c50d5-2e5e-4b2c-afb4-fcf54feb880a"
+  "updatedAt": "2024-02-13T12:06:53.000Z",
+  "versionId": "b33d307d-8f92-4bbb-bc6f-2ee8a6f9d183"
 }
