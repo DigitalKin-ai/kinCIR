@@ -264,7 +264,7 @@
           "interval": [
             {
               "field": "seconds",
-              "secondsInterval": 80
+              "secondsInterval": 60
             }
           ]
         }
@@ -444,7 +444,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\" : {\"status\": \"todo\", \"type\": {\"$ne\": \"ameliorationContinue\"}},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\" : {\"status\": \"todo\", \"type\": {\"$ne\": \"ameliorationContinue\"}, \"deleted\": {\"$ne\": \"deleted\"}},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
         "options": {}
       },
       "id": "75a3339b-0ebc-419f-8245-cd6767ce62c5",
@@ -798,7 +798,7 @@
           "conditions": [
             {
               "id": "c0b309e0-3b5d-4002-8ca5-2b8aae1e0572",
-              "leftValue": "={{ $node[\"mission\"].json.kin }}",
+              "leftValue": "={{ $node[\"entree\"].json.kin }}",
               "rightValue": "=kindev",
               "operator": {
                 "type": "string",
@@ -928,6 +928,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-12T22:58:43.000Z",
-  "versionId": "866b2f18-f740-441b-8c50-cf00d6044222"
+  "updatedAt": "2024-02-13T01:10:26.000Z",
+  "versionId": "e58e88d4-de11-4548-ba77-2d9be2f28177"
 }
