@@ -1,0 +1,325 @@
+{
+  "active": false,
+  "connections": {
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If create": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "row": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-12T14:44:35.216Z",
+  "id": "ZOzyRLZv1Jav33g6",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CRUD Row Google Sheet",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b6c24451-145f-45d1-a608-da6946613913",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2420,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\njson.query = JSON.parse($json.query);\n\nreturn {\"json\": json};"
+      },
+      "id": "fc1bafde-aec6-426a-b986-5941cb3f5603",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let entree = $item(0).$node[\"entree\"].json;\nlet result = \"\";\n\nif (entree.command == \"read\") {\n  result = JSON.stringify($node[\"clean mission\"].json);\n} else {\n  result = \"command \" + entree.command + \", \" + (entree.kin?entree.kin:\"\") + \" : effectuée avec succès !\";\n}\n\nif (entree.chatInput != null) {\n  return {\"output\": result};\n}\n\nreturn {\"json\":{\"response\": result}};"
+      },
+      "id": "283538ea-e33c-4dd2-86b0-fc7523a463e2",
+      "name": "response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -420,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "48be6d54-fd3d-4cc8-9f98-e7855486c6ee",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        -860,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b4d611d1-fe43-4400-b22d-be16bc876f91",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "create",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "b29b754c-cf6c-4081-9f62-e326bd67dff0",
+      "name": "If create",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1860,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1RUhQVzsDOZyd2-Za-PjjKtq64RmSLYWE3dE8nksrj3I",
+          "mode": "list",
+          "cachedResultName": "kintranscriptionexcel-sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1RUhQVzsDOZyd2-Za-PjjKtq64RmSLYWE3dE8nksrj3I/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Feuille 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1RUhQVzsDOZyd2-Za-PjjKtq64RmSLYWE3dE8nksrj3I/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "SAMPLE CODE"
+          ],
+          "schema": [
+            {
+              "id": "SAMPLE CODE",
+              "displayName": "SAMPLE CODE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "missionId",
+              "displayName": "missionId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {
+          "handlingExtraData": "ignoreIt"
+        }
+      },
+      "id": "074debf4-8dd6-4038-8123-6f47ae363837",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [
+        -1700,
+        300
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "wPFbXaEkxotWeUfw",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "\n\nreturn {\"json\": $json.query};"
+      },
+      "id": "416f7611-5be2-4aa0-9cc1-7d9732d6c8c0",
+      "name": "row",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1940,
+        300
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "{\n   \"SAMPLE CODE\": \"2301177\",\n   \"PRODUCT - SUB PRODUCT\": \"PROCESSED PRODUCT\",\n   \"DESCRIPTION\": \"PUREE POMME BIO MTX 605403\",\n   \"ITALIAN ORIGIN\": \"No\",\n   \"ORGANIC\": \"Yes\",\n   \"LIMITS NOTE\": \"Nothing to report\",\n   \"ITALIAN USE AUTHORIZATION NOTE\": \"N.A.\",\n   \"AUTHORIZATION FOR ORGANIC AGRICULTURE USE NOTE\": \"N.A.\",\n   \"DATE OF RECEIPT\": \"03/02/2023\",\n   \"TEST REPORT DATE\": \"06/02/2023\",\n   \"N° Echantillon\": \"15574 - AJ - S050-MP-23020\",\n   \"Exporter / Supplier\": \"-\",\n   \"Sampler\": \"by Customer\",\n   \"Suitable box\": \"Yes\",\n   \"Suitable sample amount\": \"Yes\",\n   \"Country of origin\": \"FRANCE\",\n   \"Sample collection officer\": \"Laboratory employer\",\n   \"PARAMETER\": \"Fosetyl Aluminium (somme)\",\n   \"RESULT\": \"< 0.01 mg/kg\",\n   \"REPORTING LIMIT (U RL)\": \"0.01 mg/kg\",\n   \"DIM MRL (MG/KG)\": \"0.01 mg/kg\"\n}",
+          "missionId": "kintranscriptionexcel-18da001a738f39a2"
+        }
+      }
+    ],
+    "If create": []
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-02-13T09:28:07.000Z",
+  "versionId": "1491a685-dba5-4701-9da1-b174c36d06b2"
+}
