@@ -67,7 +67,7 @@
       "main": [
         [
           {
-            "node": "RESPONSE CREATE",
+            "node": "CREATE RESPONSE - String to JSON",
             "type": "main",
             "index": 0
           }
@@ -85,7 +85,7 @@
       "main": [
         [
           {
-            "node": "RESPONSE REPLY",
+            "node": "REPLY RESPONSE - String to JSON",
             "type": "main",
             "index": 0
           }
@@ -121,7 +121,7 @@
       "main": [
         [
           {
-            "node": "Code",
+            "node": "POST - CREATE - Clean json",
             "type": "main",
             "index": 0
           }
@@ -139,7 +139,7 @@
       "main": [
         [
           {
-            "node": "Get Body1",
+            "node": "POST - REPLY - Clean json",
             "type": "main",
             "index": 0
           }
@@ -147,17 +147,6 @@
         [
           {
             "node": "Stop and Error",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Body1": {
-      "main": [
-        [
-          {
-            "node": "GET THREAD",
             "type": "main",
             "index": 0
           }
@@ -175,7 +164,7 @@
         ]
       ]
     },
-    "Code": {
+    "POST - CREATE - Clean json": {
       "main": [
         [
           {
@@ -184,6 +173,33 @@
             "index": 0
           }
         ]
+      ]
+    },
+    "CREATE RESPONSE - String to JSON": {
+      "main": [
+        [
+          {
+            "node": "Response formating",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Response formating": {
+      "main": [
+        [
+          {
+            "node": "Store responses",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "REPLY RESPONSE - String to JSON": {
+      "main": [
+        []
       ]
     }
   },
@@ -229,7 +245,7 @@
         "authentication": "headerAuth",
         "httpMethod": "POST",
         "path": "f95641c4-bed1-40a8-a9e4-9a72bd724471",
-        "responseMode": "responseNode",
+        "responseMode": "lastNode",
         "options": {
           "rawBody": true
         }
@@ -317,47 +333,17 @@
     },
     {
       "parameters": {
-        "content": "## RESPONSE GET LIST",
-        "height": 194.85444743935307,
-        "width": 250.71967654986526
-      },
-      "id": "d46cb92a-95d0-44c7-8a57-b6a26ba99dbe",
-      "name": "Sticky Note3",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        1700,
-        500
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## RESPONSE CREATE",
-        "height": 194.85444743935307,
-        "width": 250.71967654986526
+        "content": "## CREATE RESPONSE",
+        "height": 218.48769913876487,
+        "width": 253.05970747287114
       },
       "id": "d4814ad0-c147-4456-bf48-ffde3f36b176",
       "name": "Sticky Note4",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1700,
+        1380,
         -180
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## RESPONSE REPLY",
-        "height": 194.85444743935307,
-        "width": 250.71967654986526
-      },
-      "id": "cdd96c22-2f88-44d6-89bd-d8d8544393a9",
-      "name": "Sticky Note5",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        1700,
-        160
       ]
     },
     {
@@ -365,7 +351,7 @@
         "authentication": "headerAuth",
         "httpMethod": "POST",
         "path": "75a1dc3b-9d65-4c5b-b7d2-cdbef621b316",
-        "responseMode": "responseNode",
+        "responseMode": "lastNode",
         "options": {
           "rawBody": true
         }
@@ -410,8 +396,8 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        1780,
-        -440
+        1460,
+        -420
       ]
     },
     {
@@ -425,8 +411,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1700,
-        -520
+        1380,
+        -500
       ]
     },
     {
@@ -491,12 +477,32 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1540,
+        1220,
         -120
       ]
     },
     {
       "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "b46b87c9-f864-4dbc-ab27-a8025271ebe2",
+              "leftValue": "{{ $json.response }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
         "options": {}
       },
       "id": "22409333-6dfe-40db-aa32-c8f7dcc0c02a",
@@ -504,8 +510,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1540,
-        200
+        1220,
+        220
       ]
     },
     {
@@ -537,35 +543,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1540,
+        1220,
         560
-      ]
-    },
-    {
-      "parameters": {
-        "respondWith": "allIncomingItems",
-        "options": {}
-      },
-      "id": "1c87ac55-d24e-46d0-9c62-cb1f5f8a7e60",
-      "name": "RESPONSE CREATE",
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1,
-      "position": [
-        1780,
-        -120
-      ]
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "id": "c0b8cc0e-22d0-4468-a695-932ad2468665",
-      "name": "RESPONSE REPLY",
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1,
-      "position": [
-        1780,
-        220
       ]
     },
     {
@@ -577,7 +556,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
       "position": [
-        1780,
+        1460,
         560
       ]
     },
@@ -683,7 +662,7 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1060,
+        900,
         100
       ]
     },
@@ -697,7 +676,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        1140,
+        980,
         220
       ]
     },
@@ -712,8 +691,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1060,
-        -220
+        900,
+        -240
       ]
     },
     {
@@ -748,23 +727,6 @@
     },
     {
       "parameters": {
-        "mode": "raw",
-        "jsonOutput": "={{ $json.body }}",
-        "include": "selected",
-        "includeFields": "kin, client, sourceGoogleDriveId, threadId, threadSubject, firstAttribute, commandText, mission, missionId, status, format",
-        "options": {}
-      },
-      "id": "43ccc814-fdc6-4c69-8177-ab2caaaa8ffe",
-      "name": "Get Body1",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.2,
-      "position": [
-        660,
-        220
-      ]
-    },
-    {
-      "parameters": {
         "workflowId": "teBXUHMl5AIi70pR",
         "options": {
           "waitForSubWorkflow": true
@@ -775,20 +737,138 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        1140,
+        980,
         -120
       ]
     },
     {
       "parameters": {
-        "jsCode": "$execution.customData.set(\"command\", \"httpcreate\");\n\nlet json = $json.body;\n\nreturn {\"json\": json};"
+        "jsCode": "function stringToJson(str) {\n  try {\n    return JSON.parse(str);\n  } catch (e) {\n    console.error(\"Invalid JSON string\", e);\n    return null;\n  }\n}\n\nlet jsonString = $node[\"DOC Upload service\"].json.response;\n\nlet jsonObject = stringToJson(jsonString);\nreturn jsonObject;"
+      },
+      "id": "773765c9-fa94-4fd4-abf5-b0c10855c2e0",
+      "name": "CREATE RESPONSE - String to JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1460,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## REPLY RESPONSE",
+        "height": 218.48769913876487,
+        "width": 250.71967654986526
+      },
+      "id": "d700a37b-4b1b-491d-963e-c3107b1c1158",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## GET LIST RESPONSE",
+        "height": 218.48769913876487,
+        "width": 250.71967654986526
+      },
+      "id": "fb23218d-0d04-442d-9c22-2884fb4dcead",
+      "name": "Sticky Note8",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "$execution.customData.set(\"command\", \"httpcreate\");\n\nlet json = $node[\"POST - CREATE\"].json.body;\n\nreturn {\"json\": json};"
       },
       "id": "dd78b52f-72f1-4643-83df-be9eaa5ad73d",
-      "name": "Code",
+      "name": "POST - CREATE - Clean json",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
         660,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "$execution.customData.set(\"command\", \"httpreply\");\n\nlet json = $node[\"POST - REPLY\"].json.body;\n\nreturn {\"json\": json};"
+      },
+      "id": "4c60ed67-05cc-4882-8774-37d027c0f595",
+      "name": "POST - REPLY - Clean json",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "function stringToJson(str) {\n  try {\n    return JSON.parse(str);\n  } catch (e) {\n    console.error(\"Invalid JSON string\", e);\n    return null;\n  }\n}\n\nlet jsonString = $node[\"DOC Upload service\"].json.response;\n\nlet jsonObject = stringToJson(jsonString);\nreturn jsonObject;"
+      },
+      "id": "7acae7f6-8062-4abc-912d-7407b5fe908e",
+      "name": "REPLY RESPONSE - String to JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1460,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "projectId": "kincir-9369f-default-rtdb",
+        "path": "={{ \"conversations/\" + $node[\"Response formating\"].json.originId + \"/responses/\" + $node[\"Response formating\"].json.id }}",
+        "attributes": "id, originId, assignment, role, status, model, content, createdAt"
+      },
+      "id": "94ad5d4b-7c21-4ea1-9655-8119675f864e",
+      "name": "Store responses",
+      "type": "n8n-nodes-base.googleFirebaseRealtimeDatabase",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        -120
+      ],
+      "credentials": {
+        "googleFirebaseRealtimeDatabaseOAuth2Api": {
+          "id": "OVSbgNbwKqSqujMP",
+          "name": "Google Firebase Realtime Database account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## RESPONSE KIN PROCESS ",
+        "height": 220.28236521985798,
+        "width": 415.58981732456584
+      },
+      "id": "5d6e3981-eec3-46be-b0f5-c1d6e00a2013",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        -181.05389483057945
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let json = {};\n\njson.role = \"Kin\";\njson.status = $node[\"CREATE RESPONSE - String to JSON\"].json.status;\njson.content = $node[\"CREATE RESPONSE - String to JSON\"].json.instructions;\njson.createdAt = $node[\"CREATE RESPONSE - String to JSON\"].json.date;\njson.id = $node[\"CREATE RESPONSE - String to JSON\"].json.missionId;\njson.originId = $node[\"CREATE RESPONSE - String to JSON\"].json.threadId;\njson.assignment = $node[\"CREATE RESPONSE - String to JSON\"].json.mission;\njson.model = $node[\"CREATE RESPONSE - String to JSON\"].json.kin;\n\nreturn json;"
+      },
+      "id": "552bdef0-0894-49ba-987f-7394b9c01bb4",
+      "name": "Response formating",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1780,
         -120
       ]
     }
@@ -814,6 +894,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2024-02-12T17:13:10.000Z",
-  "versionId": "a4992fdc-4272-4c70-8941-655f8ef77f31"
+  "updatedAt": "2024-02-13T17:16:20.000Z",
+  "versionId": "641bc55d-fa20-49c4-a17a-c520f93b2fa0"
 }
