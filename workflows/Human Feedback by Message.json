@@ -182,7 +182,7 @@
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Find Mission",
             "type": "main",
             "index": 0
           }
@@ -222,6 +222,17 @@
           }
         ]
       ]
+    },
+    "Find Mission": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-29T09:33:49.512Z",
@@ -241,7 +252,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        120,
+        -80,
         480
       ]
     },
@@ -424,7 +435,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -120,
+        -320,
         480
       ]
     },
@@ -457,7 +468,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -360,
+        -560,
         480
       ]
     },
@@ -471,7 +482,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        315,
+        115,
         12
       ]
     },
@@ -486,7 +497,7 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        240,
+        40,
         -80
       ]
     },
@@ -504,7 +515,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.1,
       "position": [
-        755,
+        555,
         12
       ],
       "credentials": {
@@ -525,7 +536,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        535,
+        335,
         92
       ]
     },
@@ -540,7 +551,7 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        455,
+        255,
         -28
       ]
     },
@@ -571,7 +582,7 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.1,
       "position": [
-        -620,
+        -820,
         480
       ],
       "webhookId": "3f2cecfe-ea1f-4d3a-bca4-12bc62afe794",
@@ -592,21 +603,21 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        760,
+        560,
         480
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\njson.message = $item(0).$node[\"Telegram Trigger\"].json.message;\njson.missionId = $json.kin.toLowerCase() + \"-ameliorationContinue\";\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\njson.message = $item(0).$node[\"Telegram Trigger\"].json.message;\n\nreturn {\"json\": json};"
       },
       "id": "7958f334-77aa-4e22-87ef-ff4c6fa3f849",
       "name": "entree find",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1280,
+        1000,
         480
       ]
     },
@@ -620,7 +631,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        340,
+        140,
         480
       ]
     },
@@ -635,7 +646,7 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        260,
+        60,
         360
       ]
     },
@@ -649,7 +660,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        540,
+        340,
         480
       ]
     },
@@ -673,22 +684,38 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        1000,
+        800,
         480
       ],
       "disabled": true
     },
     {
       "parameters": {
-        "content": "## TODO : ne doit pas systematiquement etre amelioration continue"
+        "workflowId": "=LJq7WahDAN9n9qRH",
+        "options": {}
       },
-      "id": "aead3c22-b414-49e7-b14e-cca7a9c1352f",
-      "name": "Sticky Note1",
-      "type": "n8n-nodes-base.stickyNote",
+      "id": "4072f8f4-8102-4984-97ed-bc5c2d7a73f9",
+      "name": "Find Mission",
+      "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
         1240,
-        260
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Find Mission\nhttps://kins.app.n8n.cloud/workflow/LJq7WahDAN9n9qRH",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "7180afda-7aeb-4d7b-9965-00534a194dc2",
+      "name": "Sticky Note16",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        360
       ]
     }
   ],
@@ -712,6 +739,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-13T01:32:57.000Z",
-  "versionId": "d6a6716e-244c-4ed3-bdb9-41fb8f6bbaed"
+  "updatedAt": "2024-02-13T12:24:34.000Z",
+  "versionId": "a26d5726-bfa4-4190-b161-62700199e5d2"
 }
