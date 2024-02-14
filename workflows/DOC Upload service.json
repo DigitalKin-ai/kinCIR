@@ -111,7 +111,7 @@
         ],
         [
           {
-            "node": "Stop and Error",
+            "node": "Code",
             "type": "main",
             "index": 0
           }
@@ -172,19 +172,6 @@
       "position": [
         420,
         200
-      ]
-    },
-    {
-      "parameters": {
-        "errorMessage": "Trigger error"
-      },
-      "id": "aac1f930-d221-4945-aad8-d8f1e30104eb",
-      "name": "Stop and Error",
-      "type": "n8n-nodes-base.stopAndError",
-      "typeVersion": 1,
-      "position": [
-        780,
-        620
       ]
     },
     {
@@ -508,6 +495,34 @@
         1680,
         220
       ]
+    },
+    {
+      "parameters": {
+        "content": "## TODO\nIf already running, return text, not error\n\njson.role = \"Kin\";\njson.status = $node[\"CREATE RESPONSE - String to JSON\"].json.status;\njson.content = $node[\"CREATE RESPONSE - String to JSON\"].json.instructions;\njson.createdAt = $node[\"CREATE RESPONSE - String to JSON\"].json.date;\njson.id = $node[\"CREATE RESPONSE - String to JSON\"].json.executionId;\njson.originId = $node[\"CREATE RESPONSE - String to JSON\"].json.threadId;\njson.assignment = $node[\"CREATE RESPONSE - String to JSON\"].json.mission;\njson.model = $node[\"CREATE RESPONSE - String to JSON\"].json.kin;",
+        "height": 438.536890137649,
+        "width": 431.2957960111836
+      },
+      "id": "87ef7a7f-71e1-4cc7-a5c9-1cc6b82df0c0",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        880,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let json = {};\n\njson.status = \"doing\";\njson.content = \"RUNNING : La mission est déjà en cours ! Merci de patienter.\";\njson.id = $node[\"Execute Workflow Trigger\"].json.threadId;\njson.originId = $node[\"Execute Workflow Trigger\"].json.client;\njson.assignment = $node[\"Execute Workflow Trigger\"].json.threadSubject;\njson.model = $node[\"Execute Workflow Trigger\"].json.kin;\njson.role = \"Kin\";\njson.createdAt = new Date();\n\nreturn json;"
+      },
+      "id": "bed0b146-2c51-45c1-96f3-a9d514e40a45",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        760,
+        640
+      ]
     }
   ],
   "pinData": {},
@@ -527,6 +542,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-02-13T12:06:53.000Z",
-  "versionId": "b33d307d-8f92-4bbb-bc6f-2ee8a6f9d183"
+  "updatedAt": "2024-02-14T17:10:26.000Z",
+  "versionId": "c43d3a15-5755-45f0-b2d2-e6759c2c010e"
 }
