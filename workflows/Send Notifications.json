@@ -220,6 +220,69 @@
             "node": "Merge",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Response formating": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Store responses",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store responses": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Response formating",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -269,7 +332,7 @@
       "typeVersion": 1,
       "position": [
         380,
-        1100
+        1380
       ],
       "alwaysOutputData": true
     },
@@ -284,7 +347,7 @@
       "typeVersion": 1,
       "position": [
         920,
-        1100
+        1380
       ],
       "alwaysOutputData": true
     },
@@ -299,7 +362,7 @@
       "typeVersion": 2,
       "position": [
         -40,
-        1100
+        1380
       ]
     },
     {
@@ -316,7 +379,7 @@
       "typeVersion": 2,
       "position": [
         640,
-        1100
+        1380
       ],
       "credentials": {
         "discordWebhookApi": {
@@ -604,6 +667,191 @@
         560,
         620
       ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "8ce330e8-c577-4690-a30a-4ef32292898c",
+              "leftValue": "={{ $node[\"mission\"].json.mailId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "9696def2-fd59-41ff-9016-4b04f6e6fd7d",
+              "leftValue": "={{ $node[\"mission\"].json.threadId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b2c0679a-c0fa-4ace-a50b-413a1bdb9633",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -40,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## RESPONSE KIN PROCESS ",
+        "height": 279.2284703892785,
+        "width": 539.624187719576
+      },
+      "id": "4c9d5ed9-ef53-401f-b3f0-ebae2adf90ae",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        560,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let json = {};\n\njson.role = \"Kin\";\njson.status = $node[\"mission\"].json.status;\njson.content = $node[\"mission\"].json.instructions;\njson.createdAt = $node[\"mission\"].json.date;\njson.id = $node[\"mission\"].json.executionId;\njson.originId = $node[\"mission\"].json.threadId;\njson.assignment = $node[\"mission\"].json.mission;\njson.model = $node[\"mission\"].json.kin;\n\nreturn json;"
+      },
+      "id": "c4f25a75-8aac-4dbe-ad63-9d3a759b0d27",
+      "name": "Response formating",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        380,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "projectId": "kincir-9369f-default-rtdb",
+        "path": "={{ \"conversations/\" + $node[\"Response formating\"].json.originId + \"/responses/\" + $node[\"Response formating\"].json.id }}",
+        "attributes": "id, originId, assignment, kinChatId, role, status, model, content, createAt"
+      },
+      "id": "7c07d5aa-9d4c-464f-8eda-8fe57c849cc9",
+      "name": "Store responses",
+      "type": "n8n-nodes-base.googleFirebaseRealtimeDatabase",
+      "typeVersion": 1,
+      "position": [
+        920,
+        1160
+      ],
+      "credentials": {
+        "googleFirebaseRealtimeDatabaseOAuth2Api": {
+          "id": "OVSbgNbwKqSqujMP",
+          "name": "Google Firebase Realtime Database account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "15106846-6a72-4b99-970e-8c45d0a0be4e",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "adff18e1-3e9f-4bcc-94a3-7a95ee7740c2",
+              "leftValue": "={{ $json.role }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "58b9419b-21ad-44fd-a51a-d3e4ecd5bde3",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "e9d97c33-1497-4fbe-bef2-712a70eab73d",
+              "leftValue": "={{ $json.content }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "bc0a9dc3-eb20-460e-a7dd-46608a0e12bd",
+              "leftValue": "={{ $json.createdAt }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "debab90b-4c13-4c5b-8be8-70339167c110",
+              "leftValue": "={{ $json.assignment }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "2551ab35-e621-4b2c-9154-2795d51fbab4",
+              "leftValue": "={{ $json.model }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "0e331fcd-ff55-45dd-a546-8c201f8a49a6",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        640,
+        1160
+      ]
     }
   ],
   "pinData": {
@@ -678,6 +926,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-12T17:43:38.000Z",
-  "versionId": "ad9620b9-5c26-419b-b457-2a8d6a579354"
+  "updatedAt": "2024-02-14T10:53:29.000Z",
+  "versionId": "13cf0d3f-832a-46d7-8aa6-79b997bfa97f"
 }
