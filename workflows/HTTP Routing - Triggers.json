@@ -34,17 +34,6 @@
         ]
       ]
     },
-    "POST - REPLY": {
-      "main": [
-        [
-          {
-            "node": "IF REPLY BODY + CREDENTIAL",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "IF CREDENTIAL": {
       "main": [
         [
@@ -135,24 +124,6 @@
         ]
       ]
     },
-    "IF REPLY BODY + CREDENTIAL": {
-      "main": [
-        [
-          {
-            "node": "POST - REPLY - Clean json",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Stop and Error",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "DOC Upload service": {
       "main": [
         [
@@ -191,6 +162,67 @@
         [
           {
             "node": "Store responses",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF REPLY BODY + CREDENTIAL": {
+      "main": [
+        [
+          {
+            "node": "POST - REPLY - Clean json",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "POST - REPLY": {
+      "main": [
+        [
+          {
+            "node": "IF REPLY BODY + CREDENTIAL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "POST - REPLY - Clean json": {
+      "main": [
+        [
+          {
+            "node": "DOC Upload service1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DOC Upload service1": {
+      "main": [
+        []
+      ]
+    },
+    "REPLY RESPONSE - String to JSON": {
+      "main": [
+        []
+      ]
+    },
+    "Response formating1": {
+      "main": [
+        [
+          {
+            "node": "Store responses1",
             "type": "main",
             "index": 0
           }
@@ -487,7 +519,7 @@
           "conditions": [
             {
               "id": "b46b87c9-f864-4dbc-ab27-a8025271ebe2",
-              "leftValue": "{{ $json.response }}",
+              "leftValue": "={{ $json.response }}",
               "rightValue": "",
               "operator": {
                 "type": "string",
@@ -635,20 +667,7 @@
     },
     {
       "parameters": {
-        "options": {}
-      },
-      "id": "b580ec8f-8af6-452d-a8d3-39c93419ec57",
-      "name": "IF REPLY BODY + CREDENTIAL",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        420,
-        220
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## REPLY\nhttps://kins.app.n8n.cloud/workflow/NjRYPuz1EgoPxWfP",
+        "content": "## Upload service\nhttps://kins.app.n8n.cloud/workflow/teBXUHMl5AIi70pR",
         "height": 276.1083494686582,
         "width": 250.71967654986526
       },
@@ -659,20 +678,6 @@
       "position": [
         900,
         100
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "NjRYPuz1EgoPxWfP",
-        "options": {}
-      },
-      "id": "33d3f25c-bd5a-4459-ac84-655c918ad499",
-      "name": "GET THREAD",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        980,
-        220
       ]
     },
     {
@@ -781,7 +786,7 @@
     },
     {
       "parameters": {
-        "jsCode": "$execution.customData.set(\"command\", \"httpcreate\");\n\nlet json = $node[\"POST - CREATE\"].json.body;\n\nreturn {\"json\": json};"
+        "jsCode": "$execution.customData.set(\"command\", \"httpcreate\");\n\nlet json = $node[\"POST - CREATE\"].json.body;\n\njson.client = json.client.toLowerCase();\n\nreturn {\"json\": json};"
       },
       "id": "dd78b52f-72f1-4643-83df-be9eaa5ad73d",
       "name": "POST - CREATE - Clean json",
@@ -794,7 +799,7 @@
     },
     {
       "parameters": {
-        "jsCode": "$execution.customData.set(\"command\", \"httpreply\");\n\nlet json = $node[\"POST - REPLY\"].json.body;\n\nreturn {\"json\": json};"
+        "jsCode": "$execution.customData.set(\"command\", \"httpreply\");\n\nlet json = $node[\"POST - REPLY\"].json.body;\n\njson.client = json.client.toLowerCase();\n\nreturn {\"json\": json};"
       },
       "id": "4c60ed67-05cc-4882-8774-37d027c0f595",
       "name": "POST - REPLY - Clean json",
@@ -807,7 +812,7 @@
     },
     {
       "parameters": {
-        "jsCode": "function stringToJson(str) {\n  try {\n    return JSON.parse(str);\n  } catch (e) {\n    console.error(\"Invalid JSON string\", e);\n    return null;\n  }\n}\n\nlet jsonString = $node[\"DOC Upload service\"].json.response;\n\nlet jsonObject = stringToJson(jsonString);\nreturn jsonObject;"
+        "jsCode": "function stringToJson(str) {\n  try {\n    return JSON.parse(str);\n  } catch (e) {\n    console.error(\"Invalid JSON string\", e);\n    return null;\n  }\n}\n\nlet jsonString = $node[\"DOC Upload service1\"].json.response;\n\nlet jsonObject = stringToJson(jsonString);\nreturn jsonObject;"
       },
       "id": "7acae7f6-8062-4abc-912d-7407b5fe908e",
       "name": "REPLY RESPONSE - String to JSON",
@@ -842,7 +847,7 @@
     {
       "parameters": {
         "content": "## RESPONSE KIN PROCESS ",
-        "height": 220.28236521985798,
+        "height": 224.46057348056365,
         "width": 415.58981732456584
       },
       "id": "5d6e3981-eec3-46be-b0f5-c1d6e00a2013",
@@ -865,6 +870,144 @@
       "position": [
         1780,
         -120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "01eae990-a41c-4cb2-a165-0fe76cd46c05",
+              "leftValue": "={{ $json.body.threadSubject }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "a1ddaad2-75d8-4760-9145-1199c0543590",
+              "leftValue": "={{ $json.body.mission }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ce4f71c9-5ffb-4434-bdee-03d5b05811b5",
+              "leftValue": "={{ $json.body.kin }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "03610b83-44d7-46b5-a5d8-020756a9c255",
+              "leftValue": "={{ $json.headers.credential }}",
+              "rightValue": "__n8n_BLANK_VALUE_e5362baf-c777-4d57-a609-6eaf1f9e87f6",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "fa791eee-9d7e-4286-a33d-b0c0f7f5dda9",
+              "leftValue": "={{ $json.body.threadId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "aa368036-4143-4222-b972-ce26cff8cd7d",
+      "name": "IF REPLY BODY + CREDENTIAL",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        420,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "teBXUHMl5AIi70pR",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "a2a41db1-4777-472d-ab95-4f7a147b998f",
+      "name": "DOC Upload service1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        980,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "projectId": "kincir-9369f-default-rtdb",
+        "path": "={{ \"conversations/\" + $node[\"Response formating1\"].json.originId + \"/responses/\" + $node[\"Response formating1\"].json.id }}",
+        "attributes": "id, originId, assignment, role, status, model, content, createdAt"
+      },
+      "id": "8e6ce034-fb66-42e3-84a8-c41f2384ed76",
+      "name": "Store responses1",
+      "type": "n8n-nodes-base.googleFirebaseRealtimeDatabase",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        221
+      ],
+      "credentials": {
+        "googleFirebaseRealtimeDatabaseOAuth2Api": {
+          "id": "OVSbgNbwKqSqujMP",
+          "name": "Google Firebase Realtime Database account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## RESPONSE KIN PROCESS ",
+        "height": 220.28236521985798,
+        "width": 415.58981732456584
+      },
+      "id": "f94a975b-f834-408c-bd05-b98a86b3f92f",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let json = {};\n\njson.role = \"Kin\";\njson.status = $node[\"CREATE RESPONSE - String to JSON\"].json.status;\njson.content = $node[\"CREATE RESPONSE - String to JSON\"].json.instructions;\njson.createdAt = $node[\"CREATE RESPONSE - String to JSON\"].json.date;\njson.id = $node[\"CREATE RESPONSE - String to JSON\"].json.executionId;\njson.originId = $node[\"CREATE RESPONSE - String to JSON\"].json.threadId;\njson.assignment = $node[\"CREATE RESPONSE - String to JSON\"].json.mission;\njson.model = $node[\"CREATE RESPONSE - String to JSON\"].json.kin;\n\nreturn json;"
+      },
+      "id": "f4579946-ba9d-481e-903f-68c2d86ba3ba",
+      "name": "Response formating1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1780,
+        221
       ]
     }
   ],
@@ -889,6 +1032,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2024-02-14T10:50:21.000Z",
-  "versionId": "7d731d2b-0af8-404c-bc67-43846046d9d6"
+  "updatedAt": "2024-02-14T17:11:29.000Z",
+  "versionId": "88918373-07b3-44a5-a9e8-c6fc189e1eea"
 }
