@@ -762,7 +762,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let json = {};\n\njson.role = \"Kin\";\njson.status = $node[\"documentDemandeur\"].json.status;\njson.content = $node[\"documentDemandeur\"].json.instructions;\njson.createdAt = $node[\"documentDemandeur\"].json.date;\njson.id = $node[\"documentDemandeur\"].json.missionId;\njson.originId = $node[\"documentDemandeur\"].json.threadId;\njson.assignment = $node[\"documentDemandeur\"].json.mission;\njson.model = $node[\"documentDemandeur\"].json.kin;\n\nreturn json;"
+        "jsCode": "let json = {};\n\njson.role = \"Kin\";\njson.status = $node[\"documentDemandeur\"].json.status;\njson.content = $node[\"documentDemandeur\"].json.instructions;\njson.createdAt = $node[\"documentDemandeur\"].json.date;\njson.id = $node[\"documentDemandeur\"].json.executionId;\njson.originId = $node[\"documentDemandeur\"].json.threadId;\njson.assignment = $node[\"documentDemandeur\"].json.mission;\njson.model = $node[\"documentDemandeur\"].json.kin;\n\nreturn json;"
       },
       "id": "469a637e-b221-4a0c-b055-fb6ed79c4e70",
       "name": "Response formating",
@@ -929,6 +929,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-13T19:35:07.000Z",
-  "versionId": "e862056a-1b55-408a-b74d-2cacafe023da"
+  "updatedAt": "2024-02-14T10:50:42.000Z",
+  "versionId": "2438f453-1d3f-453b-9514-5f2f0255bd33"
 }
