@@ -176,18 +176,7 @@
         ],
         [
           {
-            "node": "kinchercheur1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kinchercheur1": {
-      "main": [
-        [
-          {
-            "node": "nouvelleEntree",
+            "node": "kinchercheur - encapsulation",
             "type": "main",
             "index": 0
           }
@@ -251,6 +240,17 @@
         [
           {
             "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinchercheur - encapsulation": {
+      "main": [
+        [
+          {
+            "node": "nouvelleEntree",
             "type": "main",
             "index": 0
           }
@@ -381,7 +381,7 @@
     {
       "parameters": {
         "assistantId": "asst_MHJDvt7FT6gcWBFdJsZqJ52C",
-        "text": "=# Instructions du filtrage d'Etudes\n\n## Ontologie du filtrage d'Etudes\n\n### Graphe\n\ngraph TD\n  Etude -->|évaluée selon| PertinenceContextuelle\n  Etude -->|contient| InformationSpecifique\n  RelevancyAssessment -->|dépend de| PertinenceContextuelle\n  RelevancyAssessment -->|dépend de| InformationSpecifique\n  RelevancyAssessment -->|impacte| Relevant\n\n### Concepts Principaux\n\n#### Etude\n- Document scientifique ou académique évalué pour son respect de la spécificité de l'application et de l'objectif\n\n#### Pertinence Contextuelle\n- Evaluation de la spécificité de l'information fournie par l'étude par rapport à l'application et l'objectif\n\n#### Information Spécifique\n- Détails relatifs à la forme spécifique de l'application et de l'objectif présents dans l'étude\n\n#### Relevancy Assessment\n- Analyse de l'adéquation de l'étude avec l'application et l'objectif spécifiques\n- Détermine si l'étude est contextuellement pertinente et contient l'information spécifique requise\n\n#### Relevant\n- Indicateur boolean reflétant la pertinence de l'étude en fonction de la présence des spécificités requises\n- Valeur \"TRUE\" si l'étude est jugée pertinente ; \"FALSE\" sinon\n\n### Sous-éléments Liés\n\n#### Spécificité de l'Application\n- Exigence que l'étude aborde un aspect concret de l'application envisagée\n\n#### Spécificité de l'Objectif\n- Nécessité que l'étude cible explicitement l'objectif particulier attendu\n\n#### Titre et Snippet\n- Extraits de l'étude indiquant sa pertinence vis-à-vis de l'application et de l'objectif\n- Éléments évalués pour la première impression de la pertinence de l'étude\n\n### Relations Entre Concepts\n\n- La **Pertinence Contextuelle** d'une **Etude** est évaluée sur la base de l'**Information Spécifique** qu'elle contient.\n- L'**Etude** passe par une **Relevancy Assessment** pour déterminer sa pertinence.\n- La **Relevancy Assessment** est étroitement liée à la **Pertinence Contextuelle** et à l'**Information Spécifique**, car la pertinence d'une étude dépend de sa capacité à répondre aux particularités de l'application et de l'objectif.\n- L'issue de l'**Relevancy Assessment** est reflétée dans l'indicateur **Relevant**, accordant une valeur \"TRUE\" si les conditions de spécificité sont remplies et \"FALSE\" si elles ne le sont pas.\n\n## Mission Globale\n\n{{ $item(0).$node[\"entree\"].json.mission?$item(0).$node[\"entree\"].json.mission:\"Découverte & exploration générale\" }}\n\n## Demande Spécifique (Query)\n\n{{ $item(0).$node[\"entree\"].json.query }}\n\n## Résultats\n\n{{ JSON.stringify($json.results) }}\n\n## Instructions\n\nPour chaque résultat :\n- Affiche la référence de l'étude en commençant par le titre.\n- Résume les informations du snippet en un court texte.\n- Explicite en une phrase objective et critique la pertinence de l'étude dans le cadre de la Mission.\n- Affiche \"PERTINENT\" ou \"A ECARTER\".",
+        "text": "=# Instructions du filtrage d'Etudes\n\n## Ontologie du filtrage d'Etudes\n\n### Graphe\n\ngraph TD\n  Etude -->|évaluée selon| PertinenceContextuelle\n  Etude -->|contient| InformationSpecifique\n  RelevancyAssessment -->|dépend de| PertinenceContextuelle\n  RelevancyAssessment -->|dépend de| InformationSpecifique\n  RelevancyAssessment -->|impacte| Relevant\n\n### Concepts Principaux\n\n#### Etude\n- Document scientifique ou académique évalué pour son respect de la spécificité de l'application et de l'objectif\n\n#### Pertinence Contextuelle\n- Evaluation de la spécificité de l'information fournie par l'étude par rapport à l'application et l'objectif\n\n#### Information Spécifique\n- Détails relatifs à la forme spécifique de l'application et de l'objectif présents dans l'étude\n\n#### Relevancy Assessment\n- Analyse de l'adéquation de l'étude avec l'application et l'objectif spécifiques\n- Détermine si l'étude est contextuellement pertinente et contient l'information spécifique requise\n\n#### Relevant\n- Indicateur boolean reflétant la pertinence de l'étude en fonction de la présence des spécificités requises\n- Valeur \"TRUE\" si l'étude est jugée pertinente ; \"FALSE\" sinon\n\n### Sous-éléments Liés\n\n#### Spécificité de l'Application\n- Exigence que l'étude aborde un aspect concret de l'application envisagée\n\n#### Spécificité de l'Objectif\n- Nécessité que l'étude cible explicitement l'objectif particulier attendu\n\n#### Titre et Snippet\n- Extraits de l'étude indiquant sa pertinence vis-à-vis de l'application et de l'objectif\n- Éléments évalués pour la première impression de la pertinence de l'étude\n\n### Relations Entre Concepts\n\n- La **Pertinence Contextuelle** d'une **Etude** est évaluée sur la base de l'**Information Spécifique** qu'elle contient.\n- L'**Etude** passe par une **Relevancy Assessment** pour déterminer sa pertinence.\n- La **Relevancy Assessment** est étroitement liée à la **Pertinence Contextuelle** et à l'**Information Spécifique**, car la pertinence d'une étude dépend de sa capacité à répondre aux particularités de l'application et de l'objectif.\n- L'issue de l'**Relevancy Assessment** est reflétée dans l'indicateur **Relevant**, accordant une valeur \"TRUE\" si les conditions de spécificité sont remplies et \"FALSE\" si elles ne le sont pas.\n\n## Mission Globale\n\n{{ $item(0).$node[\"entree\"].json.mission?$item(0).$node[\"entree\"].json.mission:\"Découverte & exploration générale\" }}\n\n## Demande Spécifique (Query)\n\n{{ $item(0).$node[\"entree\"].json.query }}\n\n## Résultats\n\n{{ JSON.stringify($json.results) }}\n\n## Instructions\n\nPour chaque résultat :\n- Affiche la référence de l'étude en commençant par le titre.\n- Donne le nom du journal dans lequel l'étude et publié (précise si possible s'il sagit d'un journal à comité de lecture)\n- Résume les informations du snippet en un court texte.\n- Explicite en une phrase objective et critique la pertinence de l'étude dans le cadre de la Mission.\n- Affiche \"PERTINENT\" ou \"A ECARTER\".",
         "options": {}
       },
       "id": "a29949cc-1686-48cc-8a0c-a1d5b5484bab",
@@ -507,7 +507,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = {};\nlet entree = $item(0).$node[\"entree\"].json;\n\njson.resource = $json.resource;\njson.threadId = entree.threadId;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = {};\nlet entree = $item(0).$node[\"entree\"].json;\n\njson.resource = $json.resource;\njson.missionId = entree.missionId;\n\nreturn {\"json\": json};"
       },
       "id": "68d1c886-5372-48b5-959f-fb4cd0771da6",
       "name": "entree pinecone",
@@ -517,28 +517,6 @@
         4720,
         -400
       ]
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
-        "text": "=# Informatif - Fonction Recherche Google Scholar\n\nLa fonction \"recherche_google_scholar\" renvoie la première page des résultats de Google Scholar à partir d'une liste de queries en Anglais, filtrés et avec une évaluation de leur pertinence. Il est possible de passer la date limite des études.\n\nFormat exemple :\n\n``\nJe souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020 :\n- \"Multi-Agent Systems LLM\",\n- \"multi_agent collaboration GPT\",\n- \"Complex systems agents LLM\".\n``\n\n# Contexte \n\nTu es dans le workflow de la fonction GPT \"recherche_google_scholar\". Tu aides le Kin à reformuler la requête d'entrée de la fonction.\n\n## Mission Globale\n\n{{ $node[\"entree\"].json.mission?$node[\"entree\"].json.mission:\"Découverte & exploration générale\" }}\n\n## Query initiale\n\n{{ $node[\"entree\"].json.query }}\n\n## Instructions\n\nReforumle la query initiale selon le format exemple. Affiche UNIQUEMENT la Query reformulée :\n\nQuery reformulée :",
-        "options": {}
-      },
-      "id": "e4a6d0db-b6a5-45d4-9998-35eeaef9751c",
-      "name": "kinchercheur1",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        2680,
-        60
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -701,6 +679,28 @@
         -360
       ],
       "webhookId": "3247566d-0dd3-4351-971e-2c73a179e187"
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_rYxwavLJhgSLiKO3cHUzsmnt",
+        "text": "=# Informatif - Fonction Recherche Google Scholar\n\nLa fonction \"recherche_google_scholar\" renvoie la première page des résultats de Google Scholar à partir d'une liste de queries en Anglais, filtrés et avec une évaluation de leur pertinence. Il est possible de passer la date limite des études.\n\nFormat exemple :\n\n``\nJe souhaite faire des recherches pour améliorer l'équipe de Kin. Etudes après 2020 :\n- \"Multi-Agent Systems LLM\",\n- \"multi_agent collaboration GPT\",\n- \"Complex systems agents LLM\".\n``\n\n# Contexte \n\nTu es dans le workflow de la fonction GPT \"recherche_google_scholar\". Tu aides le Kin à reformuler la requête d'entrée de la fonction.\n\n## Mission Globale\n\n{{ $node[\"entree\"].json.mission?$node[\"entree\"].json.mission:\"Découverte & exploration générale\" }}\n\n## Query initiale\n\n{{ $node[\"entree\"].json.query }}\n\n## Instructions\n\nReforumle la query initiale selon le format exemple. Affiche UNIQUEMENT la Query reformulée :\n\nQuery reformulée :",
+        "options": {}
+      },
+      "id": "e4a6d0db-b6a5-45d4-9998-35eeaef9751c",
+      "name": "kinchercheur - encapsulation",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        2680,
+        60
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -725,6 +725,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-08T15:41:06.000Z",
-  "versionId": "3a9ad970-d94f-4e44-83e1-d19c41652be6"
+  "updatedAt": "2024-02-14T22:37:01.000Z",
+  "versionId": "f084aa2d-b24e-49d8-a278-29ed9d54753d"
 }
