@@ -463,7 +463,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n$execution.customData.set(\"kin\", String(json.kin));\n\nreturn {\"json\": json};"
       },
       "id": "59d20e8c-1475-4d1a-a7ff-41b956116f39",
       "name": "entree",
@@ -1693,6 +1693,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-13T12:07:02.000Z",
-  "versionId": "b42b7d41-c014-4f83-b684-a9b65896acfc"
+  "updatedAt": "2024-02-14T22:26:16.000Z",
+  "versionId": "816a549a-5978-4af3-9e26-cdae3cebcfd9"
 }
