@@ -727,7 +727,82 @@
       ]
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Mail Trigger": [
+      {
+        "json": {
+          "id": "18da91546c3c7090",
+          "threadId": "18da91546c3c7090",
+          "labelIds": [
+            "UNREAD",
+            "IMPORTANT",
+            "CATEGORY_PERSONAL",
+            "INBOX"
+          ],
+          "sizeEstimate": 9444,
+          "headers": {
+            "delivered-to": "Delivered-To: kinredacteurscientifique@digitalkin.ai",
+            "received": "Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])\r\n        by mx.google.com with SMTPS id y26-20020a056512045a00b00511881660a4sor1222131lfk.3.2024.02.14.11.25.59\r\n        for <kinredacteurscientifique@digitalkin.ai>\r\n        (Google Transport Security);\r\n        Wed, 14 Feb 2024 11:26:00 -0800 (PST)",
+            "x-received": "X-Received: by 2002:a19:691a:0:b0:511:4f21:4517 with SMTP id\r\n e26-20020a19691a000000b005114f214517mr2142623lfc.33.1707938759352; Wed, 14\r\n Feb 2024 11:25:59 -0800 (PST)",
+            "arc-seal": "ARC-Seal: i=1; a=rsa-sha256; t=1707938760; cv=none;\r\n        d=google.com; s=arc-20160816;\r\n        b=kpRvfruE2HQbukLcFJNYZxx7S4VQNWaYAqfzP7APTmUhN5aEyYrFPVOtalFEWDW2mS\r\n         fg52AojvkHnenVKf+OQSVYwJKo7K2nqHnT1CxD8xRKgLb1L4Tj9KXiCcOsSB6gAbfrt1\r\n         tgpr3rLXnkpOuBoS7rERqbH8Uy3To5ZLPoWhv1yi0l+QYwTk0nfFuG4OCBPiz/dp4Ipo\r\n         e9OyCmD7pLiIznlBPet66qAZsNIMOmp24T7/j/iPRdNqJP1X2ocnmbhnNolijieeHxZG\r\n         ejtHQbzL194AM+ThY4Qkj+JfIYEM2whrDRz9Nf1Jc1BD6p1sKY0tHsdHIM8YV8MPHXdx\r\n         nlMA==",
+            "arc-message-signature": "ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;\r\n        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;\r\n        bh=qyu6ply7UFiAlnsv2iIlxTQxpg80xuq2PHStU/+jlY8=;\r\n        fh=1ZRDODimKk39w/KPMdHJXOQe8E6W1IWujDkOw6r06iA=;\r\n        b=l9T184Yk+ChqWg68ryk9h2DUoYpr7NALAhHFBSlrA8qf4ZrT1YS8y6ceI1BH7Mg3w3\r\n         MLd0Ed63uizo/fVVy7JiGqaLhO9IJC8wO0AaENNXdeSGPmUrItH7sGqnDCR0iCMEFlxP\r\n         SnBS+JG1BYPlb79QPbaMT1ug0PJ7orZJb7wfI5ik9ZFNv5B98GDtDaD7vutvHPqVVGxv\r\n         o+MlE18SCNzTZEhKA+LHTcGqnD2vXVOpowYCGqYqw905E1SM3xJidOmFPciQCBmpKAKG\r\n         HwpR/DdLcvKpAJa9whs2H0d8x4JC/l3IPdbUBhUwxAzcHka40uafdqAGRmd11CIqKjIM\r\n         kw7w==;\r\n        darn=digitalkin.ai",
+            "arc-authentication-results": "ARC-Authentication-Results: i=1; mx.google.com;\r\n       dkim=pass header.i=@dynergie-fr.20230601.gappssmtp.com header.s=20230601 header.b=q0sTFA8j;\r\n       spf=pass (google.com: domain of lreynolds@dynergie.fr designates 209.85.220.41 as permitted sender) smtp.mailfrom=lreynolds@dynergie.fr;\r\n       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=dynergie.fr",
+            "return-path": "Return-Path: <lreynolds@dynergie.fr>",
+            "received-spf": "Received-SPF: pass (google.com: domain of lreynolds@dynergie.fr designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;",
+            "authentication-results": "Authentication-Results: mx.google.com;\r\n       dkim=pass header.i=@dynergie-fr.20230601.gappssmtp.com header.s=20230601 header.b=q0sTFA8j;\r\n       spf=pass (google.com: domain of lreynolds@dynergie.fr designates 209.85.220.41 as permitted sender) smtp.mailfrom=lreynolds@dynergie.fr;\r\n       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=dynergie.fr",
+            "dkim-signature": "DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;\r\n        d=dynergie-fr.20230601.gappssmtp.com; s=20230601; t=1707938759; x=1708543559; darn=digitalkin.ai;\r\n        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject\r\n         :date:message-id:reply-to;\r\n        bh=qyu6ply7UFiAlnsv2iIlxTQxpg80xuq2PHStU/+jlY8=;\r\n        b=q0sTFA8jl/NqJPcj45QjTXCPxewIbq53+tPP1m4tE3S2AAo1WQmv+PYcjTt5/f+zNq\r\n         3gYpgXQwEjYcCdxigXUBHqmg6/sYwoqcvkuNXjoDIpDOSzC4v1TusWfoMPNK1nQGE8Kc\r\n         /a/sqERyIu3Ud9fOMdP2/Er0Hlh7VCQeOeiLtHfBu8hTGYFR+hsg3asSd6qouPEuOiFm\r\n         BUVywp8ulN8VNrczjGoaGshc6q3uIz0tXc2O2wD0kmIMIIMYMZZPpKR6AaU62PhJ9oN+\r\n         KkQEdnfLKevCMJEH7EyPTRP81ecV5W3yTG4iFUOpzIPd23vNn2+TdjGRmizejO/aLiYQ\r\n         QK2Q==",
+            "x-google-dkim-signature": "X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;\r\n        d=1e100.net; s=20230601; t=1707938759; x=1708543559;\r\n        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state\r\n         :from:to:cc:subject:date:message-id:reply-to;\r\n        bh=qyu6ply7UFiAlnsv2iIlxTQxpg80xuq2PHStU/+jlY8=;\r\n        b=oZp/0zB/nRtLgRPXXjX/e5GL+Im/kYTcbOtmp+mWh3XpdjkIzAd9ViIdRV45AlUqxY\r\n         0VVdwMZR3fPbluNhbfwmwjogydahL/+SEfyCPiFUDyqFz0YXElmSdp18tm0figl3wPA3\r\n         EWrCYflGF7oUMnE930YI4HohjvUiZT1m6afbUpAtlkAlVvs6UwU8D5gVg+Ngz6GcMkx+\r\n         oLEK6HyMR9qMvff3szorY20nRhpCwDrs+AD2fQUM/FVdAlhkRRC0tK1ivfD0OC/ej8DX\r\n         dmfU2uXGFcXaCEOBAbwN/KAyAxn1gMFUcwFuDAQj/j2/46Z8bwy9lCjad1Kon7kP+Q40\r\n         coRA==",
+            "x-gm-message-state": "X-Gm-Message-State: AOJu0YzHtI96C+NyzhCx91IRo01SQzy0dhGGJrwZ7P/eMpGLWlOSe7ma\r\n\tBpWy4lDKrWm66Cv48fXlOdlKTYQe1uwctjRVntHWXOUriBNQZOtGCnepyvXX0CxThuSrTtz2Iou\r\n\tZ/2LpagEJ41EhVjVgNbKdcN7F82MUyVZkulgAuKNFMWlamr+Fo2CrnQ==",
+            "x-google-smtp-source": "X-Google-Smtp-Source: AGHT+IGvKKKMxkAojmuzBQgdOtWUk3GP9L+rZqivHr6bQikqMrtpo7++hPIyq03a+SWGJqvSvv0rvOUlHh6XhuGtywU=",
+            "mime-version": "MIME-Version: 1.0",
+            "from": "From: Lester Reynolds <lreynolds@dynergie.fr>",
+            "date": "Date: Wed, 14 Feb 2024 20:25:48 +0100",
+            "message-id": "Message-ID: <CA+eamPP=wTz6LkQ65ec3ZDv3_6nKbux+wDa48qr-EWRZ4DNsqA@mail.gmail.com>",
+            "subject": "Subject: =?UTF-8?B?UmV2dWUgZGUgbGl0dMOpcmF0dXJlIC0gRWZmaWNhY2l0w6kgZGUgbCdob23DqW9wYXRoaQ==?=\r\n\t=?UTF-8?B?ZSBlbiBzYW50w6kgYW5pbWFsZSAoRXNzYWkgbsKwMSk=?=",
+            "to": "To: \"kinredacteurscientifique@digitalkin.ai\" <kinredacteurscientifique@digitalkin.ai>",
+            "cc": "Cc: aurore.inchauspe@boiron.fr",
+            "content-type": "Content-Type: multipart/alternative; boundary=\"0000000000000cd41506115c7bf9\""
+          },
+          "html": "<div dir=\"ltr\">CONTEXTE DE LA REVUE<br>•\tSujet de la revue de littérature*: Efficacité de l&#39;homéopathie en santé animale à travers différentes espèces.<br>•\tObjectifs spécifiques de la revue*: Évaluer l&#39;efficacité de l&#39;homéopathie dans le traitement de diverses conditions chez les animaux de compagnie, les animaux d&#39;élevage, et les animaux sauvages, en se basant sur des études cliniques et fondamentales.<br>•\tQuestions de recherche principales*: Quelle est la preuve de l&#39;efficacité de l&#39;homéopathie dans le traitement des maladies chez différentes espèces animales? Comment les résultats varient-ils entre les animaux de compagnie, d&#39;élevage et sauvages?<br>•\tDomaines scientifiques concernés*: Médecine vétérinaire, pharmacologie, médecine alternative et complémentaire, écologie.<br>PROJET DE RECHERCHE<br>•\tDescription des méthodes de recherche envisagées pour la revue*: Recherche et analyse systématique de la littérature utilisant des bases de données académiques. Sélection et évaluation des études en fonction de critères prédéfinis pour assurer la pertinence et la qualité.<br>•\tApport attendu de la revue pour le domaine de recherche*: Clarifier l&#39;état des connaissances sur l&#39;efficacité de l&#39;homéopathie en santé animale, identifier des tendances ou des différences dans les résultats en fonction du type d&#39;animaux, et déterminer des directions pour les recherches futures.<br>BESOINS ET EXIGENCES<br>•\tExigences sur les résultats attendus*: juste le Livrable intermédiaire : résultat des recherches google scholar<br></div>\n",
+          "text": "CONTEXTE DE LA REVUE\n• Sujet de la revue de littérature*: Efficacité de l'homéopathie en santé\nanimale à travers différentes espèces.\n• Objectifs spécifiques de la revue*: Évaluer l'efficacité de l'homéopathie\ndans le traitement de diverses conditions chez les animaux de compagnie,\nles animaux d'élevage, et les animaux sauvages, en se basant sur des études\ncliniques et fondamentales.\n• Questions de recherche principales*: Quelle est la preuve de l'efficacité\nde l'homéopathie dans le traitement des maladies chez différentes espèces\nanimales? Comment les résultats varient-ils entre les animaux de compagnie,\nd'élevage et sauvages?\n• Domaines scientifiques concernés*: Médecine vétérinaire, pharmacologie,\nmédecine alternative et complémentaire, écologie.\nPROJET DE RECHERCHE\n• Description des méthodes de recherche envisagées pour la revue*:\nRecherche et analyse systématique de la littérature utilisant des bases de\ndonnées académiques. Sélection et évaluation des études en fonction de\ncritères prédéfinis pour assurer la pertinence et la qualité.\n• Apport attendu de la revue pour le domaine de recherche*: Clarifier\nl'état des connaissances sur l'efficacité de l'homéopathie en santé\nanimale, identifier des tendances ou des différences dans les résultats en\nfonction du type d'animaux, et déterminer des directions pour les\nrecherches futures.\nBESOINS ET EXIGENCES\n• Exigences sur les résultats attendus*: juste le Livrable intermédiaire :\nrésultat des recherches google scholar\n",
+          "textAsHtml": "<p>CONTEXTE DE LA REVUE<br/>&bull; Sujet de la revue de litt&eacute;rature*: Efficacit&eacute; de l&apos;hom&eacute;opathie en sant&eacute;<br/>animale &agrave; travers diff&eacute;rentes esp&egrave;ces.<br/>&bull; Objectifs sp&eacute;cifiques de la revue*: &Eacute;valuer l&apos;efficacit&eacute; de l&apos;hom&eacute;opathie<br/>dans le traitement de diverses conditions chez les animaux de compagnie,<br/>les animaux d&apos;&eacute;levage, et les animaux sauvages, en se basant sur des &eacute;tudes<br/>cliniques et fondamentales.<br/>&bull; Questions de recherche principales*: Quelle est la preuve de l&apos;efficacit&eacute;<br/>de l&apos;hom&eacute;opathie dans le traitement des maladies chez diff&eacute;rentes esp&egrave;ces<br/>animales? Comment les r&eacute;sultats varient-ils entre les animaux de compagnie,<br/>d&apos;&eacute;levage et sauvages?<br/>&bull; Domaines scientifiques concern&eacute;s*: M&eacute;decine v&eacute;t&eacute;rinaire, pharmacologie,<br/>m&eacute;decine alternative et compl&eacute;mentaire, &eacute;cologie.<br/>PROJET DE RECHERCHE<br/>&bull; Description des m&eacute;thodes de recherche envisag&eacute;es pour la revue*:<br/>Recherche et analyse syst&eacute;matique de la litt&eacute;rature utilisant des bases de<br/>donn&eacute;es acad&eacute;miques. S&eacute;lection et &eacute;valuation des &eacute;tudes en fonction de<br/>crit&egrave;res pr&eacute;d&eacute;finis pour assurer la pertinence et la qualit&eacute;.<br/>&bull; Apport attendu de la revue pour le domaine de recherche*: Clarifier<br/>l&apos;&eacute;tat des connaissances sur l&apos;efficacit&eacute; de l&apos;hom&eacute;opathie en sant&eacute;<br/>animale, identifier des tendances ou des diff&eacute;rences dans les r&eacute;sultats en<br/>fonction du type d&apos;animaux, et d&eacute;terminer des directions pour les<br/>recherches futures.<br/>BESOINS ET EXIGENCES<br/>&bull; Exigences sur les r&eacute;sultats attendus*: juste le Livrable interm&eacute;diaire :<br/>r&eacute;sultat des recherches google scholar</p>",
+          "subject": "Revue de littérature - Efficacité de l'homéopathie en santé animale (Essai n°1)",
+          "date": "2024-02-14T19:25:48.000Z",
+          "to": {
+            "value": [
+              {
+                "address": "kinredacteurscientifique@digitalkin.ai",
+                "name": ""
+              }
+            ],
+            "html": "<span class=\"mp_address_group\"><a href=\"mailto:kinredacteurscientifique@digitalkin.ai\" class=\"mp_address_email\">kinredacteurscientifique@digitalkin.ai</a></span>",
+            "text": "kinredacteurscientifique@digitalkin.ai"
+          },
+          "from": {
+            "value": [
+              {
+                "address": "lreynolds@dynergie.fr",
+                "name": "Lester Reynolds"
+              }
+            ],
+            "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">Lester Reynolds</span> &lt;<a href=\"mailto:lreynolds@dynergie.fr\" class=\"mp_address_email\">lreynolds@dynergie.fr</a>&gt;</span>",
+            "text": "Lester Reynolds <lreynolds@dynergie.fr>"
+          },
+          "cc": {
+            "value": [
+              {
+                "address": "aurore.inchauspe@boiron.fr",
+                "name": ""
+              }
+            ],
+            "html": "<span class=\"mp_address_group\"><a href=\"mailto:aurore.inchauspe@boiron.fr\" class=\"mp_address_email\">aurore.inchauspe@boiron.fr</a></span>",
+            "text": "aurore.inchauspe@boiron.fr"
+          },
+          "messageId": "<CA+eamPP=wTz6LkQ65ec3ZDv3_6nKbux+wDa48qr-EWRZ4DNsqA@mail.gmail.com>"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -748,9 +823,9 @@
       ]
     },
     "node:Mail Trigger": {
-      "lastTimeChecked": 1707907424,
+      "lastTimeChecked": 1707950401,
       "possibleDuplicates": [
-        "18da7372707b3565"
+        "18da9c6e6c6a7533"
       ]
     }
   },
@@ -775,6 +850,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-14T10:44:54.000Z",
-  "versionId": "e48de354-8b74-4995-ac62-8051c7bc8a01"
+  "updatedAt": "2024-02-14T22:40:54.000Z",
+  "versionId": "fb676ae7-9c1d-4b32-bc73-e54d2a6367e5"
 }
