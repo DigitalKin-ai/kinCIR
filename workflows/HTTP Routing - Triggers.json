@@ -196,11 +196,6 @@
           }
         ]
       ]
-    },
-    "REPLY RESPONSE - String to JSON": {
-      "main": [
-        []
-      ]
     }
   },
   "createdAt": "2024-01-30T15:29:49.496Z",
@@ -861,7 +856,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let json = {};\n\njson.role = \"Kin\";\njson.status = $node[\"CREATE RESPONSE - String to JSON\"].json.status;\njson.content = $node[\"CREATE RESPONSE - String to JSON\"].json.instructions;\njson.createdAt = $node[\"CREATE RESPONSE - String to JSON\"].json.date;\njson.id = $node[\"CREATE RESPONSE - String to JSON\"].json.missionId;\njson.originId = $node[\"CREATE RESPONSE - String to JSON\"].json.threadId;\njson.assignment = $node[\"CREATE RESPONSE - String to JSON\"].json.mission;\njson.model = $node[\"CREATE RESPONSE - String to JSON\"].json.kin;\n\nreturn json;"
+        "jsCode": "let json = {};\n\njson.role = \"Kin\";\njson.status = $node[\"CREATE RESPONSE - String to JSON\"].json.status;\njson.content = $node[\"CREATE RESPONSE - String to JSON\"].json.instructions;\njson.createdAt = $node[\"CREATE RESPONSE - String to JSON\"].json.date;\njson.id = $node[\"CREATE RESPONSE - String to JSON\"].json.executionId;\njson.originId = $node[\"CREATE RESPONSE - String to JSON\"].json.threadId;\njson.assignment = $node[\"CREATE RESPONSE - String to JSON\"].json.mission;\njson.model = $node[\"CREATE RESPONSE - String to JSON\"].json.kin;\n\nreturn json;"
       },
       "id": "552bdef0-0894-49ba-987f-7394b9c01bb4",
       "name": "Response formating",
@@ -894,6 +889,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2024-02-13T17:16:20.000Z",
-  "versionId": "641bc55d-fa20-49c4-a17a-c520f93b2fa0"
+  "updatedAt": "2024-02-14T10:50:21.000Z",
+  "versionId": "7d731d2b-0af8-404c-bc67-43846046d9d6"
 }
