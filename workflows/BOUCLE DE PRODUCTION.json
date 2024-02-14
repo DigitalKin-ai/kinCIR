@@ -29,6 +29,11 @@
             "node": "kinontologiedomaine",
             "type": "ai_tool",
             "index": 0
+          },
+          {
+            "node": "kinredacteurscientifique",
+            "type": "ai_tool",
+            "index": 0
           }
         ]
       ]
@@ -734,6 +739,17 @@
         ]
       ]
     },
+    "/crud_mission/delete": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Update status1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Switch": {
       "main": [
         [
@@ -892,18 +908,72 @@
         ],
         [
           {
-            "node": "/crud_mission/delete",
+            "node": "kincommunitymanager",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinlcabeta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinredacteurscientifique",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "kinmissionouverte",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "/crud_mission/delete": {
+    "kincommunitymanager": {
       "main": [
         [
           {
-            "node": "CRUD Mission : Update status1",
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinlcabeta": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinredacteurscientifique": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinmissionouverte": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
             "type": "main",
             "index": 0
           }
@@ -1148,7 +1218,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"input\"].json;\n$execution.customData.set(\"kin\", json.kin);\n\n// Cleaner les datas utilisées\ndelete json.output;\ndelete json.dernierProducteur;\ndelete json.promptProducteur;\njson.remainingThread = \"\";\n\n// Préparer le nouveau thread\njson.entireThread = $node[\"thread\"].json.thread;\njson.thread = $node[\"thread\"].json.thread;\n\nMAX_LENGTH = 10000;\nif (json.thread.length > MAX_LENGTH) {\n    json.thread = \"Le début du document est déjà rédigé, voici le thread :\\n\\n[...]\" + json.thread.substring(json.thread.length - MAX_LENGTH);\n    json.remainingThread = json.entireThread.substring(0, json.entireThread.length - MAX_LENGTH);\n}\n\nif (!json.documentGoogleDriveId) {\n  json.documentGoogleDriveId = $node[\"thread\"].json.documentGoogleDriveId;\n}\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"input\"].json;\n$execution.customData.set(\"kin\", String(json.kin));\n\n// Cleaner les datas utilisées\ndelete json.output;\ndelete json.dernierProducteur;\ndelete json.promptProducteur;\njson.remainingThread = \"\";\n\n// Préparer le nouveau thread\njson.entireThread = $node[\"thread\"].json.thread;\njson.thread = $node[\"thread\"].json.thread;\n\nMAX_LENGTH = 10000;\nif (json.thread.length > MAX_LENGTH) {\n    json.thread = \"Le début du document est déjà rédigé, voici le thread :\\n\\n[...]\" + json.thread.substring(json.thread.length - MAX_LENGTH);\n    json.remainingThread = json.entireThread.substring(0, json.entireThread.length - MAX_LENGTH);\n}\n\nif (!json.documentGoogleDriveId) {\n  json.documentGoogleDriveId = $node[\"thread\"].json.documentGoogleDriveId;\n}\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n$execution.customData.set(\"kin\", json.kin);\n\nreturn {\"json\": json};"
       },
       "id": "f2943232-b99c-4e69-ae50-48dd527aa0a6",
       "name": "entree",
@@ -1989,7 +2059,7 @@
     {
       "parameters": {
         "content": "# UF PRODUCTION",
-        "height": 1886.9666599843194,
+        "height": 2442.6354585553813,
         "width": 1137.0587249575672
       },
       "id": "4fe9aea2-f9d5-4200-8d44-6b475866a5eb",
@@ -1998,7 +2068,7 @@
       "typeVersion": 1,
       "position": [
         620,
-        -888.2589431676302
+        -1443.927741738692
       ]
     },
     {
@@ -2018,7 +2088,7 @@
     },
     {
       "parameters": {
-        "content": "\n\n\n\n# UF RELATION CLIENT",
+        "content": "\n\n\n\n# UF RELATION Exterieure",
         "height": 1168.8754104629538,
         "width": 1119.066732991086
       },
@@ -2356,6 +2426,100 @@
         1200,
         -780
       ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "da4b0dc4-0a5e-41af-acee-c430e3788d2e",
+      "name": "CRUD Mission : Update status1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        2160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/crud_mission/delete/\" + json.missionId;\n\nreturn {\"json\": json};"
+      },
+      "id": "22b35ed4-5fc9-41cc-b122-ba526c443004",
+      "name": "/crud_mission/delete",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1380,
+        2160
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_5a3AzNzXpeJCDHoDyb8a4PNG",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "c85f8d0a-7b26-4fd9-b635-22d7f8f73d9a",
+      "name": "kincommunitymanager",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        1660
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_5a3AzNzXpeJCDHoDyb8a4PNG",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "a95efc04-5e16-4e63-9cd9-fe61b2a8a0a2",
+      "name": "kinlcabeta",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        840,
+        -1000
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_0PMlSoTunzWdTYaGUhNh9KHj",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "29eb3250-653a-45d0-a505-d969bde22560",
+      "name": "kinredacteurscientifique",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        840,
+        -1180
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
     },
     {
       "parameters": {
@@ -2842,6 +3006,72 @@
                 ],
                 "combinator": "and"
               }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "2f20b386-ae2a-4f7f-8603-4c2a1e491418",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
+                    "rightValue": "kincommunitymanager",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "5206f45e-39dd-42b7-89a7-54fb4378e4af",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinlcabeta",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "847a79df-b81e-4009-8efe-06838ba9c1d6",
+                    "leftValue": "={{ $node[\"entree\"].json.kin }}",
+                    "rightValue": "kinredacteurscientifique",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
             }
           ]
         },
@@ -2862,31 +3092,25 @@
     },
     {
       "parameters": {
-        "workflowId": "HLDDZOmG8kuk2zTi",
+        "assistantId": "asst_5a3AzNzXpeJCDHoDyb8a4PNG",
+        "text": "={{ $json.promptProducteur }}",
         "options": {}
       },
-      "id": "da4b0dc4-0a5e-41af-acee-c430e3788d2e",
-      "name": "CRUD Mission : Update status1",
-      "type": "n8n-nodes-base.executeWorkflow",
+      "id": "95ba4d27-e579-4c97-ab2c-5e416fc8b9f8",
+      "name": "kinmissionouverte",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        1580,
-        2160
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/crud_mission/delete/\" + json.missionId;\n\nreturn {\"json\": json};"
-      },
-      "id": "22b35ed4-5fc9-41cc-b122-ba526c443004",
-      "name": "/crud_mission/delete",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1380,
-        2160
-      ]
+        2580,
+        -580
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -2957,6 +3181,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-13T13:21:13.000Z",
-  "versionId": "b4a2b966-d025-4c66-be74-5e8bbe0f2176"
+  "updatedAt": "2024-02-14T22:26:58.000Z",
+  "versionId": "844cb057-22cf-404b-b6eb-88a845d14f9b"
 }
