@@ -225,6 +225,17 @@
           }
         ]
       ]
+    },
+    "Store responses": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2023-12-17T22:40:17.010Z",
@@ -916,19 +927,19 @@
   "staticData": null,
   "tags": [
     {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    },
+    {
       "createdAt": "2024-01-21T09:47:18.925Z",
       "updatedAt": "2024-01-21T09:47:18.925Z",
       "id": "G7odwuwbJmUt0XX2",
       "name": "prod"
-    },
-    {
-      "createdAt": "2023-12-17T10:32:35.457Z",
-      "updatedAt": "2023-12-17T10:32:35.457Z",
-      "id": "y4SS6pvxfLMwCsGn",
-      "name": "service"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-14T10:50:42.000Z",
-  "versionId": "2438f453-1d3f-453b-9514-5f2f0255bd33"
+  "updatedAt": "2024-02-14T16:35:34.000Z",
+  "versionId": "7a92f17c-22f6-4457-860d-1c079972c075"
 }
