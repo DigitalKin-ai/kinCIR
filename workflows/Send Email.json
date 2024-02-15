@@ -41,12 +41,7 @@
       "main": [
         [
           {
-            "node": "If not mail",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Mail formating",
+            "node": "Response formating",
             "type": "main",
             "index": 0
           }
@@ -184,15 +179,37 @@
         ]
       ]
     },
-    "If not mail": {
+    "Response formating": {
       "main": [
         [
           {
-            "node": "Response formating",
+            "node": "If Firebase Data OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Firebase Data OK": {
+      "main": [
+        [
+          {
+            "node": "Store response",
             "type": "main",
             "index": 0
           }
         ],
+        [
+          {
+            "node": "Mail formating",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mail formating": {
+      "main": [
         [
           {
             "node": "If document not empty",
@@ -202,49 +219,15 @@
         ]
       ]
     },
-    "Response formating": {
+    "Store response": {
       "main": [
         [
           {
-            "node": "If",
+            "node": "Mail formating",
             "type": "main",
             "index": 0
           }
         ]
-      ]
-    },
-    "If": {
-      "main": [
-        [
-          {
-            "node": "Store responses",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Stop and Error",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Store responses": {
-      "main": [
-        [
-          {
-            "node": "response",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Mail formating": {
-      "main": [
-        []
       ]
     }
   },
@@ -265,7 +248,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -640,
+        -920,
         0
       ]
     },
@@ -280,12 +263,22 @@
           "conditions": [
             {
               "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
-              "leftValue": "={{ Object.keys( $node[\"documentDemandeur\"].json.document ).length > 0 }}",
-              "rightValue": "md",
+              "leftValue": "={{ $node[\"documentDemandeur\"].document }}",
+              "rightValue": 0,
               "operator": {
-                "type": "boolean",
-                "operation": "true",
+                "type": "array",
+                "operation": "exists",
                 "singleValue": true
+              }
+            },
+            {
+              "id": "8e29e9e0-125a-485e-afeb-884035a37b61",
+              "leftValue": "={{ $node[\"documentDemandeur\"].json.document }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "array",
+                "operation": "lengthGt",
+                "rightType": "number"
               }
             }
           ],
@@ -300,8 +293,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1380,
-        0
+        -1580,
+        100
       ]
     },
     {
@@ -313,8 +306,8 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        -900,
-        -1000
+        -1580,
+        -300
       ]
     },
     {
@@ -395,8 +388,7 @@
       "parameters": {
         "operation": "reply",
         "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
-        "emailType": "text",
-        "message": "={{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n\nDernières instructions :\n\n{{ $node[\"entree DocumentDemandeur\"].json.instructions }}\n\nAutomatiquement vôtre,\n\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.document }}\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ [$node[\"Mail formating\"].json.instructions] }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      <span style=\"font-style:italic\">\n\"Travailler ensemble vers l'innovation et le progrès.\"\n      </span>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
         "options": {
           "ccList": "={{ $node[\"entree DocumentDemandeur\"].json[\"to\"] ? $node[\"entree DocumentDemandeur\"].json[\"to\"] + \", \" : \"\"}} team@digitalkin.ai",
           "senderName": "={{ $node[\"entree DocumentDemandeur\"].json.kin.toUpperCase() }}"
@@ -407,8 +399,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -900,
-        180
+        -1340,
+        500
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -463,8 +455,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1140,
-        -200
+        -1340,
+        0
       ]
     },
     {
@@ -498,8 +490,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1140,
-        0
+        -1340,
+        280
       ]
     },
     {
@@ -525,8 +517,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -900,
-        0
+        -1160,
+        500
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -561,8 +553,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -900,
-        -180
+        -1160,
+        280
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -600,8 +592,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -900,
-        -360
+        -1160,
+        0
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -641,8 +633,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1140,
-        -400
+        -1340,
+        -280
       ]
     },
     {
@@ -677,8 +669,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -900,
-        -540
+        -1160,
+        -280
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -689,32 +681,32 @@
     },
     {
       "parameters": {
-        "content": "## RESPONSE KIN PROCESS ",
-        "height": 279.2284703892785,
-        "width": 248.10655981977254
+        "content": "## Store in Firebase",
+        "height": 398.52847102955775,
+        "width": 534.2325776155644
       },
       "id": "982b1710-71c1-4330-9f93-973ffc5eaa14",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -980,
-        -840
+        -1960,
+        -160
       ]
     },
     {
       "parameters": {
         "content": "## DATA MISSING",
-        "height": 215.22847038927853,
-        "width": 246.63760498900422
+        "height": 191.9504214838582,
+        "width": 212.69045033526618
       },
       "id": "7ae06558-df17-45e6-b5e6-800485a636d2",
       "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -980,
-        -1080
+        -1640,
+        -360
       ]
     },
     {
@@ -763,8 +755,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1940,
-        0
+        -1820,
+        -1020
       ]
     },
     {
@@ -776,30 +768,51 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1620,
-        -300
+        -1920,
+        0
       ]
     },
     {
       "parameters": {
-        "projectId": "kincir-9369f-default-rtdb",
-        "path": "={{ \"conversations/\" + $node[\"Response formating\"].json.originId + \"/responses/\" + $node[\"Response formating\"].json.id }}",
-        "attributes": "id, originId, assignment, role, status, model, content, createdAt"
+        "content": "## Return\nSend email AND store in firebase\n\nError ? -> Send Email",
+        "height": 268.82458714425053
       },
-      "id": "f14b493a-a2de-4c2c-8b58-a7e0b7d62b82",
-      "name": "Store responses",
-      "type": "n8n-nodes-base.googleFirebaseRealtimeDatabase",
+      "id": "831ba155-fced-47e9-b084-156a9337fe66",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -900,
-        -720
-      ],
-      "credentials": {
-        "googleFirebaseRealtimeDatabaseOAuth2Api": {
-          "id": "OVSbgNbwKqSqujMP",
-          "name": "Google Firebase Realtime Database account"
-        }
-      }
+        -680,
+        -360
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let json = $node[\"documentDemandeur\"].json;\n\nfunction splitOnNewline(str) {\n  if (typeof str !== 'string') {\n    str = String(str);\n  }\n  return str.split('\\n');\n}\n\nfunction escapeHtml(unsafe) {\n  return unsafe\n    .replace(/Ã /g, \"à\")\n    .replace(/Ã¢/g, \"â\")\n    .replace(/Ã©/g, \"é\")\n    .replace(/Ã¨/g, \"è\")\n    .replace(/Ãª/g, \"ê\")\n    .replace(/Ã«/g, \"ë\")\n    .replace(/Ã®/g, \"î\")\n    .replace(/Ã¯/g, \"ï\")\n    .replace(/Ã´/g, \"ô\")\n    .replace(/Ã¹/g, \"ù\")\n    .replace(/Ã»/g, \"û\")\n    .replace(/Ã¼/g, \"ü\")\n    .replace(/Ã¿/g, \"ÿ\")\n    .replace(/Ã€/g, \"À\")\n    .replace(/Ã‚/g, \"Â\")\n    .replace(/Ã‰/g, \"É\")\n    .replace(/Ãˆ/g, \"È\")\n    .replace(/ÃŠ/g, \"Ê\")\n    .replace(/Ã‹/g, \"Ë\")\n    .replace(/ÃŽ/g, \"Î\")\n    .replace(/Ã/g, \"Ï\")\n    .replace(/Ã”/g, \"Ô\")\n    .replace(/Ã™/g, \"Ù\")\n    .replace(/Ã›/g, \"Û\")\n    .replace(/Ãœ/g, \"Ü\")\n    .replace(/ÃŸ/g, \"ß\")\n    .replace(/Ã§/g, \"ç\")\n    .replace(/&/g, \"&amp;\")\n    .replace(/</g, \"&lt;\")\n    .replace(/>/g, \"&gt;\")\n    .replace(/\"/g, \"&quot;\")\n    .replace(/'/g, \"&#039;\");\n}\n\nlet instructions = escapeHtml($node[\"entree DocumentDemandeur\"].json.instructions);\njson.instructions = splitOnNewline(instructions);\nlet document = escapeHtml(json.document).split('\\n');\njson.document = splitOnNewline(document);\n\nreturn json;"
+      },
+      "id": "731ab728-ddee-4745-8c27-dd901e765f96",
+      "name": "Mail formating",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1760,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Formating Firebase\nOutput\n\nrole = \"Kin\"\nstatus = status\ncontent = instructions\ncreatedAt = date\nid = executionId\noriginId = threadId\nassignment = model",
+        "height": 292.6143862041808,
+        "width": 314.12848184702665
+      },
+      "id": "c59c33e9-12c2-4eb0-b777-b902b4635fd6",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1960,
+        -460
+      ]
     },
     {
       "parameters": {
@@ -886,70 +899,34 @@
         "options": {}
       },
       "id": "cfc04e96-cabb-424b-a431-d03d65b9c415",
-      "name": "If",
+      "name": "If Firebase Data OK",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1140,
-        -720
+        -1760,
+        -100
       ]
     },
     {
       "parameters": {
-        "content": "## Return\nSend email AND store in firebase\n\nError ? -> Send Email",
-        "height": 268.82458714425053
+        "projectId": "kincir-9369f-default-rtdb",
+        "path": "={{ \"conversations/\" + $node[\"Response formating\"].json.originId + \"/responses/\" + $node[\"Response formating\"].json.id }}",
+        "attributes": "id, originId, assignment, role, status, model, content, createdAt"
       },
-      "id": "831ba155-fced-47e9-b084-156a9337fe66",
-      "name": "Sticky Note4",
-      "type": "n8n-nodes-base.stickyNote",
+      "id": "f14b493a-a2de-4c2c-8b58-a7e0b7d62b82",
+      "name": "Store response",
+      "type": "n8n-nodes-base.googleFirebaseRealtimeDatabase",
       "typeVersion": 1,
       "position": [
-        -700,
-        -840
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "let json = {};\n\njson.role = \"Kin\";\njson.status = $node[\"documentDemandeur\"].json.status;\njson.content = $node[\"documentDemandeur\"].json.instructions;\njson.createdAt = $node[\"documentDemandeur\"].json.date;\njson.id = $node[\"documentDemandeur\"].json.executionId;\njson.originId = $node[\"documentDemandeur\"].json.threadId;\njson.assignment = $node[\"documentDemandeur\"].json.mission;\njson.model = $node[\"documentDemandeur\"].json.kin;\n\nreturn json;"
-      },
-      "id": "731ab728-ddee-4745-8c27-dd901e765f96",
-      "name": "Mail formating",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -1620,
-        0
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## Formating \nOutput\n\nrole = \"Kin\"\nstatus = status\ncontent = instructions\ncreatedAt = date\nid = executionId\noriginId = threadId\nassignment = model",
-        "height": 280.00544304707813,
-        "width": 298.60978257674645
-      },
-      "id": "c59c33e9-12c2-4eb0-b777-b902b4635fd6",
-      "name": "Sticky Note5",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -1780,
-        -440
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## Formating \nOutput\n\nrole = \"Kin\"\nstatus = status\ncontent = instructions\ncreatedAt = date\nid = executionId\noriginId = threadId\nassignment = model",
-        "height": 280.00544304707813,
-        "width": 298.60978257674645
-      },
-      "id": "bde0e118-614f-483d-8a85-fcfbfd13cd06",
-      "name": "Sticky Note6",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -1780,
-        -140
-      ]
+        -1580,
+        -100
+      ],
+      "credentials": {
+        "googleFirebaseRealtimeDatabaseOAuth2Api": {
+          "id": "OVSbgNbwKqSqujMP",
+          "name": "Google Firebase Realtime Database account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -993,6 +970,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-15T10:29:11.000Z",
-  "versionId": "6a607e49-6883-44bd-9803-ec6533733b47"
+  "updatedAt": "2024-02-15T15:41:22.000Z",
+  "versionId": "abbc710f-faf0-4329-8f16-bc263a88595c"
 }
