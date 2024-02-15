@@ -1,0 +1,1413 @@
+{
+  "active": false,
+  "connections": {
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "kins",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert mission": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Fetch return mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clean updated mission": {
+      "main": [
+        [
+          {
+            "node": "Upsert mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Attribute": {
+      "main": [
+        [
+          {
+            "node": "clean updated mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouvelleMission entree": {
+      "main": [
+        [
+          {
+            "node": "clean updated mission1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch mission": {
+      "main": [
+        [
+          {
+            "node": "If mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "If read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If create": {
+      "main": [
+        [
+          {
+            "node": "nouvelleMission entree",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If read": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If update": {
+      "main": [
+        [
+          {
+            "node": "Update Attribute",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If delete",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clean updated mission1": {
+      "main": [
+        [
+          {
+            "node": "Upsert mission1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "BOUCLE DE MANAGEMENT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert mission1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If mission": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If ameliorationContinue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BOUCLE DE MANAGEMENT": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If delete": {
+      "main": [
+        [
+          {
+            "node": "Update Attribute1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If ameliorationContinue": {
+      "main": [
+        [
+          {
+            "node": "mission ameliorationContinue",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission ameliorationContinue": {
+      "main": [
+        [
+          {
+            "node": "nouvelleMission ameliorationContinue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nouvelleMission ameliorationContinue": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Mission : Create": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch return mission": {
+      "main": [
+        [
+          {
+            "node": "return mission",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "return mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If missionId": {
+      "main": [
+        [
+          {
+            "node": "Fetch mission",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clean updated mission2": {
+      "main": [
+        [
+          {
+            "node": "Upsert mission2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Attribute1": {
+      "main": [
+        [
+          {
+            "node": "clean updated mission2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert mission2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kins": {
+      "main": [
+        [
+          {
+            "node": "assistantId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Assistant": {
+      "main": [
+        [
+          {
+            "node": "prompt",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "retour1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "prompt": {
+      "main": [
+        [
+          {
+            "node": "If missionId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "assistantId": {
+      "main": [
+        [
+          {
+            "node": "Get Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-14T16:48:02.930Z",
+  "id": "msX2fjXHVyBTO2qL",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CRUD Assistant",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "2ffedd2f-fb3a-4c6d-bf91-cab1059cf04f",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2920,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\njson.query = json.query.trim();\n\n// Détecter la commande\nlet regexCommand = /\\/crud\\_assistant\\/([a-zA-Z0-9\\_\\-]+)/i;\njson.command = \"\";\nlet matchCommand = json.query.match(regexCommand);\nif (matchCommand) {\n    json.command = matchCommand[1];\n}\n\nlet regexFirstAttribute = /\\/crud\\_assistant\\/[a-zA-Z0-9\\_\\-]+\\/([a-zA-Z0-9\\_\\-]+)/;\nlet matchFirstAttribute = json.query.match(regexFirstAttribute);\nif (matchFirstAttribute) {\n  json.firstAttribute = matchFirstAttribute[1];\n}\n\nlet regexAllCommand = /\\/\\S+ /;\njson.commandText = \"\";\nlet matchAllCommand = json.query.match(regexAllCommand);\nif (matchAllCommand) {\n  let startIndex = matchAllCommand[0].length;\n  json.commandText = json.query.substring(startIndex);\n}\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
+      },
+      "id": "79c0cce3-3a99-416a-8621-4e1e15e66431",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2700,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"namespace\": \"missions\",\n\"vectors\": {\n\"id\": \"{{ $json.missionId }}\",\n\"metadata\": {{ JSON.stringify($json) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
+        "options": {}
+      },
+      "id": "9abc0343-2993-4bda-b8f2-a4d69ba999de",
+      "name": "Upsert mission",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -40,
+        2300
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# /crud_mission/update/attributeName value",
+        "height": 298.13044544905085,
+        "width": 891.7265056155782
+      },
+      "id": "fb445523-51d0-4420-9b3f-75f0c6b52e04",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -780,
+        2200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "6cdbbe3e-dace-4cad-b97b-28014d42a5f6",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        200,
+        580
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4d16ec8d-0ea7-442c-b303-415dc4b0b160",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        420,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# /crud_mission/create %missionDescription%",
+        "height": 670.0298393503322,
+        "width": 905.1028940671356
+      },
+      "id": "8f9a8bc3-3865-493a-97e0-4382b026b222",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -860,
+        1360
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Pas d'objets possible en metadata\n            obj[key] = JSON.stringify(obj[key]).substring(0, 5000);\n\n            if (obj[key].length >= 5000) {\n              obj[key] += \"[...]\";\n            }\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\ndelete json.chatInput;\ndelete json.textCommand;\ndelete json.action;\ndelete json.sessionId;\ndelete json.responseFormat;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission)  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "951a79ff-4f49-4f42-9aca-e408e2a7271f",
+      "name": "clean updated mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -180,
+        2300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "$execution.customData.set(\"command\", \"update\");\n\nlet json = $node[\"mission\"].json;\n\njson.commandText = $node[\"entree\"].json.commandText;\n\nif ($node[\"entree\"].json.firstAttribute) {\n  json[$node[\"entree\"].json.firstAttribute] = $node[\"entree\"].json.commandText;\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "7a4c133f-69a0-4cd5-b475-b74639d4430a",
+      "name": "Update Attribute",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -440,
+        2300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "$execution.customData.set(\"command\", \"create\");\n\nlet json = $node[\"mission\"].json;\n\njson.kin = $node[\"entree\"].json.firstAttribute;\njson.dernierProducteur = $node[\"entree\"].json.firstAttribute;\n\njson.missionIdDemandeur = $node[\"entree\"].json.missionId;\njson.missionDemandeur = $node[\"entree\"].json.mission;\njson.mission = $node[\"entree\"].json.commandText;\njson.instructions = \"LANCEMENT :C'est le début de la mission ! Réalise la préparation pour lancer la mission\";\n\ndelete chatInput;\ndelete query;\n\njson.missionId = json.kin + \"-\" + json.threadId;\njson.status = \"doing\";\njson.execution = \"doing\"; \n\nreturn {\"json\": json};"
+      },
+      "id": "b4dd0392-d1d2-4a9e-b53d-a83aa4a51281",
+      "name": "nouvelleMission entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -804,
+        1474
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/fetch",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"namespace\": \"missions\",\n\"ids\": [\"{{ $json.missionId }}\"]\n}",
+        "options": {}
+      },
+      "id": "5f139bf3-cb9d-42e6-8c59-ebe1a36ba368",
+      "name": "Fetch mission",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -1300,
+        620
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "$execution.customData.set(\"command\", \"read\");\n\nlet json = $json.vectors[Object.keys($json.vectors)[0]].metadata;\n\nreturn {\"json\": json};"
+      },
+      "id": "2198b2fa-5439-4a34-b8cb-745fc41db2f1",
+      "name": "mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -840,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "create",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "429f4d67-3010-4926-a51a-48cff0041ef5",
+      "name": "If create",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1060,
+        1460
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# /crud_mission/read/%missionId%",
+        "height": 775.134184184043,
+        "width": 1927.2013601257386
+      },
+      "id": "1051fddc-aea3-41a0-9652-58033093bc18",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1883.2385411046137,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "read",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "58ab7f15-71a0-484a-b926-186a674712eb",
+      "name": "If read",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -580,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "update",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "0da389db-c902-4432-8d05-dcf0ade3f5af",
+      "name": "If update",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -960,
+        2320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"namespace\": \"missions\",\n\"vectors\": {\n\"id\": \"{{ $json.missionId }}\",\n\"metadata\": {{ JSON.stringify($json) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
+        "options": {}
+      },
+      "id": "895d25d6-c733-410d-ac99-18edf3821091",
+      "name": "Upsert mission1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -324,
+        1614
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Pas d'objets possible en metadata\n            obj[key] = JSON.stringify(obj[key]).substring(0, 5000);\n\n            if (obj[key].length >= 5000) {\n              obj[key] += \"[...]\";\n            }\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\ndelete json.chatInput;\ndelete json.textCommand;\ndelete json.action;\ndelete json.sessionId;\ndelete json.responseFormat;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission)  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "be192ed7-d3d7-439e-af26-cae46999a7aa",
+      "name": "clean updated mission1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -544,
+        1474
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ Object.keys($json.vectors).length > 0 }}",
+              "rightValue": "read",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "ad29f181-c7ea-4aac-a0a5-636e117d8a6b",
+      "name": "If mission",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1080,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "commande non gérée"
+      },
+      "id": "df42cd12-b822-4b2f-8f49-2076529a9f19",
+      "name": "Stop and Error2",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        2900
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## BOUCLE DE MANAGEMENT\nhttps://kins.app.n8n.cloud/workflow/0LhMxlt62MaWdiqs",
+        "height": 316.5612059988846,
+        "width": 250.71967654986526
+      },
+      "id": "b660f143-f1bf-4b02-bace-f63464398dd6",
+      "name": "Sticky Note16",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -384,
+        1754
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://kins.app.n8n.cloud/webhook/boucle-de-management",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "47fd8b2b-dfda-4d2d-8cd6-4277b3ceed22",
+      "name": "BOUCLE DE MANAGEMENT",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -324,
+        1834
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "delete",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "59a7ad28-05f7-4103-9718-24c7a42f9621",
+      "name": "If delete",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -720,
+        2640
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# /crud_mission/delete/%missionId%",
+        "height": 298.13044544905085,
+        "width": 891.7265056155782
+      },
+      "id": "2682f275-7707-4832-9e1a-bdb4a27d202c",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        2540
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "1d0aa4d1-615e-4ffc-ac0b-f029c35259d3",
+              "leftValue": "={{ $node[\"entree\"].json.missionId }}",
+              "rightValue": "ameliorationContinue",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true,
+          "looseTypeValidation": true
+        }
+      },
+      "id": "d51ff0d4-b294-4f04-a9a0-06356e932a7b",
+      "name": "If ameliorationContinue",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1700,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## CRUD Mission\nhttps://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "eed7eac9-0920-4a83-be65-a7732258731f",
+      "name": "Sticky Note22",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1060,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "d28fc30a-be92-4352-b7ff-113b54f9f41e",
+      "name": "CRUD Mission : Create",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mission",
+              "stringValue": "=**PROCESSUS - MISSION : AMELIORATION CONTNIUE :**\n\nL'amélioration continue est ton objectif quand tu n'es pas assigné à une mission spécifique. Ton rôle est de collaborer avec les autres Kins de l'équipe afin d'améliorer votre travail. \n\n===\n\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2e29e931-b14b-4076-aaf9-853c9a97a61f",
+      "name": "mission ameliorationContinue",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        -1440,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = JSON.parse(JSON.stringify($node[\"clean mission\"].json));\n\ndelete json.query;\n\n// Mettre à jour le Kin\njson.threadId = \"ameliorationContinue\";\njson.type = \"ameliorationContinue\";\n\nlet regexKin = /kin[a-zA-Z0-9]{2,25}/i;\njson.kin = json.missionId.match(regexKin)[0];\n\n// Mettre à jour la mission\njson.query = \"/crud_mission/create/\" + json.kin  + \" \" + $node[\"mission ameliorationContinue\"].json.mission;\njson.responseFormat = \"json\";\n\nreturn {\"json\": json};"
+      },
+      "id": "9eca4608-0396-4b0b-a921-947f9917ffda",
+      "name": "nouvelleMission ameliorationContinue",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1220,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/fetch",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"namespace\": \"missions\",\n\"ids\": [\"{{ ($node[\"entree\"].json.command === \"create\")?$node[\"nouvelleMission entree\"].json.missionId:$node[\"assistantId\"].json.missionId }}\"]\n}",
+        "options": {}
+      },
+      "id": "29901085-e947-43d8-bc20-f956152057d1",
+      "name": "Fetch return mission",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        660,
+        580
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 1000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let entree = $item(0).$node[\"entree\"].json;\nlet json = {};\n\nif ($json.vectors && Object.keys($json.vectors).length > 0) {\n  json = $json.vectors[Object.keys($json.vectors)[0]].metadata;\n}\n\ndelete json.query;\n\nif (entree.chatInput != null) {\n  return {\"output\": JSON.stringify(json)};\n}\n\nif (entree.responseFormat === \"json\") {\n  json.response = JSON.stringify(json);\n  return {\"json\": json};\n}\n\nreturn {\"json\":{\"response\": JSON.stringify(json)}};"
+      },
+      "id": "35c623c1-a004-4a52-a21e-92c8122b7a33",
+      "name": "return mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "c218e161-fe3f-442d-94ea-e9095c99823d",
+              "leftValue": "={{ $json.missionId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c6ea666b-efd7-47b9-96dc-837515ff966b",
+      "name": "If missionId",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1560,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/upsert",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"namespace\": \"missions\",\n\"vectors\": {\n\"id\": \"{{ $json.missionId }}\",\n\"metadata\": {{ JSON.stringify($json) }},\n\"values\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}\n}",
+        "options": {}
+      },
+      "id": "e3d3ffc4-4d8b-45ed-b9d1-3464a086bd23",
+      "name": "Upsert mission2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        0,
+        2620
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function truncateStringsInJson(obj) {\n    // Vérifier si l'objet est null ou undefined\n    if (obj === null || obj === undefined) {\n        return obj;\n    }\n\n    // Parcourir les propriétés de l'objet\n    for (let key in obj) {\n        if (typeof obj[key] === 'string' && key !== \"json\") {\n            // Tronquer les strings à 500 caractères et ajouter \"[...]\" si nécessaire\n            if (obj[key].length > 5000) {\n                obj[key] = obj[key].substring(0, 5000) + \"[...]\";\n            }\n        } else if (typeof obj[key] === 'object') {\n            // Pas d'objets possible en metadata\n            obj[key] = JSON.stringify(obj[key]).substring(0, 5000);\n\n            if (obj[key].length >= 5000) {\n              obj[key] += \"[...]\";\n            }\n        }\n    }\n\n    return obj;\n}\n\n// Function to remove null attributes from a JSON object\nfunction removeNullAttributes(obj) {\n    Object.keys(obj).forEach(key => {\n        if (obj[key] === null || obj[key] == \"\") {\n            delete obj[key];\n        } else if (typeof obj[key] === 'object') {\n            // Recursive call for nested objects\n            removeNullAttributes(obj[key]);\n        }\n    });\n}\n\nlet json = JSON.parse(JSON.stringify($json));\n\ndelete json.json;\ndelete json.query;\ndelete json.response;\ndelete json.command;\ndelete json.chatInput;\ndelete json.textCommand;\ndelete json.action;\ndelete json.sessionId;\ndelete json.responseFormat;\n\ndelete json.thread;\ndelete json.entireThread;\ndelete json.promptProducteur;\n\n\njson = truncateStringsInJson(json);\n\n// Remove threads from the json object\nremoveNullAttributes(json);\n\nif (json.mission)  {\n  json.mission = json.mission.length > 10000 ? \"[...]\" : \"\" + json.mission.substring(json.mission.length - 10000);\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "0bbe5a47-b01e-449b-b739-d53bd30f3061",
+      "name": "clean updated mission2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        2620
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "$execution.customData.set(\"command\", \"delete\");\n\nlet json = $node[\"mission\"].json;\n\njson.status = \"deleted\";\njson.deleted = \"deleted\";\n\nreturn {\"json\": json};"
+      },
+      "id": "dbed9bd1-d16b-44d2-923c-eed81d44dbf7",
+      "name": "Update Attribute1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        2620
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/assistants",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ff0ff455-e39d-4211-a10c-02d7e45c23a2",
+      "name": "Get Assisstants",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -2240,
+        820
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "gdFeXvXoLRHkWsrB",
+        "options": {}
+      },
+      "id": "d47981bd-f450-4082-b5d6-9525e6983ddf",
+      "name": "kins",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -2420,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "prompt",
+              "stringValue": "={{ $node[\"Get Assistant\"].json.instructions }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "7fef5549-2369-4510-8599-705a76bfcaec",
+      "name": "prompt",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        -2020,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Get Kins Actifs\nhttps://kins.app.n8n.cloud/workflow/gdFeXvXoLRHkWsrB",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "0876bc38-a2c9-48b8-9c88-b726cca26f9f",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2500,
+        -140
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/assistants/{{ $node[\"assistantId\"].json.assistantId }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "OpenAI-Beta",
+              "value": "assistants=v1"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "adbfaeef-c768-47f0-bc83-df23a76659c1",
+      "name": "Get Assistant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -2020,
+        -20
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\"response\":\"RETOUR : Le Kin \" + $node[\"entree\"].json.kin + \" n'est pas actif ou n'existe pas.\"};"
+      },
+      "id": "458c0408-9c8a-4619-9405-bc73b83b2dbe",
+      "name": "retour1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1800,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let assistantId;\nconst kinObject = $json.kin.find(kin => kin.kin === $node[\"entree\"].json.kin.toLowerCase());\n\nassistantId = kinObject && kinObject.assistantId ? kinObject.assistantId : null;\n\nreturn {\"assistantId\": assistantId};"
+      },
+      "id": "f3a70b4b-5a6d-44d8-a965-757ddb44371d",
+      "name": "assistantId",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2220,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "La fonction \"crud_assistant\" permet aux Kins d'effectuer des modification sur les prompts des Kins. \n\nAppels disponibles :\n   - Pour **récupérer le prompt d'un assistant** : /crud_assistant/read/<nomdukin>",
+        "options": {
+          "inputPlaceholder": "/crud_assistant/read/<nomdukin>",
+          "subtitle": "La fonction \"crud_assistant\" permet aux Kins d'effectuer des modification sur les prompts des Kins.   Appels disponibles :    - Pour **récupérer le prompt d'un assistant** : /crud_assistant/read/<nomdukin>",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "a97442ed-c5a0-4ce7-82bc-7563fb578a23",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2920,
+        100
+      ],
+      "webhookId": "c1536c2e-9425-4b6b-8f99-823cd41982b6"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-02-15T02:23:55.000Z",
+  "versionId": "2d7b0b7a-b1e9-4dce-b6dd-bd1f67f7631a"
+}
