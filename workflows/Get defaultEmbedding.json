@@ -89,7 +89,8 @@
     "executionOrder": "v1",
     "saveManualExecutions": true,
     "callerPolicy": "any",
-    "callerIds": "XJj8pXdTRJp9DrDI, pJPiOSio0nwCPuZv"
+    "callerIds": "XJj8pXdTRJp9DrDI, pJPiOSio0nwCPuZv",
+    "saveDataSuccessExecution": "none"
   },
   "staticData": null,
   "tags": [
@@ -101,6 +102,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-02-08T15:14:16.000Z",
-  "versionId": "9e0b3d64-95d0-4d3a-8907-9f3498a5c6de"
+  "updatedAt": "2024-02-15T01:06:03.000Z",
+  "versionId": "8ad2f08d-a43b-43d8-81b5-45d74f17473c"
 }
