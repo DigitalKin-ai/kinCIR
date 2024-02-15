@@ -104,14 +104,14 @@
       "main": [
         [
           {
-            "node": "sourceGoogleDriveId",
+            "node": "IF Pièce Jointe",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Code",
+            "node": "Stop and Error",
             "type": "main",
             "index": 0
           }
@@ -134,6 +134,13 @@
         [
           {
             "node": "entree source",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "sourceGoogleDriveId",
             "type": "main",
             "index": 0
           }
@@ -184,8 +191,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2060,
-        720
+        1500,
+        120
       ]
     },
     {
@@ -199,7 +206,7 @@
       "typeVersion": 2,
       "position": [
         2260,
-        160
+        140
       ],
       "disabled": true
     },
@@ -221,7 +228,7 @@
       "typeVersion": 3.2,
       "position": [
         1920,
-        380
+        340
       ]
     },
     {
@@ -235,7 +242,7 @@
       "typeVersion": 1,
       "position": [
         2480,
-        160
+        140
       ],
       "disabled": true
     },
@@ -249,8 +256,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2400,
-        380
+        2260,
+        340
       ]
     },
     {
@@ -281,7 +288,7 @@
       "type": "n8n-nodes-base.googleDrive",
       "position": [
         2100,
-        160
+        140
       ],
       "typeVersion": 1,
       "id": "6ae498b7-7170-453f-80e1-9a1bae86c5d0",
@@ -305,7 +312,7 @@
       "typeVersion": 2,
       "position": [
         1920,
-        160
+        140
       ]
     },
     {
@@ -318,8 +325,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        2560,
-        380
+        2480,
+        340
       ]
     },
     {
@@ -339,8 +346,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        2240,
-        380
+        2100,
+        340
       ]
     },
     {
@@ -409,7 +416,7 @@
       "typeVersion": 1,
       "position": [
         2380,
-        20
+        0
       ]
     },
     {
@@ -473,7 +480,7 @@
       "typeVersion": 1,
       "position": [
         1840,
-        80
+        60
       ]
     },
     {
@@ -481,7 +488,7 @@
         "conditions": {
           "boolean": [
             {
-              "value1": "={{ Object.keys($node[\"Get Email\"].binary).length > 0 }}",
+              "value1": "={{ Object.keys($node[\"Execute Workflow Trigger\"].binary).length > 0 }}",
               "value2": true
             }
           ]
@@ -492,8 +499,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1680,
-        220
+        1700,
+        340
       ]
     },
     {
@@ -507,8 +514,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        880,
-        580
+        1380,
+        520
       ]
     },
     {
@@ -520,8 +527,21 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        760,
-        640
+        1660,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "Already running"
+      },
+      "id": "db43b5a7-bf3b-4cd2-8ab1-c1bea87d1e34",
+      "name": "Stop and Error",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        800
       ]
     }
   ],
@@ -542,6 +562,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-02-14T17:10:26.000Z",
-  "versionId": "c43d3a15-5755-45f0-b2d2-e6759c2c010e"
+  "updatedAt": "2024-02-15T08:13:16.000Z",
+  "versionId": "65effc63-a9d8-481d-ac75-ff4945d58b7f"
 }
