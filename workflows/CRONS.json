@@ -45,33 +45,11 @@
         ]
       ]
     },
-    "defaultEmbedding": {
-      "main": [
-        [
-          {
-            "node": "Get missions",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Get kinCredits": {
       "main": [
         [
           {
             "node": "set kinCredits",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get missions": {
-      "main": [
-        [
-          {
-            "node": "IF mission",
             "type": "main",
             "index": 0
           }
@@ -144,7 +122,7 @@
       "main": [
         [
           {
-            "node": "entree",
+            "node": "kins",
             "type": "main",
             "index": 0
           }
@@ -249,6 +227,101 @@
           }
         ]
       ]
+    },
+    "Get missions todo": {
+      "main": [
+        [
+          {
+            "node": "IF mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "defaultEmbedding": {
+      "main": [
+        [
+          {
+            "node": "Get missions doing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get missions doing": {
+      "main": [
+        [
+          {
+            "node": "MAX 4 missions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MAX 4 missions": {
+      "main": [
+        [
+          {
+            "node": "Get missions todo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kins": {
+      "main": [
+        [
+          {
+            "node": "kin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kin": {
+      "main": [
+        [
+          {
+            "node": "If Kin Actif",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Kin Actif": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "/crud_mission/update/status waiting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "/crud_mission/update/status waiting": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Update status1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-23T14:34:33.442Z",
@@ -274,7 +347,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.1,
       "position": [
-        -700,
+        -1740,
         380
       ]
     },
@@ -299,7 +372,7 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -100,
+        -1140,
         560
       ]
     },
@@ -327,7 +400,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        120,
+        -920,
         380
       ]
     },
@@ -412,58 +485,6 @@
     },
     {
       "parameters": {
-        "content": "## TODO : AJouter verif Kinactif"
-      },
-      "id": "29d04526-55ea-4146-97a3-7e8242cb10b8",
-      "name": "Sticky Note2",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        500,
-        280
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\" : {\"status\": \"todo\", \"type\": {\"$ne\": \"ameliorationContinue\"}, \"deleted\": {\"$ne\": \"deleted\"}},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
-        "options": {}
-      },
-      "id": "75a3339b-0ebc-419f-8245-cd6767ce62c5",
-      "name": "Get missions",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        340,
-        380
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "url": "={{ $vars.vectorDatabaseEndpoint }}vectors/fetch",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "pineconeApi",
@@ -490,7 +511,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -420,
+        -1460,
         380
       ],
       "retryOnFail": true,
@@ -531,7 +552,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -200,
+        -1240,
         380
       ]
     },
@@ -608,21 +629,21 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        580,
+        60,
         380
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "$execution.customData.set(\"DOING\", \"true\");\n\nlet json = $node[\"Get missions\"].json.matches[0].metadata;\n\njson.status = \"doing\";\njson.execution = \"doing\";\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
+        "jsCode": "$execution.customData.set(\"DOING\", \"true\");\n\nlet json = $node[\"Get missions todo\"].json.matches[0].metadata;\n\njson.status = \"doing\";\njson.execution = \"doing\";\njson.date = $now.toString();\njson.executionId = $execution.id;\n\nreturn {\"json\": json};"
       },
       "id": "77a81cf9-d90b-4c15-8401-a461b76d7ee7",
       "name": "entree",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        840,
+        1040,
         380
       ]
     },
@@ -679,7 +700,7 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        40,
+        -1000,
         260
       ]
     },
@@ -892,6 +913,223 @@
         520
       ],
       "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 1,\n  \"filter\" : {\"status\": \"todo\", \"type\": {\"$ne\": \"ameliorationContinue\"}, \"deleted\": {\"$ne\": \"deleted\"}},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "75a3339b-0ebc-419f-8245-cd6767ce62c5",
+      "name": "Get missions todo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -180,
+        380
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 10,\n  \"filter\" : {\"status\": \"doing\"},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "cae2405a-051b-4ef6-9cc8-7938b84237e2",
+      "name": "Get missions doing",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -640,
+        380
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Object.keys($json.matches).length < 4 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "6a0b29e6-402e-45c4-8a54-5d2bc174b32b",
+      "name": "MAX 4 missions",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -460,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "gdFeXvXoLRHkWsrB",
+        "options": {}
+      },
+      "id": "25d0936a-9b2f-4138-9b7e-3d63b301cad7",
+      "name": "kins",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        340,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Get Kins Actifs\nhttps://kins.app.n8n.cloud/workflow/gdFeXvXoLRHkWsrB",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "ae9ed36b-57d7-491e-9844-a9fb99a38a29",
+      "name": "Sticky Note18",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        260,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "4c6bea30-df9e-46fc-81e2-2f92978bfd79",
+              "leftValue": "={{ $node[\"kin\"].json.kin }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "bc997f80-1c28-449e-a866-4329c4dc4d3e",
+      "name": "If Kin Actif",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        760,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let kin;\nconst kinObject = $json.kin.find(kin => kin.kin === $node[\"Get missions todo\"].json.matches[0].metadata.kin.toLowerCase());\n\nkin = kinObject && kinObject.kin ? kinObject.kin : null;\n\nreturn {\"kin\": kin};"
+      },
+      "id": "dd117380-33d4-4bb1-88e5-b1b1634c2947",
+      "name": "kin",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        540,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "4324ae91-83e1-4d18-961b-b4a8cfa50f30",
+      "name": "CRUD Mission : Update status1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        800,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## CRUD Mission\nhttps://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "ae252257-0bee-4cb6-8b9a-3bae466acf05",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        720,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $node[\"entree\"].json;\n\njson.query = \"/crud_mission/update/status waiting\";\n\nreturn {\"json\": json};"
+      },
+      "id": "5b82636f-9f5f-4264-943f-fd2bbb1283d5",
+      "name": "/crud_mission/update/status waiting",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        580,
+        780
+      ]
     }
   ],
   "pinData": {
@@ -928,6 +1166,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-13T12:57:43.000Z",
-  "versionId": "47d5252d-f202-43c7-bbf6-c188a6708ca3"
+  "updatedAt": "2024-02-15T00:26:57.000Z",
+  "versionId": "db1f0bca-9db6-4b78-9093-64047fcbeb2b"
 }
