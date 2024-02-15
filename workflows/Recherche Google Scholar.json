@@ -147,20 +147,9 @@
       "main": [
         [
           {
-            "node": "Insérer le document dans Pinecone",
+            "node": "Insérer dans la base d'études1",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Insérer le document dans Pinecone": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
           }
         ]
       ]
@@ -228,9 +217,16 @@
             "index": 0
           },
           {
-            "node": "entree pinecone",
+            "node": "Loop Over Items1",
             "type": "main",
             "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
           }
         ]
       ]
@@ -251,6 +247,46 @@
         [
           {
             "node": "nouvelleEntree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "entree pinecone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insérer dans la base d'études": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insérer dans la base d'études1": {
+      "main": [
+        [
+          {
+            "node": "Insérer dans la base d'études",
             "type": "main",
             "index": 0
           }
@@ -373,8 +409,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        5180,
-        320
+        5300,
+        160
       ],
       "alwaysOutputData": true
     },
@@ -487,25 +523,6 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://kins.app.n8n.cloud/webhook/inserer-le-document-dans-pinecone",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify($json) }}",
-        "options": {}
-      },
-      "id": "149356dc-4706-47dd-9c8f-68565043532e",
-      "name": "Insérer le document dans Pinecone",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        4940,
-        -400
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
         "jsCode": "let json = {};\nlet entree = $item(0).$node[\"entree\"].json;\n\njson.resource = $json.resource;\njson.missionId = entree.missionId;\n\nreturn {\"json\": json};"
       },
@@ -514,8 +531,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4720,
-        -400
+        4620,
+        460
       ]
     },
     {
@@ -701,6 +718,68 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "batchSize": 10,
+        "options": {}
+      },
+      "id": "671b50a9-502b-4a55-a4cf-2ee2112132ae",
+      "name": "Loop Over Items1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        4400,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=eRT6xb82oqCbX4u2",
+        "options": {}
+      },
+      "id": "864cbb43-f879-4d1e-933a-9b6f174bdb5d",
+      "name": "Insérer dans la base d'études",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        5020,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Insérer dans la base d'études\nhttps://kins.app.n8n.cloud/workflow/eRT6xb82oqCbX4u2",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "e409a462-719a-47ae-98fa-40104e044626",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4960,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://kins.app.n8n.cloud/webhook/inserer-le-document-dans-pinecone",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "149356dc-4706-47dd-9c8f-68565043532e",
+      "name": "Insérer dans la base d'études1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        4840,
+        460
+      ],
+      "disabled": true
     }
   ],
   "pinData": {},
@@ -725,6 +804,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-14T22:37:01.000Z",
-  "versionId": "f084aa2d-b24e-49d8-a278-29ed9d54753d"
+  "updatedAt": "2024-02-15T00:01:46.000Z",
+  "versionId": "93f1e5c9-902f-4cae-8311-34a49ea98588"
 }
