@@ -44,6 +44,11 @@
             "node": "If not mail",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Mail formating",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -236,6 +241,11 @@
           }
         ]
       ]
+    },
+    "Mail formating": {
+      "main": [
+        []
+      ]
     }
   },
   "createdAt": "2023-12-17T22:40:17.010Z",
@@ -303,8 +313,8 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        -1380,
-        -520
+        -900,
+        -1000
       ]
     },
     {
@@ -688,8 +698,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1460,
-        -360
+        -980,
+        -840
       ]
     },
     {
@@ -703,8 +713,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1460,
-        -600
+        -980,
+        -1080
       ]
     },
     {
@@ -720,20 +730,6 @@
       "position": [
         -2260,
         -120
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## TODO : mettre en forme le mail\n",
-        "height": 394.9152542372881
-      },
-      "id": "6f03f22b-0695-43ef-9c4f-db657b960085",
-      "name": "Sticky Note3",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -2620,
-        -480
       ]
     },
     {
@@ -780,8 +776,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1780,
-        -260
+        -1620,
+        -300
       ]
     },
     {
@@ -795,8 +791,8 @@
       "type": "n8n-nodes-base.googleFirebaseRealtimeDatabase",
       "typeVersion": 1,
       "position": [
-        -1380,
-        -260
+        -900,
+        -720
       ],
       "credentials": {
         "googleFirebaseRealtimeDatabaseOAuth2Api": {
@@ -894,8 +890,65 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
+        -1140,
+        -720
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Return\nSend email AND store in firebase\n\nError ? -> Send Email",
+        "height": 268.82458714425053
+      },
+      "id": "831ba155-fced-47e9-b084-156a9337fe66",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -700,
+        -840
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let json = {};\n\njson.role = \"Kin\";\njson.status = $node[\"documentDemandeur\"].json.status;\njson.content = $node[\"documentDemandeur\"].json.instructions;\njson.createdAt = $node[\"documentDemandeur\"].json.date;\njson.id = $node[\"documentDemandeur\"].json.executionId;\njson.originId = $node[\"documentDemandeur\"].json.threadId;\njson.assignment = $node[\"documentDemandeur\"].json.mission;\njson.model = $node[\"documentDemandeur\"].json.kin;\n\nreturn json;"
+      },
+      "id": "731ab728-ddee-4745-8c27-dd901e765f96",
+      "name": "Mail formating",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
         -1620,
-        -260
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Formating \nOutput\n\nrole = \"Kin\"\nstatus = status\ncontent = instructions\ncreatedAt = date\nid = executionId\noriginId = threadId\nassignment = model",
+        "height": 280.00544304707813,
+        "width": 298.60978257674645
+      },
+      "id": "c59c33e9-12c2-4eb0-b777-b902b4635fd6",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1780,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Formating \nOutput\n\nrole = \"Kin\"\nstatus = status\ncontent = instructions\ncreatedAt = date\nid = executionId\noriginId = threadId\nassignment = model",
+        "height": 280.00544304707813,
+        "width": 298.60978257674645
+      },
+      "id": "bde0e118-614f-483d-8a85-fcfbfd13cd06",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1780,
+        -140
       ]
     }
   ],
@@ -940,6 +993,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-14T16:35:34.000Z",
-  "versionId": "7a92f17c-22f6-4457-860d-1c079972c075"
+  "updatedAt": "2024-02-15T10:29:11.000Z",
+  "versionId": "6a607e49-6883-44bd-9803-ec6533733b47"
 }
