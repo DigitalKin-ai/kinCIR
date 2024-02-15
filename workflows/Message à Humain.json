@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "Escape Markdown1",
+            "node": "entree",
             "type": "main",
             "index": 0
           }
@@ -33,6 +33,50 @@
           }
         ]
       ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "/crud_mission/read1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "/crud_mission/read1": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "Escape Markdown1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Mission : Read": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-29T08:59:08.183Z",
@@ -49,7 +93,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        560,
+        -280,
         960
       ]
     },
@@ -70,7 +114,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"Execute Workflow Trigger\"].json;\n\nlet text = json.query;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext =  \"Message de \" + json.kin + \" : \" + json.mailSubject + \"\\n\\n\" + text;\ntext = json.kin + \" (Message) (Execution #\" + $execution.id + \") - \" + json.mailSubject + \": \\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"mission\"].json;\n\nlet text = json.query;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext =  \"Message de \" + json.kin + \" : \" + json.threadSubject + \"\\n\\n\" + text;\ntext = json.kin + \" (Message) (Execution #\" + json.executionId + \") - \" + json.threadSubject + \": \\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
       },
       "id": "686c4a66-fb56-48ee-9e6c-f7d94daab812",
       "name": "Escape Markdown1",
@@ -106,6 +150,77 @@
         }
       },
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
+      },
+      "id": "19d2680f-5652-42d4-a688-1c8130597053",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## CRUD Mission\nhttps://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "8e0dc710-e49c-4161-bdc2-00b5207ef4f0",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        320,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\njson.query = \"/crud_mission/read/\" + $json.missionId;\njson.responseFormat = \"json\";\n\nreturn {\"json\": json};"
+      },
+      "id": "72abda37-bd9b-4843-8ff7-661587fa7ba1",
+      "name": "/crud_mission/read1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        180,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
+      },
+      "id": "7a285566-15ea-4f26-b991-89f07221c132",
+      "name": "mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        600,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "804a4f7e-aaff-4c40-8448-557d5dd9f406",
+      "name": "CRUD Mission : Read",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        400,
+        960
+      ]
     }
   ],
   "pinData": {},
@@ -146,6 +261,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-13T13:07:59.000Z",
-  "versionId": "63d61349-1361-4e23-9d74-0b67325e1df9"
+  "updatedAt": "2024-02-15T00:17:19.000Z",
+  "versionId": "6d585ef0-c3b2-418e-94b5-c7e68b81c148"
 }
