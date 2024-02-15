@@ -120,7 +120,7 @@
       "main": [
         [
           {
-            "node": "nouvelleMission entree",
+            "node": "Generate UUID",
             "type": "main",
             "index": 0
           }
@@ -174,17 +174,17 @@
       "main": [
         [
           {
-            "node": "Upsert mission1",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "Merge",
             "type": "main",
             "index": 0
           },
           {
             "node": "BOUCLE DE MANAGEMENT",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Upsert mission1",
             "type": "main",
             "index": 0
           }
@@ -401,6 +401,17 @@
           }
         ]
       ]
+    },
+    "Generate UUID": {
+      "main": [
+        [
+          {
+            "node": "nouvelleMission entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-02-01T11:53:46.976Z",
@@ -418,13 +429,13 @@
       "typeVersion": 1,
       "position": [
         -2420,
-        300
+        280
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\njson.query = json.query.trim();\n\n// Détecter la commande\nlet regexCommand = /\\/crud\\_mission\\/([a-zA-Z0-9\\_\\-]+)/i;\njson.command = \"\";\nlet matchCommand = json.query.match(regexCommand);\nif (matchCommand) {\n    json.command = matchCommand[1];\n}\n\nlet regexFirstAttribute = /\\/crud\\_mission\\/[a-zA-Z0-9\\_\\-]+\\/([a-zA-Z0-9\\_\\-]+)/;\nlet matchFirstAttribute = json.query.match(regexFirstAttribute);\nif (matchFirstAttribute) {\n  json.firstAttribute = matchFirstAttribute[1];\n}\n\nlet regexAllCommand = /\\/\\S+ /;\njson.commandText = \"\";\nlet matchAllCommand = json.query.match(regexAllCommand);\nif (matchAllCommand) {\n  let startIndex = matchAllCommand[0].length;\n  json.commandText = json.query.substring(startIndex);\n}\n\njson.date = $now.toString();\njson.executionId = $execution.id;\n$execution.customData.set(\"kin\", String(json.kin));\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\njson.query = json.query.trim();\n\n// Détecter la commande\nlet regexCommand = /\\/crud\\_mission\\/([a-zA-Z0-9\\_\\-]+)/i;\njson.command = \"\";\nlet matchCommand = json.query.match(regexCommand);\nif (matchCommand) {\n    json.command = matchCommand[1];\n  $execution.customData.set(\"command\", String(json.command));\n}\n\nlet regexFirstAttribute = /\\/crud\\_mission\\/[a-zA-Z0-9\\_\\-]+\\/([a-zA-Z0-9\\_\\-]+)/;\nlet matchFirstAttribute = json.query.match(regexFirstAttribute);\nif (matchFirstAttribute) {\n  json.firstAttribute = matchFirstAttribute[1];\n  $execution.customData.set(\"firstAttribute\", String(json.firstAttribute));\n}\n\nlet regexAllCommand = /\\/\\S+ /;\njson.commandText = \"\";\nlet matchAllCommand = json.query.match(regexAllCommand);\nif (matchAllCommand) {\n  let startIndex = matchAllCommand[0].length;\n  json.commandText = json.query.substring(startIndex);\n}\n\njson.date = $now.toString();\n$execution.customData.set(\"kin\", String(json.kin));\n\nreturn {\"json\": json};"
       },
       "id": "43d4d546-b9e7-481c-b3c0-6475e0931bab",
       "name": "entree",
@@ -432,7 +443,7 @@
       "typeVersion": 2,
       "position": [
         -2200,
-        300
+        280
       ]
     },
     {
@@ -547,7 +558,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "$execution.customData.set(\"command\", \"update\");\n\nlet json = $node[\"mission\"].json;\n\njson.commandText = $node[\"entree\"].json.commandText;\n\nif ($node[\"entree\"].json.firstAttribute) {\n  json[$node[\"entree\"].json.firstAttribute] = $node[\"entree\"].json.commandText;\n  $execution.customData.set(\"attribute\", $node[\"entree\"].json.firstAttribute);\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"mission\"].json;\n\njson.commandText = $node[\"entree\"].json.commandText;\n\nif ($node[\"entree\"].json.firstAttribute) {\n  json[$node[\"entree\"].json.firstAttribute] = $node[\"entree\"].json.commandText;\n}\n\nreturn {\"json\": json};"
       },
       "id": "1057faf2-da9c-4f02-9f89-cc8a31fbc3cd",
       "name": "Update Attribute",
@@ -561,7 +572,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "$execution.customData.set(\"command\", \"create\");\n\nlet json = $node[\"mission\"].json;\n\njson.kin = $node[\"entree\"].json.firstAttribute;\njson.dernierProducteur = $node[\"entree\"].json.firstAttribute;\n\njson.missionIdDemandeur = $node[\"entree\"].json.missionId;\njson.missionDemandeur = $node[\"entree\"].json.mission;\njson.mission = $node[\"entree\"].json.commandText;\njson.instructions = \"LANCEMENT :C'est le début de la mission ! Réalise la préparation pour lancer la mission\";\n\ndelete chatInput;\ndelete query;\n\njson.missionId = json.kin + \"-\" + json.threadId;\njson.status = \"doing\";\njson.execution = \"doing\"; \n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"mission\"].json;\n\njson.kin = $node[\"entree\"].json.firstAttribute;\njson.dernierProducteur = $node[\"entree\"].json.firstAttribute;\n\njson.missionIdDemandeur = $node[\"entree\"].json.missionId;\njson.missionDemandeur = $node[\"entree\"].json.mission;\njson.mission = $node[\"entree\"].json.commandText;\njson.instructions = \"LANCEMENT :C'est le début de la mission ! Réalise la préparation pour lancer la mission\";\n\ndelete chatInput;\ndelete query;\n\njson.missionId = $node[\"Generate UUID\"].json.id;\njson.status = \"doing\";\njson.execution = \"doing\"; \n\nreturn {\"json\": json};"
       },
       "id": "20a072a8-8e43-4bcf-9bab-d4304e86f8fc",
       "name": "nouvelleMission entree",
@@ -615,7 +626,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "$execution.customData.set(\"command\", \"read\");\nlet json = $node[\"entree\"].json;\n\nif (Object.keys($json.vectors).length > 0) {\n  json = $json.vectors[Object.keys($json.vectors)[0]].metadata;\n}\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"entree\"].json;\n\nif (Object.keys($json.vectors).length > 0) {\n  json = $json.vectors[Object.keys($json.vectors)[0]].metadata;\n}\n\nreturn {\"json\": json};"
       },
       "id": "b7bfd86b-d0f6-4450-a530-e1103d1c168f",
       "name": "mission",
@@ -672,8 +683,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1883.2385411046137,
-        440
+        -1920,
+        480
       ]
     },
     {
@@ -811,8 +822,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -1780,
-        300
+        -1980,
+        284
       ]
     },
     {
@@ -875,7 +886,7 @@
       "typeVersion": 1,
       "position": [
         -2720,
-        220
+        200
       ]
     },
     {
@@ -889,8 +900,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1860,
-        175.76683490241766
+        -2060,
+        160
       ]
     },
     {
@@ -1242,7 +1253,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "$execution.customData.set(\"command\", \"delete\");\n\nlet json = $node[\"mission\"].json;\n\njson.status = \"deleted\";\njson.deleted = \"deleted\";\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $node[\"mission\"].json;\n\njson.status = \"deleted\";\njson.deleted = \"deleted\";\n\nreturn {\"json\": json};"
       },
       "id": "e739fbd5-3930-405a-8e33-c5de6a680c44",
       "name": "Update Attribute1",
@@ -1270,9 +1281,23 @@
       "typeVersion": 1,
       "position": [
         -2420,
-        120
+        100
       ],
       "webhookId": "b5e5cf9d-1b48-4f67-897c-e1c3389082ca"
+    },
+    {
+      "parameters": {
+        "action": "generate",
+        "dataPropertyName": "id"
+      },
+      "id": "1a510ab7-e2b3-4ef7-be10-440a0cccea18",
+      "name": "Generate UUID",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        1480
+      ]
     }
   ],
   "pinData": {
@@ -1313,6 +1338,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-14T22:27:10.000Z",
-  "versionId": "4f45aef7-b556-4242-bc13-e917bf470193"
+  "updatedAt": "2024-02-15T07:18:48.000Z",
+  "versionId": "974de537-2d11-4f40-82d3-433bd1699081"
 }
