@@ -214,9 +214,8 @@
       "parameters": {
         "model": {
           "__rl": true,
-          "value": "gpt-4-1106-preview",
-          "mode": "list",
-          "cachedResultName": "gpt-4-1106-preview"
+          "value": "={{ $vars.llmModel }}",
+          "mode": "id"
         },
         "options": {
           "timeout": 600000
@@ -282,7 +281,7 @@
     },
     {
       "parameters": {
-        "model": "gpt-4-1106-preview",
+        "model": "={{ $vars.llmModel }}",
         "options": {
           "timeout": 600000
         }
@@ -319,7 +318,7 @@
     },
     {
       "parameters": {
-        "model": "gpt-4-0125-preview",
+        "model": "={{ $vars.llmModel }}",
         "options": {
           "timeout": 600000
         }
@@ -603,6 +602,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-08T14:48:23.000Z",
-  "versionId": "183a4063-cb9d-40c6-a7cf-5e3b39d9dadf"
+  "updatedAt": "2024-02-15T00:52:08.000Z",
+  "versionId": "72ff6eae-6914-41f7-9e43-ff04c2fc9f58"
 }
