@@ -1,0 +1,413 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "/crud_mission/read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "/crud_mission/read": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Mission : Read": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If list": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If read": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If create": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If update": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If delete",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "If list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-15T07:07:09.441Z",
+  "id": "ezq7B3Vy9u3YIhed",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CRUD Section",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "809e92fc-8f8b-497f-8715-9de303c37c61",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1560,
+        1320
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\njson.query = json.query.trim();\n\n// Détecter la commande\nlet regexCommand = /\\/crud\\_mission\\/([a-zA-Z0-9\\_\\-]+)/i;\njson.command = \"\";\nlet matchCommand = json.query.match(regexCommand);\nif (matchCommand) {\n    json.command = matchCommand[1];\n}\n\nlet regexFirstAttribute = /\\/crud\\_mission\\/[a-zA-Z0-9\\_\\-]+\\/([a-zA-Z0-9\\_\\-]+)/;\nlet matchFirstAttribute = json.query.match(regexFirstAttribute);\nif (matchFirstAttribute) {\n  json.firstAttribute = matchFirstAttribute[1];\n}\n\nlet regexAllCommand = /\\/\\S+ /;\njson.commandText = \"\";\nlet matchAllCommand = json.query.match(regexAllCommand);\nif (matchAllCommand) {\n  let startIndex = matchAllCommand[0].length;\n  json.commandText = json.query.substring(startIndex);\n}\n\njson.date = $now.toString();\n$execution.customData.set(\"kin\", String(json.kin));\n\nreturn {\"json\": json};"
+      },
+      "id": "62ac3e77-f4bd-46b6-ac6c-35a378e19420",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1340,
+        1320
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## CRUD Mission\nhttps://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "0c01b2ef-30e2-454f-a6ff-699f8ac07030",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\njson.query = \"/crud_mission/read/\" + $json.missionId;\njson.responseFormat = \"json\";\n\nreturn {\"json\": json};"
+      },
+      "id": "74bd1c3c-f8bc-4091-aa6e-5410d5e3dec7",
+      "name": "/crud_mission/read",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1100,
+        1320
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "a4037bb2-4dc5-4863-8ebe-05425e1459de",
+      "name": "CRUD Mission : Read",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        1320
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
+      },
+      "id": "3012166a-08e0-484e-9ba1-4f2e5fdfd314",
+      "name": "mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -660,
+        1320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "list",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "7ed3c5d9-da1e-4cbc-b28a-e4bd05aa513f",
+      "name": "If list",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -680,
+        1560
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "read",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "98f1420e-14c1-42fb-9103-5442e3229fff",
+      "name": "If read",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -680,
+        1780
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "create",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "8ee3a2ad-3d0b-4f36-a738-a45d568f5ff8",
+      "name": "If create",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -680,
+        2000
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "update",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "91298c84-5d54-4665-a8dd-d61c37b7c84c",
+      "name": "If update",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -680,
+        2220
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "delete",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "9ef00f84-13b1-4f2d-8d32-69882233b0ee",
+      "name": "If delete",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -680,
+        2440
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "client": "dynergie",
+          "kin": "kinredacteurscientifique",
+          "sourceGoogleDriveId": null,
+          "threadId": "18da91546c3c7090",
+          "threadSubject": "Revue de littérature - Efficacité de l'homéopathie en santé animale (Essai n°1)",
+          "threadFrom": "Lester Reynolds <lreynolds@dynergie.fr>",
+          "kinDemandeur": "Lester Reynolds <lreynolds@dynergie.fr>",
+          "mailId": "18da91546c3c7090",
+          "mailSubject": "Revue de littérature - Efficacité de l'homéopathie en santé animale (Essai n°1)",
+          "mailFrom": "From: Lester Reynolds <lreynolds@dynergie.fr>",
+          "query": "/crud_mission/create/kinredacteurscientifique Subject: Revue de littérature - Efficacité de l'homéopathie en santé animale (Essai n°1)\nBody: CONTEXTE DE LA REVUE\n• Sujet de la revue de littérature*: Efficacité de l'homéopathie en santé\nanimale à travers différentes espèces.\n• Objectifs spécifiques de la revue*: Évaluer l'efficacité de l'homéopathie\ndans le traitement de diverses conditions chez les animaux de compagnie,\nles animaux d'élevage, et les animaux sauvages, en se basant sur des études\ncliniques et fondamentales.\n• Questions de recherche principales*: Quelle est la preuve de l'efficacité\nde l'homéopathie dans le traitement des maladies chez différentes espèces\nanimales? Comment les résultats varient-ils entre les animaux de compagnie,\nd'élevage et sauvages?\n• Domaines scientifiques concernés*: Médecine vétérinaire, pharmacologie,\nmédecine alternative et complémentaire, écologie.\nPROJET DE RECHERCHE\n• Description des méthodes de recherche envisagées pour la revue*:\nRecherche et analyse systématique de la littérature utilisant des bases de\ndonnées académiques. Sélection et évaluation des études en fonction de\ncritères prédéfinis pour assurer la pertinence et la qualité.\n• Apport attendu de la revue pour le domaine de recherche*: Clarifier\nl'état des connaissances sur l'efficacité de l'homéopathie en santé\nanimale, identifier des tendances ou des différences dans les résultats en\nfonction du type d'animaux, et déterminer des directions pour les\nrecherches futures.\nBESOINS ET EXIGENCES\n• Exigences sur les résultats attendus*: juste le Livrable intermédiaire :\nrésultat des recherches google scholar\n\n\n\n"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-02-15T07:37:03.000Z",
+  "versionId": "56e9786b-3da9-4110-92ad-db9c4f5d789f"
+}
