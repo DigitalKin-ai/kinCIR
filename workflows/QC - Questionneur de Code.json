@@ -16,7 +16,7 @@
       "main": [
         [
           {
-            "node": "List Workflows",
+            "node": "/crud_mission/read",
             "type": "main",
             "index": 0
           }
@@ -89,38 +89,11 @@
         ]
       ]
     },
-    "Send  Notifications": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
-    "Merge": {
-      "main": [
-        [
-          {
-            "node": "nouveau message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "kindev1": {
       "main": [
         [
           {
-            "node": "Merge",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Send  Notifications",
+            "node": "nouveau message",
             "type": "main",
             "index": 0
           }
@@ -148,6 +121,39 @@
           }
         ]
       ]
+    },
+    "/crud_mission/read": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Mission : Read": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "List Workflows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-21T09:51:22.321Z",
@@ -164,7 +170,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        1800,
+        920,
         180
       ]
     },
@@ -178,7 +184,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3760,
+        3240,
         380
       ]
     },
@@ -192,7 +198,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2020,
+        1140,
         180
       ]
     },
@@ -205,7 +211,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2440,
+        2220,
         180
       ]
     },
@@ -218,7 +224,7 @@
       "type": "n8n-nodes-base.n8n",
       "typeVersion": 1,
       "position": [
-        2220,
+        2000,
         180
       ],
       "credentials": {
@@ -242,7 +248,7 @@
       "type": "n8n-nodes-base.n8n",
       "typeVersion": 1,
       "position": [
-        2220,
+        2000,
         380
       ],
       "credentials": {
@@ -254,7 +260,7 @@
     },
     {
       "parameters": {
-        "model": "gpt-4-0125-preview",
+        "model": "={{ $vars.llmModel }}",
         "options": {
           "timeout": 600000
         }
@@ -264,7 +270,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        2660,
+        2440,
         600
       ],
       "credentials": {
@@ -293,7 +299,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.2,
       "position": [
-        2440,
+        2220,
         380
       ]
     },
@@ -315,43 +321,15 @@
       "type": "@n8n/n8n-nodes-langchain.chainSummarization",
       "typeVersion": 2,
       "position": [
-        2660,
+        2440,
         380
       ],
       "disabled": true
     },
     {
       "parameters": {
-        "mode": "chooseBranch"
-      },
-      "id": "0bfeddf1-b1bf-4ad6-b558-4b2261cc511f",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 2.1,
-      "position": [
-        3540,
-        380
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "=EYWde6gUS9Qq2ok7",
-        "options": {}
-      },
-      "id": "0a0d6856-b4da-4d00-bbac-31a6a3079783",
-      "name": "Send  Notifications",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        3380,
-        640
-      ],
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
         "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
-        "text": "=# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Code du Workflow n8n {{ $node[\"Get Workflow\"].json.name}} (ID : {{ $node[\"Get Workflow\"].json.name}})\n\n{{ JSON.stringify($node[\"Get Workflow\"].json)}}\n{{ JSON.stringify($node[\"Get Workflow\"].json).length > 20000 ? \"[...]\" : \"\" }}{{ JSON.stringify($node[\"Get Workflow\"].json).substring(JSON.stringify($node[\"Get Workflow\"].json).length - 20000)}}\n\n# Instruction - Réponse au besoin informationnel\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel.",
+        "text": "=[RETOUR - Code du Workflow n8n {{ $node[\"Get Workflow\"].json.name}} (ID : {{ $node[\"Get Workflow\"].json.name}})]\n\n```\n{{ JSON.stringify($node[\"Get Workflow\"].json).length > 20000 ? \"[...]\" : \"\" }}{{ JSON.stringify($node[\"Get Workflow\"].json).substring(JSON.stringify($node[\"Get Workflow\"].json).length - 20000)}}\n```\n\n[/RETOUR - Code du Workflow n8n {{ $node[\"Get Workflow\"].json.name}} (ID : {{ $node[\"Get Workflow\"].json.name}})]\n\n===\n\n[DEMANDE - Demande Spécifique formulée par {{ $node[\"mission\"].json.kin }}]\n\n{{ $node[\"entree\"].json.query }}\n\n[/DEMANDE - Demande Spécifique formulée par {{ $node[\"mission\"].json.kin }}]\n\n===\n\n[INSTRUCTION - Réponse au besoin informationnel]\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel de {{ $node[\"mission\"].json.kin }}.\n\n[/INSTRUCTION - Réponse au besoin informationnel]\n\n===\n\n",
         "options": {}
       },
       "id": "3284a7f3-ee1e-4ea9-b863-70561122bbb3",
@@ -359,7 +337,7 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        3040,
+        2820,
         380
       ],
       "retryOnFail": true,
@@ -373,7 +351,7 @@
     {
       "parameters": {
         "assistantId": "asst_KEwBhc34Qsh3dcu2Gu8bgFne",
-        "text": "=# Mission Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Workflows n8n disponibles\n\n{{ $node[\"workflows\"].json.workflows }}\n\n# Instruction - Sélection de Workflow\n\nParmi les Workflows disponibles, lequel semble le plus approprié à consulter pour répondre au besoin informationnel ?\n\nRéponds au format \"ID: %WORKFLOWID% - Nom du Workflow\". Attention à respecter le format à la lettre.\n\nWorkflow :",
+        "text": "=[INFORMATIF - Mission du de {{ $node[\"mission\"].json.kin }}]\n\n{{ $node[\"mission\"].json.mission.length > 2500 ? \"[...]\" : \"\" }}{{ $node[\"mission\"].json.mission.substring($node[\"mission\"].json.mission.length - 2500)}}\n\n[/INFORMATIF - Mission du de {{ $node[\"mission\"].json.kin }}]\n\n===\n\n[RETOUR - Workflows n8n disponibles]\n\n{{ $node[\"workflows\"].json.workflows }}\n\n[/RETOUR - Workflows n8n disponibles]\n\n===\n\n[DEMANDE - Demande Spécifique formulée par {{ $node[\"mission\"].json.kin }}]\n\n{{ $node[\"entree\"].json.query }}\n\n[/DEMANDE - Demande Spécifique formulée par {{ $node[\"mission\"].json.kin }}]\n\n===\n\n[INSTRUCTION - Sélection du Workflow pertinent]\n\nParmi les Workflows disponibles, lequel semble le plus approprié à consulter pour répondre au besoin informationnel ?\n\nRéponds au format \"ID: %WORKFLOWID% - Nom du Workflow\". Attention à respecter le format à la lettre.\n\n[/INSTRUCTION - Sélection du Workflow pertinent]\n\n===\n\n",
         "options": {}
       },
       "id": "110edb53-8400-469d-aba6-cfe047fb3508",
@@ -381,7 +359,7 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        2660,
+        2440,
         180
       ],
       "retryOnFail": true,
@@ -391,21 +369,6 @@
           "name": "OpenAi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "content": "## Not share\nhttps://kins.app.n8n.cloud/workflow/EYWde6gUS9Qq2ok7",
-        "height": 276.1083494686582,
-        "width": 250.71967654986526
-      },
-      "id": "d974ef3c-2805-4131-8b76-7d2c272dcfdf",
-      "name": "Sticky Note8",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        3300,
-        520
-      ]
     },
     {
       "parameters": {
@@ -423,10 +386,67 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1,
       "position": [
-        1800,
+        920,
         -20
       ],
       "webhookId": "7c2faa4c-71d7-4509-affc-4c68158b7d9f"
+    },
+    {
+      "parameters": {
+        "content": "## CRUD Mission\nhttps://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "bff124b6-3996-49da-9831-5d9723e3e203",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\njson.query = \"/crud_mission/read/\" + $json.missionId;\njson.responseFormat = \"json\";\n\nreturn {\"json\": json};"
+      },
+      "id": "cb0ab40d-9858-4a7d-8d75-45de98fc7275",
+      "name": "/crud_mission/read",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "c8571ebd-1c91-4e89-a566-31a255e85a43",
+      "name": "CRUD Mission : Read",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
+      },
+      "id": "5121a70d-a183-4de0-a4d0-60db53410c75",
+      "name": "mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1800,
+        180
+      ]
     }
   ],
   "pinData": {
@@ -436,6 +456,17 @@
           "action": "sendMessage",
           "sessionId": "7aee1934-5e48-47af-ae0a-6b6e23466cb4",
           "chatInput": "Ex : Comment fonctionne le Workflow boucle de management ?"
+        }
+      }
+    ],
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "Format de réponse désiré: Texte",
+          "sync": true,
+          "kin": "kindev",
+          "mission": "INFORMATIF - Mission du kinrsi]\n\nSubject: \nBody: # Outils\n\nLe Questionneur de code retourne une réponse issue de la codebase n8n de \nDigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, \ncontenant :\n- Les informations que tu cherches, avec les mots clés et éléments de \ncontexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu \nsouhaites faire.\n- Le format de réponse désiré.\n\nEx : Comment fonctionne le Workflow \"Recherche Google Scholar\" ?\n-- \nNicolas Lester Reynolds\nCPO @ Digitalkin.ai <https://DigitalKin.ai>\n+33621636737\nBookez-moi sur Calendy <https://calendly.com/l-reynolds-digitalkin/call>\n\n[/INFORMATIF du kinrsi]\n\n\n---\n\n[INFORMATIF - Dernier Kin Producteur ]\n\nkinrsi\n\n[/INFORMATIF - Dernier Kin Producteur ]\n\n\n---\n\n[INFORMATIF - Dernière production du Kin Producteur]\n\n\n\n[/INFORMATIF - Dernière production du Kin Producteur]\n\n\n---\n\n[INFORMATIF - Dernier Message du KinManager]\n\nTODOLIST : - Identification du Kin et Reformulation du Besoin : DONE - Définition de l'Approche Globale d'amélioration : DONE - Amélioration de la partie \"Instructions Globales\" du prompt du Kin sélectionné : DONE - Amélioration de la partie \"Rôle\" du prompt du Kin sélectionné : DONE - Amélioration de la partie \"Contexte\" du prompt du Kin sélectionné : DONE - Amélioration de la partie \"Proposition de Valeur\" du prompt du Kin sélectionné : DONE - Amélioration de la partie \"Système de Balisage des Kins\" du prompt du Kin sélectionné : DONE - IDENTIFICATION DES ACTIONS : DONE - ACTION 8 (à répéter pour chaque ACTION à améliorer). **Amélioration de la rédaction d'une ACTION spécifique du prompt du Kin sélectionné** : DONE - ACTION OUVERTE (Si amélioration) : Inférences sur les effets attendus sur le Kin. : DONE - ACTION OUVERTE : Réflexion sur le processus de création/amélioration en lui-même. : DONE - ACTION 9. **Rapport de Mission & Commentaire** : DONE\n\nProchaine action à réaliser & instructions : La mission étant à présent conclue, le kinrsi doit soumettre son rappor\n\n[/INFORMATIF - Dernier Message du KinManager]\n\n---\n\n[INFORMATIF - Message d'erreur]\n\nMessage not found (item 0)\n\n[/INFORMATIF - Message d'erreur]\n\n===\n\nDate : 2024-02-15T05:00:49.078+01:00\nClient : digitalkin\n\n===\n\n**PROCESSUS - MISSION : Gestion de l'EXCEPTION :**\n\nLa mission du  kinrsi a donné lieu à une EXCEPTION. **Ta mission, en tant que KinDev, est de comprendre le problème et d'écrire un court rapport d'exception.\n\n===",
+          "threadId": "18daab14f24e5517"
         }
       }
     ]
@@ -461,6 +492,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-09T15:45:25.000Z",
-  "versionId": "5ed73af3-f7fb-47d5-a43f-2a9e4eda8161"
+  "updatedAt": "2024-02-15T07:36:10.000Z",
+  "versionId": "46eddc05-a43e-44e5-ab6d-a006e4f3e045"
 }
