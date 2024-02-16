@@ -302,7 +302,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"mission\"].json;\n\nlet text = json.output;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext = json.kin + \" (Output Producteur) (Execution #\" + $node[\"entree\"].json.executionId + \") - \" + json.mailSubject + \": \\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"mission\"].json;\n\nlet text = json.output;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext = json.kin + \" (Output Producteur) (Execution #\" + $node[\"entree\"].json.executionId + \") - \" + json.threadSubject + \": \\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
       },
       "id": "9994bd61-7c76-4adc-b735-ec7f426bef7d",
       "name": "Escape Markdown Ouput",
@@ -398,7 +398,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"mission\"].json;\n\nlet text = json.instructions;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext = json.kin + \" (Nouvelles Instructions) (Execution #\" + $node[\"entree\"].json.executionId + \") - \" + json.mailSubject + \": \\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
+        "jsCode": "function escapeMarkdownV2(text) {\n    return text.replace(/[_*\\[\\]()~`>#\\+=\\-{}\\.!|]/g, match => '\\\\' + match)\n               .replace(/(\\n```)([a-z]*\\n[\\s\\S]+?\\n```)/g, (match, p1, p2) => p1.replace('\\n', '') + p2);\n}\n\nlet json = $node[\"mission\"].json;\n\nlet text = json.instructions;\nif (text.length > 3900) {\n  text = \"[...]\" + text.substring(text.length - 3900); \n}\ntext = json.kin + \" (Nouvelles Instructions) (Execution #\" + $node[\"entree\"].json.executionId + \") - \" + json.threadSubject + \": \\n\\n\" + text;\ntext = escapeMarkdownV2(text);\n\nreturn {\"json\":{\"text\":text}};"
       },
       "id": "764524a5-08e4-4df8-b4eb-974591df2a28",
       "name": "Escape Markdown",
@@ -859,6 +859,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-14T21:31:23.000Z",
-  "versionId": "17c32b77-e315-4310-919d-b2e2e435cc79"
+  "updatedAt": "2024-02-16T20:33:51.000Z",
+  "versionId": "c1cf22eb-3270-484b-8cd7-584b4611777c"
 }
