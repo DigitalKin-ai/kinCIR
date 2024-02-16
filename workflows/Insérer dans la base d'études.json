@@ -1,17 +1,6 @@
 {
   "active": true,
   "connections": {
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Extracteur de référence pour citation détaillée",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Découper en chunks": {
       "main": [
         [
@@ -137,17 +126,6 @@
         [
           {
             "node": "text",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "text": {
-      "main": [
-        [
-          {
-            "node": "Extracteur de référence pour citation détaillée",
             "type": "main",
             "index": 0
           }
@@ -312,17 +290,6 @@
           {
             "node": "If INDISPONIBLE",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Extracteur d'abstract",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -499,23 +466,56 @@
         ]
       ]
     },
-    "Extracteur de référence pour citation détaillée": {
+    "entree upload document": {
       "main": [
         [
           {
-            "node": "Extracteur de référence pour citation courte",
+            "node": "Upload Document",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "OpenAI Chat Model2": {
+    "Azure OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Extracteur de référence pour citation détaillée",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "text": {
+      "main": [
+        [
+          {
+            "node": "Extracteur de référence pour citation détaillée",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Azure OpenAI Chat Model1": {
       "ai_languageModel": [
         [
           {
             "node": "Extracteur de référence pour citation courte",
             "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extracteur de référence pour citation détaillée": {
+      "main": [
+        [
+          {
+            "node": "Extracteur de référence pour citation courte",
+            "type": "main",
             "index": 0
           }
         ]
@@ -532,12 +532,12 @@
         ]
       ]
     },
-    "entree upload document": {
-      "main": [
+    "Azure OpenAI Chat Model2": {
+      "ai_languageModel": [
         [
           {
-            "node": "Upload Document",
-            "type": "main",
+            "node": "Extracteur d'abstract",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -562,28 +562,6 @@
   },
   "name": "Insérer dans la base d'études",
   "nodes": [
-    {
-      "parameters": {
-        "model": "={{ $vars.llmModel }}",
-        "options": {
-          "timeout": 600000
-        }
-      },
-      "id": "579b2379-6864-4564-a61c-b9974e3e30ba",
-      "name": "OpenAI Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1,
-      "position": [
-        2180,
-        1560
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
@@ -1057,28 +1035,6 @@
     },
     {
       "parameters": {
-        "model": "={{ $vars.llmModel }}",
-        "options": {
-          "timeout": 600000
-        }
-      },
-      "id": "919b1c96-34f4-4e14-acc5-32e94cf65ba3",
-      "name": "OpenAI Chat Model1",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1,
-      "position": [
-        4020,
-        1160
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "method": "HEAD",
         "url": "=https://sci-hub.ru/{{ $json.resource.link }}",
         "options": {
@@ -1464,7 +1420,65 @@
     },
     {
       "parameters": {
-        "prompt": "=# Informations\n\n{{ $node[\"text\"].json[\"text\"].substring(0,5000) }}\n[...]",
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json, \"binary\": $node[\"binary\"].binary};\n"
+      },
+      "id": "33b11074-8900-4f7a-805f-143ec6d74e84",
+      "name": "entree upload document",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4440,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "model": "={{ $vars.llmAzureModel }}",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "683eb995-b2b2-4117-9dc3-a841945c4802",
+      "name": "Azure OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAzureOpenAi",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        1560
+      ],
+      "credentials": {
+        "azureOpenAiApi": {
+          "id": "9rQeaqbJ6sAmmJuN",
+          "name": "Azure Open AI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "={{ $vars.llmAzureModel }}",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "87255951-31db-4d0b-a269-46a6f1da0b5e",
+      "name": "Azure OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAzureOpenAi",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        1600
+      ],
+      "credentials": {
+        "azureOpenAiApi": {
+          "id": "9rQeaqbJ6sAmmJuN",
+          "name": "Azure Open AI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "prompt": "=# Informations\n\n{{ $node[\"text\"].json[\"text\"].substring(0,10000) }}\n[...]",
         "messages": {
           "messageValues": [
             {
@@ -1481,28 +1495,6 @@
         2160,
         1360
       ]
-    },
-    {
-      "parameters": {
-        "model": "={{ $vars.llmModel }}",
-        "options": {
-          "timeout": 600000
-        }
-      },
-      "id": "dd760321-5135-458d-b26a-18d40a0b9b51",
-      "name": "OpenAI Chat Model2",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1,
-      "position": [
-        2660,
-        1540
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -1526,17 +1518,25 @@
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nreturn {\"json\": json, \"binary\": $node[\"binary\"].binary};\n"
+        "model": "={{ $vars.llmAzureModel }}",
+        "options": {
+          "timeout": 600000
+        }
       },
-      "id": "33b11074-8900-4f7a-805f-143ec6d74e84",
-      "name": "entree upload document",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "id": "c3f9acc7-ec15-4107-ab45-23460a621b06",
+      "name": "Azure OpenAI Chat Model2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAzureOpenAi",
+      "typeVersion": 1,
       "position": [
-        4440,
-        960
-      ]
+        4000,
+        1140
+      ],
+      "credentials": {
+        "azureOpenAiApi": {
+          "id": "9rQeaqbJ6sAmmJuN",
+          "name": "Azure Open AI account"
+        }
+      }
     },
     {
       "parameters": {
@@ -1571,13 +1571,6 @@
           "missionId": "kinredacteurscientifique-18da973b40805ed5"
         }
       }
-    ],
-    "Extracteur de référence pour citation détaillée": [
-      {
-        "json": {
-          "text": "Weiermayer, P.; Frass, M.; Peinbauer, T.; Ellinger, L.; De Beukelaer, E. Evidence-Based Human Homeopathy and Veterinary Homeopathy. Comment on Bergh et al. A Systematic Review of Complementary and Alternative Veterinary Medicine: “Miscellaneous Therapies”. Animals 2022, 12, 2097. https://doi.org/10.3390/ani12162097"
-        }
-      }
     ]
   },
   "settings": {
@@ -1601,6 +1594,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-15T10:38:48.000Z",
-  "versionId": "2ef8a456-bc0c-4930-a309-a9cbada6bf88"
+  "updatedAt": "2024-02-16T21:11:53.000Z",
+  "versionId": "a5ddfd67-1f1a-4dd6-b930-c92f0f7dd659"
 }
