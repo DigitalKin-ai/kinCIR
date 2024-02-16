@@ -1300,25 +1300,7 @@
       ]
     }
   ],
-  "pinData": {
-    "Execute Workflow Trigger": [
-      {
-        "json": {
-          "client": "dynergie",
-          "kin": "kinredacteurscientifique",
-          "sourceGoogleDriveId": null,
-          "threadId": "18da91546c3c7090",
-          "threadSubject": "Revue de littérature - Efficacité de l'homéopathie en santé animale (Essai n°1)",
-          "threadFrom": "Lester Reynolds <lreynolds@dynergie.fr>",
-          "kinDemandeur": "Lester Reynolds <lreynolds@dynergie.fr>",
-          "mailId": "18da91546c3c7090",
-          "mailSubject": "Revue de littérature - Efficacité de l'homéopathie en santé animale (Essai n°1)",
-          "mailFrom": "From: Lester Reynolds <lreynolds@dynergie.fr>",
-          "query": "/crud_mission/create/kinredacteurscientifique Subject: Revue de littérature - Efficacité de l'homéopathie en santé animale (Essai n°1)\nBody: CONTEXTE DE LA REVUE\n• Sujet de la revue de littérature*: Efficacité de l'homéopathie en santé\nanimale à travers différentes espèces.\n• Objectifs spécifiques de la revue*: Évaluer l'efficacité de l'homéopathie\ndans le traitement de diverses conditions chez les animaux de compagnie,\nles animaux d'élevage, et les animaux sauvages, en se basant sur des études\ncliniques et fondamentales.\n• Questions de recherche principales*: Quelle est la preuve de l'efficacité\nde l'homéopathie dans le traitement des maladies chez différentes espèces\nanimales? Comment les résultats varient-ils entre les animaux de compagnie,\nd'élevage et sauvages?\n• Domaines scientifiques concernés*: Médecine vétérinaire, pharmacologie,\nmédecine alternative et complémentaire, écologie.\nPROJET DE RECHERCHE\n• Description des méthodes de recherche envisagées pour la revue*:\nRecherche et analyse systématique de la littérature utilisant des bases de\ndonnées académiques. Sélection et évaluation des études en fonction de\ncritères prédéfinis pour assurer la pertinence et la qualité.\n• Apport attendu de la revue pour le domaine de recherche*: Clarifier\nl'état des connaissances sur l'efficacité de l'homéopathie en santé\nanimale, identifier des tendances ou des différences dans les résultats en\nfonction du type d'animaux, et déterminer des directions pour les\nrecherches futures.\nBESOINS ET EXIGENCES\n• Exigences sur les résultats attendus*: juste le Livrable intermédiaire :\nrésultat des recherches google scholar\n\n\n\n"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1",
     "saveManualExecutions": true,
@@ -1338,6 +1320,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-15T07:18:48.000Z",
-  "versionId": "974de537-2d11-4f40-82d3-433bd1699081"
+  "updatedAt": "2024-02-16T21:44:28.000Z",
+  "versionId": "ea63d000-5c0d-43aa-8acd-1da87939f440"
 }
