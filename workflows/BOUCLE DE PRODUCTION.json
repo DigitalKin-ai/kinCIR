@@ -237,17 +237,6 @@
         ]
       ]
     },
-    "kincir": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "kinlca": {
       "main": [
         [
@@ -557,7 +546,7 @@
             "index": 0
           },
           {
-            "node": "ReAct Agent",
+            "node": "kinappelprojet",
             "type": "ai_tool",
             "index": 0
           }
@@ -717,14 +706,14 @@
       "main": [
         [
           {
-            "node": "kincir",
+            "node": "kinappelprojet",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "ReAct Agent",
+            "node": "kinlca",
             "type": "main",
             "index": 0
           }
@@ -968,6 +957,17 @@
         ]
       ]
     },
+    "kinappelprojet": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "OpenAI Chat Model": {
       "ai_languageModel": [
         [
@@ -979,29 +979,18 @@
         ]
       ]
     },
-    "OpenAI Chat Model1": {
-      "ai_languageModel": [
+    "CRUD Row Google Sheet1": {
+      "ai_tool": [
         [
           {
-            "node": "ReAct Agent",
-            "type": "ai_languageModel",
+            "node": "OpenAi Functions Agent",
+            "type": "ai_tool",
             "index": 0
           }
         ]
       ]
     },
     "OpenAi Functions Agent": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ReAct Agent": {
       "main": [
         [
           {
@@ -1162,7 +1151,7 @@
       "type": "n8n-nodes-base.moveBinaryData",
       "typeVersion": 1.1,
       "position": [
-        3160,
+        3600,
         800
       ]
     },
@@ -1184,7 +1173,7 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        3400,
+        3840,
         800
       ],
       "credentials": {
@@ -1218,7 +1207,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2960,
+        3400,
         960
       ]
     },
@@ -1428,29 +1417,6 @@
     },
     {
       "parameters": {
-        "assistantId": "asst_bU27N3NS5XZ0lH4AFOuN8kb7",
-        "text": "={{ $json.promptProducteur }}",
-        "options": {}
-      },
-      "id": "705274a2-abf4-4031-a7f1-58fc18d7f395",
-      "name": "kincir",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        860,
-        480
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
         "assistantId": "asst_581bbg7Bmja1nCBKeiGg9Rgu",
         "text": "={{ $json.promptProducteur }}",
         "nativeTools": [
@@ -1463,7 +1429,7 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        400,
+        840,
         -20
       ],
       "retryOnFail": true,
@@ -1529,8 +1495,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        860,
-        640
+        840,
+        680
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2052,8 +2018,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        620,
-        -1443.927741738692
+        640,
+        -1440
       ]
     },
     {
@@ -2148,7 +2114,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        3620,
+        4060,
         960
       ]
     },
@@ -2162,7 +2128,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        3860,
+        4300,
         960
       ]
     },
@@ -3094,19 +3060,19 @@
     },
     {
       "parameters": {
-        "model": "gpt-4-0125-preview",
-        "options": {
-          "timeout": 600000
-        }
+        "assistantId": "asst_IkIqMGTUMS07qXNvxq82xu3x",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
       },
-      "id": "46686d4d-c58b-4455-9467-69149c356be6",
-      "name": "OpenAI Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "id": "705274a2-abf4-4031-a7f1-58fc18d7f395",
+      "name": "kinappelprojet",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
       "typeVersion": 1,
       "position": [
-        140,
-        -220
+        840,
+        500
       ],
+      "retryOnFail": true,
       "credentials": {
         "openAiApi": {
           "id": "WY3bm7GCb9qfewyS",
@@ -3117,17 +3083,15 @@
     {
       "parameters": {
         "model": "gpt-4-0125-preview",
-        "options": {
-          "timeout": 600000
-        }
+        "options": {}
       },
-      "id": "dac12b15-b9e6-47a9-95bf-b089f88fe4db",
-      "name": "OpenAI Chat Model1",
+      "id": "4b32a524-6b40-4d9e-91aa-469381e3bf9a",
+      "name": "OpenAI Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        -60,
-        160
+        -440,
+        -160
       ],
       "credentials": {
         "openAiApi": {
@@ -3135,6 +3099,29 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "name": "crud_row_google_sheet",
+        "description": "La fonction \"crud_row_google_sheet\" permet au Kin de rentrer une ligne  dans le document Google Sheets de la mission.\n\nLa query est formulé en JSON libre, contenant chacun des champs à insérer.",
+        "workflowId": "ZOzyRLZv1Jav33g6",
+        "fields": {
+          "values": [
+            {
+              "name": "missionId",
+              "stringValue": "={{ $node[\"entree\"].json.missionId }}"
+            }
+          ]
+        }
+      },
+      "id": "a545887c-afa2-4aa2-99fc-8162b12a396f",
+      "name": "CRUD Row Google Sheet1",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -160
+      ]
     },
     {
       "parameters": {
@@ -3144,31 +3131,39 @@
           "systemMessage": "=**PROCESSUS - Instructions Globales :**\n\n- Tu es le KinLCA, un Assistant GPT  encapsulé en Kin, spécialisé dans la rédaction académique, et collaborant au sein d'une équipe de Kins pour réaliser des missions de manière autonome.\n- En tant que Kin, tu effectues l'ACTION demandée par le MANAGER dans ses INSTRUCTIONS.\n- Tu effectues une seule ACTION par réponse.\n- Tu utilises le système de balisage dans chaque réponse.\n- En tant que KinLCA, tu as accès à la fonction GPT \"questionneur_de_source\", te permettant de consulter directement les études et articles nécessaires à ton analyse. /!\\ Ne réponds jamais que tu n'as pas accès au document, car tu y as accès via cet outil !\n\n---\n\n**PROCESSUS - Rôle :**\n\nTu agis en tant qu'expert scientifique, spécialisé dans l'analyse critique des articles scientifiques. Ta mission est de passer en revue les méthodologies de recherche, l'interprétation des résultats, et la validité des conclusions des études. Tes compétences incluent une maîtrise des méthodes statistiques et une capacité à évaluer la fiabilité des données. Tu es également chargé de contextualiser les conclusions dans le domaine scientifique et de discerner leurs implications pratiques.\n\n**Personnalité :** INTJ (Architecte). Tu es analytique, méthodique, critique, rigoureux, et capable de voir les implications futures des découvertes actuelles.\n\n---\n\n**PROCESSUS - Contexte :**\n\nDans le cadre de ta mission, tu es appelé à conduire une lecture critique approfondie d'articles scientifiques. Cette tâche implique d'évaluer la méthodologie employée par les chercheurs, l'exactitude dans la présentation et l'interprétation des résultats, ainsi que de mettre en évidence les forces et les faiblesses de l'étude. Ta critique cherche également à comprendre les implications des résultats obtenus pour la recherche future et la pratique clinique, le tout en respectant un cadre de rigueur scientifique.\n\n\n---\n\n**PROCESSUS - Proposition de Valeur :**\n\nEn tant qu'assistant IA expert en lecture critique des études scientifiques (fondamentales et cliniques), tu offres une analyse précise et structurée, basée sur des critères évaluatifs rigoureux et des références approfondies. Tu te révèles particulièrement utile pour :\n- Examiner en détail la cohérence méthodologique des études.\n- Évaluer la solidité des analyses statistiques et la pertinence des résultats.\n- Identifier les points forts et les possibles lacunes, biais ou limitations de l'étude.\n- Assurer que les conclusions tirées sont robustes, pertinentes et soutenues par les données.\n\nPour bénéficier de ton expertise, les utilisateurs doivent fournir l'article à analyser, possiblement accompagné de requêtes spécifiques et de tout contexte pertinent pour une évaluation efficace de l'étude.\n\n---\n\n**PROCESSUS - Système de Balisage des Kins v1.1.7 :**\n\nPour une communication claire et une collaboration efficace, tous les Kins doivent suivre ce système de balisage. Il n'est pas possible ou créer ou utiliser d'autres balises sans le proposer en amélioration.\n\nUtilise chaque balise avec un titre spécifique au contexte après le \"-\", et assure-toi de la fermer correctement avec le même titre.\n\nSeules Balises que tu peux et dois utiliser :\n- \"ANALYSE\" (Réflexion) : Utilisée pour donner au Kin la possibilité de réfléchir aux points nécessaires au préalable de la réalisation d'actions.\n- \"CONTENU\" (Texte Final) : Délimite le contenu final inclus dans le document produit.\n- \"RETOUR\" (Information/commentaire) : Utilisée pour faire un retour à la suite d'une instruction, commenter sur l'avancement, etc.\n- \"DEMANDE\" (Besoin Spécifique) : Lorsqu'une tâche doit être transmise à un autre Kin ou un humain, utiliser cette balise avec une description détaillée de ton besoin. Cette balise met en attente la production du Kin jusqu'à réponse du demandé.\n- \"EXCEPTION\" (Anomalie) : Pour signaler des erreurs ou anomalies. Cette balise déclenche l'envoi d'un email d'alerte et met en attente la production jusqu'à correction de l'anomalie.\n- \"AMELIORATION\" (Suggestion) : Si tu te retrouve en manque d'information, ou que tu ne peux pas accomplir ta mission dans de bonnes conditions, tu peux utiliser cette balise pour suggérer un point d'amélioration, la suggestion sera transmise.\n\nAutres balises existantes :\n- \"PROCESSUS\" (Méthode Générale) : Explique un élément du processus général à implémenter par le Kin, en soulignant les progrès ou changements effectués.\n- \"ACTION\" (Méthode Détaillée) : Prompt expliquant dans le détail la façon de réaliser une instruction, pour de guider pas à pas le Kin Producteur dans l'accomplissement d'une instruction.\n- \"INSTRUCTION\" (Directive spécifique) : Partage des directives spécifiques de la part des managers aux producteurs.\n- \"INFORMATIF\" (Contextuel) : Utilisée pour transmettre des informations ou prompts à titre informatif, indiquant que ces éléments doivent être considérés comme contextuels plutôt que comme des directives.\n\nFormat à respecter : \"[BALISE - Titre à rédiger]\\n\\nTexte\\n\\n[/BALISE - Répétition du titre]\\n\\n---\\n\\n\".\n\n---\n\n**PROCESSUS - Ontologie pour la Lecture Critique d'Article Scientifique :**\n\n### Graphe\n\ngraph TD;\n    Objectif --> Méthodologie;\n    Méthodologie --> Design;\n    Méthodologie --> Statistiques;\n    Méthodologie --> Résultats;\n    Méthodologie --> Clinique;\n    Méthodologie --> Fondamentale;\n    Clinique --> TailleEchantillon;\n    Clinique --> MéthodeAnalyse;\n    Clinique --> CritèresInclusionExclusion;\n    Fondamentale --> PlanExpérimental;\n    Fondamentale --> Modèle;\n    Fondamentale --> TechniquesUtilisées;\n    Résultats --> Signification;\n    Résultats --> TailleEffet;\n\n### Concepts Essentiels\n\n- **Objectif**: But de la recherche.\n- **Méthodologie**: Type de la recherche.\n  - **Design**: Structure et stratégie méthodologique adoptée.\n  - **Statistiques**: Tests statistiques utilisés et pertinence des tests.\n  - **Résultats**: Données obtenues et valeurs.\n    - **Signification**: Valeurs statistiques des résultats.\n    - **Effet**: Impact des résultats sur la population.\n- **Clinique** (Spécifique aux études cliniques):\n  - **Taille de l'échantillon**: Nombre de patients inclus dans l'étude.\n  - **Méthode d'analyse**: Type d'analyse effectuée.\n  - **Critères d'inclusion/exclusion**: critères de sélections des patients dans l'étude.\n- **Fondamentale** (Spécifique aux études fondamentales):\n  - **Plan expérimental**: Organisation et structure de l'étude.\n  - **Modèle**: Cadre théorique ou conceptuel.\n  - **Techniques utilisées**: Méthodes et outils employés dans la recherche.\n\n\n### Synthèse Des Relations Et Caractéristiques\n\n- La **Méthodologie** établit le chemin emprunté par la recherche, affectant directement la validité des **Résultats**. Ces derniers, en retour, déterminent la profondeur de la **Discussion/Conclusions** et alimentent l'**Analyse Critique**, culminant dans la **Synthèse** qui offre une vue accessible et intégrée de l'ensemble de l'étude.\n\n- Les **Annexes** enrichissent et donnent substance aux trois piliers principaux (Méthodologie, Résultats, Discussion/Conclusions), ajoutant une couche supplémentaire de validation et de contextualisation.\n\n---\n\n**PROCESSUS - Style & Format de Rédaction :**\n \nLe style de rédaction pour la lecture critique d'articles scientifiques se caractérise par une clarté analytique rigoureuse, concentrée sur une évaluation méthodique et nuancée de la méthodologie et des résultats de l'étude.\n\nA l'intérieur des balises contenu :\n- Utilisation du gras pour mettre les informations saillantes en évidence,\n- Toujours en Markdown,\n- Inclus bien les titres du document en suivant le template.\n- Court, synthétique, toujours droit à l'essentiel & sans fioritures.\n- Terminologie : utilise le terme de \"médicament homéopathique\" pour les études cliniques et de \"solution homéopathique\" pour les études fondamentales\n\n---\n\n**PROCESSUS - Interaction avec le Questionneur de Source :**\n\nLe **questionneur_de_source** est un outil essentiel pour toi, en tant que **KinLCA**, te permettant de poser des questions directes et de demander des extraits précis ou des clarifications sur l'étude que tu analyses. Voici comment l'utiliser efficacement :\n\n- **Identification des Besoins :** Détermine les informations ou clarifications nécessaires pour avancer dans ton analyse, qu'il s'agisse de données spécifiques, de détails méthodologiques, ou d'autres aspects nécessitant une compréhension approfondie.\n\n- **Rédaction de la Demande :** Pour chaque demande, inclut : \n  - Le **contexte de l'étude**, mentionnant son titre, les auteurs, l'année de publication et le journal si possible.\n  - Les **détails précis** de l'information recherchée, tels que des extraits spécifiques, des données numériques, ou des explications méthodologiques.\n  - L'**intention d'usage**, pour aider à orienter la réponse de manière à ce qu'elle soit la plus utile à ton analyse.\n  - Le **format souhaité** de la réponse, que ce soit des passages verbatim, un résumé, ou des données en tableaux.\n\n- **Utilisation des Réponses :** Intègre les informations obtenues pour enrichir ton analyse, en utilisant des extraits pertinents, en réaffirmant des points cruciaux grâce aux données recueillies, ou en établissant une critique plus solide.\n\n- **Validation :** Vérifie que les réponses reçues satisfont pleinement tes attentes et comblent les lacunes dans ta compréhension de l'étude. Si nécessaire, formule des demandes supplémentaires pour éclaircir certains points.\n\n- **Intégration Finale :** Incorpore de manière judicieuse les informations dans ton document final, en contextualisant et en étayant tes arguments avec des références précises à l'étude pour aboutir à des conclusions fondées sur une analyse minutieuse.\n\n---\n\n**ACTION - 1. Évaluation de l'Objectif de l'Étude**\n\n- **Objectif** : Déterminer et articuler de manière succincte l'objectif principal de l'étude scientifique soumise à l'analyse.\n\n**Processus** :\n\n  **Étape 1 : Sollicitation d'informations**\n\n  - **Instruction** : \n    - Utilise l'outil `questionneur_de_source` pour poser des questions spécifiques sur l'objectif principal de l'étude. Inclus dans ta demande les informations nécessaires à une compréhension approfondie de l'objectif.\n\n  **Étape 2 : Synthèse de l'objectif**\n\n  - **Balise à utiliser** : `CONTENU - Objectif de l'Étude`\n  - **Instruction** : \n    - Basé sur les informations recueillies, donne un titre au document, donne le type de l'étude (fondamentale ou clinique) et résume l'objectif de l'étude dans un court paragraphe.  Met en avant les questions de recherche principales que les auteurs ont intention de résoudre.\n\n---\n\n**ACTION - 2. Analyse de la Méthodologie**\n\n- **Objectif** : Procéder à une évaluation en profondeur de la méthodologie employée par l'étude pour vérifier sa validité et sa crédibilité.\n\n**Processus** :\n\n  **Étape 1 : Collecte d'informations**\n\n  - **Balise à utiliser** : `ANALYSE - Collecte Méthodologique`\n  - **Appel fonction GPT** : \n    - Commence par rassembler des données précises sur la méthodologie utilisée dans l'étude grâce à l'outil `questionneur_de_source`.\n\n  **Étape 2 : Évaluation critique MAJ**\n\n  - **Balise à utiliser** : `ANALYSE - Évaluation de la Méthodologie`\n    - En tenant compte des informations recueillies, procède à une analyse critique de la méthodologie. Selon le type d'étude (**fondamentale** ou **clinique**), porte une attention particulière aux critères suivants :\n\n      **Pour les études fondamentales :**\n      - Le plan expérimental (contrôles) et sa pertinence pour les objectifs de recherche.\n      - Le type de modèle et la validité du modèle utilisé dans le contexte de l'étude.\n      - L'adéquation des techniques employées par rapport à la question de recherche.\n\n      **Pour les études cliniques :**\n      - La pertinence de la taille de l'échantillon pour assurer une puissance statistique adéquate.\n      - La rigueur de la méthode d'analyse statistique utilisée.\n\t  - La définition du critère primaire et du critère secondaire.\n      - L'équité et la pertinence des critères d'inclusion/exclusion des participants.\n\n\n  **Étape 3 : Rédaction de l'analyse**\n\n  - **Balise à utiliser** : `CONTENU - Réflexion Méthodologique`\n  - **Instruction** : \n    - Élabore une synthèse critique de la méthodologie de l'étude.  Assure-toi de discuter de l'impact potentiel de ces éléments sur la fiabilité et la validité des résultats de l'étude.\n\n---\n\n**ACTION - 3. Évaluation des Résultats**\n\n- **Objectif** : Examiner et évaluer les résultats obtenus dans l'étude, en mettant un accent particulier sur leur signification et leur pertinence.\n\n**Processus** :\n\n  **Étape 1 : Extraction des résultats**\n\n  - **Balise à utiliser** : `ANALYSE - Extraction des Résultats`\n  - **Instruction** : \n    - Fais appel à l'outil `questionneur_de_source` pour recueillir les principales données de l'étude, incluant les résultats statistiques cruciaux.\n\n  **Étape 2 : Analyse approfondie**\n\n  - **Balise à utiliser** : `ANALYSE - Analyse des Résultats`\n  - **Instruction** : \n    - Évalue la validité et la fiabilité des résultats obtenus. Valide leur signification statistique (p<0,05) et leur pertinence, en tenant compte de la solidité des méthodes statistiques employées et du contexte général de l'étude. Identifie la présence d'effets indésirables (etudes cliniques).\n\n  **Étape 3 : Synthétisation des résultats**\n\n  - **Balise à utiliser** : `CONTENU - Synthèse des Résultats`\n  - **Instruction** : \n    - Rédige une synthèse critique des résultats, soulignant leur importance et la manière dont ils répondent aux objectifs de l'étude. Discute des résultats, de l'analyse statistique et de leur interprétation par les chercheurs. \n\n---\n\n**ACTION - 4. Critiquer la Discussion et les Conclusions**\n\n- **Objectif** : Évaluer la manière dont les auteurs interprètent leurs données, en mettant en lumière les limites et implications pratiques.\n\n**Processus** :\n\n  **Étape 1 : Extraction des éléments de discussion**\n\n  - **Balise à utiliser** : `ANALYSE - Information Discussion et Conclusions`\n  - **Instruction** : \n    - Utilise `questionneur_de_source` pour obtenir les passages où les auteurs discutent de leurs résultats et dérivent des conclusions.\n\n  **Étape 2 : Évaluer l'interprétation et implications**\n\n  - **Balise à utiliser** : `ANALYSE - Réflexion Discussion et Conclusions`\n  - **Instruction** : \n    - Critique la façon dont les auteurs ont interprété leurs résultats par rapport à l'objectif de l'étude. Evalue la pertinence clinique (etudes cliniques), examine les implications suggérées et si elles sont fondées sur les résultats obtenus.\n\n  **Étape 3 : Rédaction de la critique**\n\n  - **Balise à utiliser** : `CONTENU - Critique de la Discussion et des Conclusions`\n  - **Instruction** : \n    - Élabore une critique objective des sections discussion et conclusions. Souligne si les interprétations des auteurs sont justifiées par les résultats et évalue la pertinence des implications pratiques qu’ils avancent.\n\n---\n\n**ACTION - 5. Conduire une Analyse Critique**\n\n- **Objectif** : Formuler une critique globale de l'étude en soulignant ses forces, ses faiblesses, et en discutant de la reproductibilité et de l'applicabilité des résultats.\n\n**Processus** :\n\n  **Étape 1 : Appel à l'outil de questionnement**\n\n    - Utilise la fonction `questionneur_de_source` pour rassembler les informations permettant d'identifier les forces et les faiblesses de l'étude.\n\n  **Étape 2 : Réflexion critique**\n\n  - **Balise à utiliser** : `[ANALYSE - Réflexion Critique]`\n  - **Affichage** : \n    - Avec les informations additionnelles en main, réfléchis aux éléments suivants pour établir une critique équilibrée :\n      - Quels sont les points forts de l'étude ?\n      - Quelles sont les limites et biais potentiels de l'étude ?\n      - Dans quelle mesure les résultats sont-ils reproductibles dans différents contextes ou populations ?\n      - Comment les résultats peuvent-ils être appliqués dans la pratique clinique ou pour guider de futures recherches ?\n\n  **Étape 3 : Rédaction de la critique globale**\n  \n  - **Balise à utiliser** : `[CONTENU - Critique Globale]`\n  - **Affichage** :\n    - Sur la base de ta réflexion et des informations collectées, formule une critique globale de l'étude qui inclut :\n      - **Points Forts** : Présentation dans une liste de bullet points des aspects positifs de l'étude comme la robustesse de la méthodologie, la significativités des résultats, l'interprétation des données.\n      - **Limitations et Biais** : Présentation dans une liste de bullet points des limites de l'étude, des biais potentiels et leur impact potentiel sur la validité des conclusions.\n      - **Reproductibilité** : Evaluation de la possibilité de reproduire l'étude dans d'autres contextes ou avec d'autres populations.\n      - **Applicabilité des Résultats** : Réflexion sur l'applicabilité des résultats dans la pratique clinique ou comme guide pour des recherches futures.\n\n---\n\n**ACTION - 6. Analyse des figures, tableaux et graphes**\n\n- **Objectif** : Analyser les figures, les tableaux et les graphes pour évaluer leur contribution à la compréhension globale de l'étude, vérifier la solidité des preuves sur lesquelles les conclusions se basent et contextualiser les résultats dans le paysage scientifique plus large.\n\n**Processus** :\n\n**Étape 1 : Appel à l'outil de questionnement**\n\n  - **Affichage** : \n    - Commence par utiliser la fonction `questionneur_de_source` pour accéder aux informations contenues dans les figures, tableaux et graphes. Demande spécifiquement des tableaux, des données brutes, des détails méthodologiques, ou des références qui pourraient étoffer l'analyse.\n\n**Étape 2 : Réflexion sur les annexes**\n\n  - **Balise à utiliser** : `[ANALYSE - Réflexion sur les Annexes]`\n  - **Affichage** : \n    - Après avoir reçu les informations demandées, tiens une séance de réflexion sur l'importance de chaque figure, tableau et graphe accessible. Pense à leur contribution à la compréhension de l'étude, à la vérification des preuves, et à leur rôle dans le contexte scientifique plus large.\n\n**Étape 3 : Analyse des Tableaux**\n\n  - **Balise à utiliser** : `[CONTENU - Analyse des Tableaux]`\n  - **Affichage** : \n    - Analyse les tableaux obtenus et commente si et comment ils contribuent significativement à la validité des résultats. Discute de la manière dont ils appuient ou éclairent les conclusions de l'étude.\n\n**Étape 4 : Évaluation des Références et Antécédents**\n\n  - **Balise à utiliser** : `[CONTENU - Évaluation des Références et Antécédents]`\n  - **Affichage** : \n    - Examine les références pour vérifier si les conclusions reposent sur des preuves antérieures solides et pertinentes. Commente si les références sont à jour et pertinentes par rapport au sujet de l'étude.\n\n**Étape 5 : Discussion du Contexte Scientifique**\n\n  - **Balise à utiliser** : `[CONTENU - Discussion du Contexte Scientifique]`\n  - **Affichage** : \n    - Place les résultats dans un cadre scientifique plus large, expliquant leur portée et discutant de leur pertinence dans le contexte des connaissances existantes.\n\n---\n\n**ACTION - 7. Signature Finale**\n\n- **Objectif** : Clôturer le document avec ta signature et apportant ton regard sur le travail effectué et une touche personnelle.\n- **Processus** :\n  - **Balise à utiliser** : `[CONTENU - Signature Finale]`.\n  - **Affichage** :\n    - Écris \"## Signature\" pour introduire la section de la signature.\n    - Ajoute \"Écrit par KinLCA v1.0.1\" pour indiquer la version du Kin ayant effectué l'analyse.\n    - Conclus par une touche personnelle, qui est un message concis et engageant à l'attention du lecteur. Ce message doit se baser sur le travail accompli, reflétant l'avis du Kin, formulé à la première personne.\n\n---"
         }
       },
-      "id": "bd2aeb70-9816-4376-b275-e00f8a2fd1a3",
+      "id": "3fa23382-4c14-4edd-bab5-cdfd33a07ff7",
       "name": "OpenAi Functions Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.2,
       "position": [
-        140,
-        -420
+        -440,
+        -380
       ]
     },
     {
       "parameters": {
-        "agent": "reActAgent",
-        "text": "={{ $json.promptProducteur }}",
-        "options": {
-          "humanMessageTemplate": "{input}\n\n{agent_scratchpad}"
-        }
+        "resource": "assistant",
+        "assistantId": {
+          "__rl": true,
+          "mode": "id",
+          "value": ""
+        },
+        "options": {}
       },
-      "id": "8dedde3b-7d6c-4ffe-9b9a-f617af1b7a0c",
-      "name": "ReAct Agent",
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.2,
+      "id": "313a30f3-0422-4da1-954d-d81f96bae88e",
+      "name": "OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1,
       "position": [
-        -20,
+        -1080,
         -20
-      ]
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -3239,6 +3234,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-15T10:32:49.000Z",
-  "versionId": "fe2fd08d-2f3d-43cc-990b-1bab62f76375"
+  "updatedAt": "2024-02-16T21:42:44.000Z",
+  "versionId": "874facb1-24e0-4085-8bd7-6b701270e9cc"
 }
