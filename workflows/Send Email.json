@@ -1,64 +1,6 @@
 {
   "active": false,
   "connections": {
-    "If document not empty": {
-      "main": [
-        [
-          {
-            "node": "4 attachments",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Send Email without attachment",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If not kinmail": {
-      "main": [
-        [
-          {
-            "node": "documentDemandeur",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "documentDemandeur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "documentDemandeur": {
-      "main": [
-        [
-          {
-            "node": "Response formating",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "entree DocumentDemandeur": {
-      "main": [
-        [
-          {
-            "node": "If not kinmail",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Send Email without attachment": {
       "main": [
         [
@@ -74,43 +16,7 @@
       "main": [
         [
           {
-            "node": "entree DocumentDemandeur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "3 attachments": {
-      "main": [
-        [
-          {
-            "node": "Send Email3",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "2 attachments",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "2 attachments": {
-      "main": [
-        [
-          {
-            "node": "Send Email2",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Send Email1",
+            "node": "/crud_mission/read",
             "type": "main",
             "index": 0
           }
@@ -150,40 +56,11 @@
         ]
       ]
     },
-    "4 attachments": {
-      "main": [
-        [
-          {
-            "node": "Send Email4",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "3 attachments",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Send Email4": {
       "main": [
         [
           {
             "node": "response",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Response formating": {
-      "main": [
-        [
-          {
-            "node": "If Firebase Data OK",
             "type": "main",
             "index": 0
           }
@@ -201,18 +78,7 @@
         ],
         [
           {
-            "node": "Mail formating",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Mail formating": {
-      "main": [
-        [
-          {
-            "node": "If document not empty",
+            "node": "Mail formatting",
             "type": "main",
             "index": 0
           }
@@ -223,7 +89,119 @@
       "main": [
         [
           {
-            "node": "Mail formating",
+            "node": "Mail formatting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Response formatting": {
+      "main": [
+        [
+          {
+            "node": "If Firebase Data OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "/crud_mission/read": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Mission : Read": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "document": {
+      "main": [
+        [
+          {
+            "node": "Response formatting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mail formatting": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Send Email without attachment",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Email1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Email2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Email3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Email4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
             "type": "main",
             "index": 0
           }
@@ -248,53 +226,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -920,
-        0
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose"
-          },
-          "conditions": [
-            {
-              "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
-              "leftValue": "={{ $node[\"documentDemandeur\"].document }}",
-              "rightValue": 0,
-              "operator": {
-                "type": "array",
-                "operation": "exists",
-                "singleValue": true
-              }
-            },
-            {
-              "id": "8e29e9e0-125a-485e-afeb-884035a37b61",
-              "leftValue": "={{ $node[\"documentDemandeur\"].json.document }}",
-              "rightValue": 0,
-              "operator": {
-                "type": "array",
-                "operation": "lengthGt",
-                "rightType": "number"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "looseTypeValidation": true
-        }
-      },
-      "id": "47148ce4-5905-48a7-a583-48467336a185",
-      "name": "If document not empty",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        -1580,
-        100
+        -900,
+        80
       ]
     },
     {
@@ -306,71 +239,8 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        -1580,
-        -300
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose"
-          },
-          "conditions": [
-            {
-              "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
-              "leftValue": "={{ $node[\"entree DocumentDemandeur\"].json.kin !== \"kinmail\" }}",
-              "rightValue": "md",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "looseTypeValidation": true
-        }
-      },
-      "id": "6af34077-da29-4ee5-8d27-0b187bfae053",
-      "name": "If not kinmail",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        -2420,
-        0
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "H3fxaSnxjZT6EGhc",
-        "options": {}
-      },
-      "id": "c17f7e19-7fd3-4f99-98d4-957589a92d63",
-      "name": "documentDemandeur",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        -2180,
-        0
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $node[\"Execute Workflow Trigger\"].json;\n\nif (json.kinDemandeur && json.kinDemandeur !== \"undefined\") {\n  json.kin = json.kinDemandeur;\n}\n\nif (json.missionIdDemandeur && json.missionIdDemandeur !== \"undefined\") {\n  json.missionId = json.missionIdDemandeur;\n}\n\n\nif (json.missionDemandeur && json.missionDemandeur !== \"undefined\") {\n  json.mission = json.missionDemandeur;\n}\n\nreturn {\"json\": json};"
-      },
-      "id": "944ba1bf-168f-4da3-ad97-b365252e5d76",
-      "name": "entree DocumentDemandeur",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -2640,
-        0
+        -1460,
+        380
       ]
     },
     {
@@ -380,18 +250,18 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -2880,
+        -3180,
         0
       ]
     },
     {
       "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
-        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.document }}\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      <span style=\"font-style:italic\">\n\"Travailler ensemble vers l'innovation et le progrès.\"\n      </span>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
+        "messageId": "={{ $node[\"mission\"].json[\"mailId\"]?$node[\"mission\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"mission\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"mission\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"mission\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"mission\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formatting\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"mission\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      \n      <span style=\"font-style:italic\">\n\"Libérez le temps humain pour l'humain.\"\n      </span>\n<br>\n      <a href=\"https://digitalkin.ai/\" style=\"color: white; text-decoration: none\">\n      <span style=\"font-style:italic; text-color: white; text-decoration: none\">\nNotre site : https://digitalkin.ai/\n      </span>\n</a>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
         "options": {
-          "ccList": "={{ $node[\"entree DocumentDemandeur\"].json[\"to\"] ? $node[\"entree DocumentDemandeur\"].json[\"to\"] + \", \" : \"\"}} team@digitalkin.ai",
-          "senderName": "={{ $node[\"entree DocumentDemandeur\"].json.kin.toUpperCase() }}"
+          "ccList": "={{ $node[\"mission\"].json[\"to\"] ? $node[\"mission\"].json[\"to\"] + \", \" : \"\"}}",
+          "senderName": "={{ $node[\"mission\"].json.kin.toUpperCase() }}"
         }
       },
       "id": "fb119fef-b38a-4329-86db-1ee27c837b5f",
@@ -399,8 +269,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -1340,
-        500
+        -1140,
+        -240
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -420,86 +290,15 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -2940,
+        -3240,
         -60
       ]
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose"
-          },
-          "conditions": [
-            {
-              "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
-              "leftValue": "={{ Object.keys($binary).length>2 }}",
-              "rightValue": "md",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "looseTypeValidation": true
-        }
-      },
-      "id": "5e806044-aa25-4030-b65a-8c3fa8cf4688",
-      "name": "3 attachments",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        -1340,
-        0
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose"
-          },
-          "conditions": [
-            {
-              "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
-              "leftValue": "={{ Object.keys($binary).length>1 }}",
-              "rightValue": "md",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "looseTypeValidation": true
-        }
-      },
-      "id": "cff66d35-24e9-4dc3-bf2d-45f1d107044a",
-      "name": "2 attachments",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        -1340,
-        280
-      ]
-    },
-    {
-      "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
-        "emailType": "text",
-        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.document }}\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      <span style=\"font-style:italic\">\n\"Travailler ensemble vers l'innovation et le progrès.\"\n      </span>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
+        "messageId": "={{ $node[\"mission\"].json[\"mailId\"]?$node[\"mission\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"mission\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"mission\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"mission\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"mission\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formatting\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"mission\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      \n      <span style=\"font-style:italic\">\n\"Libérez le temps humain pour l'humain.\"\n      </span>\n<br>\n      <a href=\"https://digitalkin.ai/\" style=\"color: white; text-decoration: none\">\n      <span style=\"font-style:italic; text-color: white; text-decoration: none\">\nNotre site : https://digitalkin.ai/\n      </span>\n</a>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
         "options": {
           "attachmentsUi": {
             "attachmentsBinary": [
@@ -508,8 +307,8 @@
               }
             ]
           },
-          "ccList": "={{ $node[\"entree DocumentDemandeur\"].json[\"to\"] ? $node[\"entree DocumentDemandeur\"].json[\"to\"] + \", \" : \"\"}} team@digitalkin.ai",
-          "senderName": "={{ $node[\"entree DocumentDemandeur\"].json.kin.toUpperCase() }}"
+          "ccList": "={{ $node[\"mission\"].json[\"to\"] ? $node[\"mission\"].json[\"to\"] + \", \" : \"\"}}",
+          "senderName": "={{ $node[\"mission\"].json.kin.toUpperCase() }}"
         }
       },
       "id": "86824131-94a4-410c-b20c-c8c38e08d3b8",
@@ -517,8 +316,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -1160,
-        500
+        -1140,
+        -40
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -530,9 +329,8 @@
     {
       "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
-        "emailType": "text",
-        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.document }}\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      <span style=\"font-style:italic\">\n\"Travailler ensemble vers l'innovation et le progrès.\"\n      </span>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
+        "messageId": "={{ $node[\"mission\"].json[\"mailId\"]?$node[\"mission\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"mission\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"mission\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"mission\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"mission\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formatting\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"mission\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      \n      <span style=\"font-style:italic\">\n\"Libérez le temps humain pour l'humain.\"\n      </span>\n<br>\n      <a href=\"https://digitalkin.ai/\" style=\"color: white; text-decoration: none\">\n      <span style=\"font-style:italic; text-color: white; text-decoration: none\">\nNotre site : https://digitalkin.ai/\n      </span>\n</a>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
         "options": {
           "attachmentsUi": {
             "attachmentsBinary": [
@@ -544,8 +342,8 @@
               }
             ]
           },
-          "ccList": "={{ $node[\"entree DocumentDemandeur\"].json[\"to\"] ? $node[\"entree DocumentDemandeur\"].json[\"to\"] + \", \" : \"\"}} team@digitalkin.ai",
-          "senderName": "={{ $node[\"entree DocumentDemandeur\"].json.kin.toUpperCase() }}"
+          "ccList": "={{ $node[\"mission\"].json[\"to\"] ? $node[\"mission\"].json[\"to\"] + \", \" : \"\"}}",
+          "senderName": "={{ $node[\"mission\"].json.kin.toUpperCase() }}"
         }
       },
       "id": "7774dd2b-2c63-48ab-ba31-995891f699a8",
@@ -553,8 +351,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -1160,
-        280
+        -1140,
+        160
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -566,9 +364,8 @@
     {
       "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
-        "emailType": "text",
-        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.document }}\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      <span style=\"font-style:italic\">\n\"Travailler ensemble vers l'innovation et le progrès.\"\n      </span>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
+        "messageId": "={{ $node[\"mission\"].json[\"mailId\"]?$node[\"mission\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"mission\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"mission\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"mission\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"mission\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formatting\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"mission\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      \n      <span style=\"font-style:italic\">\n\"Libérez le temps humain pour l'humain.\"\n      </span>\n<br>\n      <a href=\"https://digitalkin.ai/\" style=\"color: white; text-decoration: none\">\n      <span style=\"font-style:italic; text-color: white; text-decoration: none\">\nNotre site : https://digitalkin.ai/\n      </span>\n</a>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
         "options": {
           "attachmentsUi": {
             "attachmentsBinary": [
@@ -583,8 +380,8 @@
               }
             ]
           },
-          "ccList": "={{ $node[\"entree DocumentDemandeur\"].json[\"to\"] ? $node[\"entree DocumentDemandeur\"].json[\"to\"] + \", \" : \"\"}} team@digitalkin.ai",
-          "senderName": "={{ $node[\"entree DocumentDemandeur\"].json.kin.toUpperCase() }}"
+          "ccList": "={{ $node[\"mission\"].json[\"to\"] ? $node[\"mission\"].json[\"to\"] + \", \" : \"\"}}",
+          "senderName": "={{ $node[\"mission\"].json.kin.toUpperCase() }}"
         }
       },
       "id": "96e04c34-fc93-4a37-a84d-c509a95714b9",
@@ -592,8 +389,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -1160,
-        0
+        -1140,
+        340
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -604,45 +401,9 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose"
-          },
-          "conditions": [
-            {
-              "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
-              "leftValue": "={{ Object.keys($binary).length>3 }}",
-              "rightValue": "md",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "looseTypeValidation": true
-        }
-      },
-      "id": "4e2f5aba-00e9-4370-a62f-d19fc8b67a67",
-      "name": "4 attachments",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        -1340,
-        -280
-      ]
-    },
-    {
-      "parameters": {
         "operation": "reply",
-        "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
-        "emailType": "text",
-        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.document }}\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      <span style=\"font-style:italic\">\n\"Travailler ensemble vers l'innovation et le progrès.\"\n      </span>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
+        "messageId": "={{ $node[\"mission\"].json[\"mailId\"]?$node[\"mission\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"mission\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"mission\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"mission\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"mission\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formatting\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"mission\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      \n      <span style=\"font-style:italic\">\n\"Libérez le temps humain pour l'humain.\"\n      </span>\n<br>\n      <a href=\"https://digitalkin.ai/\" style=\"color: white; text-decoration: none\">\n      <span style=\"font-style:italic; text-color: white; text-decoration: none\">\nNotre site : https://digitalkin.ai/\n      </span>\n</a>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
         "options": {
           "attachmentsUi": {
             "attachmentsBinary": [
@@ -660,8 +421,8 @@
               }
             ]
           },
-          "ccList": "={{ $node[\"entree DocumentDemandeur\"].json[\"to\"] ? $node[\"entree DocumentDemandeur\"].json[\"to\"] + \", \" : \"\"}} team@digitalkin.ai",
-          "senderName": "={{ $node[\"entree DocumentDemandeur\"].json.kin.toUpperCase() }}"
+          "ccList": "={{ $node[\"mission\"].json[\"to\"] ? $node[\"entree DocumentDemandeur\"].json[\"to\"] + \", \" : \"\"}}",
+          "senderName": "={{ $node[\"mission\"].json.kin.toUpperCase() }}"
         }
       },
       "id": "8c1898de-bb72-4676-807c-de0cdd0baa9a",
@@ -669,8 +430,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -1160,
-        -280
+        -1140,
+        520
       ],
       "credentials": {
         "gmailOAuth2": {
@@ -726,19 +487,6 @@
     },
     {
       "parameters": {
-        "jsCode": "let json = {};\n\njson.role = \"Kin\";\njson.status = $node[\"documentDemandeur\"].json.status;\njson.content = $node[\"documentDemandeur\"].json.instructions;\njson.createdAt = $node[\"documentDemandeur\"].json.date;\njson.id = $node[\"documentDemandeur\"].json.executionId;\njson.originId = $node[\"documentDemandeur\"].json.threadId;\njson.assignment = $node[\"documentDemandeur\"].json.mission;\njson.model = $node[\"documentDemandeur\"].json.kin;\n\nreturn json;"
-      },
-      "id": "469a637e-b221-4a0c-b055-fb6ed79c4e70",
-      "name": "Response formating",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -1920,
-        0
-      ]
-    },
-    {
-      "parameters": {
         "content": "## Return\nSend email AND store in firebase\n\nError ? -> Send Email",
         "height": 268.82458714425053
       },
@@ -749,19 +497,6 @@
       "position": [
         -680,
         -360
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "let json = $node[\"documentDemandeur\"].json;\n\nfunction splitOnNewline(str) {\n  if (typeof str !== 'string') {\n    str = String(str);\n  }\n  return escapeHtml(str).replace(/\\n/g, '<br>');\n}\n\nfunction escapeHtml(unsafe) {\n  return unsafe\n    .replace(/Ã /g, \"à\")\n    .replace(/Ã¢/g, \"â\")\n    .replace(/Ã©/g, \"é\")\n    .replace(/Ã¨/g, \"è\")\n    .replace(/Ãª/g, \"ê\")\n    .replace(/Ã«/g, \"ë\")\n    .replace(/Ã®/g, \"î\")\n    .replace(/Ã¯/g, \"ï\")\n    .replace(/Ã´/g, \"ô\")\n    .replace(/Ã¹/g, \"ù\")\n    .replace(/Ã»/g, \"û\")\n    .replace(/Ã¼/g, \"ü\")\n    .replace(/Ã¿/g, \"ÿ\")\n    .replace(/Ã€/g, \"À\")\n    .replace(/Ã‚/g, \"Â\")\n    .replace(/Ã‰/g, \"É\")\n    .replace(/Ãˆ/g, \"È\")\n    .replace(/ÃŠ/g, \"Ê\")\n    .replace(/Ã‹/g, \"Ë\")\n    .replace(/ÃŽ/g, \"Î\")\n    .replace(/Ã/g, \"Ï\")\n    .replace(/Ã”/g, \"Ô\")\n    .replace(/Ã™/g, \"Ù\")\n    .replace(/Ã›/g, \"Û\")\n    .replace(/Ãœ/g, \"Ü\")\n    .replace(/ÃŸ/g, \"ß\")\n    .replace(/Ã§/g, \"ç\")\n    .replace(/&/g, \"&amp;\")\n    .replace(/</g, \"&lt;\")\n    .replace(/>/g, \"&gt;\")\n    .replace(/\"/g, \"&quot;\")\n    .replace(/'/g, \"&#039;\");\n}\n\njson.instructions = splitOnNewline($node[\"entree DocumentDemandeur\"].json.instructions);\njson.document = splitOnNewline(json.document);\n\nreturn json;"
-      },
-      "id": "731ab728-ddee-4745-8c27-dd901e765f96",
-      "name": "Mail formating",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -1760,
-        100
       ]
     },
     {
@@ -860,7 +595,7 @@
     {
       "parameters": {
         "projectId": "kincir-9369f-default-rtdb",
-        "path": "={{ \"conversations/\" + $node[\"Response formating\"].json.originId + \"/responses/\" + $node[\"Response formating\"].json.id }}",
+        "path": "={{ \"conversations/\" + $node[\"Response formatting\"].json.originId + \"/responses/\" + $node[\"Response formatting\"].json.id }}",
         "attributes": "id, originId, assignment, role, status, model, content, createdAt"
       },
       "id": "f14b493a-a2de-4c2c-8b58-a7e0b7d62b82",
@@ -880,7 +615,7 @@
     },
     {
       "parameters": {
-        "content": "## Formating Firebase\nOutput\n\nrole = \"Kin\"\nstatus = status\ncontent = instructions\ncreatedAt = date\nid = executionId\noriginId = threadId\nassignment = model",
+        "content": "## Formatting Firebase\nOutput\n\nrole = \"Kin\"\nstatus = status\ncontent = instructions\ncreatedAt = date\nid = executionId\noriginId = threadId\nassignment = model",
         "height": 292.6143862041808,
         "width": 314.12848184702665
       },
@@ -892,24 +627,253 @@
         -1960,
         -460
       ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let json = {};\n\njson.role = \"Kin\";\njson.status = $node[\"mission\"].json.status;\njson.content = $node[\"mission\"].json.instructions;\njson.createdAt = $node[\"mission\"].json.date;\njson.id = $node[\"mission\"].json.missionId;\njson.originId = $node[\"mission\"].json.threadId;\njson.assignment = $node[\"mission\"].json.mission;\njson.model = $node[\"mission\"].json.kin;\n\nreturn {\"json\": json};"
+      },
+      "id": "469a637e-b221-4a0c-b055-fb6ed79c4e70",
+      "name": "Response formatting",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1920,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let json = $node[\"document\"].json;\n\nfunction splitOnNewline(str) {\n  if (typeof str !== 'string') {\n    str = String(str);\n  }\n  return escapeHtml(str).replace(/\\n/g, '<br>');\n}\n\nfunction escapeHtml(unsafe) {\n  return unsafe\n    .replace(/Ã /g, \"à\")\n    .replace(/Ã¢/g, \"â\")\n    .replace(/Ã©/g, \"é\")\n    .replace(/Ã¨/g, \"è\")\n    .replace(/Ãª/g, \"ê\")\n    .replace(/Ã«/g, \"ë\")\n    .replace(/Ã®/g, \"î\")\n    .replace(/Ã¯/g, \"ï\")\n    .replace(/Ã´/g, \"ô\")\n    .replace(/Ã¹/g, \"ù\")\n    .replace(/Ã»/g, \"û\")\n    .replace(/Ã¼/g, \"ü\")\n    .replace(/Ã¿/g, \"ÿ\")\n    .replace(/Ã€/g, \"À\")\n    .replace(/Ã‚/g, \"Â\")\n    .replace(/Ã‰/g, \"É\")\n    .replace(/Ãˆ/g, \"È\")\n    .replace(/ÃŠ/g, \"Ê\")\n    .replace(/Ã‹/g, \"Ë\")\n    .replace(/ÃŽ/g, \"Î\")\n    .replace(/Ã/g, \"Ï\")\n    .replace(/Ã”/g, \"Ô\")\n    .replace(/Ã™/g, \"Ù\")\n    .replace(/Ã›/g, \"Û\")\n    .replace(/Ãœ/g, \"Ü\")\n    .replace(/ÃŸ/g, \"ß\")\n    .replace(/Ã§/g, \"ç\")\n    .replace(/&/g, \"&amp;\")\n    .replace(/</g, \"&lt;\")\n    .replace(/>/g, \"&gt;\")\n    .replace(/\"/g, \"&quot;\")\n    .replace(/'/g, \"&#039;\");\n}\n\njson.instructions = splitOnNewline($node[\"mission\"].json.instructions);\n\nreturn {\"json\": json, \"binary\": $node[\"document\"].binary};"
+      },
+      "id": "731ab728-ddee-4745-8c27-dd901e765f96",
+      "name": "Mail formatting",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1760,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## CRUD Mission\nhttps://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "cadee00a-7446-45c2-9fbb-eef45a78c2ee",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2760,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\njson.query = \"/crud_mission/read/\" + $json.missionId;\njson.responseFormat = \"json\";\n\nreturn {\"json\": json};"
+      },
+      "id": "b5b43019-2bbd-4431-ae08-cb8496ff2522",
+      "name": "/crud_mission/read",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2900,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "5cc5fd06-c8a7-4686-9f79-a8ceb5abe088",
+      "name": "CRUD Mission : Read",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -2680,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
+      },
+      "id": "fe2f25c1-c336-4298-83eb-fe84ddb9c68e",
+      "name": "mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "H3fxaSnxjZT6EGhc",
+        "options": {}
+      },
+      "id": "c17f7e19-7fd3-4f99-98d4-957589a92d63",
+      "name": "document",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -2180,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ Object.keys($binary).length }}",
+                    "rightValue": 0,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "50c7e055-c443-4d9f-92b4-14cddaff70d4",
+                    "leftValue": "={{ Object.keys($binary).length }}",
+                    "rightValue": 1,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "33c4ddcf-804c-475e-af1f-fbc77db38a88",
+                    "leftValue": "={{ Object.keys($binary).length }}",
+                    "rightValue": 2,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "4a876fb5-4758-49a5-af1b-e2542b94437e",
+                    "leftValue": "={{ Object.keys($binary).length }}",
+                    "rightValue": 3,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "de3c4e4b-76bf-4738-b259-4e3313b0456b",
+                    "leftValue": "={{ Object.keys($binary).length }}",
+                    "rightValue": "4",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "looseTypeValidation": true
+        }
+      },
+      "id": "fa55583e-d20d-4953-87a6-fbf8dac5e918",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        -1460,
+        100
+      ]
     }
   ],
   "pinData": {
     "Execute Workflow Trigger": [
       {
         "json": {
+          "client": "digitalkin",
           "commandText": "done",
-          "date": "2024-02-13T03:24:29.484+01:00",
-          "dernierProducteur": "kindemand",
+          "date": "2024-02-16T21:09:11.245+01:00",
+          "dernierProducteur": "kinrsi",
           "execution": "doing",
-          "executionId": "193651",
-          "firstAttribute": "kindemand",
-          "instructions": "TODOLIST :\n\n- DONE : Analyser la mission et dÃ©finir les critÃ¨res de recherche.\n- DONE : RÃ©aliser une recherche approfondie sur les technologies d'extraction de donnÃ©es Ã  partir de documents PDF. Les points suivants doivent Ãªtre abordÃ©s :\n  - Identifier les technologies d'extraction de donnÃ©es disponibles sur le marchÃ©.\n  - RÃ©aliser une comparaison dÃ©taillÃ©e en termes de prÃ©cision, de gestion des documents complexes, de coÃ»ts, et de facilitÃ© d'intÃ©gration.\n  - Recueillir des avis d'experts et des cas d'utilisation rÃ©ussis.\n- TODO : PrÃ©parer un rapport comprenant un rÃ©sumÃ© des technologies Ã©tudiÃ©es, une comparaison dÃ©taillÃ©e, et une recommandation finale en fonction des critÃ¨res Ã©tablis.\n\nProchaine action Ã  rÃ©aliser & instructions :\n\nIl est crucial de procÃ©der maintenant Ã  la prÃ©paration du rapport final. Ce rapport doit inclure :\n- Un rÃ©sumÃ© des technologies Ã©tudiÃ©es,\n- Une comparaison dÃ©taillÃ©e selon les critÃ¨res prÃ©dÃ©finis (prÃ©cision, gestion des documents complexes, coÃ»t, facilitÃ© d'intÃ©gration),\n- Une recommandation finale en vue de la sÃ©lection de la technologie la plus adaptÃ©e.\n\nAssurez-vous de structurer le rapport clairement, en dÃ©limitant chaque section selon les points mentionnÃ©s. La prÃ©sentation doit Ãªtre soignÃ©e et professionnelle, mettant en avant les analyses et les recommandations de faÃ§on concise et argumentÃ©e.\n\nCette Ã©tape est cruciale pour conclure la mission efficacement. Le rapport contribuera de maniÃ¨re significative Ã  la prise de dÃ©cision finale et doit donc Ãªtre rÃ©digÃ© avec attention et prÃ©cision.",
-          "kin": "kindemand",
-          "mission": "Demande de Recherche d'Informations sur les Technologies d'Extraction de Données\n\nAfin de sélectionner et d'implémenter la solution la plus efficace pour l'extraction de données depuis le document PDF '2301176_PRODOTTOFINITO_03-02-2023.pdf', il est nécessaire d'obtenir des informations mises à jour sur les technologies d'extraction de données actuelles. Cette demande vise à recueillir des recommandations sur les outils et technologies d'extraction de données les plus avancés et adaptés aux besoins du projet, ainsi que les coûts, les exigences en matière de ressources, et les délais de mise en œuvre associés.\n\nObjectif : \n- Identifier les technologies d'extraction de données les plus performantes disponibles sur le marché.\n- Obtenir une comparaison détaillée en termes de précision, de gestion des documents complexes, de coûts et de facilité d'intégration.\n- Recueillir des avis d'experts et des cas d'utilisation réussis pour éclairer la décision finale.\n\nLa réponse à cette demande aidera à éclairer le processus de sélection de la solution d'extraction de données et à planifier efficacement son implémentatio",
-          "missionId": "kindemand-undefined",
-          "missionIdDemandeur": "KinDev-undefined",
-          "status": "done"
+          "firstAttribute": "kinrsi",
+          "instructions": "[INSTRUCTION - Mettre à jour la TODOLIST et Préparer la Prochaine Étape]TODOLIST mise à jour :\n\n- ACTION 1. **Identification du Kin et Reformulation du Besoin** : DONE\n- ACTION 2. **Définition de l'Approche Globale d'amélioration** : DONE\n- ACTION 3. **Amélioration de la partie \"Instructions Globales\" du prompt du Kin sélectionné** : DONE\n- ACTION 4. **Amélioration de la partie \"Rôle\" du prompt du Kin sélectionné** : DONE\n- ACTION 5. **Amélioration de la partie \"Contexte\" du prompt du Kin sélectionné** : DONE\n- ACTION 6. **Amélioration de la partie \"Proposition de Valeur\" du prompt du Kin sélectionné** : DONE\n- ACTION 7. **Amélioration de la partie \"Système de Balisage des Kins\" du prompt du Kin sélectionné** : DONE\n- ACTION 8. **Amélioration de la rédaction d'une ACTION spécifique du prompt du KinAppelProjet** : DONE\n- ACTION OUVERTE - **Inférences sur les effets attendus sur le Kin** : DONE\n- ACTION OUVERTE : **Réflexion sur le processus de création/amélioration en lui-même** : DONE\n- ACTION 9. **Rapport de Mission & Commentaire** : DONE\n\nProchaine action à réaliser :\n\nVérifier que le \"Rapport de Mission & Commentaire\" satisfait à tous les critères attendus et officiellement conclure la mission si tout est conforme. [/INSTRUCTION - Mettre à jour la TODOLIST et Préparer la Prochaine Étape]",
+          "kin": "kinrsi",
+          "kinDemandeur": "Lester Reynolds <l.reynolds@digitalkin.ai>",
+          "mailFrom": "From: Lester Reynolds <l.reynolds@digitalkin.ai>",
+          "mailId": "18db383cdb15c563",
+          "mailSubject": "KinAppelProjet",
+          "mission": "Subject: KinAppelProjet\nBody: Bonjour KinRSI,\n\nJe voudrais que tu réalises le prompt d'un nouveau Kin, le KinAppelProjet.\n\n*Objectif :* produire une fiche de synthèse pour chaque Appel à Projet\n(AAP) pour permettre à Dynergie de communiquer facilement les sources de\nfinancement possibles à des interlocuteurs internes (consultants,\ncommerciaux) et externes (clients). Il y a environ 1500 AAP par an.\n*Origine des données :* pdf sur le site du financeur (BPI France, ADEME,\nCommission Européenne...) accessible via la fonction GPT\n\"questionneur_de_source\".\n*Processus *: Pour chaque Point du format attendu, Appeler le\nquestionneur_de_source   pour récupérer l'information et écrire le contenu\nentre balises contenu .\n\n# Format attendu\n\n- **Identification de l'AAP**: Nom et description succincte.\n- **Porteurs éligibles**: Critères d'éligibilité des candidats à l'AAP.\n- **Projets éligibles**: Types de projets concernés, critères spécifiques,\net objectifs de réduction d'émissions ou de consommation énergétique.\n- **Objectifs de l'AAP**: Objectifs généraux, leviers de décarbonation\nutilisés.\n- **Domaines ciblés**: Secteurs industriels et thématiques visés.\n- **Contexte et justification**: Contexte réglementaire ou stratégique (ex\n: Green Deal, France 2030).\n- **Modalités de notation des projets**: Formule de calcul de la note,\ncritères d'évaluation.\n- **Lien vers l'AAP**: URL ou référence pour accéder à l'appel à projets\ncomplet.\n- **Date de clôture**: Échéance pour la soumission des projets.\n- **Périodicité**: Information sur la fréquence de renouvellement de l'AAP.\n- **Durée du projet**: Durée attendue ou limite pour la réalisation du\nprojet.\n- **Dépenses éligibles**: Types de dépenses qui peuvent être financées.\n- **Budget du projet**: Montants minimum et maximum de financement.\n- **Taux d’aide maximum**: Pourcentage maximal de financement par type de\nprojet.\n- **Modalités de financement**: Type de soutien financier (ex :\nsubventions).\n\n-- \nNicolas Lester Reynolds\nCPO @ Digitalkin.ai <https://DigitalKin.ai>\n+33621636737\nBookez-moi sur Calendy <https://calendly.com/l-reynolds-digitalkin/call>",
+          "missionId": "7b72f70e-7c94-4720-9f99-15c8cd031bb2",
+          "sourceGoogleDriveId": "null",
+          "status": "done",
+          "threadFrom": "Lester Reynolds <l.reynolds@digitalkin.ai>",
+          "threadId": "18db37a0a97acbef",
+          "threadSubject": "KinAppelProjet"
         }
       }
     ]
@@ -935,6 +899,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-16T10:23:08.000Z",
-  "versionId": "bbb91b7f-2626-4f75-89aa-b6530ace3f02"
+  "updatedAt": "2024-02-16T22:51:33.000Z",
+  "versionId": "f8e2e6d2-9a97-47c5-9267-f47b200924e1"
 }
