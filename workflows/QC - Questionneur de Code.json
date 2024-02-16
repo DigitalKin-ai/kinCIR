@@ -56,17 +56,6 @@
         ]
       ]
     },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Condenseur de code",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "code": {
       "main": [
         [
@@ -150,6 +139,17 @@
           {
             "node": "List Workflows",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Azure OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Condenseur de code",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -257,29 +257,6 @@
           "name": "n8n account"
         }
       }
-    },
-    {
-      "parameters": {
-        "model": "={{ $vars.llmModel }}",
-        "options": {
-          "timeout": 600000
-        }
-      },
-      "id": "dffe0cfc-a22a-42a2-93f0-549d33eec980",
-      "name": "OpenAI Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1,
-      "position": [
-        2440,
-        600
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "disabled": true
     },
     {
       "parameters": {
@@ -447,6 +424,29 @@
         1800,
         180
       ]
+    },
+    {
+      "parameters": {
+        "model": "={{ $vars.llmAzureModel }}",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "9bce3a5b-c93f-4d92-bdbf-07a3628d10f2",
+      "name": "Azure OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAzureOpenAi",
+      "typeVersion": 1,
+      "position": [
+        2440,
+        620
+      ],
+      "credentials": {
+        "azureOpenAiApi": {
+          "id": "9rQeaqbJ6sAmmJuN",
+          "name": "Azure Open AI account"
+        }
+      },
+      "disabled": true
     }
   ],
   "pinData": {
@@ -492,6 +492,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-15T07:36:10.000Z",
-  "versionId": "46eddc05-a43e-44e5-ab6d-a006e4f3e045"
+  "updatedAt": "2024-02-16T21:12:32.000Z",
+  "versionId": "e093b9a6-611f-47b4-a163-6cf5f9643063"
 }
