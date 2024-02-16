@@ -388,7 +388,7 @@
       "parameters": {
         "operation": "reply",
         "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
-        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.document }}\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ [$node[\"Mail formating\"].json.instructions] }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      <span style=\"font-style:italic\">\n\"Travailler ensemble vers l'innovation et le progrès.\"\n      </span>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.document }}\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      <span style=\"font-style:italic\">\n\"Travailler ensemble vers l'innovation et le progrès.\"\n      </span>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
         "options": {
           "ccList": "={{ $node[\"entree DocumentDemandeur\"].json[\"to\"] ? $node[\"entree DocumentDemandeur\"].json[\"to\"] + \", \" : \"\"}} team@digitalkin.ai",
           "senderName": "={{ $node[\"entree DocumentDemandeur\"].json.kin.toUpperCase() }}"
@@ -499,7 +499,7 @@
         "operation": "reply",
         "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
         "emailType": "text",
-        "message": "={{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n\nDernières instructions :\n\n{{ $node[\"entree DocumentDemandeur\"].json.instructions }}\n\nAutomatiquement vôtre,\n\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.document }}\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      <span style=\"font-style:italic\">\n\"Travailler ensemble vers l'innovation et le progrès.\"\n      </span>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
         "options": {
           "attachmentsUi": {
             "attachmentsBinary": [
@@ -532,7 +532,7 @@
         "operation": "reply",
         "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
         "emailType": "text",
-        "message": "={{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n\nDernières instructions :\n\n{{ $node[\"entree DocumentDemandeur\"].json.instructions }}\n\nAutomatiquement vôtre,\n\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.document }}\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      <span style=\"font-style:italic\">\n\"Travailler ensemble vers l'innovation et le progrès.\"\n      </span>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
         "options": {
           "attachmentsUi": {
             "attachmentsBinary": [
@@ -568,7 +568,7 @@
         "operation": "reply",
         "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
         "emailType": "text",
-        "message": "={{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n\nDernières instructions :\n\n{{ $node[\"entree DocumentDemandeur\"].json.instructions }}\n\nAutomatiquement vôtre,\n\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.document }}\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      <span style=\"font-style:italic\">\n\"Travailler ensemble vers l'innovation et le progrès.\"\n      </span>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
         "options": {
           "attachmentsUi": {
             "attachmentsBinary": [
@@ -642,7 +642,7 @@
         "operation": "reply",
         "messageId": "={{ $node[\"entree DocumentDemandeur\"].json[\"mailId\"]?$node[\"entree DocumentDemandeur\"].json[\"mailId\"]:\"18d5caf98d8424b9\" }}",
         "emailType": "text",
-        "message": "={{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n\nDernières instructions :\n\n{{ $node[\"entree DocumentDemandeur\"].json.instructions }}\n\nAutomatiquement vôtre,\n\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n<title>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</title>\n<style>\n  body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    color: #333;\n  }\n  .container {\n    width: 80%;\n    margin: auto;\n    background: #fff;\n    padding: 20px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  }\n  .header, .footer {\n    background: #007bff;\n    color: white;\n    padding: 10px;\n    text-align: center;\n  }\n  .content {\n    margin: 20px 0;\n  }\n  .logo-header, .logo-footer {\n    text-align: center;\n    background-color: #333;\n    padding: 10px;\n  }\n  .logo-header img, .logo-footer img {\n    height: 50px;\n  }\n  .link {\n    color: #007bff;\n    text-decoration: none;\n  }\n  .bold {\n    font-weight: bold;\n  }\n  .progress-symbol {\n    font-size: 20px;\n  }\n  .completed { color: green; }\n  .in-progress { color: blue; }\n  .to-improve { color: yellow; }\n  .not-started { color: red; }\n</style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo-header\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n    <div class=\"header\">\n      <h1>{{ $node[\"entree DocumentDemandeur\"].json.threadSubject }}</h1>\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }} :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.document }}\n    </div>\n    <div class=\"content\">\nLa mission {{ $node[\"entree DocumentDemandeur\"].json.threadSubject }} est terminée !\n    </div>\n    <div class=\"content\">\nDernières instructions :\n    </div>\n    <div class=\"content\">\n{{ $node[\"Mail formating\"].json.instructions }}\n    </div>\n    <div class=\"content\">\nAutomatiquement vôtre,\n    </div>\n    <div class=\"content\">\n{{ $node[\"entree DocumentDemandeur\"].json.dernierProducteur.toUpperCase() }}\n    </div>\n    \n    <div class=\"footer\">\n      <span style=\"font-style:italic\">\n\"Travailler ensemble vers l'innovation et le progrès.\"\n      </span>\n    </div>\n    <div class=\"logo-footer\">\n      <a href=\"https://digitalkin.ai/\">\n        <img src=\"https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w\" alt=\"DigitalKin Logo\">\n      </a>\n    </div>\n  </div>\n</body>\n</html>",
         "options": {
           "attachmentsUi": {
             "attachmentsBinary": [
@@ -726,41 +726,6 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose"
-          },
-          "conditions": [
-            {
-              "id": "6834f38a-925c-420d-855f-15a8b07bdc5e",
-              "leftValue": "={{ $node[\"Execute Workflow Trigger\"].json.mailId }}",
-              "rightValue": "md",
-              "operator": {
-                "type": "string",
-                "operation": "notExists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "looseTypeValidation": true
-        }
-      },
-      "id": "e66caf7c-d041-4ca0-8d1d-5302628bf4ee",
-      "name": "If not mail",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        -1820,
-        -1020
-      ]
-    },
-    {
-      "parameters": {
         "jsCode": "let json = {};\n\njson.role = \"Kin\";\njson.status = $node[\"documentDemandeur\"].json.status;\njson.content = $node[\"documentDemandeur\"].json.instructions;\njson.createdAt = $node[\"documentDemandeur\"].json.date;\njson.id = $node[\"documentDemandeur\"].json.executionId;\njson.originId = $node[\"documentDemandeur\"].json.threadId;\njson.assignment = $node[\"documentDemandeur\"].json.mission;\njson.model = $node[\"documentDemandeur\"].json.kin;\n\nreturn json;"
       },
       "id": "469a637e-b221-4a0c-b055-fb6ed79c4e70",
@@ -788,7 +753,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let json = $node[\"documentDemandeur\"].json;\n\nfunction splitOnNewline(str) {\n  if (typeof str !== 'string') {\n    str = String(str);\n  }\n  return str.split('\\n');\n}\n\nfunction escapeHtml(unsafe) {\n  return unsafe\n    .replace(/Ã /g, \"à\")\n    .replace(/Ã¢/g, \"â\")\n    .replace(/Ã©/g, \"é\")\n    .replace(/Ã¨/g, \"è\")\n    .replace(/Ãª/g, \"ê\")\n    .replace(/Ã«/g, \"ë\")\n    .replace(/Ã®/g, \"î\")\n    .replace(/Ã¯/g, \"ï\")\n    .replace(/Ã´/g, \"ô\")\n    .replace(/Ã¹/g, \"ù\")\n    .replace(/Ã»/g, \"û\")\n    .replace(/Ã¼/g, \"ü\")\n    .replace(/Ã¿/g, \"ÿ\")\n    .replace(/Ã€/g, \"À\")\n    .replace(/Ã‚/g, \"Â\")\n    .replace(/Ã‰/g, \"É\")\n    .replace(/Ãˆ/g, \"È\")\n    .replace(/ÃŠ/g, \"Ê\")\n    .replace(/Ã‹/g, \"Ë\")\n    .replace(/ÃŽ/g, \"Î\")\n    .replace(/Ã/g, \"Ï\")\n    .replace(/Ã”/g, \"Ô\")\n    .replace(/Ã™/g, \"Ù\")\n    .replace(/Ã›/g, \"Û\")\n    .replace(/Ãœ/g, \"Ü\")\n    .replace(/ÃŸ/g, \"ß\")\n    .replace(/Ã§/g, \"ç\")\n    .replace(/&/g, \"&amp;\")\n    .replace(/</g, \"&lt;\")\n    .replace(/>/g, \"&gt;\")\n    .replace(/\"/g, \"&quot;\")\n    .replace(/'/g, \"&#039;\");\n}\n\nlet instructions = escapeHtml($node[\"entree DocumentDemandeur\"].json.instructions);\njson.instructions = splitOnNewline(instructions);\nlet document = escapeHtml(json.document).split('\\n');\njson.document = splitOnNewline(document);\n\nreturn json;"
+        "jsCode": "let json = $node[\"documentDemandeur\"].json;\n\nfunction splitOnNewline(str) {\n  if (typeof str !== 'string') {\n    str = String(str);\n  }\n  return escapeHtml(str).replace(/\\n/g, '<br>');\n}\n\nfunction escapeHtml(unsafe) {\n  return unsafe\n    .replace(/Ã /g, \"à\")\n    .replace(/Ã¢/g, \"â\")\n    .replace(/Ã©/g, \"é\")\n    .replace(/Ã¨/g, \"è\")\n    .replace(/Ãª/g, \"ê\")\n    .replace(/Ã«/g, \"ë\")\n    .replace(/Ã®/g, \"î\")\n    .replace(/Ã¯/g, \"ï\")\n    .replace(/Ã´/g, \"ô\")\n    .replace(/Ã¹/g, \"ù\")\n    .replace(/Ã»/g, \"û\")\n    .replace(/Ã¼/g, \"ü\")\n    .replace(/Ã¿/g, \"ÿ\")\n    .replace(/Ã€/g, \"À\")\n    .replace(/Ã‚/g, \"Â\")\n    .replace(/Ã‰/g, \"É\")\n    .replace(/Ãˆ/g, \"È\")\n    .replace(/ÃŠ/g, \"Ê\")\n    .replace(/Ã‹/g, \"Ë\")\n    .replace(/ÃŽ/g, \"Î\")\n    .replace(/Ã/g, \"Ï\")\n    .replace(/Ã”/g, \"Ô\")\n    .replace(/Ã™/g, \"Ù\")\n    .replace(/Ã›/g, \"Û\")\n    .replace(/Ãœ/g, \"Ü\")\n    .replace(/ÃŸ/g, \"ß\")\n    .replace(/Ã§/g, \"ç\")\n    .replace(/&/g, \"&amp;\")\n    .replace(/</g, \"&lt;\")\n    .replace(/>/g, \"&gt;\")\n    .replace(/\"/g, \"&quot;\")\n    .replace(/'/g, \"&#039;\");\n}\n\njson.instructions = splitOnNewline($node[\"entree DocumentDemandeur\"].json.instructions);\njson.document = splitOnNewline(json.document);\n\nreturn json;"
       },
       "id": "731ab728-ddee-4745-8c27-dd901e765f96",
       "name": "Mail formating",
@@ -797,21 +762,6 @@
       "position": [
         -1760,
         100
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## Formating Firebase\nOutput\n\nrole = \"Kin\"\nstatus = status\ncontent = instructions\ncreatedAt = date\nid = executionId\noriginId = threadId\nassignment = model",
-        "height": 292.6143862041808,
-        "width": 314.12848184702665
-      },
-      "id": "c59c33e9-12c2-4eb0-b777-b902b4635fd6",
-      "name": "Sticky Note5",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -1960,
-        -460
       ]
     },
     {
@@ -927,6 +877,21 @@
           "name": "Google Firebase Realtime Database account"
         }
       }
+    },
+    {
+      "parameters": {
+        "content": "## Formating Firebase\nOutput\n\nrole = \"Kin\"\nstatus = status\ncontent = instructions\ncreatedAt = date\nid = executionId\noriginId = threadId\nassignment = model",
+        "height": 292.6143862041808,
+        "width": 314.12848184702665
+      },
+      "id": "855d1765-6f81-47b2-a42a-47994c4e52d0",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1960,
+        -460
+      ]
     }
   ],
   "pinData": {
@@ -970,6 +935,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-15T15:41:22.000Z",
-  "versionId": "abbc710f-faf0-4329-8f16-bc263a88595c"
+  "updatedAt": "2024-02-16T10:23:08.000Z",
+  "versionId": "bbb91b7f-2626-4f75-89aa-b6530ace3f02"
 }
