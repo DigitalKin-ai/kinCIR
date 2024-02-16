@@ -1,17 +1,6 @@
 {
   "active": true,
   "connections": {
-    "GPT4": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Questionneur de document ( version chain)",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Vector Store Retriever": {
       "ai_retriever": [
         [
@@ -29,17 +18,6 @@
           {
             "node": "Pinecone Vector Store",
             "type": "ai_embedding",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "MultiQuery Retriever",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -69,17 +47,6 @@
           {
             "node": "Extract From File",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Questionneur de document (map reduce)",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -201,6 +168,39 @@
           }
         ]
       ]
+    },
+    "Azure OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Questionneur de document (map reduce)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Azure OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Questionneur de document ( version chain)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Azure OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "MultiQuery Retriever",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-01-18T13:34:36.076Z",
@@ -210,32 +210,6 @@
   },
   "name": "QD - Questionneur de Document",
   "nodes": [
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "={{ $vars.llmModel }}",
-          "mode": "id"
-        },
-        "options": {
-          "timeout": 600000
-        }
-      },
-      "id": "0485f9ff-e680-49b3-b6bd-5fc45a9b18d3",
-      "name": "GPT4",
-      "type": "@n8n/n8n-nodes-langchain.lmOpenAi",
-      "typeVersion": 1,
-      "position": [
-        3580,
-        280
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
     {
       "parameters": {
         "topK": 6
@@ -281,28 +255,6 @@
     },
     {
       "parameters": {
-        "model": "={{ $vars.llmModel }}",
-        "options": {
-          "timeout": 600000
-        }
-      },
-      "id": "6938d8a5-4ba5-4fb7-a5db-ee61ffa7bf71",
-      "name": "OpenAI Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1,
-      "position": [
-        3560,
-        540
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "options": {
           "queryCount": 2
         }
@@ -315,28 +267,6 @@
         3560,
         400
       ]
-    },
-    {
-      "parameters": {
-        "model": "={{ $vars.llmModel }}",
-        "options": {
-          "timeout": 600000
-        }
-      },
-      "id": "704afbd8-5762-42f8-b3f2-a45a99ec5d76",
-      "name": "OpenAI Chat Model1",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1,
-      "position": [
-        3540,
-        -80
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -570,6 +500,72 @@
         2520,
         -260
       ]
+    },
+    {
+      "parameters": {
+        "model": "=gpt-4",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "43a965b6-9d56-4890-870a-388943d0cc30",
+      "name": "Azure OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAzureOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3520,
+        -60
+      ],
+      "credentials": {
+        "azureOpenAiApi": {
+          "id": "9rQeaqbJ6sAmmJuN",
+          "name": "Azure Open AI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "=gpt-4",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "8f0d458d-3f13-4464-a131-c90396551b3d",
+      "name": "Azure OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAzureOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3420,
+        280
+      ],
+      "credentials": {
+        "azureOpenAiApi": {
+          "id": "9rQeaqbJ6sAmmJuN",
+          "name": "Azure Open AI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "=gpt-4",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "b1eac4cb-6266-4da9-8de1-c7d97daecbfe",
+      "name": "Azure OpenAI Chat Model2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAzureOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3540,
+        560
+      ],
+      "credentials": {
+        "azureOpenAiApi": {
+          "id": "9rQeaqbJ6sAmmJuN",
+          "name": "Azure Open AI account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -602,6 +598,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-15T00:52:08.000Z",
-  "versionId": "72ff6eae-6914-41f7-9e43-ff04c2fc9f58"
+  "updatedAt": "2024-02-16T21:14:22.000Z",
+  "versionId": "046ee61f-4546-435e-8606-769a32e13bcd"
 }
