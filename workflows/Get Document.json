@@ -680,7 +680,36 @@
       ]
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "client": "digitalkin",
+          "commandText": "",
+          "date": "2024-02-16T13:46:25.983+01:00",
+          "dernierProducteur": "kinmanager",
+          "execution": "doing",
+          "firstAttribute": "c5c11643-d297-4d91-923a-03f7bcad47b0",
+          "instructions": "TODOLIST :\n\n- DONE : Analyser la mission et définir les critères de recherche.\n- DONE : Réaliser une recherche approfondie sur les technologies d'extraction de\ndonnées à partir de documents PDF. Les points suivants doivent être abordés :\n- Identifier les technologies d'extraction de données disponibles sur le marché.\n- Réaliser une comparaison détaillée en termes de précision, de gestion des\ndocuments complexes, de coûts, et de facilité d'intégration.\n- Recueillir des avis d'experts et des cas d'utilisation réussis.\n- TODO : Préparer un rapport comprenant un résumé des technologies étudiées, une\ncomparaison détaillée, et une recommandation finale en fonction des critères\nétablis.\n\nProchaine action à réaliser & instructions :\n\nLa phase finale de la mission exige désormais la rédaction du rapport final. Ce rapport doit encapsuler:\n- Un résumé captivant des technologies examinées,\n- Une analyse comparative détaillée, mettant l'accent sur les critères sélectionnés (précision, traitement des documents complexes, coûts, facilité d'intégration),\n- Une recommandation finale, soulignée par une justification fondée sur les analyses effectuées.\nLa structuration du rapport doit être logique et claire, avec une délimitation précise des sections. Un soin particulier doit être apporté à la présentation pour assurer une communication professionnelle et efficace.\nC'est une étape capitale pour clôturer la mission avec succès. La qualité de ce rapport sera primordiale pour éclairer la décision finale du client. Profondeur d'analyse et clarté de la présentation sont de mise.",
+          "kin": "Lester Reynolds <lreynolds@dynergie.fr>",
+          "kinDemandeur": "Lester Reynolds <lreynolds@dynergie.fr>",
+          "mailFrom": "From: KINDEMAND <l.reynolds@digitalkin.ai>",
+          "mailId": "18db1f0d3828fd65",
+          "mailSubject": "Thread de Communication entre Kin",
+          "mission": "Subject: Thread de Communication entre Kin\nBody: DigitalKin Logo\n[https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w]\n[https://digitalkin.ai/]\n\n\n\n\nKINDEMAND :\n[INFORMATIF - Pas de contenu]\n\nLe document est vide pour le moment (pas de baslises CONTENU trouvées dans le\nthread).\n\n[/INFORMATIF - Pas de contenu]\n\n---\n\n\nLa mission est terminée !\nDernières instructions :\nTODOLIST :\n\n- DONE : Analyser la mission et définir les critères de recherche.\n- DONE : Réaliser une recherche approfondie sur les technologies d'extraction de\ndonnées à partir de documents PDF. Les points suivants doivent être abordés :\n- Identifier les technologies d'extraction de données disponibles sur le marché.\n- Réaliser une comparaison détaillée en termes de précision, de gestion des\ndocuments complexes, de coûts, et de facilité d'intégration.\n- Recueillir des avis d'experts et des cas d'utilisation réussis.\n- TODO : Préparer un rapport comprenant un résumé des technologies étudiées, une\ncomparaison détaillée, et une recommandation finale en fonction des critères\nétablis.\n\nProchaine action à réaliser & instructions :\n\nIl est crucial de procéder maintenant à la préparation du rapport final. Ce\nrapport doit inclure :\n- Un résumé des technologies étudiées,\n- Une comparaison détaillée selon les critères prédéfinis (précision, gestion\ndes documents complexes, coût, facilité d'intégration),\n- Une recommandation finale en vue de la sélection de la technologie la plus\nadaptée.\n\nAssurez-vous de structurer le rapport clairement, en délimitant chaque section\nselon les points mentionnés. La présentation doit être soignée et\nprofessionnelle, mettant en avant les analyses et les recommandations de façon\nconcise et argumentée.\n\nCette étape est cruciale pour conclure la mission efficacement. Le rapport\ncontribuera de manière significative à la prise de décision finale et doit donc\nêtre rédigé avec attention et précision.\nAutomatiquement vôtre,\nKINDEMAND\n\"Libérez le temps humain pour l'humain.\"\nNote site : https://digitalkin.ai/ [https://digitalkin.ai/]\nDigitalKin Logo\n[https://images.squarespace-cdn.com/content/v1/62a5afa70a34fc7b525445fa/32223e40-6505-437f-88f5-d2563d8d9493/Logo+and+Textfull_white.png?format=1500w]\n[https://digitalkin.ai/]",
+          "missionId": "7b72f70e-7c94-4720-9f99-15c8cd031bb2",
+          "sourceGoogleDriveId": "null",
+          "status": "done",
+          "threadFrom": "Lester Reynolds <lreynolds@dynergie.fr>",
+          "threadId": "18d5caf98d8424b9",
+          "threadSubject": "Thread de Communication entre Kin",
+          "query": "/crud_mission/read/c5c11643-d297-4d91-923a-03f7bcad47b0",
+          "responseFormat": "json",
+          "command": "read"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -716,6 +745,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-15T12:16:31.000Z",
-  "versionId": "69ce0f1d-06c8-4074-bb7d-395e8dcba77c"
+  "updatedAt": "2024-02-16T20:22:40.000Z",
+  "versionId": "f3747af4-9831-4ed2-9b46-7f6fe1cd1293"
 }
