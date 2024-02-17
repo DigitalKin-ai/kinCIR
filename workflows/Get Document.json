@@ -464,7 +464,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let thread = $json.thread;\n\nfunction extractDynamicContent(thread) {\n  let extractedContent = \"\";\n  const contentPattern = /^(\\*\\*|\\[)([A-Z]{2,16}) - (.*?)(\\*\\*|\\])([\\s\\S]*?)([-=]{3,4}|\\[\\/CONTENU - .*?\\]|\\Z)/gi;\n\n  let matches;\n  while ((matches = contentPattern.exec(thread)) !== null) {\n      // Ajoute chaque contenu trouvé au texte final\n      extractedContent += matches[5].trim() + \"\\n\\n\";\n  }\n\n  return extractedContent.trim();\n}\n\n// Garder le CONTENU\nlet document = extractDynamicContent(thread);\n\ndocument = document.replace(/---/g, \"\\n\");\ndocument = document.replace(/===/g, \"\\n\");\n\nif (document == \"\") {\n    document = \"[INFORMATIF - Pas de contenu]\\n\\nLe document est vide pour le moment (pas de baslises CONTENU trouvées dans le thread).\\n\\n[/INFORMATIF - Pas de contenu]\\n\\n---\\n\\n\" ;\n}\n\nreturn {\"json\":{\"document\":document}};"
+        "jsCode": "let thread = $json.thread;\n\nfunction extractDynamicContent(thread) {\n  let extractedContent = \"\";\n  const contentPattern = /^(\\*\\*|\\[)(CONTENU) - (.*?)(\\*\\*|\\])([\\s\\S]*?)([-=]{3,4}|\\[\\/CONTENU - .*?\\]|\\Z)/gm;\n\n  let matches;\n  while ((matches = contentPattern.exec(thread)) !== null) {\n      // Ajoute chaque contenu trouvé au texte final\n      extractedContent += matches[5].trim() + \"\\n\\n\";\n  }\n\n  return extractedContent.trim();\n}\n\n// Garder le CONTENU\nlet document = extractDynamicContent(thread);\n\nif (document === \"\") {\n    document = \"[INFORMATIF - Pas de contenu]\\n\\nLe document est vide pour le moment (pas de baslises CONTENU trouvées dans le thread).\\n\\n[/INFORMATIF - Pas de contenu]\\n\\n---\\n\\n\" ;\n}\n\nreturn {\"json\":{\"document\":document}};"
       },
       "id": "3149453b-3510-4fef-940b-b1651a7b6434",
       "name": "document1",
@@ -745,6 +745,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-16T20:22:40.000Z",
-  "versionId": "f3747af4-9831-4ed2-9b46-7f6fe1cd1293"
+  "updatedAt": "2024-02-16T23:17:00.000Z",
+  "versionId": "c50715b2-b666-4795-afb6-38e2434609ac"
 }
