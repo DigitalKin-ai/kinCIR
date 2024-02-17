@@ -125,17 +125,6 @@
         ]
       ]
     },
-    "Questionneur de document (map reduce)": {
-      "main": [
-        [
-          {
-            "node": "response",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Pinecone Vector Store": {
       "ai_vectorStore": [
         [
@@ -233,6 +222,17 @@
           {
             "node": "MultiQuery Retriever",
             "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de document (map reduce)": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
             "index": 0
           }
         ]
@@ -429,28 +429,6 @@
       "position": [
         4080,
         100
-      ]
-    },
-    {
-      "parameters": {
-        "chunkSize": 20000,
-        "chunkOverlap": 2000,
-        "options": {
-          "summarizationMethodAndPrompts": {
-            "values": {
-              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de Document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
-              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\""
-            }
-          }
-        }
-      },
-      "id": "a55d09fb-dc50-4290-b1c1-569b6245c0f7",
-      "name": "Questionneur de document (map reduce)",
-      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
-      "typeVersion": 2,
-      "position": [
-        3560,
-        -240
       ]
     },
     {
@@ -674,18 +652,42 @@
           "name": "Azure Open AI account"
         }
       }
+    },
+    {
+      "parameters": {
+        "chunkSize": 20000,
+        "chunkOverlap": 2000,
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de Document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
+              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+            }
+          }
+        }
+      },
+      "id": "a55d09fb-dc50-4290-b1c1-569b6245c0f7",
+      "name": "Questionneur de document (map reduce)",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        3560,
+        -240
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
     }
   ],
   "pinData": {
     "Execute Workflow Trigger": [
       {
         "json": {
-          "query": "Pourriez-vous me fournir un résumé de l'objectif de l'étude, y compris sa clarté, sa pertinence et son alignement avec les questions de recherche et les hypothèses? Ceci est essentiel pour débuter mon analyse critique de l'étude. Je cherche également des suggestions pour améliorer la formulation de l'objectif si nécessaire.",
-          "kin": "kinlca",
-          "mission": "Test",
-          "sourceGoogleDriveId": "null",
-          "threadId": "563067bf-7dee-413b-b96c-a235f09a5497",
-          "missionId": "kinlca-563067bf-7dee-413b-b96c-a235f09a5497"
+          "query": "Quelles sont les modalités de notation des projets, la formule de calcul de la note et les critères d'évaluation pour l'AAP mentionné dans le document 'AAP DECARB IND PLUS - Cahier des Charges.pdf'?",
+          "kin": "kinappelprojet",
+          "mission": "Subject: DECARB1\nBody: DECARB1\n\n-- \nNicolas Lester Reynolds\nCPO @ Digitalkin.ai <https://DigitalKin.ai>\n+33621636737\nBookez-moi sur Calendy <https://calendly.com/l-reynolds-digitalkin/call>\n\n\nFile attached with email : \"AAP DECARB IND PLUS - Cahier des Charges.pdf\"",
+          "sourceGoogleDriveId": "1SosJM14nFEi32N2JHRUt7rFa0D5wpbeh",
+          "threadId": "18db46eea054261c",
+          "missionId": "cfa708c2-c0cb-4c96-9a94-ed9be6f53651"
         }
       }
     ]
@@ -719,6 +721,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-16T21:14:58.000Z",
-  "versionId": "215ceb90-b2f5-4515-8ef0-5f98629b2f94"
+  "updatedAt": "2024-02-17T00:31:47.000Z",
+  "versionId": "d6688fc2-9076-49bc-b99f-cf5f97a2b739"
 }
