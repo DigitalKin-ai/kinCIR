@@ -488,34 +488,12 @@
         ]
       ]
     },
-    "text": {
-      "main": [
-        [
-          {
-            "node": "Extracteur de référence pour citation détaillée",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Azure OpenAI Chat Model1": {
       "ai_languageModel": [
         [
           {
             "node": "Extracteur de référence pour citation courte",
             "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Extracteur de référence pour citation détaillée": {
-      "main": [
-        [
-          {
-            "node": "Extracteur de référence pour citation courte",
-            "type": "main",
             "index": 0
           }
         ]
@@ -548,6 +526,28 @@
         [
           {
             "node": "entree upload document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extracteur de référence pour citation détaillée": {
+      "main": [
+        [
+          {
+            "node": "Extracteur de référence pour citation courte",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "text": {
+      "main": [
+        [
+          {
+            "node": "Extracteur de référence pour citation détaillée",
             "type": "main",
             "index": 0
           }
@@ -1449,8 +1449,8 @@
       ],
       "credentials": {
         "azureOpenAiApi": {
-          "id": "9rQeaqbJ6sAmmJuN",
-          "name": "Azure Open AI account"
+          "id": "YY51kNnCNxMJnrWC",
+          "name": "Azure Open AI sweden"
         }
       }
     },
@@ -1475,26 +1475,6 @@
           "name": "Azure Open AI account"
         }
       }
-    },
-    {
-      "parameters": {
-        "prompt": "=# Informations\n\n{{ $node[\"text\"].json[\"text\"].substring(0,10000) }}\n[...]",
-        "messages": {
-          "messageValues": [
-            {
-              "message": "=# Tâche\n\nA partir des informations données, fais de ton mieux pour donner la référence pour citation détaillée de l'étude.\n\nRéponds uniquement avec la référence pour citation détaillée."
-            }
-          ]
-        }
-      },
-      "id": "9ea1dfaa-04fd-47ac-86ca-e4744a07a533",
-      "name": "Extracteur de référence pour citation détaillée",
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.2,
-      "position": [
-        2160,
-        1360
-      ]
     },
     {
       "parameters": {
@@ -1557,6 +1537,26 @@
         4000,
         960
       ]
+    },
+    {
+      "parameters": {
+        "prompt": "=oy",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Tâche\n\nA partir des informations données, fais de ton mieux pour donner la référence pour citation détaillée de l'étude.\n\nRéponds uniquement avec la référence pour citation détaillée."
+            }
+          ]
+        }
+      },
+      "id": "9ea1dfaa-04fd-47ac-86ca-e4744a07a533",
+      "name": "Extracteur de référence pour citation détaillée",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        2160,
+        1360
+      ]
     }
   ],
   "pinData": {
@@ -1594,6 +1594,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-16T21:11:53.000Z",
-  "versionId": "a5ddfd67-1f1a-4dd6-b930-c92f0f7dd659"
+  "updatedAt": "2024-02-18T15:45:35.000Z",
+  "versionId": "27140cfe-00de-4d61-a634-8149ee5c8401"
 }
