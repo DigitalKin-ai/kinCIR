@@ -103,17 +103,6 @@
         ]
       ]
     },
-    "text": {
-      "main": [
-        [
-          {
-            "node": "Questionneur de document (map reduce)",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Pinecone Vector Store": {
       "ai_vectorStore": [
         [
@@ -158,17 +147,6 @@
         ]
       ]
     },
-    "Questionneur de document (map reduce)": {
-      "main": [
-        [
-          {
-            "node": "response",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Azure OpenAI Chat Model": {
       "ai_languageModel": [
         [
@@ -197,6 +175,28 @@
           {
             "node": "MultiQuery Retriever",
             "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de document (map reduce)": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "text": {
+      "main": [
+        [
+          {
+            "node": "Questionneur de document (map reduce)",
+            "type": "main",
             "index": 0
           }
         ]
@@ -466,28 +466,6 @@
     },
     {
       "parameters": {
-        "chunkSize": 20000,
-        "chunkOverlap": 2000,
-        "options": {
-          "summarizationMethodAndPrompts": {
-            "values": {
-              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de Document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
-              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\""
-            }
-          }
-        }
-      },
-      "id": "fa635caf-4d35-4bda-8655-ade052e1c004",
-      "name": "Questionneur de document (map reduce)",
-      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
-      "typeVersion": 2,
-      "position": [
-        3520,
-        -240
-      ]
-    },
-    {
-      "parameters": {
         "content": "## Get Document\nhttps://kins.app.n8n.cloud/workflow/H3fxaSnxjZT6EGhc",
         "height": 274.5517166627047,
         "width": 250.71967654986526
@@ -566,6 +544,28 @@
           "name": "Azure Open AI account"
         }
       }
+    },
+    {
+      "parameters": {
+        "chunkSize": 20000,
+        "chunkOverlap": 2000,
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "combineMapPrompt": "=# Instructions de l'Assistant Questionneur de Document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\"",
+              "prompt": "=# Instructions de l'Assistant Questionneur de document\n\nTon objectif est de répondre au mieux au besoin informationnel à partir des extraits proposés.\nTa réponse doit être la plus détaillée possible, et inclure des extraits verbatim du document (avec citation si étude) chaque fois que c'est nécessaire.\n\n# Misison Globale\n\n{{ $node[\"entree\"].json.mission }}\n\n# Demande Spécifique (Query)\n\n{{ $node[\"entree\"].json.query }}\n\n# Extraits\n\n\"{text}\""
+            }
+          }
+        }
+      },
+      "id": "fa635caf-4d35-4bda-8655-ade052e1c004",
+      "name": "Questionneur de document (map reduce)",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        3520,
+        -240
+      ]
     }
   ],
   "pinData": {},
@@ -598,6 +598,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-16T21:14:22.000Z",
-  "versionId": "046ee61f-4546-435e-8606-769a32e13bcd"
+  "updatedAt": "2024-02-18T15:44:20.000Z",
+  "versionId": "9bcdabed-1f53-4c25-8fbb-33d7883172ec"
 }
