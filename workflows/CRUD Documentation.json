@@ -408,6 +408,81 @@
             "type": "main",
             "index": 0
           }
+        ],
+        []
+      ]
+    },
+    "titres": {
+      "main": [
+        [
+          {
+            "node": "GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If delete": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub": {
+      "main": [
+        [
+          {
+            "node": "If FILE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get FILE": {
+      "main": [
+        [
+          {
+            "node": "If read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If FILE": {
+      "main": [
+        [
+          {
+            "node": "Get FILE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "GitHub1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub1": {
+      "main": [
+        [
+          {
+            "node": "If FILE",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     }
@@ -909,7 +984,7 @@
       "typeVersion": 2,
       "position": [
         -1280,
-        -80
+        -100
       ]
     },
     {
@@ -1471,6 +1546,255 @@
         -1120,
         -1220
       ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "list",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kindocs",
+          "mode": "list",
+          "cachedResultName": "kindocs",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kindocs"
+        },
+        "filePath": "docs/"
+      },
+      "id": "c4a099db-d055-4c78-855d-f1f065b08c6e",
+      "name": "GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        -2000,
+        -620
+      ],
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "lNM7LCv7g0a8rDRT",
+          "name": "Charlie Github"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "https://github.com/DigitalKin-ai/kindocs",
+          "mode": "url"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "https://github.com/DigitalKin-ai/kindocs",
+          "mode": "url"
+        },
+        "filePath": "=docs/{{ $json }}"
+      },
+      "id": "0f5be76b-cc4a-49be-9cf1-f42616790aed",
+      "name": "Edit FILE",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        -1060,
+        -300
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "https://github.com/DigitalKin-ai/kindocs",
+          "mode": "url"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "https://github.com/DigitalKin-ai/kindocs",
+          "mode": "url"
+        },
+        "filePath": "docs/"
+      },
+      "id": "bce41a6f-255e-453c-a111-b614735496c0",
+      "name": "Create File",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        -1060,
+        -500
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "delete",
+        "owner": {
+          "__rl": true,
+          "value": "https://github.com/DigitalKin-ai/kindocs",
+          "mode": "url"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "https://github.com/DigitalKin-ai/kindocs",
+          "mode": "url"
+        },
+        "filePath": "=docs/{{ $json }}"
+      },
+      "id": "455bc415-906d-49ec-a96d-65d58f6f48de",
+      "name": "Delete FILE",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        -1060,
+        -100
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "errorMessage": "CRUD Doc error"
+      },
+      "id": "5a8abfb8-3830-4529-8448-19d97a8d2ecc",
+      "name": "Stop and Error",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -1280,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kindocs",
+          "mode": "list",
+          "cachedResultName": "kindocs",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kindocs"
+        },
+        "filePath": "docs/intro.md",
+        "additionalParameters": {}
+      },
+      "id": "b4b08de7-2867-4b2a-8fd6-c4c421ad10c9",
+      "name": "Get FILE",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        -1540,
+        -640
+      ],
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "lNM7LCv7g0a8rDRT",
+          "name": "Charlie Github"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $json.content }}",
+              "rightValue": "file",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "18d0fe76-f531-4c19-b055-de8d9143bda5",
+      "name": "If FILE",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1740,
+        -560
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "list",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kindocs",
+          "mode": "list",
+          "cachedResultName": "kindocs",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kindocs"
+        },
+        "filePath": "={{ $json.path }}"
+      },
+      "id": "5afa0602-2d11-4931-a5cd-b9119b02e2de",
+      "name": "GitHub1",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        -1660,
+        -320
+      ],
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "lNM7LCv7g0a8rDRT",
+          "name": "Charlie Github"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1488,6 +1812,62 @@
           "mailSubject": "Revue de littérature - Efficacité de l'homéopathie en santé animale (Essai n°1)",
           "mailFrom": "From: Lester Reynolds <lreynolds@dynergie.fr>",
           "query": "/crud_section/list"
+        }
+      }
+    ],
+    "GitHub": [
+      {
+        "json": {
+          "name": "intro.md",
+          "path": "docs/intro.md",
+          "sha": "45e8604c8bf8fe674fd34a11874f15294b9362b2",
+          "size": 1403,
+          "url": "https://api.github.com/repos/DigitalKin-ai/kindocs/contents/docs/intro.md?ref=main",
+          "html_url": "https://github.com/DigitalKin-ai/kindocs/blob/main/docs/intro.md",
+          "git_url": "https://api.github.com/repos/DigitalKin-ai/kindocs/git/blobs/45e8604c8bf8fe674fd34a11874f15294b9362b2",
+          "download_url": "https://raw.githubusercontent.com/DigitalKin-ai/kindocs/main/docs/intro.md?token=AUKY35ACAMXQNWF3AOVFL6DF2OCXC",
+          "type": "file",
+          "_links": {
+            "self": "https://api.github.com/repos/DigitalKin-ai/kindocs/contents/docs/intro.md?ref=main",
+            "git": "https://api.github.com/repos/DigitalKin-ai/kindocs/git/blobs/45e8604c8bf8fe674fd34a11874f15294b9362b2",
+            "html": "https://github.com/DigitalKin-ai/kindocs/blob/main/docs/intro.md"
+          }
+        }
+      },
+      {
+        "json": {
+          "name": "tutorial-basics",
+          "path": "docs/tutorial-basics",
+          "sha": "91acd980180241463d81f7e6d3858ae2cfd85c2d",
+          "size": 0,
+          "url": "https://api.github.com/repos/DigitalKin-ai/kindocs/contents/docs/tutorial-basics?ref=main",
+          "html_url": "https://github.com/DigitalKin-ai/kindocs/tree/main/docs/tutorial-basics",
+          "git_url": "https://api.github.com/repos/DigitalKin-ai/kindocs/git/trees/91acd980180241463d81f7e6d3858ae2cfd85c2d",
+          "download_url": null,
+          "type": "dir",
+          "_links": {
+            "self": "https://api.github.com/repos/DigitalKin-ai/kindocs/contents/docs/tutorial-basics?ref=main",
+            "git": "https://api.github.com/repos/DigitalKin-ai/kindocs/git/trees/91acd980180241463d81f7e6d3858ae2cfd85c2d",
+            "html": "https://github.com/DigitalKin-ai/kindocs/tree/main/docs/tutorial-basics"
+          }
+        }
+      },
+      {
+        "json": {
+          "name": "tutorial-extras",
+          "path": "docs/tutorial-extras",
+          "sha": "b3ba1ec6779bc750fe188f6ddd55c8a27b65a7f4",
+          "size": 0,
+          "url": "https://api.github.com/repos/DigitalKin-ai/kindocs/contents/docs/tutorial-extras?ref=main",
+          "html_url": "https://github.com/DigitalKin-ai/kindocs/tree/main/docs/tutorial-extras",
+          "git_url": "https://api.github.com/repos/DigitalKin-ai/kindocs/git/trees/b3ba1ec6779bc750fe188f6ddd55c8a27b65a7f4",
+          "download_url": null,
+          "type": "dir",
+          "_links": {
+            "self": "https://api.github.com/repos/DigitalKin-ai/kindocs/contents/docs/tutorial-extras?ref=main",
+            "git": "https://api.github.com/repos/DigitalKin-ai/kindocs/git/trees/b3ba1ec6779bc750fe188f6ddd55c8a27b65a7f4",
+            "html": "https://github.com/DigitalKin-ai/kindocs/tree/main/docs/tutorial-extras"
+          }
         }
       }
     ]
@@ -1511,6 +1891,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-15T09:22:48.000Z",
-  "versionId": "b360085f-e54d-473c-9755-97be603b4767"
+  "updatedAt": "2024-02-19T16:48:29.000Z",
+  "versionId": "4f50e53e-55f2-4715-9abb-6b29583c35f6"
 }
