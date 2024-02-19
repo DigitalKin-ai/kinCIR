@@ -1,0 +1,82 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-02-19T15:06:56.430Z",
+  "id": "vaq781Tpf9Ouo7eG",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Postgres",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "3651085f-9770-42b0-91a3-d3d2c472ad36",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        760,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "test",
+          "mode": "list",
+          "cachedResultName": "test"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "ad5ed78f-3833-415d-ae40-09c4daa0abb0",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.3,
+      "position": [
+        1000,
+        540
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "5581DTmXV97W2jnU",
+          "name": "Railway Postgres account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-02-19T17:16:28.000Z",
+  "versionId": "f96b3f1b-997d-4a59-97e1-559ffffe8ec2"
+}
