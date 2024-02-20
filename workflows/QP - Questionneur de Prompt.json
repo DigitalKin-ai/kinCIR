@@ -56,38 +56,11 @@
         ]
       ]
     },
-    "Send  Notifications": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
-    "Merge": {
-      "main": [
-        [
-          {
-            "node": "response",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "kinrsi": {
       "main": [
         [
           {
-            "node": "Merge",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Send  Notifications",
+            "node": "response",
             "type": "main",
             "index": 0
           }
@@ -212,7 +185,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3880,
+        3540,
         260
       ]
     },
@@ -237,34 +210,6 @@
         2940,
         260
       ]
-    },
-    {
-      "parameters": {
-        "mode": "chooseBranch"
-      },
-      "id": "4e22a84f-2527-48d9-9e60-8f121aa6bccf",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 2.1,
-      "position": [
-        3660,
-        260
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "=EYWde6gUS9Qq2ok7",
-        "options": {}
-      },
-      "id": "06abe3a0-039e-49c5-aebd-170c87bdb61b",
-      "name": "Send  Notifications",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        3500,
-        500
-      ],
-      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -301,21 +246,6 @@
       "position": [
         2460,
         -60
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## Not share\nhttps://kins.app.n8n.cloud/workflow/EYWde6gUS9Qq2ok7",
-        "height": 274.5517166627047,
-        "width": 250.71967654986526
-      },
-      "id": "b21839cc-9e8f-4b6a-bff3-3081ffddf81c",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        3420,
-        380
       ]
     },
     {
@@ -469,6 +399,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-13T00:48:07.000Z",
-  "versionId": "ebb3de6e-5c7b-49ba-9d3a-ad4b1504db92"
+  "updatedAt": "2024-02-20T15:36:30.000Z",
+  "versionId": "060296b3-a716-4705-b574-8e0871ffc522"
 }
