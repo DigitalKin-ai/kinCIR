@@ -280,7 +280,7 @@
         ],
         [
           {
-            "node": "Get ALL error/exceptions missions",
+            "node": "Get ALL error/exceptions/waiting missions",
             "type": "main",
             "index": 0
           }
@@ -316,17 +316,6 @@
         ]
       ]
     },
-    "Get ALL error/exceptions missions": {
-      "main": [
-        [
-          {
-            "node": "Split Out",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Send Instructions": {
       "main": [
         [
@@ -355,6 +344,17 @@
           {
             "node": "kinmanager1",
             "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get ALL error/exceptions/waiting missions": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
             "index": 0
           }
         ]
@@ -933,7 +933,7 @@
     },
     {
       "parameters": {
-        "content": "# /restart Transfer missions status error/exceptions  to todo",
+        "content": "# /restart Transfer missions status error/exceptions/waiting  to todo",
         "height": 298.13044544905085,
         "width": 1320.5858121453357
       },
@@ -1219,45 +1219,6 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "pineconeApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "accept",
-              "value": "application/json"
-            },
-            {
-              "name": "content-type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"filter\" : {\"status\": { \"$in\": [\"error\", \"exception\"] }},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
-        "options": {}
-      },
-      "id": "77702974-fdec-4adf-a214-fd555fa5cfde",
-      "name": "Get ALL error/exceptions missions",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        -240,
-        -180
-      ],
-      "credentials": {
-        "pineconeApi": {
-          "id": "LakE1nni5DFtskNv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "chatId": "-4155607972",
         "text": "=Restarted mission {{ $node[\"set status TODO1\"].json.missionId }} : {{ $node[\"set status TODO1\"].json.threadSubject }} ",
         "additionalFields": {
@@ -1355,6 +1316,45 @@
         1220,
         -440
       ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.vectorDatabaseEndpoint }}query",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "pineconeApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"namespace\": \"missions\",\n  \"includeMetadata\": true,\n  \"topK\": 100,\n  \"filter\" : {\"status\": { \"$in\": [\"error\", \"exception\", \"waiting\"] }},\n  \"vector\": {{ JSON.stringify($node[\"defaultEmbedding\"].json.defaultEmbedding) }}\n}",
+        "options": {}
+      },
+      "id": "77702974-fdec-4adf-a214-fd555fa5cfde",
+      "name": "Get ALL error/exceptions/waiting missions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -240,
+        -180
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "LakE1nni5DFtskNv",
+          "name": "PineconeApi account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1408,6 +1408,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-12T19:42:42.000Z",
-  "versionId": "6cbc0daf-efa6-434a-bd4f-9408b7df8740"
+  "updatedAt": "2024-02-20T17:44:50.000Z",
+  "versionId": "e5c9eed1-1eb9-4b55-bb53-eebecf587a3c"
 }
