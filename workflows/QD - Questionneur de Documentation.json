@@ -1,0 +1,453 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "/crud_mission/read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "/crud_documentation/list": {
+      "main": [
+        [
+          {
+            "node": "CRUD Documentation : List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Documentation : List": {
+      "main": [
+        [
+          {
+            "node": "kinfichekin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "/crud_mission/read": {
+      "main": [
+        [
+          {
+            "node": "CRUD Mission : Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Mission : Read": {
+      "main": [
+        [
+          {
+            "node": "mission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mission": {
+      "main": [
+        [
+          {
+            "node": "/crud_documentation/list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinfichekin": {
+      "main": [
+        [
+          {
+            "node": "nomFiche",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "/crud_mission/read1": {
+      "main": [
+        [
+          {
+            "node": "CRUD Documentation : Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Documentation : Read": {
+      "main": [
+        [
+          {
+            "node": "fiche",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kinfichekin1": {
+      "main": [
+        [
+          {
+            "node": "nouveau message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nomFiche": {
+      "main": [
+        [
+          {
+            "node": "/crud_mission/read1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "fiche": {
+      "main": [
+        [
+          {
+            "node": "kinfichekin1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-20T15:37:17.922Z",
+  "id": "wOuct7oxfVro7JhE",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "QD - Questionneur de Documentation",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "fd30af01-2e0b-44e7-8fde-b1c01ba74990",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        280,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "if ($node[\"entree\"].json.chatInput != null) {\n  return {\"output\": $json.output};\n}\n\nreturn {\"json\":{\"response\": $json.output}};"
+      },
+      "id": "a9695a10-9722-494b-b0e5-ed4f2cd6b84c",
+      "name": "nouveau message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2200,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n json.query = json.chatInput;\n}\n\nif (!json.query) {\n  json.query = \"Je souhaite une explication générale du Workflow.\"\n}\n\nreturn {\"json\": json};"
+      },
+      "id": "665cd61c-4fbf-4936-ab60-0a49198b3171",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        500,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## CRUD Documentation\nhttps://kins.app.n8n.cloud/workflow/g3JPUsHyA5nXgkwx",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "bfa699eb-3283-4b19-8236-a04423438ea6",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\njson.query = \"/crud_documentation/list/\";\n\nreturn {\"json\": json};"
+      },
+      "id": "b7f3135d-146a-4156-86c9-70a0f1e0d33e",
+      "name": "/crud_documentation/list",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "g3JPUsHyA5nXgkwx",
+        "options": {}
+      },
+      "id": "2174129b-2290-4c72-9055-7c557c15d9c2",
+      "name": "CRUD Documentation : List",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\njson.query = \"/crud_mission/read/\" + $json.missionId;\njson.responseFormat = \"json\";\n\nreturn {\"json\": json};"
+      },
+      "id": "0c0f68aa-ed38-4d5c-8044-358720779aa5",
+      "name": "/crud_mission/read",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "HLDDZOmG8kuk2zTi",
+        "options": {}
+      },
+      "id": "9c37928b-b433-4dbd-b38d-52a85e73cfdf",
+      "name": "CRUD Mission : Read",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        920,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## CRUD Mission\nhttps://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "eb4a03ee-c78b-491d-aca2-b15f72c91ef4",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        840,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
+      },
+      "id": "99f4c540-1cf5-47a9-8ab3-719f157f1238",
+      "name": "mission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1140,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_4JFbQX660SbwdBoFzs5AtUbz",
+        "text": "=[INFORMATIF - Mission du de {{ $node[\"mission\"].json.kin }}]\n\n``\n{{ $node[\"mission\"].json.mission.length > 2500 ? \"[...]\" : \"\" }}{{ $node[\"mission\"].json.mission.substring($node[\"mission\"].json.mission.length - 2500)}}\n``\n\n[/INFORMATIF - Mission du de {{ $node[\"mission\"].json.kin }}]\n\n===\n\n[RETOUR - Fiches de documentation disponibles]\n\n{{ $node[\"CRUD Documentation : List\"].json.response }}\n\n[/RETOUR - Fiches de documentation disponibles]\n\n===\n\n[DEMANDE - Demande Spécifique formulée par {{ $node[\"mission\"].json.kin }}]\n\n{{ $node[\"entree\"].json.query }}\n\n[/DEMANDE - Demande Spécifique formulée par {{ $node[\"mission\"].json.kin }}]\n\n===\n\n[INSTRUCTION - Sélection de la fiche de documentation pertinente]\n\nParmi les fiche de documentation disponibles, laquelle semble la plus approprié à consulter pour répondre au besoin informationnel ?\n\nRéponds au format \"<nom de la fiche>.md\". Attention à respecter le format à la lettre, sans guillemets.\n\n[/INSTRUCTION - Sélection de la fiche de documentation pertinente]\n\n===\n\n",
+        "options": {}
+      },
+      "id": "4e15d28b-8039-4071-ab2f-21d385f8c336",
+      "name": "kinfichekin",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1820,
+        180
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\njson.query = \"/crud_documentation/read/\" + $node[\"nomFiche\"].json.nomFiche;\n\nreturn {\"json\": json};"
+      },
+      "id": "a7f45b58-5342-424d-9a40-fbf84f4f4c91",
+      "name": "/crud_mission/read1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2620,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## CRUD Documentation\nhttps://kins.app.n8n.cloud/workflow/g3JPUsHyA5nXgkwx",
+        "height": 274.5517166627047,
+        "width": 250.71967654986526
+      },
+      "id": "eeb28119-b5da-4c16-82ae-da460fbcb5d0",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2760,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "g3JPUsHyA5nXgkwx",
+        "options": {}
+      },
+      "id": "edf64b9b-bcb4-40a8-846c-624c37cf7b1b",
+      "name": "CRUD Documentation : Read",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2840,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_4JFbQX660SbwdBoFzs5AtUbz",
+        "text": "=[INFORMATIF - Mission du de {{ $node[\"mission\"].json.kin }}]\n\n{{ $node[\"mission\"].json.mission.length > 2500 ? \"[...]\" : \"\" }}{{ $node[\"mission\"].json.mission.substring($node[\"mission\"].json.mission.length - 2500)}}\n\n[/INFORMATIF - Mission du de {{ $node[\"mission\"].json.kin }}]\n\n===\n\n[RETOUR - Contenu de la fiche de documentation \"{{ $node[\"nomFiche\"].json.nomFiche}}\"]\n\n```\n{{ $node[\"fiche\"].json.response.length > 15000 ? \"[...]\" : \"\" }}{{ $node[\"fiche\"].json.response.length).substring($node[\"fiche\"].json.response.length - 15000)}}\n```\n\n[/RETOUR - Contenu de la fiche de documentation \"{{ $node[\"nomFiche\"].json.nomFiche}}\"\n\n===\n\n[DEMANDE - Demande Spécifique formulée par {{ $node[\"mission\"].json.kin }}]\n\n{{ $node[\"entree\"].json.query }}\n\n[/DEMANDE - Demande Spécifique formulée par {{ $node[\"mission\"].json.kin }}]\n\n===\n\n[INSTRUCTION - Réponse au besoin informationnel]\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel de {{ $node[\"mission\"].json.kin }}.\n\n[/INSTRUCTION - Réponse au besoin informationnel]\n\n===\n\n",
+        "options": {}
+      },
+      "id": "ee3c90de-4945-40c5-a28e-b65ca4bbebfa",
+      "name": "kinfichekin1",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1820,
+        380
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "nomFiche",
+              "stringValue": "={{ $json.output }}lorem.md"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "7fc3e97e-9918-4291-8ad9-a8694faeb740",
+      "name": "nomFiche",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        2200,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
+      },
+      "id": "6d759f93-fa4d-4262-be09-ab2bc840acef",
+      "name": "fiche",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3040,
+        180
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "Il y a quoi dans la documenatation lyon",
+          "kin": "kindev",
+          "mission": "INFORMATIF - Mission du kinrsi]\n\nSubject: \nBody: # Outils\n\nLe Questionneur de code retourne une réponse issue de la codebase n8n de \nDigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, \ncontenant :\n- Les informations que tu cherches, avec les mots clés et éléments de \ncontexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu \nsouhaites faire.\n- Le format de réponse désiré.\n\nEx : Comment fonctionne le Workflow \"Recherche Google Scholar\" ?\n-- \nNicolas Lester Reynolds\nCPO @ Digitalkin.ai <https://DigitalKin.ai>\n+33621636737\nBookez-moi sur Calendy <https://calendly.com/l-reynolds-digitalkin/call>\n\n[/INFORMATIF du kinrsi]\n\n\n---\n\n[INFORMATIF - Dernier Kin Producteur ]\n\nkinrsi\n\n[/INFORMATIF - Dernier Kin Producteur ]\n\n\n---\n\n[INFORMATIF - Dernière production du Kin Producteur]\n\n\n\n[/INFORMATIF - Dernière production du Kin Producteur]\n\n\n---\n\n[INFORMATIF - Dernier Message du KinManager]\n\nTODOLIST : - Identification du Kin et Reformulation du Besoin : DONE - Définition de l'Approche Globale d'amélioration : DONE - Amélioration de la partie \"Instructions Globales\" du prompt du Kin sélectionné : DONE - Amélioration de la partie \"Rôle\" du prompt du Kin sélectionné : DONE - Amélioration de la partie \"Contexte\" du prompt du Kin sélectionné : DONE - Amélioration de la partie \"Proposition de Valeur\" du prompt du Kin sélectionné : DONE - Amélioration de la partie \"Système de Balisage des Kins\" du prompt du Kin sélectionné : DONE - IDENTIFICATION DES ACTIONS : DONE - ACTION 8 (à répéter pour chaque ACTION à améliorer). **Amélioration de la rédaction d'une ACTION spécifique du prompt du Kin sélectionné** : DONE - ACTION OUVERTE (Si amélioration) : Inférences sur les effets attendus sur le Kin. : DONE - ACTION OUVERTE : Réflexion sur le processus de création/amélioration en lui-même. : DONE - ACTION 9. **Rapport de Mission & Commentaire** : DONE\n\nProchaine action à réaliser & instructions : La mission étant à présent conclue, le kinrsi doit soumettre son rappor\n\n[/INFORMATIF - Dernier Message du KinManager]\n\n---\n\n[INFORMATIF - Message d'erreur]\n\nMessage not found (item 0)\n\n[/INFORMATIF - Message d'erreur]\n\n===\n\nDate : 2024-02-15T05:00:49.078+01:00\nClient : digitalkin\n\n===\n\n**PROCESSUS - MISSION : Gestion de l'EXCEPTION :**\n\nLa mission du  kinrsi a donné lieu à une EXCEPTION. **Ta mission, en tant que KinDev, est de comprendre le problème et d'écrire un court rapport d'exception.\n\n===",
+          "missionId": "71668b49-3a9c-4778-bfa3-8605d3a4fc71"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    },
+    {
+      "createdAt": "2024-01-21T09:46:57.068Z",
+      "updatedAt": "2024-01-21T09:46:57.068Z",
+      "id": "O7AwhYu4Pf4sOOHS",
+      "name": "beta"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-02-20T16:53:22.000Z",
+  "versionId": "89001834-77b0-43d9-b6f9-0bd43cc52bec"
+}
