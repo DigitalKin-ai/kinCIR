@@ -1,0 +1,1132 @@
+{
+  "active": false,
+  "connections": {
+    "entree": {
+      "main": [
+        [
+          {
+            "node": "If read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "If not List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "If update1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If create": {
+      "main": [
+        [
+          {
+            "node": "Create File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If create1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If read": {
+      "main": [
+        [
+          {
+            "node": "Get FILE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If update": {
+      "main": [
+        [
+          {
+            "node": "Edit FILE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If delete",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If delete": {
+      "main": [
+        [
+          {
+            "node": "Delete FILE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get FILE": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If create1": {
+      "main": [
+        [
+          {
+            "node": "Edit FILE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If update2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit FILE": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete FILE": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Create File": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If update2": {
+      "main": [
+        [
+          {
+            "node": "Create File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to JSON": {
+      "main": [
+        [
+          {
+            "node": "return documentation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List items": {
+      "main": [
+        [
+          {
+            "node": "If FILE1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If FILE1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "List items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If not List": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "List items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List items1": {
+      "main": [
+        [
+          {
+            "node": "If FILE1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If update1": {
+      "main": [
+        [
+          {
+            "node": "return documentation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge items": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-02-15T02:36:15.216Z",
+  "id": "g3JPUsHyA5nXgkwx",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CRUD Documenation",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "4ca1e96b-8083-4552-989e-e9e92a04fb0b",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1800,
+        -1140
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\njson.query = json.query.trim();\n\n// Détecter la commande\nlet regexCommand = /\\/crud\\_documentation\\/([a-zA-Z0-9\\_\\-]+)/i;\njson.command = \"\";\nlet matchCommand = json.query.match(regexCommand);\nif (matchCommand) {\n    json.command = matchCommand[1];\n}\n\nlet regexFirstAttribute = /\\/crud\\_documentation\\/[a-zA-Z0-9\\_\\-]+\\/([a-zA-Z0-9\\_\\-.]+)/i;\nlet matchFirstAttribute = json.query.match(regexFirstAttribute);\nif (matchFirstAttribute) {\n  json.firstAttribute = matchFirstAttribute[1];\n}\n\nlet regexAllCommand = /\\/\\S+ /;\njson.commandText = \"\";\nlet matchAllCommand = json.query.match(regexAllCommand);\nif (matchAllCommand) {\n  let startIndex = matchAllCommand[0].length;\n  json.commandText = json.query.substring(startIndex);\n}\n\njson.date = $now.toString();\n$execution.customData.set(\"kin\", String(json.kin));\n\nreturn {\"json\": json};"
+      },
+      "id": "22d2ebc3-9e6d-4c61-ac51-33cbbd03c90e",
+      "name": "entree",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1300,
+        -1140
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "1850c337-4fe4-4a7d-9670-98af3306bccf",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        -320,
+        -1300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "92bd894a-b80b-4d55-ac7f-1979b81d464c",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        480,
+        -1120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $('entree').item.json.command }}",
+              "rightValue": "create",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "7b3ca7fd-d240-417e-8b81-187c530393a2",
+              "leftValue": "={{ $('Get FILE').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "ce75585f-c6a8-403a-ab4f-abd16b2959bb",
+      "name": "If create",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -860,
+        -540
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "read",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "bbbc6e34-b7f6-4a38-8f2a-52261895f982",
+      "name": "If read",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -860,
+        -1140
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "update",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "236945a2-ce21-48cd-9b53-05693c9d4f89",
+              "leftValue": "={{ $('Get FILE').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "d1f424b6-e522-427e-97a1-5596fc3f86f2",
+      "name": "If update",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -860,
+        -940
+      ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "commande non gérée"
+      },
+      "id": "a60975bb-a4a8-4a0a-9fd6-fe48002597f0",
+      "name": "Stop and Error2",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        2900
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "rightValue": "delete",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "e314dd0b-1987-49b4-b51c-0cb45f92c060",
+              "leftValue": "={{ $('Get FILE').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "3b2552c0-8ead-4123-820e-ea2ba5e08c30",
+      "name": "If delete",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -860,
+        -740
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "https://github.com/DigitalKin-ai/kindocs",
+          "mode": "url"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "https://github.com/DigitalKin-ai/kindocs",
+          "mode": "url"
+        },
+        "filePath": "=docs/{{ $('entree').item.json.firstAttribute }}",
+        "fileContent": "={{ $('entree').item.json.commandText }}",
+        "commitMessage": "={{ `Update: ` + $('entree').item.json.firstAttribute }}"
+      },
+      "id": "0f5be76b-cc4a-49be-9cf1-f42616790aed",
+      "name": "Edit FILE",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -940
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "https://github.com/DigitalKin-ai/kindocs",
+          "mode": "url"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "https://github.com/DigitalKin-ai/kindocs",
+          "mode": "url"
+        },
+        "filePath": "=docs/{{ $('entree').item.json.firstAttribute }}",
+        "fileContent": "={{ $('entree').item.json.commandText }}",
+        "commitMessage": "={{ `Create: ` + $('entree').item.json.firstAttribute }}"
+      },
+      "id": "bce41a6f-255e-453c-a111-b614735496c0",
+      "name": "Create File",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -540
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "delete",
+        "owner": {
+          "__rl": true,
+          "value": "https://github.com/DigitalKin-ai/kindocs",
+          "mode": "url"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "https://github.com/DigitalKin-ai/kindocs",
+          "mode": "url"
+        },
+        "filePath": "={{ `docs/` + $('entree').item.json.firstAttribute }}",
+        "commitMessage": "={{ `Delete: ` + $('entree').item.json.firstAttribute }}"
+      },
+      "id": "455bc415-906d-49ec-a96d-65d58f6f48de",
+      "name": "Delete FILE",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -740
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "Q3KiSughyw3eRp87",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "errorMessage": "CRUD Doc error"
+      },
+      "id": "5a8abfb8-3830-4529-8448-19d97a8d2ecc",
+      "name": "Stop and Error",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kindocs",
+          "mode": "list",
+          "cachedResultName": "kindocs",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kindocs"
+        },
+        "filePath": "=docs/{{ $('entree').item.json.firstAttribute }}",
+        "additionalParameters": {}
+      },
+      "id": "b4b08de7-2867-4b2a-8fd6-c4c421ad10c9",
+      "name": "Get FILE",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -1140
+      ],
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "lNM7LCv7g0a8rDRT",
+          "name": "Charlie Github"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $('entree').item.json.command }}",
+              "rightValue": "create",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "7b3ca7fd-d240-417e-8b81-187c530393a2",
+              "leftValue": "={{ $('Get FILE').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "220eb953-2f06-4e31-9384-b5205c631c52",
+      "name": "If create1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1040,
+        -940
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# /crud_docs/%actionType%/%actionContent%",
+        "height": 1281.2643325419258,
+        "width": 1914.9012708113887
+      },
+      "id": "4ee8f25d-acf2-41fc-b430-db17c62f158f",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1820,
+        -1340
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $('entree').item.json.command }}",
+              "rightValue": "update",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "7b3ca7fd-d240-417e-8b81-187c530393a2",
+              "leftValue": "={{ $('Get FILE').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "aa7ccde8-139e-47a2-bde6-a004fd095f5d",
+      "name": "If update2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1040,
+        -540
+      ]
+    },
+    {
+      "parameters": {
+        "setAllData": false,
+        "destinationKey": "docs",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "id": "baca1a45-23a8-4ff6-bf16-f92941728731",
+      "name": "Convert to JSON",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1.1,
+      "position": [
+        880,
+        -1020
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\ndelete json.query;\n\nreturn {\"json\":{\"response\": json.docs}};"
+      },
+      "id": "6d915ae7-f8e5-4d40-ac5b-5c310b0aa937",
+      "name": "return documentation",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        -1120
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "list",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kindocs",
+          "mode": "list",
+          "cachedResultName": "kindocs",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kindocs"
+        },
+        "filePath": "=docs/"
+      },
+      "id": "8de1b887-d7ef-4b67-b5c5-5f5c48e95d73",
+      "name": "List items",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        -1540,
+        -940
+      ],
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "lNM7LCv7g0a8rDRT",
+          "name": "Charlie Github"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "=.",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "93604729-2398-4366-b8b6-de4e388dc5c6",
+      "name": "If FILE1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1300,
+        -940
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $json.query }}",
+              "rightValue": "/crud_documentation/list",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "4276d8b4-e591-4f3d-87e6-48e65aee38cc",
+      "name": "If not List",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1540,
+        -1140
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "list",
+        "owner": {
+          "__rl": true,
+          "value": "DigitalKin-ai",
+          "mode": "list",
+          "cachedResultName": "DigitalKin-ai",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "kindocs",
+          "mode": "list",
+          "cachedResultName": "kindocs",
+          "cachedResultUrl": "https://github.com/DigitalKin-ai/kindocs"
+        },
+        "filePath": "={{ $json.path }}"
+      },
+      "id": "405d699f-360a-417a-8516-fc28a2a17609",
+      "name": "List items1",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        -1540,
+        -740
+      ],
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "lNM7LCv7g0a8rDRT",
+          "name": "Charlie Github"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "a4ab892d-0693-4c67-ab40-32087a9c97da",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        -1300,
+        -320
+      ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "={{ $json }}",
+        "include": "specifiedFields",
+        "fieldsToInclude": "name",
+        "options": {}
+      },
+      "id": "3a5caf5b-e1c5-48cc-b6f5-8aa600ec117a",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -1300,
+        -720
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5244985f-d439-4d8c-a4a9-ece15f994e9f",
+              "name": "query",
+              "value": "={{ $json['[object Object]'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1cb2fe73-49ad-46e0-8641-cabcf3c2aeaf",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        -1540,
+        -540
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let json = $json;\n\njson.docs = JSON.parse(json.query).map(item => item.name).join(', ');\n\nreturn json;"
+      },
+      "id": "aa3fd1d6-b3e7-413c-8cc9-5c2e277f3a11",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        -360
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $json.commandText }}",
+              "rightValue": "update",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "5654078f-e6de-401a-882a-dbefc36f2e89",
+      "name": "If update1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        700,
+        -1120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const allData = []\n\nlet counter = 0;\ndo {\n  try {\n    const items = $items(\"Edit Fields\", 0, counter).map(item => item.json);\n    allData.push.apply(allData, items);\n  } catch (error) {\n    return {json: {allData}};  \n  }\n\n  counter++;\n} while(true);let input = $json\n\nreturn input;"
+      },
+      "id": "fffdb260-49b7-4eca-802a-429026b610e3",
+      "name": "Merge items",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1300,
+        -540
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "query": "/crud_documentation/list/",
+          "missionId": "71668b49-3a9c-4778-bfa3-8605d3a4fc71"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-12-17T10:07:55.424Z",
+      "updatedAt": "2023-12-20T20:25:13.009Z",
+      "id": "DzuSxffpFOEBRhld",
+      "name": "outil"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-02-20T17:01:57.000Z",
+  "versionId": "b2e5ea0a-9dac-467b-9090-c6cfc8812ad6"
+}
