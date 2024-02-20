@@ -190,6 +190,11 @@
             "node": "kinmanager",
             "type": "ai_tool",
             "index": 0
+          },
+          {
+            "node": "kinfichekin",
+            "type": "ai_tool",
+            "index": 0
           }
         ]
       ]
@@ -260,17 +265,6 @@
       ]
     },
     "kinsota": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kincirbeta": {
       "main": [
         [
           {
@@ -815,6 +809,17 @@
         ]
       ]
     },
+    "kinfichekin": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Switch": {
       "main": [
         [
@@ -847,7 +852,7 @@
         ],
         [
           {
-            "node": "kincirbeta",
+            "node": "kinfichekin",
             "type": "main",
             "index": 0
           }
@@ -996,6 +1001,17 @@
           {
             "node": "kinmissionouverte",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRUD Documentation": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinfichekin",
+            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -1483,29 +1499,6 @@
           "name": "OpenAi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_TwVBZeoLx80udowj5MIoG6Pq",
-        "text": "={{ $json.promptProducteur }}",
-        "options": {}
-      },
-      "id": "a5006fdd-836e-4162-8aba-f641634ffc78",
-      "name": "kincirbeta",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        840,
-        680
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      },
-      "disabled": true
     },
     {
       "parameters": {
@@ -2039,7 +2032,7 @@
     },
     {
       "parameters": {
-        "content": "\n\n\n\n# UF RELATION Exterieure",
+        "content": "\n\n\n\n# UF RELATIONNEL",
         "height": 1168.8754104629538,
         "width": 1119.066732991086
       },
@@ -2599,6 +2592,28 @@
     },
     {
       "parameters": {
+        "assistantId": "asst_4JFbQX660SbwdBoFzs5AtUbz",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "362c5611-2353-43c1-836a-1ebc865d4a8f",
+      "name": "kinfichekin",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        1880
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
         "rules": {
           "values": [
             {
@@ -2698,7 +2713,7 @@
                   {
                     "id": "72d86350-5484-42da-86d0-02205e464813",
                     "leftValue": "={{ $node[\"entree\"].json.kin }}",
-                    "rightValue": "kincirbeta",
+                    "rightValue": "kinfichekin",
                     "operator": {
                       "type": "string",
                       "operation": "equals",
@@ -3165,35 +3180,81 @@
         460,
         800
       ]
+    },
+    {
+      "parameters": {
+        "name": "crud_documentation",
+        "description": "La fonction \"crud_documentation\" permet aux Kins d'effectuer des actions sur les fiches de documentation de l'équipe des Kins.\n\nAppels disponibles :\n   - Pour **créer une fiche** : /crud_documentation/create/<nomdelafiche>.md <Contenu en markdown>\n   - Pour **lire une fiche** : /crud_documentation/read/<nomdelafiche>.md\n   - Pour **modifier une fiche** : /crud_documentation/update/<nomdelafiche>.md <Contenu en markdown>\n   - Pour **supprimer une fiche** : /crud_documentation/delete/<nomdelafiche>.md\n   - Pour **lister les fiches** : /crud_documentation/list",
+        "workflowId": "g3JPUsHyA5nXgkwx",
+        "fields": {
+          "values": [
+            {
+              "name": "missionId",
+              "stringValue": "={{ $node[\"entree\"].json.missionId }}"
+            }
+          ]
+        }
+      },
+      "id": "0c983086-f2d3-4b04-84d0-0dbc921daa0d",
+      "name": "CRUD Documentation",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        2060
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_documentation",
+        "description": "=Le questionneur_de_documentation retourne une réponse issue de la documentation de DigitalKin à partir d'une demande informationnelle détaillée.",
+        "workflowId": "wOuct7oxfVro7JhE",
+        "fields": {
+          "values": [
+            {
+              "name": "missionId",
+              "stringValue": "={{ $node[\"entree\"].json.missionId }}"
+            }
+          ]
+        }
+      },
+      "id": "55462541-fd15-4033-81f6-5396f376381d",
+      "name": "Questionneur de documentation",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        1180
+      ]
     }
   ],
   "pinData": {
     "Execute Workflow Trigger": [
       {
         "json": {
-          "client": "dynergie",
+          "client": "digitalkin",
           "commandText": "doing",
-          "date": "2024-02-15T02:23:48.525+01:00",
-          "dernierProducteur": "kinlcabeta",
+          "date": "2024-02-20T16:12:28.778+01:00",
+          "dernierProducteur": "kinfichekin",
           "execution": "doing",
           "firstAttribute": "execution",
-          "instructions": "TODOLIST : \n\n- ACTION 1 : Évaluer l'Objectif de l'Étude : DONE\n- ACTION 2 : Analyser la Méthodologie : DONE\n- ACTION 3 : Évaluation des Résultats : TODO\n- ACTION 4 : Critiquer la Discussion et les Conclusions : TODO\n- ACTION 5 : Conduire une Analyse Critique : TODO\n- ACTION 6 : Analyse des figures, tableaux et graphs : TODO\n- ACTION 7 : Signature Finale : TODO\n\nProchaine action à réaliser & instructions:\nPassons à l'ACTION 3 - Évaluation des Résultats. Cette phase est cruciale pour l'analyse du rapport. Voici les points que tu dois aborder :\n\n1. Résumé des Résultats Principaux: Fournis un résumé clair des résultats principaux de l'étude. Quelles étaient les conclusions principales ? Y a-t-il eu des résultats inattendus ?\n\n2. Signification Statistique: Évalue la signification statistique des résultats. Quels étaient les niveaux de signification (valeurs p) obtenus pour les principaux résultats ?\n\n3. Interprétation des Résultats: Comment ces résultats se rapportent-ils aux hypothèses ou objectifs initiaux de l'étude ? Y a-t-il des implications spéciales ou des considérations à prendre en compte ?\n\n4. Limitations des Résultats: Identifie et discute les limitations potentielles des résultats obtenus. Comment ces limitations affectent-elles l'interprétation des données ?\n\nPrends des notes détaillées sur chacun de ces aspects et prépare-toi à les inclure dans la section correspondante du rapport LCA. Si tu as des questions ou besoin d'aide supplémentaire, n'hésite pas à me le faire savoir.",
-          "kin": "kinlcabeta",
-          "kinDemandeur": "Lester Reynolds <lreynolds@dynergie.fr>",
-          "mailFrom": "From: Lester Reynolds <lreynolds@dynergie.fr>",
-          "mailId": "18daa39a9813d5fa",
-          "mailSubject": "LCA lotan 2020 beta",
-          "mission": "Subject: LCA lotan 2020 beta\nBody: LCA lotan 2020 beta\n\n\nFile attached with email : \"Lotan, European Journal of Plastic Surgery, 2020.pdf\"",
-          "missionId": "ac4a3c7c-c87f-41d7-811a-18947b06631c",
-          "sourceGoogleDriveId": "1WKLIOXOPbfAQ3XitIMsKta9i0S_0SoaG",
+          "instructions": "[INSTRUCTION - Rédaction de la fiche KinLCA]\nTODOLIST mise à jour :\n- ACTION 1. **Identification du Kin et Reformulation du Besoin** : Commence par identifier clairement le KinLCA, en mettant en évidence ses principales fonctions et en reformulant le besoin qui a conduit à sa création. Utilise les informations disponibles dans le système de balisage et les ressources internes pour décrire précisément les attributs et les objectifs du KinLCA.\n- ACTION 2. **Définition de l'Approche Globale d'amélioration** : TODO\n- ACTION 3. **Amélioration de la partie \"Compétences\" de la fiche du Kin sélectionné** : TODO\n- ACTION 4. **Amélioration de la partie \"Description Input\" de la fiche du Kin sélectionné** : TODO\n- ACTION 5. **Amélioration de la partie \"Description Output\" de la fiche du Kin sélectionné** : TODO\n- ACTION 6. **Amélioration de la partie \"Périmètre d'autonomie\" de la fiche du Kin sélectionné** : TODO\n- ACTION 7. **Amélioration de la partie \"Cas d'usage exemple\" de la fiche du Kin sélectionné** : TODO\n\nProchaine action à réaliser : ACTION 1. Identification du Kin et Reformulation du Besoin. Demarre la rédaction en te focalisant sur l'identification claire du Kin et la reformulation du besoin spécifique que le KinLCA adresse. [/INSTRUCTION - Rédaction de la fiche KinLCA]",
+          "kin": "kinfichekin",
+          "kinDemandeur": "Lester Reynolds <l.reynolds@digitalkin.ai>",
+          "mailFrom": "From: Lester Reynolds <l.reynolds@digitalkin.ai>",
+          "mailId": "18dc710fadd12c94",
+          "mailSubject": "Fiche KinLCA",
+          "mission": "Subject: Fiche KinLCA\nBody: Bonjour KinFicheKin,\n\nMission : créer la première version de la fiche du KinLCA\n\n-- \nNicolas Lester Reynolds\nCPO @ Digitalkin.ai <https://DigitalKin.ai>\n+33621636737\nBookez-moi sur Calendy <https://calendly.com/l-reynolds-digitalkin/call>",
+          "missionId": "71668b49-3a9c-4778-bfa3-8605d3a4fc71",
+          "sourceGoogleDriveId": "null",
           "status": "doing",
-          "threadFrom": "Lester Reynolds <lreynolds@dynergie.fr>",
-          "threadId": "18daa39a9813d5fa",
-          "threadSubject": "LCA lotan 2020 beta",
-          "executionId": "229409",
+          "threadFrom": "Lester Reynolds <l.reynolds@digitalkin.ai>",
+          "threadId": "18dc71048340868e",
+          "threadSubject": "Fiche KinLCA",
+          "executionId": "280485",
           "query": "/crud_mission/update/execution doing",
           "command": "update",
-          "startTimestamp": "2024-02-15T02:23:49.140+01:00",
+          "startTimestamp": "2024-02-20T16:12:29.189+01:00",
           "sync": false
         }
       }
@@ -3235,6 +3296,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-17T00:05:36.000Z",
-  "versionId": "5222dd7a-813e-4d92-a95d-642a6305a8a4"
+  "updatedAt": "2024-02-20T16:09:56.000Z",
+  "versionId": "93e0cfe0-46f5-456c-8750-ed329f7e4b4c"
 }
