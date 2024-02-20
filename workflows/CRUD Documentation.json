@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "/crud_mission/read",
+            "node": "GitHub",
             "type": "main",
             "index": 0
           }
@@ -102,10 +102,16 @@
     },
     "If create": {
       "main": [
-        [],
         [
           {
-            "node": "If update",
+            "node": "Create File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If create1",
             "type": "main",
             "index": 0
           }
@@ -123,7 +129,7 @@
         ],
         [
           {
-            "node": "If create",
+            "node": "If update",
             "type": "main",
             "index": 0
           }
@@ -132,7 +138,13 @@
     },
     "If update": {
       "main": [
-        [],
+        [
+          {
+            "node": "Edit FILE",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "If delete",
@@ -345,90 +357,18 @@
         ]
       ]
     },
-    "IF Document existe": {
+    "If delete": {
       "main": [
         [
           {
-            "node": "Get Thread",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "/crud_mission/read": {
-      "main": [
-        [
-          {
-            "node": "CRUD Mission : Read",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "CRUD Mission : Read": {
-      "main": [
-        [
-          {
-            "node": "mission",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "mission": {
-      "main": [
-        [
-          {
-            "node": "thread",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "thread": {
-      "main": [
-        [
-          {
-            "node": "If list",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If list": {
-      "main": [
-        [
-          {
-            "node": "titres",
+            "node": "Delete FILE",
             "type": "main",
             "index": 0
           }
         ],
-        []
-      ]
-    },
-    "titres": {
-      "main": [
         [
           {
-            "node": "GitHub",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If delete": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Stop and Error",
+            "node": "If create",
             "type": "main",
             "index": 0
           }
@@ -450,7 +390,7 @@
       "main": [
         [
           {
-            "node": "If read",
+            "node": "Merge1",
             "type": "main",
             "index": 0
           }
@@ -465,21 +405,65 @@
             "type": "main",
             "index": 0
           }
-        ],
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
         [
           {
-            "node": "GitHub1",
+            "node": "If read",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "GitHub1": {
+    "If create1": {
       "main": [
         [
           {
-            "node": "If FILE",
+            "node": "Edit FILE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit FILE": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Delete FILE": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Create File": {
+      "main": [
+        [
+          {
+            "node": "Merge",
             "type": "main",
             "index": 0
           }
@@ -501,22 +485,22 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -2180,
-        -1120
+        -1800,
+        -1140
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\njson.query = json.query.trim();\n\n// Détecter la commande\nlet regexCommand = /\\/crud\\_section\\/([a-zA-Z0-9\\_\\-]+)/i;\njson.command = \"\";\nlet matchCommand = json.query.match(regexCommand);\nif (matchCommand) {\n    json.command = matchCommand[1];\n}\n\nlet regexFirstAttribute = /\\/crud\\_section\\/[a-zA-Z0-9\\_\\-]+\\/([a-zA-Z0-9\\_\\-]+)/;\nlet matchFirstAttribute = json.query.match(regexFirstAttribute);\nif (matchFirstAttribute) {\n  json.firstAttribute = matchFirstAttribute[1];\n}\n\nlet regexAllCommand = /\\/\\S+ /;\njson.commandText = \"\";\nlet matchAllCommand = json.query.match(regexAllCommand);\nif (matchAllCommand) {\n  let startIndex = matchAllCommand[0].length;\n  json.commandText = json.query.substring(startIndex);\n}\n\njson.date = $now.toString();\n$execution.customData.set(\"kin\", String(json.kin));\n\nreturn {\"json\": json};"
+        "jsCode": "let json = $json;\n\nif (json.chatInput) {\n  json.query = json.chatInput;\n  json.kinDemandeur = \"Un humain\";\n}\n\njson.query = json.query.trim();\n\n// Détecter la commande\nlet regexCommand = /\\/crud\\_docs\\/([a-zA-Z0-9\\_\\-]+)/i;\njson.command = \"\";\nlet matchCommand = json.query.match(regexCommand);\nif (matchCommand) {\n    json.command = matchCommand[1];\n}\n\nlet regexFirstAttribute = /\\/crud\\_docs\\/[a-zA-Z0-9\\_\\-]+\\/([a-zA-Z0-9\\_\\-.]+)/i;\nlet matchFirstAttribute = json.query.match(regexFirstAttribute);\nif (matchFirstAttribute) {\n  json.firstAttribute = matchFirstAttribute[1];\n}\n\nlet regexAllCommand = /\\/\\S+ /;\njson.commandText = \"\";\nlet matchAllCommand = json.query.match(regexAllCommand);\nif (matchAllCommand) {\n  let startIndex = matchAllCommand[0].length;\n  json.commandText = json.query.substring(startIndex);\n}\n\njson.date = $now.toString();\n$execution.customData.set(\"kin\", String(json.kin));\n\nreturn {\"json\": json};"
       },
       "id": "22d2ebc3-9e6d-4c61-ac51-33cbbd03c90e",
       "name": "entree",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1960,
-        -1120
+        -1640,
+        -1140
       ]
     },
     {
@@ -707,12 +691,22 @@
           "conditions": [
             {
               "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
-              "leftValue": "={{ $node[\"entree\"].json.command }}",
+              "leftValue": "={{ $('entree').item.json.command }}",
               "rightValue": "create",
               "operator": {
                 "type": "string",
                 "operation": "equals",
                 "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "7b3ca7fd-d240-417e-8b81-187c530393a2",
+              "leftValue": "={{ $('Get FILE').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notExists",
+                "singleValue": true
               }
             }
           ],
@@ -727,8 +721,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1280,
-        -500
+        -740,
+        -540
       ]
     },
     {
@@ -777,8 +771,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1280,
-        -700
+        -740,
+        -1140
       ]
     },
     {
@@ -812,8 +806,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1280,
-        -300
+        -740,
+        -940
       ]
     },
     {
@@ -983,8 +977,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1280,
-        -100
+        -740,
+        -740
       ]
     },
     {
@@ -1295,154 +1289,6 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "boolean": [
-            {
-              "value1": "={{ Object.keys($node[\"List Existing Document\"].json).length > 0 }}",
-              "value2": true
-            }
-          ]
-        }
-      },
-      "id": "a5447ef9-26b9-46ab-8e4c-28422ba1e32d",
-      "name": "IF Document existe",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        -400,
-        -1120
-      ]
-    },
-    {
-      "parameters": {
-        "setAllData": false,
-        "sourceKey": "=thread",
-        "destinationKey": "=thread",
-        "options": {
-          "encoding": "utf8"
-        }
-      },
-      "id": "96aa5b8b-d711-432d-baf3-a0ad7ba3501c",
-      "name": "Convert Document to JSON",
-      "type": "n8n-nodes-base.moveBinaryData",
-      "typeVersion": 1.1,
-      "position": [
-        60,
-        -1120
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = {};\n\njson.thread = $json.thread;\njson.documentGoogleDriveId = $node[\"Get Thread\"].json.id;\n\nreturn {\"json\": json, \"binary\": $node[\"Get Thread\"].binary};"
-      },
-      "id": "92494d86-18c4-4570-a036-66d814ccb2e1",
-      "name": "response",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        880,
-        -1100
-      ]
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "operation": "download",
-        "fileId": {
-          "__rl": true,
-          "value": "={{ $json.id }}",
-          "mode": "id"
-        },
-        "binaryPropertyName": "=thread",
-        "options": {}
-      },
-      "name": "Get Thread",
-      "type": "n8n-nodes-base.googleDrive",
-      "position": [
-        -160,
-        -1120
-      ],
-      "typeVersion": 1,
-      "id": "d50024ec-7670-4c50-b635-ec00bbef8b62",
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "Z5nSsC9JGaYw1Ng3",
-          "name": "Google Drive DK via Nicolas"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "operation": "list",
-        "useQueryString": true,
-        "queryString": "'1dr5OBgzuOSPMRIcnYAk35_XQpjndrjHu' in parents",
-        "options": {}
-      },
-      "name": "List Existing Document",
-      "type": "n8n-nodes-base.googleDrive",
-      "position": [
-        -600,
-        -1500
-      ],
-      "typeVersion": 1,
-      "id": "54973002-604a-47fb-bc1b-23fb16368d7d",
-      "alwaysOutputData": true,
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "Z5nSsC9JGaYw1Ng3",
-          "name": "Google Drive DK via Nicolas"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "content": "## CRUD Mission\nhttps://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi",
-        "height": 274.5517166627047,
-        "width": 250.71967654986526
-      },
-      "id": "09a1341e-f07c-43de-a3f3-1736d5a37695",
-      "name": "Sticky Note1",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -1580,
-        -1220
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\njson.query = \"/crud_mission/read/\" + $json.missionId;\njson.responseFormat = \"json\";\n\nreturn {\"json\": json};"
-      },
-      "id": "a69fa2d0-0b7d-4224-b7ee-8db3dd8e8d60",
-      "name": "/crud_mission/read",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -1720,
-        -1120
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "HLDDZOmG8kuk2zTi",
-        "options": {}
-      },
-      "id": "082a1b0f-74f7-4ff6-995b-61e025bb6e45",
-      "name": "CRUD Mission : Read",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        -1500,
-        -1120
-      ]
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
         "jsCode": "$execution.customData.set(\"command\", \"read\");\nlet json = $node[\"entree\"].json;\n\nif (Object.keys($json.vectors).length > 0) {\n  json = $json.vectors[Object.keys($json.vectors)[0]].metadata;\n}\n\nreturn {\"json\": json};"
       },
@@ -1453,98 +1299,6 @@
       "position": [
         -400,
         600
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let json = $json;\n\nreturn {\"json\": json};"
-      },
-      "id": "2cd41dda-ae47-4c5c-95da-7b646bc2d9d9",
-      "name": "mission",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -1280,
-        -1120
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": false,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
-              "leftValue": "={{ $node[\"entree\"].json.command }}",
-              "rightValue": "list",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "ignoreCase": true
-        }
-      },
-      "id": "357b3520-6f10-4023-871e-c0b0e6cbb20e",
-      "name": "If list",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        -1280,
-        -880
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let thread = $node[\"thread\"].json.thread;\n\nfunction extractTitles(thread) {\n  let extractedContent = \"\";\n  const contentPattern = /^(\\*\\*|\\[)([A-Z]{2,16}) - (.*?)(\\*\\*|\\])([\\s\\S]*?)([-=]{3,4}|\\[\\/CONTENU - .*?\\]|\\Z)/gi;\n\n  let matches;\n  while ((matches = contentPattern.exec(thread)) !== null) {\n      // Ajoute chaque contenu trouvé au texte final\n      extractedContent += matches[2].trim() + \"\\n\\n\" + matches[3].trim() + \"\\n\";\n  }\n\n  return extractedContent.trim();\n}\n\n// Garder le CONTENU\nlet titles = extractTitles(thread);\n\nreturn {\"json\":{\"titles\":titles}};"
-      },
-      "id": "84c8ae10-d806-4fbf-af1d-f5715b2c9d67",
-      "name": "titres",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -1040,
-        -880
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "YWxRZmBa38HYCjnv",
-        "options": {}
-      },
-      "id": "605238fc-5320-46bf-a67d-1446e7e0ab88",
-      "name": "thread",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        -1040,
-        -1120
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## Get/Create Thread\nhttps://kins.app.n8n.cloud/workflow/YWxRZmBa38HYCjnv",
-        "height": 274.5517166627047,
-        "width": 250.71967654986526
-      },
-      "id": "4971bdaf-e7cb-4c76-b11c-5a076e44aa10",
-      "name": "Sticky Note15",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -1120,
-        -1220
       ]
     },
     {
@@ -1566,15 +1320,15 @@
           "cachedResultName": "kindocs",
           "cachedResultUrl": "https://github.com/DigitalKin-ai/kindocs"
         },
-        "filePath": "docs/"
+        "filePath": "=docs/"
       },
       "id": "c4a099db-d055-4c78-855d-f1f065b08c6e",
       "name": "GitHub",
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        -2000,
-        -620
+        -1480,
+        -1140
       ],
       "credentials": {
         "githubOAuth2Api": {
@@ -1597,15 +1351,17 @@
           "value": "https://github.com/DigitalKin-ai/kindocs",
           "mode": "url"
         },
-        "filePath": "=docs/{{ $json }}"
+        "filePath": "=docs/{{ $('entree').item.json.firstAttribute }}",
+        "fileContent": "={{ $('entree').item.json.commandText }}",
+        "commitMessage": "={{ `Update: ` + $('entree').item.json.firstAttribute }}"
       },
       "id": "0f5be76b-cc4a-49be-9cf1-f42616790aed",
       "name": "Edit FILE",
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        -1060,
-        -300
+        -520,
+        -940
       ],
       "credentials": {
         "githubApi": {
@@ -1627,15 +1383,17 @@
           "value": "https://github.com/DigitalKin-ai/kindocs",
           "mode": "url"
         },
-        "filePath": "docs/"
+        "filePath": "=docs/{{ $('entree').item.json.firstAttribute }}",
+        "fileContent": "={{ $('entree').item.json.commandText }}",
+        "commitMessage": "={{ `Create: ` + $('entree').item.json.firstAttribute }}"
       },
       "id": "bce41a6f-255e-453c-a111-b614735496c0",
       "name": "Create File",
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        -1060,
-        -500
+        -520,
+        -540
       ],
       "credentials": {
         "githubApi": {
@@ -1658,15 +1416,16 @@
           "value": "https://github.com/DigitalKin-ai/kindocs",
           "mode": "url"
         },
-        "filePath": "=docs/{{ $json }}"
+        "filePath": "={{ `docs/` + $('entree').item.json.firstAttribute }}",
+        "commitMessage": "={{ `Delete: ` + $('entree').item.json.firstAttribute }}"
       },
       "id": "455bc415-906d-49ec-a96d-65d58f6f48de",
       "name": "Delete FILE",
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        -1060,
-        -100
+        -520,
+        -740
       ],
       "credentials": {
         "githubApi": {
@@ -1684,8 +1443,8 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        -1280,
-        100
+        -740,
+        -140
       ]
     },
     {
@@ -1707,7 +1466,7 @@
           "cachedResultName": "kindocs",
           "cachedResultUrl": "https://github.com/DigitalKin-ai/kindocs"
         },
-        "filePath": "docs/intro.md",
+        "filePath": "=docs/{{ $('entree').item.json.firstAttribute }}",
         "additionalParameters": {}
       },
       "id": "b4b08de7-2867-4b2a-8fd6-c4c421ad10c9",
@@ -1715,8 +1474,8 @@
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        -1540,
-        -640
+        -1160,
+        -1140
       ],
       "credentials": {
         "githubOAuth2Api": {
@@ -1736,12 +1495,11 @@
           "conditions": [
             {
               "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
-              "leftValue": "={{ $json.content }}",
-              "rightValue": "file",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "={{ $('entree').item.json.firstAttribute }}",
               "operator": {
                 "type": "string",
-                "operation": "exists",
-                "singleValue": true
+                "operation": "equals"
               }
             }
           ],
@@ -1756,45 +1514,80 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -1740,
-        -560
+        -1320,
+        -1140
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "81f3dfcb-3d33-4aed-a289-1a1c85ffc0bf",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        -1000,
+        -1140
       ]
     },
     {
       "parameters": {
-        "authentication": "oAuth2",
-        "resource": "file",
-        "operation": "list",
-        "owner": {
-          "__rl": true,
-          "value": "DigitalKin-ai",
-          "mode": "list",
-          "cachedResultName": "DigitalKin-ai",
-          "cachedResultUrl": "https://github.com/DigitalKin-ai"
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f63273fd-4900-4799-9340-1f2de05a40c4",
+              "leftValue": "={{ $('entree').item.json.command }}",
+              "rightValue": "create",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "7b3ca7fd-d240-417e-8b81-187c530393a2",
+              "leftValue": "={{ $('Get FILE').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
         },
-        "repository": {
-          "__rl": true,
-          "value": "kindocs",
-          "mode": "list",
-          "cachedResultName": "kindocs",
-          "cachedResultUrl": "https://github.com/DigitalKin-ai/kindocs"
-        },
-        "filePath": "={{ $json.path }}"
+        "options": {
+          "ignoreCase": true
+        }
       },
-      "id": "5afa0602-2d11-4931-a5cd-b9119b02e2de",
-      "name": "GitHub1",
-      "type": "n8n-nodes-base.github",
+      "id": "220eb953-2f06-4e31-9384-b5205c631c52",
+      "name": "If create1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -740,
+        -340
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# /crud_docs/%actionType%/%actionContent%",
+        "height": 1281.2643325419258,
+        "width": 1898.607724430052
+      },
+      "id": "4ee8f25d-acf2-41fc-b430-db17c62f158f",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1660,
-        -320
-      ],
-      "credentials": {
-        "githubOAuth2Api": {
-          "id": "lNM7LCv7g0a8rDRT",
-          "name": "Charlie Github"
-        }
-      }
+        -1880,
+        -1280
+      ]
     }
   ],
   "pinData": {
@@ -1811,63 +1604,7 @@
           "mailId": "18da91546c3c7090",
           "mailSubject": "Revue de littérature - Efficacité de l'homéopathie en santé animale (Essai n°1)",
           "mailFrom": "From: Lester Reynolds <lreynolds@dynergie.fr>",
-          "query": "/crud_section/list"
-        }
-      }
-    ],
-    "GitHub": [
-      {
-        "json": {
-          "name": "intro.md",
-          "path": "docs/intro.md",
-          "sha": "45e8604c8bf8fe674fd34a11874f15294b9362b2",
-          "size": 1403,
-          "url": "https://api.github.com/repos/DigitalKin-ai/kindocs/contents/docs/intro.md?ref=main",
-          "html_url": "https://github.com/DigitalKin-ai/kindocs/blob/main/docs/intro.md",
-          "git_url": "https://api.github.com/repos/DigitalKin-ai/kindocs/git/blobs/45e8604c8bf8fe674fd34a11874f15294b9362b2",
-          "download_url": "https://raw.githubusercontent.com/DigitalKin-ai/kindocs/main/docs/intro.md?token=AUKY35ACAMXQNWF3AOVFL6DF2OCXC",
-          "type": "file",
-          "_links": {
-            "self": "https://api.github.com/repos/DigitalKin-ai/kindocs/contents/docs/intro.md?ref=main",
-            "git": "https://api.github.com/repos/DigitalKin-ai/kindocs/git/blobs/45e8604c8bf8fe674fd34a11874f15294b9362b2",
-            "html": "https://github.com/DigitalKin-ai/kindocs/blob/main/docs/intro.md"
-          }
-        }
-      },
-      {
-        "json": {
-          "name": "tutorial-basics",
-          "path": "docs/tutorial-basics",
-          "sha": "91acd980180241463d81f7e6d3858ae2cfd85c2d",
-          "size": 0,
-          "url": "https://api.github.com/repos/DigitalKin-ai/kindocs/contents/docs/tutorial-basics?ref=main",
-          "html_url": "https://github.com/DigitalKin-ai/kindocs/tree/main/docs/tutorial-basics",
-          "git_url": "https://api.github.com/repos/DigitalKin-ai/kindocs/git/trees/91acd980180241463d81f7e6d3858ae2cfd85c2d",
-          "download_url": null,
-          "type": "dir",
-          "_links": {
-            "self": "https://api.github.com/repos/DigitalKin-ai/kindocs/contents/docs/tutorial-basics?ref=main",
-            "git": "https://api.github.com/repos/DigitalKin-ai/kindocs/git/trees/91acd980180241463d81f7e6d3858ae2cfd85c2d",
-            "html": "https://github.com/DigitalKin-ai/kindocs/tree/main/docs/tutorial-basics"
-          }
-        }
-      },
-      {
-        "json": {
-          "name": "tutorial-extras",
-          "path": "docs/tutorial-extras",
-          "sha": "b3ba1ec6779bc750fe188f6ddd55c8a27b65a7f4",
-          "size": 0,
-          "url": "https://api.github.com/repos/DigitalKin-ai/kindocs/contents/docs/tutorial-extras?ref=main",
-          "html_url": "https://github.com/DigitalKin-ai/kindocs/tree/main/docs/tutorial-extras",
-          "git_url": "https://api.github.com/repos/DigitalKin-ai/kindocs/git/trees/b3ba1ec6779bc750fe188f6ddd55c8a27b65a7f4",
-          "download_url": null,
-          "type": "dir",
-          "_links": {
-            "self": "https://api.github.com/repos/DigitalKin-ai/kindocs/contents/docs/tutorial-extras?ref=main",
-            "git": "https://api.github.com/repos/DigitalKin-ai/kindocs/git/trees/b3ba1ec6779bc750fe188f6ddd55c8a27b65a7f4",
-            "html": "https://github.com/DigitalKin-ai/kindocs/tree/main/docs/tutorial-extras"
-          }
+          "query": "/crud_docs/create/lorem.md Lyon[c] (Franco-Provençal: Liyon), traditionally spelled in English as Lyons,[d] is the third-largest city of France.[e] It is located at the confluence of the rivers Rhône and Saône, to the northwest of the French Alps, 391 km (243 mi) southeast of Paris, 278 km (173 mi) north of Marseille, 113 km (70 mi) southwest of Geneva, 58 km (36 mi) northeast of Saint-Étienne.The City of Lyon had a population of 522,000 in 2023 within its small municipal territory of 48 km2 (19 sq mi),[14] but together with its suburbs and exurbs the Lyon metropolitan area had a population of 2,293,180 that same year,[7] the second most populated in France. Lyon and 58 suburban municipalities have formed since 2015 the Metropolis of Lyon, a directly elected metropolitan authority now in charge of most urban issues, with a population of 1,416,545 in 2020.[15] Lyon is the prefecture of the Auvergne-Rhône-Alpes region and seat of the Departmental Council of Rhône (whose jurisdiction, however, no longer extends over the Metropolis of Lyon since 2015).The capital of the Gauls during the Roman Empire, Lyon is the seat of an archbishopric whose holder bears the title of Primate of the Gauls. Lyon became a major economic hub during the Renaissance. The city is recognised for its cuisine and gastronomy, as well as historical and architectural landmarks; as such, the districts of Old Lyon, the Fourvière hill, the Presqu'île and the slopes of the Croix-Rousse are inscribed on the UNESCO World Heritage List. Lyon was historically an important area for the production and weaving of silk. Lyon played a significant role in the history of cinema since Auguste and Louis Lumière invented the cinematograph there. The city is also known for its light festival, the Fête des Lumières, which begins every 8 December and lasts for four days, earning Lyon the title of \"Capital of Lights\".Economically, Lyon is a major centre for banking, chemical, pharmaceutical and biotech industries. The city contains a significant software industry with a particular focus on video games; in recent years it has fostered a growing local start-up sector.[16] The home of renowned universities and higher education schools, Lyon is the second-largest student city in France, with a university population of nearly 200,000 students within the Metropolis of Lyon.[17] Lyon hosts the international headquarters of Interpol, the International Agency for Research on Cancer, as well as Euronews. According to the Globalization and World Rankings Research Institute, Lyon is considered a Beta city, as of 2018.[18] It ranked second in France and 40th globally in Mercer's 2019 liveability rankings.[19] "
         }
       }
     ]
@@ -1891,6 +1628,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-19T16:48:29.000Z",
-  "versionId": "4f50e53e-55f2-4715-9abb-6b29583c35f6"
+  "updatedAt": "2024-02-20T09:29:19.000Z",
+  "versionId": "873147c7-88d2-4dea-b5a6-e03e532fd35a"
 }
