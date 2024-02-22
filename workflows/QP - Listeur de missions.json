@@ -89,17 +89,6 @@
         ]
       ]
     },
-    "Chat Trigger": {
-      "main": [
-        [
-          {
-            "node": "entree",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "kinmatcheur": {
       "main": [
         [
@@ -110,6 +99,17 @@
           },
           {
             "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
             "type": "main",
             "index": 0
           }
@@ -344,27 +344,6 @@
     },
     {
       "parameters": {
-        "public": true,
-        "initialMessages": "Le listeur_de_missions permet de récupérer la liste des missions en cours, terminées, et en attente.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Le statut des tâches désirées (toto/doing/done/waiting)\n- (filtre optionnel) Le Kin désiré\n- Si tu cherches des informations particulières,\n- Le format de réponse désiré.\n\nex : Je souhaite un point général sur la situation de la production.",
-        "options": {
-          "inputPlaceholder": "Je souhaite un point général sur la situation de la production.",
-          "responseMode": "lastNode",
-          "subtitle": "=Le listeur_de_missions permet de récupérer la liste des missions en cours, terminées, et en attente.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Le statut des tâches désirées (toto/doing/done/waiting)\n- (filtre optionnel) Le Kin désiré\n- Si tu cherches des informations particulières,\n- Le format de réponse désiré.",
-          "title": "={{ $workflow.name }}"
-        }
-      },
-      "id": "6f42c407-6b06-417e-8727-9e5379028c03",
-      "name": "Chat Trigger",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1,
-      "position": [
-        -1180,
-        420
-      ],
-      "webhookId": "897ced6f-149f-4da4-8a69-30216d828b78"
-    },
-    {
-      "parameters": {
         "assistantId": "asst_8umriZllMPt14U8qy2T0jCmQ",
         "text": "=[RETOUR - Missions actives]\n\n```\n{{ JSON.stringify($node[\"missions\"].json.missionsInPipeline).substring(0, 10000) }}{{  JSON.stringify($node[\"missions\"].json.missionsInPipeline).length > 10000 ? \"[...]\" : \"\" }}\n```\n\n[/RETOUR - Missions actives]\n\n===\n\n[RETOUR - Missions terminées]\n\n```\n{{ JSON.stringify($node[\"missions\"].json.missionsDone).substring(0, 10000) }}{{  JSON.stringify($node[\"missions\"].json.missionsDone).length > 10000 ? \"[...]\" : \"\" }}\n```\n\n[/RETOUR - Missions terminées]\n\n===\n\n[PROCESSUS - Directives générales]\n\n- Utilise des listes. Regroupe par statut.\n- Inclus si possible missionId, status, execution, client, kinDemandeur, kin, mailId, mailSubject, et un résumé de la mission.\n- Réponds au besoin informationnel en une seule réponse.\n\n[/PROCESSUS - Directives générales]\n\n===\n\n[DEMANDE - Demande spécifique de {{ $node[\"entree\"].json.kinDemandeur }}]\n\n{{ $node[\"entree\"].json.query }}\n\n[/DEMANDE - Demande spécifique de {{ $node[\"entree\"].json.kinDemandeur }}]\n\n===\n\n[INSTRUCTION - Réponse au besoin informationnel]\n\nA partir des informations disponibles, formule la meilleure réponse possible au besoin informationnel.\n\n[/INSTRUCTION - Réponse au besoin informationnel]",
         "options": {}
@@ -384,6 +363,27 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Le listeur_de_missions permet de récupérer la liste des missions en cours, terminées, et en attente.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Le statut des tâches désirées (toto/doing/done/waiting)\n- (filtre optionnel) Le Kin désiré\n- Si tu cherches des informations particulières,\n- Le format de réponse désiré.\n\nex : Je souhaite un point général sur la situation de la production.",
+        "options": {
+          "inputPlaceholder": "Je souhaite un point général sur la situation de la production.",
+          "responseMode": "lastNode",
+          "subtitle": "=Le listeur_de_missions permet de récupérer la liste des missions en cours, terminées, et en attente.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- (optionnel) Le statut des tâches désirées (toto/doing/done/waiting)\n- (filtre optionnel) Le Kin désiré\n- Si tu cherches des informations particulières,\n- Le format de réponse désiré.",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "6f42c407-6b06-417e-8727-9e5379028c03",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1180,
+        420
+      ],
+      "webhookId": "897ced6f-149f-4da4-8a69-30216d828b78"
     }
   ],
   "pinData": {
@@ -418,6 +418,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-14T20:26:53.000Z",
-  "versionId": "0c7f104f-2a74-4007-aa37-ea4ceaf61f79"
+  "updatedAt": "2024-02-22T10:26:31.000Z",
+  "versionId": "95d75352-03c4-4473-b48d-1a37b9dd7b4d"
 }
