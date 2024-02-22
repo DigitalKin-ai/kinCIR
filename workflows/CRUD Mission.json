@@ -391,22 +391,22 @@
         ]
       ]
     },
-    "Chat Trigger": {
+    "Generate UUID": {
       "main": [
         [
           {
-            "node": "entree",
+            "node": "nouvelleMission entree",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Generate UUID": {
+    "Chat Trigger": {
       "main": [
         [
           {
-            "node": "nouvelleMission entree",
+            "node": "entree",
             "type": "main",
             "index": 0
           }
@@ -1266,12 +1266,26 @@
     },
     {
       "parameters": {
+        "action": "generate",
+        "dataPropertyName": "id"
+      },
+      "id": "1a510ab7-e2b3-4ef7-be10-440a0cccea18",
+      "name": "Generate UUID",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        1480
+      ]
+    },
+    {
+      "parameters": {
         "public": true,
-        "initialMessages": "La fonction \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'exécution.\n\nAppels disponibles :\n   - Pour **continuer la boucle de production** : /crud_mission/update/execution todo\n   - Pour **gérer une exception** : /crud_mission/update/status exception\n   - Pour **formuler une demande spécifique** : /crud_mission/create/<nomdukindemandé> <Description détaillée de la nouvelle mission>.\n   - Pour **conclure la mission** : /crud_mission/update/status done",
+        "initialMessages": "La fonction GPT \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'exécution.\n\nAppels disponibles :\n   - Pour **continuer la boucle de production** : /crud_mission/update/execution todo\n   - Pour **gérer une exception** : /crud_mission/update/status exception\n   - Pour **formuler une demande spécifique** : /crud_mission/create/<nomdukindemandé> <Description détaillée de la nouvelle mission>.\n   - Pour **conclure la mission** : /crud_mission/update/status done",
         "options": {
           "inputPlaceholder": "/crud_mission/read",
           "responseMode": "lastNode",
-          "subtitle": "=La fonction \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'exécution.\n\nAppels disponibles :\n   - Pour **continuer la boucle de production** : /crud_mission/update/execution todo\n   - Pour **gérer une exception** : /crud_mission/update/status exception\n   - Pour **formuler une demande spécifique** : /crud_mission/create/<nomdukindemandé> <Description détaillée de la nouvelle mission>.\n   - Pour **conclure la mission** : /crud_mission/update/status done",
+          "subtitle": "=La fonction GPT \"crud_mission\" permet au Manager d'effectuer des actions sur les missions. Permet de lancer, arrêter, ou modifier la mission en cours d'exécution.\n\nAppels disponibles :\n   - Pour **continuer la boucle de production** : /crud_mission/update/execution todo\n   - Pour **gérer une exception** : /crud_mission/update/status exception\n   - Pour **formuler une demande spécifique** : /crud_mission/create/<nomdukindemandé> <Description détaillée de la nouvelle mission>.\n   - Pour **conclure la mission** : /crud_mission/update/status done",
           "title": "={{ $workflow.name }}"
         }
       },
@@ -1284,20 +1298,6 @@
         100
       ],
       "webhookId": "b5e5cf9d-1b48-4f67-897c-e1c3389082ca"
-    },
-    {
-      "parameters": {
-        "action": "generate",
-        "dataPropertyName": "id"
-      },
-      "id": "1a510ab7-e2b3-4ef7-be10-440a0cccea18",
-      "name": "Generate UUID",
-      "type": "n8n-nodes-base.crypto",
-      "typeVersion": 1,
-      "position": [
-        -1000,
-        1480
-      ]
     }
   ],
   "pinData": {},
@@ -1320,6 +1320,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-16T21:44:28.000Z",
-  "versionId": "ea63d000-5c0d-43aa-8acd-1da87939f440"
+  "updatedAt": "2024-02-22T10:25:16.000Z",
+  "versionId": "2c8717e6-8e4f-4fbd-b969-1d677526a618"
 }
