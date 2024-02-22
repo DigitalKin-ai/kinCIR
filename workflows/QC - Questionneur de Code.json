@@ -100,17 +100,6 @@
         ]
       ]
     },
-    "Chat Trigger": {
-      "main": [
-        [
-          {
-            "node": "entree",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "/crud_mission/read": {
       "main": [
         [
@@ -150,6 +139,17 @@
           {
             "node": "Condenseur de code",
             "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "entree",
+            "type": "main",
             "index": 0
           }
         ]
@@ -349,27 +349,6 @@
     },
     {
       "parameters": {
-        "public": true,
-        "initialMessages": "Le Questionneur de code retourne une réponse issue de la codebase n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\nEx : Comment fonctionne le Workflow \"Recherche Google Scholar\" ?",
-        "options": {
-          "inputPlaceholder": "Comment fonctionne le Workflow \"Recherche Google Scholar\" ?",
-          "responseMode": "lastNode",
-          "subtitle": "Le Questionneur de code retourne une réponse issue de la codebase n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
-          "title": "={{ $workflow.name }}"
-        }
-      },
-      "id": "87ae172e-3b9e-41d9-b0a6-51346d3f41ea",
-      "name": "Chat Trigger",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1,
-      "position": [
-        920,
-        -20
-      ],
-      "webhookId": "7c2faa4c-71d7-4509-affc-4c68158b7d9f"
-    },
-    {
-      "parameters": {
         "content": "## CRUD Mission\nhttps://kins.app.n8n.cloud/workflow/HLDDZOmG8kuk2zTi",
         "height": 274.5517166627047,
         "width": 250.71967654986526
@@ -447,18 +426,30 @@
         }
       },
       "disabled": true
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Le Questionneur de code retourne une réponse issue de la codebase n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.\n\nEx : Comment fonctionne le Workflow \"Recherche Google Scholar\" ?",
+        "options": {
+          "inputPlaceholder": "Comment fonctionne le Workflow \"Recherche Google Scholar\" ?",
+          "responseMode": "lastNode",
+          "subtitle": "Le Questionneur de code retourne une réponse issue de la codebase n8n de DigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, contenant :\n- Les informations que tu cherches, avec les mots clés et éléments de contexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu souhaites faire.\n- Le format de réponse désiré.",
+          "title": "={{ $workflow.name }}"
+        }
+      },
+      "id": "87ae172e-3b9e-41d9-b0a6-51346d3f41ea",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        920,
+        -20
+      ],
+      "webhookId": "7c2faa4c-71d7-4509-affc-4c68158b7d9f"
     }
   ],
   "pinData": {
-    "Chat Trigger": [
-      {
-        "json": {
-          "action": "sendMessage",
-          "sessionId": "7aee1934-5e48-47af-ae0a-6b6e23466cb4",
-          "chatInput": "Ex : Comment fonctionne le Workflow boucle de management ?"
-        }
-      }
-    ],
     "Execute Workflow Trigger": [
       {
         "json": {
@@ -467,6 +458,15 @@
           "kin": "kindev",
           "mission": "INFORMATIF - Mission du kinrsi]\n\nSubject: \nBody: # Outils\n\nLe Questionneur de code retourne une réponse issue de la codebase n8n de \nDigitalKin à partir d'une demande informationnelle détaillée.\n\nPour bien l'utiliser, il faut rédiger un paragraphe de demande détaillée, \ncontenant :\n- Les informations que tu cherches, avec les mots clés et éléments de \ncontexte.\n- L'intention d'usage : où tu en es dans les instructions et ce que tu \nsouhaites faire.\n- Le format de réponse désiré.\n\nEx : Comment fonctionne le Workflow \"Recherche Google Scholar\" ?\n-- \nNicolas Lester Reynolds\nCPO @ Digitalkin.ai <https://DigitalKin.ai>\n+33621636737\nBookez-moi sur Calendy <https://calendly.com/l-reynolds-digitalkin/call>\n\n[/INFORMATIF du kinrsi]\n\n\n---\n\n[INFORMATIF - Dernier Kin Producteur ]\n\nkinrsi\n\n[/INFORMATIF - Dernier Kin Producteur ]\n\n\n---\n\n[INFORMATIF - Dernière production du Kin Producteur]\n\n\n\n[/INFORMATIF - Dernière production du Kin Producteur]\n\n\n---\n\n[INFORMATIF - Dernier Message du KinManager]\n\nTODOLIST : - Identification du Kin et Reformulation du Besoin : DONE - Définition de l'Approche Globale d'amélioration : DONE - Amélioration de la partie \"Instructions Globales\" du prompt du Kin sélectionné : DONE - Amélioration de la partie \"Rôle\" du prompt du Kin sélectionné : DONE - Amélioration de la partie \"Contexte\" du prompt du Kin sélectionné : DONE - Amélioration de la partie \"Proposition de Valeur\" du prompt du Kin sélectionné : DONE - Amélioration de la partie \"Système de Balisage des Kins\" du prompt du Kin sélectionné : DONE - IDENTIFICATION DES ACTIONS : DONE - ACTION 8 (à répéter pour chaque ACTION à améliorer). **Amélioration de la rédaction d'une ACTION spécifique du prompt du Kin sélectionné** : DONE - ACTION OUVERTE (Si amélioration) : Inférences sur les effets attendus sur le Kin. : DONE - ACTION OUVERTE : Réflexion sur le processus de création/amélioration en lui-même. : DONE - ACTION 9. **Rapport de Mission & Commentaire** : DONE\n\nProchaine action à réaliser & instructions : La mission étant à présent conclue, le kinrsi doit soumettre son rappor\n\n[/INFORMATIF - Dernier Message du KinManager]\n\n---\n\n[INFORMATIF - Message d'erreur]\n\nMessage not found (item 0)\n\n[/INFORMATIF - Message d'erreur]\n\n===\n\nDate : 2024-02-15T05:00:49.078+01:00\nClient : digitalkin\n\n===\n\n**PROCESSUS - MISSION : Gestion de l'EXCEPTION :**\n\nLa mission du  kinrsi a donné lieu à une EXCEPTION. **Ta mission, en tant que KinDev, est de comprendre le problème et d'écrire un court rapport d'exception.\n\n===",
           "threadId": "18daab14f24e5517"
+        }
+      }
+    ],
+    "Chat Trigger": [
+      {
+        "json": {
+          "action": "sendMessage",
+          "sessionId": "7aee1934-5e48-47af-ae0a-6b6e23466cb4",
+          "chatInput": "Ex : Comment fonctionne le Workflow boucle de management ?"
         }
       }
     ]
@@ -492,6 +492,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-16T21:12:32.000Z",
-  "versionId": "e093b9a6-611f-47b4-a163-6cf5f9643063"
+  "updatedAt": "2024-02-22T10:50:07.000Z",
+  "versionId": "29a648f0-3955-402b-9a4e-f437c09d4da1"
 }
