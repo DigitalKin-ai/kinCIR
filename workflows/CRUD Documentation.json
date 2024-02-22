@@ -565,19 +565,6 @@
     },
     {
       "parameters": {
-        "errorMessage": "commande non gérée"
-      },
-      "id": "a60975bb-a4a8-4a0a-9fd6-fe48002597f0",
-      "name": "Stop and Error2",
-      "type": "n8n-nodes-base.stopAndError",
-      "typeVersion": 1,
-      "position": [
-        -660,
-        2900
-      ]
-    },
-    {
-      "parameters": {
         "conditions": {
           "options": {
             "caseSensitive": false,
@@ -1129,9 +1116,19 @@
                 "operation": "notExists",
                 "singleValue": true
               }
+            },
+            {
+              "id": "42234958-9409-4b0c-993e-e2992edc473c",
+              "leftValue": "={{ $node[\"entree\"].json.commandText }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
             }
           ],
-          "combinator": "and"
+          "combinator": "or"
         },
         "options": {
           "ignoreCase": true
@@ -1226,6 +1223,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-02-21T10:55:02.000Z",
-  "versionId": "011ae35b-b331-4f7d-afc6-8526d5863a55"
+  "updatedAt": "2024-02-21T11:03:26.000Z",
+  "versionId": "7f02174a-9267-45b5-85c4-d5ee5c6edb9a"
 }
