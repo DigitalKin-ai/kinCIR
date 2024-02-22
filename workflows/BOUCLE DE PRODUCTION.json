@@ -206,11 +206,6 @@
             "node": "kincadreur",
             "type": "ai_tool",
             "index": 0
-          },
-          {
-            "node": "kincadreurbeta",
-            "type": "ai_tool",
-            "index": 0
           }
         ]
       ]
@@ -236,6 +231,11 @@
           },
           {
             "node": "kinarchitecte",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kindocdev",
             "type": "ai_tool",
             "index": 0
           }
@@ -331,17 +331,6 @@
       ]
     },
     "kincadreur": {
-      "main": [
-        [
-          {
-            "node": "Producteur",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "kincadreurbeta": {
       "main": [
         [
           {
@@ -614,11 +603,6 @@
             "index": 0
           },
           {
-            "node": "kincadreurbeta",
-            "type": "ai_tool",
-            "index": 0
-          },
-          {
             "node": "kinmanager",
             "type": "ai_tool",
             "index": 0
@@ -820,6 +804,49 @@
         ]
       ]
     },
+    "CRUD Documentation": {
+      "ai_tool": [
+        [
+          {
+            "node": "kinfichekin",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kindocdev",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "kindocdev": {
+      "main": [
+        [
+          {
+            "node": "Producteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Questionneur de documentation": {
+      "ai_tool": [
+        [
+          {
+            "node": "kindocdev",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "kinfichekin",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Switch": {
       "main": [
         [
@@ -901,7 +928,7 @@
         ],
         [
           {
-            "node": "kincadreurbeta",
+            "node": "kindocdev",
             "type": "main",
             "index": 0
           }
@@ -1001,17 +1028,6 @@
           {
             "node": "kinmissionouverte",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "CRUD Documentation": {
-      "ai_tool": [
-        [
-          {
-            "node": "kinfichekin",
-            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -1427,8 +1443,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1,
       "position": [
-        2320,
-        -20
+        1900,
+        660
       ]
     },
     {
@@ -1468,7 +1484,7 @@
       "typeVersion": 1,
       "position": [
         2580,
-        -380
+        -620
       ],
       "retryOnFail": true,
       "credentials": {
@@ -1623,28 +1639,6 @@
       "position": [
         2400,
         1340
-      ],
-      "retryOnFail": false,
-      "credentials": {
-        "openAiApi": {
-          "id": "WY3bm7GCb9qfewyS",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "assistantId": "asst_EwmKBIJWKqCJECb0nVBVju45",
-        "text": "={{ $json.promptProducteur }}",
-        "options": {}
-      },
-      "id": "0c203a91-b441-489b-811c-696a03f79c73",
-      "name": "kincadreurbeta",
-      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
-      "typeVersion": 1,
-      "position": [
-        2400,
-        1540
       ],
       "retryOnFail": false,
       "credentials": {
@@ -2449,7 +2443,7 @@
       "typeVersion": 1,
       "position": [
         2580,
-        -580
+        -780
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2602,9 +2596,77 @@
       "typeVersion": 1,
       "position": [
         1080,
-        1880
+        1860
       ],
       "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "WY3bm7GCb9qfewyS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "crud_documentation",
+        "description": "La fonction \"crud_documentation\" permet aux Kins d'effectuer des actions sur les fiches de documentation de l'équipe des Kins.\n\nAppels disponibles :\n   - Pour **créer une fiche** : /crud_documentation/create/<nomdelafiche>.md <Contenu en markdown>\n   - Pour **lire une fiche** : /crud_documentation/read/<nomdelafiche>.md\n   - Pour **modifier une fiche** : /crud_documentation/update/<nomdelafiche>.md <Contenu en markdown>\n   - Pour **supprimer une fiche** : /crud_documentation/delete/<nomdelafiche>.md\n   - Pour **lister les fiches** : /crud_documentation/list",
+        "workflowId": "g3JPUsHyA5nXgkwx",
+        "fields": {
+          "values": [
+            {
+              "name": "missionId",
+              "stringValue": "={{ $node[\"entree\"].json.missionId }}"
+            }
+          ]
+        }
+      },
+      "id": "0c983086-f2d3-4b04-84d0-0dbc921daa0d",
+      "name": "CRUD Documentation",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        1900
+      ]
+    },
+    {
+      "parameters": {
+        "name": "questionneur_de_documentation",
+        "description": "=Le questionneur_de_documentation retourne une réponse issue de la documentation de DigitalKin à partir d'une demande informationnelle détaillée.",
+        "workflowId": "wOuct7oxfVro7JhE",
+        "fields": {
+          "values": [
+            {
+              "name": "missionId",
+              "stringValue": "={{ $node[\"entree\"].json.missionId }}"
+            }
+          ]
+        }
+      },
+      "id": "55462541-fd15-4033-81f6-5396f376381d",
+      "name": "Questionneur de documentation",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        1900
+      ]
+    },
+    {
+      "parameters": {
+        "assistantId": "asst_1TUgUwfU3hbcj1z88Ds96jjZ",
+        "text": "={{ $json.promptProducteur }}",
+        "options": {}
+      },
+      "id": "0c203a91-b441-489b-811c-696a03f79c73",
+      "name": "kindocdev",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        2040
+      ],
+      "retryOnFail": false,
       "credentials": {
         "openAiApi": {
           "id": "WY3bm7GCb9qfewyS",
@@ -2867,7 +2929,7 @@
                   {
                     "id": "e830f692-818a-4c36-a976-38294ef3f1c8",
                     "leftValue": "={{ $node[\"entree\"].json.kin }}",
-                    "rightValue": "kincadreurbeta",
+                    "rightValue": "kindocdev",
                     "operator": {
                       "type": "string",
                       "operation": "equals",
@@ -3180,52 +3242,6 @@
         460,
         800
       ]
-    },
-    {
-      "parameters": {
-        "name": "crud_documentation",
-        "description": "La fonction \"crud_documentation\" permet aux Kins d'effectuer des actions sur les fiches de documentation de l'équipe des Kins.\n\nAppels disponibles :\n   - Pour **créer une fiche** : /crud_documentation/create/<nomdelafiche>.md <Contenu en markdown>\n   - Pour **lire une fiche** : /crud_documentation/read/<nomdelafiche>.md\n   - Pour **modifier une fiche** : /crud_documentation/update/<nomdelafiche>.md <Contenu en markdown>\n   - Pour **supprimer une fiche** : /crud_documentation/delete/<nomdelafiche>.md\n   - Pour **lister les fiches** : /crud_documentation/list",
-        "workflowId": "g3JPUsHyA5nXgkwx",
-        "fields": {
-          "values": [
-            {
-              "name": "missionId",
-              "stringValue": "={{ $node[\"entree\"].json.missionId }}"
-            }
-          ]
-        }
-      },
-      "id": "0c983086-f2d3-4b04-84d0-0dbc921daa0d",
-      "name": "CRUD Documentation",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        1480,
-        2060
-      ]
-    },
-    {
-      "parameters": {
-        "name": "questionneur_de_documentation",
-        "description": "=Le questionneur_de_documentation retourne une réponse issue de la documentation de DigitalKin à partir d'une demande informationnelle détaillée.",
-        "workflowId": "wOuct7oxfVro7JhE",
-        "fields": {
-          "values": [
-            {
-              "name": "missionId",
-              "stringValue": "={{ $node[\"entree\"].json.missionId }}"
-            }
-          ]
-        }
-      },
-      "id": "55462541-fd15-4033-81f6-5396f376381d",
-      "name": "Questionneur de documentation",
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 1,
-      "position": [
-        1780,
-        1180
-      ]
     }
   ],
   "pinData": {
@@ -3296,6 +3312,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-02-20T16:09:56.000Z",
-  "versionId": "93e0cfe0-46f5-456c-8750-ed329f7e4b4c"
+  "updatedAt": "2024-02-22T10:55:17.000Z",
+  "versionId": "67d0cc17-cd06-4c27-8b52-1440801221e7"
 }
